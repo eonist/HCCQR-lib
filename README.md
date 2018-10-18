@@ -1,4 +1,4 @@
-# HCCQR-demo
+# HCCQR-demo (rename to HCCQR-lib)
 High capacity quick response code
 
 ### Todo:
@@ -16,3 +16,4 @@ High capacity quick response code
 12. write the QR-Reader that splits an image into color channels, then recombines them to make up 2 unique QR-Frames
 13. Test creating HCCQR, Test Reading HCCQR
 14. Test reading and writing in real world conditions. Mobile scan Mac-screen
+15. Find for src lib that creates QR-code, try to get the array of squares etc. 👈
