@@ -2,7 +2,7 @@
 High capacity quick response code
 
 ### Todo:
-1. Add 4 CGLayer Squares to a view, R,G,B,W (black background)
+1. Add 4 CGLayer Squares to a view, R,G,B,W (black background)👈
 2. Find color channel splitting code on the internet ✅ https://github.com/skyfe79/SwiftImageProcessing
 3. Try to extract R,G,B 👈👈
 4. Find invert color code on the internet ✅ https://medium.com/@xyclos/how-to-invert-image-colors-in-swift-a301275efdd7
