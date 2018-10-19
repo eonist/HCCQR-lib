@@ -79,11 +79,13 @@ extension RGBAImage {
    static func channelR(_ image: RGBAImage) -> RGBAImage {
       var outImage = image
       outImage.process { (pixel) -> Pixel in
-         var pixel = pixel
-         pixel.R = pixel.R
-         pixel.G = 0
-         pixel.B = 0
-         return pixel
+         var pixelCopy = pixel
+//         Swift.print("pixel.R:  \(pixel.R)")
+         //basically measure if there is more r than g or b
+         pixelCopy.R = pixel.R == 0 ? 255 : 0
+         pixelCopy.G = pixel.R == 0 ? 255 : 0
+         pixelCopy.B = pixel.R == 0 ? 255 : 0
+         return pixelCopy
       }
       return outImage
    }
@@ -93,11 +95,12 @@ extension RGBAImage {
    static func channelG(_ image: RGBAImage) -> RGBAImage {
       var outImage = image
       outImage.process { (pixel) -> Pixel in
-         var pixel = pixel
-         pixel.R = 0
-         pixel.G = pixel.G
-         pixel.B = 0
-         return pixel
+         var pixelCopy = pixel
+         
+         pixelCopy.R = pixel.G == 0 ? 255 : 0
+         pixelCopy.G = pixel.G == 0 ? 255 : 0
+         pixelCopy.B = pixel.G == 0 ? 255 : 0
+         return pixelCopy
       }
       return outImage
    }
@@ -107,11 +110,11 @@ extension RGBAImage {
    static func channelB(_ image: RGBAImage) -> RGBAImage {
       var outImage = image
       outImage.process { (pixel) -> Pixel in
-         var pixel = pixel
-         pixel.R = 0
-         pixel.G = 0
-         pixel.B = pixel.B
-         return pixel
+          var pixelCopy = pixel
+         pixelCopy.R = pixel.B == 0 ? 255 : 0
+         pixelCopy.G = pixel.B == 0 ? 255 : 0
+         pixelCopy.B = pixel.B == 0 ? 255 : 0
+         return pixelCopy
       }
       return outImage
    }

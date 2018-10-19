@@ -2,9 +2,9 @@
 High capacity quick response code
 
 ### Todo:
-1. Add 4 CGLayer Squares to a view, R,G,B,W (black background)👈
+1. Add 4 CGLayer Squares to a view, R,G,B,W (black background)✅
 2. Find color channel splitting code on the internet ✅ https://github.com/skyfe79/SwiftImageProcessing
-3. Try to extract R,G,B 👈👈
+3. Try to extract R,G,B ✅
 4. Find invert color code on the internet ✅ https://medium.com/@xyclos/how-to-invert-image-colors-in-swift-a301275efdd7
 5. Find blend image (where white is transparent) code on the internet ✅ https://github.com/skyfe79/SwiftImageProcessing
 6. Find UIImage method that can get image from view-content on the internet ✅ https://github.com/eonist/swift-utils/blob/master/Sources/Utils/misc/view/uiview/UIView+Extension.swift
@@ -53,3 +53,29 @@ public enum ErrorCorrection: String {
 - https://github.com/zxingify (complete in jan,feb 2019)
 
 You can get 2d Array from a QR from this code: https://github.com/TheLevelUp/ZXingObjC/blob/master/ZXingObjC/qrcode/decoder/ZXQRCodeDecoder.m#L54
+
+
+### Notes on how to split the HCCQR code
+- I think the easiest experiment is to try splitting an image into color channels. RGB (White)
+- That gives you a working implementation of ColorQR. ONLY 2x speed but you can use existing API's to do it.
+
+`0=blank,1=filled`
+
+- Red = 01
+- Green = 10
+- Blue = 11
+- White = 00
+
+**Then you just do:**
+
+```swift
+let layer1:Image = image.redChannel.blackAndWhite.invert + image.greenChannel.blackAndWhite +  image.blueChannel.blackAndWhite
+let layer2:Image = image.redChannel.blackAndWhite + image.greenChannel.blackAndWhite.invert +  image.blueChannel.blackAndWhite
+let text1:String = layer1.decodeQrToString
+let text2:String = layer2.decodeQrToString
+let result:String = text1 + text2
+```
+
+This is a simple implementation of ColorQR. More advance and with higher capacity involves digging into the QRDecoding code and getting the Affine transformation information so that we can convert the QRCode onto a 2d map from a 3d map, and then more or less sample each color from each block and then generating the B&W color codes based on color sample + block position.
+
+the above is based on ideas derived from : http://www.jatit.org/volumes/Vol95No15/29Vol95No15.pdf

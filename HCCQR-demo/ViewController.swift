@@ -45,7 +45,14 @@ class ViewController: UIViewController {
       bImageView.frame.origin.y = 400
    }
    override var prefersStatusBarHidden:Bool {return true}/*hides statusbar*/
-   
+   /**
+    *
+    */
+   func test(){
+      //🏀
+      //create a fake HCCQR code 4x4 RGBW
+      //try to grab layer 1 and 2 based on different models you pass to the pixel manipulation
+   }
 }
 
 class RGBColorTestView:UIView{
