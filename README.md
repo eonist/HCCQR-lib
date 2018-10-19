@@ -17,3 +17,27 @@ High capacity quick response code
 13. Test creating HCCQR, Test Reading HCCQR
 14. Test reading and writing in real world conditions. Mobile scan Mac-screen
 15. Find for src lib that creates QR-code, try to get the array of squares etc. 👈
+
+
+### Add enum to SQRLib
+From: https://github.com/aschuch/QRCode (This lib could actually have better code than your QRLib)
+```swift
+/**
+	The level of error correction.
+
+	- Low:      7%
+	- Medium:   15%
+	- Quartile: 25%
+	- High:     30%
+	*/
+	public enum ErrorCorrection: String {
+		 case Low = "L"
+		 case Medium = "M"
+		 case Quartile = "Q"
+		 case High = "H"
+	}
+```
+
+### THIRD PARTY QR libs for swift: (when more granular control is needed)
+- https://github.com/TheLevelUp/ZXingObjC
+- https://github.com/mandisaw/ZXingSwift
