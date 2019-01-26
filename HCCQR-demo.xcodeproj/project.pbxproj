@@ -7,17 +7,53 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F14FADE521F75A9900ACE5FF /* VC+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14FADE421F75A9900ACE5FF /* VC+Extension.swift */; };
+		F14FADE821F75EF100ACE5FF /* RGBColorTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14FADE721F75EF100ACE5FF /* RGBColorTestView.swift */; };
+		F14FADEB21F75F3900ACE5FF /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14FADEA21F75F3900ACE5FF /* UIView+Extension.swift */; };
+		F14FADEE21F7618A00ACE5FF /* RGBAImage+Pixel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14FADED21F7618A00ACE5FF /* RGBAImage+Pixel.swift */; };
+		F14FADF021F761FD00ACE5FF /* FakeHCCQRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14FADEF21F761FD00ACE5FF /* FakeHCCQRView.swift */; };
+		F14FADF221F77E4400ACE5FF /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14FADF121F77E4400ACE5FF /* UIImage+Extension.swift */; };
+		F162145021FC707E005297DE /* QRLibIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F162144F21FC707E005297DE /* QRLibIOS.framework */; };
+		F162145121FC707E005297DE /* QRLibIOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F162144F21FC707E005297DE /* QRLibIOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F162145421FC7138005297DE /* SimpleHCCQRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162145321FC7138005297DE /* SimpleHCCQRView.swift */; };
+		F162145621FC75F7005297DE /* RGBAImage+Composite.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162145521FC75F7005297DE /* RGBAImage+Composite.swift */; };
+		F162145821FC7636005297DE /* RGBAImage+Split.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162145721FC7636005297DE /* RGBAImage+Split.swift */; };
+		F162145A21FC7791005297DE /* RGBAImage+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162145921FC7791005297DE /* RGBAImage+Util.swift */; };
 		F18A52DF21790F8A003F8C13 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18A52DE21790F8A003F8C13 /* AppDelegate.swift */; };
 		F18A52E121790F8A003F8C13 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18A52E021790F8A003F8C13 /* ViewController.swift */; };
 		F18A52E421790F8A003F8C13 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F18A52E221790F8A003F8C13 /* Main.storyboard */; };
 		F18A52E621790F8D003F8C13 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F18A52E521790F8D003F8C13 /* Assets.xcassets */; };
 		F18A52E921790F8D003F8C13 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F18A52E721790F8D003F8C13 /* LaunchScreen.storyboard */; };
 		F18A52F6217A4438003F8C13 /* RGBAImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18A52F4217A4438003F8C13 /* RGBAImage.swift */; };
-		F18A52F8217A460D003F8C13 /* RGBAImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18A52F7217A460D003F8C13 /* RGBAImage+Extension.swift */; };
 		F18A52FA217A463E003F8C13 /* Pixel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18A52F9217A463E003F8C13 /* Pixel.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		F162145221FC707E005297DE /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				F162145121FC707E005297DE /* QRLibIOS.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		F14FADE421F75A9900ACE5FF /* VC+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VC+Extension.swift"; sourceTree = "<group>"; };
+		F14FADE721F75EF100ACE5FF /* RGBColorTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBColorTestView.swift; sourceTree = "<group>"; };
+		F14FADEA21F75F3900ACE5FF /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		F14FADED21F7618A00ACE5FF /* RGBAImage+Pixel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RGBAImage+Pixel.swift"; sourceTree = "<group>"; };
+		F14FADEF21F761FD00ACE5FF /* FakeHCCQRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeHCCQRView.swift; sourceTree = "<group>"; };
+		F14FADF121F77E4400ACE5FF /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
+		F162144F21FC707E005297DE /* QRLibIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QRLibIOS.framework; path = Carthage/Build/iOS/QRLibIOS.framework; sourceTree = "<group>"; };
+		F162145321FC7138005297DE /* SimpleHCCQRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleHCCQRView.swift; sourceTree = "<group>"; };
+		F162145521FC75F7005297DE /* RGBAImage+Composite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RGBAImage+Composite.swift"; sourceTree = "<group>"; };
+		F162145721FC7636005297DE /* RGBAImage+Split.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RGBAImage+Split.swift"; sourceTree = "<group>"; };
+		F162145921FC7791005297DE /* RGBAImage+Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RGBAImage+Util.swift"; sourceTree = "<group>"; };
 		F18A52DB21790F8A003F8C13 /* HCCQR-demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HCCQR-demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F18A52DE21790F8A003F8C13 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F18A52E021790F8A003F8C13 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -26,7 +62,6 @@
 		F18A52E821790F8D003F8C13 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F18A52EA21790F8D003F8C13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F18A52F4217A4438003F8C13 /* RGBAImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RGBAImage.swift; sourceTree = "<group>"; };
-		F18A52F7217A460D003F8C13 /* RGBAImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RGBAImage+Extension.swift"; sourceTree = "<group>"; };
 		F18A52F9217A463E003F8C13 /* Pixel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pixel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -35,15 +70,57 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F162145021FC707E005297DE /* QRLibIOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F14FADE621F75EAD00ACE5FF /* test */ = {
+			isa = PBXGroup;
+			children = (
+				F14FADE721F75EF100ACE5FF /* RGBColorTestView.swift */,
+				F14FADEF21F761FD00ACE5FF /* FakeHCCQRView.swift */,
+				F162145321FC7138005297DE /* SimpleHCCQRView.swift */,
+			);
+			path = test;
+			sourceTree = "<group>";
+		};
+		F14FADE921F75F1D00ACE5FF /* extension */ = {
+			isa = PBXGroup;
+			children = (
+				F14FADEA21F75F3900ACE5FF /* UIView+Extension.swift */,
+				F14FADF121F77E4400ACE5FF /* UIImage+Extension.swift */,
+			);
+			path = extension;
+			sourceTree = "<group>";
+		};
+		F14FADEC21F760C000ACE5FF /* RGBAimage */ = {
+			isa = PBXGroup;
+			children = (
+				F18A52F4217A4438003F8C13 /* RGBAImage.swift */,
+				F14FADED21F7618A00ACE5FF /* RGBAImage+Pixel.swift */,
+				F162145921FC7791005297DE /* RGBAImage+Util.swift */,
+				F162145721FC7636005297DE /* RGBAImage+Split.swift */,
+				F162145521FC75F7005297DE /* RGBAImage+Composite.swift */,
+				F162145B21FC7D33005297DE /* pixel */,
+			);
+			path = RGBAimage;
+			sourceTree = "<group>";
+		};
+		F162145B21FC7D33005297DE /* pixel */ = {
+			isa = PBXGroup;
+			children = (
+				F18A52F9217A463E003F8C13 /* Pixel.swift */,
+			);
+			path = pixel;
+			sourceTree = "<group>";
+		};
 		F18A52D221790F8A003F8C13 = {
 			isa = PBXGroup;
 			children = (
+				F162144F21FC707E005297DE /* QRLibIOS.framework */,
 				F18A52DD21790F8A003F8C13 /* HCCQR-demo */,
 				F18A52DC21790F8A003F8C13 /* Products */,
 			);
@@ -62,6 +139,7 @@
 			children = (
 				F18A52DE21790F8A003F8C13 /* AppDelegate.swift */,
 				F18A52E021790F8A003F8C13 /* ViewController.swift */,
+				F14FADE421F75A9900ACE5FF /* VC+Extension.swift */,
 				F18A52F2217A3F36003F8C13 /* src */,
 				F18A52E221790F8A003F8C13 /* Main.storyboard */,
 				F18A52E521790F8D003F8C13 /* Assets.xcassets */,
@@ -74,9 +152,9 @@
 		F18A52F2217A3F36003F8C13 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				F18A52F4217A4438003F8C13 /* RGBAImage.swift */,
-				F18A52F7217A460D003F8C13 /* RGBAImage+Extension.swift */,
-				F18A52F9217A463E003F8C13 /* Pixel.swift */,
+				F14FADE621F75EAD00ACE5FF /* test */,
+				F14FADE921F75F1D00ACE5FF /* extension */,
+				F14FADEC21F760C000ACE5FF /* RGBAimage */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -91,6 +169,7 @@
 				F18A52D721790F8A003F8C13 /* Sources */,
 				F18A52D821790F8A003F8C13 /* Frameworks */,
 				F18A52D921790F8A003F8C13 /* Resources */,
+				F162145221FC707E005297DE /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -152,11 +231,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F14FADE521F75A9900ACE5FF /* VC+Extension.swift in Sources */,
 				F18A52E121790F8A003F8C13 /* ViewController.swift in Sources */,
+				F14FADF021F761FD00ACE5FF /* FakeHCCQRView.swift in Sources */,
+				F14FADEB21F75F3900ACE5FF /* UIView+Extension.swift in Sources */,
+				F14FADEE21F7618A00ACE5FF /* RGBAImage+Pixel.swift in Sources */,
+				F162145621FC75F7005297DE /* RGBAImage+Composite.swift in Sources */,
 				F18A52F6217A4438003F8C13 /* RGBAImage.swift in Sources */,
 				F18A52DF21790F8A003F8C13 /* AppDelegate.swift in Sources */,
+				F14FADF221F77E4400ACE5FF /* UIImage+Extension.swift in Sources */,
+				F14FADE821F75EF100ACE5FF /* RGBColorTestView.swift in Sources */,
+				F162145421FC7138005297DE /* SimpleHCCQRView.swift in Sources */,
+				F162145A21FC7791005297DE /* RGBAImage+Util.swift in Sources */,
+				F162145821FC7636005297DE /* RGBAImage+Split.swift in Sources */,
 				F18A52FA217A463E003F8C13 /* Pixel.swift in Sources */,
-				F18A52F8217A460D003F8C13 /* RGBAImage+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,6 +391,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "HCCQR-demo/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -320,6 +412,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "HCCQR-demo/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

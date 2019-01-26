@@ -1,0 +1,148 @@
+import UIKit
+
+extension ViewController {
+   /**
+    *
+    */
+   func testSeperation(){
+      
+      let rgbColorTestView = RGBColorTestView(frame:CGRect.init(origin: .zero, size: .init(width: 300, height: 100)))
+      view.addSubview(rgbColorTestView)
+      
+      guard let rgbColorTestImage:UIImage = rgbColorTestView.snapShot else {fatalError("err")}
+      //let rgba3 = RGBAImage(image: UIImage(named: "monet")!)!
+      guard let images:RGBAImage.RGBImages = RGBAImage.split(image: rgbColorTestImage) else {fatalError("err")}
+      //      //r
+      //      guard let rgbaImage:RGBAImage = RGBAImage.init(image: rgbColorTestImage) else {fatalError("err")}
+      //      let rgbaImage2:RGBAImage = rgbaImage.copy
+      
+      //      let rChannel:RGBAImage = RGBAImage.channelR(rgbaImage)
+      //      let rImage:UIImage? = RGBAImage.image(rgbaImage: rChannel)
+      //      let rImageView:UIImageView = UIImageView.init(image: rImage)
+      //      view.addSubview(rImageView)
+      //      rImageView.frame.origin.y = 100
+      
+      let rImageView:UIImageView = UIImageView.init(image: images.r)
+      view.addSubview(rImageView)
+      rImageView.frame.origin.y = 200
+      
+      //g
+      //      guard let rgbaImage2:RGBAImage = RGBAImage.init(image: rgbColorTestImage) else {fatalError("err")}
+      //      let gChannel:RGBAImage = RGBAImage.channelG(rgbaImage2)
+      //      let gImage:UIImage? = RGBAImage.image(rgbaImage: gChannel)
+      //      let gImageView:UIImageView = UIImageView.init(image: gImage)
+      //      view.addSubview(gImageView)
+      //      gImageView.frame.origin.y = 200
+      
+      
+      let gImageView:UIImageView = UIImageView.init(image: images.g)
+      view.addSubview(gImageView)
+      gImageView.frame.origin.y = 200
+      //b
+      let bImageView:UIImageView = UIImageView.init(image: images.b)
+      view.addSubview(bImageView)
+      bImageView.frame.origin.y = 200
+      
+      
+      
+      
+      
+      //🏀
+      //grab the clone code
+      //create a fake HCCQR code 4x4 RGBW
+      //try to grab layer 1 and 2 based on different models you pass to the pixel manipulation
+   }
+   
+   func testComposition()  {
+      let rgbColorTestView = RGBColorTestView(frame:CGRect.init(origin: .zero, size: .init(width: 300, height: 100)))
+      view.addSubview(rgbColorTestView)
+      /**/
+      guard let image:UIImage = rgbColorTestView.snapShot else {fatalError("err")}
+      /**/
+      guard let images:RGBAImage.RGBImages = RGBAImage.split(image: image) else {fatalError("err")}
+      guard let r:RGBAImage = RGBAImage.init(image: images.r!) else {return }
+      guard let g:RGBAImage = RGBAImage.init(image: images.g!) else {return }
+      guard let b:RGBAImage = RGBAImage.init(image: images.b!) else {return }
+      _ = b
+      guard let composite = RGBAImage.composite(rgbaImageList: [r,g/*,b*/]) else { return }
+      /**/
+      let img:UIImage? = RGBAImage.image(rgbaImage: composite)
+      let imgView:UIImageView = UIImageView.init(image: img)
+      view.addSubview(imgView)
+      imgView.frame.origin.y = 200
+      
+      //🏀
+      //composition demo ✅
+      //you need to be able to get the w/b of your choice for r,g,b
+         //1. fill result image with pure black
+         //2. white is stronger, so black is really white
+         //3. then you composite
+         //4. Then you invert so that black becomes white again
+      
+      
+      //Use the 4x4 grid
+         //seperate into 2 qr images
+      
+      //HCCQRParser.hccqrImage (creates HCCQR image from string)
+         //split text in 2
+         //make 2 qr images
+         //composite 2 qrImages together
+            //if pixel.a == 255 && pixel.b == 255 {pixel = white}
+            //if pixel.a == 255 && pixel.b == 0 {pixel = green}
+            //if pixel.a == 0 && pixel.b == 255 {pixel = red}
+            //if pixel.a == 0 && pixel.b == 0 {pixel = blue}
+         //go box for box and grab the pixel from each box and measure if it's black or white 🚫
+         //return [[Bool]] 🚫
+      
+      //🏀
+      //write a class that spits out 2 QR images for 1 HHCQR image
+         //write a class that makes the HHCQR image 👈
+         //find QR code that creates an image
+         //you then make color pixels based on the combination of 2 qr images
+         //you also need to skip some areas, like the alignment areas
+         //you need to make tests first, dummy QR codes
+         //you then need to make the color stuff work
+         //then you need to be able to cherry pick areas to include and disclude etc
+   }
+   /**
+    * tests FakeHCCQRView
+    */
+   func testFakeHCCQRView(){
+      let fakeHCCQRView = FakeHCCQRView(frame:CGRect.init(origin: .zero, size: .init(width: 80*4, height: 80*4)))
+      view.addSubview(fakeHCCQRView)
+      
+      guard let rgbColorTestImage:UIImage = fakeHCCQRView.snapShot else {fatalError("err")}
+      guard let images:RGBAImage.RGBImages = RGBAImage.split(image: rgbColorTestImage) else {fatalError("err")}
+      
+//      let rImageView:UIImageView = UIImageView.init(image: images.g)
+//      view.addSubview(rImageView)
+//      rImageView.frame.origin.y = 80*4
+      
+      guard let r:RGBAImage = RGBAImage.init(image: images.r!) else {return }
+      guard let g:RGBAImage = RGBAImage.init(image: images.g!) else {return }
+      _ = g
+      guard let b:RGBAImage = RGBAImage.init(image: images.b!) else {return }
+      guard let composite = RGBAImage.composite(rgbaImageList: [r,b/*,b*/]) else { return }
+      /**/
+      let img:UIImage? = RGBAImage.image(rgbaImage: composite)?.invertedImage()
+      let imgView:UIImageView = UIImageView.init(image: img)
+      view.addSubview(imgView)
+      imgView.frame.origin.y = 80*4
+
+//      guard let r:RGBAImage = RGBAImage.init(image: images.r!) else {return }
+   }
+   /**
+    * testSimpleHCCQRView
+    */
+   func testSimpleHCCQRView(){
+      let simpleHCCQRView = SimpleHCCQRView(frame:.init(origin: .zero, size: .init(width: 80*4, height: 80*4)))
+      view.addSubview(simpleHCCQRView)
+      
+      //make RGBA images of view1
+      //make RGBA images of view2
+      
+      
+     
+      
+   }
+}

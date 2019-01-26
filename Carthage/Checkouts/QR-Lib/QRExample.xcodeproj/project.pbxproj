@@ -1,0 +1,659 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F162130221FB28DB005297DE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162130121FB28DB005297DE /* AppDelegate.swift */; };
+		F162130421FB28DB005297DE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162130321FB28DB005297DE /* ViewController.swift */; };
+		F162130721FB28DB005297DE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F162130521FB28DB005297DE /* Main.storyboard */; };
+		F162130921FB28DC005297DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F162130821FB28DC005297DE /* Assets.xcassets */; };
+		F162130C21FB28DC005297DE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F162130A21FB28DC005297DE /* LaunchScreen.storyboard */; };
+		F162131C21FB293D005297DE /* QRLibIOS.h in Headers */ = {isa = PBXBuildFile; fileRef = F162131A21FB293D005297DE /* QRLibIOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F162131F21FB293D005297DE /* QRLibIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F162131821FB293D005297DE /* QRLibIOS.framework */; };
+		F162132021FB293D005297DE /* QRLibIOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F162131821FB293D005297DE /* QRLibIOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F162132721FB2953005297DE /* QRUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162132621FB2953005297DE /* QRUtil.swift */; };
+		F162133621FB2ABB005297DE /* QRLibMac.h in Headers */ = {isa = PBXBuildFile; fileRef = F162133421FB2ABB005297DE /* QRLibMac.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F162133A21FB2AC5005297DE /* QRUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162132621FB2953005297DE /* QRUtil.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F162131D21FB293D005297DE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F16212F621FB28DB005297DE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F162131721FB293D005297DE;
+			remoteInfo = QRLibIOS;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F162132421FB293D005297DE /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				F162132021FB293D005297DE /* QRLibIOS.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		F16212FE21FB28DB005297DE /* QRExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QRExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F162130121FB28DB005297DE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F162130321FB28DB005297DE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F162130621FB28DB005297DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F162130821FB28DC005297DE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F162130B21FB28DC005297DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F162130D21FB28DC005297DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F162131821FB293D005297DE /* QRLibIOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = QRLibIOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F162131A21FB293D005297DE /* QRLibIOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QRLibIOS.h; sourceTree = "<group>"; };
+		F162131B21FB293D005297DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F162132621FB2953005297DE /* QRUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRUtil.swift; sourceTree = "<group>"; };
+		F162133221FB2ABB005297DE /* QRLibMac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = QRLibMac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F162133421FB2ABB005297DE /* QRLibMac.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QRLibMac.h; sourceTree = "<group>"; };
+		F162133521FB2ABB005297DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F16212FB21FB28DB005297DE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F162131F21FB293D005297DE /* QRLibIOS.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F162131521FB293D005297DE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F162132F21FB2ABB005297DE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F16212F521FB28DB005297DE = {
+			isa = PBXGroup;
+			children = (
+				F162132521FB2953005297DE /* src */,
+				F162130021FB28DB005297DE /* QRExample */,
+				F162131921FB293D005297DE /* QRLibIOS */,
+				F162133321FB2ABB005297DE /* QRLibMac */,
+				F16212FF21FB28DB005297DE /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F16212FF21FB28DB005297DE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F16212FE21FB28DB005297DE /* QRExample.app */,
+				F162131821FB293D005297DE /* QRLibIOS.framework */,
+				F162133221FB2ABB005297DE /* QRLibMac.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F162130021FB28DB005297DE /* QRExample */ = {
+			isa = PBXGroup;
+			children = (
+				F162130121FB28DB005297DE /* AppDelegate.swift */,
+				F162130321FB28DB005297DE /* ViewController.swift */,
+				F162130521FB28DB005297DE /* Main.storyboard */,
+				F162130821FB28DC005297DE /* Assets.xcassets */,
+				F162130A21FB28DC005297DE /* LaunchScreen.storyboard */,
+				F162130D21FB28DC005297DE /* Info.plist */,
+			);
+			path = QRExample;
+			sourceTree = "<group>";
+		};
+		F162131921FB293D005297DE /* QRLibIOS */ = {
+			isa = PBXGroup;
+			children = (
+				F162131A21FB293D005297DE /* QRLibIOS.h */,
+				F162131B21FB293D005297DE /* Info.plist */,
+			);
+			path = QRLibIOS;
+			sourceTree = "<group>";
+		};
+		F162132521FB2953005297DE /* src */ = {
+			isa = PBXGroup;
+			children = (
+				F162132621FB2953005297DE /* QRUtil.swift */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		F162133321FB2ABB005297DE /* QRLibMac */ = {
+			isa = PBXGroup;
+			children = (
+				F162133421FB2ABB005297DE /* QRLibMac.h */,
+				F162133521FB2ABB005297DE /* Info.plist */,
+			);
+			path = QRLibMac;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		F162131321FB293D005297DE /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F162131C21FB293D005297DE /* QRLibIOS.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F162132D21FB2ABB005297DE /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F162133621FB2ABB005297DE /* QRLibMac.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		F16212FD21FB28DB005297DE /* QRExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F162131021FB28DC005297DE /* Build configuration list for PBXNativeTarget "QRExample" */;
+			buildPhases = (
+				F16212FA21FB28DB005297DE /* Sources */,
+				F16212FB21FB28DB005297DE /* Frameworks */,
+				F16212FC21FB28DB005297DE /* Resources */,
+				F162132421FB293D005297DE /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F162131E21FB293D005297DE /* PBXTargetDependency */,
+			);
+			name = QRExample;
+			productName = QRExample;
+			productReference = F16212FE21FB28DB005297DE /* QRExample.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F162131721FB293D005297DE /* QRLibIOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F162132321FB293D005297DE /* Build configuration list for PBXNativeTarget "QRLibIOS" */;
+			buildPhases = (
+				F162131321FB293D005297DE /* Headers */,
+				F162131421FB293D005297DE /* Sources */,
+				F162131521FB293D005297DE /* Frameworks */,
+				F162131621FB293D005297DE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = QRLibIOS;
+			productName = QRLibIOS;
+			productReference = F162131821FB293D005297DE /* QRLibIOS.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		F162133121FB2ABB005297DE /* QRLibMac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F162133721FB2ABB005297DE /* Build configuration list for PBXNativeTarget "QRLibMac" */;
+			buildPhases = (
+				F162132D21FB2ABB005297DE /* Headers */,
+				F162132E21FB2ABB005297DE /* Sources */,
+				F162132F21FB2ABB005297DE /* Frameworks */,
+				F162133021FB2ABB005297DE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = QRLibMac;
+			productName = QRLibMac;
+			productReference = F162133221FB2ABB005297DE /* QRLibMac.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F16212F621FB28DB005297DE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1010;
+				LastUpgradeCheck = 1010;
+				ORGANIZATIONNAME = FutureLab;
+				TargetAttributes = {
+					F16212FD21FB28DB005297DE = {
+						CreatedOnToolsVersion = 10.1;
+					};
+					F162131721FB293D005297DE = {
+						CreatedOnToolsVersion = 10.1;
+					};
+					F162133121FB2ABB005297DE = {
+						CreatedOnToolsVersion = 10.1;
+					};
+				};
+			};
+			buildConfigurationList = F16212F921FB28DB005297DE /* Build configuration list for PBXProject "QRExample" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F16212F521FB28DB005297DE;
+			productRefGroup = F16212FF21FB28DB005297DE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F16212FD21FB28DB005297DE /* QRExample */,
+				F162131721FB293D005297DE /* QRLibIOS */,
+				F162133121FB2ABB005297DE /* QRLibMac */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F16212FC21FB28DB005297DE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F162130C21FB28DC005297DE /* LaunchScreen.storyboard in Resources */,
+				F162130921FB28DC005297DE /* Assets.xcassets in Resources */,
+				F162130721FB28DB005297DE /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F162131621FB293D005297DE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F162133021FB2ABB005297DE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F16212FA21FB28DB005297DE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F162130421FB28DB005297DE /* ViewController.swift in Sources */,
+				F162130221FB28DB005297DE /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F162131421FB293D005297DE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F162132721FB2953005297DE /* QRUtil.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F162132E21FB2ABB005297DE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F162133A21FB2AC5005297DE /* QRUtil.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F162131E21FB293D005297DE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F162131721FB293D005297DE /* QRLibIOS */;
+			targetProxy = F162131D21FB293D005297DE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F162130521FB28DB005297DE /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F162130621FB28DB005297DE /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		F162130A21FB28DC005297DE /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F162130B21FB28DC005297DE /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F162130E21FB28DC005297DE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		F162130F21FB28DC005297DE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F162131121FB28DC005297DE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = QRExample/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.futurelab.QRExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F162131221FB28DC005297DE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = QRExample/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.futurelab.QRExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		F162132121FB293D005297DE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = QRLibIOS/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.futurelab.QRLibIOS;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		F162132221FB293D005297DE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = QRLibIOS/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.futurelab.QRLibIOS;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		F162133821FB2ABB005297DE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = QRLibMac/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.futurelab.QRLibMac;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		F162133921FB2ABB005297DE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = QRLibMac/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.futurelab.QRLibMac;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F16212F921FB28DB005297DE /* Build configuration list for PBXProject "QRExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F162130E21FB28DC005297DE /* Debug */,
+				F162130F21FB28DC005297DE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F162131021FB28DC005297DE /* Build configuration list for PBXNativeTarget "QRExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F162131121FB28DC005297DE /* Debug */,
+				F162131221FB28DC005297DE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F162132321FB293D005297DE /* Build configuration list for PBXNativeTarget "QRLibIOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F162132121FB293D005297DE /* Debug */,
+				F162132221FB293D005297DE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F162133721FB2ABB005297DE /* Build configuration list for PBXNativeTarget "QRLibMac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F162133821FB2ABB005297DE /* Debug */,
+				F162133921FB2ABB005297DE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F16212F621FB28DB005297DE /* Project object */;
+}

@@ -35,23 +35,3 @@ public struct RGBAImage {
 }
 
 
-
-//    public init(width: Int, height: Int) {
-//        let image = RGBAImage.newUIImage(width: width, height: height)
-//        self.init(image: image)!
-//    }
-
-
-//    private func setup(image: UIImage) {
-//
-//    }
-
-//    private static func newUIImage(width: Int, height: Int) -> UIImage {
-//        let size = CGSize(width: CGFloat(width), height: CGFloat(height));
-//        UIGraphicsBeginImageContextWithOptions(size, true, 0);
-//        UIColor.black.setFill()
-//        UIRectFill(CGRect(x: 0, y: 0, width: size.width, height: size.height))
-//        let image = UIGraphicsGetImageFromCurrentImageContext();
-//        UIGraphicsEndImageContext();
-//        return image!
-//    }
