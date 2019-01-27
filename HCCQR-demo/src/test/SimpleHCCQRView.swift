@@ -28,7 +28,7 @@ extension SimpleHCCQRView{
     * Create view 1
     */
    func createView1()->UIView{
-      let view:UIView = .init()
+      let view:UIView = .init(frame: self.bounds)
       addSubview(view)
       SimpleHCCQRView.createBWGrid(view: view, grid: SimpleHCCQRView.grid1)
       return view
@@ -37,7 +37,7 @@ extension SimpleHCCQRView{
     * Create view 2
     */
    func createView2()->UIView{
-      let view:UIView = .init()
+      let view:UIView = .init(frame: self.bounds)
       addSubview(view)
       SimpleHCCQRView.createBWGrid(view: view, grid: SimpleHCCQRView.grid2)
       return view

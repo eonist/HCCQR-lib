@@ -100,9 +100,14 @@ extension ViewController {
          //find QR code that creates an image
          //you then make color pixels based on the combination of 2 qr images
          //you also need to skip some areas, like the alignment areas
-         //you need to make tests first, dummy QR codes
-         //you then need to make the color stuff work
-         //then you need to be able to cherry pick areas to include and disclude etc
+         //you need to make tests first, dummy QR codes ✅
+         //you then need to make the color stuff work ✅
+         //convert the pseudo-code to real code 👈 👈
+         //then you need to be able to cherry pick areas to include and disclude etc (after colorize is done)
+            //write some pseudo code for this (mainArea:CGRect,discludeAreas:[CGRect]) 🚫
+            //its easier to just overwrite the discluded areas after you have colorized 👌
+            //You have to creat logic that lifts the discluded areas and composite them on the colorized image
+            //do real mini test for this, where you draw two marks, and then are able to lifet and imprint
    }
    /**
     * tests FakeHCCQRView
@@ -140,9 +145,12 @@ extension ViewController {
       
       //make RGBA images of view1
       //make RGBA images of view2
-      
-      
-     
-      
+//      let img = simpleHCCQRView.view2.snapShot
+//      Swift.print("img:  \(img)")
+      let views:[UIView] = [simpleHCCQRView.view1,simpleHCCQRView.view2]
+      let resultView:UIImageView = Colorize.colorize(views: views, colorMap: Colorize.colorMap)
+      Swift.print("resultView:  \(resultView)")
+      view.addSubview(resultView)
+      resultView.frame.origin = .init(x: 0, y: 80*4)
    }
 }

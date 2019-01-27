@@ -12,7 +12,7 @@ extension RGBAImage {
       let result : RGBAImage = RGBAImage(image:blackImg)!//RGBAImage.init(image: UIImage.ini)
       for y in 0..<Int(size.height) {/*loop over every y*/
          for x in 0..<Int(size.width) {/*loop over every x*/
-            let index = y * Int(size.width) + x
+            let index = y * Int(size.width) + x//TODO: ⚠️️ use getPixel here
             var pixel = result.pixels[index]
             for rgba in rgbaImageList {/*loop over every image in the list*/
                let rgbaPixel = rgba.pixels[index]
@@ -32,5 +32,23 @@ extension RGBAImage {
          }
       }
       return result
+   }
+   /**
+    * Fills an image with pixels
+    */
+   static func fill( image:inout RGBAImage, pixels:[Pixel]){
+      for y in 0..<Int(image.height) {/*loop over every y*/
+         for x in 0..<Int(image.width) {/*loop over every x*/
+            let index = y * Int(image.width) + x//TODO: ⚠️️ use getPixel here
+            let pixel = pixels[index]
+            var imagePixel = Pixel.init(color:.black)
+            
+            imagePixel.R = pixel.R
+            imagePixel.G = pixel.G
+            imagePixel.B = pixel.B
+            image.setPixel(x: x, y: y, pixel: imagePixel)
+//            image.pixels[index] = imagePixel
+         }
+      }
    }
 }

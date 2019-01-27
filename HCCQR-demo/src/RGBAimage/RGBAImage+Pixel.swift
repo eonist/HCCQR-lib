@@ -5,16 +5,18 @@ import UIKit
 extension RGBAImage{
    /**
     * Get pixel
+    * - IMPORTANT: ⚠️️ Not in use ⚠️️
     */
-   public func getPixel(x : Int, _ y : Int) -> Pixel? {
+   public func getPixel(x : Int, y : Int) -> Pixel? {
       guard x >= 0 && x < width && y >= 0 && y < height else {return nil }
       let address = y * width + x
       return pixels[address]
    }
    /**
     * Set pixel
+    * - IMPORTANT: ⚠️️ Not in use ⚠️️
     */
-   public mutating func setPixel(x : Int, _ y : Int, _ pixel: Pixel) {
+   public mutating func setPixel(x : Int,  y : Int,  pixel: Pixel) {
       guard x >= 0 && x < width && y >= 0 && y < height else { return }
       let address = y * width + x
       pixels[address] = pixel

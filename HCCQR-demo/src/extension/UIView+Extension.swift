@@ -5,6 +5,7 @@ import UIKit
 extension UIView{
    /**
     * Creates UIImage from a view
+    * - Important: ⚠️️ if you get the "invalid context 0x0" error, make sure your View has a frame. view.bounds must not be .zerp
     */
    var snapShot:UIImage?{
       UIGraphicsBeginImageContextWithOptions(self.frame.size, false, 0)
