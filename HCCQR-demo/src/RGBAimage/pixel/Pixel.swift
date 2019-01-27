@@ -45,6 +45,13 @@ public struct Pixel {
    init(value:UInt32){
       self.value = value
    }
+   /**
+    * Set rgba
+    */
+   init(R:UInt8,G:UInt8,B:UInt8,A:UInt8){
+      self.value = 0
+      setRGBA(R: R, G: G, B: B, A: A)
+   }
 }
 extension Pixel {
    /**

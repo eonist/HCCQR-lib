@@ -4,6 +4,14 @@ import UIKit
  */
 extension RGBAImage{
    /**
+    * UIImageView
+    */
+   static func imageView(rgbaImage:RGBAImage) -> UIImageView?{
+      guard let image:UIImage = RGBAImage.image(rgbaImage: rgbaImage) else {return nil}
+      let imageView:UIImageView = .init(image: image)
+      return imageView
+   }
+   /**
     * Converts rgbaImage to uiimage
     */
    static func image(rgbaImage:RGBAImage) -> UIImage? {
@@ -14,8 +22,9 @@ extension RGBAImage{
       guard let imageContext = CGContext(data: rgbaImage.pixels.baseAddress, width: rgbaImage.width, height: rgbaImage.height, bitsPerComponent: 8, bytesPerRow: bytesPerRow, space: colorSpace, bitmapInfo: bitmapInfo, releaseCallback: nil, releaseInfo: nil) else {
          return nil
       }
-      guard let cgImage = imageContext.makeImage() else { return nil }
-      let image = UIImage(cgImage: cgImage)
+      guard let cgImage:CGImage = imageContext.makeImage() else { return nil }
+      let image = UIImage.init(cgImage: cgImage, scale: 2, orientation: .down)
+//      Swift.print("image.scale:  \(image.scale)")
       return image
    }
    //   public var copy:RGBAImage {

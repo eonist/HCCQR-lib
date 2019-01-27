@@ -142,7 +142,6 @@ extension ViewController {
    func testSimpleHCCQRView(){
       let simpleHCCQRView = SimpleHCCQRView(frame:.init(origin: .zero, size: .init(width: 80*4, height: 80*4)))
       view.addSubview(simpleHCCQRView)
-      
       //make RGBA images of view1
       //make RGBA images of view2
 //      let img = simpleHCCQRView.view2.snapShot
@@ -152,5 +151,18 @@ extension ViewController {
       Swift.print("resultView:  \(resultView)")
       view.addSubview(resultView)
       resultView.frame.origin = .init(x: 0, y: 80*4)
+//      let rgbaImg:RGBAImage = .init(img: simpleHCCQRView.view2.snapShot!)
+//      if let view = RGBAImage.imageView(rgbaImage: rgbaImg) {
+//         self.view.addSubview(view)
+//         view.frame.origin = .init(x: 0, y: 80*4)
+//         let pos:CGPoint = .init(x: (80*3*2)-1, y: (80*2*2)-1)
+//         Swift.print("pos:  \(pos)")
+//         let pixel1 = view.image?.getPixelColor(pos: pos)
+//         Swift.print("view.image?.size:  \(view.image?.size)")
+//         Swift.print("pixel1:  \(pixel1)")
+//      }
    }
 }
+
+// 🏀 
+// find code for testing getting color for pixel

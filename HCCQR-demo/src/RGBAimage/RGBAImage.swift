@@ -25,7 +25,45 @@ public struct RGBAImage {
          return nil
       }
       imageContext.draw(cgImage, in: CGRect(origin: .zero, size: image.size))//cgImage.imageData
-      pixels = UnsafeMutableBufferPointer<Pixel>(start: imageData, count: width * height)
+      self.pixels = UnsafeMutableBufferPointer<Pixel>(start: imageData, count: width * height)
+   }
+   /**
+    * Beta (trying to fix "blurry edge pixel bug")
+    */
+   init(img :UIImage){
+      let pixelData = img.cgImage!.dataProvider!.data
+      let data: UnsafePointer<UInt8> = CFDataGetBytePtr(pixelData)
+      let scale:CGFloat = 2//img.scale
+      let width:Int = Int(img.size.width*scale)
+      Swift.print("width:  \(width)")
+      Swift.print("img.scale:  \(img.scale)")
+      let height:Int = Int(img.size.height*scale)
+      Swift.print("height:  \(height)")
+      var pixels:[Pixel] = []
+      for y in 0..<height {
+         for x in 0..<width {
+            // img.getPixel(x:x,y:y)!
+            let pixelInfo: Int = ((Int(img.size.width*scale) * y) + x) * 4
+            let pixel =  Pixel.init(R: data[pixelInfo], G: data[pixelInfo+1], B: data[pixelInfo+2], A: data[pixelInfo+3])
+            //            let pixel =  Pixel.init(R: 0, G: 0, B: 0, A: 255)
+            if (x == (80*2*2)-1 && y == 0) {
+               pixel.debug()
+            }
+            pixels.append(pixel)
+         }
+      }
+      
+      Swift.print("pixels.count:  \(pixels.count)")
+      let blackImg:UIImage = UIImage.createImage(size: CGSize.init(width: img.size.width*2, height: img.size.height*2), color: .black)
+      let result : RGBAImage = RGBAImage(image:blackImg)!
+      self.pixels = result.pixels
+      self.width = Int(img.size.width*2)
+      self.height = Int(img.size.height*2)
+      let tempIMG:RGBAImage = .init(pixels: pixels, width: Int(img.size.width*2), height: Int(img.size.height*2))
+      self.pixels = tempIMG.pixels
+      pixels.enumerated().forEach{
+         self.pixels[$0.offset] = $0.element
+      }
    }
    /**
     * Creates a copy if you already have the pixels and width height
