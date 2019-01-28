@@ -23,6 +23,9 @@
 		F162145F21FC7DC9005297DE /* Pixel+Setter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162145E21FC7DC9005297DE /* Pixel+Setter.swift */; };
 		F162146221FC966C005297DE /* Colorize.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162146121FC966C005297DE /* Colorize.swift */; };
 		F162146421FC99CA005297DE /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162146321FC99CA005297DE /* UIColor+Extension.swift */; };
+		F162146621FF0734005297DE /* AlignMarkTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162146521FF0734005297DE /* AlignMarkTestView.swift */; };
+		F162146821FF380E005297DE /* CAShapeLayerUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162146721FF380E005297DE /* CAShapeLayerUtil.swift */; };
+		F162146B21FF4198005297DE /* AlignMarkUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162146A21FF4198005297DE /* AlignMarkUtil.swift */; };
 		F18A52DF21790F8A003F8C13 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18A52DE21790F8A003F8C13 /* AppDelegate.swift */; };
 		F18A52E121790F8A003F8C13 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18A52E021790F8A003F8C13 /* ViewController.swift */; };
 		F18A52E421790F8A003F8C13 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F18A52E221790F8A003F8C13 /* Main.storyboard */; };
@@ -62,6 +65,9 @@
 		F162145E21FC7DC9005297DE /* Pixel+Setter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Pixel+Setter.swift"; sourceTree = "<group>"; };
 		F162146121FC966C005297DE /* Colorize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colorize.swift; sourceTree = "<group>"; };
 		F162146321FC99CA005297DE /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		F162146521FF0734005297DE /* AlignMarkTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlignMarkTestView.swift; sourceTree = "<group>"; };
+		F162146721FF380E005297DE /* CAShapeLayerUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CAShapeLayerUtil.swift; sourceTree = "<group>"; };
+		F162146A21FF4198005297DE /* AlignMarkUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlignMarkUtil.swift; sourceTree = "<group>"; };
 		F18A52DB21790F8A003F8C13 /* HCCQR-demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HCCQR-demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F18A52DE21790F8A003F8C13 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F18A52E021790F8A003F8C13 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -91,6 +97,7 @@
 				F14FADE721F75EF100ACE5FF /* RGBColorTestView.swift */,
 				F14FADEF21F761FD00ACE5FF /* FakeHCCQRView.swift */,
 				F162145321FC7138005297DE /* SimpleHCCQRView.swift */,
+				F162146521FF0734005297DE /* AlignMarkTestView.swift */,
 			);
 			path = test;
 			sourceTree = "<group>";
@@ -101,6 +108,7 @@
 				F14FADEA21F75F3900ACE5FF /* UIView+Extension.swift */,
 				F14FADF121F77E4400ACE5FF /* UIImage+Extension.swift */,
 				F162146321FC99CA005297DE /* UIColor+Extension.swift */,
+				F162146721FF380E005297DE /* CAShapeLayerUtil.swift */,
 			);
 			path = extension;
 			sourceTree = "<group>";
@@ -135,6 +143,14 @@
 				F162146121FC966C005297DE /* Colorize.swift */,
 			);
 			path = colorize;
+			sourceTree = "<group>";
+		};
+		F162146921FF4180005297DE /* alignmark */ = {
+			isa = PBXGroup;
+			children = (
+				F162146A21FF4198005297DE /* AlignMarkUtil.swift */,
+			);
+			path = alignmark;
 			sourceTree = "<group>";
 		};
 		F18A52D221790F8A003F8C13 = {
@@ -172,6 +188,7 @@
 		F18A52F2217A3F36003F8C13 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				F162146921FF4180005297DE /* alignmark */,
 				F14FADE621F75EAD00ACE5FF /* test */,
 				F14FADE921F75F1D00ACE5FF /* extension */,
 				F14FADEC21F760C000ACE5FF /* RGBAimage */,
@@ -256,6 +273,7 @@
 				F18A52E121790F8A003F8C13 /* ViewController.swift in Sources */,
 				F162146421FC99CA005297DE /* UIColor+Extension.swift in Sources */,
 				F14FADF021F761FD00ACE5FF /* FakeHCCQRView.swift in Sources */,
+				F162146621FF0734005297DE /* AlignMarkTestView.swift in Sources */,
 				F14FADEB21F75F3900ACE5FF /* UIView+Extension.swift in Sources */,
 				F14FADEE21F7618A00ACE5FF /* RGBAImage+Pixel.swift in Sources */,
 				F162145621FC75F7005297DE /* RGBAImage+Composite.swift in Sources */,
@@ -263,12 +281,14 @@
 				F162146221FC966C005297DE /* Colorize.swift in Sources */,
 				F162145D21FC7D7F005297DE /* Pixel+Assert.swift in Sources */,
 				F18A52DF21790F8A003F8C13 /* AppDelegate.swift in Sources */,
+				F162146821FF380E005297DE /* CAShapeLayerUtil.swift in Sources */,
 				F14FADF221F77E4400ACE5FF /* UIImage+Extension.swift in Sources */,
 				F14FADE821F75EF100ACE5FF /* RGBColorTestView.swift in Sources */,
 				F162145421FC7138005297DE /* SimpleHCCQRView.swift in Sources */,
 				F162145A21FC7791005297DE /* RGBAImage+Util.swift in Sources */,
 				F162145821FC7636005297DE /* RGBAImage+Split.swift in Sources */,
 				F18A52FA217A463E003F8C13 /* Pixel.swift in Sources */,
+				F162146B21FF4198005297DE /* AlignMarkUtil.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -420,6 +440,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = "HCCQR-demo/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -441,6 +462,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = "HCCQR-demo/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -10,7 +10,8 @@ class ViewController: UIViewController {
 //      testSeperation()
 //      testFakeHCCQRView()
 //      testComposition()
-      testSimpleHCCQRView()
+//      testSimpleHCCQRView()
+      testAimMarks()
    }
    override var prefersStatusBarHidden:Bool {return true}/*hides statusbar*/
 }

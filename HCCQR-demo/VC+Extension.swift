@@ -102,12 +102,13 @@ extension ViewController {
          //you also need to skip some areas, like the alignment areas
          //you need to make tests first, dummy QR codes ✅
          //you then need to make the color stuff work ✅
-         //convert the pseudo-code to real code 👈 👈
+         //convert the pseudo-code to real code ✅
          //then you need to be able to cherry pick areas to include and disclude etc (after colorize is done)
             //write some pseudo code for this (mainArea:CGRect,discludeAreas:[CGRect]) 🚫
             //its easier to just overwrite the discluded areas after you have colorized 👌
             //You have to creat logic that lifts the discluded areas and composite them on the colorized image
-            //do real mini test for this, where you draw two marks, and then are able to lifet and imprint
+            //do real mini test for this, where you draw three marks, and then are able to lifet and imprint
+      
    }
    /**
     * tests FakeHCCQRView
@@ -162,7 +163,12 @@ extension ViewController {
 //         Swift.print("pixel1:  \(pixel1)")
 //      }
    }
+   /**
+    * testAimMarks
+    */
+   func testAimMarks(){
+      let aimMarkTestView = AimMarkTestView(frame:.zero)
+      view.addSubview(aimMarkTestView)
+   }
 }
 
-// 🏀 
-// find code for testing getting color for pixel
