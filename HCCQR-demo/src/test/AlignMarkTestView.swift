@@ -15,11 +15,15 @@ class AimMarkTestView:UIView{
    override init(frame: CGRect) {
       super.init(frame: frame)
 //      let string:String = String(Array.init(repeating: "a", count: 243))
-      let string:String = String.init(repeating: "x4", count: Int(270/2))
+      let string:String = String.init(repeating: "x4", count: Int(230/2))//270
 //      let string:String = String(Array.init(repeating: "a", count: 300))
       guard let image:UIImage = QRUtil.qrImage(str: string, size: .init(width:375,height:375)) else {fatalError("err")}
       let imageView:UIImageView = UIImageView.init(image: image)
-      addSubview(imageView)
+      self.addSubview(imageView)
+      /**/
+      let alignMarkImgView:UIImageView = AlignMarkUtil.alignMarkGraphic(qrImgSize: /*.init(width: 300, height: 300)*/image.size, strCount: string.count)
+      addSubview(alignMarkImgView)
+//      alignMarkImgView.frame.origin.y = 375
    }
    /**
     * Boilerplate

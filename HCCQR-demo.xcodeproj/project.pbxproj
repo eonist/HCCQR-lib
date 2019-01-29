@@ -26,6 +26,8 @@
 		F162146621FF0734005297DE /* AlignMarkTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162146521FF0734005297DE /* AlignMarkTestView.swift */; };
 		F162146821FF380E005297DE /* CAShapeLayerUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162146721FF380E005297DE /* CAShapeLayerUtil.swift */; };
 		F162146B21FF4198005297DE /* AlignMarkUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162146A21FF4198005297DE /* AlignMarkUtil.swift */; };
+		F162146D220063F1005297DE /* AlignMarkUtil+Metric.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162146C220063F1005297DE /* AlignMarkUtil+Metric.swift */; };
+		F162146F22007814005297DE /* AlignMarkUtil+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162146E22007814005297DE /* AlignMarkUtil+Debug.swift */; };
 		F18A52DF21790F8A003F8C13 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18A52DE21790F8A003F8C13 /* AppDelegate.swift */; };
 		F18A52E121790F8A003F8C13 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18A52E021790F8A003F8C13 /* ViewController.swift */; };
 		F18A52E421790F8A003F8C13 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F18A52E221790F8A003F8C13 /* Main.storyboard */; };
@@ -68,6 +70,8 @@
 		F162146521FF0734005297DE /* AlignMarkTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlignMarkTestView.swift; sourceTree = "<group>"; };
 		F162146721FF380E005297DE /* CAShapeLayerUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CAShapeLayerUtil.swift; sourceTree = "<group>"; };
 		F162146A21FF4198005297DE /* AlignMarkUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlignMarkUtil.swift; sourceTree = "<group>"; };
+		F162146C220063F1005297DE /* AlignMarkUtil+Metric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AlignMarkUtil+Metric.swift"; sourceTree = "<group>"; };
+		F162146E22007814005297DE /* AlignMarkUtil+Debug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AlignMarkUtil+Debug.swift"; sourceTree = "<group>"; };
 		F18A52DB21790F8A003F8C13 /* HCCQR-demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HCCQR-demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F18A52DE21790F8A003F8C13 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F18A52E021790F8A003F8C13 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -149,6 +153,8 @@
 			isa = PBXGroup;
 			children = (
 				F162146A21FF4198005297DE /* AlignMarkUtil.swift */,
+				F162146E22007814005297DE /* AlignMarkUtil+Debug.swift */,
+				F162146C220063F1005297DE /* AlignMarkUtil+Metric.swift */,
 			);
 			path = alignmark;
 			sourceTree = "<group>";
@@ -286,8 +292,10 @@
 				F14FADE821F75EF100ACE5FF /* RGBColorTestView.swift in Sources */,
 				F162145421FC7138005297DE /* SimpleHCCQRView.swift in Sources */,
 				F162145A21FC7791005297DE /* RGBAImage+Util.swift in Sources */,
+				F162146D220063F1005297DE /* AlignMarkUtil+Metric.swift in Sources */,
 				F162145821FC7636005297DE /* RGBAImage+Split.swift in Sources */,
 				F18A52FA217A463E003F8C13 /* Pixel.swift in Sources */,
+				F162146F22007814005297DE /* AlignMarkUtil+Debug.swift in Sources */,
 				F162146B21FF4198005297DE /* AlignMarkUtil.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
