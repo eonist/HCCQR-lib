@@ -35,6 +35,7 @@
 		F162147C2201AE36005297DE /* QRMode+BitCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162147B2201AE35005297DE /* QRMode+BitCount.swift */; };
 		F162147E2201AE53005297DE /* QRMode+CharSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162147D2201AE53005297DE /* QRMode+CharSet.swift */; };
 		F16214802201B05B005297DE /* QRMode+Assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162147F2201B05B005297DE /* QRMode+Assert.swift */; };
+		F16214832201D9E9005297DE /* QRVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16214822201D9E9005297DE /* QRVersion.swift */; };
 		F18A52DF21790F8A003F8C13 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18A52DE21790F8A003F8C13 /* AppDelegate.swift */; };
 		F18A52E121790F8A003F8C13 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18A52E021790F8A003F8C13 /* ViewController.swift */; };
 		F18A52E421790F8A003F8C13 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F18A52E221790F8A003F8C13 /* Main.storyboard */; };
@@ -86,6 +87,7 @@
 		F162147B2201AE35005297DE /* QRMode+BitCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QRMode+BitCount.swift"; sourceTree = "<group>"; };
 		F162147D2201AE53005297DE /* QRMode+CharSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QRMode+CharSet.swift"; sourceTree = "<group>"; };
 		F162147F2201B05B005297DE /* QRMode+Assert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QRMode+Assert.swift"; sourceTree = "<group>"; };
+		F16214822201D9E9005297DE /* QRVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRVersion.swift; sourceTree = "<group>"; };
 		F18A52DB21790F8A003F8C13 /* HCCQR-demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HCCQR-demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F18A52DE21790F8A003F8C13 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F18A52E021790F8A003F8C13 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 		F162147222019DD7005297DE /* meta */ = {
 			isa = PBXGroup;
 			children = (
+				F16214812201D9D8005297DE /* version */,
 				F162147A2201AE0C005297DE /* mode */,
 				F16214752201A7F7005297DE /* QRInfoUtil.swift */,
 			);
@@ -201,6 +204,14 @@
 				F162147D2201AE53005297DE /* QRMode+CharSet.swift */,
 			);
 			path = mode;
+			sourceTree = "<group>";
+		};
+		F16214812201D9D8005297DE /* version */ = {
+			isa = PBXGroup;
+			children = (
+				F16214822201D9E9005297DE /* QRVersion.swift */,
+			);
+			path = version;
 			sourceTree = "<group>";
 		};
 		F18A52D221790F8A003F8C13 = {
@@ -345,6 +356,7 @@
 				F162145A21FC7791005297DE /* RGBAImage+Util.swift in Sources */,
 				F162146D220063F1005297DE /* AlignMarkUtil+Metric.swift in Sources */,
 				F162147C2201AE36005297DE /* QRMode+BitCount.swift in Sources */,
+				F16214832201D9E9005297DE /* QRVersion.swift in Sources */,
 				F162145821FC7636005297DE /* RGBAImage+Split.swift in Sources */,
 				F18A52FA217A463E003F8C13 /* Pixel.swift in Sources */,
 				F162146F22007814005297DE /* AlignMarkUtil+Debug.swift in Sources */,

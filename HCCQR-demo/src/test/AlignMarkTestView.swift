@@ -21,10 +21,13 @@ class AimMarkTestView:UIView{
       
       //🏀
          //use the regexp from that github website to calculate mode,
-         //or use code from zxing 
-            //mess around with the zxing code a bit to try and derive the calculateVersion method 👈
+         //or use code from zxing  🚫
+            //mess around with the zxing code a bit to try and derive the calculateVersion method 🚫
          //when you have mode, create your own table that works with apple qr creator, by looping over different amounts of characters etc
          //use this table to calculate version from inputString
+            //Create a table format (pseudo) 👈
+            //write a table populator (pseudo) 👈
+            //clean up the Vision.version handler code into its own class 👈
       
       
 //      let utf8Count:Int = string.utf8.count

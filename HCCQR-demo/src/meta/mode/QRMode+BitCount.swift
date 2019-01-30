@@ -9,7 +9,7 @@ extension QRMode{
    fileprivate var characterCountBits : [Int] {
       switch (self) {
       case .numeric: return [10, 12, 14]
-      case .alphanumeric: return [9, 11, 13]
+      case .alphaNumeric: return [9, 11, 13]
       case .byte: return [8, 16, 16]
       }
    }

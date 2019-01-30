@@ -13,10 +13,15 @@ class ViewController: UIViewController {
 //      testSimpleHCCQRView()
 //      testAimMarks()
      
-      let string:String = String.init(repeating: "0", count: Int(15)) + "f"
+      let string:String = String.init(repeating: "0", count: Int(30)) + "f"
       let mode = QRMode.mode(string: string).debugDescription
       Swift.print("mode:  \(mode)")
+
+      let version:Int? = QRVersion.version(string: string, ecLevel: .l)
+      Swift.print("version:  \(version)")
+      
+//      Swift.print("QRVersion.versions.first:  \(QRVersion.versions.first!)")
+      
    }
    override var prefersStatusBarHidden:Bool {return true}/*hides statusbar*/
 }
-

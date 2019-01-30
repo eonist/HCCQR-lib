@@ -8,7 +8,7 @@ extension QRMode{
       if QRMode.isNumeric(string:string){
          return .numeric
       }else if QRMode.isAlphanumeric(string:string){
-         return .alphanumeric
+         return .alphaNumeric
       }else {
          return .byte
       }

@@ -27,7 +27,7 @@ import Foundation
  */
 enum QRMode: Int{
    case numeric = 0x01
-   case alphanumeric = 0x02
+   case alphaNumeric = 0x02
    case byte = 0x04
 }
 /**
@@ -37,7 +37,7 @@ extension QRMode:CustomDebugStringConvertible{
    public var debugDescription: String {
       switch (self) {
       case .numeric: return "Numeric"
-      case .alphanumeric: return "Alphanumeric"
+      case .alphaNumeric: return "Alphanumeric"
       case .byte: return "Byte"
       }
    }
