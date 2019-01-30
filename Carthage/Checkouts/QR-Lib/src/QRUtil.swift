@@ -23,8 +23,10 @@ final public class QRUtil {
     * Creates QR image from a string
     * ## Examples:
     * let image = QRUtil.qrImage(str: "testing", size: .init(width:100,height:100))
-    * - Important: ⚠️️  243 char seems to be the limit string.count allowed
+    * - Important: ⚠️️  243 char seems to be the limit string.count allowed, 🚫 this is not correct.
     * - TODO: ⚠️️ make this throw instead
+    * - Parameter str: The message you want the QR to contain
+    * - Parameter size: The size you want the QR to be
     */
    public static func qrImage(str: String, size: CGSize) -> Image? {
       guard let ciImage: CIImage = QRUtil.ciImage(str: str, size: size) else {
@@ -37,7 +39,8 @@ final public class QRUtil {
    }
    /**
     * Returns a string for an UIImage with a QRCode
-    * EXAMPLE: QRParser.qrCode(nsImage: image)
+    * ## Examples:
+    * QRParser.qrCode(nsImage: image)
     */
    #if os(iOS)
    public static func qrCode(image: UIImage) -> String? {
@@ -80,16 +83,25 @@ extension QRUtil{
    /**
     * Creates a CIImage from str
     * - TODO: ⚠️️ Make this throw error instead of failing hard
-    * - TODO: ⚠️️ this is different for mac. see deprecated code
+    * - TODO: ⚠️️ this is different for mac. see deprecated code, i think its the same 🤔
+    * - Note: Generates an output image representing the input data according to the ISO/IEC 18004:2006 standard. The width and height of each module (square dot) of the code in the output image is one point.
+    * - Note: Correction levels available: L 7%, M 15%, Q 25%, H 30%
+    * - Note: Encoding: NSISOLatin1StringEncoding is standard but ASCII or UTF-8 works too.
     */
    fileprivate static func ciImage(str: String, size: CGSize) -> CIImage? {
-      let data: Data? = str.data(using: .utf8)
+      Swift.print("using ascii")
+      let data: Data? = str.data(using: .utf8, allowLossyConversion: false)
       guard let filter = CIFilter(name: "CIQRCodeGenerator") else { return nil }
       filter.setValue(data, forKey: "inputMessage")
-      filter.setValue("L", forKey: "inputCorrectionLevel")/* Correction levels aviable L 7%, M 15%, Q 25%, H 30% */
-      guard let outputImage = filter.outputImage else { fatalError("can't make ciimage") }
-      let scale:CGPoint = .init(x:size.width / outputImage.extent.size.width, y:size.height / outputImage.extent.size.height)
-      let transformedImage = outputImage.transformed(by: CGAffineTransform(scaleX: scale.x, y: scale.y))
+      filter.setValue("L", forKey: "inputCorrectionLevel")
+      guard let outputImage:CIImage = filter.outputImage else { fatalError("can't make ciimage") }
+//      outputImage.description
+      let scale:CGPoint = {
+         let x = size.width / outputImage.extent.size.width
+         let y = size.height / outputImage.extent.size.height
+         return .init(x:x,y:y)
+      }()
+      let transformedImage:CIImage = outputImage.transformed(by: CGAffineTransform(scaleX: scale.x, y: scale.y))
       return transformedImage
    }
    /**
@@ -125,8 +137,8 @@ extension QRUtil{
    #endif
    /**
     * Converts ciImage to NSImage
-    * NOTE: Helper method for QR images
-    * TODO: ⚠️️ Make this throw
+    * - Note: Helper method for QR images
+    * - TODO: ⚠️️ Make this throw
     */
    #if os(macOS)
    private static func nsImage(ciImage: CIImage) -> NSImage? {

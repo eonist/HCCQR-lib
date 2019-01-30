@@ -28,6 +28,13 @@
 		F162146B21FF4198005297DE /* AlignMarkUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162146A21FF4198005297DE /* AlignMarkUtil.swift */; };
 		F162146D220063F1005297DE /* AlignMarkUtil+Metric.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162146C220063F1005297DE /* AlignMarkUtil+Metric.swift */; };
 		F162146F22007814005297DE /* AlignMarkUtil+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162146E22007814005297DE /* AlignMarkUtil+Debug.swift */; };
+		F16214712200CC89005297DE /* Data+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16214702200CC89005297DE /* Data+Extension.swift */; };
+		F162147422019DEF005297DE /* ZXQRMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162147322019DEF005297DE /* ZXQRMode.swift */; };
+		F16214762201A7F7005297DE /* QRInfoUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16214752201A7F7005297DE /* QRInfoUtil.swift */; };
+		F16214782201AC60005297DE /* QRMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16214772201AC60005297DE /* QRMode.swift */; };
+		F162147C2201AE36005297DE /* QRMode+BitCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162147B2201AE35005297DE /* QRMode+BitCount.swift */; };
+		F162147E2201AE53005297DE /* QRMode+CharSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162147D2201AE53005297DE /* QRMode+CharSet.swift */; };
+		F16214802201B05B005297DE /* QRMode+Assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162147F2201B05B005297DE /* QRMode+Assert.swift */; };
 		F18A52DF21790F8A003F8C13 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18A52DE21790F8A003F8C13 /* AppDelegate.swift */; };
 		F18A52E121790F8A003F8C13 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18A52E021790F8A003F8C13 /* ViewController.swift */; };
 		F18A52E421790F8A003F8C13 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F18A52E221790F8A003F8C13 /* Main.storyboard */; };
@@ -72,6 +79,13 @@
 		F162146A21FF4198005297DE /* AlignMarkUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlignMarkUtil.swift; sourceTree = "<group>"; };
 		F162146C220063F1005297DE /* AlignMarkUtil+Metric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AlignMarkUtil+Metric.swift"; sourceTree = "<group>"; };
 		F162146E22007814005297DE /* AlignMarkUtil+Debug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AlignMarkUtil+Debug.swift"; sourceTree = "<group>"; };
+		F16214702200CC89005297DE /* Data+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Extension.swift"; sourceTree = "<group>"; };
+		F162147322019DEF005297DE /* ZXQRMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZXQRMode.swift; sourceTree = "<group>"; };
+		F16214752201A7F7005297DE /* QRInfoUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRInfoUtil.swift; sourceTree = "<group>"; };
+		F16214772201AC60005297DE /* QRMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRMode.swift; sourceTree = "<group>"; };
+		F162147B2201AE35005297DE /* QRMode+BitCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QRMode+BitCount.swift"; sourceTree = "<group>"; };
+		F162147D2201AE53005297DE /* QRMode+CharSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QRMode+CharSet.swift"; sourceTree = "<group>"; };
+		F162147F2201B05B005297DE /* QRMode+Assert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QRMode+Assert.swift"; sourceTree = "<group>"; };
 		F18A52DB21790F8A003F8C13 /* HCCQR-demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HCCQR-demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F18A52DE21790F8A003F8C13 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F18A52E021790F8A003F8C13 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -110,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				F14FADEA21F75F3900ACE5FF /* UIView+Extension.swift */,
+				F16214702200CC89005297DE /* Data+Extension.swift */,
 				F14FADF121F77E4400ACE5FF /* UIImage+Extension.swift */,
 				F162146321FC99CA005297DE /* UIColor+Extension.swift */,
 				F162146721FF380E005297DE /* CAShapeLayerUtil.swift */,
@@ -159,6 +174,35 @@
 			path = alignmark;
 			sourceTree = "<group>";
 		};
+		F162147222019DD7005297DE /* meta */ = {
+			isa = PBXGroup;
+			children = (
+				F162147A2201AE0C005297DE /* mode */,
+				F16214752201A7F7005297DE /* QRInfoUtil.swift */,
+			);
+			path = meta;
+			sourceTree = "<group>";
+		};
+		F16214792201AC64005297DE /* DEPRECATED */ = {
+			isa = PBXGroup;
+			children = (
+				F162147322019DEF005297DE /* ZXQRMode.swift */,
+			);
+			path = DEPRECATED;
+			sourceTree = "<group>";
+		};
+		F162147A2201AE0C005297DE /* mode */ = {
+			isa = PBXGroup;
+			children = (
+				F16214792201AC64005297DE /* DEPRECATED */,
+				F16214772201AC60005297DE /* QRMode.swift */,
+				F162147F2201B05B005297DE /* QRMode+Assert.swift */,
+				F162147B2201AE35005297DE /* QRMode+BitCount.swift */,
+				F162147D2201AE53005297DE /* QRMode+CharSet.swift */,
+			);
+			path = mode;
+			sourceTree = "<group>";
+		};
 		F18A52D221790F8A003F8C13 = {
 			isa = PBXGroup;
 			children = (
@@ -194,6 +238,7 @@
 		F18A52F2217A3F36003F8C13 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				F162147222019DD7005297DE /* meta */,
 				F162146921FF4180005297DE /* alignmark */,
 				F14FADE621F75EAD00ACE5FF /* test */,
 				F14FADE921F75F1D00ACE5FF /* extension */,
@@ -274,11 +319,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F16214762201A7F7005297DE /* QRInfoUtil.swift in Sources */,
 				F14FADE521F75A9900ACE5FF /* VC+Extension.swift in Sources */,
 				F162145F21FC7DC9005297DE /* Pixel+Setter.swift in Sources */,
 				F18A52E121790F8A003F8C13 /* ViewController.swift in Sources */,
+				F162147422019DEF005297DE /* ZXQRMode.swift in Sources */,
 				F162146421FC99CA005297DE /* UIColor+Extension.swift in Sources */,
 				F14FADF021F761FD00ACE5FF /* FakeHCCQRView.swift in Sources */,
+				F16214802201B05B005297DE /* QRMode+Assert.swift in Sources */,
+				F162147E2201AE53005297DE /* QRMode+CharSet.swift in Sources */,
 				F162146621FF0734005297DE /* AlignMarkTestView.swift in Sources */,
 				F14FADEB21F75F3900ACE5FF /* UIView+Extension.swift in Sources */,
 				F14FADEE21F7618A00ACE5FF /* RGBAImage+Pixel.swift in Sources */,
@@ -286,13 +335,16 @@
 				F18A52F6217A4438003F8C13 /* RGBAImage.swift in Sources */,
 				F162146221FC966C005297DE /* Colorize.swift in Sources */,
 				F162145D21FC7D7F005297DE /* Pixel+Assert.swift in Sources */,
+				F16214782201AC60005297DE /* QRMode.swift in Sources */,
 				F18A52DF21790F8A003F8C13 /* AppDelegate.swift in Sources */,
 				F162146821FF380E005297DE /* CAShapeLayerUtil.swift in Sources */,
 				F14FADF221F77E4400ACE5FF /* UIImage+Extension.swift in Sources */,
 				F14FADE821F75EF100ACE5FF /* RGBColorTestView.swift in Sources */,
 				F162145421FC7138005297DE /* SimpleHCCQRView.swift in Sources */,
+				F16214712200CC89005297DE /* Data+Extension.swift in Sources */,
 				F162145A21FC7791005297DE /* RGBAImage+Util.swift in Sources */,
 				F162146D220063F1005297DE /* AlignMarkUtil+Metric.swift in Sources */,
+				F162147C2201AE36005297DE /* QRMode+BitCount.swift in Sources */,
 				F162145821FC7636005297DE /* RGBAImage+Split.swift in Sources */,
 				F18A52FA217A463E003F8C13 /* Pixel.swift in Sources */,
 				F162146F22007814005297DE /* AlignMarkUtil+Debug.swift in Sources */,

@@ -29,7 +29,8 @@ class AlignMarkUtil{
 //            Swift.print("big")
             return AlignMarkUtil.big.metric
          }else {
-            fatalError("type not supported")
+            return AlignMarkUtil.big.metric
+            Swift.print("type not supported")
          }
       }()
       let viewRect:CGRect = .init(origin:.zero,size:qrImgSize)

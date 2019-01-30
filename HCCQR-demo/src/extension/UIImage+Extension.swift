@@ -46,4 +46,12 @@ extension UIImage {
       
       return UIColor(red: r, green: g, blue: b, alpha: a)
    }
+   /**
+    * someUIImage.cgImage doesnt work so we use this
+    */
+   func cgImage() -> CGImage? {
+      guard let ciImage = self.ciImage else {return nil}
+      let context:CIContext = CIContext.init(options: nil)
+      return context.createCGImage(ciImage, from: ciImage.extent)
+   }
 }

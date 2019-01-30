@@ -171,4 +171,3 @@ extension ViewController {
       view.addSubview(aimMarkTestView)
    }
 }
-
