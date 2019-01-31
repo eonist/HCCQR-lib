@@ -43,6 +43,7 @@
 		F18A52E921790F8D003F8C13 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F18A52E721790F8D003F8C13 /* LaunchScreen.storyboard */; };
 		F18A52F6217A4438003F8C13 /* RGBAImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18A52F4217A4438003F8C13 /* RGBAImage.swift */; };
 		F18A52FA217A463E003F8C13 /* Pixel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18A52F9217A463E003F8C13 /* Pixel.swift */; };
+		F1CB96EF220309EF00164623 /* ImageScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CB96EE220309EF00164623 /* ImageScanner.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -97,6 +98,7 @@
 		F18A52EA21790F8D003F8C13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F18A52F4217A4438003F8C13 /* RGBAImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RGBAImage.swift; sourceTree = "<group>"; };
 		F18A52F9217A463E003F8C13 /* Pixel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pixel.swift; sourceTree = "<group>"; };
+		F1CB96EE220309EF00164623 /* ImageScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageScanner.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,6 +211,7 @@
 		F16214812201D9D8005297DE /* version */ = {
 			isa = PBXGroup;
 			children = (
+				F1CB96ED220309D700164623 /* scanning */,
 				F16214822201D9E9005297DE /* QRVersion.swift */,
 			);
 			path = version;
@@ -256,6 +259,14 @@
 				F14FADEC21F760C000ACE5FF /* RGBAimage */,
 			);
 			path = src;
+			sourceTree = "<group>";
+		};
+		F1CB96ED220309D700164623 /* scanning */ = {
+			isa = PBXGroup;
+			children = (
+				F1CB96EE220309EF00164623 /* ImageScanner.swift */,
+			);
+			path = scanning;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -356,6 +367,7 @@
 				F162145A21FC7791005297DE /* RGBAImage+Util.swift in Sources */,
 				F162146D220063F1005297DE /* AlignMarkUtil+Metric.swift in Sources */,
 				F162147C2201AE36005297DE /* QRMode+BitCount.swift in Sources */,
+				F1CB96EF220309EF00164623 /* ImageScanner.swift in Sources */,
 				F16214832201D9E9005297DE /* QRVersion.swift in Sources */,
 				F162145821FC7636005297DE /* RGBAImage+Split.swift in Sources */,
 				F18A52FA217A463E003F8C13 /* Pixel.swift in Sources */,
