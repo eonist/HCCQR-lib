@@ -28,8 +28,8 @@ final public class QRUtil {
     * - Parameter str: The message you want the QR to contain
     * - Parameter size: The size you want the QR to be
     */
-   public static func qrImage(str: String, size: CGSize) -> Image? {
-      guard let ciImage: CIImage = QRUtil.ciImage(str: str, size: size) else {
+   public static func qrImage(str: String, size: CGSize, ecLevel:ECLevel = .l) -> Image? {
+      guard let ciImage: CIImage = QRUtil.ciImage(str: str, size: size, ecLevel:ecLevel) else {
          Swift.print("⚠️️ Failed to create ciImage ⚠️️");return nil
       }
       guard let image: Image = QRUtil.image(ciImage: ciImage) else {
@@ -88,12 +88,12 @@ extension QRUtil{
     * - Note: Correction levels available: L 7%, M 15%, Q 25%, H 30%
     * - Note: Encoding: NSISOLatin1StringEncoding is standard but ASCII or UTF-8 works too.
     */
-   fileprivate static func ciImage(str: String, size: CGSize) -> CIImage? {
-      Swift.print("using ascii")
+   fileprivate static func ciImage(str: String, size: CGSize, ecLevel:ECLevel) -> CIImage? {
+//      Swift.print("using ascii")
       let data: Data? = str.data(using: .utf8, allowLossyConversion: false)
       guard let filter = CIFilter(name: "CIQRCodeGenerator") else { return nil }
       filter.setValue(data, forKey: "inputMessage")
-      filter.setValue("L", forKey: "inputCorrectionLevel")
+      filter.setValue(ecLevel.rawValue, forKey: "inputCorrectionLevel")
       guard let outputImage:CIImage = filter.outputImage else { fatalError("can't make ciimage") }
 //      outputImage.description
       let scale:CGPoint = {

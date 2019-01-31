@@ -13,6 +13,8 @@ import UIKit
 class AlignMarkUtil{
    /**
     * Creates an UIIMageView with the Align marks drawn into the image
+    * ## Examples:
+    * AlignMarkUtil.alignMarkGraphic(qrImgSize: image.size, strCount: string.count)
     * - TODO: ⚠️️ add support for secondary align marks
     */
    static func alignMarkGraphic(qrImgSize:CGSize, strCount:Int) -> UIImageView {

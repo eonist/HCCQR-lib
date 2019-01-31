@@ -170,4 +170,18 @@ extension ViewController {
       let aimMarkTestView = AimMarkTestView(frame:.zero)
       view.addSubview(aimMarkTestView)
    }
+   /**
+    * testImageScanning
+    */
+   func testImageScanning(){
+      let imageScanTestView = ImageScanTestView(frame:.zero)
+      view.addSubview(imageScanTestView)
+   }
+   /**
+    * testVersionTable
+    */
+   func testVersionTable(){
+      let versionTableTestView = VersionTableTestView(frame:.zero)
+      view.addSubview(versionTableTestView)
+   }
 }

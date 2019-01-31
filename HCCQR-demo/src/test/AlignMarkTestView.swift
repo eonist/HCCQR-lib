@@ -26,17 +26,11 @@ class AimMarkTestView:UIView{
       let imageView:UIImageView = UIImageView.init(image: image)
       self.addSubview(imageView)
       /**/
-      let alignMarkImgView:UIImageView = AlignMarkUtil.alignMarkGraphic(qrImgSize: /*.init(width: 300, height: 300)*/image.size, strCount: string.count)
+      let alignMarkImgView:UIImageView = AlignMarkUtil.alignMarkGraphic(qrImgSize: image.size, strCount: string.count)
       addSubview(alignMarkImgView)
-      /*scan*/
-      let scanComplete:ImageScanner.ScanComplete = { version in Swift.print("version:  \(String(describing: version)) 🎉")}
-      ImageScanner.scanImage(image: image, scanCompletion: scanComplete)
-//      scanImage(cgImage: cgImage)
-//      alignMarkImgView.frame.origin.y = 375
+     
       
-      //loop an array 🏀
    }
-
    /**
     * Boilerplate
     */

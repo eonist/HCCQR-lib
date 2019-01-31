@@ -15,4 +15,3 @@ class QRInfoUtil{
       return (((version-1)*4)+21)
    }
 }
-

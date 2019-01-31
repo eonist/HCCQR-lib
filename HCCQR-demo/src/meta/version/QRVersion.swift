@@ -1,4 +1,5 @@
 import Foundation
+import QRLibIOS
 
 class QRVersion{
    /**
@@ -81,12 +82,3 @@ extension QRVersion{
       ]
    }()
 }
-/**
- * Correction level
- */
-extension QRVersion{
-   enum ECLevel {
-      case l,m,q,h
-   }
-}
-

@@ -44,6 +44,9 @@
 		F18A52F6217A4438003F8C13 /* RGBAImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18A52F4217A4438003F8C13 /* RGBAImage.swift */; };
 		F18A52FA217A463E003F8C13 /* Pixel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18A52F9217A463E003F8C13 /* Pixel.swift */; };
 		F1CB96EF220309EF00164623 /* ImageScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CB96EE220309EF00164623 /* ImageScanner.swift */; };
+		F1F11F6C220324F0008BB049 /* ImageScanTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F11F6B220324F0008BB049 /* ImageScanTestView.swift */; };
+		F1F11F7222032CF1008BB049 /* VersionTableTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F11F7122032CF1008BB049 /* VersionTableTestView.swift */; };
+		F1F11F7522032E4B008BB049 /* QRVersionUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F11F7422032E4B008BB049 /* QRVersionUtil.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -99,6 +102,9 @@
 		F18A52F4217A4438003F8C13 /* RGBAImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RGBAImage.swift; sourceTree = "<group>"; };
 		F18A52F9217A463E003F8C13 /* Pixel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pixel.swift; sourceTree = "<group>"; };
 		F1CB96EE220309EF00164623 /* ImageScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageScanner.swift; sourceTree = "<group>"; };
+		F1F11F6B220324F0008BB049 /* ImageScanTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageScanTestView.swift; sourceTree = "<group>"; };
+		F1F11F7122032CF1008BB049 /* VersionTableTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionTableTestView.swift; sourceTree = "<group>"; };
+		F1F11F7422032E4B008BB049 /* QRVersionUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRVersionUtil.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +126,8 @@
 				F14FADEF21F761FD00ACE5FF /* FakeHCCQRView.swift */,
 				F162145321FC7138005297DE /* SimpleHCCQRView.swift */,
 				F162146521FF0734005297DE /* AlignMarkTestView.swift */,
+				F1F11F6B220324F0008BB049 /* ImageScanTestView.swift */,
+				F1F11F7122032CF1008BB049 /* VersionTableTestView.swift */,
 			);
 			path = test;
 			sourceTree = "<group>";
@@ -211,6 +219,7 @@
 		F16214812201D9D8005297DE /* version */ = {
 			isa = PBXGroup;
 			children = (
+				F1F11F7322032E3B008BB049 /* util */,
 				F1CB96ED220309D700164623 /* scanning */,
 				F16214822201D9E9005297DE /* QRVersion.swift */,
 			);
@@ -267,6 +276,14 @@
 				F1CB96EE220309EF00164623 /* ImageScanner.swift */,
 			);
 			path = scanning;
+			sourceTree = "<group>";
+		};
+		F1F11F7322032E3B008BB049 /* util */ = {
+			isa = PBXGroup;
+			children = (
+				F1F11F7422032E4B008BB049 /* QRVersionUtil.swift */,
+			);
+			path = util;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -352,10 +369,12 @@
 				F162147E2201AE53005297DE /* QRMode+CharSet.swift in Sources */,
 				F162146621FF0734005297DE /* AlignMarkTestView.swift in Sources */,
 				F14FADEB21F75F3900ACE5FF /* UIView+Extension.swift in Sources */,
+				F1F11F6C220324F0008BB049 /* ImageScanTestView.swift in Sources */,
 				F14FADEE21F7618A00ACE5FF /* RGBAImage+Pixel.swift in Sources */,
 				F162145621FC75F7005297DE /* RGBAImage+Composite.swift in Sources */,
 				F18A52F6217A4438003F8C13 /* RGBAImage.swift in Sources */,
 				F162146221FC966C005297DE /* Colorize.swift in Sources */,
+				F1F11F7222032CF1008BB049 /* VersionTableTestView.swift in Sources */,
 				F162145D21FC7D7F005297DE /* Pixel+Assert.swift in Sources */,
 				F16214782201AC60005297DE /* QRMode.swift in Sources */,
 				F18A52DF21790F8A003F8C13 /* AppDelegate.swift in Sources */,
@@ -367,6 +386,7 @@
 				F162145A21FC7791005297DE /* RGBAImage+Util.swift in Sources */,
 				F162146D220063F1005297DE /* AlignMarkUtil+Metric.swift in Sources */,
 				F162147C2201AE36005297DE /* QRMode+BitCount.swift in Sources */,
+				F1F11F7522032E4B008BB049 /* QRVersionUtil.swift in Sources */,
 				F1CB96EF220309EF00164623 /* ImageScanner.swift in Sources */,
 				F16214832201D9E9005297DE /* QRVersion.swift in Sources */,
 				F162145821FC7636005297DE /* RGBAImage+Split.swift in Sources */,

@@ -18,6 +18,8 @@
 		F162132721FB2953005297DE /* QRUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162132621FB2953005297DE /* QRUtil.swift */; };
 		F162133621FB2ABB005297DE /* QRLibMac.h in Headers */ = {isa = PBXBuildFile; fileRef = F162133421FB2ABB005297DE /* QRLibMac.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F162133A21FB2AC5005297DE /* QRUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162132621FB2953005297DE /* QRUtil.swift */; };
+		F1F11F6F22032A32008BB049 /* ECLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F11F6D2203297B008BB049 /* ECLevel.swift */; };
+		F1F11F7022032A33008BB049 /* ECLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F11F6D2203297B008BB049 /* ECLevel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +61,7 @@
 		F162133221FB2ABB005297DE /* QRLibMac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = QRLibMac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F162133421FB2ABB005297DE /* QRLibMac.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QRLibMac.h; sourceTree = "<group>"; };
 		F162133521FB2ABB005297DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F1F11F6D2203297B008BB049 /* ECLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ECLevel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				F162132621FB2953005297DE /* QRUtil.swift */,
+				F1F11F6D2203297B008BB049 /* ECLevel.swift */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -306,6 +310,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1F11F6F22032A32008BB049 /* ECLevel.swift in Sources */,
 				F162132721FB2953005297DE /* QRUtil.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -314,6 +319,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1F11F7022032A33008BB049 /* ECLevel.swift in Sources */,
 				F162133A21FB2AC5005297DE /* QRUtil.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
