@@ -5,6 +5,7 @@ import Vision
 class ImageScanner{
    /**
     * scanImage (String)
+    * - Parameter size: This isnt that important, lower size ay mean faster generation (QRCodes are generated in units, not in pixels)
     */
    @discardableResult
    static func scanImage(string:String, size:CGSize, ecLevel:ECLevel, scanComplete:@escaping ScanComplete) -> UIImage?{

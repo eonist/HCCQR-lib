@@ -43,10 +43,13 @@
 		F18A52E921790F8D003F8C13 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F18A52E721790F8D003F8C13 /* LaunchScreen.storyboard */; };
 		F18A52F6217A4438003F8C13 /* RGBAImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18A52F4217A4438003F8C13 /* RGBAImage.swift */; };
 		F18A52FA217A463E003F8C13 /* Pixel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18A52F9217A463E003F8C13 /* Pixel.swift */; };
+		F1C957E02204A54C0062B6DA /* QRVersionGenerator+Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C957DF2204A54C0062B6DA /* QRVersionGenerator+Const.swift */; };
+		F1C957E22204A57C0062B6DA /* QRVersionGenerator+Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C957E12204A57C0062B6DA /* QRVersionGenerator+Type.swift */; };
+		F1C957E42204A62C0062B6DA /* QRVersionGenerator+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C957E32204A62C0062B6DA /* QRVersionGenerator+Helper.swift */; };
 		F1CB96EF220309EF00164623 /* ImageScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CB96EE220309EF00164623 /* ImageScanner.swift */; };
 		F1F11F6C220324F0008BB049 /* ImageScanTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F11F6B220324F0008BB049 /* ImageScanTestView.swift */; };
 		F1F11F7222032CF1008BB049 /* VersionTableTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F11F7122032CF1008BB049 /* VersionTableTestView.swift */; };
-		F1F11F7522032E4B008BB049 /* QRVersionUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F11F7422032E4B008BB049 /* QRVersionUtil.swift */; };
+		F1F11F7522032E4B008BB049 /* QRVersionGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F11F7422032E4B008BB049 /* QRVersionGenerator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -101,10 +104,13 @@
 		F18A52EA21790F8D003F8C13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F18A52F4217A4438003F8C13 /* RGBAImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RGBAImage.swift; sourceTree = "<group>"; };
 		F18A52F9217A463E003F8C13 /* Pixel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pixel.swift; sourceTree = "<group>"; };
+		F1C957DF2204A54C0062B6DA /* QRVersionGenerator+Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QRVersionGenerator+Const.swift"; sourceTree = "<group>"; };
+		F1C957E12204A57C0062B6DA /* QRVersionGenerator+Type.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QRVersionGenerator+Type.swift"; sourceTree = "<group>"; };
+		F1C957E32204A62C0062B6DA /* QRVersionGenerator+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QRVersionGenerator+Helper.swift"; sourceTree = "<group>"; };
 		F1CB96EE220309EF00164623 /* ImageScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageScanner.swift; sourceTree = "<group>"; };
 		F1F11F6B220324F0008BB049 /* ImageScanTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageScanTestView.swift; sourceTree = "<group>"; };
 		F1F11F7122032CF1008BB049 /* VersionTableTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionTableTestView.swift; sourceTree = "<group>"; };
-		F1F11F7422032E4B008BB049 /* QRVersionUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRVersionUtil.swift; sourceTree = "<group>"; };
+		F1F11F7422032E4B008BB049 /* QRVersionGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRVersionGenerator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -281,7 +287,10 @@
 		F1F11F7322032E3B008BB049 /* util */ = {
 			isa = PBXGroup;
 			children = (
-				F1F11F7422032E4B008BB049 /* QRVersionUtil.swift */,
+				F1F11F7422032E4B008BB049 /* QRVersionGenerator.swift */,
+				F1C957E32204A62C0062B6DA /* QRVersionGenerator+Helper.swift */,
+				F1C957DF2204A54C0062B6DA /* QRVersionGenerator+Const.swift */,
+				F1C957E12204A57C0062B6DA /* QRVersionGenerator+Type.swift */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -369,6 +378,7 @@
 				F162147E2201AE53005297DE /* QRMode+CharSet.swift in Sources */,
 				F162146621FF0734005297DE /* AlignMarkTestView.swift in Sources */,
 				F14FADEB21F75F3900ACE5FF /* UIView+Extension.swift in Sources */,
+				F1C957E22204A57C0062B6DA /* QRVersionGenerator+Type.swift in Sources */,
 				F1F11F6C220324F0008BB049 /* ImageScanTestView.swift in Sources */,
 				F14FADEE21F7618A00ACE5FF /* RGBAImage+Pixel.swift in Sources */,
 				F162145621FC75F7005297DE /* RGBAImage+Composite.swift in Sources */,
@@ -380,15 +390,17 @@
 				F18A52DF21790F8A003F8C13 /* AppDelegate.swift in Sources */,
 				F162146821FF380E005297DE /* CAShapeLayerUtil.swift in Sources */,
 				F14FADF221F77E4400ACE5FF /* UIImage+Extension.swift in Sources */,
+				F1C957E42204A62C0062B6DA /* QRVersionGenerator+Helper.swift in Sources */,
 				F14FADE821F75EF100ACE5FF /* RGBColorTestView.swift in Sources */,
 				F162145421FC7138005297DE /* SimpleHCCQRView.swift in Sources */,
 				F16214712200CC89005297DE /* Data+Extension.swift in Sources */,
 				F162145A21FC7791005297DE /* RGBAImage+Util.swift in Sources */,
 				F162146D220063F1005297DE /* AlignMarkUtil+Metric.swift in Sources */,
 				F162147C2201AE36005297DE /* QRMode+BitCount.swift in Sources */,
-				F1F11F7522032E4B008BB049 /* QRVersionUtil.swift in Sources */,
+				F1F11F7522032E4B008BB049 /* QRVersionGenerator.swift in Sources */,
 				F1CB96EF220309EF00164623 /* ImageScanner.swift in Sources */,
 				F16214832201D9E9005297DE /* QRVersion.swift in Sources */,
+				F1C957E02204A54C0062B6DA /* QRVersionGenerator+Const.swift in Sources */,
 				F162145821FC7636005297DE /* RGBAImage+Split.swift in Sources */,
 				F18A52FA217A463E003F8C13 /* Pixel.swift in Sources */,
 				F162146F22007814005297DE /* AlignMarkUtil+Debug.swift in Sources */,

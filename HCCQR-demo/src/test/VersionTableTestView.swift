@@ -7,7 +7,7 @@ class VersionTableTestView:UIView{
     */
    override init(frame: CGRect) {
       super.init(frame: frame)
-      
+      QRVersionGenerator.generateVersions()
    }
    /**
     * Boilerplate

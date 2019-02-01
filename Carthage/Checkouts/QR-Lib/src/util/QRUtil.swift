@@ -5,7 +5,7 @@ import Cocoa
 #endif
 /**
  * This makes the code cross platform
- * - Note: by encapsulating it inside an extension we voids creating a global typalias Image
+ * - Note: by encapsulating it inside an extension we avoid creating a global typalias Image
  */
 extension QRUtil{
    #if os(iOS)
@@ -15,8 +15,7 @@ extension QRUtil{
    #endif
 }
 /**
- * - From String to Image
- * - From Image to String
+ * - Description: String 👉 Image & Image 👉 String
  */
 final public class QRUtil {
    /**
@@ -65,6 +64,7 @@ final public class QRUtil {
    }
    /**
     * Creates NSView with nsImage (macOS)
+    * Note: Convenience method
     */
    #if os(macOS)
    public static func imageView(nsImage: Image, rect: CGRect) -> NSImageView {
