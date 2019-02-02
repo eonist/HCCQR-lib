@@ -43,7 +43,7 @@ final public class QRUtil {
     */
    #if os(iOS)
    public static func qrCode(image: UIImage) -> String? {
-      guard let ciImage = image.ciImage else {  return nil }
+      guard let ciImage = image.ciImage else {Swift.print("unable to get ciImage"); return nil }
       return qrCode(ciImage: ciImage)
    }
    #endif
@@ -82,6 +82,7 @@ final public class QRUtil {
 extension QRUtil{
    /**
     * Creates a CIImage from str
+    * - TODO: ⚠️️⚠️️ Figure out if you account for scale in rendering the CIImage, think retina vs non retina. for retina scale is 2
     * - TODO: ⚠️️ Make this throw error instead of failing hard
     * - TODO: ⚠️️ this is different for mac. see deprecated code, i think its the same 🤔
     * - Note: Generates an output image representing the input data according to the ISO/IEC 18004:2006 standard. The width and height of each module (square dot) of the code in the output image is one point.
@@ -91,10 +92,10 @@ extension QRUtil{
    fileprivate static func ciImage(str: String, size: CGSize, ecLevel:ECLevel) -> CIImage? {
 //      Swift.print("using ascii")
       let data: Data? = str.data(using: .utf8, allowLossyConversion: false)
-      guard let filter = CIFilter(name: "CIQRCodeGenerator") else { return nil }
+      guard let filter = CIFilter(name: "CIQRCodeGenerator") else {Swift.print("unable to create filter"); return nil }
       filter.setValue(data, forKey: "inputMessage")
       filter.setValue(ecLevel.rawValue, forKey: "inputCorrectionLevel")
-      guard let outputImage:CIImage = filter.outputImage else { fatalError("can't make ciimage") }
+      guard let outputImage:CIImage = filter.outputImage else { Swift.print("can't make ciimage"); return nil }
 //      outputImage.description
       let scale:CGPoint = {
          let x = size.width / outputImage.extent.size.width
@@ -110,10 +111,10 @@ extension QRUtil{
    fileprivate static func qrCode(ciImage: CIImage) -> String? {
       let detector = CIDetector(ofType: CIDetectorTypeQRCode, context: nil, options: [CIDetectorAccuracy: CIDetectorAccuracyHigh])! // There is also: CIDetectorTypeFace
       let features = detector.features(in: ciImage)
-      if let feature = (features.first { $0 is CIQRCodeFeature } as? CIQRCodeFeature) {
-         return feature.messageString
-      }
-      return nil
+      guard let feature = (features.first { $0 is CIQRCodeFeature } as? CIQRCodeFeature) else {Swift.print("unable to get feature");return nil}
+      guard let messageString:String = feature.messageString else {Swift.print("unable to get messageString");return nil}
+      return messageString
+      
    }
    /**
     * Universal for ios and mac

@@ -1,4 +1,5 @@
 import Foundation
+import QRLibIOS
 /**
  * Constants
  */
@@ -8,9 +9,11 @@ extension QRVersionGenerator{
    }
    /**
     * Max chars allowed in numeric mode: 4417
+    * - Note: apple:6460 -> version-38 (apple has trouble makigng vereions above 38)
+    * - Note: real-qr: 7089 -> version
     */
    private static var numericStrings:[String] {
-      let max = 700//4417
+      let max = 700
       return (1..<max).indices.map{ i in
          let testStr:String = String.init(repeating: "4", count: i) + "1"
          return testStr

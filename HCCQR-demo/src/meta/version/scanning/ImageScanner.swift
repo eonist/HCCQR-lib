@@ -5,16 +5,18 @@ import Vision
 class ImageScanner{
    /**
     * scanImage (String)
-    * - Parameter size: This isnt that important, lower size ay mean faster generation (QRCodes are generated in units, not in pixels)
+    * - Parameter size: This isn't that important, lower size may mean faster generation (QRCodes are generated in units, not in pixels)
     */
    @discardableResult
    static func scanImage(string:String, size:CGSize, ecLevel:ECLevel, scanComplete:@escaping ScanComplete) -> UIImage?{
-      guard let image:UIImage = QRUtil.qrImage(str: string, size: size,ecLevel: ecLevel) else {return nil}
+      guard let image:UIImage = QRUtil.qrImage(str: string, size: size,ecLevel: ecLevel) else {Swift.print("unable to create UIImage");return nil}
+      Swift.print("image.size:  \(image.size)")
       scanImage(image: image, scanComplete: scanComplete)
       return image
    }
    /**
     * scanImage (UIImage)
+    * - Parameter image: the UIImage to be scanned
     */
    static func scanImage(image: UIImage, scanComplete:@escaping ScanComplete) {
       guard let cgImage = image.cgImage() else {scanComplete(nil);Swift.print("Unable to convert UIImage to CGImage");return}
@@ -41,16 +43,17 @@ extension ImageScanner{
     * - Note: https://stackoverflow.com/questions/44683242/vision-framework-barcode-detection-for-ios-11
     */
    fileprivate static func handleCompletion(completion:VNBarCodeRequestCompletion, scanComplete:ScanComplete){
+      if let error = completion.error { Swift.print("error:  \(error)");scanComplete(nil);return}
       //      Swift.print("Barcode observation")
-      guard let results = completion.request.results else { scanComplete(nil);Swift.print("No results found.");return  }
+      guard let results = completion.request.results else { Swift.print("No results found");scanComplete(nil);return  }
       //      print("Number of results found: \(results.count)")
-      guard let firstResult = results.first else {scanComplete(nil);return Swift.print("NO result in results")}// Loop through the found results
-      guard let barcode:VNBarcodeObservation = firstResult as? VNBarcodeObservation else {scanComplete(nil);Swift.print("no barcode in result");return }/*Cast the result to a barcode-observation*/
-      guard let payload = barcode.payloadStringValue else { scanComplete(nil);Swift.print("has no payload"); return  }
+      guard let firstResult = results.first else {Swift.print("NO first result in results");scanComplete(nil); return }// Loop through the found results
+      guard let barcode:VNBarcodeObservation = firstResult as? VNBarcodeObservation else{ Swift.print("no barcode in first result");scanComplete(nil);return }/*Cast the result to a barcode-observation*/
+      guard let payload = barcode.payloadStringValue else { Swift.print("has no payload");scanComplete(nil); return  }
       _ = payload
 //      Swift.print("Payload: \(payload)")
 //      Swift.print("Symbology: \(barcode.symbology.rawValue)")/*Print barcode-values*/
-      guard let desc = barcode.barcodeDescriptor as? CIQRCodeDescriptor else { scanComplete(nil);Swift.print("unable to get description from barcode");return }
+      guard let desc = barcode.barcodeDescriptor as? CIQRCodeDescriptor else { Swift.print("unable to get description from barcode");scanComplete(nil);return }
 //      let errorCorrectionLevel:String = debugCorretionLevel(errorCorrectionLevel: desc.errorCorrectionLevel)
 //      Swift.print("Error-Correction-Level: \(errorCorrectionLevel)")/*QR Codes support four levels of Reed-Solomon error correction, in increasing error correction capability: L, M, Q, and H.*/
 //      Swift.print("Symbol-Version: \(desc.symbolVersion) 👈  ")/*QR Codes are square. ISO/IEC 18004 defines versions from 1 to 40, where a higher symbol version indicates a larger data carrying capacity. This field is required in order to properly interpret the error corrected payload.*/

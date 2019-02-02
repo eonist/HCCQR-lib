@@ -9,9 +9,9 @@ class Colorize {
     */
    static func colorize(views:[UIView],colorMap:ColorMap) -> UIImageView{
       let images:[UIImage] = views.map{$0.snapShot!}// TODO: ⚠️️ fatal error if unable to convert
-      Swift.print("images.first?.size:  \(images.first?.size)")
-      Swift.print("images.first?.scale:  \(images.first?.scale)")
-      Swift.print("color for pos:  \(images.first?.getPixelColor(pos: .init(x: 160, y: 0)))")
+      Swift.print("images.first?.size:  \(String(describing: images.first?.size))")
+      Swift.print("images.first?.scale:  \(String(describing: images.first?.scale))")
+      Swift.print("color for pos:  \(String(describing: images.first?.getPixelColor(pos: .init(x: 160, y: 0))))")
       let image:UIImage = colorize(images: images, colorMap: colorMap)
 //      Swift.print("image:  \(image)")
       let imageView:UIImageView = .init(image: image)

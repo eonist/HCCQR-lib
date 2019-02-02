@@ -1,4 +1,5 @@
 import UIKit
+import QRLibIOS
 
 class ViewController: UIViewController {
    /**
@@ -12,8 +13,8 @@ class ViewController: UIViewController {
 //      testComposition()
 //      testSimpleHCCQRView()
 //      testAimMarks()
-//     testImageScanning()
-      testVersionTable()
+     testImageScanning()
+//      testVersionTable()
    }
    override var prefersStatusBarHidden:Bool {return true}/*hides statusbar*/
 }
@@ -28,7 +29,7 @@ extension ViewController{
       Swift.print("mode:  \(mode)")
       
       let version:Int? = QRVersion.version(string: string, ecLevel: .l)
-      Swift.print("version:  \(version)")
+      Swift.print("version:  \(String(describing: version))")
    
       //      Swift.print("QRVersion.versions.first:  \(QRVersion.versions.first!)")
    }

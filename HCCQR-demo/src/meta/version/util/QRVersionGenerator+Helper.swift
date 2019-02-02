@@ -16,12 +16,14 @@ extension QRVersionGenerator{
       Swift.print("totalStringCount:  \(totalStringCount)")
       var stringCounter:Int = 0/*Completion counter*/
       /*completion block*/
-      let complete:QRVersionComplete =  { ( stringIndex:Int ,  versionIndex:Int, version:QRVersion.Version) in
-         result[versionIndex] = version/*Store the version*/
+      let complete:QRVersionComplete =  { (stringIndex:Int, versionIndex:Int?, version:QRVersion.Version?) in
+         if let versionIndex = versionIndex , let version = version {
+            result[versionIndex] = version/*Store the version*/
+         }
          stringCounter += 1/*Iterate the completionCounter*/
          if stringCounter % 20 == 0 {/*Progress ticker every 20th, so we know things are working*/
             let percentageCompleted:CGFloat =  100 * CGFloat(stringCounter) / CGFloat(totalStringCount)
-            Swift.print("complete: \(String(format: "%.03f", percentageCompleted))%")/*progress in percentage*/
+            Swift.print("complete: \(String(format: "%.03f", percentageCompleted))% stringCounter:\(stringCounter) totalStringCount:\(totalStringCount)")/*progress in percentage*/
          }
          if stringCounter == totalStringCount {/*all completion blocks has completed*/
             allComplete(result)/*Notify the caller that the entire bulk job is complete*/
@@ -35,24 +37,29 @@ extension QRVersionGenerator{
    }
    /**
     * - Note: this works because the last string that is set to a version is the max, its not efficient, but it doesnt have to be because we just need the data, the data will be hardcoded into the library once we have the table data
+    * - TODO: ⚠️️ Dynamically set size based on string.count, no need to use 800x800 for small strings, but big strings need big sizes
     */
    fileprivate static func versions(versions:[QRVersion.Version], strings:[String], qrMode:QRMode, ecLevel:ECLevel, complete:@escaping QRVersionComplete) {
-      for (index,string):(Int,String) in strings.enumerated() {
-         let scanComplete:ImageScanner.ScanComplete = { (version:Int?) in/*Scan completion block*/
-            guard let version = version else {Swift.print("scanComplete - unable to get version");return}
-            var qrVersion:QRVersion.Version = versions[version-1]
+      for (stringIndex,string):(Int,String) in strings.enumerated() {
+         let scanComplete:ImageScanner.ScanComplete = { (versionIndex:Int?) in/*Scan completion block*/
+            guard let versionIndex = versionIndex else {
+               Swift.print("complete() - unable to get version for qrMode: \(qrMode.rawValue) ecLevel:\(ecLevel)")
+               complete(stringIndex,nil,nil)
+               return
+            }
+            var version:QRVersion.Version = versions[versionIndex-1]
             switch qrMode {
             case .numeric:
-               qrVersion.numeric = setMaxChar(maxChar:string.count, mode:&qrVersion.numeric, ecLevel:ecLevel)
+               version.numeric = setMaxChar(maxChar:string.count, mode:&version.numeric, ecLevel:ecLevel)
             case .alphaNumeric:
-               qrVersion.alphaNumeric = setMaxChar(maxChar:string.count, mode:&qrVersion.alphaNumeric, ecLevel:ecLevel)
+               version.alphaNumeric = setMaxChar(maxChar:string.count, mode:&version.alphaNumeric, ecLevel:ecLevel)
             case .byte:
-               qrVersion.byte = setMaxChar(maxChar:string.count, mode:&qrVersion.byte, ecLevel:ecLevel)
+               version.byte = setMaxChar(maxChar:string.count, mode:&version.byte, ecLevel:ecLevel)
             }
-            complete(index,version-1,qrVersion)/* <--relay the completion */
+            complete(stringIndex,versionIndex-1,version)/* <--relay the completion */
          }
          /*Init scan process*/
-         ImageScanner.scanImage(string: string, size:.init(width:375,height:375), ecLevel:ecLevel, scanComplete: scanComplete)
+         ImageScanner.scanImage(string: string, size:.init(width:1200,height:1200), ecLevel:ecLevel, scanComplete: scanComplete)
       }
    }
    /**

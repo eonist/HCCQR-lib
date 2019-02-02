@@ -1,4 +1,5 @@
 import Foundation
+import QRLibIOS
 
 extension QRVersionGenerator{
    /**
@@ -8,5 +9,5 @@ extension QRVersionGenerator{
    /**
     * - Parameter stringINdex: The stringIndex isnt really important, but can be useful for debugging
     */
-   typealias QRVersionComplete = (_ stringIndex:Int, _ versionIndex:Int, _ version:QRVersion.Version) -> Void
+   typealias QRVersionComplete = (_ stringIndex:Int, _ versionIndex:Int?, _ version:QRVersion.Version?) -> Void
 }
