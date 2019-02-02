@@ -13,15 +13,17 @@ class ViewController: UIViewController {
 //      testComposition()
 //      testSimpleHCCQRView()
 //      testAimMarks()
-     testImageScanning()
-//      testVersionTable()
+
+      
    }
    override var prefersStatusBarHidden:Bool {return true}/*hides statusbar*/
 }
-
+/**
+ * Helper
+ */
 extension ViewController{
    /**
-    *
+    * test version
     */
    func testingVersion(){
       let string:String = String.init(repeating: "0", count: Int(30)) + "f"

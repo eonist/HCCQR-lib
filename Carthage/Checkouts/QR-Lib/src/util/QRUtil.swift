@@ -43,7 +43,7 @@ final public class QRUtil {
     */
    #if os(iOS)
    public static func qrCode(image: UIImage) -> String? {
-      guard let ciImage = image.ciImage else {Swift.print("unable to get ciImage"); return nil }
+      guard let ciImage = image.ciImage else {Swift.print("unable to get CIImage"); return nil }
       return qrCode(ciImage: ciImage)
    }
    #endif
@@ -52,15 +52,14 @@ final public class QRUtil {
     * Returns a string for a CIImage instance
     * - TODO: ⚠️️ check if topLeft is the same as bounds.topleft, if not you have a more use-full rectangle outline
     * - Note: there is feature.symbolDescriptor,feature.bounds,feature.topLeft,ciImage.extent(size)
+    * - Note: There is also: CIDetectorAccuracyLow, which has better performance
     */
    public static func qrCode(ciImage: CIImage) -> StringAndFrame? {
-      let detector = CIDetector(ofType: CIDetectorTypeQRCode, context: nil, options: [CIDetectorAccuracy: CIDetectorAccuracyHigh])! // Yhere is also: CIDetectorTypeFace
-      let features = detector.features(in: ciImage)
-      if let feature = (features.first { $0 is CIQRCodeFeature } as? CIQRCodeFeature) {
-         let qrFrame: CGRect = CGRect(origin: feature.topLeft, size: feature.bounds.size)
-         return (qrStr: feature.messageString, qrFrame: qrFrame)
-      }
-      return nil
+      guard let detector:CIDetector = CIDetector(ofType: CIDetectorTypeQRCode, context: nil, options: [CIDetectorAccuracy: CIDetectorAccuracyHigh]) else {Swift.print("unable to create CIDetectorTypeQRCode");return nil} // Yhere is also: CIDetectorTypeFace
+      let features:[CIFeature] = detector.features(in: ciImage)
+      guard let feature:CIQRCodeFeature = (features.first { $0 is CIQRCodeFeature } as? CIQRCodeFeature) else {Swift.print("Unable to create CIQRCodeFeature");return nil}
+      let qrFrame:CGRect = .init(origin: feature.topLeft, size: feature.bounds.size)
+      return (qrStr: feature.messageString, qrFrame: qrFrame)
    }
    /**
     * Creates NSView with nsImage (macOS)
@@ -68,7 +67,7 @@ final public class QRUtil {
     */
    #if os(macOS)
    public static func imageView(nsImage: Image, rect: CGRect) -> NSImageView {
-      let imageView = NSImageView(frame: rect)
+      let imageView:NSImageView = NSImageView(frame: rect)
       imageView.image = nsImage
       imageView.imageAlignment = .alignTopLeft
       // imageView.imageScaling = .scaleNone
@@ -90,12 +89,11 @@ extension QRUtil{
     * - Note: Encoding: NSISOLatin1StringEncoding is standard but ASCII or UTF-8 works too.
     */
    fileprivate static func ciImage(str: String, size: CGSize, ecLevel:ECLevel) -> CIImage? {
-//      Swift.print("using ascii")
-      let data: Data? = str.data(using: .utf8, allowLossyConversion: false)
-      guard let filter = CIFilter(name: "CIQRCodeGenerator") else {Swift.print("unable to create filter"); return nil }
+      guard let filter:CIFilter = CIFilter(name: "CIQRCodeGenerator") else {Swift.print("Unable to create filter"); return nil }
+      guard let data:Data = str.data(using: .utf8, allowLossyConversion: true) else {Swift.print("Unable to create data");return nil}
       filter.setValue(data, forKey: "inputMessage")
       filter.setValue(ecLevel.rawValue, forKey: "inputCorrectionLevel")
-      guard let outputImage:CIImage = filter.outputImage else { Swift.print("can't make ciimage"); return nil }
+      guard let outputImage:CIImage = filter.outputImage else { Swift.print("Can't make CIImage"); return nil }
 //      outputImage.description
       let scale:CGPoint = {
          let x = size.width / outputImage.extent.size.width
@@ -107,11 +105,12 @@ extension QRUtil{
    }
    /**
     * Returns a string for an CIImage with a QRCode
+    * - Note: There is also: CIDetectorTypeFace
     */
    fileprivate static func qrCode(ciImage: CIImage) -> String? {
-      let detector = CIDetector(ofType: CIDetectorTypeQRCode, context: nil, options: [CIDetectorAccuracy: CIDetectorAccuracyHigh])! // There is also: CIDetectorTypeFace
-      let features = detector.features(in: ciImage)
-      guard let feature = (features.first { $0 is CIQRCodeFeature } as? CIQRCodeFeature) else {Swift.print("unable to get feature");return nil}
+      guard let detector:CIDetector = CIDetector(ofType: CIDetectorTypeQRCode, context: nil, options: [CIDetectorAccuracy: CIDetectorAccuracyHigh]) else {Swift.print("unable to create detector");return nil}
+      let features:[CIFeature] = detector.features(in: ciImage)
+      guard let feature:CIQRCodeFeature = (features.first { $0 is CIQRCodeFeature } as? CIQRCodeFeature) else {Swift.print("unable to get CIQRCodeFeature");return nil}
       guard let messageString:String = feature.messageString else {Swift.print("unable to get messageString");return nil}
       return messageString
       
@@ -124,6 +123,8 @@ extension QRUtil{
       return uiImage(ciImage: ciImage)
       #elseif os(macOS)
       return nsImage(ciImage: ciImage)
+      #else
+      return nil//other os etc
       #endif
    }
    /**
@@ -132,8 +133,9 @@ extension QRUtil{
     * - TODO: ⚠️️ Make this throw
     */
    #if os(iOS)
-   private static func uiImage(ciImage: CIImage) -> UIImage? {
-      return UIImage(ciImage: ciImage)
+   private static func uiImage(ciImage: CIImage) -> UIImage {
+      let uiImage:UIImage = UIImage.init(ciImage: ciImage)
+      return uiImage
    }
    #endif
    /**
@@ -142,9 +144,9 @@ extension QRUtil{
     * - TODO: ⚠️️ Make this throw
     */
    #if os(macOS)
-   private static func nsImage(ciImage: CIImage) -> NSImage? {
-      let rep = NSCIImageRep(ciImage: ciImage)
-      let nsImg = NSImage(size: rep.size)
+   private static func nsImage(ciImage: CIImage) -> NSImage {
+      let rep:NSCIImageRep = NSCIImageRep.init(ciImage: ciImage)
+      let nsImg:NSImage = NSImage.init(size: rep.size)
       nsImg.addRepresentation(rep)
       return nsImg
    }

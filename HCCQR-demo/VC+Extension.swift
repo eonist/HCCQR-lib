@@ -43,10 +43,6 @@ extension ViewController {
       view.addSubview(bImageView)
       bImageView.frame.origin.y = 200
       
-      
-      
-      
-      
       //🏀
       //grab the clone code
       //create a fake HCCQR code 4x4 RGBW
@@ -170,18 +166,5 @@ extension ViewController {
       let aimMarkTestView = AimMarkTestView(frame:.zero)
       view.addSubview(aimMarkTestView)
    }
-   /**
-    * testImageScanning
-    */
-   func testImageScanning(){
-      let imageScanTestView = ImageScanTestView(frame:.zero)
-      view.addSubview(imageScanTestView)
-   }
-   /**
-    * testVersionTable
-    */
-   func testVersionTable(){
-      let versionTableTestView = VersionTableTestView(frame:.zero)
-      view.addSubview(versionTableTestView)
-   }
+  
 }

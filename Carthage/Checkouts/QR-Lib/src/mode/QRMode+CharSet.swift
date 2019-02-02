@@ -2,6 +2,9 @@ import Foundation
 
 internal extension QRMode{
    internal static let numericSupportedCharacterSet : CharacterSet = CharacterSet (charactersIn: "0"..."9");
+   /**
+    * - Note: alphaNumeric is the same as ASCII
+    */
    internal static let alphanumericSupportedCharacterSet : CharacterSet = {
       var result = CharacterSet()
       result.insert (charactersIn: "0"..."9");
