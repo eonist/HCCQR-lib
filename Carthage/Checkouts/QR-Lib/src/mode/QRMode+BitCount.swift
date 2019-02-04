@@ -2,7 +2,7 @@ import Foundation
 /**
  * TODO: ⚠️️ write more doc
  */
-extension QRMode{
+public extension QRMode{
    /**
     * Basically charBitsCount varies in different versions v1+Byte=8 but v40+Byte = 16 etc .see wikipedia
     * ## Examples:

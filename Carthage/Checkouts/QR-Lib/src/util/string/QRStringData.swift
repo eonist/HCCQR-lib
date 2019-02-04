@@ -1,0 +1,23 @@
+import Foundation
+
+public class QRStringData{
+   /**
+    * Returns a list of strings (⚠️️ See example for logic ⚠️️)
+    * ## Examples:
+    * randomStrings(["A","B","C"],(1,5))//B,BA,CBA,BACA,CBBAC
+    */
+   public static func randomStrings(chars:[Character], range:(min:Int,max:Int)) -> [String]{
+      return (range.min..<range.max+1).indices.map{ i in
+         return randomString(chars:chars,count:i)
+      }
+   }
+   /**
+    * Returns a random string from min to max
+    * ## Examples:
+    * randomString(chars:[A,B,C],7)//CBABAAB
+    */
+   public static func randomString(chars:[Character], count:Int) -> String {
+      let testStr:[Character] = (0..<count).compactMap{ _ in chars.randomElement()}
+      return String(testStr)
+   }
+}

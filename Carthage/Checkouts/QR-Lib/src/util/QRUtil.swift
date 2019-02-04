@@ -29,7 +29,7 @@ final public class QRUtil {
     */
    public static func qrImage(str: String, size: CGSize, ecLevel:ECLevel = .l) -> Image? {
       guard let ciImage: CIImage = QRUtil.ciImage(str: str, size: size, ecLevel:ecLevel) else {
-         Swift.print("⚠️️ Failed to create ciImage ⚠️️");return nil
+         Swift.print("⚠️️ Failed to create ciImage ecLevel:\(ecLevel.rawValue) str.count:\(str.count) size:\(size) ⚠️️");return nil
       }
       guard let image: Image = QRUtil.image(ciImage: ciImage) else {
          Swift.print("⚠️️ Failed to create uiImage ⚠️️");return nil
@@ -93,7 +93,7 @@ extension QRUtil{
       guard let data:Data = str.data(using: .utf8, allowLossyConversion: true) else {Swift.print("Unable to create data");return nil}
       filter.setValue(data, forKey: "inputMessage")
       filter.setValue(ecLevel.rawValue, forKey: "inputCorrectionLevel")
-      guard let outputImage:CIImage = filter.outputImage else { Swift.print("Can't make CIImage"); return nil }
+      guard let outputImage:CIImage = filter.outputImage else { Swift.print("Unable to make CIImage for ecLevel:\(ecLevel.rawValue) str.count:\(str.count) size:\(size)"); return nil }
 //      outputImage.description
       let scale:CGPoint = {
          let x = size.width / outputImage.extent.size.width
@@ -113,7 +113,6 @@ extension QRUtil{
       guard let feature:CIQRCodeFeature = (features.first { $0 is CIQRCodeFeature } as? CIQRCodeFeature) else {Swift.print("unable to get CIQRCodeFeature");return nil}
       guard let messageString:String = feature.messageString else {Swift.print("unable to get messageString");return nil}
       return messageString
-      
    }
    /**
     * Universal for ios and mac

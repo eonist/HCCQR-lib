@@ -23,22 +23,9 @@ import Foundation
  * 0000   End of message (Terminator)
  * - Note: good primer: https://en.wikipedia.org/wiki/QR_code
  * - Note: .rawValue = Bits in mode
- * - TODO: ⚠️️ Make CaseIteratable?
  */
-public enum QRMode: Int{
+public enum QRMode: Int,CaseIterable{
    case numeric = 0x01
    case alphaNumeric = 0x02
    case byte = 0x04
-}
-/**
- * Gives meaningful descriptions
- */
-extension QRMode:CustomDebugStringConvertible{
-   public var debugDescription: String {
-      switch (self) {
-      case .numeric: return "Numeric"
-      case .alphaNumeric: return "Alphanumeric"
-      case .byte: return "Byte"
-      }
-   }
 }

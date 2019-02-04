@@ -47,7 +47,7 @@ extension UIImage {
       return UIColor(red: r, green: g, blue: b, alpha: a)
    }
    /**
-    * someUIImage.cgImage doesnt work so we use this
+    * someUIImage.cgImage doesn't work so we use this
     */
    func cgImage() -> CGImage? {
       guard let ciImage = self.ciImage else {return nil}
