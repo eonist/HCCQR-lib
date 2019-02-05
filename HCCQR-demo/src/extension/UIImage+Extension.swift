@@ -1,6 +1,8 @@
 
 import UIKit
-
+/**
+ * Modifiers
+ */
 extension UIImage {
    /**
     * Inverts an image (black becomes white etc)
@@ -26,16 +28,19 @@ extension UIImage {
       }
    }
 }
-
+/**
+ * Parsers
+ */
 extension UIImage {
    /**
     * - Note: Somehow this works with retina images where scale is 2x as well
     * - Note: alternative: https://gist.github.com/giulio92/69e4f74217422154bb25d2a35d6710f8
+    * - TODO: ⚠️️ cgImage or cgImage doesnt always work, try to make this more consistent
     */
    func getPixelColor(pos:CGPoint) -> UIColor? {
-      guard let cgImage = self.cgImage() else {Swift.print("unable to get cgImage");return nil}
-      guard let dataProvider = cgImage.dataProvider else {Swift.print("unable to get dataProvider");return nil}
-      guard let pixelData:CFData = dataProvider.data else {Swift.print("unable to get cfData");return nil}
+      guard let cgImage = self.cgImage ?? self.cgImage() else {Swift.print("getPixelColor() - unable to get cgImage");return nil}
+      guard let dataProvider = cgImage.dataProvider else {Swift.print("getPixelColor() - unable to get dataProvider");return nil}
+      guard let pixelData:CFData = dataProvider.data else {Swift.print("getPixelColor() - unable to get cfData");return nil}
       let data: UnsafePointer<UInt8> = CFDataGetBytePtr(pixelData)
       let pixelInfo: Int = ((Int(self.size.width*self.scale) * Int(pos.y)) + Int(pos.x)) * 4
       //      Swift.print("pixelInfo:  \(pixelInfo)")
@@ -56,22 +61,54 @@ extension UIImage {
          }
       }
    }
-   /**
-    * Asserts if an image has non black or white pixel. (aka a gray pixel)
-    */
-   var hasNoneBlackOrWhiteColor:Bool {
-      let pixelColors = self.pixelColors
-      //Swift.print("pixelColors.count:  \(pixelColors.count)")
-      //pixelColors.flatMap{$0}.forEach{ (color:UIColor) in Swift.print("\(color.description)")}
-      let hasNoneBlackOrWhiteColor:Bool = pixelColors.flatMap{$0}.first(where: {$0 != UIColor.black || $0 != UIColor.white}) == nil
-      return hasNoneBlackOrWhiteColor
-   }
+   
    /**
     * someUIImage.cgImage doesn't work so we use this
     */
    func cgImage() -> CGImage? {
-      guard let ciImage = self.ciImage else {Swift.print("unable to get ciImage");return nil}
+      guard let ciImage = self.ciImage else {Swift.print("cgImage() - unable to get ciImage");return nil}
       let context:CIContext = CIContext.init(options: nil)
       return context.createCGImage(ciImage, from: ciImage.extent)
+   }
+}
+
+/**
+ * Asserter
+ */
+extension UIImage{
+   /**
+    * Asserts if an image has non black or white pixel. (aka a gray pixel)
+    */
+   var hasOnlyBlackAndWhiteColorMap:Bool {
+//      Swift.print("hasNoneBlackOrWhiteColor")
+      return hasOnlyColorMap(colorMap: [.black,.white])
+   }
+   /**
+    * Asserts if an image has only the colors speccified in the colors array
+    * ## Example:
+    * hasOnlyColorMap(these: [.red,.green,.blue,.white])
+    */
+   func hasOnlyColorMap(colorMap:[UIColor]) -> Bool{
+//      Swift.print("hasOnly")
+//      Swift.print("colors:  \(colors)")
+//      Swift.print("self.size:  \(self.size)")
+//      Swift.print("self.scale:  \(self.scale)")
+      let pixelColors = self.pixelColors
+//      Swift.print("pixelColors.count:  \(pixelColors.count)")
+      let condition:(UIColor) -> Bool = { color in
+         let matchCondition:(UIColor) -> Bool = {
+//            Swift.print("$0 \($0) color: \(color)")
+            let isMatching:Bool = $0.isEqualRGBA(uiColor:color)//$0 == color//$0.isEqualWithConversion(uiColor:color)
+//            Swift.print("isMatching:  \(isMatching)")
+            return isMatching
+         }
+         let firstmatch = colorMap.first(where: matchCondition)
+//         Swift.print("firstmatch:  \(firstmatch)")
+//         Swift.print("firstmatch:  \(firstmatch) color: \(color)")
+         return firstmatch == nil
+      }
+      let first = pixelColors.flatMap{$0}.first(where: condition)
+//      Swift.print("first:  \(first)")
+      return first == nil
    }
 }

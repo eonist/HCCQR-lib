@@ -22,9 +22,10 @@ extension RGBAImage {
     */
    private static func split(rgbaImgs:RGBAImgs)->RGBImages{//TODO: ⚠️️ rename return type to UIImages
       let rgb:RGB = split(rgbaImgs: rgbaImgs)
-      let r:UIImage? = image(rgbaImage: rgb.r)
-      let g:UIImage? = image(rgbaImage: rgb.g)
-      let b:UIImage? = image(rgbaImage: rgb.b)
+      Swift.print("split ⚠️️ this may be wrong now, scale is new ⚠️️ ")
+      let r:UIImage? = uiImage(rgbaImage: rgb.r, resultScale: 2)//⚠️️ this may be wrong now, scale is new
+      let g:UIImage? = uiImage(rgbaImage: rgb.g, resultScale: 2)//⚠️️ this may be wrong now, scale is new
+      let b:UIImage? = uiImage(rgbaImage: rgb.b, resultScale: 2)//⚠️️ this may be wrong now, scale is new
       return (r,g,b)
    }
    /**

@@ -6,28 +6,34 @@ extension RGBAImage{
    /**
     * UIImageView
     */
-   static func imageView(rgbaImage:RGBAImage) -> UIImageView?{
-      guard let image:UIImage = RGBAImage.image(rgbaImage: rgbaImage) else {return nil}
+   static func imageView(rgbaImage:RGBAImage,resultScale:CGFloat) -> UIImageView?{
+      guard let image:UIImage = RGBAImage.uiImage(rgbaImage: rgbaImage,resultScale:resultScale) else {return nil}
       let imageView:UIImageView = .init(image: image)
       return imageView
    }
    /**
     * Converts rgbaImage to uiimage
     */
-   static func image(rgbaImage:RGBAImage) -> UIImage? {
+   static func uiImage(rgbaImage:RGBAImage, resultScale:CGFloat) -> UIImage? {
       let colorSpace = CGColorSpaceCreateDeviceRGB()
       var bitmapInfo: UInt32 = CGBitmapInfo.byteOrder32Big.rawValue
       let bytesPerRow = rgbaImage.width * 4
       bitmapInfo |= CGImageAlphaInfo.premultipliedLast.rawValue & CGBitmapInfo.alphaInfoMask.rawValue
-      guard let imageContext = CGContext(data: rgbaImage.pixels.baseAddress, width: rgbaImage.width, height: rgbaImage.height, bitsPerComponent: 8, bytesPerRow: bytesPerRow, space: colorSpace, bitmapInfo: bitmapInfo, releaseCallback: nil, releaseInfo: nil) else {
-         return nil
-      }
-      guard let cgImage:CGImage = imageContext.makeImage() else { return nil }
-      let scale:CGFloat = 1
-      Swift.print("⚠️️ CRITICAL, scale should be set frim simewhere ⚠️️")
-      let image = UIImage.init(cgImage: cgImage, scale: scale, orientation: .leftMirrored)
-      Swift.print("image.scale:  \(image.scale)")
+      guard let imageContext = CGContext(data: rgbaImage.pixels.baseAddress, width: rgbaImage.width, height: rgbaImage.height, bitsPerComponent: 8, bytesPerRow: bytesPerRow, space: colorSpace, bitmapInfo: bitmapInfo, releaseCallback: nil, releaseInfo: nil) else {Swift.print("Unable to create imageContext");return nil}
+      guard let cgImage:CGImage = imageContext.makeImage() else {Swift.print("unable to create cgImage"); return nil }
+      let scale:CGFloat = resultScale
+//      Swift.print("⚠️️ CRITICAL, scale should be set from somewhere ⚠️️")
+      let image = UIImage.init(cgImage: cgImage, scale: scale, orientation: .up)//.leftMirrored
       return image
+//      Swift.print("image.scale:  \(image.scale)")
+      
+//      guard let cgImg:CGImage = image.cgImage() else {Swift.print("err");return nil}
+//      guard let ciImage:CIImage = image.ciImage else {Swift.print("unable to create ciImage");return nil}
+//      guard let ciImage:CIImage = CIImage.init(image: image) else {Swift.print("unable to create ciImage");return nil}
+      //CIImage.init(cgImage: cgImg)
+      
+//      let transformedImage:CIImage = ciImage.transformed(by: CGAffineTransform(scaleX: 2, y: 2))
+//      return UIImage.init(ciImage: transformedImage, scale: scale, orientation: .up)
    }
    //   public var copy:RGBAImage {
    //      let pixels:UnsafeMutableBufferPointer<Pixel> = self.pixels

@@ -30,8 +30,8 @@ public struct RGBAImage {
    /**
     * Beta (trying to fix "blurry edge pixel bug")
     */
-   init(img :UIImage){
-      guard let cgImage:CGImage = img.cgImage() else {fatalError("unable to create cgImage")}
+   init?(img :UIImage){
+      guard let cgImage:CGImage = img.cgImage() else {Swift.print("unable to create cgImage");return nil}
       let pixelData = cgImage.dataProvider!.data
       let data: UnsafePointer<UInt8> = CFDataGetBytePtr(pixelData)
       let scale:CGFloat = img.scale//2//
