@@ -13,7 +13,6 @@ public extension QRMode{
          return .byte
       }
    }
-   
 }
 /**
  * Gives meaningful descriptions

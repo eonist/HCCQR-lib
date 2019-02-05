@@ -179,18 +179,37 @@ extension ViewController {
       }
       
       //🏀
-         //test reading pixels for a single qr with now scaling, do you get correct pixel colors?
+         //test reading pixels for a single qr with no scaling, do you get correct pixel colors?
             //if so, then making it HCCQR will be easy, you just scale the result
          //it could be that the img.scale is what fucks things up. try google blurry qr, scale etc
+         //you might need to do middle pixel scanning and build modules your self if getting single pixel isnt possible from apples framework (a WRAPPER)
+         //there might be pixel adding from apples part to make these images, try a few different sizes etc, at some point you might hit pixel perfection, without bluring, which is very helpful in any case, because it makes transfers more stable because clearer picture
+      
       
       guard let view1:UIImageView = createQRImgView() else {Swift.print("err");return}
+      Swift.print("view1.image?.scale:  \(view1.image?.scale)")
+      Swift.print("view1.image?.size:  \(view1.image?.size)")
+      
+      
       guard let view2:UIImageView = createQRImgView() else {Swift.print("err");return}
       
-      let views:[UIView] = [view1,view2]
-      let resultView:UIImageView = Colorize.colorize(views: views, colorMap: Colorize.colorMap)
-      Swift.print("resultView:  \(resultView)")
-      view.addSubview(resultView)
-      resultView.frame.origin = .init(x: 0, y: view1.bounds.height)//
+      _ = {
+//         let views:[UIView] = [view1,view2]
+         let imgs:[UIImage] = [view1.image,view2.image].compactMap{$0}
+         let resultImage = Colorize.colorize(images: imgs, colorMap: Colorize.colorMap)
+         let resultView:UIImageView = UIImageView(image:resultImage)
+         Swift.print("resultView:  \(resultView)")
+         self.view.addSubview(resultView)
+         resultView.frame.origin = .init(x: 0, y: view1.bounds.height)//
+      }()
+      
+//      DispatchQueue.global(qos:.background).async {
+//         DispatchQueue.main.async {
+//            Swift.print("hasNoneBlackOrWhiteColor:  \(view1.image?.hasNoneBlackOrWhiteColor)")
+//         }
+//         
+//      }
+      
    }
    /**
     * testAimMarks

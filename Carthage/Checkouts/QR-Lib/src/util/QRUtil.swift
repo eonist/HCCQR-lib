@@ -28,12 +28,8 @@ final public class QRUtil {
     * - Parameter size: The size you want the QR to be
     */
    public static func qrImage(str: String, size: CGSize, ecLevel:ECLevel = .l) -> Image? {
-      guard let ciImage: CIImage = QRUtil.ciImage(str: str, size: size, ecLevel:ecLevel) else {
-         Swift.print("⚠️️ Failed to create ciImage ecLevel:\(ecLevel.rawValue) str.count:\(str.count) size:\(size) ⚠️️");return nil
-      }
-      guard let image: Image = QRUtil.image(ciImage: ciImage) else {
-         Swift.print("⚠️️ Failed to create uiImage ⚠️️");return nil
-      }
+      guard let ciImage:CIImage = QRUtil.ciImage(str: str, size: size, ecLevel:ecLevel) else { Swift.print("⚠️️ Failed to create ciImage ecLevel:\(ecLevel.rawValue) str.count:\(str.count) size:\(size) ⚠️️");return nil}
+      guard let image:Image = QRUtil.image(ciImage: ciImage) else {Swift.print("⚠️️ Failed to create uiImage ⚠️️");return nil}
       return image
    }
    /**
@@ -94,15 +90,17 @@ extension QRUtil{
       filter.setValue(data, forKey: "inputMessage")
       filter.setValue(ecLevel.rawValue, forKey: "inputCorrectionLevel")
       guard let outputImage:CIImage = filter.outputImage else { Swift.print("Unable to make CIImage for ecLevel:\(ecLevel.rawValue) str.count:\(str.count) size:\(size)"); return nil }
-//      outputImage.description
+      Swift.print("outputImage.description:  \(outputImage.description)")
+      Swift.print("outputImage.extent:  \(outputImage.extent)")
       let scale:CGPoint = {
          let x = size.width / outputImage.extent.size.width
          let y = size.height / outputImage.extent.size.height
          return .init(x:x,y:y)
       }()
-//      let transformedImage:CIImage = outputImage.transformed(by: CGAffineTransform(scaleX: scale.x, y: scale.y))
-//      return transformedImage
-      return outputImage
+      Swift.print("scale:  \(scale)")
+      let transformedImage:CIImage = outputImage.transformed(by: CGAffineTransform(scaleX: scale.x, y: scale.y))
+      return transformedImage
+//      return outputImage
    }
    /**
     * Returns a string for an CIImage with a QRCode

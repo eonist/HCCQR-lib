@@ -23,8 +23,10 @@ extension RGBAImage{
          return nil
       }
       guard let cgImage:CGImage = imageContext.makeImage() else { return nil }
-      let image = UIImage.init(cgImage: cgImage, scale: 2, orientation: .leftMirrored)
-//      Swift.print("image.scale:  \(image.scale)")
+      let scale:CGFloat = 1
+      Swift.print("⚠️️ CRITICAL, scale should be set frim simewhere ⚠️️")
+      let image = UIImage.init(cgImage: cgImage, scale: scale, orientation: .leftMirrored)
+      Swift.print("image.scale:  \(image.scale)")
       return image
    }
    //   public var copy:RGBAImage {

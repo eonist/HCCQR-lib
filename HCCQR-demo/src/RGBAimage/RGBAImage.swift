@@ -31,9 +31,10 @@ public struct RGBAImage {
     * Beta (trying to fix "blurry edge pixel bug")
     */
    init(img :UIImage){
-      let pixelData = img.cgImage!.dataProvider!.data
+      guard let cgImage:CGImage = img.cgImage() else {fatalError("unable to create cgImage")}
+      let pixelData = cgImage.dataProvider!.data
       let data: UnsafePointer<UInt8> = CFDataGetBytePtr(pixelData)
-      let scale:CGFloat = 2//img.scale
+      let scale:CGFloat = img.scale//2//
       let width:Int = Int(img.size.width*scale)
       Swift.print("width:  \(width)")
       Swift.print("img.scale:  \(img.scale)")
@@ -54,12 +55,12 @@ public struct RGBAImage {
       }
       
       Swift.print("pixels.count:  \(pixels.count)")
-      let blackImg:UIImage = UIImage.createImage(size: CGSize.init(width: img.size.width*2, height: img.size.height*2), color: .black)
+      let blackImg:UIImage = UIImage.createImage(size: CGSize.init(width: img.size.width*scale, height: img.size.height*scale), color: .black)
       let result : RGBAImage = RGBAImage(image:blackImg)!
       self.pixels = result.pixels
-      self.width = Int(img.size.width*2)
-      self.height = Int(img.size.height*2)
-      let tempIMG:RGBAImage = .init(pixels: pixels, width: Int(img.size.width*2), height: Int(img.size.height*2))
+      self.width = Int(img.size.width*scale)
+      self.height = Int(img.size.height*scale)
+      let tempIMG:RGBAImage = .init(pixels: pixels, width: Int(img.size.width*scale), height: Int(img.size.height*scale))
       self.pixels = tempIMG.pixels
       pixels.enumerated().forEach{
          self.pixels[$0.offset] = $0.element

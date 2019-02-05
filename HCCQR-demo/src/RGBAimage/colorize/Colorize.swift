@@ -20,7 +20,7 @@ class Colorize {
    /**
     * Converts b&w images to color image
     */
-   private static func colorize(images:[UIImage],colorMap:ColorMap) -> UIImage{
+   static func colorize(images:[UIImage],colorMap:ColorMap) -> UIImage{
       let rgbaImages:[RGBAImage] = images.map{RGBAImage.init(img: $0)}// TODO: ⚠️️ fatal error if unable to convert
       let result:RGBAImage = colorize(images: rgbaImages, colorMap: colorMap)
       guard let image:UIImage = RGBAImage.image(rgbaImage: result) else {fatalError("unable to convert to UIImage")}
