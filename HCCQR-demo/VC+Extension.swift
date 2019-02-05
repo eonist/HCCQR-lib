@@ -1,4 +1,5 @@
 import UIKit
+import QRLibIOS
 
 extension ViewController {
    /**
@@ -158,6 +159,30 @@ extension ViewController {
 //         Swift.print("view.image?.size:  \(view.image?.size)")
 //         Swift.print("pixel1:  \(pixel1)")
 //      }
+   }
+   /**
+    *
+    */
+   func testHCCQRWithTwoQRViews(){
+      /**
+       *
+       */
+      func createQRImgView() -> UIImageView?{
+         let string:String = QRStringData.string(max: 16, qrMode: .byte)
+         guard let image:UIImage = QRUtil.qrImage(str: string, size: .init(width:80*4,height:80*4), ecLevel: .l) else {Swift.print("unable to create UIImage");return nil}
+         let uiImageView:UIImageView = .init(image: image)
+         view.addSubview(uiImageView)
+         return uiImageView
+      }
+      
+      guard let view1:UIImageView = createQRImgView() else {Swift.print("err");return}
+      guard let view2:UIImageView = createQRImgView() else {Swift.print("err");return}
+      
+      let views:[UIView] = [view1,view2]
+      let resultView:UIImageView = Colorize.colorize(views: views, colorMap: Colorize.colorMap)
+      Swift.print("resultView:  \(resultView)")
+      view.addSubview(resultView)
+      resultView.frame.origin = .init(x: 0, y: 80*4)
    }
    /**
     * testAimMarks

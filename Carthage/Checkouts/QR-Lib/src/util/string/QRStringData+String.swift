@@ -4,6 +4,18 @@ import Foundation
  */
 public extension QRStringData{
    /**
+    * Returns random string for max and qrMode
+    * ## Examples:
+    * string(max:16,qrMode:.byte)//xbchryshyhfhakhr
+    */
+   public static func string(max:Int,qrMode:QRMode) -> String{
+      switch qrMode {
+      case .numeric: return randomString(chars: numericCharacters, count: max)
+      case .alphaNumeric: return randomString(chars: asciiCharacters, count: max)
+      case .byte: return randomString(chars: byteCharacters, count: max)
+      }
+   }
+   /**
     * Max chars allowed in numeric mode: 4417
     * - Note: apple:6460 -> version-38 (apple has trouble makigng vereions above 38)
     * - Note: wikipedia-qr: 7089 -> version

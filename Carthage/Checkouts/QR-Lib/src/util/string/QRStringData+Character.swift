@@ -5,6 +5,7 @@ import Foundation
 public extension QRStringData{
    /**
     * AlphaNumeric (ascii) (A-Z)
+    * - Note: Real ascii: 0 to 9, A to Z, space, $ % * + - . / :
     * - Note: This is ore correct but creates strange whitespaces at the begining: `let ascii = String(Array(0...127).map { Character(Unicode.Scalar($0)) })`
     * ## Examples:
     * Swift.print("ascii:  \(String(QRVersionGenerator.asciiCharacters))")//ABCDEFGHIJKLMNOPQRSTUVWXYZ

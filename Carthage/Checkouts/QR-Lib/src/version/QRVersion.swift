@@ -16,22 +16,28 @@ public class QRVersion{
     */
    public static func version(string:String, ecLevel:ECLevel) -> Int?{
       let qrMode:QRMode = QRMode.mode(string:string)/*Figures out which mode the string is in*/
+      return version(string:string,qrMode:qrMode,ecLevel:ecLevel)
+   }
+   /**
+    * Returns 1-40
+    */
+   public static func version(string:String, qrMode:QRMode, ecLevel:ECLevel) -> Int?{
       let strCharCount:Int  = string.count
-//      Swift.print("strCharCount:  \(strCharCount)")
+      //      Swift.print("strCharCount:  \(strCharCount)")
       let condition:(Version) -> Bool = { version in
          let characterCount:Int = QRVersion.charCount(version:version, qrMode:qrMode, ecLevel:ecLevel)
-//         Swift.print("characterCount:  \(characterCount)")
+         //         Swift.print("characterCount:  \(characterCount)")
          return strCharCount <= characterCount
       }
-//      let reversedArr:[Version] = QRVersion.versions.reversed().map{$0}
-//      Swift.print("reversedArr:  \(reversedArr)")
+      //      let reversedArr:[Version] = QRVersion.versions.reversed().map{$0}
+      //      Swift.print("reversedArr:  \(reversedArr)")
       guard let version:Int = QRVersion.versions.firstIndex(where:condition) else {return nil}
-//      Swift.print("version:  \(version)")
+      //      Swift.print("version:  \(version)")
       return version + 1 /*+1 because array starts at 0 and version starts at 1*/
    }
    /**
     * Returns max characters for qrversion,qrmode,ecLevel
-    * - TODO: ⚠️️ This doesnt have to be optional, just make version into an enum and it's solved, .v1,.v2,v3 etc
+    * - TODO: ⚠️️ This doesn't have to be optional, just make version into an enum and it's solved, .v1,.v2,v3 etc
     * ## Examples:
     * QRVersion.maxChar(qrVersion:12,qrMode:.alphaNumeric,ecLevel:.l)//533
     */
