@@ -1,6 +1,6 @@
 import Foundation
 /**
- * Error Correction level (ECLevel)
+ * QR Error Correction level (ECLevel)
  * L - [Default] Allows recovery of up to 7% data loss
  * M - Allows recovery of up to 15% data loss
  * Q - Allows recovery of up to 25% data loss

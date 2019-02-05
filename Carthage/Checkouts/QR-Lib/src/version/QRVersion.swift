@@ -20,19 +20,15 @@ public class QRVersion{
    }
    /**
     * Returns 1-40
+    * - TODO: ⚠️️ string should be stringCount, not string
     */
    public static func version(string:String, qrMode:QRMode, ecLevel:ECLevel) -> Int?{
       let strCharCount:Int  = string.count
-      //      Swift.print("strCharCount:  \(strCharCount)")
       let condition:(Version) -> Bool = { version in
          let characterCount:Int = QRVersion.charCount(version:version, qrMode:qrMode, ecLevel:ecLevel)
-         //         Swift.print("characterCount:  \(characterCount)")
          return strCharCount <= characterCount
       }
-      //      let reversedArr:[Version] = QRVersion.versions.reversed().map{$0}
-      //      Swift.print("reversedArr:  \(reversedArr)")
       guard let version:Int = QRVersion.versions.firstIndex(where:condition) else {return nil}
-      //      Swift.print("version:  \(version)")
       return version + 1 /*+1 because array starts at 0 and version starts at 1*/
    }
    /**

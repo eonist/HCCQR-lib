@@ -1,8 +1,8 @@
 import Foundation
 
-public class QRInfoUtil{
+public class QRInfoUtil{//TODO: ⚠️️ rename to QRModuleUtil
    /**
-    * Calculates number of modules in a QRCode
+    * Calculates number of modules in a QRCode (in one length)
     * - Description: modules are the same as squares in the qr-code (x/y-axis)
     * - Parameter version: 1-40
     * ## Examples:
@@ -17,6 +17,7 @@ public class QRInfoUtil{
    /**
     * Returns moduleCount for string and ecLevel
     * - TODO: ⚠️️ We can make this non-optional if we make version non-optional
+    * - TODO: ⚠️️ string should be stringCount, not string
     */
    public static func moduleCount(string:String,ecLevel:ECLevel) -> Int?{
       let qrMode:QRMode = QRMode.mode(string:string)/*Figures out which mode the string is in*/

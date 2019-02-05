@@ -7,7 +7,7 @@ import Cocoa
  * This makes the code cross platform
  * - Note: by encapsulating it inside an extension we avoid creating a global typalias Image
  */
-extension QRUtil{
+extension QRUtil{//TODO: ⚠️️ rename to QRImageUtil and QRStringUtil
    #if os(iOS)
    public typealias Image = UIImage
    #elseif os(macOS)
@@ -100,8 +100,9 @@ extension QRUtil{
          let y = size.height / outputImage.extent.size.height
          return .init(x:x,y:y)
       }()
-      let transformedImage:CIImage = outputImage.transformed(by: CGAffineTransform(scaleX: scale.x, y: scale.y))
-      return transformedImage
+//      let transformedImage:CIImage = outputImage.transformed(by: CGAffineTransform(scaleX: scale.x, y: scale.y))
+//      return transformedImage
+      return outputImage
    }
    /**
     * Returns a string for an CIImage with a QRCode
@@ -123,7 +124,7 @@ extension QRUtil{
       #elseif os(macOS)
       return nsImage(ciImage: ciImage)
       #else
-      return nil//other os etc
+      return nil/*Other os etc*/
       #endif
    }
    /**

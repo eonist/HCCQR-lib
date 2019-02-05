@@ -23,7 +23,7 @@ extension RGBAImage{
          return nil
       }
       guard let cgImage:CGImage = imageContext.makeImage() else { return nil }
-      let image = UIImage.init(cgImage: cgImage, scale: 2, orientation: .down)
+      let image = UIImage.init(cgImage: cgImage, scale: 2, orientation: .leftMirrored)
 //      Swift.print("image.scale:  \(image.scale)")
       return image
    }

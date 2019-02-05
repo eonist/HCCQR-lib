@@ -168,12 +168,20 @@ extension ViewController {
        *
        */
       func createQRImgView() -> UIImageView?{
-         let string:String = QRStringData.string(max: 16, qrMode: .byte)
-         guard let image:UIImage = QRUtil.qrImage(str: string, size: .init(width:80*4,height:80*4), ecLevel: .l) else {Swift.print("unable to create UIImage");return nil}
+         let string:String = QRStringData.randomString(max: 16, qrMode: .byte)
+         guard let moduleCount:Int = QRInfoUtil.moduleCount(string: string, qrMode: .byte, ecLevel: .l) else {Swift.print("err");return nil}
+         Swift.print("moduleCount:  \(moduleCount)")
+         let length:CGFloat = CGFloat(moduleCount + 2) * 16//80*4
+         guard let image:UIImage = QRUtil.qrImage(str: string, size: .init(width:length,height:length), ecLevel: .l) else {Swift.print("unable to create UIImage");return nil}
          let uiImageView:UIImageView = .init(image: image)
          view.addSubview(uiImageView)
          return uiImageView
       }
+      
+      //🏀
+         //test reading pixels for a single qr with now scaling, do you get correct pixel colors?
+            //if so, then making it HCCQR will be easy, you just scale the result
+         //it could be that the img.scale is what fucks things up. try google blurry qr, scale etc
       
       guard let view1:UIImageView = createQRImgView() else {Swift.print("err");return}
       guard let view2:UIImageView = createQRImgView() else {Swift.print("err");return}
@@ -182,7 +190,7 @@ extension ViewController {
       let resultView:UIImageView = Colorize.colorize(views: views, colorMap: Colorize.colorMap)
       Swift.print("resultView:  \(resultView)")
       view.addSubview(resultView)
-      resultView.frame.origin = .init(x: 0, y: 80*4)
+      resultView.frame.origin = .init(x: 0, y: view1.bounds.height)//
    }
    /**
     * testAimMarks

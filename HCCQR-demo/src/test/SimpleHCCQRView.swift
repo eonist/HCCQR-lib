@@ -63,18 +63,18 @@ extension SimpleHCCQRView{
 extension SimpleHCCQRView{
    static let grid1:[[UIColor]] = {
       [
-         [.black,.white,.black,.white],
-         [.white,.black,.white,.black],
-         [.black,.black,.white,.white],
-         [.white,.white,.black,.black]
+         [.white,.black,.black,.white],
+         [.white,.black,.black,.white],
+         [.white,.black,.black,.white],
+         [.white,.black,.black,.white]
       ]
    }()
    static let grid2:[[UIColor]] = {
       [
-         [.white,.white,.black,.black],
          [.white,.black,.white,.black],
-         [.black,.white,.black,.white],
-         [.black,.black,.white,.white]
+         [.white,.black,.white,.black],
+         [.white,.black,.white,.black],
+         [.white,.black,.white,.black]
       ]
    }()
 }

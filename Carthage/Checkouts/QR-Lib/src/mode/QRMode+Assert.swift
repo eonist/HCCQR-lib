@@ -2,7 +2,7 @@ import Foundation
 
 public extension QRMode{
    /**
-    * RegEx: ^[0-9]+$
+    * - Note: RegEx: ^[0-9]+$
     */
    public static func isNumeric(string:String) -> Bool {
       let charSet = QRMode.numericSupportedCharacterSet;
@@ -15,7 +15,7 @@ public extension QRMode{
    }
    /**
     * AlphaNumeric
-    * RegEx: ^[0-9A-Z $%%*./:+-]+$
+    * - Note: RegEx: ^[0-9A-Z $%%*./:+-]+$
     */
    public static func isAlphanumeric(string:String) -> Bool {
       let charSet = QRMode.alphanumericSupportedCharacterSet

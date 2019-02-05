@@ -2,6 +2,18 @@ import Foundation
 
 public class QRStringData{
    /**
+    * Returns random string for max and qrMode
+    * ## Examples:
+    * randomString(max:16,qrMode:.byte)//xbchryshyhfhakhr
+    */
+   public static func randomString(max:Int,qrMode:QRMode) -> String{
+      switch qrMode {
+      case .numeric: return randomString(chars: numericCharacters, count: max)
+      case .alphaNumeric: return randomString(chars: asciiCharacters, count: max)
+      case .byte: return randomString(chars: byteCharacters, count: max)
+      }
+   }
+   /**
     * Returns a list of strings (⚠️️ See example for logic ⚠️️)
     * ## Examples:
     * randomStrings(["A","B","C"],(1,5))//B,BA,CBA,BACA,CBBAC

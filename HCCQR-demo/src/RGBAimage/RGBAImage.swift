@@ -46,9 +46,9 @@ public struct RGBAImage {
             let pixelInfo: Int = ((Int(img.size.width*scale) * y) + x) * 4
             let pixel =  Pixel.init(R: data[pixelInfo], G: data[pixelInfo+1], B: data[pixelInfo+2], A: data[pixelInfo+3])
             //            let pixel =  Pixel.init(R: 0, G: 0, B: 0, A: 255)
-            if (x == (80*2*2)-1 && y == 0) {
-               pixel.debug()
-            }
+//            if (x == (80*2*2)-1 && y == 0) {
+//               pixel.debug()
+//            }
             pixels.append(pixel)
          }
       }
