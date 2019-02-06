@@ -23,11 +23,12 @@ class ViewController: UIViewController {
 //      testQRVersions()
 //     testModuleCount()
 //      testHCCQRImage()
-   
-      let redishColor = UIColor.init(red: 0.8, green: 0.2, blue: 0.2, alpha: 1)
-      let isRedishColor = redishColor.isColor(color:.red,threshold:0.22)//true
-      Swift.print("isRedishColor:  \(isRedishColor)")
-      
+      let offset:UInt8 = UInt8(255*0.2)
+      let redishPixel:Pixel = .init(R:255-offset,G:0+offset,B:0+offset,A:255)
+      let redPixel:Pixel = .init(R:255,G:0,B:0,A:255)
+      let threshold:UInt8 = UInt8(255*0.25)
+      let isColorRedish:Bool = redishPixel.isColor(pixel:redPixel,threshold:threshold)
+      Swift.print("isColorRedish:  \(isColorRedish)")
       
    }
    override var prefersStatusBarHidden:Bool {return true}/*hides statusbar*/

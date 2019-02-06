@@ -56,4 +56,13 @@ extension ViewController{
       let moduleCount:Int? = QRInfoUtil.moduleCount(string: string, ecLevel:ecLevel)
       Swift.print("string.count: \(string.count) ecLevel: \(ecLevel.rawValue) moduleCount:  \(String(describing: moduleCount))")
    }
+   
+   /**
+    * testColorAssertingWithThreshold
+    */
+   func testColorAssertingWithThreshold(){
+      let redishColor = UIColor.init(red: 0.8, green: 0.2, blue: 0.2, alpha: 1)
+      let isRedishColor = redishColor.isColor(color:.red,threshold:0.22)//true
+      Swift.print("isRedishColor:  \(isRedishColor)")
+   }
 }

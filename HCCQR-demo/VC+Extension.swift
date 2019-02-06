@@ -269,19 +269,18 @@ extension ViewController {
     * test HCCQRImage creation
     */
    func testHCCQRImage(){
+      /*⭐ 1. Create HCCQR from string ⭐*/
       let (qrVersion,qrMode,ecLevel):(Int,QRMode,ECLevel) = (10,.byte,.l)//settings
       guard let stringCount:Int = QRVersion.maxChar(qrVersion:qrVersion,qrMode:qrMode,ecLevel: ecLevel) else {Swift.print("⚠️️ Unable to get stringCount ⚠️️");return}//533
       let strCount:Int = stringCount * 2//542
       let randomString = QRStringData.randomString(max: strCount, qrMode: .byte)
       guard let hccqrImage:UIImage = HCCQRUtil.getHCCQRImage(string:randomString,qrVersion:qrVersion,qrMode:qrMode,ecLevel:ecLevel) else {Swift.print("unable to create hccqr image");return}
       let imgView = UIImageView(image:hccqrImage)
-      let qrStr = QRUtil.qrCode(image: hccqrImage)
       view.addSubview(imgView)
       Swift.print("hasOnlyColorMap: \(hccqrImage.hasOnlyColorMap(colorMap: [.red,.green,.blue,.white]))")//ensure that img only has valid colors, akak no bluring
-      
-      /*try split the hccqrImg*/
-      
+      /*⭐ 2. try split the hccqrImg ⭐*/
       guard let payload:String = HCCQRUtil.string(uiImage: hccqrImage) else {Swift.print("unable to get string from hccqr");return}
+      /*⭐ 3. Assert payload ⭐*/
       Swift.print("randomString:  \(randomString)")
       Swift.print("randomString.count:  \(randomString.count)")
       Swift.print("payload:  \(payload)")

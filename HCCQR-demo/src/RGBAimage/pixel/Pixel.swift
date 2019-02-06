@@ -55,6 +55,12 @@ public struct Pixel {
 }
 extension Pixel {
    /**
+    * rgb
+    */
+   var rgb:Pixel.RGB {
+      return (R,G,B)
+   }
+   /**
     *
     */
    func debug(){

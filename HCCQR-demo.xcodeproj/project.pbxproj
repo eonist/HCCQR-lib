@@ -10,6 +10,7 @@
 		F11DE8512208F19F007A8A7A /* VC+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11DE8502208F19F007A8A7A /* VC+Test.swift */; };
 		F11DE854220A45BA007A8A7A /* HCCQRUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11DE853220A45BA007A8A7A /* HCCQRUtil.swift */; };
 		F11DE85A220B333B007A8A7A /* CGFloatParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11DE859220B333A007A8A7A /* CGFloatParser.swift */; };
+		F11DE85D220B3EA8007A8A7A /* IntParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11DE85C220B3EA8007A8A7A /* IntParser.swift */; };
 		F14FADE521F75A9900ACE5FF /* VC+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14FADE421F75A9900ACE5FF /* VC+Extension.swift */; };
 		F14FADE821F75EF100ACE5FF /* RGBColorTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14FADE721F75EF100ACE5FF /* RGBColorTestView.swift */; };
 		F14FADEB21F75F3900ACE5FF /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14FADEA21F75F3900ACE5FF /* UIView+Extension.swift */; };
@@ -59,6 +60,7 @@
 		F11DE8502208F19F007A8A7A /* VC+Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VC+Test.swift"; sourceTree = "<group>"; };
 		F11DE853220A45BA007A8A7A /* HCCQRUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HCCQRUtil.swift; sourceTree = "<group>"; };
 		F11DE859220B333A007A8A7A /* CGFloatParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGFloatParser.swift; sourceTree = "<group>"; };
+		F11DE85C220B3EA8007A8A7A /* IntParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntParser.swift; sourceTree = "<group>"; };
 		F14FADE421F75A9900ACE5FF /* VC+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VC+Extension.swift"; sourceTree = "<group>"; };
 		F14FADE721F75EF100ACE5FF /* RGBColorTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBColorTestView.swift; sourceTree = "<group>"; };
 		F14FADEA21F75F3900ACE5FF /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
@@ -111,6 +113,16 @@
 			path = hccqr;
 			sourceTree = "<group>";
 		};
+		F11DE85E220B3F5C007A8A7A /* util */ = {
+			isa = PBXGroup;
+			children = (
+				F162146721FF380E005297DE /* CAShapeLayerUtil.swift */,
+				F11DE859220B333A007A8A7A /* CGFloatParser.swift */,
+				F11DE85C220B3EA8007A8A7A /* IntParser.swift */,
+			);
+			path = util;
+			sourceTree = "<group>";
+		};
 		F14FADE621F75EAD00ACE5FF /* test */ = {
 			isa = PBXGroup;
 			children = (
@@ -129,8 +141,7 @@
 				F16214702200CC89005297DE /* Data+Extension.swift */,
 				F14FADF121F77E4400ACE5FF /* UIImage+Extension.swift */,
 				F162146321FC99CA005297DE /* UIColor+Extension.swift */,
-				F162146721FF380E005297DE /* CAShapeLayerUtil.swift */,
-				F11DE859220B333A007A8A7A /* CGFloatParser.swift */,
+				F11DE85E220B3F5C007A8A7A /* util */,
 			);
 			path = extension;
 			sourceTree = "<group>";
@@ -316,6 +327,7 @@
 				F11DE854220A45BA007A8A7A /* HCCQRUtil.swift in Sources */,
 				F162145A21FC7791005297DE /* RGBAImage+Util.swift in Sources */,
 				F162146D220063F1005297DE /* AlignMarkUtil+Metric.swift in Sources */,
+				F11DE85D220B3EA8007A8A7A /* IntParser.swift in Sources */,
 				F162145821FC7636005297DE /* RGBAImage+Split.swift in Sources */,
 				F11DE85A220B333B007A8A7A /* CGFloatParser.swift in Sources */,
 				F18A52FA217A463E003F8C13 /* Pixel.swift in Sources */,
