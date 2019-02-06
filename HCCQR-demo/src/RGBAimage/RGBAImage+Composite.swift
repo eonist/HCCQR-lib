@@ -7,7 +7,7 @@ extension RGBAImage {
    public static func composite(rgbaImageList:[RGBAImage]) -> RGBAImage? {
       guard rgbaImageList.isEmpty == false else {Swift.print("rgbaImageList cant be empty");return nil}//check if array is not empty first
       let size:CGSize = .init(width:rgbaImageList[0].width, height: rgbaImageList[0].height)
-      Swift.print("composite.size:  \(size)")
+//      Swift.print("composite.size:  \(size)")
       //      guard let firstImg:UIImage = RGBAImage.image(rgbaImage: rgbaImageList[0]) else {fatalError("err")}
       let blackImg:UIImage = UIImage.createImage(size: size, color: .black)
       let result : RGBAImage = RGBAImage(image:blackImg)!//RGBAImage.init(image: UIImage.ini)
@@ -22,6 +22,7 @@ extension RGBAImage {
                //               }else {
                //                   pixel.R = pixel.R + rgbaPixel.R
                //               }
+               //this is sort of clamping, can be done with 1 method instead
                pixel.R = UInt32(pixel.R) + UInt32(rgbaPixel.R) > 255 ? 255 : pixel.R + rgbaPixel.R
                pixel.G = UInt32(pixel.G) + UInt32(rgbaPixel.G) > 255 ? 255 : pixel.G + rgbaPixel.G
                pixel.B = UInt32(pixel.B) + UInt32(rgbaPixel.B) > 255 ? 255 : pixel.B + rgbaPixel.B

@@ -38,12 +38,35 @@ public extension Pixel{
 /**
  * Assert
  */
+extension Pixel{
+   static let redPixel:Pixel = .init(R:255,G:0,B:0,A:255)
+   static let greenPixel:Pixel = .init(R:0,G:255,B:0,A:255)
+   static let bluePixel:Pixel = .init(R:0,G:0,B:255,A:255)
+   
+   var isRedish:Bool {
+      return self.isColor(pixel: Pixel.redPixel, threshold: UInt8(255*0.25))
+   }
+   var isGreenish:Bool {
+      return self.isColor(pixel: Pixel.greenPixel, threshold: UInt8(255*0.25))
+   }
+   var isBlueish:Bool {
+      return self.isColor(pixel: Pixel.bluePixel, threshold: UInt8(255*0.25))
+   }
+   
+}
+/**
+ * Assert
+ */
 extension Pixel {
    /**
     * Assert color within threshold
     * ## Examples:
-    * let redishPixel:Pixel = Pixel(r:UIInt8(255*0.80),g:UIInt8(0*0.20),b:UIInt8(0*0.20))
-    * isColor(pixel:Pixel(r:255,g:0,b:0),threshold:UIInt8(255*0.25))
+    * let offset:UInt8 = UInt8(255*0.2)
+    * let redishPixel:Pixel = .init(R:255-offset,G:0+offset,B:0+offset,A:255)
+    * let redPixel:Pixel = .init(R:255,G:0,B:0,A:255)
+    * let threshold:UInt8 = UInt8(255*0.25)
+    * let isColorRedish:Bool = redishPixel.isColor(pixel:redPixel,threshold:threshold)
+    * Swift.print("isColorRedish:  \(isColorRedish)")//true
     */
    func isColor(pixel:Pixel, threshold:UInt8) -> Bool{
       let rgb1:RGB = self.rgb

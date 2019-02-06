@@ -51,7 +51,7 @@ fileprivate extension RGBAImage {
       var outImage = image
       outImage.process { (pixel) -> Pixel in
          var pixelCopy = pixel
-         pixel.isRed ? pixelCopy.setWhite() : pixelCopy.setBlack()
+         pixel.isRedish ? pixelCopy.setWhite() : pixelCopy.setBlack()
          return pixelCopy
       }
       return outImage
@@ -63,7 +63,7 @@ fileprivate extension RGBAImage {
       var outImage = image
       outImage.process { (pixel) -> Pixel in
          var pixelCopy = pixel
-         pixel.isGreen ? pixelCopy.setWhite() : pixelCopy.setBlack()
+         pixel.isGreenish ? pixelCopy.setWhite() : pixelCopy.setBlack()
          return pixelCopy
       }
       return outImage
@@ -75,7 +75,7 @@ fileprivate extension RGBAImage {
       var outImage = image
       outImage.process { (pixel) -> Pixel in
          var pixelCopy = pixel
-         pixel.isBlue ? pixelCopy.setWhite() : pixelCopy.setBlack()
+         pixel.isBlueish ? pixelCopy.setWhite() : pixelCopy.setBlack()
          return pixelCopy
       }
       return outImage

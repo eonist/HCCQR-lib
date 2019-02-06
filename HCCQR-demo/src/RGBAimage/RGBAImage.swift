@@ -12,7 +12,7 @@ public struct RGBAImage {
     */
    public init?(image: UIImage) {
       /*get cgImage from uiImage*/
-      Swift.print("RGBAImage - image.size:  \(image.size)")
+//      Swift.print("RGBAImage - image.size:  \(image.size)")
       guard let cgImage = image.cgImage else { Swift.print("unable to get cgImage");return nil  }
       self.width = Int(image.size.width)
       self.height = Int(image.size.height)

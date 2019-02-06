@@ -277,7 +277,8 @@ extension ViewController {
       guard let hccqrImage:UIImage = HCCQRUtil.getHCCQRImage(string:randomString,qrVersion:qrVersion,qrMode:qrMode,ecLevel:ecLevel) else {Swift.print("unable to create hccqr image");return}
       let imgView = UIImageView(image:hccqrImage)
       view.addSubview(imgView)
-      Swift.print("hasOnlyColorMap: \(hccqrImage.hasOnlyColorMap(colorMap: [.red,.green,.blue,.white]))")//ensure that img only has valid colors, akak no bluring
+      /*ensure that img only has valid colors, akak no bluring*/
+      Swift.print("hasOnlyColorMap: \(hccqrImage.hasOnlyColorMap(colorMap: [.red,.green,.blue,.white]))")
       /*⭐ 2. try split the hccqrImg ⭐*/
       guard let payload:String = HCCQRUtil.string(uiImage: hccqrImage) else {Swift.print("unable to get string from hccqr");return}
       /*⭐ 3. Assert payload ⭐*/
