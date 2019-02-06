@@ -80,15 +80,15 @@ extension Colorize{
    typealias ColorMap = [ColorMapItem]
    typealias ColorMapItem = (idx:[Int],color:UIColor)
    /**
-    * ColorMap
+    * ColorMap (standard 4 color ColorMap)
     * - TODO: ⚠️️ since index is unique we can make this hashable 👌 (it will be faster probably)
     */
    static let colorMap:ColorMap = {
       return [
          (idx:[0,1],UIColor.red),//black,white
          (idx:[1,0],UIColor.green),//white,black
-         (idx:[1,1],UIColor.blue),//all-white-squares
-         (idx:[0,0],UIColor.white)//all-black-squares
+         (idx:[1,1],UIColor.blue),//black,black
+         (idx:[0,0],UIColor.white)//white,white
       ]
    }()
 }

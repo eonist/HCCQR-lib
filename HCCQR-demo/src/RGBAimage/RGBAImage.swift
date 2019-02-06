@@ -11,11 +11,11 @@ public struct RGBAImage {
     * TODO: ⚠️️ MOVE THE pixels conversion into a static method
     */
    public init?(image: UIImage) {
-      guard let cgImage = image.cgImage else {// get cgImage from uiImage
-         return nil
-      }
-      width = Int(image.size.width)
-      height = Int(image.size.height)
+      /*get cgImage from uiImage*/
+      Swift.print("RGBAImage - image.size:  \(image.size)")
+      guard let cgImage = image.cgImage else { Swift.print("unable to get cgImage");return nil  }
+      self.width = Int(image.size.width)
+      self.height = Int(image.size.height)
       let bytesPerRow = width * 4// 4 * width * height
       let imageData = UnsafeMutablePointer<Pixel>.allocate(capacity: width * height)
       let colorSpace = CGColorSpaceCreateDeviceRGB()
@@ -31,15 +31,15 @@ public struct RGBAImage {
     * Beta (trying to fix "blurry edge pixel bug")
     */
    init?(img :UIImage){
-      guard let cgImage:CGImage = img.cgImage() else {Swift.print("unable to create cgImage");return nil}
+      guard let cgImage:CGImage = /*img.cgImage ?? */img.cgImage() else {Swift.print("unable to create cgImage");return nil}
       let pixelData = cgImage.dataProvider!.data
       let data: UnsafePointer<UInt8> = CFDataGetBytePtr(pixelData)
       let scale:CGFloat = img.scale//2//
       let width:Int = Int(img.size.width*scale)
-      Swift.print("width:  \(width)")
-      Swift.print("img.scale:  \(img.scale)")
+//      Swift.print("width:  \(width)")
+//      Swift.print("img.scale:  \(img.scale)")
       let height:Int = Int(img.size.height*scale)
-      Swift.print("height:  \(height)")
+//      Swift.print("height:  \(height)")
       var pixels:[Pixel] = []
       for y in 0..<height {
          for x in 0..<width {
@@ -54,7 +54,7 @@ public struct RGBAImage {
          }
       }
       
-      Swift.print("pixels.count:  \(pixels.count)")
+//      Swift.print("pixels.count:  \(pixels.count)")
       let blackImg:UIImage = UIImage.createImage(size: CGSize.init(width: img.size.width*scale, height: img.size.height*scale), color: .black)
       let result : RGBAImage = RGBAImage(image:blackImg)!
       self.pixels = result.pixels

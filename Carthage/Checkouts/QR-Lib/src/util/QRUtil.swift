@@ -35,11 +35,11 @@ final public class QRUtil {
    /**
     * Returns a string for an UIImage with a QRCode
     * ## Examples:
-    * QRParser.qrCode(nsImage: image)
+    * QRParser.qrCode(image: image)
     */
    #if os(iOS)
    public static func qrCode(image: UIImage) -> String? {
-      guard let ciImage = image.ciImage else {Swift.print("unable to get CIImage"); return nil }
+      guard let ciImage = image.ciImage ?? image.ciImage() else {Swift.print("QRUtil.qrCode() - unable to get CIImage"); return nil }
       return qrCode(ciImage: ciImage)
    }
    #endif
@@ -50,7 +50,7 @@ final public class QRUtil {
     * - Note: there is feature.symbolDescriptor,feature.bounds,feature.topLeft,ciImage.extent(size)
     * - Note: There is also: CIDetectorAccuracyLow, which has better performance
     */
-   public static func qrCode(ciImage: CIImage) -> StringAndFrame? {
+   public static func qrCode(ciImage: CIImage) -> StringAndFrame? {//TODO: ⚠️️ rename to stringAndFrame ?
       guard let detector:CIDetector = CIDetector(ofType: CIDetectorTypeQRCode, context: nil, options: [CIDetectorAccuracy: CIDetectorAccuracyHigh]) else {Swift.print("unable to create CIDetectorTypeQRCode");return nil} // Yhere is also: CIDetectorTypeFace
       let features:[CIFeature] = detector.features(in: ciImage)
       guard let feature:CIQRCodeFeature = (features.first { $0 is CIQRCodeFeature } as? CIQRCodeFeature) else {Swift.print("Unable to create CIQRCodeFeature");return nil}
@@ -83,6 +83,7 @@ extension QRUtil{
     * - Note: Generates an output image representing the input data according to the ISO/IEC 18004:2006 standard. The width and height of each module (square dot) of the code in the output image is one point.
     * - Note: Correction levels available: L 7%, M 15%, Q 25%, H 30%
     * - Note: Encoding: NSISOLatin1StringEncoding is standard but ASCII or UTF-8 works too.
+    * - Important: ⚠️️ scale is calculated from module: version1 has 23 modules, if you provide size: w:46,h:46 then the scale will be 2x
     */
    fileprivate static func ciImage(str: String, size: CGSize, ecLevel:ECLevel) -> CIImage? {
       guard let filter:CIFilter = CIFilter(name: "CIQRCodeGenerator") else {Swift.print("Unable to create filter"); return nil }
@@ -90,14 +91,14 @@ extension QRUtil{
       filter.setValue(data, forKey: "inputMessage")
       filter.setValue(ecLevel.rawValue, forKey: "inputCorrectionLevel")
       guard let outputImage:CIImage = filter.outputImage else { Swift.print("Unable to make CIImage for ecLevel:\(ecLevel.rawValue) str.count:\(str.count) size:\(size)"); return nil }
-      Swift.print("outputImage.description:  \(outputImage.description)")
-      Swift.print("outputImage.extent:  \(outputImage.extent)")
+//      Swift.print("outputImage.description:  \(outputImage.description)")
+//      Swift.print("outputImage.extent:  \(outputImage.extent)")
       let scale:CGPoint = {
          let x = size.width / outputImage.extent.size.width
          let y = size.height / outputImage.extent.size.height
          return .init(x:x,y:y)
       }()
-      Swift.print("scale:  \(scale)")
+//      Swift.print("scale:  \(scale)")
       let transformedImage:CIImage = outputImage.transformed(by: CGAffineTransform(scaleX: scale.x, y: scale.y))
       return transformedImage
 //      return outputImage

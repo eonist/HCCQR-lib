@@ -8,7 +8,7 @@ extension UIView{
     * - Important: ⚠️️ if you get the "invalid context 0x0" error, make sure your View has a frame. view.bounds must not be .zerp
     */
    var snapShot:UIImage?{
-      UIGraphicsBeginImageContextWithOptions(self.frame.size, false, 0)
+      UIGraphicsBeginImageContextWithOptions(self.frame.size, false, 0/*<-scale*/)
       self.drawHierarchy(in: self.frame, afterScreenUpdates: true)
       let image:UIImage? = UIGraphicsGetImageFromCurrentImageContext()
       UIGraphicsEndImageContext()

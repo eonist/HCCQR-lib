@@ -8,14 +8,14 @@ extension UIImage {
     * Inverts an image (black becomes white etc)
     */
    func invertedImage() -> UIImage? {
-      guard let cgImage = self.cgImage else {Swift.print("err"); return nil }
-      let ciImage = CoreImage.CIImage(cgImage: cgImage)
-      guard let filter = CIFilter(name: "CIColorInvert") else { Swift.print("err");return nil }
+      guard let cgImage = self.cgImage else {Swift.print("UIImage.invertedImage() - unable to create cgImage"); return nil }
+      let ciImage:CIImage = CoreImage.CIImage(cgImage: cgImage)
+      guard let filter = CIFilter(name: "CIColorInvert") else { Swift.print("UIImage.invertedImage() - unable to create filter");return nil }
       filter.setDefaults()
       filter.setValue(ciImage, forKey: kCIInputImageKey)
       let context = CIContext(options: nil)
-      guard let outputImage = filter.outputImage else {Swift.print("err"); return nil }
-      guard let outputImageCopy = context.createCGImage(outputImage, from: outputImage.extent) else {Swift.print("err"); return nil }
+      guard let outputImage:CIImage = filter.outputImage else {Swift.print("UIImage.invertedImage() - unable to create CIImage"); return nil }
+      guard let outputImageCopy:CGImage = context.createCGImage(outputImage, from: outputImage.extent) else {Swift.print("UIImage.invertedImage() - unable to create outputImageCopy"); return nil }
       return UIImage(cgImage: outputImageCopy)
    }
    /**
@@ -61,7 +61,6 @@ extension UIImage {
          }
       }
    }
-   
    /**
     * someUIImage.cgImage doesn't work so we use this
     */
@@ -71,7 +70,6 @@ extension UIImage {
       return context.createCGImage(ciImage, from: ciImage.extent)
    }
 }
-
 /**
  * Asserter
  */

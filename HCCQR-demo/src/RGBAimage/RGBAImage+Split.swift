@@ -4,34 +4,34 @@ import UIKit
  * Utils
  */
 extension RGBAImage {
-   typealias RGB = (r:RGBAImage,g:RGBAImage,b:RGBAImage)
-   typealias RGBImages = (r:UIImage?,g:UIImage?,b:UIImage?)
-   typealias RGBAImgs = (r:RGBAImage,g:RGBAImage,b:RGBAImage)
+   typealias RGBUIImages = (r:UIImage?,g:UIImage?,b:UIImage?)
+   typealias RGBAImages = (r:RGBAImage,g:RGBAImage,b:RGBAImage)
    /**
     * Split image into 3 RGBAImages
     */
-   static func split(image:UIImage)-> RGBImages?{
+   static func split(image:UIImage)-> RGBUIImages?{
+      Swift.print("split - image.size:  \(image.size)")
       guard let r:RGBAImage = RGBAImage.init(image: image) else {return nil}
       guard let g:RGBAImage = RGBAImage.init(image: image) else {return nil}
       guard let b:RGBAImage = RGBAImage.init(image: image) else {return nil}
-      let rgbImages:RGBImages = split(rgbaImgs: (r,g,b))
+      let rgbImages:RGBUIImages = split(rgbaImgs: (r,g,b),scale:image.scale)
       return rgbImages
    }
    /**
     * Split into 3 RGBAImages 3 UIImages
     */
-   private static func split(rgbaImgs:RGBAImgs)->RGBImages{//TODO: ⚠️️ rename return type to UIImages
-      let rgb:RGB = split(rgbaImgs: rgbaImgs)
-      Swift.print("split ⚠️️ this may be wrong now, scale is new ⚠️️ ")
-      let r:UIImage? = uiImage(rgbaImage: rgb.r, resultScale: 2)//⚠️️ this may be wrong now, scale is new
-      let g:UIImage? = uiImage(rgbaImage: rgb.g, resultScale: 2)//⚠️️ this may be wrong now, scale is new
-      let b:UIImage? = uiImage(rgbaImage: rgb.b, resultScale: 2)//⚠️️ this may be wrong now, scale is new
+   private static func split(rgbaImgs:RGBAImages, scale:CGFloat)->RGBUIImages{//TODO: ⚠️️ rename return type to UIImages
+      let rgb:RGBAImages = split(rgbaImgs: rgbaImgs)
+//      Swift.print("split ⚠️️ this may be wrong now, scale is new ⚠️️ ")
+      let r:UIImage? = uiImage(rgbaImage: rgb.r, resultScale: scale)//⚠️️ this may be wrong now, scale is new
+      let g:UIImage? = uiImage(rgbaImage: rgb.g, resultScale: scale)//⚠️️ this may be wrong now, scale is new
+      let b:UIImage? = uiImage(rgbaImage: rgb.b, resultScale: scale)//⚠️️ this may be wrong now, scale is new
       return (r,g,b)
    }
    /**
     * Split 3 RGBAImages into 3 singular rgb channels
     */
-   private static func split(rgbaImgs:RGBAImgs)->RGB{
+   private static func split(rgbaImgs:RGBAImages)->RGBAImages{
       let r:RGBAImage = channelR(rgbaImgs.r)
       let g:RGBAImage = channelG(rgbaImgs.g)
       let b:RGBAImage = channelB(rgbaImgs.b)

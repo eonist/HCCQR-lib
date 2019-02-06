@@ -5,8 +5,9 @@ extension RGBAImage {
     * Combines two images into one
     */
    public static func composite(rgbaImageList:[RGBAImage]) -> RGBAImage? {
-      guard rgbaImageList.isEmpty == false else {return nil}//check if array is not empty first
+      guard rgbaImageList.isEmpty == false else {Swift.print("rgbaImageList cant be empty");return nil}//check if array is not empty first
       let size:CGSize = .init(width:rgbaImageList[0].width, height: rgbaImageList[0].height)
+      Swift.print("composite.size:  \(size)")
       //      guard let firstImg:UIImage = RGBAImage.image(rgbaImage: rgbaImageList[0]) else {fatalError("err")}
       let blackImg:UIImage = UIImage.createImage(size: size, color: .black)
       let result : RGBAImage = RGBAImage(image:blackImg)!//RGBAImage.init(image: UIImage.ini)

@@ -15,6 +15,8 @@ extension RGBAImage{
     * Converts rgbaImage to uiimage
     */
    static func uiImage(rgbaImage:RGBAImage, resultScale:CGFloat) -> UIImage? {
+      Swift.print("uiImage - rgbaImage.width:  \(rgbaImage.width)")
+      Swift.print("resultScale:  \(resultScale)")
       let colorSpace = CGColorSpaceCreateDeviceRGB()
       var bitmapInfo: UInt32 = CGBitmapInfo.byteOrder32Big.rawValue
       let bytesPerRow = rgbaImage.width * 4

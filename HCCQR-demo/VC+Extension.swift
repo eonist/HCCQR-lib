@@ -3,7 +3,7 @@ import QRLibIOS
 
 extension ViewController {
    /**
-    *
+    * First attempt at splitting colors into b&w layers
     */
    func testSeperation(){
       
@@ -12,7 +12,7 @@ extension ViewController {
       
       guard let rgbColorTestImage:UIImage = rgbColorTestView.snapShot else {fatalError("err")}
       //let rgba3 = RGBAImage(image: UIImage(named: "monet")!)!
-      guard let images:RGBAImage.RGBImages = RGBAImage.split(image: rgbColorTestImage) else {fatalError("err")}
+      guard let images:RGBAImage.RGBUIImages = RGBAImage.split(image: rgbColorTestImage) else {fatalError("err")}
       //      //r
       //      guard let rgbaImage:RGBAImage = RGBAImage.init(image: rgbColorTestImage) else {fatalError("err")}
       //      let rgbaImage2:RGBAImage = rgbaImage.copy
@@ -49,14 +49,16 @@ extension ViewController {
       //create a fake HCCQR code 4x4 RGBW
       //try to grab layer 1 and 2 based on different models you pass to the pixel manipulation
    }
-   
+   /**
+    * Second attempt at splitting colors into b&w layers
+    */
    func testComposition()  {
       let rgbColorTestView = RGBColorTestView(frame:CGRect.init(origin: .zero, size: .init(width: 300, height: 100)))
       view.addSubview(rgbColorTestView)
       /**/
       guard let image:UIImage = rgbColorTestView.snapShot else {fatalError("err")}
       /**/
-      guard let images:RGBAImage.RGBImages = RGBAImage.split(image: image) else {fatalError("err")}
+      guard let images:RGBAImage.RGBUIImages = RGBAImage.split(image: image) else {fatalError("err")}
       guard let r:RGBAImage = RGBAImage.init(image: images.r!) else {return }
       guard let g:RGBAImage = RGBAImage.init(image: images.g!) else {return }
       guard let b:RGBAImage = RGBAImage.init(image: images.b!) else {return }
@@ -108,36 +110,48 @@ extension ViewController {
             //do real mini test for this, where you draw three marks, and then are able to lifet and imprint
       
    }
+   
+   
+   //🏀
+      //test this a bit, try to grab the second qr img
+   
+   
    /**
-    * tests FakeHCCQRView
+    * tests FakeHCCQRView (tests splitting a hccqr like img)
+    * - Caution: ⚠️️ this has a bug in that the snapshot creates retina image, and this code doesnt support that yet
     */
    func testFakeHCCQRView(){
       let fakeHCCQRView = FakeHCCQRView(frame:CGRect.init(origin: .zero, size: .init(width: 80*4, height: 80*4)))
       view.addSubview(fakeHCCQRView)
       
       guard let rgbColorTestImage:UIImage = fakeHCCQRView.snapShot else {fatalError("err")}
-      guard let images:RGBAImage.RGBImages = RGBAImage.split(image: rgbColorTestImage) else {fatalError("err")}
+      Swift.print("rgbColorTestImage.scale:  \(rgbColorTestImage.scale)")
+      Swift.print("rgbColorTestImage.size:  \(rgbColorTestImage.size)")
+      guard let images:RGBAImage.RGBUIImages = RGBAImage.split(image: rgbColorTestImage) else {fatalError("err")}
       
 //      let rImageView:UIImageView = UIImageView.init(image: images.g)
 //      view.addSubview(rImageView)
 //      rImageView.frame.origin.y = 80*4
-      
+      Swift.print("images.r!.size:  \(images.r!.size)")
+      Swift.print("images.r!.scale:  \(images.r!.scale)")
       guard let r:RGBAImage = RGBAImage.init(image: images.r!) else {return }
       guard let g:RGBAImage = RGBAImage.init(image: images.g!) else {return }
       _ = g
       guard let b:RGBAImage = RGBAImage.init(image: images.b!) else {return }
-      guard let composite = RGBAImage.composite(rgbaImageList: [r,b/*,b*/]) else { return }
+      guard let composite = RGBAImage.composite(rgbaImageList: [b,g/*,g*/]) else { return }
       /**/
       Swift.print("⚠️️ the bellow may not work anymore, scale is new ⚠️️")
-      let img:UIImage? = RGBAImage.uiImage(rgbaImage: composite, resultScale: rgbColorTestImage.scale)?.invertedImage()
-      let imgView:UIImageView = UIImageView.init(image: img)
+      guard let img:UIImage = RGBAImage.uiImage(rgbaImage: composite, resultScale: rgbColorTestImage.scale)?.invertedImage() else {Swift.print("unabe to create img");return}
+      Swift.print("img.scale:  \(img.scale)")
+      Swift.print("img.size:  \(img.size)")
+      let imgView:UIImageView = .init(image: img)
       view.addSubview(imgView)
       imgView.frame.origin.y = 80*4
 
 //      guard let r:RGBAImage = RGBAImage.init(image: images.r!) else {return }
    }
    /**
-    * testSimpleHCCQRView
+    * testSimpleHCCQRView (creates a bunch of squares in B&W and then tries to make hccqr like image)
     */
    func testSimpleHCCQRView(){
       let simpleHCCQRView = SimpleHCCQRView(frame:.init(origin: .zero, size: .init(width: 80*4, height: 80*4)))
@@ -195,12 +209,16 @@ extension ViewController {
             //make the API for making HCCQR images 👈
                //pseudo Code this a bit
                   //payload:String = "271*2 chars"
-                  //dont worry about deadspace yet
-                  //getHCCQRImage(string:String,version:10, mode:.l) -> UIImage?
-                     //scale moudlecount + 2
-                     //supply maxSizeLength, then modulecount will try to return the best size without bluring, for now size will be whatever you scake modulecount with
-                     
-            //try to add random bland colors and see if you can still split
+                  //don't worry about padding the end of the string yet 💡
+                  //getHCCQRImage(string:String,version:10, mode:.l) -> UIImage? ✅
+                     //scale moudlecount + 2✅
+                     //supply maxSizeLength, then modulecount will try to return the best size without bluring, for now size will be whatever you scake modulecount with✅
+      
+            //try to add random bland colors and see if you can still split 👈👈👈👈👈
+               //test the two images yo took, try to split them into qr codes 👈 
+               // splitting with threshold
+               //if regular qr reading fails for splitted qr's, try the Vision recognition software, maybe its smarter
+               //maybe the vision rec already support hccqr ?
          //speed things up
             //use small b&w QR images, that you scale up
                //make sure the scaling doesnt produce blurry results!?!?
@@ -247,5 +265,48 @@ extension ViewController {
       let aimMarkTestView = AimMarkTestView(frame:.zero)
       view.addSubview(aimMarkTestView)
    }
-  
+   /**
+    * test HCCQRImage creation
+    */
+   func testHCCQRImage(){
+      let (qrVersion,qrMode,ecLevel):(Int,QRMode,ECLevel) = (10,.byte,.l)//settings
+      guard let stringCount:Int = QRVersion.maxChar(qrVersion:qrVersion,qrMode:qrMode,ecLevel: ecLevel) else {Swift.print("⚠️️ Unable to get stringCount ⚠️️");return}//533
+      let strCount:Int = stringCount * 2//542
+      let randomString = QRStringData.randomString(max: strCount, qrMode: .byte)
+      guard let hccqrImage:UIImage = HCCQRUtil.getHCCQRImage(string:randomString,qrVersion:qrVersion,qrMode:qrMode,ecLevel:ecLevel) else {Swift.print("unable to create hccqr image");return}
+      let imgView = UIImageView(image:hccqrImage)
+      view.addSubview(imgView)
+      Swift.print("hasOnlyColorMap: \(hccqrImage.hasOnlyColorMap(colorMap: [.red,.green,.blue,.white]))")//ensure that img only has valid colors, akak no bluring
+      
+      /*try split the hccqrImg*/
+      
+      guard let payload:String = HCCQRUtil.string(uiImage: hccqrImage) else {Swift.print("unable to get string from hccqr");return}
+      Swift.print("randomString:  \(randomString)")
+      Swift.print("randomString.count:  \(randomString.count)")
+      Swift.print("payload:  \(payload)")
+      Swift.print(":  \(payload.count)")
+      let isMatching:Bool = randomString == payload
+      Swift.print("isMatching:  \(isMatching)")
+   }
 }
+
+
+
+
+//guard let images:RGBAImage.RGBUIImages = RGBAImage.split(image: hccqrImage) else {fatalError("err")}
+//
+//Swift.print("images.r!.size:  \(images.r!.size)")
+//Swift.print("images.r!.scale:  \(images.r!.scale)")
+//guard let r:RGBAImage = RGBAImage.init(image: images.r!) else {return }
+//guard let g:RGBAImage = RGBAImage.init(image: images.g!) else {return }
+//_ = g
+//guard let b:RGBAImage = RGBAImage.init(image: images.b!) else {return }
+//guard let composite = RGBAImage.composite(rgbaImageList: [r,b/*,b*/]) else { return }
+///**/
+//Swift.print("⚠️️ the bellow may not work anymore, scale is new ⚠️️")
+//guard let img:UIImage = RGBAImage.uiImage(rgbaImage: composite, resultScale: 1)?.invertedImage() else {Swift.print("unabe to create img");return}
+//Swift.print("img.scale:  \(img.scale)")
+//Swift.print("img.size:  \(img.size)")
+//let imageView:UIImageView = UIImageView.init(image: img)
+//view.addSubview(imageView)
+//imageView.frame.origin.y = hccqrImage.size.height

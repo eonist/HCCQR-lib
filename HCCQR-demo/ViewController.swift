@@ -12,7 +12,7 @@ class ViewController: UIViewController {
 //      testFakeHCCQRView()
 //      testComposition()
 //      testSimpleHCCQRView()
-      testHCCQRWithTwoQRViews()
+//      testHCCQRWithTwoQRViews()
 //      testAimMarks()
       
       //🏀
@@ -22,6 +22,7 @@ class ViewController: UIViewController {
 //      testCreatingQRImage()
 //      testQRVersions()
 //     testModuleCount()
+      testHCCQRImage()
       
    }
    override var prefersStatusBarHidden:Bool {return true}/*hides statusbar*/
