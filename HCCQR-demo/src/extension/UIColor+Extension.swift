@@ -51,17 +51,10 @@ extension UIColor{
       }
    }
 }
+/**
+ * Assert
+ */
 extension UIColor{
-   /**
-    *
-    */
-   func isEqualWithConversion(uiColor: UIColor) -> Bool {
-      guard let space = self.cgColor.colorSpace
-         else { return false }
-      guard let converted = uiColor.cgColor.converted(to: space, intent: .absoluteColorimetric, options: nil)
-         else { return false }
-      return self.cgColor == converted
-   }
    /**
     * isEqualRGBA
     */
@@ -75,5 +68,33 @@ extension UIColor{
       let b:Bool = rgba1.b == rgba2.b
       let a:Bool = rgba1.a == rgba2.a
       return r && g && b && a
+   }
+   /**
+    * Asserts if a color is within a threshold
+    * - Description: r,g,b can be 20% off and it will still be considered valid
+    * - Parameter threshold: 0-1
+    * - Parameter color: the 100% color to assert against
+    * - Caution: ⚠️️ Always add some extra threshold than you need, as floating point aritmitic is unpresice
+    * ## Examples:
+    * let redishColor = UIColor.init(red: 0.8, green: 0.2, blue: 0.2, alpha: 1)
+    * redishColor.isColor(color:.red,threshold:0.22)//true
+    */
+   func isColor(color:UIColor, threshold:CGFloat) -> Bool{
+      let rgba1 = self.rgba
+      let rgba2 = color.rgba
+      Swift.print("rgba2.g:  \(rgba2.g)")
+      let r:Bool = {
+         let range = CGFloatParser.range(number: rgba2.r, min: 0, max: 1, threshold: threshold)
+         return (range.start...range.end).contains(rgba1.r)
+      }()
+      let g:Bool = {
+         let range = CGFloatParser.range(number: rgba2.g, min: 0, max: 1, threshold: threshold)
+         return (range.start...range.end).contains(rgba1.g)
+      }()
+      let b:Bool = {
+         let range = CGFloatParser.range(number: rgba2.b, min: 0, max: 1, threshold: threshold)
+         return (range.start...range.end).contains(rgba1.b)
+      }()
+      return r && g && b
    }
 }

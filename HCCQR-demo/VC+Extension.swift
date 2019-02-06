@@ -215,7 +215,7 @@ extension ViewController {
                      //supply maxSizeLength, then modulecount will try to return the best size without bluring, for now size will be whatever you scake modulecount with✅
       
             //try to add random bland colors and see if you can still split 👈👈👈👈👈
-               //test the two images yo took, try to split them into qr codes 👈 
+               //test the two images you took, try to split them into qr codes with pixel color threshold code 👈
                // splitting with threshold
                //if regular qr reading fails for splitted qr's, try the Vision recognition software, maybe its smarter
                //maybe the vision rec already support hccqr ?
@@ -275,6 +275,7 @@ extension ViewController {
       let randomString = QRStringData.randomString(max: strCount, qrMode: .byte)
       guard let hccqrImage:UIImage = HCCQRUtil.getHCCQRImage(string:randomString,qrVersion:qrVersion,qrMode:qrMode,ecLevel:ecLevel) else {Swift.print("unable to create hccqr image");return}
       let imgView = UIImageView(image:hccqrImage)
+      let qrStr = QRUtil.qrCode(image: hccqrImage)
       view.addSubview(imgView)
       Swift.print("hasOnlyColorMap: \(hccqrImage.hasOnlyColorMap(colorMap: [.red,.green,.blue,.white]))")//ensure that img only has valid colors, akak no bluring
       
@@ -289,24 +290,3 @@ extension ViewController {
       Swift.print("isMatching:  \(isMatching)")
    }
 }
-
-
-
-
-//guard let images:RGBAImage.RGBUIImages = RGBAImage.split(image: hccqrImage) else {fatalError("err")}
-//
-//Swift.print("images.r!.size:  \(images.r!.size)")
-//Swift.print("images.r!.scale:  \(images.r!.scale)")
-//guard let r:RGBAImage = RGBAImage.init(image: images.r!) else {return }
-//guard let g:RGBAImage = RGBAImage.init(image: images.g!) else {return }
-//_ = g
-//guard let b:RGBAImage = RGBAImage.init(image: images.b!) else {return }
-//guard let composite = RGBAImage.composite(rgbaImageList: [r,b/*,b*/]) else { return }
-///**/
-//Swift.print("⚠️️ the bellow may not work anymore, scale is new ⚠️️")
-//guard let img:UIImage = RGBAImage.uiImage(rgbaImage: composite, resultScale: 1)?.invertedImage() else {Swift.print("unabe to create img");return}
-//Swift.print("img.scale:  \(img.scale)")
-//Swift.print("img.size:  \(img.size)")
-//let imageView:UIImageView = UIImageView.init(image: img)
-//view.addSubview(imageView)
-//imageView.frame.origin.y = hccqrImage.size.height
