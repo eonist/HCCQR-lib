@@ -2,34 +2,35 @@ import UIKit
 /**
  * Assert
  */
-extension Pixel{
-   static let redPixel:Pixel = .init(r:255,g:0,b:0,a:255)
-   static let greenPixel:Pixel = .init(r:0,g:255,b:0,a:255)
-   static let bluePixel:Pixel = .init(r:0,g:0,b:255,a:255)
+extension PixelData{
+   static let redPixel:PixelData = .init(r:255,g:0,b:0,a:255)
+   static let greenPixel:PixelData = .init(r:0,g:255,b:0,a:255)
+   static let bluePixel:PixelData = .init(r:0,g:0,b:255,a:255)
    static let threshold:CGFloat = 0.35
+   static let thresholdUInt8:UInt8 =  UInt8(255*PixelData.threshold)
    /**
     * Asserts if a pixel is sort of red within a threshold
     */
    var isRedish:Bool {
-      return self.isColor(pixel: Pixel.redPixel, threshold: UInt8(255*Pixel.threshold))
+      return self.isColor(pixel: PixelData.redPixel, threshold: PixelData.thresholdUInt8)
    }
    /**
     * Asserts if a pixel is sort of green within a threshold
     */
    var isGreenish:Bool {
-      return self.isColor(pixel: Pixel.greenPixel, threshold: UInt8(255*Pixel.threshold))
+      return self.isColor(pixel: PixelData.greenPixel, threshold: PixelData.thresholdUInt8)
    }
    /**
     * Asserts if a pixel is sort of blue within a threshold
     */
    var isBlueish:Bool {
-      return self.isColor(pixel: Pixel.bluePixel, threshold: UInt8(255*Pixel.threshold))
+      return self.isColor(pixel: PixelData.bluePixel, threshold: PixelData.thresholdUInt8)
    }
 }
 /**
  * Assert
  */
-extension Pixel {
+extension PixelData {
    /**
     * Assert color within threshold
     * ## Examples:
@@ -40,14 +41,13 @@ extension Pixel {
     * let isColorRedish:Bool = redishPixel.isColor(pixel:redPixel,threshold:threshold)
     * Swift.print("isColorRedish:  \(isColorRedish)")//true
     */
-   func isColor(pixel:Pixel, threshold:UInt8) -> Bool{
+   func isColor(pixel:PixelData, threshold:UInt8) -> Bool{
       let rgb1:RGB = self.rgb
       let rgb2:RGB = pixel.rgb
       return isColor(rgb1:rgb1,rgb2:rgb2,threshold:threshold)
    }
-   typealias RGB = (r:UInt8,b:UInt8,g:UInt8)
    /**
-    * Assers if a color is within another color within a threshold
+    * Asserts if a color is within another color within a threshold
     */
    private func isColor(rgb1:RGB,rgb2:RGB, threshold:UInt8, min:UInt8 = 0, max:UInt8 = 255) -> Bool{
       let r:Bool = {
@@ -63,42 +63,5 @@ extension Pixel {
          return (range.start...range.end).contains(rgb1.b)
       }()
       return r && g && b
-   }
-}
-/**
- * Assert
- * ⚠️️ Not in use anymore ⚠️️
- */
-public extension Pixel{
-   /**
-    * Measure if color is red
-    * - Description: basically measure if there is more r than g or b
-    */
-   var isRed:Bool {
-      return self.r == 255 && self.g != 255 && self.b != 255
-   }
-   /**
-    * Measure if color is green
-    */
-   var isGreen:Bool {
-      return self.r != 255 && self.g == 255 && self.b != 255
-   }
-   /**
-    * Measure if color is blue
-    */
-   var isBlue:Bool {
-      return self.r != 255 && self.g != 255 && self.b == 255
-   }
-   /**
-    * Measure if color is white
-    */
-   var isWhite:Bool {
-      return self.r == 255 && self.g == 255 && self.b == 255
-   }
-   /**
-    * Measure if color is black
-    */
-   var isBlack:Bool {
-      return self.r == 0 && self.g == 0 && self.b == 0
    }
 }

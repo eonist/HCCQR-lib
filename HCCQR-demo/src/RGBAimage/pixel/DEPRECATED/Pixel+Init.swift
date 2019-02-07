@@ -7,7 +7,7 @@ extension Pixel{
     * Beta
     */
    init(color:UIColor){
-      self.value = 0
+      self.value = 0//reset
       setRGBA(color: color)
    }
    
@@ -15,7 +15,7 @@ extension Pixel{
     * Set rgba
     */
    init(r:UInt8,g:UInt8,b:UInt8,a:UInt8){
-      self.value = 0
+      self.value = 0//reset
       setRGBA(r: r, g: g, b: b, a: a)
    }
 }

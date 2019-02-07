@@ -310,6 +310,11 @@ extension ViewController {
             //find fast color for pixel code
             //clean up the code before you optimize 👈
                // keep cleaning house before you move on, you might miss imp optimizations other wise
+                  //Make Pixel 2, with regular hex stuff, and that doesnt store as value, but as rgb
+                  // maybe move on a bit, before you get stuck on this
+                  // find code for going from r,g,b,a to argb-value
+                  //Replace pixel, with PixelData,
+                     //do some quick looking around, that the galue is never used etc 👈
          //create the HCCQRLib
          //try adding some blur to an image, maybe it reads easier (could use this if a pass fails)
          //Try rapid creation of hccqr

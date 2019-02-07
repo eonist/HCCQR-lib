@@ -1,16 +1,15 @@
+
 import Foundation
-/**
- * Getter
- */
-extension Pixel {
+
+extension PixelData{
    /**
     * rgb
     */
-   var rgb:Pixel.RGB {
+   var rgb:PixelData.RGB {
       return (r,g,b)
    }
    /**
-    *
+    * Debug help
     */
    func debug(){
       Swift.print("pixel.R:  \(self.r)")

@@ -23,6 +23,7 @@ extension RGBAImage{
    }
    /**
     * Beta (trying to fix "blurry edge pixel bug")
+    * - Important: ⚠️️ CoreGraphics expects pixel data as rows, not columns. Just flip your for-statements like this:
     */
    static func rgbaImage(uiImage img:UIImage) -> RGBAImage? {
       guard let cgImage:CGImage = /*img.cgImage ?? */img.cgImage() else {Swift.print("unable to create cgImage");return nil}
@@ -38,7 +39,6 @@ extension RGBAImage{
             return pixel
          }
       }
-      
       let blackImg:UIImage = UIImage.createImage(size: CGSize.init(width: img.size.width*scale, height: img.size.height*scale), color: .black)
       let result : RGBAImage = RGBAImage.rgbaImage(image:blackImg)!
       var rgbaImage:RGBAImage = RGBAImage.init(pixels: result.pixels, width: Int(img.size.width*scale), height: Int(img.size.height*scale))
