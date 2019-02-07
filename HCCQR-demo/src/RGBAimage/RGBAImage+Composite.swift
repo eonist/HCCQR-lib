@@ -14,7 +14,7 @@ extension RGBAImage {
       for y in 0..<Int(size.height) {/*loop over every y*/
          for x in 0..<Int(size.width) {/*loop over every x*/
             let index = y * Int(size.width) + x//TODO: ⚠️️ use getPixel here
-            var pixel = result.pixels[index]
+            var pixel:PixelData = result.pixels[index]
             for rgba in rgbaImageList {/*loop over every image in the list*/
                let rgbaPixel = rgba.pixels[index]
                //               if  UInt32(pixel.R) + UInt32(rgbaPixel.R) > 255 {
@@ -38,13 +38,12 @@ extension RGBAImage {
    /**
     * Fills an image with pixels
     */
-   static func fill( image:inout RGBAImage, pixels:[Pixel]){
+   static func fill( image:inout RGBAImage, pixels:[PixelData]){
       for y in 0..<Int(image.height) {/*loop over every y*/
          for x in 0..<Int(image.width) {/*loop over every x*/
             let index = y * Int(image.width) + x//TODO: ⚠️️ use getPixel here
             let pixel = pixels[index]
-            var imagePixel = Pixel.init(color:.black)
-            
+            guard var imagePixel:PixelData = PixelData(uiColor:.black) else {Swift.print("unable to crate pixelData");return}
             imagePixel.r = pixel.r
             imagePixel.g = pixel.g
             imagePixel.b = pixel.b

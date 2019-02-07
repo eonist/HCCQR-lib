@@ -25,8 +25,6 @@
 		F162145621FC75F7005297DE /* RGBAImage+Composite.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162145521FC75F7005297DE /* RGBAImage+Composite.swift */; };
 		F162145821FC7636005297DE /* RGBAImage+Split.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162145721FC7636005297DE /* RGBAImage+Split.swift */; };
 		F162145A21FC7791005297DE /* RGBAImage+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162145921FC7791005297DE /* RGBAImage+Util.swift */; };
-		F162145D21FC7D7F005297DE /* Pixel+Assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162145C21FC7D7F005297DE /* Pixel+Assert.swift */; };
-		F162145F21FC7DC9005297DE /* Pixel+Setter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162145E21FC7DC9005297DE /* Pixel+Setter.swift */; };
 		F162146221FC966C005297DE /* Colorize.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162146121FC966C005297DE /* Colorize.swift */; };
 		F162146621FF0734005297DE /* AlignMarkTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162146521FF0734005297DE /* AlignMarkTestView.swift */; };
 		F162146821FF380E005297DE /* CAShapeLayerUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162146721FF380E005297DE /* CAShapeLayerUtil.swift */; };
@@ -34,27 +32,21 @@
 		F162146D220063F1005297DE /* AlignMarkUtil+Metric.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162146C220063F1005297DE /* AlignMarkUtil+Metric.swift */; };
 		F162146F22007814005297DE /* AlignMarkUtil+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162146E22007814005297DE /* AlignMarkUtil+Debug.swift */; };
 		F16214712200CC89005297DE /* Data+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16214702200CC89005297DE /* Data+Extension.swift */; };
-		F172F386220BB8DD004ACB95 /* Pixel+Accessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F172F385220BB8DD004ACB95 /* Pixel+Accessor.swift */; };
-		F172F388220BB8FA004ACB95 /* Pixel+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = F172F387220BB8FA004ACB95 /* Pixel+Init.swift */; };
-		F172F38A220BB93C004ACB95 /* Pixel+Getter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F172F389220BB93C004ACB95 /* Pixel+Getter.swift */; };
 		F172F38C220C817B004ACB95 /* UIColor+Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F172F38B220C817B004ACB95 /* UIColor+Parser.swift */; };
 		F172F38F220C8192004ACB95 /* UIColor+Asserter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F172F38E220C8192004ACB95 /* UIColor+Asserter.swift */; };
-		F172F392220C87D0004ACB95 /* Pixel+DEPRECATED.swift in Sources */ = {isa = PBXBuildFile; fileRef = F172F391220C87D0004ACB95 /* Pixel+DEPRECATED.swift */; };
-		F172F394220C87F5004ACB95 /* Pixel+Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = F172F393220C87F5004ACB95 /* Pixel+Type.swift */; };
-		F172F396220C9F15004ACB95 /* PixelUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F172F395220C9F15004ACB95 /* PixelUtil.swift */; };
 		F172F39C220CC5A5004ACB95 /* PixelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F172F39B220CC5A5004ACB95 /* PixelData.swift */; };
 		F172F39E220CC5BD004ACB95 /* PixelData+Setter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F172F39D220CC5BD004ACB95 /* PixelData+Setter.swift */; };
 		F172F3A0220CC5C7004ACB95 /* PixelDataUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F172F39F220CC5C7004ACB95 /* PixelDataUtil.swift */; };
 		F172F3A2220CC753004ACB95 /* PixelData+Getter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F172F3A1220CC753004ACB95 /* PixelData+Getter.swift */; };
 		F172F3A4220CC75D004ACB95 /* PixelData+Assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F172F3A3220CC75D004ACB95 /* PixelData+Assert.swift */; };
 		F172F3A6220CC7FA004ACB95 /* PixelData+Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = F172F3A5220CC7FA004ACB95 /* PixelData+Type.swift */; };
+		F172F3A8220CC9CE004ACB95 /* PixelData+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = F172F3A7220CC9CE004ACB95 /* PixelData+Init.swift */; };
 		F18A52DF21790F8A003F8C13 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18A52DE21790F8A003F8C13 /* AppDelegate.swift */; };
 		F18A52E121790F8A003F8C13 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18A52E021790F8A003F8C13 /* ViewController.swift */; };
 		F18A52E421790F8A003F8C13 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F18A52E221790F8A003F8C13 /* Main.storyboard */; };
 		F18A52E621790F8D003F8C13 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F18A52E521790F8D003F8C13 /* Assets.xcassets */; };
 		F18A52E921790F8D003F8C13 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F18A52E721790F8D003F8C13 /* LaunchScreen.storyboard */; };
 		F18A52F6217A4438003F8C13 /* RGBAImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18A52F4217A4438003F8C13 /* RGBAImage.swift */; };
-		F18A52FA217A463E003F8C13 /* Pixel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18A52F9217A463E003F8C13 /* Pixel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -89,8 +81,6 @@
 		F162145521FC75F7005297DE /* RGBAImage+Composite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RGBAImage+Composite.swift"; sourceTree = "<group>"; };
 		F162145721FC7636005297DE /* RGBAImage+Split.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RGBAImage+Split.swift"; sourceTree = "<group>"; };
 		F162145921FC7791005297DE /* RGBAImage+Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RGBAImage+Util.swift"; sourceTree = "<group>"; };
-		F162145C21FC7D7F005297DE /* Pixel+Assert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Pixel+Assert.swift"; sourceTree = "<group>"; };
-		F162145E21FC7DC9005297DE /* Pixel+Setter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Pixel+Setter.swift"; sourceTree = "<group>"; };
 		F162146121FC966C005297DE /* Colorize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colorize.swift; sourceTree = "<group>"; };
 		F162146521FF0734005297DE /* AlignMarkTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlignMarkTestView.swift; sourceTree = "<group>"; };
 		F162146721FF380E005297DE /* CAShapeLayerUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CAShapeLayerUtil.swift; sourceTree = "<group>"; };
@@ -98,20 +88,15 @@
 		F162146C220063F1005297DE /* AlignMarkUtil+Metric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AlignMarkUtil+Metric.swift"; sourceTree = "<group>"; };
 		F162146E22007814005297DE /* AlignMarkUtil+Debug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AlignMarkUtil+Debug.swift"; sourceTree = "<group>"; };
 		F16214702200CC89005297DE /* Data+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Extension.swift"; sourceTree = "<group>"; };
-		F172F385220BB8DD004ACB95 /* Pixel+Accessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Pixel+Accessor.swift"; sourceTree = "<group>"; };
-		F172F387220BB8FA004ACB95 /* Pixel+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Pixel+Init.swift"; sourceTree = "<group>"; };
-		F172F389220BB93C004ACB95 /* Pixel+Getter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Pixel+Getter.swift"; sourceTree = "<group>"; };
 		F172F38B220C817B004ACB95 /* UIColor+Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Parser.swift"; sourceTree = "<group>"; };
 		F172F38E220C8192004ACB95 /* UIColor+Asserter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Asserter.swift"; sourceTree = "<group>"; };
-		F172F391220C87D0004ACB95 /* Pixel+DEPRECATED.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Pixel+DEPRECATED.swift"; sourceTree = "<group>"; };
-		F172F393220C87F5004ACB95 /* Pixel+Type.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Pixel+Type.swift"; sourceTree = "<group>"; };
-		F172F395220C9F15004ACB95 /* PixelUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixelUtil.swift; sourceTree = "<group>"; };
 		F172F39B220CC5A5004ACB95 /* PixelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixelData.swift; sourceTree = "<group>"; };
 		F172F39D220CC5BD004ACB95 /* PixelData+Setter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PixelData+Setter.swift"; sourceTree = "<group>"; };
 		F172F39F220CC5C7004ACB95 /* PixelDataUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixelDataUtil.swift; sourceTree = "<group>"; };
 		F172F3A1220CC753004ACB95 /* PixelData+Getter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PixelData+Getter.swift"; sourceTree = "<group>"; };
 		F172F3A3220CC75D004ACB95 /* PixelData+Assert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PixelData+Assert.swift"; sourceTree = "<group>"; };
 		F172F3A5220CC7FA004ACB95 /* PixelData+Type.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PixelData+Type.swift"; sourceTree = "<group>"; };
+		F172F3A7220CC9CE004ACB95 /* PixelData+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PixelData+Init.swift"; sourceTree = "<group>"; };
 		F18A52DB21790F8A003F8C13 /* HCCQR-demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HCCQR-demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F18A52DE21790F8A003F8C13 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F18A52E021790F8A003F8C13 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -120,7 +105,6 @@
 		F18A52E821790F8D003F8C13 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F18A52EA21790F8D003F8C13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F18A52F4217A4438003F8C13 /* RGBAImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RGBAImage.swift; sourceTree = "<group>"; };
-		F18A52F9217A463E003F8C13 /* Pixel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pixel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,8 +179,8 @@
 			isa = PBXGroup;
 			children = (
 				F172F39A220CC599004ACB95 /* util */,
-				F172F390220C87BC004ACB95 /* DEPRECATED */,
 				F172F39B220CC5A5004ACB95 /* PixelData.swift */,
+				F172F3A7220CC9CE004ACB95 /* PixelData+Init.swift */,
 				F172F3A5220CC7FA004ACB95 /* PixelData+Type.swift */,
 				F172F39D220CC5BD004ACB95 /* PixelData+Setter.swift */,
 				F172F3A1220CC753004ACB95 /* PixelData+Getter.swift */,
@@ -230,30 +214,6 @@
 				F172F38E220C8192004ACB95 /* UIColor+Asserter.swift */,
 			);
 			path = color;
-			sourceTree = "<group>";
-		};
-		F172F390220C87BC004ACB95 /* DEPRECATED */ = {
-			isa = PBXGroup;
-			children = (
-				F172F397220C9F84004ACB95 /* util */,
-				F18A52F9217A463E003F8C13 /* Pixel.swift */,
-				F172F385220BB8DD004ACB95 /* Pixel+Accessor.swift */,
-				F172F387220BB8FA004ACB95 /* Pixel+Init.swift */,
-				F162145C21FC7D7F005297DE /* Pixel+Assert.swift */,
-				F172F393220C87F5004ACB95 /* Pixel+Type.swift */,
-				F162145E21FC7DC9005297DE /* Pixel+Setter.swift */,
-				F172F389220BB93C004ACB95 /* Pixel+Getter.swift */,
-				F172F391220C87D0004ACB95 /* Pixel+DEPRECATED.swift */,
-			);
-			path = DEPRECATED;
-			sourceTree = "<group>";
-		};
-		F172F397220C9F84004ACB95 /* util */ = {
-			isa = PBXGroup;
-			children = (
-				F172F395220C9F15004ACB95 /* PixelUtil.swift */,
-			);
-			path = util;
 			sourceTree = "<group>";
 		};
 		F172F39A220CC599004ACB95 /* util */ = {
@@ -383,22 +343,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F172F3A8220CC9CE004ACB95 /* PixelData+Init.swift in Sources */,
 				F14FADE521F75A9900ACE5FF /* VC+ViewTest.swift in Sources */,
-				F162145F21FC7DC9005297DE /* Pixel+Setter.swift in Sources */,
 				F18A52E121790F8A003F8C13 /* ViewController.swift in Sources */,
 				F14FADF021F761FD00ACE5FF /* FakeHCCQRView.swift in Sources */,
-				F172F38A220BB93C004ACB95 /* Pixel+Getter.swift in Sources */,
 				F162146621FF0734005297DE /* AlignMarkTestView.swift in Sources */,
 				F14FADEB21F75F3900ACE5FF /* UIView+Extension.swift in Sources */,
-				F172F386220BB8DD004ACB95 /* Pixel+Accessor.swift in Sources */,
 				F14FADEE21F7618A00ACE5FF /* RGBAImage+Pixel.swift in Sources */,
-				F172F392220C87D0004ACB95 /* Pixel+DEPRECATED.swift in Sources */,
-				F172F396220C9F15004ACB95 /* PixelUtil.swift in Sources */,
 				F162145621FC75F7005297DE /* RGBAImage+Composite.swift in Sources */,
-				F172F388220BB8FA004ACB95 /* Pixel+Init.swift in Sources */,
 				F18A52F6217A4438003F8C13 /* RGBAImage.swift in Sources */,
 				F162146221FC966C005297DE /* Colorize.swift in Sources */,
-				F162145D21FC7D7F005297DE /* Pixel+Assert.swift in Sources */,
 				F18A52DF21790F8A003F8C13 /* AppDelegate.swift in Sources */,
 				F162146821FF380E005297DE /* CAShapeLayerUtil.swift in Sources */,
 				F172F3A6220CC7FA004ACB95 /* PixelData+Type.swift in Sources */,
@@ -418,10 +372,8 @@
 				F172F38F220C8192004ACB95 /* UIColor+Asserter.swift in Sources */,
 				F172F3A4220CC75D004ACB95 /* PixelData+Assert.swift in Sources */,
 				F11DE85D220B3EA8007A8A7A /* IntParser.swift in Sources */,
-				F172F394220C87F5004ACB95 /* Pixel+Type.swift in Sources */,
 				F162145821FC7636005297DE /* RGBAImage+Split.swift in Sources */,
 				F11DE85A220B333B007A8A7A /* CGFloatParser.swift in Sources */,
-				F18A52FA217A463E003F8C13 /* Pixel.swift in Sources */,
 				F11DE862220BAF37007A8A7A /* RGBAImage+Init.swift in Sources */,
 				F162146F22007814005297DE /* AlignMarkUtil+Debug.swift in Sources */,
 				F162146B21FF4198005297DE /* AlignMarkUtil.swift in Sources */,

@@ -49,7 +49,7 @@ fileprivate extension RGBAImage {
     */
    fileprivate static func channelR(_ image: RGBAImage) -> RGBAImage {
       var outImage = image
-      outImage.process { (pixel) -> Pixel in
+      outImage.process { (pixel) -> PixelData in
          var pixelCopy = pixel
          pixel.isRedish ? pixelCopy.setWhite() : pixelCopy.setBlack()
          return pixelCopy
@@ -61,7 +61,7 @@ fileprivate extension RGBAImage {
     */
    fileprivate static func channelG(_ image: RGBAImage) -> RGBAImage {
       var outImage = image
-      outImage.process { (pixel) -> Pixel in
+      outImage.process { (pixel) -> PixelData in
          var pixelCopy = pixel
          pixel.isGreenish ? pixelCopy.setWhite() : pixelCopy.setBlack()
          return pixelCopy
@@ -73,7 +73,7 @@ fileprivate extension RGBAImage {
     */
    fileprivate static func channelB(_ image: RGBAImage) -> RGBAImage {
       var outImage = image
-      outImage.process { (pixel) -> Pixel in
+      outImage.process { (pixel) -> PixelData in
          var pixelCopy = pixel
          pixel.isBlueish ? pixelCopy.setWhite() : pixelCopy.setBlack()
          return pixelCopy

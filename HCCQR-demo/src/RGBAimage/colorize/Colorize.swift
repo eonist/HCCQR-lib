@@ -33,14 +33,14 @@ class Colorize {
    private static func colorize(rgbaImages:[RGBAImage], colorMap:ColorMap) -> RGBAImage?{
       guard let firstImage:RGBAImage = rgbaImages.first else {Swift.print("must contain at least one image");return nil}
       Swift.print("firstImage.width:  \(firstImage.width) height:  \(firstImage.height)")
-      let pixels:[Pixel] = (0..<firstImage.height).indices.flatMap { y in /*flatMap Covert the 2-dim array to a 1-dim array*/
+      let pixels:[PixelData] = (0..<firstImage.height).indices.flatMap { y in /*flatMap Covert the 2-dim array to a 1-dim array*/
          return (0..<firstImage.width).indices.compactMap { x in
-            let pixels:[Pixel] = rgbaImages.compactMap{ image in
-               guard let pixel = image.getPixel(x:x,y:y) else {Swift.print("⚠️️ unable to get pixel ⚠️️");return nil}
+            let pixels:[PixelData] = rgbaImages.compactMap{ image in
+               guard let pixel:PixelData = image.getPixel(x:x,y:y) else {Swift.print("⚠️️ unable to get pixel ⚠️️");return nil}
                return pixel
             }
             //if (x == 150 && y == 0) {pixels.first?.debug();pixels.last?.debug() }
-            guard let pixel:Pixel = colorize(pixels:pixels, colorMap:colorMap) else {Swift.print("⚠️️ unable to make pixel ⚠️️");return nil}
+            guard let pixel:PixelData = colorize(pixels:pixels, colorMap:colorMap) else {Swift.print("⚠️️ unable to make pixel ⚠️️");return nil}
             return pixel
          }
       }
@@ -59,7 +59,7 @@ extension Colorize{
     * colorize(pixels:[whitePixel,whitePixel]) -> BluePixel
     * TODO: ⚠️️ Somehow replace the fatalError with throw?
     */
-   fileprivate static func colorize(pixels:[Pixel], colorMap:ColorMap) -> Pixel?{
+   fileprivate static func colorize(pixels:[PixelData], colorMap:ColorMap) -> PixelData?{
       let findColor:(ColorMapItem) -> Bool = { colorMapItem in
          if colorMapItem.idx.count != pixels.count {fatalError("colorMap does not match pixel layer count")}
          for (i,pixel) in pixels.enumerated() {
@@ -70,7 +70,7 @@ extension Colorize{
          return true
       }
       guard let color:UIColor = colorMap.first(where: findColor)?.color else {Swift.print("Unable to colorize");return nil}
-      return .init(color:color)
+      return PixelData.init(uiColor:color)
    }
 }
 /**

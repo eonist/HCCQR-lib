@@ -10,7 +10,7 @@ extension RGBAImage{
       let width = Int(image.size.width)
       let height = Int(image.size.height)
       let bytesPerRow = width * 4// 4 * width * height
-      let imageData = UnsafeMutablePointer<Pixel>.allocate(capacity: width * height)
+      let imageData = UnsafeMutablePointer<PixelData>.allocate(capacity: width * height)
       let colorSpace = CGColorSpaceCreateDeviceRGB()
       var bitmapInfo: UInt32 = CGBitmapInfo.byteOrder32Big.rawValue//BGRA
       bitmapInfo = bitmapInfo | CGImageAlphaInfo.premultipliedLast.rawValue & CGBitmapInfo.alphaInfoMask.rawValue
@@ -18,7 +18,7 @@ extension RGBAImage{
          return nil
       }
       imageContext.draw(cgImage, in: CGRect(origin: .zero, size: image.size))//cgImage.imageData
-      let pixels = UnsafeMutableBufferPointer<Pixel>(start: imageData, count: width * height)
+      let pixels = UnsafeMutableBufferPointer<PixelData>(start: imageData, count: width * height)
       return RGBAImage.init(pixels: pixels, width: width, height: height)
    }
    /**
@@ -32,10 +32,10 @@ extension RGBAImage{
       let scale:CGFloat = img.scale
       let width:Int = Int(img.size.width*scale)
       let height:Int = Int(img.size.height*scale)
-      let pixels:[Pixel] = (0..<height).flatMap{ y in
+      let pixels:[PixelData] = (0..<height).flatMap{ y in
          (0..<width).map{ x in
             let pixelInfo: Int = ((Int(img.size.width*scale) * y) + x) * 4
-            let pixel =  Pixel.init(r: data[pixelInfo], g: data[pixelInfo+1], b: data[pixelInfo+2], a: data[pixelInfo+3])
+            let pixel =  PixelData.init(r: data[pixelInfo], g: data[pixelInfo+1], b: data[pixelInfo+2], a: data[pixelInfo+3])
             return pixel
          }
       }
@@ -52,7 +52,7 @@ extension RGBAImage{
    /**
     * Beta, might not work ⚠️️
     */
-   static func rgbaImage(pixels:[Pixel], width:Int, height:Int) -> RGBAImage{
+   static func rgbaImage(pixels:[PixelData], width:Int, height:Int) -> RGBAImage{
       //      let unsafePixels = UnsafeMutableBufferPointer<Pixel>.allocate(capacity: pixels.count)
       //      _ = unsafePixels.initialize(from: pixels)
       

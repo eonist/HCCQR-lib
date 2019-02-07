@@ -6,7 +6,7 @@ extension RGBAImage{
    /**
     * UIImageView
     */
-   static func imageView(rgbaImage:RGBAImage,resultScale:CGFloat) -> UIImageView?{
+   static func imageView(rgbaImage:RGBAImage, resultScale:CGFloat) -> UIImageView?{
       guard let image:UIImage = RGBAImage.uiImage(rgbaImage: rgbaImage,resultScale:resultScale) else {return nil}
       let imageView:UIImageView = .init(image: image)
       return imageView

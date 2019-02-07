@@ -26,6 +26,18 @@ extension PixelData{
    var isBlueish:Bool {
       return self.isColor(pixel: PixelData.bluePixel, threshold: PixelData.thresholdUInt8)
    }
+   /**
+    * Measure if color is white (used in the colorize method)
+    */
+   var isWhite:Bool {
+      return self.r == 255 && self.g == 255 && self.b == 255
+   }
+   /**
+    * Measure if color is black (used in the colorize method)
+    */
+   var isBlack:Bool {
+      return self.r == 0 && self.g == 0 && self.b == 0
+   }
 }
 /**
  * Assert
