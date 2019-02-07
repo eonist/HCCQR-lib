@@ -28,8 +28,8 @@ final public class QRUtil {
     * - Parameter size: The size you want the QR to be
     */
    public static func qrImage(str: String, size: CGSize, ecLevel:ECLevel = .l) -> Image? {
-      guard let ciImage:CIImage = QRUtil.ciImage(str: str, size: size, ecLevel:ecLevel) else { Swift.print("⚠️️ Failed to create ciImage ecLevel:\(ecLevel.rawValue) str.count:\(str.count) size:\(size) ⚠️️");return nil}
-      guard let image:Image = QRUtil.image(ciImage: ciImage) else {Swift.print("⚠️️ Failed to create uiImage ⚠️️");return nil}
+      guard let ciImage:CIImage = QRUtil.ciImage(str: str, size: size, ecLevel:ecLevel) else { Swift.print("⚠️️ QRLib.QRUtil.qrImage() - Failed to create ciImage ecLevel:\(ecLevel.rawValue) str.count:\(str.count) size:\(size) ⚠️️");return nil}
+      guard let image:Image = QRUtil.image(ciImage: ciImage) else {Swift.print("⚠️️ QRLib.QRUtil.qrImage() - Failed to create uiImage ⚠️️");return nil}
       return image
    }
    /**
@@ -39,7 +39,7 @@ final public class QRUtil {
     */
    #if os(iOS)
    public static func qrCode(image: UIImage) -> String? {
-      guard let ciImage = image.ciImage ?? image.ciImage() else {Swift.print("QRUtil.qrCode() - unable to get CIImage"); return nil }
+      guard let ciImage = image.ciImage ?? image.ciImage() else {Swift.print("QRLib.QRUtil.qrCode() - unable to get CIImage"); return nil }
       return qrCode(ciImage: ciImage)
    }
    #endif
@@ -86,11 +86,11 @@ extension QRUtil{
     * - Important: ⚠️️ scale is calculated from module: version1 has 23 modules, if you provide size: w:46,h:46 then the scale will be 2x
     */
    fileprivate static func ciImage(str: String, size: CGSize, ecLevel:ECLevel) -> CIImage? {
-      guard let filter:CIFilter = CIFilter(name: "CIQRCodeGenerator") else {Swift.print("Unable to create filter"); return nil }
-      guard let data:Data = str.data(using: .utf8, allowLossyConversion: true) else {Swift.print("Unable to create data");return nil}
+      guard let filter:CIFilter = CIFilter(name: "CIQRCodeGenerator") else {Swift.print("QRLib.QRUtil.ciImage() - Unable to create filter"); return nil }
+      guard let data:Data = str.data(using: .utf8, allowLossyConversion: true) else {Swift.print("QRLib.QRUtil.ciImage() - Unable to create data");return nil}
       filter.setValue(data, forKey: "inputMessage")
       filter.setValue(ecLevel.rawValue, forKey: "inputCorrectionLevel")
-      guard let outputImage:CIImage = filter.outputImage else { Swift.print("Unable to make CIImage for ecLevel:\(ecLevel.rawValue) str.count:\(str.count) size:\(size)"); return nil }
+      guard let outputImage:CIImage = filter.outputImage else { Swift.print("QRLib.QRUtil.ciImage() - Unable to make CIImage for ecLevel:\(ecLevel.rawValue) str.count:\(str.count) size:\(size)"); return nil }
 //      Swift.print("outputImage.description:  \(outputImage.description)")
 //      Swift.print("outputImage.extent:  \(outputImage.extent)")
       let scale:CGPoint = {
@@ -110,8 +110,8 @@ extension QRUtil{
    fileprivate static func qrCode(ciImage: CIImage) -> String? {
       guard let detector:CIDetector = CIDetector(ofType: CIDetectorTypeQRCode, context: nil, options: [CIDetectorAccuracy: CIDetectorAccuracyHigh]) else {Swift.print("unable to create detector");return nil}
       let features:[CIFeature] = detector.features(in: ciImage)
-      guard let feature:CIQRCodeFeature = (features.first { $0 is CIQRCodeFeature } as? CIQRCodeFeature) else {Swift.print("unable to get CIQRCodeFeature");return nil}
-      guard let messageString:String = feature.messageString else {Swift.print("unable to get messageString");return nil}
+      guard let feature:CIQRCodeFeature = (features.first { $0 is CIQRCodeFeature } as? CIQRCodeFeature) else {Swift.print("QRLib.QRUtil.qrCode() - Unable to get CIQRCodeFeature");return nil}
+      guard let messageString:String = feature.messageString else {Swift.print("QRLib.QRUtil.qrCode() - Unable to get messageString");return nil}
       return messageString
    }
    /**

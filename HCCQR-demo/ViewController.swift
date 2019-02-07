@@ -22,9 +22,10 @@ class ViewController: UIViewController {
 //      testCreatingQRImage()
 //      testQRVersions()
 //     testModuleCount()
+      
       testHCCQRImage()
      
-      
+//      testReadingHCCQRImage()
    }
    override var prefersStatusBarHidden:Bool {return true}/*hides statusbar*/
 }

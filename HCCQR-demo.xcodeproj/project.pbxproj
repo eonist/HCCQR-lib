@@ -11,6 +11,8 @@
 		F11DE854220A45BA007A8A7A /* HCCQRUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11DE853220A45BA007A8A7A /* HCCQRUtil.swift */; };
 		F11DE85A220B333B007A8A7A /* CGFloatParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11DE859220B333A007A8A7A /* CGFloatParser.swift */; };
 		F11DE85D220B3EA8007A8A7A /* IntParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11DE85C220B3EA8007A8A7A /* IntParser.swift */; };
+		F11DE860220B6C53007A8A7A /* temp.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F11DE85F220B6C53007A8A7A /* temp.bundle */; };
+		F11DE862220BAF37007A8A7A /* RGBAImage+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11DE861220BAF37007A8A7A /* RGBAImage+Init.swift */; };
 		F14FADE521F75A9900ACE5FF /* VC+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14FADE421F75A9900ACE5FF /* VC+Extension.swift */; };
 		F14FADE821F75EF100ACE5FF /* RGBColorTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14FADE721F75EF100ACE5FF /* RGBColorTestView.swift */; };
 		F14FADEB21F75F3900ACE5FF /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14FADEA21F75F3900ACE5FF /* UIView+Extension.swift */; };
@@ -61,6 +63,8 @@
 		F11DE853220A45BA007A8A7A /* HCCQRUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HCCQRUtil.swift; sourceTree = "<group>"; };
 		F11DE859220B333A007A8A7A /* CGFloatParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGFloatParser.swift; sourceTree = "<group>"; };
 		F11DE85C220B3EA8007A8A7A /* IntParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntParser.swift; sourceTree = "<group>"; };
+		F11DE85F220B6C53007A8A7A /* temp.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = temp.bundle; sourceTree = "<group>"; };
+		F11DE861220BAF37007A8A7A /* RGBAImage+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RGBAImage+Init.swift"; sourceTree = "<group>"; };
 		F14FADE421F75A9900ACE5FF /* VC+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VC+Extension.swift"; sourceTree = "<group>"; };
 		F14FADE721F75EF100ACE5FF /* RGBColorTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBColorTestView.swift; sourceTree = "<group>"; };
 		F14FADEA21F75F3900ACE5FF /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
@@ -151,6 +155,7 @@
 			children = (
 				F162146021FC95A2005297DE /* colorize */,
 				F18A52F4217A4438003F8C13 /* RGBAImage.swift */,
+				F11DE861220BAF37007A8A7A /* RGBAImage+Init.swift */,
 				F14FADED21F7618A00ACE5FF /* RGBAImage+Pixel.swift */,
 				F162145921FC7791005297DE /* RGBAImage+Util.swift */,
 				F162145721FC7636005297DE /* RGBAImage+Split.swift */,
@@ -194,6 +199,7 @@
 				F162144F21FC707E005297DE /* QRLibIOS.framework */,
 				F18A52DD21790F8A003F8C13 /* HCCQR-demo */,
 				F18A52DC21790F8A003F8C13 /* Products */,
+				F11DE85F220B6C53007A8A7A /* temp.bundle */,
 			);
 			sourceTree = "<group>";
 		};
@@ -293,6 +299,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F18A52E921790F8D003F8C13 /* LaunchScreen.storyboard in Resources */,
+				F11DE860220B6C53007A8A7A /* temp.bundle in Resources */,
 				F18A52E621790F8D003F8C13 /* Assets.xcassets in Resources */,
 				F18A52E421790F8A003F8C13 /* Main.storyboard in Resources */,
 			);
@@ -331,6 +338,7 @@
 				F162145821FC7636005297DE /* RGBAImage+Split.swift in Sources */,
 				F11DE85A220B333B007A8A7A /* CGFloatParser.swift in Sources */,
 				F18A52FA217A463E003F8C13 /* Pixel.swift in Sources */,
+				F11DE862220BAF37007A8A7A /* RGBAImage+Init.swift in Sources */,
 				F162146F22007814005297DE /* AlignMarkUtil+Debug.swift in Sources */,
 				F162146B21FF4198005297DE /* AlignMarkUtil.swift in Sources */,
 			);

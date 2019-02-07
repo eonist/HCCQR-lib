@@ -10,7 +10,7 @@ extension RGBAImage {
 //      Swift.print("composite.size:  \(size)")
       //      guard let firstImg:UIImage = RGBAImage.image(rgbaImage: rgbaImageList[0]) else {fatalError("err")}
       let blackImg:UIImage = UIImage.createImage(size: size, color: .black)
-      let result : RGBAImage = RGBAImage(image:blackImg)!//RGBAImage.init(image: UIImage.ini)
+      let result : RGBAImage = RGBAImage.rgbaImage(image:blackImg)!//RGBAImage.init(image: UIImage.ini)
       for y in 0..<Int(size.height) {/*loop over every y*/
          for x in 0..<Int(size.width) {/*loop over every x*/
             let index = y * Int(size.width) + x//TODO: ⚠️️ use getPixel here

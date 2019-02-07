@@ -42,15 +42,15 @@ extension Pixel{
    static let redPixel:Pixel = .init(R:255,G:0,B:0,A:255)
    static let greenPixel:Pixel = .init(R:0,G:255,B:0,A:255)
    static let bluePixel:Pixel = .init(R:0,G:0,B:255,A:255)
-   
+   static let threshold:CGFloat = 0.35
    var isRedish:Bool {
-      return self.isColor(pixel: Pixel.redPixel, threshold: UInt8(255*0.25))
+      return self.isColor(pixel: Pixel.redPixel, threshold: UInt8(255*Pixel.threshold))
    }
    var isGreenish:Bool {
-      return self.isColor(pixel: Pixel.greenPixel, threshold: UInt8(255*0.25))
+      return self.isColor(pixel: Pixel.greenPixel, threshold: UInt8(255*Pixel.threshold))
    }
    var isBlueish:Bool {
-      return self.isColor(pixel: Pixel.bluePixel, threshold: UInt8(255*0.25))
+      return self.isColor(pixel: Pixel.bluePixel, threshold: UInt8(255*Pixel.threshold))
    }
    
 }

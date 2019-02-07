@@ -11,16 +11,16 @@ extension RGBAImage {
     */
    static func split(image:UIImage)-> RGBUIImages?{
       Swift.print("split - image.size:  \(image.size)")
-      guard let r:RGBAImage = RGBAImage.init(image: image) else {return nil}
-      guard let g:RGBAImage = RGBAImage.init(image: image) else {return nil}
-      guard let b:RGBAImage = RGBAImage.init(image: image) else {return nil}
+      guard let r:RGBAImage = RGBAImage.rgbaImage(image: image) else {return nil}
+      guard let g:RGBAImage = RGBAImage.rgbaImage(image: image) else {return nil}
+      guard let b:RGBAImage = RGBAImage.rgbaImage(image: image) else {return nil}
       let rgbImages:RGBUIImages = split(rgbaImgs: (r,g,b),scale:image.scale)
       return rgbImages
    }
    /**
     * Split into 3 RGBAImages 3 UIImages
     */
-   private static func split(rgbaImgs:RGBAImages, scale:CGFloat)->RGBUIImages{//TODO: ⚠️️ rename return type to UIImages
+   private static func split(rgbaImgs:RGBAImages, scale:CGFloat) -> RGBUIImages{//TODO: ⚠️️ rename return type to UIImages
       let rgb:RGBAImages = split(rgbaImgs: rgbaImgs)
 //      Swift.print("split ⚠️️ this may be wrong now, scale is new ⚠️️ ")
       let r:UIImage? = uiImage(rgbaImage: rgb.r, resultScale: scale)//⚠️️ this may be wrong now, scale is new

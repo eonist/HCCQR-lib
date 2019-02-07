@@ -21,7 +21,7 @@ class Colorize {
     * Converts multiple b&w images to color image based on the colorMap provided
     */
    static func colorize(images:[UIImage], colorMap:ColorMap) -> UIImage? {
-      let rgbaImages:[RGBAImage] = images.compactMap{RGBAImage.init(img: $0)}// TODO: ⚠️️ fatal error if unable to convert
+      let rgbaImages:[RGBAImage] = images.compactMap{RGBAImage.rgbaImage(uiImage: $0)}// TODO: ⚠️️ fatal error if unable to convert
       guard images.count == rgbaImages.count else {Swift.print("some rgbaImages was not created");return nil}
       guard let result:RGBAImage = colorize(rgbaImages: rgbaImages, colorMap: colorMap) else {Swift.print("unable to create colorized rgbaImage");return nil}
       guard let image:UIImage = RGBAImage.uiImage(rgbaImage: result,resultScale:1) else {Swift.print("unable to convert to UIImage");return nil}
@@ -45,7 +45,7 @@ class Colorize {
          }
       }
       guard pixels.count == Int(firstImage.width * firstImage.height) else {Swift.print("missing some pixels");return nil}
-      return .init(pixels: pixels, width: firstImage.width, height: firstImage.height)
+      return RGBAImage.rgbaImage(pixels: pixels, width: firstImage.width, height: firstImage.height)
    }
 }
 /**
