@@ -70,8 +70,8 @@ extension ViewController{
     */
    func testColorAssertionWithinThresholdForPixel(){
       let offset:UInt8 = UInt8(255*0.2)
-      let redishPixel:Pixel = .init(r:255-offset,g:0+offset,b:0+offset,a:255)
-      let redPixel:Pixel = .init(r:255,g:0,b:0,a:255)
+      let redishPixel:PixelData = .init(r:255-offset,g:0+offset,b:0+offset,a:255)
+      let redPixel:PixelData = .init(r:255,g:0,b:0,a:255)
       let threshold:UInt8 = UInt8(255*0.25)
       let isColorRedish:Bool = redishPixel.isColor(pixel:redPixel,threshold:threshold)
       Swift.print("isColorRedish:  \(isColorRedish)")
@@ -86,9 +86,9 @@ extension ViewController{
 //      Swift.print("rgb2:  \(rgb2)")
 //      Swift.print("UIColor.blue.colorComponents:  \(UIColor.blue.colorComponents)")//(red: 0.0, green: 0.0, blue: 1.0, alpha: 1.0)
       
-      let pixel = Pixel.init(color: .blue)
-      Swift.print("pixel.value:  \(pixel.value)")
-      pixel.temp(argb: Int(pixel.value))
+//      let pixel = PixelData.init(uiColor: .blue)
+//      Swift.print("pixel.value:  \(pixel.value)")
+//      pixel.temp(argb: Int(pixel.value))
 //      pixel.set
    }
 }

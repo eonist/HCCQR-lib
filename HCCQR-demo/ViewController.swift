@@ -19,9 +19,9 @@ class ViewController: UIViewController {
 //      testQRVersions()
 //     testModuleCount()
      
-      testHCCQRImage()
+//      testHCCQRImage()
      
-//      testReadingHCCQRImage()
+      testReadingHCCQRImage()
 //      colorTests()
    }
    override var prefersStatusBarHidden:Bool {return true}/*hides statusbar*/

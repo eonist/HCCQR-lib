@@ -41,6 +41,8 @@
 		F172F3A4220CC75D004ACB95 /* PixelData+Assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F172F3A3220CC75D004ACB95 /* PixelData+Assert.swift */; };
 		F172F3A6220CC7FA004ACB95 /* PixelData+Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = F172F3A5220CC7FA004ACB95 /* PixelData+Type.swift */; };
 		F172F3A8220CC9CE004ACB95 /* PixelData+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = F172F3A7220CC9CE004ACB95 /* PixelData+Init.swift */; };
+		F172F3AA220CCCDD004ACB95 /* Colorize+ColorMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = F172F3A9220CCCDD004ACB95 /* Colorize+ColorMap.swift */; };
+		F172F3AC220CCCFF004ACB95 /* Colorize+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F172F3AB220CCCFF004ACB95 /* Colorize+Helper.swift */; };
 		F18A52DF21790F8A003F8C13 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18A52DE21790F8A003F8C13 /* AppDelegate.swift */; };
 		F18A52E121790F8A003F8C13 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18A52E021790F8A003F8C13 /* ViewController.swift */; };
 		F18A52E421790F8A003F8C13 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F18A52E221790F8A003F8C13 /* Main.storyboard */; };
@@ -97,6 +99,8 @@
 		F172F3A3220CC75D004ACB95 /* PixelData+Assert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PixelData+Assert.swift"; sourceTree = "<group>"; };
 		F172F3A5220CC7FA004ACB95 /* PixelData+Type.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PixelData+Type.swift"; sourceTree = "<group>"; };
 		F172F3A7220CC9CE004ACB95 /* PixelData+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PixelData+Init.swift"; sourceTree = "<group>"; };
+		F172F3A9220CCCDD004ACB95 /* Colorize+ColorMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Colorize+ColorMap.swift"; sourceTree = "<group>"; };
+		F172F3AB220CCCFF004ACB95 /* Colorize+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Colorize+Helper.swift"; sourceTree = "<group>"; };
 		F18A52DB21790F8A003F8C13 /* HCCQR-demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HCCQR-demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F18A52DE21790F8A003F8C13 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F18A52E021790F8A003F8C13 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -193,6 +197,8 @@
 			isa = PBXGroup;
 			children = (
 				F162146121FC966C005297DE /* Colorize.swift */,
+				F172F3AB220CCCFF004ACB95 /* Colorize+Helper.swift */,
+				F172F3A9220CCCDD004ACB95 /* Colorize+ColorMap.swift */,
 			);
 			path = colorize;
 			sourceTree = "<group>";
@@ -345,6 +351,7 @@
 			files = (
 				F172F3A8220CC9CE004ACB95 /* PixelData+Init.swift in Sources */,
 				F14FADE521F75A9900ACE5FF /* VC+ViewTest.swift in Sources */,
+				F172F3AC220CCCFF004ACB95 /* Colorize+Helper.swift in Sources */,
 				F18A52E121790F8A003F8C13 /* ViewController.swift in Sources */,
 				F14FADF021F761FD00ACE5FF /* FakeHCCQRView.swift in Sources */,
 				F162146621FF0734005297DE /* AlignMarkTestView.swift in Sources */,
@@ -376,6 +383,7 @@
 				F11DE85A220B333B007A8A7A /* CGFloatParser.swift in Sources */,
 				F11DE862220BAF37007A8A7A /* RGBAImage+Init.swift in Sources */,
 				F162146F22007814005297DE /* AlignMarkUtil+Debug.swift in Sources */,
+				F172F3AA220CCCDD004ACB95 /* Colorize+ColorMap.swift in Sources */,
 				F162146B21FF4198005297DE /* AlignMarkUtil.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

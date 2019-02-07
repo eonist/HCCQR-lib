@@ -331,7 +331,7 @@ extension ViewController {
          //test splitting 8 color pallet,16,32
             //figure out which pallets to use prob:
       
-      let path = Bundle.main.resourcePath!+"/temp.bundle/HCCQR8.png"
+      let path = Bundle.main.resourcePath!+"/temp.bundle/HCCQR9.png"
       guard let uiImage:UIImage = UIImage.init(contentsOfFile: path) else {Swift.print("err getting img");return}
       
       guard let stringAndImages = HCCQRUtil.stringAndImages(uiImage:uiImage) else {Swift.print("err getting string from hccqr img");return}
@@ -340,5 +340,7 @@ extension ViewController {
       let uiimageview = UIImageView.init(image: stringAndImages.qr2)
       uiimageview.frame.size = .init(width:375,height:375)
       view.addSubview(uiimageview)
+      
+      //performance test this
    }
 }
