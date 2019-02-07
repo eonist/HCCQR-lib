@@ -39,14 +39,10 @@ extension HCCQRUtil{
       return stringAndImages(uiImage: uiImage)?.string
    }
    /**
-    *
+    * - Note: This method is also useful for debuging
     */
    static func stringAndImages(uiImage:UIImage) -> (string:String?,qr1:UIImage,qr2:UIImage)?{
       guard let (q1,q2):(UIImage,UIImage) = split(uiImage: uiImage) else {Swift.print("HCCQRUtil.stringAndImages() - q1,q2 err");return nil}
-      //      Swift.print("q1.size:  \(q1.size)")
-      //      Swift.print("q1.cgImage:  \(q1.cgImage)")
-      //      Swift.print("q1.ciImage:  \(q1.ciImage)")
-      //      Swift.print("ciImg:\(CoreImage.CIImage(cgImage: q1.cgImage!))")
       guard let qrCode1:String = QRUtil.qrCode(image: q1) else { Swift.print("HCCQRUtil.stringAndImages() - qrcode1 err"); return (nil,q1,q2)}
       guard let qrCode2:String = QRUtil.qrCode(image: q2) else { Swift.print("HCCQRUtil.stringAndImages() - qrcode2 err"); return (nil,q1,q2)}
       let string:String = qrCode1 + qrCode2

@@ -306,9 +306,10 @@ extension ViewController {
          //🚫 adjust the fill alorithm, some colors come out grayish, when they should be hard black or hard white
          //you are getting bad data bc of simulator and its blury pixels. ✅
          //optimize split algo
-         //optimize pixel code etc 👈
+         //optimize pixel code etc
             //find fast color for pixel code
             //clean up the code before you optimize 👈
+               // keep cleaning house before you move on, you might miss imp optimizations other wise
          //create the HCCQRLib
          //try adding some blur to an image, maybe it reads easier (could use this if a pass fails)
          //Try rapid creation of hccqr
@@ -334,8 +335,5 @@ extension ViewController {
       let uiimageview = UIImageView.init(image: stringAndImages.qr2)
       uiimageview.frame.size = .init(width:375,height:375)
       view.addSubview(uiimageview)
-      
-//
-//      }
    }
 }
