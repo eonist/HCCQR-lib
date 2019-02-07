@@ -23,9 +23,9 @@ extension RGBAImage {
                //                   pixel.R = pixel.R + rgbaPixel.R
                //               }
                //this is sort of clamping, can be done with 1 method instead
-               pixel.R = UInt32(pixel.R) + UInt32(rgbaPixel.R) > 255 ? 255 : pixel.R + rgbaPixel.R
-               pixel.G = UInt32(pixel.G) + UInt32(rgbaPixel.G) > 255 ? 255 : pixel.G + rgbaPixel.G
-               pixel.B = UInt32(pixel.B) + UInt32(rgbaPixel.B) > 255 ? 255 : pixel.B + rgbaPixel.B
+               pixel.r = UInt32(pixel.r) + UInt32(rgbaPixel.r) > 255 ? 255 : pixel.r + rgbaPixel.r
+               pixel.g = UInt32(pixel.g) + UInt32(rgbaPixel.g) > 255 ? 255 : pixel.g + rgbaPixel.g
+               pixel.b = UInt32(pixel.b) + UInt32(rgbaPixel.b) > 255 ? 255 : pixel.b + rgbaPixel.b
                //               pixel.R = min(pixel.G + rgbaPixel.G, 255)
                //               pixel.G = min(pixel.G + rgbaPixel.G, 255)
                //               pixel.B = min(pixel.B + rgbaPixel.B, 255)
@@ -45,9 +45,9 @@ extension RGBAImage {
             let pixel = pixels[index]
             var imagePixel = Pixel.init(color:.black)
             
-            imagePixel.R = pixel.R
-            imagePixel.G = pixel.G
-            imagePixel.B = pixel.B
+            imagePixel.r = pixel.r
+            imagePixel.g = pixel.g
+            imagePixel.b = pixel.b
             image.setPixel(x: x, y: y, pixel: imagePixel)
 //            image.pixels[index] = imagePixel
          }

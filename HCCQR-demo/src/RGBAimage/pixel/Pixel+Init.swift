@@ -14,8 +14,8 @@ extension Pixel{
    /**
     * Set rgba
     */
-   init(R:UInt8,G:UInt8,B:UInt8,A:UInt8){
+   init(r:UInt8,g:UInt8,b:UInt8,a:UInt8){
       self.value = 0
-      setRGBA(R: R, G: G, B: B, A: A)
+      setRGBA(r: r, g: g, b: b, a: a)
    }
 }

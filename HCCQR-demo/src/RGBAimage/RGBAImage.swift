@@ -8,7 +8,6 @@ public struct RGBAImage {
     public var height:Int
    /**
     * Creates a copy if you already have the pixels and width height
-    * - IMPORTANT: ⚠️️ Not in use ⚠️️
     */
    public init(pixels:UnsafeMutableBufferPointer<Pixel>, width:Int, height:Int)  {
       self.pixels = pixels

@@ -28,7 +28,6 @@
 		F162145D21FC7D7F005297DE /* Pixel+Assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162145C21FC7D7F005297DE /* Pixel+Assert.swift */; };
 		F162145F21FC7DC9005297DE /* Pixel+Setter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162145E21FC7DC9005297DE /* Pixel+Setter.swift */; };
 		F162146221FC966C005297DE /* Colorize.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162146121FC966C005297DE /* Colorize.swift */; };
-		F162146421FC99CA005297DE /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162146321FC99CA005297DE /* UIColor+Extension.swift */; };
 		F162146621FF0734005297DE /* AlignMarkTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162146521FF0734005297DE /* AlignMarkTestView.swift */; };
 		F162146821FF380E005297DE /* CAShapeLayerUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162146721FF380E005297DE /* CAShapeLayerUtil.swift */; };
 		F162146B21FF4198005297DE /* AlignMarkUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162146A21FF4198005297DE /* AlignMarkUtil.swift */; };
@@ -38,6 +37,8 @@
 		F172F386220BB8DD004ACB95 /* Pixel+Accessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F172F385220BB8DD004ACB95 /* Pixel+Accessor.swift */; };
 		F172F388220BB8FA004ACB95 /* Pixel+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = F172F387220BB8FA004ACB95 /* Pixel+Init.swift */; };
 		F172F38A220BB93C004ACB95 /* Pixel+Getter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F172F389220BB93C004ACB95 /* Pixel+Getter.swift */; };
+		F172F38C220C817B004ACB95 /* UIColor+Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F172F38B220C817B004ACB95 /* UIColor+Parser.swift */; };
+		F172F38F220C8192004ACB95 /* UIColor+Asserter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F172F38E220C8192004ACB95 /* UIColor+Asserter.swift */; };
 		F18A52DF21790F8A003F8C13 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18A52DE21790F8A003F8C13 /* AppDelegate.swift */; };
 		F18A52E121790F8A003F8C13 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18A52E021790F8A003F8C13 /* ViewController.swift */; };
 		F18A52E421790F8A003F8C13 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F18A52E221790F8A003F8C13 /* Main.storyboard */; };
@@ -82,7 +83,6 @@
 		F162145C21FC7D7F005297DE /* Pixel+Assert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Pixel+Assert.swift"; sourceTree = "<group>"; };
 		F162145E21FC7DC9005297DE /* Pixel+Setter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Pixel+Setter.swift"; sourceTree = "<group>"; };
 		F162146121FC966C005297DE /* Colorize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colorize.swift; sourceTree = "<group>"; };
-		F162146321FC99CA005297DE /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		F162146521FF0734005297DE /* AlignMarkTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlignMarkTestView.swift; sourceTree = "<group>"; };
 		F162146721FF380E005297DE /* CAShapeLayerUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CAShapeLayerUtil.swift; sourceTree = "<group>"; };
 		F162146A21FF4198005297DE /* AlignMarkUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlignMarkUtil.swift; sourceTree = "<group>"; };
@@ -92,6 +92,8 @@
 		F172F385220BB8DD004ACB95 /* Pixel+Accessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Pixel+Accessor.swift"; sourceTree = "<group>"; };
 		F172F387220BB8FA004ACB95 /* Pixel+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Pixel+Init.swift"; sourceTree = "<group>"; };
 		F172F389220BB93C004ACB95 /* Pixel+Getter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Pixel+Getter.swift"; sourceTree = "<group>"; };
+		F172F38B220C817B004ACB95 /* UIColor+Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Parser.swift"; sourceTree = "<group>"; };
+		F172F38E220C8192004ACB95 /* UIColor+Asserter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Asserter.swift"; sourceTree = "<group>"; };
 		F18A52DB21790F8A003F8C13 /* HCCQR-demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HCCQR-demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F18A52DE21790F8A003F8C13 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F18A52E021790F8A003F8C13 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -150,7 +152,7 @@
 				F14FADEA21F75F3900ACE5FF /* UIView+Extension.swift */,
 				F16214702200CC89005297DE /* Data+Extension.swift */,
 				F14FADF121F77E4400ACE5FF /* UIImage+Extension.swift */,
-				F162146321FC99CA005297DE /* UIColor+Extension.swift */,
+				F172F38D220C8180004ACB95 /* color */,
 				F11DE85E220B3F5C007A8A7A /* util */,
 			);
 			path = extension;
@@ -200,6 +202,15 @@
 				F162146C220063F1005297DE /* AlignMarkUtil+Metric.swift */,
 			);
 			path = alignmark;
+			sourceTree = "<group>";
+		};
+		F172F38D220C8180004ACB95 /* color */ = {
+			isa = PBXGroup;
+			children = (
+				F172F38B220C817B004ACB95 /* UIColor+Parser.swift */,
+				F172F38E220C8192004ACB95 /* UIColor+Asserter.swift */,
+			);
+			path = color;
 			sourceTree = "<group>";
 		};
 		F18A52D221790F8A003F8C13 = {
@@ -324,7 +335,6 @@
 				F14FADE521F75A9900ACE5FF /* VC+Extension.swift in Sources */,
 				F162145F21FC7DC9005297DE /* Pixel+Setter.swift in Sources */,
 				F18A52E121790F8A003F8C13 /* ViewController.swift in Sources */,
-				F162146421FC99CA005297DE /* UIColor+Extension.swift in Sources */,
 				F14FADF021F761FD00ACE5FF /* FakeHCCQRView.swift in Sources */,
 				F172F38A220BB93C004ACB95 /* Pixel+Getter.swift in Sources */,
 				F162146621FF0734005297DE /* AlignMarkTestView.swift in Sources */,
@@ -341,11 +351,13 @@
 				F14FADF221F77E4400ACE5FF /* UIImage+Extension.swift in Sources */,
 				F14FADE821F75EF100ACE5FF /* RGBColorTestView.swift in Sources */,
 				F162145421FC7138005297DE /* SimpleHCCQRView.swift in Sources */,
+				F172F38C220C817B004ACB95 /* UIColor+Parser.swift in Sources */,
 				F16214712200CC89005297DE /* Data+Extension.swift in Sources */,
 				F11DE8512208F19F007A8A7A /* VC+Test.swift in Sources */,
 				F11DE854220A45BA007A8A7A /* HCCQRUtil.swift in Sources */,
 				F162145A21FC7791005297DE /* RGBAImage+Util.swift in Sources */,
 				F162146D220063F1005297DE /* AlignMarkUtil+Metric.swift in Sources */,
+				F172F38F220C8192004ACB95 /* UIColor+Asserter.swift in Sources */,
 				F11DE85D220B3EA8007A8A7A /* IntParser.swift in Sources */,
 				F162145821FC7636005297DE /* RGBAImage+Split.swift in Sources */,
 				F11DE85A220B333B007A8A7A /* CGFloatParser.swift in Sources */,

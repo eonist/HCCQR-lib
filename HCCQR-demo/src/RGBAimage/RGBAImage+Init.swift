@@ -31,14 +31,14 @@ extension RGBAImage{
       let scale:CGFloat = img.scale
       let width:Int = Int(img.size.width*scale)
       let height:Int = Int(img.size.height*scale)
-      var pixels:[Pixel] = []
-      for y in 0..<height {
-         for x in 0..<width {
+      let pixels:[Pixel] = (0..<height).flatMap{ y in
+         (0..<width).map{ x in
             let pixelInfo: Int = ((Int(img.size.width*scale) * y) + x) * 4
-            let pixel =  Pixel.init(R: data[pixelInfo], G: data[pixelInfo+1], B: data[pixelInfo+2], A: data[pixelInfo+3])
-            pixels.append(pixel)
+            let pixel =  Pixel.init(r: data[pixelInfo], g: data[pixelInfo+1], b: data[pixelInfo+2], a: data[pixelInfo+3])
+            return pixel
          }
       }
+      
       let blackImg:UIImage = UIImage.createImage(size: CGSize.init(width: img.size.width*scale, height: img.size.height*scale), color: .black)
       let result : RGBAImage = RGBAImage.rgbaImage(image:blackImg)!
       var rgbaImage:RGBAImage = RGBAImage.init(pixels: result.pixels, width: Int(img.size.width*scale), height: Int(img.size.height*scale))

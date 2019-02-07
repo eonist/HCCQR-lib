@@ -3,9 +3,9 @@ import UIKit
  * Assert
  */
 extension Pixel{
-   static let redPixel:Pixel = .init(R:255,G:0,B:0,A:255)
-   static let greenPixel:Pixel = .init(R:0,G:255,B:0,A:255)
-   static let bluePixel:Pixel = .init(R:0,G:0,B:255,A:255)
+   static let redPixel:Pixel = .init(r:255,g:0,b:0,a:255)
+   static let greenPixel:Pixel = .init(r:0,g:255,b:0,a:255)
+   static let bluePixel:Pixel = .init(r:0,g:0,b:255,a:255)
    static let threshold:CGFloat = 0.35
    /**
     * Asserts if a pixel is sort of red within a threshold
@@ -75,30 +75,30 @@ public extension Pixel{
     * - Description: basically measure if there is more r than g or b
     */
    var isRed:Bool {
-      return self.R == 255 && self.G != 255 && self.B != 255
+      return self.r == 255 && self.g != 255 && self.b != 255
    }
    /**
     * Measure if color is green
     */
    var isGreen:Bool {
-      return self.R != 255 && self.G == 255 && self.B != 255
+      return self.r != 255 && self.g == 255 && self.b != 255
    }
    /**
     * Measure if color is blue
     */
    var isBlue:Bool {
-      return self.R != 255 && self.G != 255 && self.B == 255
+      return self.r != 255 && self.g != 255 && self.b == 255
    }
    /**
     * Measure if color is white
     */
    var isWhite:Bool {
-      return self.R == 255 && self.G == 255 && self.B == 255
+      return self.r == 255 && self.g == 255 && self.b == 255
    }
    /**
     * Measure if color is black
     */
    var isBlack:Bool {
-      return self.R == 0 && self.G == 0 && self.B == 0
+      return self.r == 0 && self.g == 0 && self.b == 0
    }
 }

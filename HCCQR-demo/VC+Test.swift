@@ -70,8 +70,8 @@ extension ViewController{
     */
    func testColorAssertionWithinThresholdForPixel(){
       let offset:UInt8 = UInt8(255*0.2)
-      let redishPixel:Pixel = .init(R:255-offset,G:0+offset,B:0+offset,A:255)
-      let redPixel:Pixel = .init(R:255,G:0,B:0,A:255)
+      let redishPixel:Pixel = .init(r:255-offset,g:0+offset,b:0+offset,a:255)
+      let redPixel:Pixel = .init(r:255,g:0,b:0,a:255)
       let threshold:UInt8 = UInt8(255*0.25)
       let isColorRedish:Bool = redishPixel.isColor(pixel:redPixel,threshold:threshold)
       Swift.print("isColorRedish:  \(isColorRedish)")
