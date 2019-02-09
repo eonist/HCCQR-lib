@@ -43,6 +43,8 @@
 		F172F3A8220CC9CE004ACB95 /* PixelData+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = F172F3A7220CC9CE004ACB95 /* PixelData+Init.swift */; };
 		F172F3AA220CCCDD004ACB95 /* Colorize+ColorMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = F172F3A9220CCCDD004ACB95 /* Colorize+ColorMap.swift */; };
 		F172F3AC220CCCFF004ACB95 /* Colorize+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F172F3AB220CCCFF004ACB95 /* Colorize+Helper.swift */; };
+		F172F3AE220F61C8004ACB95 /* HCCQRStringData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F172F3AD220F61C8004ACB95 /* HCCQRStringData.swift */; };
+		F172F3B0220F673A004ACB95 /* ColorizeUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F172F3AF220F673A004ACB95 /* ColorizeUtil.swift */; };
 		F18A52DF21790F8A003F8C13 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18A52DE21790F8A003F8C13 /* AppDelegate.swift */; };
 		F18A52E121790F8A003F8C13 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18A52E021790F8A003F8C13 /* ViewController.swift */; };
 		F18A52E421790F8A003F8C13 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F18A52E221790F8A003F8C13 /* Main.storyboard */; };
@@ -101,6 +103,8 @@
 		F172F3A7220CC9CE004ACB95 /* PixelData+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PixelData+Init.swift"; sourceTree = "<group>"; };
 		F172F3A9220CCCDD004ACB95 /* Colorize+ColorMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Colorize+ColorMap.swift"; sourceTree = "<group>"; };
 		F172F3AB220CCCFF004ACB95 /* Colorize+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Colorize+Helper.swift"; sourceTree = "<group>"; };
+		F172F3AD220F61C8004ACB95 /* HCCQRStringData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HCCQRStringData.swift; sourceTree = "<group>"; };
+		F172F3AF220F673A004ACB95 /* ColorizeUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorizeUtil.swift; sourceTree = "<group>"; };
 		F18A52DB21790F8A003F8C13 /* HCCQR-demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HCCQR-demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F18A52DE21790F8A003F8C13 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F18A52E021790F8A003F8C13 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -127,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				F11DE853220A45BA007A8A7A /* HCCQRUtil.swift */,
+				F172F3AD220F61C8004ACB95 /* HCCQRStringData.swift */,
 			);
 			path = hccqr;
 			sourceTree = "<group>";
@@ -199,6 +204,7 @@
 				F162146121FC966C005297DE /* Colorize.swift */,
 				F172F3AB220CCCFF004ACB95 /* Colorize+Helper.swift */,
 				F172F3A9220CCCDD004ACB95 /* Colorize+ColorMap.swift */,
+				F172F3AF220F673A004ACB95 /* ColorizeUtil.swift */,
 			);
 			path = colorize;
 			sourceTree = "<group>";
@@ -350,6 +356,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F172F3A8220CC9CE004ACB95 /* PixelData+Init.swift in Sources */,
+				F172F3AE220F61C8004ACB95 /* HCCQRStringData.swift in Sources */,
 				F14FADE521F75A9900ACE5FF /* VC+ViewTest.swift in Sources */,
 				F172F3AC220CCCFF004ACB95 /* Colorize+Helper.swift in Sources */,
 				F18A52E121790F8A003F8C13 /* ViewController.swift in Sources */,
@@ -362,6 +369,7 @@
 				F162146221FC966C005297DE /* Colorize.swift in Sources */,
 				F18A52DF21790F8A003F8C13 /* AppDelegate.swift in Sources */,
 				F162146821FF380E005297DE /* CAShapeLayerUtil.swift in Sources */,
+				F172F3B0220F673A004ACB95 /* ColorizeUtil.swift in Sources */,
 				F172F3A6220CC7FA004ACB95 /* PixelData+Type.swift in Sources */,
 				F172F3A0220CC5C7004ACB95 /* PixelDataUtil.swift in Sources */,
 				F172F39C220CC5A5004ACB95 /* PixelData.swift in Sources */,

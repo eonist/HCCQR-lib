@@ -26,8 +26,8 @@ extension RGBAImage{
     * Applies pixels with a method
     */
    public mutating func process(functor:FunctorCall) {
-      for y in 0..<height {
-         for x in 0..<width {
+      (0..<self.height).forEach{ y in
+         (0..<self.width).forEach { x in
             let index:Int = y * width + x
             let outPixel = functor(pixels[index])
             pixels[index] = outPixel

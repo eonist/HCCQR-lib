@@ -41,9 +41,16 @@ extension UIImage {
       guard let cgImage = self.cgImage ?? self.cgImage() else {Swift.print("getPixelColor() - unable to get cgImage");return nil}
       guard let dataProvider = cgImage.dataProvider else {Swift.print("getPixelColor() - unable to get dataProvider");return nil}
       guard let pixelData:CFData = dataProvider.data else {Swift.print("getPixelColor() - unable to get cfData");return nil}
-      let data: UnsafePointer<UInt8> = CFDataGetBytePtr(pixelData)
-      let pixelInfo: Int = ((Int(self.size.width*self.scale) * Int(pos.y)) + Int(pos.x)) * 4
+      let data:UnsafePointer<UInt8> = CFDataGetBytePtr(pixelData)
+      
       //      Swift.print("pixelInfo:  \(pixelInfo)")
+      return getPixelColor(pos: pos, data: data)
+   }
+   /**
+    * Internal helper
+    */
+   private func getPixelColor(pos:CGPoint, data:UnsafePointer<UInt8>) -> UIColor? {
+      let pixelInfo:Int = ((Int(self.size.width*self.scale) * Int(pos.y)) + Int(pos.x)) * 4
       let r = CGFloat(data[pixelInfo]) / CGFloat(255.0)
       let g = CGFloat(data[pixelInfo+1]) / CGFloat(255.0)
       let b = CGFloat(data[pixelInfo+2]) / CGFloat(255.0)
@@ -52,12 +59,20 @@ extension UIImage {
    }
    /**
     * Returns color of every pixel in an image (strange that width isnt mapped first?)
+    * - TODO: Should return optional
     */
    var pixelColors:[[UIColor]] {
+      guard let cgImage = self.cgImage ?? self.cgImage() else {Swift.print("getPixelColor() - unable to get cgImage");return []}
+      guard let dataProvider = cgImage.dataProvider else {Swift.print("getPixelColor() - unable to get dataProvider");return []}
+      guard let pixelData:CFData = dataProvider.data else {Swift.print("getPixelColor() - unable to get cfData");return []}
+      let data:UnsafePointer<UInt8> = CFDataGetBytePtr(pixelData)
+      
+      //      Swift.print("pixelInfo:  \(pixelInfo)")
+      
       let (width,height) = (Int(size.width), Int(size.height))
       return (0..<height).map { y in
          (0..<width).compactMap{ x in
-            getPixelColor(pos: .init(x: x, y: y))
+            getPixelColor(pos: .init(x: x, y: y),data:data)
          }
       }
    }
@@ -69,44 +84,11 @@ extension UIImage {
       let context:CIContext = CIContext.init(options: nil)
       return context.createCGImage(ciImage, from: ciImage.extent)
    }
-}
-/**
- * Asserter
- */
-extension UIImage{
    /**
-    * Asserts if an image has non black or white pixel. (aka a gray pixel)
+    * sometimes uiImage.ciImage just doesn't work
     */
-   var hasOnlyBlackAndWhiteColorMap:Bool {
-//      Swift.print("hasNoneBlackOrWhiteColor")
-      return hasOnlyColorMap(colorMap: [.black,.white])
-   }
-   /**
-    * Asserts if an image has only the colors speccified in the colors array
-    * ## Example:
-    * hasOnlyColorMap(these: [.red,.green,.blue,.white])
-    */
-   func hasOnlyColorMap(colorMap:[UIColor]) -> Bool{
-//      Swift.print("hasOnly")
-//      Swift.print("colors:  \(colors)")
-//      Swift.print("self.size:  \(self.size)")
-//      Swift.print("self.scale:  \(self.scale)")
-      let pixelColors = self.pixelColors
-//      Swift.print("pixelColors.count:  \(pixelColors.count)")
-      let condition:(UIColor) -> Bool = { color in
-         let matchCondition:(UIColor) -> Bool = {
-//            Swift.print("$0 \($0) color: \(color)")
-            let isMatching:Bool = $0.isEqualRGBA(uiColor:color)//$0 == color//$0.isEqualWithConversion(uiColor:color)
-//            Swift.print("isMatching:  \(isMatching)")
-            return isMatching
-         }
-         let firstmatch = colorMap.first(where: matchCondition)
-//         Swift.print("firstmatch:  \(firstmatch)")
-//         Swift.print("firstmatch:  \(firstmatch) color: \(color)")
-         return firstmatch == nil
-      }
-      let first = pixelColors.flatMap{$0}.first(where: condition)
-//      Swift.print("first:  \(first)")
-      return first == nil
+   func ciImage() -> CIImage? {
+      guard let cgImage:CGImage = self.cgImage else {Swift.print("UIImage.ciImage() - unable to create cgimage");return nil}
+      return CoreImage.CIImage(cgImage: cgImage)
    }
 }

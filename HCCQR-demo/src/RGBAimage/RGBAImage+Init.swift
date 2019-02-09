@@ -15,12 +15,14 @@ extension RGBAImage{
       var bitmapInfo: UInt32 = CGBitmapInfo.byteOrder32Big.rawValue//BGRA
       bitmapInfo = bitmapInfo | CGImageAlphaInfo.premultipliedLast.rawValue & CGBitmapInfo.alphaInfoMask.rawValue
       guard let imageContext = CGContext(data: imageData, width: width, height: height, bitsPerComponent: 8, bytesPerRow: bytesPerRow, space: colorSpace, bitmapInfo: bitmapInfo) else {
+         Swift.print("unable to create rgbaImage")
          return nil
       }
       imageContext.draw(cgImage, in: CGRect(origin: .zero, size: image.size))//cgImage.imageData
       let pixels = UnsafeMutableBufferPointer<PixelData>(start: imageData, count: width * height)
       return RGBAImage.init(pixels: pixels, width: width, height: height)
    }
+  
    /**
     * Beta (trying to fix "blurry edge pixel bug")
     * - Important: ⚠️️ CoreGraphics expects pixel data as rows, not columns. Just flip your for-statements like this:

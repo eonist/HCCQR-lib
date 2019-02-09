@@ -16,15 +16,40 @@ class HCCQRUtil{
     * Swift.print(hccqrImage?.hasOnlyColorMap(colorMap: [.red,.green,.blue,.white]))//ensure that img only has valid colors, akak no bluring
     */
    static func getHCCQRImage(string str:String, qrVersion:Int, qrMode:QRMode, ecLevel:ECLevel) -> UIImage? {
-      let moduleCount:Int = QRInfoUtil.moduleCount(version: qrVersion)
-      let firstPart:String = String(str[..<str.index(str.startIndex, offsetBy: str.count/2)])//substring(to: )//(from:)
-      let lastPart:String = String(str[str.index(str.startIndex, offsetBy: str.count/2)...])//substring(to: )//(from:)
+      let moduleCount:Int = QRInfoUtil.moduleCount(version: qrVersion)/*Qort of like QRPixels*/
+      let firstPart:String = String(str[..<str.index(str.startIndex, offsetBy: str.count/2)])/*First part of the payload*/
+      let lastPart:String = String(str[str.index(str.startIndex, offsetBy: str.count/2)...])/*Second part of the payload*/
       let length:CGFloat = CGFloat(moduleCount + 2) * 6//<--scales the img a bit
-      guard let qrImg1:UIImage = QRUtil.qrImage(str: firstPart, size: .init(width:length,height:length), ecLevel: ecLevel) else {Swift.print("unable to create UIImage");return nil}
-      guard let qrImg2:UIImage = QRUtil.qrImage(str: lastPart, size: .init(width:length,height:length), ecLevel: ecLevel) else {Swift.print("unable to create UIImage");return nil}
+      guard let qrImg1:UIImage = QRUtil.qrImage(str: firstPart, size: .init(width:length,height:length), ecLevel: ecLevel) else {Swift.print("Unable to create UIImage");return nil}
+      guard let qrImg2:UIImage = QRUtil.qrImage(str: lastPart, size: .init(width:length,height:length), ecLevel: ecLevel) else {Swift.print("Unable to create UIImage");return nil}
       let qrImgs = [qrImg1,qrImg2]
-      guard let resultImage:UIImage = Colorize.colorize(images: qrImgs, colorMap: Colorize.colorMap/*blandColorMap*/) else {Swift.print("unable to create colorized image");return nil}
+      guard let resultImage:UIImage = Colorize.colorize(images: qrImgs, colorMap: Colorize.colorMap/*blandColorMap*/) else {Swift.print("Unable to create colorized image");return nil}
+      
+      //🏀
+      //take each pixel and draw them with a multiplier
+      //create empty black image that is (width:w*scale.x,height:h*scale.y)
+      //
+      //height.forEach{ y in
+      //width.forEach{ x in
+      //pixelIdx = x*y
+      //scale.y.forEach{ scaleY
+      //scale.x.forEach{ scaleX
+      //pixelIdxOut = pixelIdxOut*scaleX*scaleY
+      //outputPixels[pixelIdxOut] = pixel
+      
       return resultImage
+//      Swift.print("resultImage.ciImage():  \(resultImage.ciImage())")
+//      Swift.print("resultImage.cgImage:  \(resultImage.cgImage)")
+//      guard let outputImage:CIImage = resultImage.ciImage() else {Swift.print("Unable to create CIImage");return nil}
+//      let scale:CGPoint = {
+//         let x = length*6 / outputImage.extent.size.width
+//         let y = length*6 / outputImage.extent.size.height
+//         return .init(x:x,y:y)
+//      }()
+//      //      Swift.print("scale:  \(scale)")
+//      let transformedImage:CIImage = outputImage.transformed(by: CGAffineTransform(scaleX: scale.x, y: scale.y))
+//      let uiImage:UIImage = .init(ciImage: transformedImage)
+//      return uiImage
    }
 }
 /**

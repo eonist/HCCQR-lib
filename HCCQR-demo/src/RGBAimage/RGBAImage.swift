@@ -14,4 +14,11 @@ public struct RGBAImage {
       self.width = width
       self.height = height
    }
+//   func getPixels() -> [PixelData] {
+//      return (0..<height).flatMap{ y in
+//         (0..<width).map{ x in
+//            return getPixel(x: x, y: y)!
+//         }
+//      }
+//   }
 }

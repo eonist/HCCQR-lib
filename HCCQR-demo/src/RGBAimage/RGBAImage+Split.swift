@@ -14,7 +14,7 @@ extension RGBAImage {
       guard let r:RGBAImage = RGBAImage.rgbaImage(image: image) else {return nil}
       guard let g:RGBAImage = RGBAImage.rgbaImage(image: image) else {return nil}
       guard let b:RGBAImage = RGBAImage.rgbaImage(image: image) else {return nil}
-      let rgbImages:RGBUIImages = split(rgbaImgs: (r,g,b),scale:image.scale)
+      let rgbImages:RGBUIImages = split(rgbaImgs: (r,g,b), scale:image.scale)
       return rgbImages
    }
    /**
@@ -37,7 +37,6 @@ extension RGBAImage {
       let b:RGBAImage = channelB(rgbaImgs.b)
       return (r,g,b)
    }
-   
 }
 /**
  * Helper
@@ -50,9 +49,7 @@ fileprivate extension RGBAImage {
    fileprivate static func channelR(_ image: RGBAImage) -> RGBAImage {
       var outImage = image
       outImage.process { (pixel) -> PixelData in
-         var pixelCopy = pixel
-         pixel.isRedish ? pixelCopy.setWhite() : pixelCopy.setBlack()
-         return pixelCopy
+         return pixel.isRedish ? PixelData.whitePixel : PixelData.blackPixel
       }
       return outImage
    }
@@ -62,9 +59,7 @@ fileprivate extension RGBAImage {
    fileprivate static func channelG(_ image: RGBAImage) -> RGBAImage {
       var outImage = image
       outImage.process { (pixel) -> PixelData in
-         var pixelCopy = pixel
-         pixel.isGreenish ? pixelCopy.setWhite() : pixelCopy.setBlack()
-         return pixelCopy
+         return pixel.isGreenish ? PixelData.whitePixel : PixelData.blackPixel
       }
       return outImage
    }
@@ -74,9 +69,7 @@ fileprivate extension RGBAImage {
    fileprivate static func channelB(_ image: RGBAImage) -> RGBAImage {
       var outImage = image
       outImage.process { (pixel) -> PixelData in
-         var pixelCopy = pixel
-         pixel.isBlueish ? pixelCopy.setWhite() : pixelCopy.setBlack()
-         return pixelCopy
+         return pixel.isBlueish ? PixelData.whitePixel : PixelData.blackPixel
       }
       return outImage
    }
