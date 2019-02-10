@@ -4,6 +4,16 @@ import UIKit
  */
 extension RGBAImage{
    /**
+    * New, unused
+    */
+   var getPixels:[PixelData] {
+      return (0..<height).flatMap{ y in
+         (0..<width).compactMap{ x in
+            return getPixel(x: x, y: y)
+         }
+      }
+   }
+   /**
     * Get pixel
     * - IMPORTANT: ⚠️️ Not in use ⚠️️
     */
@@ -39,5 +49,8 @@ extension RGBAImage{
             pixels[index] = outPixel
          }
       }
+   }
+   var copy:RGBAImage{
+      return RGBAImage.rgbaImage(pixels: pixels.map{$0}, size: (width,height))
    }
 }

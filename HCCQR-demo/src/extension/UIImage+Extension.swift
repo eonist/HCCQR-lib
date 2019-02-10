@@ -8,8 +8,8 @@ extension UIImage {
     * Inverts an image (black becomes white etc)
     */
    func invertedImage() -> UIImage? {
-      guard let cgImage = self.cgImage else {Swift.print("UIImage.invertedImage() - unable to create cgImage"); return nil }
-      let ciImage:CIImage = CoreImage.CIImage(cgImage: cgImage)
+//      guard let cgImage = self.cgImage else {Swift.print("UIImage.invertedImage() - unable to create cgImage"); return nil }
+      guard let ciImage:CIImage = self.ciImage() else {Swift.print("UIImage.invertedImage() - unable to create ciImage"); return nil}//CoreImage.CIImage(cgImage: cgImage)
       guard let filter = CIFilter(name: "CIColorInvert") else { Swift.print("UIImage.invertedImage() - unable to create filter");return nil }
       filter.setDefaults()
       filter.setValue(ciImage, forKey: kCIInputImageKey)
@@ -58,21 +58,18 @@ extension UIImage {
       return UIColor(red: r, green: g, blue: b, alpha: a)
    }
    /**
-    * Returns color of every pixel in an image (strange that width isnt mapped first?)
+    * Returns color of every pixel in an image
     * - TODO: Should return optional
     */
-   var pixelColors:[[UIColor]] {
+   var pixelColors:[UIColor] {
       guard let cgImage = self.cgImage ?? self.cgImage() else {Swift.print("getPixelColor() - unable to get cgImage");return []}
       guard let dataProvider = cgImage.dataProvider else {Swift.print("getPixelColor() - unable to get dataProvider");return []}
       guard let pixelData:CFData = dataProvider.data else {Swift.print("getPixelColor() - unable to get cfData");return []}
       let data:UnsafePointer<UInt8> = CFDataGetBytePtr(pixelData)
-      
-      //      Swift.print("pixelInfo:  \(pixelInfo)")
-      
       let (width,height) = (Int(size.width), Int(size.height))
-      return (0..<height).map { y in
-         (0..<width).compactMap{ x in
-            getPixelColor(pos: .init(x: x, y: y),data:data)
+      return (0..<height).flatMap { y in
+         return (0..<width).compactMap{ x in
+            getPixelColor(pos: .init(x: x, y: y), data:data)
          }
       }
    }

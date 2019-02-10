@@ -26,7 +26,7 @@ extension Colorize{
    /**
     * Converts b&w RGBAImages into one color RGBAImage (on the basis of a colorMap rule-set)
     */
-   internal static func colorize(rgbaImages:[RGBAImage], colorMap:ColorMap) -> RGBAImage?{
+   internal static func colorize(rgbaImages:[RGBAImage], colorMap:ColorMap, scale:Int) -> RGBAImage?{
       guard let firstImage:RGBAImage = rgbaImages.first else {Swift.print("must contain at least one image");return nil}
       let pixels:[PixelData] = (0..<firstImage.height).indices.flatMap { y in /*flatMap Covert the 2-dim array to a 1-dim array*/
          return (0..<firstImage.width).indices.compactMap { x in
@@ -40,6 +40,6 @@ extension Colorize{
       }
       /*Check if array has all the pixels*/
       guard pixels.count == Int(firstImage.width * firstImage.height) else {Swift.print("missing some pixels");return nil}
-      return RGBAImage.rgbaImage(pixels: pixels, width: firstImage.width, height: firstImage.height)
+      return RGBAImage.rgbaImage(pixels: pixels, size:(width: firstImage.width, height: firstImage.height),scale:scale)
    }
 }

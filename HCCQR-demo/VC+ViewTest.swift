@@ -59,9 +59,9 @@ extension ViewController {
       guard let image:UIImage = rgbColorTestView.snapShot else {fatalError("err")}
       /**/
       guard let images:RGBAImage.RGBUIImages = RGBAImage.split(image: image) else {fatalError("err")}
-      guard let r:RGBAImage = RGBAImage.rgbaImage(image: images.r!) else {return }
-      guard let g:RGBAImage = RGBAImage.rgbaImage(image: images.g!) else {return }
-      guard let b:RGBAImage = RGBAImage.rgbaImage(image: images.b!) else {return }
+      guard let r:RGBAImage = RGBAImage.rgbaImage(image: images.r) else {return }
+      guard let g:RGBAImage = RGBAImage.rgbaImage(image: images.g) else {return }
+      guard let b:RGBAImage = RGBAImage.rgbaImage(image: images.b) else {return }
       _ = b
       guard let composite = RGBAImage.composite(rgbaImageList: [r,g/*,b*/]) else { return }
       /**/
@@ -132,12 +132,12 @@ extension ViewController {
 //      let rImageView:UIImageView = UIImageView.init(image: images.g)
 //      view.addSubview(rImageView)
 //      rImageView.frame.origin.y = 80*4
-      Swift.print("images.r!.size:  \(images.r!.size)")
-      Swift.print("images.r!.scale:  \(images.r!.scale)")
-      guard let r:RGBAImage = RGBAImage.rgbaImage(image: images.r!) else {return }
-      guard let g:RGBAImage = RGBAImage.rgbaImage(image: images.g!) else {return }
+      Swift.print("images.r!.size:  \(images.r.size)")
+      Swift.print("images.r!.scale:  \(images.r.scale)")
+      guard let r:RGBAImage = RGBAImage.rgbaImage(image: images.r) else {return }
+      guard let g:RGBAImage = RGBAImage.rgbaImage(image: images.g) else {return }
       _ = r
-      guard let b:RGBAImage = RGBAImage.rgbaImage(image: images.b!) else {return }
+      guard let b:RGBAImage = RGBAImage.rgbaImage(image: images.b) else {return }
       guard let composite = RGBAImage.composite(rgbaImageList: [b,g/*,g*/]) else { return }
       /**/
       Swift.print("⚠️️ the bellow may not work anymore, scale is new ⚠️️")
@@ -161,7 +161,7 @@ extension ViewController {
 //      let img = simpleHCCQRView.view2.snapShot
 //      Swift.print("img:  \(img)")
       let views:[UIView] = [simpleHCCQRView.view1,simpleHCCQRView.view2]
-      guard let resultView:UIImageView = Colorize.colorize(views: views, colorMap: Colorize.colorMap) else {Swift.print("unable to create colorized image");return}
+      guard let resultView:UIImageView = Colorize.colorize(views: views, colorMap: Colorize.colorMap, scale:1) else {Swift.print("unable to create colorized image");return}
       Swift.print("resultView:  \(resultView)")
       view.addSubview(resultView)
       resultView.frame.origin = .init(x: 0, y: 80*4)
@@ -236,7 +236,7 @@ extension ViewController {
       _ = {
 //         let views:[UIView] = [view1,view2]
          let imgs:[UIImage] = [view1.image,view2.image].compactMap{$0}
-         guard let resultImage:UIImage = Colorize.colorize(images: imgs, colorMap: Colorize.colorMap) else {Swift.print("unable to create colorized image");return }
+         guard let resultImage:UIImage = Colorize.colorize(images: imgs, colorMap: Colorize.colorMap, scale:1) else {Swift.print("unable to create colorized image");return }
 //         Swift.print("resultImage.cgImage:  \(resultImage.cgImage)")
 //         Swift.print("resultImage.ciImage:  \(resultImage.ciImage)")
 //         Swift.print("resultImage.cgImage():  \(resultImage.cgImage())")
@@ -273,7 +273,7 @@ extension ViewController {
       /*⭐ 1. Create HCCQR from string ⭐*/
       let (qrVersion,qrMode,ecLevel):(Int,QRMode,ECLevel) = (10,.byte,.l)//settings
       guard let randomString = HCCQRStringData.randomString(qrVersion: qrVersion, qrMode: qrMode, ecLevel:ecLevel) else {Swift.print("unable to create random string");return}
-      guard let hccqrImage:UIImage = HCCQRUtil.getHCCQRImage(string:randomString,qrVersion:qrVersion,qrMode:qrMode,ecLevel:ecLevel) else {Swift.print("unable to create hccqr image");return}
+      guard let hccqrImage:UIImage = HCCQRUtil.getHCCQRImage(string:randomString,qrVersion:qrVersion,qrMode:qrMode,ecLevel:ecLevel, scale: 6) else {Swift.print("unable to create hccqr image");return}
       let imgView = UIImageView(image:hccqrImage)
       view.addSubview(imgView)
       /*ensure that img only has valid colors, akak no bluring*/
@@ -281,13 +281,13 @@ extension ViewController {
       /*⭐ 2. try split the hccqrImg ⭐*/
       guard let payload:String = HCCQRUtil.string(uiImage: hccqrImage) else {Swift.print("unable to get string from hccqr");return}
       /*⭐ 3. Assert payload ⭐*/
-      Swift.print("randomString:  \(randomString)")
+//      Swift.print("randomString:  \(randomString)")
       Swift.print("randomString.count:  \(randomString.count)")
-      Swift.print("payload:  \(payload)")
+//      Swift.print("payload:  \(payload)")
       Swift.print(":  \(payload.count)")
       let isMatching:Bool = randomString == payload
       Swift.print("isMatching:  \(isMatching)")
-      Swift.print("\(abs(startTime.timeIntervalSinceNow))")
+      Swift.print("All done: \(abs(startTime.timeIntervalSinceNow))")
    }
    
 
@@ -351,11 +351,30 @@ extension ViewController {
       let startTime:Date = Date()
       let (qrVersion,qrMode,ecLevel):(Int,QRMode,ECLevel) = (10,.byte,.l)//settings
       guard let randomString = HCCQRStringData.randomString(qrVersion: qrVersion, qrMode: qrMode, ecLevel:ecLevel) else {Swift.print("unable to create random string");return}
-      guard let hccqrImage:UIImage = HCCQRUtil.getHCCQRImage(string:randomString,qrVersion:qrVersion,qrMode:qrMode,ecLevel:ecLevel) else {Swift.print("unable to create hccqr image");return}
+      guard let hccqrImage:UIImage = HCCQRUtil.getHCCQRImage(string:randomString,qrVersion:qrVersion,qrMode:qrMode,ecLevel:ecLevel, scale:6) else {Swift.print("unable to create hccqr image");return}
       let imgView = UIImageView(image:hccqrImage)
       view.addSubview(imgView)
       /*ensure that img only has valid colors, akak no bluring*/
 //      Swift.print("hasOnlyColorMap: \(hccqrImage.hasOnlyColorMap(colorMap: [.red,.green,.blue,.white]))")
       Swift.print("\(abs(startTime.timeIntervalSinceNow))")
+   }
+   /**
+    *
+    */
+   func testScalingCIIMage(){
+      //      Swift.print("resultImage.ciImage():  \(resultImage.ciImage())")
+      //      Swift.print("resultImage.cgImage:  \(resultImage.cgImage)")
+      //      guard let outputImage:CIImage = resultImage.ciImage() else {Swift.print("Unable to create CIImage");return nil}
+      //      let scale:CGPoint = {
+      //         let x = length*6 / outputImage.extent.size.width
+      //         let y = length*6 / outputImage.extent.size.height
+      //         return .init(x:x,y:y)
+      //      }()
+      //      //      Swift.print("scale:  \(scale)")
+      //      let transformedImage:CIImage = outputImage.transformed(by: CGAffineTransform(scaleX: scale.x, y: scale.y))
+      //      let uiImage:UIImage = .init(ciImage: transformedImage)
+      //      return uiImage
+      
+      //      return UIImage.init(ciImage: outputImage, scale: 0.06, orientation: .down)
    }
 }

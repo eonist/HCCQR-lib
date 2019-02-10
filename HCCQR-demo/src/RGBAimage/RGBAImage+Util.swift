@@ -48,14 +48,13 @@ extension RGBAImage{
          let bitsPerPixel: UInt = 32
          let rgbColorSpace = CGColorSpaceCreateDeviceRGB()
          let bitmapInfo:CGBitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedFirst.rawValue)
-         
          var data = pixels
          guard let providerRef = CGDataProvider(data: NSData(bytes: &data, length: data.count * 4/*sizeOf(PixelData)*/)) else {Swift.print("err 1");return nil}
          //      let providerRefthing: CGDataProvider = providerRef
          guard let cgImage = CGImage.init(width: Int(width), height: Int(height), bitsPerComponent: Int(bitsPerComponent), bitsPerPixel: Int(bitsPerPixel), bytesPerRow: Int(width * 4)/*UInt(sizeof(PixelData))*/, space: rgbColorSpace, bitmapInfo: bitmapInfo, provider: providerRef, decode: nil, shouldInterpolate: true, intent: .defaultIntent) else {Swift.print("err 2");return nil}
          //      let cgImage = CGImageCreate(width, height, bitsPerComponent, bitsPerPixel, width * 4/*UInt(sizeof(PixelData))*/, rgbColorSpace, bitmapInfo, providerRef, nil, true, kCGRenderingIntentDefault)
          //      let cgiimagething: CGImage = cgImage
-         return UIImage(cgImage: cgImage)
+         return UIImage.init(cgImage: cgImage/*, scale: 1, orientation: .down*/)
       }
    
    //   public var copy:RGBAImage {

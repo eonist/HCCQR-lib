@@ -100,11 +100,8 @@ extension UIColor{
     * UIColor.red.rgba.r//1
     */
    var rgba: (r:CGFloat,g:CGFloat,b:CGFloat,a:CGFloat) {
-      var r: CGFloat{ return CIColor(color: self).red }
-      var g: CGFloat{ return CIColor(color: self).green }
-      var b: CGFloat{ return CIColor(color: self).blue }
-      var a: CGFloat{ return CIColor(color: self).alpha }
-      return (r,g,b,a)
+      let ciColor:CIColor = CIColor(color: self)
+      return (ciColor.red,ciColor.green,ciColor.blue,ciColor.alpha)
    }
    /**
     * Returns red 0-1

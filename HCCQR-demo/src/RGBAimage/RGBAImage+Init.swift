@@ -6,55 +6,50 @@ extension RGBAImage{
     * TODO: ⚠️️ MOVE THE pixels conversion into a static method
     */
    static func rgbaImage(image:UIImage) -> RGBAImage? {
-      guard let cgImage = image.cgImage ?? image.cgImage() else { Swift.print("unable to get cgImage");return nil  }
-      let width = Int(image.size.width)
-      let height = Int(image.size.height)
-      let bytesPerRow = width * 4// 4 * width * height
-      let imageData = UnsafeMutablePointer<PixelData>.allocate(capacity: width * height)
+      guard let cgImage = image.cgImage ?? image.cgImage() else { Swift.print("rgbaImage - Unable to get cgImage");return nil  }
+      let w = Int(image.size.width)
+      let h = Int(image.size.height)
+      let bytesPerRow = w * 4// 4 * width * height
+      let capacity:Int = w * h
+      let imageData = UnsafeMutablePointer<PixelData>.allocate(capacity: capacity)
       let colorSpace = CGColorSpaceCreateDeviceRGB()
       var bitmapInfo: UInt32 = CGBitmapInfo.byteOrder32Big.rawValue//BGRA
       bitmapInfo = bitmapInfo | CGImageAlphaInfo.premultipliedLast.rawValue & CGBitmapInfo.alphaInfoMask.rawValue
-      guard let imageContext = CGContext(data: imageData, width: width, height: height, bitsPerComponent: 8, bytesPerRow: bytesPerRow, space: colorSpace, bitmapInfo: bitmapInfo) else {
+      guard let imageContext = CGContext(data: imageData, width: w, height: h, bitsPerComponent: 8, bytesPerRow: bytesPerRow, space: colorSpace, bitmapInfo: bitmapInfo) else {
          Swift.print("unable to create rgbaImage")
          return nil
       }
       imageContext.draw(cgImage, in: CGRect(origin: .zero, size: image.size))//cgImage.imageData
-      let pixels = UnsafeMutableBufferPointer<PixelData>(start: imageData, count: width * height)
-      return RGBAImage.init(pixels: pixels, width: width, height: height)
+      let pixels = UnsafeMutableBufferPointer<PixelData>(start: imageData, count: capacity)
+      return .init(pixels: pixels, width: w, height: h)
    }
    /**
     * Beta
     */
    private static func rgbaImage(pixels:[PixelData], width:Int, height:Int) -> RGBAImage{
-      Swift.print("rgbaImage")
       let unsafePixels = UnsafeMutableBufferPointer<PixelData>.allocate(capacity: pixels.count)
       _ = unsafePixels.initialize(from: pixels)
-      
-    
-//      let blackImg:UIImage = UIImage.createImage(size: .init(width: width, height: height), color: .black)
-//      var result:RGBAImage = RGBAImage.rgbaImage(image:blackImg)!
-//      RGBAImage.fill(image: &result, pixels: pixels)
-      return RGBAImage.init(pixels: unsafePixels/*result.pixels*/, width: width, height: height)
+      return .init(pixels: unsafePixels, width: width, height: height)
    }
    /**
     * Beta
     */
-   static func rgbaImage(pixels:[PixelData], width:Int, height:Int, scale:Int = 6) -> RGBAImage{
-      let count = pixels.count*scale*scale
-      let ptr = UnsafeMutablePointer<PixelData>.allocate(capacity:count)
-      let buffer = UnsafeMutableBufferPointer(start: ptr, count:count)
-      let resultPixels:[PixelData] = (0..<height*scale).flatMap{ y in
-         return (0..<width*scale).map{ x in
-            let pixelIndex:Int = y/scale*height+x/scale
-//            let bufferIndex:Int = y*height+x
+   static func rgbaImage(pixels:[PixelData], size:(width:Int,height:Int), scale:Int) -> RGBAImage{
+      let resultPixels:[PixelData] = (0..<size.height*scale).flatMap{ y in
+         return (0..<size.width*scale).map{ x in
+            let pixelIndex:Int = y/scale*size.height+x/scale
             return pixels[pixelIndex]
          }
       }
-      resultPixels.enumerated().forEach {
-         buffer[$0.offset] = $0.element
-      }
-      //let i = x/2*size.width+y/2
-      return RGBAImage.init(pixels: buffer/*result.pixels*/, width: width*scale, height: height*scale)
+      return rgbaImage(pixels: resultPixels, size:(width: size.width*scale, height: size.height*scale))
+   }
+   /**
+    * Beta
+    */
+   static func rgbaImage(pixels:[PixelData], size:(width:Int,height:Int)) -> RGBAImage{
+      let unsafePixels = UnsafeMutableBufferPointer<PixelData>.allocate(capacity:pixels.count)
+      _ = unsafePixels.initialize(from: pixels)
+      return RGBAImage.init(pixels: unsafePixels, width: size.width, height: size.height)
    }
 }
 /**

@@ -4,37 +4,24 @@ import UIKit
  * Utils
  */
 extension RGBAImage {
-   typealias RGBUIImages = (r:UIImage?,g:UIImage?,b:UIImage?)
+   typealias RGBUIImages = (r:UIImage,g:UIImage,b:UIImage)
    typealias RGBAImages = (r:RGBAImage,g:RGBAImage,b:RGBAImage)
+   
    /**
-    * Split image into 3 RGBAImages
+    * New
     */
-   static func split(image:UIImage)-> RGBUIImages?{
-      Swift.print("split - image.size:  \(image.size)")
-      guard let r:RGBAImage = RGBAImage.rgbaImage(image: image) else {return nil}
-      guard let g:RGBAImage = RGBAImage.rgbaImage(image: image) else {return nil}
-      guard let b:RGBAImage = RGBAImage.rgbaImage(image: image) else {return nil}
-      let rgbImages:RGBUIImages = split(rgbaImgs: (r,g,b), scale:image.scale)
-      return rgbImages
-   }
-   /**
-    * Split into 3 RGBAImages 3 UIImages
-    */
-   private static func split(rgbaImgs:RGBAImages, scale:CGFloat) -> RGBUIImages{//TODO: ⚠️️ rename return type to UIImages
-      let rgb:RGBAImages = split(rgbaImgs: rgbaImgs)
-//      Swift.print("split ⚠️️ this may be wrong now, scale is new ⚠️️ ")
-      let r:UIImage? = uiImage(rgbaImage: rgb.r, resultScale: scale)//⚠️️ this may be wrong now, scale is new
-      let g:UIImage? = uiImage(rgbaImage: rgb.g, resultScale: scale)//⚠️️ this may be wrong now, scale is new
-      let b:UIImage? = uiImage(rgbaImage: rgb.b, resultScale: scale)//⚠️️ this may be wrong now, scale is new
-      return (r,g,b)
+   static func split(image:UIImage) -> RGBAImages?{
+      guard let rgbaImg:RGBAImage = RGBAImage.rgbaImage(image: image) else {Swift.print("Unable to create rgbaImg");return nil}
+      let rgbaImages:RGBAImages = split(rgbaImg:rgbaImg)
+      return rgbaImages
    }
    /**
     * Split 3 RGBAImages into 3 singular rgb channels
     */
-   private static func split(rgbaImgs:RGBAImages)->RGBAImages{
-      let r:RGBAImage = channelR(rgbaImgs.r)
-      let g:RGBAImage = channelG(rgbaImgs.g)
-      let b:RGBAImage = channelB(rgbaImgs.b)
+   private static func split(rgbaImg:RGBAImage)->RGBAImages{
+      let r:RGBAImage = channelR(rgbaImg)
+      let g:RGBAImage = channelG(rgbaImg)
+      let b:RGBAImage = channelB(rgbaImg)
       return (r,g,b)
    }
 }
@@ -47,7 +34,7 @@ fileprivate extension RGBAImage {
     * Marks red colors as black, all else becomes white
     */
    fileprivate static func channelR(_ image: RGBAImage) -> RGBAImage {
-      var outImage = image
+      var outImage = image.copy
       outImage.process { (pixel) -> PixelData in
          return pixel.isRedish ? PixelData.whitePixel : PixelData.blackPixel
       }
@@ -57,7 +44,7 @@ fileprivate extension RGBAImage {
     * g
     */
    fileprivate static func channelG(_ image: RGBAImage) -> RGBAImage {
-      var outImage = image
+      var outImage:RGBAImage = image.copy
       outImage.process { (pixel) -> PixelData in
          return pixel.isGreenish ? PixelData.whitePixel : PixelData.blackPixel
       }
@@ -67,10 +54,34 @@ fileprivate extension RGBAImage {
     * b
     */
    fileprivate static func channelB(_ image: RGBAImage) -> RGBAImage {
-      var outImage = image
+      var outImage = image.copy
       outImage.process { (pixel) -> PixelData in
          return pixel.isBlueish ? PixelData.whitePixel : PixelData.blackPixel
       }
       return outImage
+   }
+}
+/**
+ * DEPRECATED
+ */
+extension RGBAImage{
+   /**
+    * Split into 3 RGBAImages 3 UIImages
+    */
+   private static func split(rgbaImg:RGBAImage, scale:CGFloat) -> RGBUIImages?{//TODO: ⚠️️ rename return type to UIImages
+      let rgb:RGBAImages = split(rgbaImg:rgbaImg)
+      //      Swift.print("split ⚠️️ this may be wrong now, scale is new ⚠️️ ")
+      guard let r:UIImage = uiImage(rgbaImage: rgb.r, resultScale: scale) else {Swift.print("unable to create uiImage");return nil}//⚠️️ this may be wrong now, scale is new
+      guard let g:UIImage = uiImage(rgbaImage: rgb.g, resultScale: scale) else {Swift.print("unable to create uiImage");return nil}
+      guard let b:UIImage = uiImage(rgbaImage: rgb.b, resultScale: scale) else {Swift.print("unable to create uiImage");return nil}
+      return (r,g,b)
+   }
+   /**
+    * Split image into 3 RGBAImages
+    */
+   static func split(image:UIImage) -> RGBUIImages?{
+      guard let rgbaImg:RGBAImage = RGBAImage.rgbaImage(image: image) else {Swift.print("Unable to create rgbaImg");return nil}
+      guard let rgbUIImages:RGBUIImages = split(rgbaImg: rgbaImg, scale:image.scale) else {Swift.print("unable to split into UIImages");return nil}
+      return rgbUIImages
    }
 }
