@@ -63,7 +63,7 @@ extension ViewController {
       guard let g:RGBAImage = RGBAImage.rgbaImage(image: images.g) else {return }
       guard let b:RGBAImage = RGBAImage.rgbaImage(image: images.b) else {return }
       _ = b
-      guard let composite = RGBAImage.composite(rgbaImageList: [r,g/*,b*/]) else { return }
+      guard let composite = RGBAImage.composite(rgbaImageList: [r,g/*,b*/],invert:false) else { return }
       /**/
       Swift.print("⚠️️ the bellow may not work anymore, scale is new ⚠️️")
       let img:UIImage? = RGBAImage.uiImage(rgbaImage: composite,resultScale:image.scale)
@@ -138,7 +138,7 @@ extension ViewController {
       guard let g:RGBAImage = RGBAImage.rgbaImage(image: images.g) else {return }
       _ = r
       guard let b:RGBAImage = RGBAImage.rgbaImage(image: images.b) else {return }
-      guard let composite = RGBAImage.composite(rgbaImageList: [b,g/*,g*/]) else { return }
+      guard let composite = RGBAImage.composite(rgbaImageList: [b,g/*,g*/], invert: false) else { return }
       /**/
       Swift.print("⚠️️ the bellow may not work anymore, scale is new ⚠️️")
       guard let img:UIImage = RGBAImage.uiImage(rgbaImage: composite, resultScale: rgbColorTestImage.scale)?.invertedImage() else {Swift.print("unabe to create img");return}
@@ -269,16 +269,16 @@ extension ViewController {
     * test HCCQRImage creation
     */
    func testHCCQRImage(){
-      let startTime:Date = Date()
+      let createHCCQRTime:Date = Date()
       /*⭐ 1. Create HCCQR from string ⭐*/
       let (qrVersion,qrMode,ecLevel):(Int,QRMode,ECLevel) = (10,.byte,.l)//settings
       guard let randomString = HCCQRStringData.randomString(qrVersion: qrVersion, qrMode: qrMode, ecLevel:ecLevel) else {Swift.print("unable to create random string");return}
       guard let hccqrImage:UIImage = HCCQRUtil.getHCCQRImage(string:randomString,qrVersion:qrVersion,qrMode:qrMode,ecLevel:ecLevel, scale: 6) else {Swift.print("unable to create hccqr image");return}
       let imgView = UIImageView(image:hccqrImage)
       view.addSubview(imgView)
-      /*ensure that img only has valid colors, akak no bluring*/
-      Swift.print("hasOnlyColorMap: \(ColorizeUtil.hasOnlyColorMap(uiImage:hccqrImage, colorMap: [.red,.green,.blue,.white]))")
+      Swift.print("createHCCQRTime complete: \(abs(createHCCQRTime.timeIntervalSinceNow))")
       /*⭐ 2. try split the hccqrImg ⭐*/
+      let splitTime:Date = Date()
       guard let payload:String = HCCQRUtil.string(uiImage: hccqrImage) else {Swift.print("unable to get string from hccqr");return}
       /*⭐ 3. Assert payload ⭐*/
 //      Swift.print("randomString:  \(randomString)")
@@ -287,7 +287,9 @@ extension ViewController {
       Swift.print(":  \(payload.count)")
       let isMatching:Bool = randomString == payload
       Swift.print("isMatching:  \(isMatching)")
-      Swift.print("All done: \(abs(startTime.timeIntervalSinceNow))")
+      Swift.print("Seperation complete: \(abs(splitTime.timeIntervalSinceNow))")
+      /*ensure that img only has valid colors, akak no bluring*/
+      Swift.print("hasOnlyColorMap: \(ColorizeUtil.hasOnlyColorMap(uiImage:hccqrImage, colorMap: [.red,.green,.blue,.white]))")
    }
    
 

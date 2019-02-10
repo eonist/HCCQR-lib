@@ -1,27 +1,29 @@
 import UIKit
-
 /**
  * Utils
  */
 extension RGBAImage {
    typealias RGBUIImages = (r:UIImage,g:UIImage,b:UIImage)
    typealias RGBAImages = (r:RGBAImage,g:RGBAImage,b:RGBAImage)
-   
    /**
     * New
     */
    static func split(image:UIImage) -> RGBAImages?{
+      let startTime:Date = Date()
       guard let rgbaImg:RGBAImage = RGBAImage.rgbaImage(image: image) else {Swift.print("Unable to create rgbaImg");return nil}
+      Swift.print("Time to create rgbaImage: \(abs(startTime.timeIntervalSinceNow))")
       let rgbaImages:RGBAImages = split(rgbaImg:rgbaImg)
       return rgbaImages
    }
    /**
-    * Split 3 RGBAImages into 3 singular rgb channels
+    * Split 3 RGBAImages into 3 singular rgb channels (white represents the channel color)
     */
-   private static func split(rgbaImg:RGBAImage)->RGBAImages{
+   private static func split(rgbaImg:RGBAImage) -> RGBAImages{
+      let startTime:Date = Date()
       let r:RGBAImage = channelR(rgbaImg)
       let g:RGBAImage = channelG(rgbaImg)
       let b:RGBAImage = channelB(rgbaImg)
+      Swift.print("Time to get rgb channels: \(abs(startTime.timeIntervalSinceNow))")
       return (r,g,b)
    }
 }
@@ -33,7 +35,7 @@ fileprivate extension RGBAImage {
     * r
     * Marks red colors as black, all else becomes white
     */
-   fileprivate static func channelR(_ image: RGBAImage) -> RGBAImage {
+   fileprivate static func channelR(_ image:RGBAImage) -> RGBAImage {
       var outImage = image.copy
       outImage.process { (pixel) -> PixelData in
          return pixel.isRedish ? PixelData.whitePixel : PixelData.blackPixel

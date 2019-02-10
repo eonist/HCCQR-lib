@@ -49,9 +49,13 @@ extension HCCQRUtil{
     */
    static func stringAndImages(uiImage:UIImage) -> (string:String?,qr1:UIImage,qr2:UIImage)?{
       guard let (q1,q2):(UIImage,UIImage) = split(uiImage: uiImage) else {Swift.print("HCCQRUtil.stringAndImages() - q1,q2 err");return nil}
+      let startTime:Date = Date()
+      //🏀
+      //TODO: ⚠️️ try to use the qrCode(ciImage: here, might be a bit faster
       guard let qrCode1:String = QRUtil.qrCode(image: q1) else { Swift.print("HCCQRUtil.stringAndImages() - ⚠️️ qrcode1 err ⚠️️ "); return (nil,q1,q2)}
       guard let qrCode2:String = QRUtil.qrCode(image: q2) else { Swift.print("HCCQRUtil.stringAndImages() - ⚠️️ qrcode2 err ⚠️️ "); return (nil,q1,q2)}
       let string:String = qrCode1 + qrCode2
+      Swift.print("Time to get strings from seperated image: \(abs(startTime.timeIntervalSinceNow))")
       return (string,q1,q2)
    }
    /**
@@ -59,14 +63,11 @@ extension HCCQRUtil{
     */
    private static func split(uiImage:UIImage) -> (qrImg1:UIImage,qrImg2:UIImage)? {
       /*Get RGBAImages from UIImages*/
-//      guard let images:RGBAImage.RGBUIImages = RGBAImage.split(image: uiImage) else {Swift.print("images err");return nil}
-//      guard let r:RGBAImage = RGBAImage.rgbaImage(image: images.r) else {Swift.print("r err");return nil}
-//      guard let g:RGBAImage = RGBAImage.rgbaImage(image: images.g) else {Swift.print("g err");return nil}
-//      guard let b:RGBAImage = RGBAImage.rgbaImage(image: images.b) else {Swift.print("b err");return nil}
-      
+      let startTime:Date = Date()
       guard let rgbaImgs:RGBAImage.RGBAImages = RGBAImage.split(image: uiImage) else {Swift.print("unable to create rgbaImgs");return nil}//(r,g,b)
       guard let qrImg1:UIImage = qrImg(first: rgbaImgs.b, second: rgbaImgs.g, scale:uiImage.scale) else {Swift.print("err");return nil}
       guard let qrImg2:UIImage = qrImg(first: rgbaImgs.r, second: rgbaImgs.b, scale:uiImage.scale) else {Swift.print("err");return nil}
+      Swift.print("Time to get split uiImage: \(abs(startTime.timeIntervalSinceNow))")
       return (qrImg1,qrImg2)
    }
    /**
@@ -75,9 +76,14 @@ extension HCCQRUtil{
     * - Note: layer 2: b,g -> qrImg2
     */
    private static func qrImg(first:RGBAImage,second:RGBAImage,scale:CGFloat) -> UIImage?{
-      guard let composite:RGBAImage = RGBAImage.composite(rgbaImageList: [first,second]) else {Swift.print("unable to composite"); return nil}
+      let startTime:Date = Date()
+      guard let composite:RGBAImage = RGBAImage.composite(rgbaImageList: [first,second], invert:true) else {Swift.print("unable to composite"); return nil}
+      Swift.print("Time to composite: \(abs(startTime.timeIntervalSinceNow))")
       //TODO: ⚠️️ avoid converting to UIImage here, use ciimage, might be faster!=!=??
-      guard let img:UIImage = RGBAImage.uiImage(rgbaImage: composite, resultScale:scale)?.invertedImage() else {Swift.print("unable to create img");return nil}
+//      let startTimeInversion:Date = Date()
+      
+      guard let img:UIImage = RGBAImage.uiImage(rgbaImage: composite, resultScale:scale)/*?.invertedImage()*/  else {Swift.print("unable to create img");return nil}
+//      Swift.print("Time to invert: \(abs(startTimeInversion.timeIntervalSinceNow))")
       return img
    }
 }

@@ -12,10 +12,10 @@ extension PixelData {
       self.a = a
    }
    mutating func setRGBA(first:PixelData,second:PixelData,alpha:UInt8){
-      self.r = UInt16(first.r + second.r) > 255 ? 255 : first.r + second.r
-      self.g = UInt16(first.g + second.g) > 255 ? 255 : first.g + second.g
-      self.b = UInt16(first.b + second.b) > 255 ? 255 : first.b + second.b
-      self.a = alpha
+      if first.r < 255 {self.r = UInt16(first.r + second.r) > 255 ? 255 : first.r + second.r}
+      if first.g < 255 {self.g = UInt16(first.g + second.g) > 255 ? 255 : first.g + second.g}
+      if first.b < 255 {self.b = UInt16(first.b + second.b) > 255 ? 255 : first.b + second.b}
+      if first.a < 255 {self.a = alpha}
    }
    mutating func setRGBA(color:UIColor) {
       guard let rgba:RGBA = PixelDataUtil.rgba(uiColor:color) else {Swift.print("Unable to get rgba");return}//.rgba
@@ -39,6 +39,12 @@ extension PixelData{
    mutating func setWhite(){
 //      self.value = 4294967295
       self.setRGBA(r: 255, g: 255, b: 255, a:255)
+   }
+   /**
+    * Inverted (only works for pure black or pure white pixels)
+    */
+   func inverted() -> PixelData{
+      return self.isWhite ? PixelData.blackPixel : PixelData.whitePixel
    }
 }
 /**

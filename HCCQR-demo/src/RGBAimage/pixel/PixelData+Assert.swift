@@ -79,3 +79,17 @@ extension PixelData {
       return r && g && b
    }
 }
+/**
+ * Debugging
+ */
+extension PixelData{
+   var isRed:Bool {
+      return self.r == 255 && self.g == 0 && self.b == 0
+   }
+   var isBlue:Bool {
+      return self.r == 0 && self.g == 0 && self.b == 255
+   }
+   var isGreen:Bool {
+      return self.r == 0 && self.g == 255 && self.b == 0
+   }
+}

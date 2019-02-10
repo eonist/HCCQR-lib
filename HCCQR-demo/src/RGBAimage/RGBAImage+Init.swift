@@ -3,7 +3,7 @@ import UIKit
 extension RGBAImage{
    /**
     * TODO: ⚠️️ use throw instead of optional init?
-    * TODO: ⚠️️ MOVE THE pixels conversion into a static method
+    * - Note: this init is fast. trying other ways to get pixel could have some usefulness, but shouldnt be prioritized
     */
    static func rgbaImage(image:UIImage) -> RGBAImage? {
       guard let cgImage = image.cgImage ?? image.cgImage() else { Swift.print("rgbaImage - Unable to get cgImage");return nil  }
@@ -26,14 +26,6 @@ extension RGBAImage{
    /**
     * Beta
     */
-   private static func rgbaImage(pixels:[PixelData], width:Int, height:Int) -> RGBAImage{
-      let unsafePixels = UnsafeMutableBufferPointer<PixelData>.allocate(capacity: pixels.count)
-      _ = unsafePixels.initialize(from: pixels)
-      return .init(pixels: unsafePixels, width: width, height: height)
-   }
-   /**
-    * Beta
-    */
    static func rgbaImage(pixels:[PixelData], size:(width:Int,height:Int), scale:Int) -> RGBAImage{
       let resultPixels:[PixelData] = (0..<size.height*scale).flatMap{ y in
          return (0..<size.width*scale).map{ x in
@@ -49,6 +41,20 @@ extension RGBAImage{
    static func rgbaImage(pixels:[PixelData], size:(width:Int,height:Int)) -> RGBAImage{
       let unsafePixels = UnsafeMutableBufferPointer<PixelData>.allocate(capacity:pixels.count)
       _ = unsafePixels.initialize(from: pixels)
+      return RGBAImage.init(pixels: unsafePixels, width: size.width, height: size.height)
+   }
+   /**
+    * New
+    */
+   static func rgbaImage(pixel:PixelData, size:(width:Int,height:Int)) -> RGBAImage{
+      let capacity:Int = size.width * size.height
+      let unsafePixels = UnsafeMutableBufferPointer<PixelData>.allocate(capacity:capacity)
+      (0..<size.height).forEach{ y in
+         return (0..<size.width).forEach{ x in
+            let pixelIndex:Int = y*size.height+x
+            unsafePixels[pixelIndex] = pixel
+         }
+      }
       return RGBAImage.init(pixels: unsafePixels, width: size.width, height: size.height)
    }
 }
@@ -79,7 +85,7 @@ extension RGBAImage{
       let blackImg:UIImage = UIImage.createImage(size: CGSize.init(width: img.size.width*scale, height: img.size.height*scale), color: .black)
       let result : RGBAImage = RGBAImage.rgbaImage(image:blackImg)!
       var rgbaImage:RGBAImage = RGBAImage.init(pixels: result.pixels, width: Int(img.size.width*scale), height: Int(img.size.height*scale))
-      let tempIMG:RGBAImage = RGBAImage.rgbaImage(pixels: pixels, width: Int(img.size.width*scale), height: Int(img.size.height*scale))
+      let tempIMG:RGBAImage = RGBAImage.rgbaImage(pixels: pixels, size:(width: Int(img.size.width*scale), height: Int(img.size.height*scale)))
       rgbaImage.pixels = tempIMG.pixels
       rgbaImage.pixels.enumerated().forEach{
          rgbaImage.pixels[$0.offset] = $0.element

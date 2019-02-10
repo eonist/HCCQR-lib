@@ -8,16 +8,11 @@ extension UIImage {
     * Inverts an image (black becomes white etc)
     */
    func invertedImage() -> UIImage? {
-//      guard let cgImage = self.cgImage else {Swift.print("UIImage.invertedImage() - unable to create cgImage"); return nil }
       guard let ciImage:CIImage = self.ciImage() else {Swift.print("UIImage.invertedImage() - unable to create ciImage"); return nil}//CoreImage.CIImage(cgImage: cgImage)
-      guard let filter = CIFilter(name: "CIColorInvert") else { Swift.print("UIImage.invertedImage() - unable to create filter");return nil }
-      filter.setDefaults()
-      filter.setValue(ciImage, forKey: kCIInputImageKey)
-      let context = CIContext(options: nil)
-      guard let outputImage:CIImage = filter.outputImage else {Swift.print("UIImage.invertedImage() - unable to create CIImage"); return nil }
-      guard let outputImageCopy:CGImage = context.createCGImage(outputImage, from: outputImage.extent) else {Swift.print("UIImage.invertedImage() - unable to create outputImageCopy"); return nil }
-      return UIImage(cgImage: outputImageCopy)
+      guard let cgImage:CGImage = ciImage.invertedImage() else {Swift.print("unable to create cgImage");return nil}
+      return UIImage(cgImage: cgImage)
    }
+   
    /**
     * Creates UIImage for size and color
     */
@@ -87,5 +82,34 @@ extension UIImage {
    func ciImage() -> CIImage? {
       guard let cgImage:CGImage = self.cgImage else {Swift.print("UIImage.ciImage() - unable to create cgimage");return nil}
       return CoreImage.CIImage(cgImage: cgImage)
+   }
+}
+
+extension CIImage{
+   /**
+    * Inverts an image (black becomes white etc)
+    */
+   func invertedImage() -> CGImage? {
+      guard let filter = CIFilter(name: "CIColorInvert") else { Swift.print("UIImage.invertedImage() - unable to create filter");return nil }
+      filter.setDefaults()
+      filter.setValue(self, forKey: kCIInputImageKey)
+      let context = CIContext(options: nil)
+      guard let outputImage:CIImage = filter.outputImage else {Swift.print("UIImage.invertedImage() - unable to create CIImage"); return nil }
+      guard let outputImageCopy:CGImage = context.createCGImage(outputImage, from: outputImage.extent) else {Swift.print("UIImage.invertedImage() - unable to create outputImageCopy"); return nil }
+      return outputImageCopy
+   }
+}
+extension CGImage{
+   /**
+    * Inverts an image (black becomes white etc)
+    */
+   func invertedImage() -> CGImage? {
+      guard let filter = CIFilter(name: "CIColorInvert") else { Swift.print("UIImage.invertedImage() - unable to create filter");return nil }
+      filter.setDefaults()
+      filter.setValue(self, forKey: kCIInputImageKey)
+      let context = CIContext(options: nil)
+      guard let outputImage:CIImage = filter.outputImage else {Swift.print("UIImage.invertedImage() - unable to create CIImage"); return nil }
+      guard let outputImageCopy:CGImage = context.createCGImage(outputImage, from: outputImage.extent) else {Swift.print("UIImage.invertedImage() - unable to create outputImageCopy"); return nil }
+      return outputImageCopy
    }
 }
