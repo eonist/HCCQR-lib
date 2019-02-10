@@ -2,6 +2,7 @@ import UIKit
 import QRLibIOS
 
 class HCCQRUtil{
+   
    /**
     * Returns an HCCQR UIImage for a string
     * IMPORTANT: ⚠️️ the caller must make sure the qrVersion can hold the amount of chars in string
@@ -19,23 +20,13 @@ class HCCQRUtil{
       let moduleCount:Int = QRInfoUtil.moduleCount(version: qrVersion)/*Qort of like QRPixels*/
       let firstPart:String = String(str[..<str.index(str.startIndex, offsetBy: str.count/2)])/*First part of the payload*/
       let lastPart:String = String(str[str.index(str.startIndex, offsetBy: str.count/2)...])/*Second part of the payload*/
-      let length:CGFloat = CGFloat(moduleCount + 2) * 6//<--scales the img a bit
+      let length:CGFloat = CGFloat(moduleCount + 2) //* 6//<--scales the img a bit
       guard let qrImg1:UIImage = QRUtil.qrImage(str: firstPart, size: .init(width:length,height:length), ecLevel: ecLevel) else {Swift.print("Unable to create UIImage");return nil}
       guard let qrImg2:UIImage = QRUtil.qrImage(str: lastPart, size: .init(width:length,height:length), ecLevel: ecLevel) else {Swift.print("Unable to create UIImage");return nil}
       let qrImgs = [qrImg1,qrImg2]
       guard let resultImage:UIImage = Colorize.colorize(images: qrImgs, colorMap: Colorize.colorMap/*blandColorMap*/) else {Swift.print("Unable to create colorized image");return nil}
       
-      //🏀
-      //take each pixel and draw them with a multiplier
-      //create empty black image that is (width:w*scale.x,height:h*scale.y)
-      //
-      //height.forEach{ y in
-      //width.forEach{ x in
-      //pixelIdx = x*y
-      //scale.y.forEach{ scaleY
-      //scale.x.forEach{ scaleX
-      //pixelIdxOut = pixelIdxOut*scaleX*scaleY
-      //outputPixels[pixelIdxOut] = pixel
+     
       
       return resultImage
 //      Swift.print("resultImage.ciImage():  \(resultImage.ciImage())")
@@ -50,6 +41,8 @@ class HCCQRUtil{
 //      let transformedImage:CIImage = outputImage.transformed(by: CGAffineTransform(scaleX: scale.x, y: scale.y))
 //      let uiImage:UIImage = .init(ciImage: transformedImage)
 //      return uiImage
+      
+//      return UIImage.init(ciImage: outputImage, scale: 0.06, orientation: .down)
    }
 }
 /**

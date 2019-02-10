@@ -6,7 +6,7 @@ extension RGBAImage{
     * TODO: ⚠️️ MOVE THE pixels conversion into a static method
     */
    static func rgbaImage(image:UIImage) -> RGBAImage? {
-      guard let cgImage = image.cgImage else { Swift.print("unable to get cgImage");return nil  }
+      guard let cgImage = image.cgImage ?? image.cgImage() else { Swift.print("unable to get cgImage");return nil  }
       let width = Int(image.size.width)
       let height = Int(image.size.height)
       let bytesPerRow = width * 4// 4 * width * height
@@ -22,7 +22,47 @@ extension RGBAImage{
       let pixels = UnsafeMutableBufferPointer<PixelData>(start: imageData, count: width * height)
       return RGBAImage.init(pixels: pixels, width: width, height: height)
    }
-  
+   /**
+    * Beta
+    */
+   private static func rgbaImage(pixels:[PixelData], width:Int, height:Int) -> RGBAImage{
+      Swift.print("rgbaImage")
+      let unsafePixels = UnsafeMutableBufferPointer<PixelData>.allocate(capacity: pixels.count)
+      _ = unsafePixels.initialize(from: pixels)
+      
+    
+//      let blackImg:UIImage = UIImage.createImage(size: .init(width: width, height: height), color: .black)
+//      var result:RGBAImage = RGBAImage.rgbaImage(image:blackImg)!
+//      RGBAImage.fill(image: &result, pixels: pixels)
+      return RGBAImage.init(pixels: unsafePixels/*result.pixels*/, width: width, height: height)
+   }
+   /**
+    * Beta
+    */
+   static func rgbaImage(pixels:[PixelData], width:Int, height:Int, scale:Int = 6) -> RGBAImage{
+      let count = pixels.count*scale*scale
+      let ptr = UnsafeMutablePointer<PixelData>.allocate(capacity:count)
+      let buffer = UnsafeMutableBufferPointer(start: ptr, count:count)
+      let resultPixels:[PixelData] = (0..<height*scale).flatMap{ y in
+         return (0..<width*scale).map{ x in
+            let pixelIndex:Int = y/scale*height+x/scale
+//            let bufferIndex:Int = y*height+x
+            return pixels[pixelIndex]
+         }
+      }
+      resultPixels.enumerated().forEach {
+         buffer[$0.offset] = $0.element
+      }
+      //let i = x/2*size.width+y/2
+      return RGBAImage.init(pixels: buffer/*result.pixels*/, width: width*scale, height: height*scale)
+   }
+}
+/**
+ * DEPRECATED
+ */
+extension RGBAImage{
+   //🏀
+      //Use the bellow it has the same scale tech
    /**
     * Beta (trying to fix "blurry edge pixel bug")
     * - Important: ⚠️️ CoreGraphics expects pixel data as rows, not columns. Just flip your for-statements like this:
@@ -50,24 +90,5 @@ extension RGBAImage{
          rgbaImage.pixels[$0.offset] = $0.element
       }
       return rgbaImage
-   }
-   /**
-    * Beta, might not work ⚠️️
-    */
-   static func rgbaImage(pixels:[PixelData], width:Int, height:Int) -> RGBAImage{
-      //      let unsafePixels = UnsafeMutableBufferPointer<Pixel>.allocate(capacity: pixels.count)
-      //      _ = unsafePixels.initialize(from: pixels)
-      
-      //      let count = pixels.count
-      //      let ptr = UnsafeMutablePointer<Pixel>.allocate(capacity:count)
-      //      let buffer = UnsafeMutableBufferPointer(start: ptr, count: count)
-      //      for (i, _) in buffer.enumerated() {
-      //         buffer[i] = pixels[i]
-      //      }
-      
-      let blackImg:UIImage = UIImage.createImage(size: .init(width: width, height: height), color: .black)
-      var result:RGBAImage = RGBAImage.rgbaImage(image:blackImg)!
-      RGBAImage.fill(image: &result, pixels: pixels)
-      return RGBAImage.init(pixels: result.pixels, width: width, height: height)
    }
 }

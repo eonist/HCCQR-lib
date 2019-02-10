@@ -3,15 +3,16 @@ import UIKit
  * Converts b&w layers into color layers
  */
 class Colorize {
+   
 //   typealias PixelGrid = [[PixelData]]
    /**
     * Converts multiple b&w images to color image based on the colorMap provided
     */
    static func colorize(images:[UIImage], colorMap:ColorMap) -> UIImage? {
-      let rgbaImages:[RGBAImage] = images.compactMap{RGBAImage.rgbaImage(uiImage: $0)}
+      let rgbaImages:[RGBAImage] = images.compactMap{RGBAImage.rgbaImage(image: $0)}
       guard images.count == rgbaImages.count else {Swift.print("Colorize.colorize() - some rgbaImages was not created");return nil}
       guard let result:RGBAImage = colorize(rgbaImages: rgbaImages, colorMap: colorMap) else {Swift.print("Colorize.colorize() - Unable to create colorized rgbaImage");return nil}
-      guard let image:UIImage = RGBAImage.uiImage(rgbaImage: result,resultScale:1) else {Swift.print("Colorize.colorize() - Unable to convert to UIImage");return nil}
+      guard let image:UIImage = RGBAImage.uiImage(rgbaImage: result, resultScale:1) else {Swift.print("Colorize.colorize() - Unable to convert to UIImage");return nil}
       return image
    }
 }

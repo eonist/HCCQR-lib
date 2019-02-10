@@ -37,19 +37,35 @@ extension RGBAImage {
    }
    /**
     * Fills an image with pixels
+    * - TODO: ⚠️️ This should return not set pixels, do it when you get around the objc pixel array problem
     */
-   static func fill( image:inout RGBAImage, pixels:[PixelData]){
-      for y in 0..<Int(image.height) {/*loop over every y*/
-         for x in 0..<Int(image.width) {/*loop over every x*/
+   static func fill(image:inout RGBAImage, pixels:[PixelData]){
+      (0..<Int(image.height)).forEach { y in/*loop over every y*/
+         (0..<Int(image.width)).forEach { x in/*loop over every x*/
             let index = y * Int(image.width) + x//TODO: ⚠️️ use getPixel here
             let pixel = pixels[index]
-            guard var imagePixel:PixelData = PixelData(uiColor:.black) else {Swift.print("unable to crate pixelData");return}
-            imagePixel.r = pixel.r
-            imagePixel.g = pixel.g
-            imagePixel.b = pixel.b
-            image.setPixel(x: x, y: y, pixel: imagePixel)
-//            image.pixels[index] = imagePixel
+            image.setPixel(idx:index, pixel: pixel)
          }
       }
+   }
+   /**
+    * Fills an image with pixels and uses a scale
+    */
+   func fill(image:inout RGBAImage, pixels:[PixelData], scale:CGFloat){
+      
+      
+      //🏀
+      //take each pixel and draw them with a multiplier
+      //create empty black image that is (width:w*scale.x,height:h*scale.y)
+      //height.forEach{ y in
+      //width.forEach{ x in
+      //pixelIdx = x*y
+      //scale.y.forEach{ scaleY
+      //scale.x.forEach{ scaleX
+      //pixelIdxOut = pixelIdxOut*scaleX*scaleY
+      //outputPixels[pixelIdxOut] = pixel
+      
+      //its easier to just loop over theNewSize and then use modulo to get pixel index for original image, or something like that
+      //or store pixels in row and col, then flatMap them later 👈 faster
    }
 }

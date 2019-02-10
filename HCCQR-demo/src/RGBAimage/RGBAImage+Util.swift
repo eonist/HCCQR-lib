@@ -19,15 +19,15 @@ extension RGBAImage{
 //      Swift.print("uiImage - rgbaImage.width:  \(rgbaImage.width)")
 //      Swift.print("resultScale:  \(resultScale)")
       let colorSpace = CGColorSpaceCreateDeviceRGB()
-                  var bitmapInfo: UInt32 = CGBitmapInfo.byteOrder32Big.rawValue
-                  let bytesPerRow = rgbaImage.width * 4
-                  bitmapInfo |= CGImageAlphaInfo.premultipliedLast.rawValue & CGBitmapInfo.alphaInfoMask.rawValue
-                  guard let imageContext = CGContext(data: rgbaImage.pixels.baseAddress, width: rgbaImage.width, height: rgbaImage.height, bitsPerComponent: 8, bytesPerRow: bytesPerRow, space: colorSpace, bitmapInfo: bitmapInfo, releaseCallback: nil, releaseInfo: nil) else {Swift.print("Unable to create imageContext");return nil}
-                  guard let cgImage:CGImage = imageContext.makeImage() else {Swift.print("unable to create cgImage"); return nil }
-                  let scale:CGFloat = resultScale
-                  //      Swift.print("⚠️️ CRITICAL, scale should be set from somewhere ⚠️️")
-                  let image:UIImage = UIImage.init(cgImage: cgImage, scale: scale, orientation: .up)//.leftMirrored
-                  return image
+      var bitmapInfo: UInt32 = CGBitmapInfo.byteOrder32Big.rawValue
+      let bytesPerRow = rgbaImage.width * 4
+      bitmapInfo |= CGImageAlphaInfo.premultipliedLast.rawValue & CGBitmapInfo.alphaInfoMask.rawValue
+      guard let imageContext = CGContext(data: rgbaImage.pixels.baseAddress, width: rgbaImage.width, height: rgbaImage.height, bitsPerComponent: 8, bytesPerRow: bytesPerRow, space: colorSpace, bitmapInfo: bitmapInfo, releaseCallback: nil, releaseInfo: nil) else {Swift.print("Unable to create imageContext");return nil}
+      guard let cgImage:CGImage = imageContext.makeImage() else {Swift.print("unable to create cgImage"); return nil }
+      let scale:CGFloat = resultScale
+      //      Swift.print("⚠️️ CRITICAL, scale should be set from somewhere ⚠️️")
+      let image:UIImage = UIImage.init(cgImage: cgImage, scale: scale, orientation: .up)//.leftMirrored
+      return image
 //      Swift.print("image.scale:  \(image.scale)")
       
 //      guard let cgImg:CGImage = image.cgImage() else {Swift.print("err");return nil}
@@ -39,7 +39,9 @@ extension RGBAImage{
 //      return UIImage.init(ciImage: transformedImage, scale: scale, orientation: .up)
    }
    
-   
+   /**
+    * beta, not in use
+    */
    
       static func imageFromARGB32Bitmap(pixels: [PixelData], width: UInt, height: UInt) -> UIImage? {
          let bitsPerComponent: UInt = 8

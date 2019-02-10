@@ -38,6 +38,7 @@ extension Colorize{
             return pixel
          }
       }
+      /*Check if array has all the pixels*/
       guard pixels.count == Int(firstImage.width * firstImage.height) else {Swift.print("missing some pixels");return nil}
       return RGBAImage.rgbaImage(pixels: pixels, width: firstImage.width, height: firstImage.height)
    }

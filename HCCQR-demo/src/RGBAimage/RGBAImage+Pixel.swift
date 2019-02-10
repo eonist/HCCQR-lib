@@ -8,7 +8,7 @@ extension RGBAImage{
     * - IMPORTANT: ⚠️️ Not in use ⚠️️
     */
    public func getPixel(x:Int, y:Int) -> PixelData? {
-      guard x >= 0 && x < width && y >= 0 && y < height else {return nil }
+      guard x >= 0 && x < width && y >= 0 && y < height else {Swift.print("setPixel() - out of bound"); return nil }
       let address = y * width + x
       return pixels[address]
    }
@@ -17,9 +17,15 @@ extension RGBAImage{
     * - IMPORTANT: ⚠️️ Not in use ⚠️️
     */
    public mutating func setPixel(x:Int,  y:Int,  pixel:PixelData) {
-      guard x >= 0 && x < width && y >= 0 && y < height else { return }
+      guard x >= 0 && x < width && y >= 0 && y < height else {Swift.print("setPixel() - out of bound"); return }
       let address = y * width + x
       pixels[address] = pixel
+   }
+   /**
+    * Set pixel
+    */
+   public mutating func setPixel(idx:Int,pixel:PixelData){
+       pixels[idx] = pixel
    }
    public typealias FunctorCall = ((PixelData) -> PixelData)
    /**
