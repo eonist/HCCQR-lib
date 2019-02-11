@@ -44,10 +44,6 @@ extension ViewController {
       view.addSubview(bImageView)
       bImageView.frame.origin.y = 200
       
-      //🏀
-      //grab the clone code
-      //create a fake HCCQR code 4x4 RGBW
-      //try to grab layer 1 and 2 based on different models you pass to the pixel manipulation
    }
    /**
     * Second attempt at splitting colors into b&w layers
@@ -71,7 +67,7 @@ extension ViewController {
       view.addSubview(imgView)
       imgView.frame.origin.y = 200
       
-      //🏀
+
       //composition demo ✅
       //you need to be able to get the w/b of your choice for r,g,b
          //1. fill result image with pure black
@@ -83,7 +79,7 @@ extension ViewController {
       //Use the 4x4 grid
          //seperate into 2 qr images
       
-      //HCCQRParser.hccqrImage (creates HCCQR image from string)
+      //HCCQRParser.hccqrImage (creates HCCQR image from string) ✅
          //split text in 2
          //make 2 qr images
          //composite 2 qrImages together
@@ -94,8 +90,8 @@ extension ViewController {
          //go box for box and grab the pixel from each box and measure if it's black or white 🚫
          //return [[Bool]] 🚫
       
-      //🏀
-      //write a class that spits out 2 QR images for 1 HHCQR image
+   
+      //write a class that spits out 2 QR images for 1 HHCQR image ✅
          //write a class that makes the HHCQR image 👈
          //find QR code that creates an image
          //you then make color pixels based on the combination of 2 qr images
@@ -112,8 +108,8 @@ extension ViewController {
    }
    
    
-   //🏀
-      //test this a bit, try to grab the second qr img
+
+      //test this a bit, try to grab the second qr img ✅
    
    
    /**
@@ -195,7 +191,7 @@ extension ViewController {
          return (uiImageView,image)
       }
       
-      //🏀
+      
          //test reading pixels for a single qr with no scaling, do you get correct pixel colors?✅
             //if so, then making it HCCQR will be easy, you just scale the result✅
          //it could be that the img.scale is what fucks things up. try google blurry qr, scale etc✅
@@ -304,7 +300,7 @@ extension ViewController {
          //try to use the HCCQRUtil.string(uiImage:img) method ✅
          //try higher res, if it doesn't work ✅
          //try to look at the qr1 and qr2 b&w images, how they look may give you ideas for optimization ✅
-      //🏀
+      //
          //🚫 adjust the fill alorithm, some colors come out grayish, when they should be hard black or hard white
          //you are getting bad data bc of simulator and its blury pixels. ✅
          //optimize split algo

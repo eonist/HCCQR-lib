@@ -14,7 +14,7 @@ class ColorizeUtil{
     * ## Example:
     * hasOnlyColorMap(these: [.red,.green,.blue,.white])
     */
-   static func hasOnlyColorMap(uiImage:UIImage,colorMap:[UIColor]) -> Bool{
+   static func hasOnlyColorMap(uiImage:UIImage, colorMap:[UIColor]) -> Bool{
       let condition:(UIColor) -> Bool = { color in
          let matchCondition:(UIColor) -> Bool = {
             let isMatching:Bool = $0.isEqualRGBA(uiColor:color)//$0 == color//$0.isEqualWithConversion(uiColor:color)

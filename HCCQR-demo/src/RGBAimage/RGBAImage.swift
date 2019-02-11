@@ -2,7 +2,7 @@ import UIKit
 /**
  * TODO: ⚠️️ You have to dealocate the memory at some point, see: https://stackoverflow.com/questions/34750166/how-to-use-unsafemutablebufferpointer
  */
-public struct RGBAImage {
+public struct RGBAImage {//argb
     public var pixels:UnsafeMutableBufferPointer<PixelData>
     public var width:Int
     public var height:Int

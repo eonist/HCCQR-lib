@@ -1,12 +1,12 @@
-// 🏀
-   // try to figure out faster ways to do the image -> pixel code
-   // maybe you can do 1x <-> 2x retina more optimized by skipping every 2nd pixel ?
-   // split up the colorize method
-   // write pseudo-code for lifting, imprinting spessific areas of intrest
+
+   // try to figure out faster ways to do the image -> pixel code 
+   // maybe you can do 1x <-> 2x retina more optimized by skipping every 2nd pixel ? 👌
+   // split up the colorize method ✅
+   // write pseudo-code for lifting, imprinting spessific areas of intrest 🚫
    //create QR image ✅
    //try a few different sizes etc ✅
-   //create the Aim code 👈
-   //try to layer it on top the different sizes etc
+   //create the Aim code 🚫
+   //try to layer it on top the different sizes etc 🚫
 import UIKit
 import QRLibIOS
 

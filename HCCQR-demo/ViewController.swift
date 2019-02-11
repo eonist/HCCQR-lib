@@ -20,17 +20,18 @@ class ViewController: UIViewController {
 //     testModuleCount()
      
       testHCCQRImage()
+//      testColorAssertionWithinThresholdForPixel()
      
 //      testReadingHCCQRImage()
 //      colorTests()
 //      testingSmallModuleSize()
 //      testScalingArray()
       
-      //🏀
+      
       //make an RGBAImage that has 4 pixels, then try to scale that picture ✅
-      //time things, whats taking long? 👈
-      // keep refatoring 👈
-      // try to improve the color seperation process
+      //time things, whats taking long? ✅
+      // keep refatoring ✅ 
+      // try to improve the color seperation process 👈
       
    }
    override var prefersStatusBarHidden:Bool {return true}/*hides statusbar*/

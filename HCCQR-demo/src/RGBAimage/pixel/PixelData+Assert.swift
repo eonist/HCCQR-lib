@@ -8,25 +8,27 @@ extension PixelData{
    static let bluePixel:PixelData = .init(r:0,g:0,b:255,a:255)
    static var blackPixel:PixelData { return .init(r:0,g:0,b:0,a:255) }
    static var whitePixel:PixelData { return .init(r:255,g:255,b:255,a:255) }
-   static let threshold:CGFloat = 0.40
-   static let thresholdUInt8:UInt8 =  UInt8(255*PixelData.threshold)
+   private static let threshold:CGFloat = 0.40
+   private static let halfThreshold:CGFloat = threshold/2
+//   static let thresholdUInt8:UInt8 =  UInt8(255*PixelData.threshold)
+   static let halfThresholdUInt8:UInt8 =  UInt8(255*halfThreshold)
    /**
     * Asserts if a pixel is sort of red within a threshold
     */
    var isRedish:Bool {
-      return self.isColor(pixel: PixelData.redPixel, threshold: PixelData.thresholdUInt8)
+      return self.isColor(pixel: PixelData.redPixel, halfThreshold: PixelData.halfThresholdUInt8)
    }
    /**
     * Asserts if a pixel is sort of green within a threshold
     */
    var isGreenish:Bool {
-      return self.isColor(pixel: PixelData.greenPixel, threshold: PixelData.thresholdUInt8)
+      return self.isColor(pixel: PixelData.greenPixel, halfThreshold: PixelData.halfThresholdUInt8)
    }
    /**
     * Asserts if a pixel is sort of blue within a threshold
     */
    var isBlueish:Bool {
-      return self.isColor(pixel: PixelData.bluePixel, threshold: PixelData.thresholdUInt8)
+      return self.isColor(pixel: PixelData.bluePixel, halfThreshold: PixelData.halfThresholdUInt8)
    }
    /**
     * Measure if color is white (used in the colorize method)
@@ -55,26 +57,26 @@ extension PixelData {
     * let isColorRedish:Bool = redishPixel.isColor(pixel:redPixel,threshold:threshold)
     * Swift.print("isColorRedish:  \(isColorRedish)")//true
     */
-   func isColor(pixel:PixelData, threshold:UInt8) -> Bool{
+   func isColor(pixel:PixelData, halfThreshold:UInt8) -> Bool{
       let rgb1:RGB = self.rgb
       let rgb2:RGB = pixel.rgb
-      return isColor(rgb1:rgb1,rgb2:rgb2,threshold:threshold)
+      return isColor(rgb1:rgb1,rgb2:rgb2,halfThreshold:halfThreshold)
    }
    /**
-    * Asserts if a color is within another color within a threshold
+    * Asserts if a color is near another color within a threshold
     */
-   private func isColor(rgb1:RGB,rgb2:RGB, threshold:UInt8, min:UInt8 = 0, max:UInt8 = 255) -> Bool{
+   private func isColor(rgb1:RGB, rgb2:RGB, halfThreshold:UInt8, min:UInt8 = 0, max:UInt8 = 255) -> Bool{
       let r:Bool = {
-         let range = UInt8Parser.range(number: rgb2.r, min: min, max: max, threshold: threshold)
-         return (range.start...range.end).contains(rgb1.r)
+         let range:RangeUInt8 = UInt8Parser.range(num: rgb2.r, halfThreshold: halfThreshold, min: min, max: max)//75,125
+         return UInt8Asserter.within(num: rgb1.r, min: range.start, max: range.end)//(range.start...range.end).contains(rgb1.r)
       }()
       let g:Bool = {
-         let range = UInt8Parser.range(number: rgb2.g, min: min, max: max, threshold: threshold)
-         return (range.start...range.end).contains(rgb1.g)
+         let range:RangeUInt8 = UInt8Parser.range(num: rgb2.g, halfThreshold: halfThreshold, min: min, max: max)
+         return UInt8Asserter.within(num: rgb1.g, min: range.start, max: range.end)//(range.start...range.end).contains(rgb1.g)
       }()
       let b:Bool = {
-         let range = UInt8Parser.range(number: rgb2.b, min: min, max: max, threshold: threshold)
-         return (range.start...range.end).contains(rgb1.b)
+         let range:RangeUInt8 = UInt8Parser.range(num: rgb2.b, halfThreshold: halfThreshold, min: min, max: max)
+         return UInt8Asserter.within(num: rgb1.b, min: range.start, max: range.end)//(range.start...range.end).contains(rgb1.b)
       }()
       return r && g && b
    }

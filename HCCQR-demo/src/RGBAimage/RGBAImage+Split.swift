@@ -20,6 +20,8 @@ extension RGBAImage {
     */
    private static func split(rgbaImg:RGBAImage) -> RGBAImages{
       let startTime:Date = Date()
+      //🏀
+      //TODO: ⚠️️ optimize the isRedish method
       let r:RGBAImage = channelR(rgbaImg)
       let g:RGBAImage = channelG(rgbaImg)
       let b:RGBAImage = channelB(rgbaImg)

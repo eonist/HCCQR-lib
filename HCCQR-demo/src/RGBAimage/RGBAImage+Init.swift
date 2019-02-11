@@ -62,8 +62,7 @@ extension RGBAImage{
  * DEPRECATED
  */
 extension RGBAImage{
-   //🏀
-      //Use the bellow it has the same scale tech
+
    /**
     * Beta (trying to fix "blurry edge pixel bug")
     * - Important: ⚠️️ CoreGraphics expects pixel data as rows, not columns. Just flip your for-statements like this:

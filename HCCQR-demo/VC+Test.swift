@@ -73,7 +73,8 @@ extension ViewController{
       let redishPixel:PixelData = .init(r:255-offset,g:0+offset,b:0+offset,a:255)
       let redPixel:PixelData = .init(r:255,g:0,b:0,a:255)
       let threshold:UInt8 = UInt8(255*0.25)
-      let isColorRedish:Bool = redishPixel.isColor(pixel:redPixel,threshold:threshold)
+      let halfThreshold:UInt8 = UInt8(threshold/2)
+      let isColorRedish:Bool = redishPixel.isColor(pixel:redPixel, halfThreshold:halfThreshold)
       Swift.print("isColorRedish:  \(isColorRedish)")
    }
    /**

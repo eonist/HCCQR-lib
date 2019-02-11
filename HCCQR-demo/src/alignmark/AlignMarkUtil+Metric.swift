@@ -19,11 +19,6 @@ extension AlignMarkUtil {
       fileprivate static let squareLength:Int = 3
    }
    
-   //Continue here: 🏀
-      //moduleCount, does not include margin
-      //count the amount in the render, use these numbers, not the nums from the web
-   
-   
    typealias AlignBox = (marginLength:CGFloat,outerLength:CGFloat,innerLength:CGFloat, squareLength:CGFloat, totalLength:CGFloat)
    /**
     * - Parameter side: a side of qrBoxSize

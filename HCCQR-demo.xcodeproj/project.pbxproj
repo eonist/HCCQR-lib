@@ -10,7 +10,7 @@
 		F11DE8512208F19F007A8A7A /* VC+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11DE8502208F19F007A8A7A /* VC+Test.swift */; };
 		F11DE854220A45BA007A8A7A /* HCCQRUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11DE853220A45BA007A8A7A /* HCCQRUtil.swift */; };
 		F11DE85A220B333B007A8A7A /* CGFloatParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11DE859220B333A007A8A7A /* CGFloatParser.swift */; };
-		F11DE85D220B3EA8007A8A7A /* IntParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11DE85C220B3EA8007A8A7A /* IntParser.swift */; };
+		F11DE85D220B3EA8007A8A7A /* UInt8Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11DE85C220B3EA8007A8A7A /* UInt8Parser.swift */; };
 		F11DE860220B6C53007A8A7A /* temp.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F11DE85F220B6C53007A8A7A /* temp.bundle */; };
 		F11DE862220BAF37007A8A7A /* RGBAImage+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11DE861220BAF37007A8A7A /* RGBAImage+Init.swift */; };
 		F14FADE521F75A9900ACE5FF /* VC+ViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14FADE421F75A9900ACE5FF /* VC+ViewTest.swift */; };
@@ -42,9 +42,10 @@
 		F172F3A6220CC7FA004ACB95 /* PixelData+Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = F172F3A5220CC7FA004ACB95 /* PixelData+Type.swift */; };
 		F172F3A8220CC9CE004ACB95 /* PixelData+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = F172F3A7220CC9CE004ACB95 /* PixelData+Init.swift */; };
 		F172F3AA220CCCDD004ACB95 /* Colorize+ColorMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = F172F3A9220CCCDD004ACB95 /* Colorize+ColorMap.swift */; };
-		F172F3AC220CCCFF004ACB95 /* Colorize+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F172F3AB220CCCFF004ACB95 /* Colorize+Helper.swift */; };
+		F172F3AC220CCCFF004ACB95 /* Colorize+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = F172F3AB220CCCFF004ACB95 /* Colorize+Core.swift */; };
 		F172F3AE220F61C8004ACB95 /* HCCQRStringData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F172F3AD220F61C8004ACB95 /* HCCQRStringData.swift */; };
 		F172F3B0220F673A004ACB95 /* ColorizeUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F172F3AF220F673A004ACB95 /* ColorizeUtil.swift */; };
+		F172F3B22211DBAF004ACB95 /* UInt8Asserter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F172F3B12211DBAF004ACB95 /* UInt8Asserter.swift */; };
 		F18A52DF21790F8A003F8C13 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18A52DE21790F8A003F8C13 /* AppDelegate.swift */; };
 		F18A52E121790F8A003F8C13 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18A52E021790F8A003F8C13 /* ViewController.swift */; };
 		F18A52E421790F8A003F8C13 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F18A52E221790F8A003F8C13 /* Main.storyboard */; };
@@ -71,7 +72,7 @@
 		F11DE8502208F19F007A8A7A /* VC+Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VC+Test.swift"; sourceTree = "<group>"; };
 		F11DE853220A45BA007A8A7A /* HCCQRUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HCCQRUtil.swift; sourceTree = "<group>"; };
 		F11DE859220B333A007A8A7A /* CGFloatParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGFloatParser.swift; sourceTree = "<group>"; };
-		F11DE85C220B3EA8007A8A7A /* IntParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntParser.swift; sourceTree = "<group>"; };
+		F11DE85C220B3EA8007A8A7A /* UInt8Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UInt8Parser.swift; sourceTree = "<group>"; };
 		F11DE85F220B6C53007A8A7A /* temp.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = temp.bundle; sourceTree = "<group>"; };
 		F11DE861220BAF37007A8A7A /* RGBAImage+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RGBAImage+Init.swift"; sourceTree = "<group>"; };
 		F14FADE421F75A9900ACE5FF /* VC+ViewTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VC+ViewTest.swift"; sourceTree = "<group>"; };
@@ -102,9 +103,10 @@
 		F172F3A5220CC7FA004ACB95 /* PixelData+Type.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PixelData+Type.swift"; sourceTree = "<group>"; };
 		F172F3A7220CC9CE004ACB95 /* PixelData+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PixelData+Init.swift"; sourceTree = "<group>"; };
 		F172F3A9220CCCDD004ACB95 /* Colorize+ColorMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Colorize+ColorMap.swift"; sourceTree = "<group>"; };
-		F172F3AB220CCCFF004ACB95 /* Colorize+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Colorize+Helper.swift"; sourceTree = "<group>"; };
+		F172F3AB220CCCFF004ACB95 /* Colorize+Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Colorize+Core.swift"; sourceTree = "<group>"; };
 		F172F3AD220F61C8004ACB95 /* HCCQRStringData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HCCQRStringData.swift; sourceTree = "<group>"; };
 		F172F3AF220F673A004ACB95 /* ColorizeUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorizeUtil.swift; sourceTree = "<group>"; };
+		F172F3B12211DBAF004ACB95 /* UInt8Asserter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UInt8Asserter.swift; sourceTree = "<group>"; };
 		F18A52DB21790F8A003F8C13 /* HCCQR-demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HCCQR-demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F18A52DE21790F8A003F8C13 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F18A52E021790F8A003F8C13 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -141,7 +143,8 @@
 			children = (
 				F162146721FF380E005297DE /* CAShapeLayerUtil.swift */,
 				F11DE859220B333A007A8A7A /* CGFloatParser.swift */,
-				F11DE85C220B3EA8007A8A7A /* IntParser.swift */,
+				F11DE85C220B3EA8007A8A7A /* UInt8Parser.swift */,
+				F172F3B12211DBAF004ACB95 /* UInt8Asserter.swift */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -202,7 +205,7 @@
 			isa = PBXGroup;
 			children = (
 				F162146121FC966C005297DE /* Colorize.swift */,
-				F172F3AB220CCCFF004ACB95 /* Colorize+Helper.swift */,
+				F172F3AB220CCCFF004ACB95 /* Colorize+Core.swift */,
 				F172F3A9220CCCDD004ACB95 /* Colorize+ColorMap.swift */,
 				F172F3AF220F673A004ACB95 /* ColorizeUtil.swift */,
 			);
@@ -358,7 +361,7 @@
 				F172F3A8220CC9CE004ACB95 /* PixelData+Init.swift in Sources */,
 				F172F3AE220F61C8004ACB95 /* HCCQRStringData.swift in Sources */,
 				F14FADE521F75A9900ACE5FF /* VC+ViewTest.swift in Sources */,
-				F172F3AC220CCCFF004ACB95 /* Colorize+Helper.swift in Sources */,
+				F172F3AC220CCCFF004ACB95 /* Colorize+Core.swift in Sources */,
 				F18A52E121790F8A003F8C13 /* ViewController.swift in Sources */,
 				F14FADF021F761FD00ACE5FF /* FakeHCCQRView.swift in Sources */,
 				F162146621FF0734005297DE /* AlignMarkTestView.swift in Sources */,
@@ -386,12 +389,13 @@
 				F162146D220063F1005297DE /* AlignMarkUtil+Metric.swift in Sources */,
 				F172F38F220C8192004ACB95 /* UIColor+Asserter.swift in Sources */,
 				F172F3A4220CC75D004ACB95 /* PixelData+Assert.swift in Sources */,
-				F11DE85D220B3EA8007A8A7A /* IntParser.swift in Sources */,
+				F11DE85D220B3EA8007A8A7A /* UInt8Parser.swift in Sources */,
 				F162145821FC7636005297DE /* RGBAImage+Split.swift in Sources */,
 				F11DE85A220B333B007A8A7A /* CGFloatParser.swift in Sources */,
 				F11DE862220BAF37007A8A7A /* RGBAImage+Init.swift in Sources */,
 				F162146F22007814005297DE /* AlignMarkUtil+Debug.swift in Sources */,
 				F172F3AA220CCCDD004ACB95 /* Colorize+ColorMap.swift in Sources */,
+				F172F3B22211DBAF004ACB95 /* UInt8Asserter.swift in Sources */,
 				F162146B21FF4198005297DE /* AlignMarkUtil.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
