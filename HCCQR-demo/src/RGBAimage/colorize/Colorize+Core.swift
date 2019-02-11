@@ -25,15 +25,13 @@ extension Colorize{
    }
    /**
     * Converts b&w RGBAImages into one color RGBAImage (on the basis of a colorMap rule-set)
+    * - TODO: ⚠️️ Could be fater to just mutate the pixels diretly in an RGBAImage isntead of creating an pixel array like it is now?
     */
    internal static func colorize(rgbaImages:[RGBAImage], colorMap:ColorMap, scale:Int) -> RGBAImage?{
       guard let firstImage:RGBAImage = rgbaImages.first else {Swift.print("must contain at least one image");return nil}
       let pixels:[PixelData] = (0..<firstImage.height).indices.flatMap { y in /*flatMap Covert the 2-dim array to a 1-dim array*/
          return (0..<firstImage.width).indices.compactMap { x in
-            let pixels:[PixelData] = rgbaImages.compactMap{ image in
-               guard let pixel:PixelData = image.getPixel(x:x,y:y) else {Swift.print("⚠️️ unable to get pixel ⚠️️");return nil}
-               return pixel
-            }
+            let pixels:[PixelData] = rgbaImages.map{ $0.getPixelUnChecked(x:x,y:y) }
             guard let pixel:PixelData = colorize(pixels:pixels, colorMap:colorMap) else {Swift.print("⚠️️ unable to make pixel ⚠️️");return nil}
             return pixel
          }

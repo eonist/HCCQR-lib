@@ -8,19 +8,15 @@ extension RGBAImage {
    public static func composite(rgbaImageList:[RGBAImage], invert:Bool) -> RGBAImage? {
       guard let firstRGBAImg:RGBAImage = rgbaImageList.first else {Swift.print("composite() - no first");return nil}
       let size:(width:Int,height:Int) = (width:Int(firstRGBAImg.width), height: Int(firstRGBAImg.height))
-      let rgbaImg = RGBAImage.rgbaImage(pixel: PixelData.blackPixel, size: size)
+      var rgbaImg:RGBAImage = RGBAImage.rgbaImage(pixel: PixelData.blackPixel, size: size)
       /*Loop things*/
-      (0..<size.height).forEach { y in /*loop over every y*/
-         (0..<size.width).forEach { x in /*loop over every x*/
-            let index = y * size.width + x//TODO: ⚠️️ use getPixel here
-            var pixel:PixelData = rgbaImg.pixels[index]
-            //TODO: ⚠️️ maybe do reduce here?
-            for rgba in rgbaImageList {/*loop over every image in the list*/
-               let rgbaPixel = rgba.pixels[index]
-               pixel.setRGBA(first:pixel,second:rgbaPixel,alpha:255)
-            }
-            rgbaImg.pixels[index] = invert ? pixel.inverted() : pixel
+      rgbaImg.process{ (index:Int, pixel:PixelData) -> PixelData in
+         var pixel = pixel
+         rgbaImageList.forEach { (rgbaImage:RGBAImage) in /*loop over every image in the list*///TODO: ⚠️️ maybe do reduce here?
+            let rgbaPixelData:PixelData = rgbaImage.pixels[index]
+            pixel.setRGBA(first: pixel, second: rgbaPixelData, alpha: 255)
          }
+         return invert ? pixel.inverted() : pixel
       }
       return rgbaImg
    }

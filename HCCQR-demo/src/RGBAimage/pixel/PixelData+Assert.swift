@@ -33,15 +33,16 @@ extension PixelData{
    /**
     * Measure if color is white (used in the colorize method)
     */
-   var isWhite:Bool {
-      return self.r == 255 && self.g == 255 && self.b == 255
+   var isWhite:Bool {//was return self.r == 255 && self.g == 255 && self.b == 255
+      return !(self.r != 255 || self.g != 255 || self.b != 255)//looks funky, but its fast
    }
    /**
     * Measure if color is black (used in the colorize method)
     */
-   var isBlack:Bool {
-      return self.r == 0 && self.g == 0 && self.b == 0
+   var isBlack:Bool {//was return self.r == 0 && self.g == 0 && self.b == 0
+      return !(self.r != 0 || self.g != 0 || self.b != 0)//looks funky, but its fast
    }
+  
 }
 /**
  * Assert

@@ -3,10 +3,9 @@ import UIKit
  * Converts b&w layers into color layers
  */
 class Colorize {
-   
-//   typealias PixelGrid = [[PixelData]]
    /**
     * Converts multiple b&w images to color image based on the colorMap provided
+    * - TODO: ⚠️️ pass cgImages istead of uiimages, it might be faster
     */
    static func colorize(images:[UIImage], colorMap:ColorMap, scale:Int) -> UIImage? {
       let rgbaImages:[RGBAImage] = images.compactMap{RGBAImage.rgbaImage(image: $0)}

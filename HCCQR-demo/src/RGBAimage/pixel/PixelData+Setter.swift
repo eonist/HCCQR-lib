@@ -11,11 +11,24 @@ extension PixelData {
       self.b = b
       self.a = a
    }
+   /**
+    * TODO: ⚠️️ clean this up
+    */
    mutating func setRGBA(first:PixelData,second:PixelData,alpha:UInt8){
-      if first.r < 255 {self.r = UInt16(first.r + second.r) > 255 ? 255 : first.r + second.r}
-      if first.g < 255 {self.g = UInt16(first.g + second.g) > 255 ? 255 : first.g + second.g}
-      if first.b < 255 {self.b = UInt16(first.b + second.b) > 255 ? 255 : first.b + second.b}
-      if first.a < 255 {self.a = alpha}
+      _ = {
+         let wrapAdd = first.r.addingReportingOverflow(second.r)
+         self.r = wrapAdd.overflow ? 255 : wrapAdd.partialValue
+      }()
+      _ = {
+         let wrapAdd = first.g.addingReportingOverflow(second.g)
+         self.g = wrapAdd.overflow ? 255 : wrapAdd.partialValue
+      }()
+      _ = {
+         let wrapAdd = first.b.addingReportingOverflow(second.b)
+         self.b = wrapAdd.overflow ? 255 : wrapAdd.partialValue
+      }()
+//      if first.a < 255 {}
+      self.a = alpha
    }
    mutating func setRGBA(color:UIColor) {
       guard let rgba:RGBA = PixelDataUtil.rgba(uiColor:color) else {Swift.print("Unable to get rgba");return}//.rgba
