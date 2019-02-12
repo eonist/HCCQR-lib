@@ -1,6 +1,6 @@
 import UIKit
 import QRLibIOS
-
+@testable import HCCQR_lib_iOS
 
 /**
  * Tests
