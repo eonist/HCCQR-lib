@@ -1,10 +1,10 @@
-import UIKit
+import Foundation
 
 internal class PixelDataUtil{
    /**
     * rgba for UInt8
     */
-   internal static func rgba(uiColor:UIColor) -> PixelData.RGBA?{
+   internal static func rgba(uiColor:Color) -> PixelData.RGBA?{
       var fRed : CGFloat = 0
       var fGreen : CGFloat = 0
       var fBlue : CGFloat = 0

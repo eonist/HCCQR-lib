@@ -1,4 +1,4 @@
-
+import Foundation
 /**
  * TODO: ⚠️️ You have to dealocate the memory at some point, see: https://stackoverflow.com/questions/34750166/how-to-use-unsafemutablebufferpointer
  */

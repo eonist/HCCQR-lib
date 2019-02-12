@@ -58,12 +58,11 @@
 		F16852BA22134E4000C27EAA /* Splitter+Channels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852B822134E4000C27EAA /* Splitter+Channels.swift */; };
 		F16852BC2213522200C27EAA /* Compositor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852BB2213522200C27EAA /* Compositor.swift */; };
 		F16852BD2213522200C27EAA /* Compositor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852BB2213522200C27EAA /* Compositor.swift */; };
-		F16852C02213591F00C27EAA /* RGBAImage+Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852BF2213591F00C27EAA /* RGBAImage+Image.swift */; };
-		F16852C12213591F00C27EAA /* RGBAImage+Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852BF2213591F00C27EAA /* RGBAImage+Image.swift */; };
-		F17A2A0122137BF4000B6C0A /* HybridOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17A29FF22137BEA000B6C0A /* HybridOS.swift */; };
+		F17A2A0122137BF4000B6C0A /* HybridiOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17A29FF22137BEA000B6C0A /* HybridiOS.swift */; };
 		F17A2A152213835C000B6C0A /* QRLibIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F162144F21FC707E005297DE /* QRLibIOS.framework */; };
 		F17A2A1622138363000B6C0A /* QRLibMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F16852322213435100C27EAA /* QRLibMac.framework */; };
 		F17A2A1922138511000B6C0A /* HybridMac.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17A2A17221384F2000B6C0A /* HybridMac.swift */; };
+		F17A2A2122138901000B6C0A /* ImageUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17A2A1F221388E2000B6C0A /* ImageUtil.swift */; };
 		F18A52DF21790F8A003F8C13 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18A52DE21790F8A003F8C13 /* AppDelegate.swift */; };
 		F18A52E121790F8A003F8C13 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18A52E021790F8A003F8C13 /* ViewController.swift */; };
 		F18A52E421790F8A003F8C13 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F18A52E221790F8A003F8C13 /* Main.storyboard */; };
@@ -148,9 +147,9 @@
 		F16852B522134DBD00C27EAA /* Splitter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Splitter.swift; sourceTree = "<group>"; };
 		F16852B822134E4000C27EAA /* Splitter+Channels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Splitter+Channels.swift"; sourceTree = "<group>"; };
 		F16852BB2213522200C27EAA /* Compositor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compositor.swift; sourceTree = "<group>"; };
-		F16852BF2213591F00C27EAA /* RGBAImage+Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RGBAImage+Image.swift"; sourceTree = "<group>"; };
-		F17A29FF22137BEA000B6C0A /* HybridOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HybridOS.swift; sourceTree = "<group>"; };
+		F17A29FF22137BEA000B6C0A /* HybridiOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HybridiOS.swift; sourceTree = "<group>"; };
 		F17A2A17221384F2000B6C0A /* HybridMac.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HybridMac.swift; sourceTree = "<group>"; };
+		F17A2A1F221388E2000B6C0A /* ImageUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUtil.swift; sourceTree = "<group>"; };
 		F18A52DB21790F8A003F8C13 /* HCCQR-demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HCCQR-demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F18A52DE21790F8A003F8C13 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F18A52E021790F8A003F8C13 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -252,7 +251,6 @@
 				F168525A2213443700C27EAA /* RGBAImage+Pixel.swift */,
 				F168525B2213443700C27EAA /* RGBAImage+Util.swift */,
 				F168526F2213443700C27EAA /* RGBAImage.swift */,
-				F16852BF2213591F00C27EAA /* RGBAImage+Image.swift */,
 				F16852702213443700C27EAA /* RGBAImage+Init.swift */,
 				F168525C2213443700C27EAA /* util */,
 			);
@@ -341,8 +339,7 @@
 		F16852762213443700C27EAA /* common */ = {
 			isa = PBXGroup;
 			children = (
-				F17A29FF22137BEA000B6C0A /* HybridOS.swift */,
-				F17A2A17221384F2000B6C0A /* HybridMac.swift */,
+				F17A2A2322138969000B6C0A /* hybrid */,
 				F16852772213443700C27EAA /* extension */,
 				F168527D2213443700C27EAA /* util */,
 				F16852822213443700C27EAA /* color */,
@@ -397,6 +394,16 @@
 				F168526D2213443700C27EAA /* ColorizeAsserter.swift */,
 			);
 			path = util;
+			sourceTree = "<group>";
+		};
+		F17A2A2322138969000B6C0A /* hybrid */ = {
+			isa = PBXGroup;
+			children = (
+				F17A29FF22137BEA000B6C0A /* HybridiOS.swift */,
+				F17A2A17221384F2000B6C0A /* HybridMac.swift */,
+				F17A2A1F221388E2000B6C0A /* ImageUtil.swift */,
+			);
+			path = hybrid;
 			sourceTree = "<group>";
 		};
 		F18A52D221790F8A003F8C13 = {
@@ -592,6 +599,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F17A2A2122138901000B6C0A /* ImageUtil.swift in Sources */,
 				F16852B622134DBD00C27EAA /* Splitter.swift in Sources */,
 				F16852902213443700C27EAA /* PixelData+Type.swift in Sources */,
 				F168528F2213443700C27EAA /* PixelData+Assert.swift in Sources */,
@@ -620,8 +628,7 @@
 				F16852A32213443700C27EAA /* CGFloatParser.swift in Sources */,
 				F168528E2213443700C27EAA /* PixelData+Setter.swift in Sources */,
 				F16852872213443700C27EAA /* RGBAImage+Pixel.swift in Sources */,
-				F16852C02213591F00C27EAA /* RGBAImage+Image.swift in Sources */,
-				F17A2A0122137BF4000B6C0A /* HybridOS.swift in Sources */,
+				F17A2A0122137BF4000B6C0A /* HybridiOS.swift in Sources */,
 				F16852A52213443700C27EAA /* UIColor+Asserter.swift in Sources */,
 				F16852922213443700C27EAA /* Colorize.swift in Sources */,
 				F16852882213443700C27EAA /* RGBAImage+Util.swift in Sources */,
@@ -634,7 +641,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F16852BA22134E4000C27EAA /* Splitter+Channels.swift in Sources */,
-				F16852C12213591F00C27EAA /* RGBAImage+Image.swift in Sources */,
 				F16852B722134DBD00C27EAA /* Splitter.swift in Sources */,
 				F17A2A1922138511000B6C0A /* HybridMac.swift in Sources */,
 				F16852BD2213522200C27EAA /* Compositor.swift in Sources */,

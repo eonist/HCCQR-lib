@@ -1,5 +1,9 @@
-import QRLibIOS
 import Foundation
+#if os(iOS)
+import QRLibIOS
+#elseif os(macOS)
+import QRLibMac
+#endif
 
 public class HCCQRStringData{
    /**

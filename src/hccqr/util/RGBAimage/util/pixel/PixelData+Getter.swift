@@ -1,5 +1,7 @@
 import Foundation
-
+/**
+ * Getter
+ */
 internal extension PixelData{
    /**
     * rgb

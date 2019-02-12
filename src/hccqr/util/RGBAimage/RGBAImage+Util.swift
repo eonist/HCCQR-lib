@@ -1,9 +1,4 @@
-#if os(iOS)
-import UIKit
-#elseif os(macOS)
-import Cocoa
-#endif
-
+import Foundation
 /**
  * Class methods
  * - TODO: ⚠️️ Rename to RGBAImageParser
@@ -22,7 +17,7 @@ internal extension RGBAImage{
     */
    internal static func uiImage(rgbaImage:RGBAImage, resultScale:CGFloat) -> Image? {
       guard let cgImage = cgImage(rgbaImage: rgbaImage, resultScale: resultScale) else {Swift.print("unable to create cgImage");return nil}
-      let image:Image = RGBAImage.image(cgImage: cgImage, resultScale: resultScale)
+      let image:Image = ImageUtil.image(cgImage: cgImage, resultScale: resultScale)
       return image
    }
    /**
@@ -60,7 +55,7 @@ internal extension RGBAImage{
       guard let cgImage = CGImage.init(width: Int(width), height: Int(height), bitsPerComponent: Int(bitsPerComponent), bitsPerPixel: Int(bitsPerPixel), bytesPerRow: Int(width * 4)/*UInt(sizeof(PixelData))*/, space: rgbColorSpace, bitmapInfo: bitmapInfo, provider: providerRef, decode: nil, shouldInterpolate: true, intent: .defaultIntent) else {Swift.print("err 2");return nil}
       //      let cgImage = CGImageCreate(width, height, bitsPerComponent, bitsPerPixel, width * 4/*UInt(sizeof(PixelData))*/, rgbColorSpace, bitmapInfo, providerRef, nil, true, kCGRenderingIntentDefault)
       //      let cgiimagething: CGImage = cgImage
-      return RGBAImage.image(cgImage: cgImage/*, scale: 1, orientation: .down*/)
+      return ImageUtil.image(cgImage: cgImage/*, scale: 1, orientation: .down*/)
    }
    
    //   public var copy:RGBAImage {

@@ -1,11 +1,12 @@
-
-import UIKit
-
+import Foundation
+/**
+ * Setter
+ */
 internal extension PixelData {
    /**
     * setPixel (0-255) (⚠️️ not optimized ⚠️️)
     */
-   internal mutating func setRGBA(r:UInt8,g:UInt8,b:UInt8,a:UInt8/* = 255*/){
+   internal mutating func setRGBA(r:UInt8,g:UInt8,b:UInt8,a:UInt8){
       self.r = r
       self.g = g
       self.b = b

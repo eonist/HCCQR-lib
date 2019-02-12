@@ -1,8 +1,4 @@
-#if os(iOS)
-import UIKit
-#elseif os(macOS)
-import Cocoa
-#endif
+import Foundation
 /**
  * Utils
  * - TODO: ⚠️️ Rename to RGBAImageSplitter
@@ -64,7 +60,7 @@ fileprivate extension Splitter {
  * Type
  */
 extension Splitter{
-   internal typealias RGBUIImages = (r:UIImage,g:UIImage,b:UIImage)
+   internal typealias RGBUIImages = (r:Image,g:Image,b:Image)
    internal typealias RGBAImages = (r:RGBAImage,g:RGBAImage,b:RGBAImage)
    internal typealias OnOptionalChannelsComplete = (_ rgbaImages:RGBAImages?) -> Void
 }

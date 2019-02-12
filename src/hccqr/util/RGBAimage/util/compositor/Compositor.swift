@@ -1,8 +1,5 @@
-#if os(iOS)
-import UIKit
-#elseif os(macOS)
-import Cocoa
-#endif
+import Foundation
+
 /**
  * Compositor
  */

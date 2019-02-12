@@ -1,8 +1,7 @@
+import Foundation
 #if os(iOS)
-import UIKit
 import QRLibIOS
 #elseif os(macOS)
-import Cocoa
 import QRLibMac
 #endif
 

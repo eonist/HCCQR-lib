@@ -3,11 +3,11 @@ import UIKit
 #elseif os(macOS)
 import Cocoa
 #endif
-
 /**
- * Util
+ * Util.
+ * - TODO: ⚠️️ Can be moved to Util or Extensions
  */
-internal extension RGBAImage{
+internal final class ImageUtil{
    /**
     * Universal for ios and mac
     */
@@ -43,3 +43,25 @@ internal extension RGBAImage{
    }
    #endif
 }
+
+
+
+
+/**
+ * Creates a CIImage from str
+ * TODO: ⚠️️ make this throw
+ */
+//static func ciImage(str: String, size: CGSize) -> CIImage? {
+//   let data = str.data(using: .utf8) // let data = codeValue.dataUsingEncoding(NSISOLatin1StringEncoding, allowLossyConversion: false)
+//   guard let filter = CIFilter(name: "CIQRCodeGenerator") else {
+//      return nil
+//   }
+//   filter.setValue(data, forKey: "inputMessage")
+//   filter.setValue("Q", forKey: "inputCorrectionLevel")/*Correction levels aviable 7%, M 15%, Q25%, H:30*/
+//   let res: Int = 8 // 8 seems to be a value which isn't too CPU concuming to render and keeps the size of the image correct
+//   let interp:(x:CGFloat, y: CGFloat) = ((size.w / 100) * res, (size.h / 100) * res)
+//   // Swift.print("interp:  \(interp)")
+//   let codeImage: CIImage? =  filter.outputImage?.transformed(by: CGAffineTransform(scaleX: interp.x, y: interp.y))
+//   return codeImage
+//}
+

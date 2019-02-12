@@ -1,6 +1,6 @@
-import UIKit
+import Foundation
 /**
- * Assert
+ * Asserter
  */
 internal extension PixelData{
    internal static let redPixel:PixelData = .init(r:255,g:0,b:0,a:255)
