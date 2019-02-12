@@ -20,8 +20,6 @@
 		F168521D221342D000C27EAA /* HCCQR_lib_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1685216221342D000C27EAA /* HCCQR_lib_iOS.framework */; };
 		F168521E221342D000C27EAA /* HCCQR_lib_iOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F1685216221342D000C27EAA /* HCCQR_lib_iOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F168522B221342EB00C27EAA /* HCCQR_lib_mac.h in Headers */ = {isa = PBXBuildFile; fileRef = F1685229221342EB00C27EAA /* HCCQR_lib_mac.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F16852312213430900C27EAA /* QRLibIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F162144F21FC707E005297DE /* QRLibIOS.framework */; };
-		F16852332213435100C27EAA /* QRLibMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F16852322213435100C27EAA /* QRLibMac.framework */; };
 		F16852852213443700C27EAA /* HCCQRStringData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852572213443700C27EAA /* HCCQRStringData.swift */; };
 		F16852872213443700C27EAA /* RGBAImage+Pixel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F168525A2213443700C27EAA /* RGBAImage+Pixel.swift */; };
 		F16852882213443700C27EAA /* RGBAImage+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = F168525B2213443700C27EAA /* RGBAImage+Util.swift */; };
@@ -63,6 +61,9 @@
 		F16852C02213591F00C27EAA /* RGBAImage+Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852BF2213591F00C27EAA /* RGBAImage+Image.swift */; };
 		F16852C12213591F00C27EAA /* RGBAImage+Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852BF2213591F00C27EAA /* RGBAImage+Image.swift */; };
 		F17A2A0122137BF4000B6C0A /* HybridOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17A29FF22137BEA000B6C0A /* HybridOS.swift */; };
+		F17A2A152213835C000B6C0A /* QRLibIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F162144F21FC707E005297DE /* QRLibIOS.framework */; };
+		F17A2A1622138363000B6C0A /* QRLibMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F16852322213435100C27EAA /* QRLibMac.framework */; };
+		F17A2A1922138511000B6C0A /* HybridMac.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17A2A17221384F2000B6C0A /* HybridMac.swift */; };
 		F18A52DF21790F8A003F8C13 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18A52DE21790F8A003F8C13 /* AppDelegate.swift */; };
 		F18A52E121790F8A003F8C13 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18A52E021790F8A003F8C13 /* ViewController.swift */; };
 		F18A52E421790F8A003F8C13 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F18A52E221790F8A003F8C13 /* Main.storyboard */; };
@@ -149,6 +150,7 @@
 		F16852BB2213522200C27EAA /* Compositor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compositor.swift; sourceTree = "<group>"; };
 		F16852BF2213591F00C27EAA /* RGBAImage+Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RGBAImage+Image.swift"; sourceTree = "<group>"; };
 		F17A29FF22137BEA000B6C0A /* HybridOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HybridOS.swift; sourceTree = "<group>"; };
+		F17A2A17221384F2000B6C0A /* HybridMac.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HybridMac.swift; sourceTree = "<group>"; };
 		F18A52DB21790F8A003F8C13 /* HCCQR-demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HCCQR-demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F18A52DE21790F8A003F8C13 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F18A52E021790F8A003F8C13 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -163,7 +165,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F16852312213430900C27EAA /* QRLibIOS.framework in Frameworks */,
+				F17A2A152213835C000B6C0A /* QRLibIOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -171,7 +173,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F16852332213435100C27EAA /* QRLibMac.framework in Frameworks */,
+				F17A2A1622138363000B6C0A /* QRLibMac.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,6 +342,7 @@
 			isa = PBXGroup;
 			children = (
 				F17A29FF22137BEA000B6C0A /* HybridOS.swift */,
+				F17A2A17221384F2000B6C0A /* HybridMac.swift */,
 				F16852772213443700C27EAA /* extension */,
 				F168527D2213443700C27EAA /* util */,
 				F16852822213443700C27EAA /* color */,
@@ -633,6 +636,7 @@
 				F16852BA22134E4000C27EAA /* Splitter+Channels.swift in Sources */,
 				F16852C12213591F00C27EAA /* RGBAImage+Image.swift in Sources */,
 				F16852B722134DBD00C27EAA /* Splitter.swift in Sources */,
+				F17A2A1922138511000B6C0A /* HybridMac.swift in Sources */,
 				F16852BD2213522200C27EAA /* Compositor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,4 +1,4 @@
-import UIKit
+import Foundation
 /**
  * Core
  */
@@ -20,7 +20,7 @@ internal extension Colorize{
          }
          return (pixels.enumerated().first(where: condition) == nil)
       }
-      guard let color:UIColor = colorMap.first(where: findColor)?.color else {Swift.print("Unable to colorize");return nil}
+      guard let color:Color = colorMap.first(where: findColor)?.color else {Swift.print("Unable to colorize");return nil}
       return PixelData.init(uiColor:color)
    }
    /**

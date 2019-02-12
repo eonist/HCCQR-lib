@@ -24,7 +24,7 @@ public class HCCQRImageUtil{
     * Swift.print(hccqrImage?.hasOnlyColorMap(colorMap: [.red,.green,.blue,.white]))//ensure that img only has valid colors, akak no bluring
     */
    public static func getHCCQRImage(string str:String, qrVersion:Int, qrMode:QRMode, ecLevel:ECLevel, scale:Int, onComplete: @escaping OnGetHCCQRImageComplete)  {
-      let moduleCount:Int = QRInfoUtil.moduleCount(version: qrVersion)/*Sort of like QRPixels*/
+      let moduleCount:Int = QRModuleUtil.moduleCount(version: qrVersion)/*Sort of like QRPixels*/
       let firstPart:String = String(str[..<str.index(str.startIndex, offsetBy: str.count/2)])/*First part of the payload*/
       let lastPart:String = String(str[str.index(str.startIndex, offsetBy: str.count/2)...])/*Second part of the payload*/
       let length:CGFloat = CGFloat(moduleCount + 2) /*the 2 extra are margins*/
@@ -41,7 +41,7 @@ public class HCCQRImageUtil{
       }
       strings.enumerated().forEach { arg in
          DispatchQueue.global(qos:.background).async {
-            let qrImg:Image? = QRUtil.qrImage(str: arg.element, size: .init(width:length,height:length), ecLevel: ecLevel)
+            let qrImg:Image? = QRImageUtil.qrImage(str: arg.element, size: .init(width:length,height:length), ecLevel: ecLevel)
             DispatchQueue.main.async{
                onCreateQrImgComplete(i:arg.offset,qrImg: qrImg)
             }

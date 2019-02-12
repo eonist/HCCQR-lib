@@ -1,4 +1,4 @@
-import UIKit
+import Foundation
 /**
  * ColorMap
  */
@@ -9,10 +9,10 @@ internal extension Colorize{
     */
    internal static let colorMap:ColorMap = {
       return [
-         (idx:[0,1],UIColor.red),//black,white
-         (idx:[1,0],UIColor.green),//white,black
-         (idx:[1,1],UIColor.blue),//black,black
-         (idx:[0,0],UIColor.white)//white,white
+         (idx:[0,1],Color.red),//black,white
+         (idx:[1,0],Color.green),//white,black
+         (idx:[1,1],Color.blue),//black,black
+         (idx:[0,0],Color.white)//white,white
       ]
    }()
    /**
@@ -20,10 +20,10 @@ internal extension Colorize{
     */
    internal static let blandColorMap:ColorMap = {
       return [
-         (idx:[0,1],UIColor.init(red: 0.8, green: 0.2, blue: 0.2, alpha: 1)),//black,white
-         (idx:[1,0],UIColor.init(red: 0.2, green: 0.8, blue: 0.2, alpha: 1)),//white,black
-         (idx:[1,1],UIColor.init(red: 0.2, green: 0.2, blue: 0.8, alpha: 1)),//black,black
-         (idx:[0,0],UIColor.init(red: 0.8, green: 0.8, blue: 0.8, alpha: 1))//white,white
+         (idx:[0,1],Color.init(red: 0.8, green: 0.2, blue: 0.2, alpha: 1)),//black,white
+         (idx:[1,0],Color.init(red: 0.2, green: 0.8, blue: 0.2, alpha: 1)),//white,black
+         (idx:[1,1],Color.init(red: 0.2, green: 0.2, blue: 0.8, alpha: 1)),//black,black
+         (idx:[0,0],Color.init(red: 0.8, green: 0.8, blue: 0.8, alpha: 1))//white,white
       ]
    }()
 }
@@ -32,5 +32,5 @@ internal extension Colorize{
  */
 internal extension Colorize{
    internal typealias ColorMap = [ColorMapItem]
-   internal typealias ColorMapItem = (idx:[Int],color:UIColor)
+   internal typealias ColorMapItem = (idx:[Int],color:Color)
 }

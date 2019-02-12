@@ -11,7 +11,7 @@ internal extension Splitter {
    /**
     * Returns channels (rgb for now)
     */
-   internal static func channels(image:UIImage,onComplete:@escaping OnOptionalChannelsComplete)/* -> RGBAImages?*/{
+   internal static func channels(image:Image,onComplete:@escaping OnOptionalChannelsComplete)/* -> RGBAImages?*/{
       //      let startTime:Date = Date()
       guard let rgbaImg:RGBAImage = RGBAImage.rgbaImage(image: image) else {Swift.print("Unable to create rgbaImg");onComplete(nil);return}
       //      Swift.print("Time to create rgbaImage: \(abs(startTime.timeIntervalSinceNow))")

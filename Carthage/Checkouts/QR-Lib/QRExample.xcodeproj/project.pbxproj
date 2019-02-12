@@ -34,11 +34,17 @@
 		F162131C21FB293D005297DE /* QRLibIOS.h in Headers */ = {isa = PBXBuildFile; fileRef = F162131A21FB293D005297DE /* QRLibIOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F162131F21FB293D005297DE /* QRLibIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F162131821FB293D005297DE /* QRLibIOS.framework */; };
 		F162132021FB293D005297DE /* QRLibIOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F162131821FB293D005297DE /* QRLibIOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		F162132721FB2953005297DE /* QRUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162132621FB2953005297DE /* QRUtil.swift */; };
 		F162133621FB2ABB005297DE /* QRLibMac.h in Headers */ = {isa = PBXBuildFile; fileRef = F162133421FB2ABB005297DE /* QRLibMac.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F162133A21FB2AC5005297DE /* QRUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162132621FB2953005297DE /* QRUtil.swift */; };
-		F1C957EE2204B02B0062B6DA /* QRInfoUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C957E52204B02B0062B6DA /* QRInfoUtil.swift */; };
-		F1C957EF2204B02B0062B6DA /* QRInfoUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C957E52204B02B0062B6DA /* QRInfoUtil.swift */; };
+		F17A2A0622137E08000B6C0A /* HybridOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17A2A0422137DA2000B6C0A /* HybridOS.swift */; };
+		F17A2A0722137E0C000B6C0A /* HybridOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17A2A0422137DA2000B6C0A /* HybridOS.swift */; };
+		F17A2A0A22137F15000B6C0A /* Image+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17A2A0822137E58000B6C0A /* Image+Extension.swift */; };
+		F17A2A0B22137F16000B6C0A /* Image+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17A2A0822137E58000B6C0A /* Image+Extension.swift */; };
+		F17A2A1022137F81000B6C0A /* QRStringUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17A2A0C22137F6E000B6C0A /* QRStringUtil.swift */; };
+		F17A2A1122137F81000B6C0A /* QRImageUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17A2A0E22137F79000B6C0A /* QRImageUtil.swift */; };
+		F17A2A1222137F82000B6C0A /* QRStringUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17A2A0C22137F6E000B6C0A /* QRStringUtil.swift */; };
+		F17A2A1322137F82000B6C0A /* QRImageUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17A2A0E22137F79000B6C0A /* QRImageUtil.swift */; };
+		F1C957EE2204B02B0062B6DA /* QRModuleUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C957E52204B02B0062B6DA /* QRModuleUtil.swift */; };
+		F1C957EF2204B02B0062B6DA /* QRModuleUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C957E52204B02B0062B6DA /* QRModuleUtil.swift */; };
 		F1C957F02204B02B0062B6DA /* QRVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C957E62204B02B0062B6DA /* QRVersion.swift */; };
 		F1C957F12204B02B0062B6DA /* QRVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C957E62204B02B0062B6DA /* QRVersion.swift */; };
 		F1C957F22204B02B0062B6DA /* QRMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C957E82204B02B0062B6DA /* QRMode.swift */; };
@@ -94,7 +100,6 @@
 		F162131821FB293D005297DE /* QRLibIOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = QRLibIOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F162131A21FB293D005297DE /* QRLibIOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QRLibIOS.h; sourceTree = "<group>"; };
 		F162131B21FB293D005297DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F162132621FB2953005297DE /* QRUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRUtil.swift; sourceTree = "<group>"; };
 		F162133221FB2ABB005297DE /* QRLibMac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = QRLibMac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F162133421FB2ABB005297DE /* QRLibMac.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QRLibMac.h; sourceTree = "<group>"; };
 		F162133521FB2ABB005297DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -102,7 +107,11 @@
 		F173F7F1220886D800C446A1 /* QRVersion+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QRVersion+Helper.swift"; sourceTree = "<group>"; };
 		F173F7F32208871C00C446A1 /* QRVersion+DataTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QRVersion+DataTable.swift"; sourceTree = "<group>"; };
 		F173F7F52208873800C446A1 /* QRVersion+Type.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QRVersion+Type.swift"; sourceTree = "<group>"; };
-		F1C957E52204B02B0062B6DA /* QRInfoUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRInfoUtil.swift; sourceTree = "<group>"; };
+		F17A2A0422137DA2000B6C0A /* HybridOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HybridOS.swift; sourceTree = "<group>"; };
+		F17A2A0822137E58000B6C0A /* Image+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Extension.swift"; sourceTree = "<group>"; };
+		F17A2A0C22137F6E000B6C0A /* QRStringUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRStringUtil.swift; sourceTree = "<group>"; };
+		F17A2A0E22137F79000B6C0A /* QRImageUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRImageUtil.swift; sourceTree = "<group>"; };
+		F1C957E52204B02B0062B6DA /* QRModuleUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRModuleUtil.swift; sourceTree = "<group>"; };
 		F1C957E62204B02B0062B6DA /* QRVersion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRVersion.swift; sourceTree = "<group>"; };
 		F1C957E82204B02B0062B6DA /* QRMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRMode.swift; sourceTree = "<group>"; };
 		F1C957E92204B02B0062B6DA /* QRMode+CharSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "QRMode+CharSet.swift"; sourceTree = "<group>"; };
@@ -156,12 +165,14 @@
 			path = size;
 			sourceTree = "<group>";
 		};
-		F11DE855220A6AAF007A8A7A /* extension */ = {
+		F11DE855220A6AAF007A8A7A /* common */ = {
 			isa = PBXGroup;
 			children = (
+				F17A2A0422137DA2000B6C0A /* HybridOS.swift */,
 				F11DE856220A6AC9007A8A7A /* UIImage+Extension.swift */,
+				F17A2A0822137E58000B6C0A /* Image+Extension.swift */,
 			);
-			path = extension;
+			path = common;
 			sourceTree = "<group>";
 		};
 		F16212F521FB28DB005297DE = {
@@ -210,11 +221,8 @@
 		F162132521FB2953005297DE /* src */ = {
 			isa = PBXGroup;
 			children = (
-				F11DE855220A6AAF007A8A7A /* extension */,
-				F1C957FE2204B0870062B6DA /* helper */,
-				F1C957FD2204B06E0062B6DA /* version */,
+				F11DE855220A6AAF007A8A7A /* common */,
 				F1C957FC2204B05A0062B6DA /* util */,
-				F1C957E72204B02B0062B6DA /* mode */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -226,6 +234,14 @@
 				F162133521FB2ABB005297DE /* Info.plist */,
 			);
 			path = QRLibMac;
+			sourceTree = "<group>";
+		};
+		F17A2A1422138024000B6C0A /* module */ = {
+			isa = PBXGroup;
+			children = (
+				F1C957E52204B02B0062B6DA /* QRModuleUtil.swift */,
+			);
+			path = module;
 			sourceTree = "<group>";
 		};
 		F1C957E72204B02B0062B6DA /* mode */ = {
@@ -243,10 +259,14 @@
 		F1C957FC2204B05A0062B6DA /* util */ = {
 			isa = PBXGroup;
 			children = (
+				F17A2A1422138024000B6C0A /* module */,
+				F1C957FE2204B0870062B6DA /* helper */,
+				F1C957E72204B02B0062B6DA /* mode */,
+				F1C957FD2204B06E0062B6DA /* version */,
 				F1123BFA22088E0A0082737B /* size */,
 				F1123BF522088E090082737B /* string */,
-				F1C957E52204B02B0062B6DA /* QRInfoUtil.swift */,
-				F162132621FB2953005297DE /* QRUtil.swift */,
+				F17A2A0C22137F6E000B6C0A /* QRStringUtil.swift */,
+				F17A2A0E22137F79000B6C0A /* QRImageUtil.swift */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -434,19 +454,22 @@
 				F1123BEA220889630082737B /* QRMode+Parser.swift in Sources */,
 				F11DE858220A6B24007A8A7A /* UIImage+Extension.swift in Sources */,
 				F1123C0222088E0A0082737B /* QRStringData+Character.swift in Sources */,
-				F1C957EE2204B02B0062B6DA /* QRInfoUtil.swift in Sources */,
+				F1C957EE2204B02B0062B6DA /* QRModuleUtil.swift in Sources */,
 				F1C957F62204B02B0062B6DA /* QRMode+BitCount.swift in Sources */,
 				F1C957F82204B02B0062B6DA /* QRMode+Assert.swift in Sources */,
 				F1F11F6F22032A32008BB049 /* ECLevel.swift in Sources */,
-				F162132721FB2953005297DE /* QRUtil.swift in Sources */,
+				F17A2A1122137F81000B6C0A /* QRImageUtil.swift in Sources */,
 				F1123BFE22088E0A0082737B /* QRStringData+String.swift in Sources */,
+				F17A2A1022137F81000B6C0A /* QRStringUtil.swift in Sources */,
 				F1C957F22204B02B0062B6DA /* QRMode.swift in Sources */,
 				F1123C0022088E0A0082737B /* QRStringData.swift in Sources */,
 				F1C957F02204B02B0062B6DA /* QRVersion.swift in Sources */,
 				F1123BE6220889510082737B /* QRVersion+DataTable.swift in Sources */,
+				F17A2A0A22137F15000B6C0A /* Image+Extension.swift in Sources */,
 				F1123BE52208894C0082737B /* QRVersion+Type.swift in Sources */,
 				F1123BFC22088E0A0082737B /* QRStringData+MaxChar.swift in Sources */,
 				F1123C0422088E0A0082737B /* QRImageSize.swift in Sources */,
+				F17A2A0622137E08000B6C0A /* HybridOS.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -454,23 +477,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F17A2A0B22137F16000B6C0A /* Image+Extension.swift in Sources */,
 				F1123BE9220889560082737B /* QRVersion+Helper.swift in Sources */,
 				F1C957F52204B02B0062B6DA /* QRMode+CharSet.swift in Sources */,
 				F1123BEB220889630082737B /* QRMode+Parser.swift in Sources */,
 				F1123C0322088E0A0082737B /* QRStringData+Character.swift in Sources */,
-				F1C957EF2204B02B0062B6DA /* QRInfoUtil.swift in Sources */,
+				F1C957EF2204B02B0062B6DA /* QRModuleUtil.swift in Sources */,
 				F1C957F72204B02B0062B6DA /* QRMode+BitCount.swift in Sources */,
 				F1C957F92204B02B0062B6DA /* QRMode+Assert.swift in Sources */,
 				F1F11F7022032A33008BB049 /* ECLevel.swift in Sources */,
-				F162133A21FB2AC5005297DE /* QRUtil.swift in Sources */,
+				F17A2A1322137F82000B6C0A /* QRImageUtil.swift in Sources */,
 				F1123BFF22088E0A0082737B /* QRStringData+String.swift in Sources */,
 				F1C957F32204B02B0062B6DA /* QRMode.swift in Sources */,
 				F1123C0122088E0A0082737B /* QRStringData.swift in Sources */,
+				F17A2A1222137F82000B6C0A /* QRStringUtil.swift in Sources */,
 				F1C957F12204B02B0062B6DA /* QRVersion.swift in Sources */,
 				F1123BE7220889520082737B /* QRVersion+DataTable.swift in Sources */,
 				F1123BE42208894B0082737B /* QRVersion+Type.swift in Sources */,
 				F1123BFD22088E0A0082737B /* QRStringData+MaxChar.swift in Sources */,
 				F1123C0522088E0A0082737B /* QRImageSize.swift in Sources */,
+				F17A2A0722137E0C000B6C0A /* HybridOS.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

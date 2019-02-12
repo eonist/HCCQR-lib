@@ -25,7 +25,7 @@ extension AlignMarkUtil {
     */
    static func alignBox(string:String, ecLevel:ECLevel, side:CGFloat) -> AlignBox?{
       let ecLevel:ECLevel = .l
-      guard let moduleCount:Int = QRInfoUtil.moduleCount(string: string, ecLevel:ecLevel) else {Swift.print("⚠️️ unable to get moduleCount ⚠️️");return nil}
+      guard let moduleCount:Int = QRModuleUtil.moduleCount(string: string, ecLevel:ecLevel) else {Swift.print("⚠️️ unable to get moduleCount ⚠️️");return nil}
       Swift.print("moduleCount:  \(moduleCount)")
       /*Figure out how many pixels a module consist of*/
       let pixelsPerModule:CGFloat = side / CGFloat(moduleCount)

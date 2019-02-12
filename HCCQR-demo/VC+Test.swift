@@ -34,7 +34,7 @@ extension ViewController{
       /*Create Image*/
       let qrSize = QRImageSize.qrImageSize(string: string,ecLevel: ecLevel)
       Swift.print("qrSize:  \(qrSize)")
-      guard let image:UIImage = QRUtil.qrImage(str: string, size: qrSize, ecLevel: ecLevel) else {Swift.print("unable to create UIImage");return}
+      guard let image:UIImage = QRImageUtil.qrImage(str: string, size: qrSize, ecLevel: ecLevel) else {Swift.print("unable to create UIImage");return}
       let uiImageView:UIImageView = .init(image: image)
       view.addSubview(uiImageView)
    }
@@ -53,7 +53,7 @@ extension ViewController{
    func testModuleCount(){
       let string:String = QRStringData.randomString(chars: QRStringData.byteCharacters, count: 17)
       let ecLevel:ECLevel = .l
-      let moduleCount:Int? = QRInfoUtil.moduleCount(string: string, ecLevel:ecLevel)
+      let moduleCount:Int? = QRModuleUtil.moduleCount(string: string, ecLevel:ecLevel)
       Swift.print("string.count: \(string.count) ecLevel: \(ecLevel.rawValue) moduleCount:  \(String(describing: moduleCount))")
    }
    

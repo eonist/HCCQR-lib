@@ -158,10 +158,11 @@ extension ViewController {
 //      let img = simpleHCCQRView.view2.snapShot
 //      Swift.print("img:  \(img)")
       let views:[UIView] = [simpleHCCQRView.view1,simpleHCCQRView.view2]
-      guard let resultView:UIImageView = Colorize.colorize(views: views, colorMap: Colorize.colorMap, scale:1) else {Swift.print("unable to create colorized image");return}
-      Swift.print("resultView:  \(resultView)")
-      view.addSubview(resultView)
-      resultView.frame.origin = .init(x: 0, y: 80*4)
+      //⚠️️ out of order
+//      guard let resultView:UIImageView = Colorize.colorize(views: views, colorMap: Colorize.colorMap, scale:1) else {Swift.print("unable to create colorized image");return}
+//      Swift.print("resultView:  \(resultView)")
+//      view.addSubview(resultView)
+//      resultView.frame.origin = .init(x: 0, y: 80*4)
 //      let rgbaImg:RGBAImage = .init(img: simpleHCCQRView.view2.snapShot!)
 //      if let view = RGBAImage.imageView(rgbaImage: rgbaImg) {
 //         self.view.addSubview(view)
@@ -182,10 +183,10 @@ extension ViewController {
        */
       func createQRImgView() -> (imageView:UIImageView,image:UIImage)?{
          let string:String = QRStringData.randomString(max: 16, qrMode: .byte)
-         guard let moduleCount:Int = QRInfoUtil.moduleCount(string: string, qrMode: .byte, ecLevel: .l) else {Swift.print("err");return nil}
+         guard let moduleCount:Int = QRModuleUtil.moduleCount(string: string, qrMode: .byte, ecLevel: .l) else {Swift.print("err");return nil}
          Swift.print("moduleCount:  \(moduleCount)")
          let length:CGFloat = CGFloat(moduleCount + 2) * 16//80*4
-         guard let image:UIImage = QRUtil.qrImage(str: string, size: .init(width:length,height:length), ecLevel: .l) else {Swift.print("unable to create UIImage");return nil}
+         guard let image:UIImage = QRImageUtil.qrImage(str: string, size: .init(width:length,height:length), ecLevel: .l) else {Swift.print("unable to create UIImage");return nil}
 //         Swift.print("image.hasNoneBlackOrWhiteColor:  \(image.hasOnlyBlackAndWhiteColorMap)")
          let uiImageView:UIImageView = .init(image: image)
          view.addSubview(uiImageView)

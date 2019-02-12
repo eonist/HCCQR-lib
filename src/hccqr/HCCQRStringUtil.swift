@@ -39,7 +39,7 @@ public class HCCQRStringUtil{
          }
          ciImages.enumerated().forEach { item in
             DispatchQueue.global(qos:.background).async {
-               let qrCode:String? = QRUtil.qrCode(ciImage: item.element)?.qrStr
+               let qrCode:String? = QRStringUtil.qrCode(ciImage: item.element)?.qrStr
                DispatchQueue.main.async{
                   onQRCodeComplete(i: item.offset, qrCode: qrCode)
                }

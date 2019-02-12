@@ -17,8 +17,8 @@ extension ViewController{
     * Creates qrimage
     */
    func createQRImage(){
-      if let image = QRUtil.qrImage(str: "testing", size: .init(width:100,height:100)) {
-         if let qrCode:String = QRUtil.qrCode(image: image) {
+      if let image:UIImage = QRImageUtil.qrImage(str: "testing", size: .init(width:100,height:100)) {
+         if let qrCode:String = QRStringUtil.qrCode(image: image) {
             Swift.print("qrCode:  \(qrCode)")//testing
          }
       }
@@ -29,11 +29,11 @@ extension ViewController{
    func createQRImageView(){
       let string:String = QRStringData.randomString(max: 16, qrMode: .byte)
       Swift.print("string:  \(string)")
-      guard let moduleCount:Int = QRInfoUtil.moduleCount(string: string, qrMode: .byte, ecLevel: .l) else {Swift.print("err");return }
+      guard let moduleCount:Int = QRModuleUtil.moduleCount(string: string, qrMode: .byte, ecLevel: .l) else {Swift.print("err");return }
       Swift.print("moduleCount:  \(moduleCount)")
       let length:CGFloat = CGFloat(moduleCount + 1) * 2//2 because margin
       Swift.print("length:  \(length)")
-      guard let image:UIImage = QRUtil.qrImage(str: string, size: .init(width:length,height:length), ecLevel: .l) else {Swift.print("unable to create UIImage");return }
+      guard let image:UIImage = QRImageUtil.qrImage(str: string, size: .init(width:length,height:length), ecLevel: .l) else {Swift.print("unable to create UIImage");return }
       Swift.print("image.size:  \(image.size)")
       Swift.print("image.scale:  \(image.scale)")
       let uiImageView:UIImageView = .init(image: image)
