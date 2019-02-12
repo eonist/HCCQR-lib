@@ -53,7 +53,7 @@ extension HCCQRUtil{
    static func string(uiImage:UIImage, onComplete:@escaping (String?)->Void) {
 //      let startTime:Date = Date()
       func onStringAndImagesComplete(stringsAndImages:(string:String?,qr1:CIImage,qr2:CIImage)?){
-         Swift.print("onStringAndImagesComplete")
+//         Swift.print("onStringAndImagesComplete")
          guard let string:String =  stringsAndImages?.string else {Swift.print("unable to get string");onComplete(nil);return}
 //         Swift.print("Time to get string: \(abs(startTime.timeIntervalSinceNow))")
          onComplete( string )
@@ -68,7 +68,7 @@ extension HCCQRUtil{
     */
    static func stringAndImages(uiImage:UIImage, onComplete:@escaping StringAndImageComplete){
       func onSplitComplete(payload:SplitPayload){
-         Swift.print("onSplitComplete")
+//         Swift.print("onSplitComplete")
          guard let (q1,q2):(CIImage,CIImage) = payload else {Swift.print("HCCQRUtil.stringAndImages() - q1,q2 err");onComplete(nil);return}
          //      let startTime:Date = Date()
          let ciImages:[CIImage] = [q1,q2]
@@ -77,7 +77,7 @@ extension HCCQRUtil{
             guard let qrCode:String = qrCode else { Swift.print("HCCQRUtil.stringAndImages() - ⚠️️ qrcode1 err ⚠️️ "); onComplete((nil,  q1 ,  q2) );return}
             qrCodes[i] = qrCode
             if qrCodes.first(where: {$0 == nil}) == nil {/*Makes sure all images finished*/
-               Swift.print("all qrCodes where read 🎉")
+//               Swift.print("all qrCodes where read 🎉")
                let string:String = qrCodes.compactMap{$0}.reduce("",+)
                //            Swift.print("Time to get strings from seperated image: \(abs(startTime.timeIntervalSinceNow))")
                onComplete((string, q1, q2))

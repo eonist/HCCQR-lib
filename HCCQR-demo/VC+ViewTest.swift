@@ -322,9 +322,9 @@ extension ViewController {
    /**
     * Tests the speed of creating hccqr images
     */
-   func creatingManyHCCQRImages(){
+   func creatingManyHCCQRImages(onComplete:@escaping (_ images:[UIImage])->Void){
       let (qrVersion,qrMode,ecLevel):(Int,QRMode,ECLevel) = (10,.byte,.l)//settings
-      let randomStrings:[String] = (0..<120).compactMap{ i in
+      let randomStrings:[String] = (0..<20).compactMap{ i in
          guard let randomString:String = HCCQRStringData.randomString(qrVersion: qrVersion, qrMode: qrMode, ecLevel:ecLevel) else {Swift.print("unable to create random string");return nil}
          return randomString
       }
@@ -336,7 +336,9 @@ extension ViewController {
 //         let validImages = .compactMap{return $0}
          if images.first(where: {$0 == nil}) == nil {//make sure all images finiesh
             DispatchQueue.main.async {
-               Swift.print("all images created: \(abs(startTime.timeIntervalSinceNow))")
+               let images:[UIImage] = images.compactMap{$0}
+               Swift.print("Creating many HCCQR images completed: \(abs(startTime.timeIntervalSinceNow))")
+               onComplete(images)
 //               Swift.print("images:  \(images)")
                let imgView = UIImageView(image:images[0])
                self.view.addSubview(imgView)
@@ -357,13 +359,41 @@ extension ViewController {
 //      }
    }
    /**
-    *
+    * Test reading many HCCQR images on background threads
     */
    func readingManyHCCQRImages(){
-     
+      let startTime:Date = Date()
+      func onImageCreationComplete(images:[UIImage]){
+         var payloads:[String?] = [String?](repeating: nil, count: images.count)
+         func readHCCQRComplete(i:Int, payload:String?){
+            guard let payload:String = payload else {Swift.print("unable to get string from hccqr");return}
+            Swift.print("payload.count:  \(payload.count)")
+            payloads[i] = payload
+            if payloads.first(where: {$0 == nil}) == nil {/*makes sure all images finished*/
+               let payloads:[String] = payloads.compactMap{$0}
+               _ = payloads
+               Swift.print("Reading many HCCQR completed: \(abs(startTime.timeIntervalSinceNow))")
+            }
+            
+            /*ensure that img only has valid colors, akak no bluring*/
+            //         Swift.print("hasOnlyColorMap: \(ColorizeUtil.hasOnlyColorMap(uiImage:hccqrImage, colorMap: [.red,.green,.blue,.white]))")
+         }
+         images.enumerated().forEach{ arg in
+            DispatchQueue.global(qos:.background).async {
+               func onComplete(payload:String?){
+                  DispatchQueue.main.async {
+                      readHCCQRComplete(i:arg.offset,payload:payload)
+                  }
+               }
+               HCCQRUtil.string(uiImage: arg.element, onComplete: onComplete)//
+            }
+         }
+         
+      }
+      creatingManyHCCQRImages(onComplete:onImageCreationComplete)
    }
    /**
-    * Image captured with camera
+    * Tests HCCQR Image captured with camera
     */
    func testReadingHCCQRImage(){
       //
