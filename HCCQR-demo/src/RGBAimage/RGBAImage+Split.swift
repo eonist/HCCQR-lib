@@ -5,26 +5,40 @@ import UIKit
 extension RGBAImage {
    typealias RGBUIImages = (r:UIImage,g:UIImage,b:UIImage)
    typealias RGBAImages = (r:RGBAImage,g:RGBAImage,b:RGBAImage)
+   typealias OnOptionalChannelsComplete = (_ rgbaImages:RGBAImages?) -> Void
    /**
     * Returns channels (rgb for now)
     */
-   static func channels(image:UIImage) -> RGBAImages?{
+   static func channels(image:UIImage,onComplete:@escaping OnOptionalChannelsComplete)/* -> RGBAImages?*/{
 //      let startTime:Date = Date()
-      guard let rgbaImg:RGBAImage = RGBAImage.rgbaImage(image: image) else {Swift.print("Unable to create rgbaImg");return nil}
+      guard let rgbaImg:RGBAImage = RGBAImage.rgbaImage(image: image) else {Swift.print("Unable to create rgbaImg");onComplete(nil);return}
 //      Swift.print("Time to create rgbaImage: \(abs(startTime.timeIntervalSinceNow))")
-      let rgbaImages:RGBAImages = channels(rgbaImg:rgbaImg)
-      return rgbaImages
+      channels(rgbaImg:rgbaImg,onComplete:onComplete)//{onComplete($0)}
    }
+   typealias OnChannelsComplete = (_ rgbaImages:RGBAImages) -> Void
    /**
     * Split 3 RGBAImages into 3 singular rgb channels (white represents the channel color)
     */
-   static func channels(rgbaImg:RGBAImage) -> RGBAImages{
-      let startTime:Date = Date()
-      let r:RGBAImage = channel(rgbaImg:rgbaImg,assert:{$0.isRedish})
-      let g:RGBAImage = channel(rgbaImg:rgbaImg,assert:{$0.isGreenish})
-      let b:RGBAImage = channel(rgbaImg:rgbaImg,assert:{$0.isBlueish})
-      Swift.print("Time to get rgb channels: \(abs(startTime.timeIntervalSinceNow))")
-      return (r,g,b)
+   static func channels(rgbaImg:RGBAImage, onComplete:@escaping OnChannelsComplete)/* -> RGBAImages*/ {
+      let assertions:[(PixelData)->Bool] = [{$0.isRedish},{$0.isGreenish},{$0.isBlueish}]
+      var rgbaImages:[RGBAImage?] = [RGBAImage?](repeating: nil, count: assertions.count)
+      func onChannelComplete(i:Int,rgbaImage:RGBAImage){
+         rgbaImages[i] = rgbaImage//it matters which order the qrImages came in when you stitch them back together
+         if rgbaImages.first(where: {$0 == nil}) == nil {/*makes sure all images finished*/
+            let rgbaImages:[RGBAImage] = rgbaImages.compactMap{$0}
+            //Swift.print("Time to get rgb channels: \(abs(startTime.timeIntervalSinceNow))")
+            onComplete((rgbaImages[0],rgbaImages[1],rgbaImages[2]))
+         }
+      }
+      assertions.enumerated().forEach{ item in
+         DispatchQueue.global(qos:.background).async {
+            let rgbaImage:RGBAImage = channel(rgbaImg:rgbaImg,assert:item.element)
+//            let qrImg:UIImage? = QRUtil.qrImage(str: arg.element, size: .init(width:length,height:length), ecLevel: ecLevel)
+            DispatchQueue.main.async{
+               onChannelComplete(i:item.offset,rgbaImage: rgbaImage)
+            }
+         }
+      }
    }
 }
 /**

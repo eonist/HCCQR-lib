@@ -2,7 +2,22 @@ import UIKit
 
 extension RGBAImage {
    /**
-    * Combines two images into one
+    * Returns a qr image based on two rgb channels
+    * - Note: layer 1: r,b -> qrImg1
+    * - Note: layer 2: b,g -> qrImg2
+    */
+   public static func composite(first:RGBAImage,second:RGBAImage,scale:CGFloat) -> CIImage?{
+      //      let startTime:Date = Date()
+      guard let composite:RGBAImage = RGBAImage.composite(rgbaImageList: [first,second], invert:true) else {Swift.print("unable to composite"); return nil}
+      //      Swift.print("Time to composite: \(abs(startTime.timeIntervalSinceNow))")
+      //      let startTimeInversion:Date = Date()
+      guard let img:CIImage = RGBAImage.ciImage(rgbaImage: composite, resultScale:scale)/*?.invertedImage()*/  else {Swift.print("unable to create img");return nil}
+      //      guard let img:UIImage = RGBAImage.uiImage(rgbaImage: composite, resultScale:scale)/*?.invertedImage()*/  else {Swift.print("unable to create img");return nil}
+      //      Swift.print("Time to invert: \(abs(startTimeInversion.timeIntervalSinceNow))")
+      return img
+   }
+   /**
+    * Combines many images into one
     * - Note: we invert the image in this method, because doing it in post takes a long time
     */
    public static func composite(rgbaImageList:[RGBAImage], invert:Bool) -> RGBAImage? {

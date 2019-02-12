@@ -12,7 +12,7 @@ extension ViewController {
       
       guard let rgbColorTestImage:UIImage = rgbColorTestView.snapShot else {fatalError("err")}
       //let rgba3 = RGBAImage(image: UIImage(named: "monet")!)!
-      guard let images:RGBAImage.RGBUIImages = RGBAImage.split(image: rgbColorTestImage) else {fatalError("err")}
+      guard let images:RGBAImage.RGBUIImages = {Optional((UIImage(),UIImage(),UIImage()))}()/*RGBAImage.split(image: rgbColorTestImage)*/ else {fatalError("err")}
       //      //r
       //      guard let rgbaImage:RGBAImage = RGBAImage.init(image: rgbColorTestImage) else {fatalError("err")}
       //      let rgbaImage2:RGBAImage = rgbaImage.copy
@@ -54,7 +54,7 @@ extension ViewController {
       /**/
       guard let image:UIImage = rgbColorTestView.snapShot else {fatalError("err")}
       /**/
-      guard let images:RGBAImage.RGBUIImages = RGBAImage.split(image: image) else {fatalError("err")}
+      guard let images:RGBAImage.RGBUIImages = {Optional((UIImage(),UIImage(),UIImage()))}()/*RGBAImage.split(image: image)*/ else {fatalError("err")}
       guard let r:RGBAImage = RGBAImage.rgbaImage(image: images.r) else {return }
       guard let g:RGBAImage = RGBAImage.rgbaImage(image: images.g) else {return }
       guard let b:RGBAImage = RGBAImage.rgbaImage(image: images.b) else {return }
@@ -123,7 +123,7 @@ extension ViewController {
       guard let rgbColorTestImage:UIImage = fakeHCCQRView.snapShot else {fatalError("err")}
       Swift.print("rgbColorTestImage.scale:  \(rgbColorTestImage.scale)")
       Swift.print("rgbColorTestImage.size:  \(rgbColorTestImage.size)")
-      guard let images:RGBAImage.RGBUIImages = RGBAImage.split(image: rgbColorTestImage) else {fatalError("err")}
+      guard let images:RGBAImage.RGBUIImages = {Optional((UIImage(),UIImage(),UIImage()))}()/*RGBAImage.split(image: rgbColorTestImage)*/ else {fatalError("err")}
       
 //      let rImageView:UIImageView = UIImageView.init(image: images.g)
 //      view.addSubview(rImageView)
@@ -277,7 +277,9 @@ extension ViewController {
             let imgView = UIImageView(image:hccqrImage)
             self.view.addSubview(imgView)
          }
-         Swift.print("createHCCQRTime complete: \(abs(createHCCQRTime.timeIntervalSinceNow))")
+         DispatchQueue.main.async {
+            Swift.print("createHCCQRTime complete: \(abs(createHCCQRTime.timeIntervalSinceNow))")
+         }
          /*⭐ 2. try split the hccqrImg ⭐*/
          let splitTime:Date = Date()
          
@@ -291,7 +293,9 @@ extension ViewController {
             let isMatching:Bool = randomString == payload
             Swift.print("isMatching:  \(isMatching)")
             Swift.print("Seperation complete: \(abs(splitTime.timeIntervalSinceNow))")
-            Swift.print("All done: \(abs(startTime.timeIntervalSinceNow))")
+            DispatchQueue.main.async {
+               Swift.print("All done: \(abs(startTime.timeIntervalSinceNow))")
+            }
             /*ensure that img only has valid colors, akak no bluring*/
             //         Swift.print("hasOnlyColorMap: \(ColorizeUtil.hasOnlyColorMap(uiImage:hccqrImage, colorMap: [.red,.green,.blue,.white]))")
          }
@@ -315,19 +319,17 @@ extension ViewController {
       
       
    }
-   
    /**
-    *
+    * Tests the speed of creating hccqr images
     */
    func creatingManyHCCQRImages(){
-      let startTime:Date = Date()
       let (qrVersion,qrMode,ecLevel):(Int,QRMode,ECLevel) = (10,.byte,.l)//settings
       let randomStrings:[String] = (0..<120).compactMap{ i in
          guard let randomString:String = HCCQRStringData.randomString(qrVersion: qrVersion, qrMode: qrMode, ecLevel:ecLevel) else {Swift.print("unable to create random string");return nil}
          return randomString
       }
       var images:[UIImage?] = [UIImage?](repeating: nil, count: randomStrings.count)
-      
+      let startTime:Date = Date()
       func createHCCQRComplete(i:Int,hccqrImage:UIImage?){
          guard let hccqrImage = hccqrImage else {fatalError("unable to create hccqr image")}
          images[i] = hccqrImage
@@ -353,6 +355,12 @@ extension ViewController {
 //         let imgView = UIImageView(image:hccqrImage)
 //         self.view.addSubview(imgView)
 //      }
+   }
+   /**
+    *
+    */
+   func readingManyHCCQRImages(){
+     
    }
    /**
     * Image captured with camera
@@ -398,14 +406,19 @@ extension ViewController {
       let startTime:Date = Date()
       let path = Bundle.main.resourcePath!+"/temp.bundle/HCCQR9.png"
       guard let uiImage:UIImage = UIImage.init(contentsOfFile: path) else {Swift.print("err getting img");return}
+
+      func onComplete(stringAndImages:HCCQRUtil.StringsAndImages){
+         guard let stringAndImages = stringAndImages else {Swift.print("err getting string from hccqr img");return}
+         Swift.print("stringAndImages.string:  \(stringAndImages.string)")
+         DispatchQueue.main.async {
+            let uiimageview = UIImageView.init(image: UIImage.init(ciImage: stringAndImages.qr2))
+            uiimageview.frame.size = .init(width:375,height:375)
+            self.view.addSubview(uiimageview)
+            Swift.print(" all done \(abs(startTime.timeIntervalSinceNow))")
+         }
+      }
+      HCCQRUtil.stringAndImages(uiImage:uiImage,onComplete:onComplete)
       
-      guard let stringAndImages = HCCQRUtil.stringAndImages(uiImage:uiImage) else {Swift.print("err getting string from hccqr img");return}
-      Swift.print("stringAndImages.string:  \(stringAndImages.string)")
-      
-      let uiimageview = UIImageView.init(image: UIImage.init(ciImage: stringAndImages.qr2))
-      uiimageview.frame.size = .init(width:375,height:375)
-      view.addSubview(uiimageview)
-      Swift.print(" all done \(abs(startTime.timeIntervalSinceNow))")
    }
    /**
     * testingSmallModuleSize
