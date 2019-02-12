@@ -2,7 +2,7 @@ import UIKit
 /**
  * Asserter
  */
-internal class ColorizeUtil{
+internal class ColorizeAsserter{
    /**
     * Asserts if an image has non black or white pixel. (aka a gray pixel)
     */

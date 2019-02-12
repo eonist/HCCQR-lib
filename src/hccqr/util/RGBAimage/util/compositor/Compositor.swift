@@ -1,8 +1,12 @@
+#if os(iOS)
 import UIKit
+#elseif os(macOS)
+import Cocoa
+#endif
 /**
- * - TODO: ⚠️️ Rename to RGBAImageCompositor
+ * Compositor
  */
-internal extension RGBAImage {
+internal class Compositor {
    /**
     * Returns a qr image based on two rgb channels
     * - Note: layer 1: r,b -> qrImg1
@@ -10,7 +14,7 @@ internal extension RGBAImage {
     */
    internal static func composite(first:RGBAImage,second:RGBAImage,scale:CGFloat) -> CIImage?{
       //      let startTime:Date = Date()
-      guard let composite:RGBAImage = RGBAImage.composite(rgbaImageList: [first,second], invert:true) else {Swift.print("unable to composite"); return nil}
+      guard let composite:RGBAImage = Compositor.composite(rgbaImageList: [first,second], invert:true) else {Swift.print("unable to composite"); return nil}
       //      Swift.print("Time to composite: \(abs(startTime.timeIntervalSinceNow))")
       //      let startTimeInversion:Date = Date()
       guard let img:CIImage = RGBAImage.ciImage(rgbaImage: composite, resultScale:scale)/*?.invertedImage()*/  else {Swift.print("unable to create img");return nil}
@@ -29,7 +33,7 @@ internal extension RGBAImage {
       /*Loop things*/
       rgbaImg.process{ (index:Int, pixel:PixelData) -> PixelData in
          var pixel = pixel
-         rgbaImageList.forEach { (rgbaImage:RGBAImage) in /*loop over every image in the list*///TODO: ⚠️️ maybe do reduce here?
+         rgbaImageList.forEach { (rgbaImage:RGBAImage) in /*loop over every image in the list*/ //TODO: ⚠️️ maybe do reduce here?
             let rgbaPixelData:PixelData = rgbaImage.pixels[index]
             pixel.setRGBA(first: pixel, second: rgbaPixelData, alpha: 255)
          }

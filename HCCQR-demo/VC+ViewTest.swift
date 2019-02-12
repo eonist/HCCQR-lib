@@ -13,7 +13,7 @@ extension ViewController {
       
       guard let rgbColorTestImage:UIImage = rgbColorTestView.snapShot else {fatalError("err")}
       //let rgba3 = RGBAImage(image: UIImage(named: "monet")!)!
-      guard let images:RGBAImage.RGBUIImages = {Optional((UIImage(),UIImage(),UIImage()))}()/*RGBAImage.split(image: rgbColorTestImage)*/ else {fatalError("err")}
+      guard let images:Splitter.RGBUIImages = {Optional((UIImage(),UIImage(),UIImage()))}()/*RGBAImage.split(image: rgbColorTestImage)*/ else {fatalError("err")}
       //      //r
       //      guard let rgbaImage:RGBAImage = RGBAImage.init(image: rgbColorTestImage) else {fatalError("err")}
       //      let rgbaImage2:RGBAImage = rgbaImage.copy
@@ -55,12 +55,12 @@ extension ViewController {
       /**/
       guard let image:UIImage = rgbColorTestView.snapShot else {fatalError("err")}
       /**/
-      guard let images:RGBAImage.RGBUIImages = {Optional((UIImage(),UIImage(),UIImage()))}()/*RGBAImage.split(image: image)*/ else {fatalError("err")}
+      guard let images:Splitter.RGBUIImages = {Optional((UIImage(),UIImage(),UIImage()))}()/*RGBAImage.split(image: image)*/ else {fatalError("err")}
       guard let r:RGBAImage = RGBAImage.rgbaImage(image: images.r) else {return }
       guard let g:RGBAImage = RGBAImage.rgbaImage(image: images.g) else {return }
       guard let b:RGBAImage = RGBAImage.rgbaImage(image: images.b) else {return }
       _ = b
-      guard let composite = RGBAImage.composite(rgbaImageList: [r,g/*,b*/],invert:false) else { return }
+      guard let composite = Compositor.composite(rgbaImageList: [r,g/*,b*/],invert:false) else { return }
       /**/
       Swift.print("⚠️️ the bellow may not work anymore, scale is new ⚠️️")
       let img:UIImage? = RGBAImage.uiImage(rgbaImage: composite,resultScale:image.scale)
@@ -124,7 +124,7 @@ extension ViewController {
       guard let rgbColorTestImage:UIImage = fakeHCCQRView.snapShot else {fatalError("err")}
       Swift.print("rgbColorTestImage.scale:  \(rgbColorTestImage.scale)")
       Swift.print("rgbColorTestImage.size:  \(rgbColorTestImage.size)")
-      guard let images:RGBAImage.RGBUIImages = {Optional((UIImage(),UIImage(),UIImage()))}()/*RGBAImage.split(image: rgbColorTestImage)*/ else {fatalError("err")}
+      guard let images:Splitter.RGBUIImages = {Optional((UIImage(),UIImage(),UIImage()))}()/*RGBAImage.split(image: rgbColorTestImage)*/ else {fatalError("err")}
       
 //      let rImageView:UIImageView = UIImageView.init(image: images.g)
 //      view.addSubview(rImageView)
@@ -135,7 +135,7 @@ extension ViewController {
       guard let g:RGBAImage = RGBAImage.rgbaImage(image: images.g) else {return }
       _ = r
       guard let b:RGBAImage = RGBAImage.rgbaImage(image: images.b) else {return }
-      guard let composite = RGBAImage.composite(rgbaImageList: [b,g/*,g*/], invert: false) else { return }
+      guard let composite = Compositor.composite(rgbaImageList: [b,g/*,g*/], invert: false) else { return }
       /**/
       Swift.print("⚠️️ the bellow may not work anymore, scale is new ⚠️️")
       guard let img:UIImage = RGBAImage.uiImage(rgbaImage: composite, resultScale: rgbColorTestImage.scale)?.invertedImage() else {Swift.print("unabe to create img");return}
@@ -244,7 +244,7 @@ extension ViewController {
          self.view.addSubview(resultView)
          resultView.frame.origin = .init(x: 0, y: view1.image.size.height)
          
-         Swift.print("hasOnly these colors: \(ColorizeUtil.hasOnlyColorMap(uiImage:resultImage,colorMap: [.red,.green,.blue,.white]))")
+         Swift.print("hasOnly these colors: \(ColorizeAsserter.hasOnlyColorMap(uiImage:resultImage,colorMap: [.red,.green,.blue,.white]))")
       }()
       
 //      DispatchQueue.global(qos:.background).async {
@@ -301,11 +301,11 @@ extension ViewController {
             //         Swift.print("hasOnlyColorMap: \(ColorizeUtil.hasOnlyColorMap(uiImage:hccqrImage, colorMap: [.red,.green,.blue,.white]))")
          }
          DispatchQueue.global(qos:.background).async {
-            HCCQRUtil.string(uiImage: hccqrImage, onComplete: readHCCQRComplete)//
+            HCCQRStringUtil.string(uiImage: hccqrImage, onComplete: readHCCQRComplete)//
          }
       }
       DispatchQueue.global(qos:.background).async {
-         HCCQRUtil.getHCCQRImage(string:randomString,qrVersion:qrVersion,qrMode:qrMode,ecLevel:ecLevel, scale: 6,onComplete: createHCCQRComplete)//
+         HCCQRImageUtil.getHCCQRImage(string:randomString,qrVersion:qrVersion,qrMode:qrMode,ecLevel:ecLevel, scale: 6,onComplete: createHCCQRComplete)//
       }
       
      
@@ -349,7 +349,7 @@ extension ViewController {
       /*do stuff on bg thread*/
       randomStrings.enumerated().forEach { arg in
          DispatchQueue.global(qos:.background).async {
-            HCCQRUtil.getHCCQRImage(string:arg.element,qrVersion:qrVersion,qrMode:qrMode,ecLevel:ecLevel, scale: 6,onComplete: { img in createHCCQRComplete(i: arg.offset,hccqrImage: img)})//
+            HCCQRImageUtil.getHCCQRImage(string:arg.element,qrVersion:qrVersion,qrMode:qrMode,ecLevel:ecLevel, scale: 6,onComplete: { img in createHCCQRComplete(i: arg.offset,hccqrImage: img)})//
          }
       }
       
@@ -386,7 +386,7 @@ extension ViewController {
                       readHCCQRComplete(i:arg.offset,payload:payload)
                   }
                }
-               HCCQRUtil.string(uiImage: arg.element, onComplete: onComplete)//
+               HCCQRStringUtil.string(uiImage: arg.element, onComplete: onComplete)//
             }
          }
          
@@ -438,7 +438,7 @@ extension ViewController {
       let path = Bundle.main.resourcePath!+"/temp.bundle/HCCQR9.png"
       guard let uiImage:UIImage = UIImage.init(contentsOfFile: path) else {Swift.print("err getting img");return}
 
-      func onComplete(stringAndImages:HCCQRUtil.StringsAndImages){
+      func onComplete(stringAndImages:HCCQRStringUtil.StringsAndImages){
          guard let stringAndImages = stringAndImages else {Swift.print("err getting string from hccqr img");return}
          Swift.print("stringAndImages.string:  \(stringAndImages.string)")
          DispatchQueue.main.async {
@@ -448,7 +448,7 @@ extension ViewController {
             Swift.print(" all done \(abs(startTime.timeIntervalSinceNow))")
          }
       }
-      HCCQRUtil.stringAndImages(uiImage:uiImage,onComplete:onComplete)
+      HCCQRStringUtil.stringAndImages(uiImage:uiImage,onComplete:onComplete)
       
    }
    /**

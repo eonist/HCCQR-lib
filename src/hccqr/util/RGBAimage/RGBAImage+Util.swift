@@ -1,4 +1,9 @@
+#if os(iOS)
 import UIKit
+#elseif os(macOS)
+import Cocoa
+#endif
+
 /**
  * Class methods
  * - TODO: ⚠️️ Rename to RGBAImageParser
@@ -7,17 +12,17 @@ internal extension RGBAImage{
    /**
     * UIImageView
     */
-   internal static func imageView(rgbaImage:RGBAImage, resultScale:CGFloat) -> UIImageView?{
-      guard let image:UIImage = RGBAImage.uiImage(rgbaImage: rgbaImage,resultScale:resultScale) else {return nil}
-      let imageView:UIImageView = .init(image: image)
-      return imageView
-   }
+//   internal static func imageView(rgbaImage:RGBAImage, resultScale:CGFloat) -> UIImageView?{
+//      guard let image:UIImage = RGBAImage.uiImage(rgbaImage: rgbaImage,resultScale:resultScale) else {return nil}
+//      let imageView:UIImageView = .init(image: image)
+//      return imageView
+//   }
    /**
     * Converts rgbaImage to uiimage
     */
-   internal static func uiImage(rgbaImage:RGBAImage, resultScale:CGFloat) -> UIImage? {
+   internal static func uiImage(rgbaImage:RGBAImage, resultScale:CGFloat) -> Image? {
       guard let cgImage = cgImage(rgbaImage: rgbaImage, resultScale: resultScale) else {Swift.print("unable to create cgImage");return nil}
-      let image:UIImage = UIImage.init(cgImage: cgImage, scale: resultScale, orientation: .up)//.leftMirrored
+      let image:Image = RGBAImage.image(cgImage: cgImage, resultScale: resultScale)
       return image
    }
    /**
@@ -44,7 +49,7 @@ internal extension RGBAImage{
     * beta, not in use
     */
    
-   internal func imageFromARGB32Bitmap(pixels: [PixelData], width: UInt, height: UInt) -> UIImage? {
+   internal func imageFromARGB32Bitmap(pixels: [PixelData], width: UInt, height: UInt) -> Image? {
       let bitsPerComponent: UInt = 8
       let bitsPerPixel: UInt = 32
       let rgbColorSpace = CGColorSpaceCreateDeviceRGB()
@@ -55,7 +60,7 @@ internal extension RGBAImage{
       guard let cgImage = CGImage.init(width: Int(width), height: Int(height), bitsPerComponent: Int(bitsPerComponent), bitsPerPixel: Int(bitsPerPixel), bytesPerRow: Int(width * 4)/*UInt(sizeof(PixelData))*/, space: rgbColorSpace, bitmapInfo: bitmapInfo, provider: providerRef, decode: nil, shouldInterpolate: true, intent: .defaultIntent) else {Swift.print("err 2");return nil}
       //      let cgImage = CGImageCreate(width, height, bitsPerComponent, bitsPerPixel, width * 4/*UInt(sizeof(PixelData))*/, rgbColorSpace, bitmapInfo, providerRef, nil, true, kCGRenderingIntentDefault)
       //      let cgiimagething: CGImage = cgImage
-      return UIImage.init(cgImage: cgImage/*, scale: 1, orientation: .down*/)
+      return RGBAImage.image(cgImage: cgImage/*, scale: 1, orientation: .down*/)
    }
    
    //   public var copy:RGBAImage {
@@ -95,3 +100,4 @@ internal extension RGBAImage{
 //        UIGraphicsEndImageContext();
 //        return image!
 //    }
+

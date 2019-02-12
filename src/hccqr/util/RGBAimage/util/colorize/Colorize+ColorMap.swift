@@ -1,11 +1,8 @@
 import UIKit
-
 /**
  * ColorMap
  */
 internal extension Colorize{
-   internal typealias ColorMap = [ColorMapItem]
-   internal typealias ColorMapItem = (idx:[Int],color:UIColor)
    /**
     * ColorMap (standard 4 color ColorMap)
     * - TODO: ⚠️️ since index is unique we can make this hashable 👌 (it will be faster probably), caseIteratable 👈
@@ -29,4 +26,11 @@ internal extension Colorize{
          (idx:[0,0],UIColor.init(red: 0.8, green: 0.8, blue: 0.8, alpha: 1))//white,white
       ]
    }()
+}
+/**
+ * Type
+ */
+internal extension Colorize{
+   internal typealias ColorMap = [ColorMapItem]
+   internal typealias ColorMapItem = (idx:[Int],color:UIColor)
 }

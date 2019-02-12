@@ -23,11 +23,8 @@
 		F16852312213430900C27EAA /* QRLibIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F162144F21FC707E005297DE /* QRLibIOS.framework */; };
 		F16852332213435100C27EAA /* QRLibMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F16852322213435100C27EAA /* QRLibMac.framework */; };
 		F16852852213443700C27EAA /* HCCQRStringData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852572213443700C27EAA /* HCCQRStringData.swift */; };
-		F16852862213443700C27EAA /* HCCQRUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852582213443700C27EAA /* HCCQRUtil.swift */; };
 		F16852872213443700C27EAA /* RGBAImage+Pixel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F168525A2213443700C27EAA /* RGBAImage+Pixel.swift */; };
 		F16852882213443700C27EAA /* RGBAImage+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = F168525B2213443700C27EAA /* RGBAImage+Util.swift */; };
-		F16852892213443700C27EAA /* RGBAImage+Composite.swift in Sources */ = {isa = PBXBuildFile; fileRef = F168525E2213443700C27EAA /* RGBAImage+Composite.swift */; };
-		F168528A2213443700C27EAA /* RGBAImage+Split.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852602213443700C27EAA /* RGBAImage+Split.swift */; };
 		F168528B2213443700C27EAA /* PixelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852622213443700C27EAA /* PixelData.swift */; };
 		F168528C2213443700C27EAA /* PixelDataUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852642213443700C27EAA /* PixelDataUtil.swift */; };
 		F168528D2213443700C27EAA /* PixelData+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852652213443700C27EAA /* PixelData+Init.swift */; };
@@ -37,7 +34,7 @@
 		F16852912213443700C27EAA /* PixelData+Getter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852692213443700C27EAA /* PixelData+Getter.swift */; };
 		F16852922213443700C27EAA /* Colorize.swift in Sources */ = {isa = PBXBuildFile; fileRef = F168526B2213443700C27EAA /* Colorize.swift */; };
 		F16852932213443700C27EAA /* Colorize+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = F168526C2213443700C27EAA /* Colorize+Core.swift */; };
-		F16852942213443700C27EAA /* ColorizeUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F168526D2213443700C27EAA /* ColorizeUtil.swift */; };
+		F16852942213443700C27EAA /* ColorizeAsserter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F168526D2213443700C27EAA /* ColorizeAsserter.swift */; };
 		F16852952213443700C27EAA /* Colorize+ColorMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = F168526E2213443700C27EAA /* Colorize+ColorMap.swift */; };
 		F16852962213443700C27EAA /* RGBAImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F168526F2213443700C27EAA /* RGBAImage.swift */; };
 		F16852972213443700C27EAA /* RGBAImage+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852702213443700C27EAA /* RGBAImage+Init.swift */; };
@@ -55,6 +52,16 @@
 		F16852A62213455100C27EAA /* AlignMarkUtil+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852732213443700C27EAA /* AlignMarkUtil+Debug.swift */; };
 		F16852A72213455100C27EAA /* AlignMarkUtil+Metric.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852742213443700C27EAA /* AlignMarkUtil+Metric.swift */; };
 		F16852A82213455100C27EAA /* AlignMarkUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852752213443700C27EAA /* AlignMarkUtil.swift */; };
+		F16852AD2213495700C27EAA /* HCCQRImageUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852A9221348E400C27EAA /* HCCQRImageUtil.swift */; };
+		F16852AE2213495A00C27EAA /* HCCQRStringUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852AB221348F000C27EAA /* HCCQRStringUtil.swift */; };
+		F16852B622134DBD00C27EAA /* Splitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852B522134DBD00C27EAA /* Splitter.swift */; };
+		F16852B722134DBD00C27EAA /* Splitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852B522134DBD00C27EAA /* Splitter.swift */; };
+		F16852B922134E4000C27EAA /* Splitter+Channels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852B822134E4000C27EAA /* Splitter+Channels.swift */; };
+		F16852BA22134E4000C27EAA /* Splitter+Channels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852B822134E4000C27EAA /* Splitter+Channels.swift */; };
+		F16852BC2213522200C27EAA /* Compositor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852BB2213522200C27EAA /* Compositor.swift */; };
+		F16852BD2213522200C27EAA /* Compositor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852BB2213522200C27EAA /* Compositor.swift */; };
+		F16852C02213591F00C27EAA /* RGBAImage+Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852BF2213591F00C27EAA /* RGBAImage+Image.swift */; };
+		F16852C12213591F00C27EAA /* RGBAImage+Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852BF2213591F00C27EAA /* RGBAImage+Image.swift */; };
 		F18A52DF21790F8A003F8C13 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18A52DE21790F8A003F8C13 /* AppDelegate.swift */; };
 		F18A52E121790F8A003F8C13 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18A52E021790F8A003F8C13 /* ViewController.swift */; };
 		F18A52E421790F8A003F8C13 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F18A52E221790F8A003F8C13 /* Main.storyboard */; };
@@ -104,11 +111,8 @@
 		F168522A221342EB00C27EAA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F16852322213435100C27EAA /* QRLibMac.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QRLibMac.framework; path = Carthage/Build/Mac/QRLibMac.framework; sourceTree = "<group>"; };
 		F16852572213443700C27EAA /* HCCQRStringData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HCCQRStringData.swift; sourceTree = "<group>"; };
-		F16852582213443700C27EAA /* HCCQRUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HCCQRUtil.swift; sourceTree = "<group>"; };
 		F168525A2213443700C27EAA /* RGBAImage+Pixel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RGBAImage+Pixel.swift"; sourceTree = "<group>"; };
 		F168525B2213443700C27EAA /* RGBAImage+Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RGBAImage+Util.swift"; sourceTree = "<group>"; };
-		F168525E2213443700C27EAA /* RGBAImage+Composite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RGBAImage+Composite.swift"; sourceTree = "<group>"; };
-		F16852602213443700C27EAA /* RGBAImage+Split.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RGBAImage+Split.swift"; sourceTree = "<group>"; };
 		F16852622213443700C27EAA /* PixelData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PixelData.swift; sourceTree = "<group>"; };
 		F16852642213443700C27EAA /* PixelDataUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PixelDataUtil.swift; sourceTree = "<group>"; };
 		F16852652213443700C27EAA /* PixelData+Init.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PixelData+Init.swift"; sourceTree = "<group>"; };
@@ -118,7 +122,7 @@
 		F16852692213443700C27EAA /* PixelData+Getter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PixelData+Getter.swift"; sourceTree = "<group>"; };
 		F168526B2213443700C27EAA /* Colorize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colorize.swift; sourceTree = "<group>"; };
 		F168526C2213443700C27EAA /* Colorize+Core.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Colorize+Core.swift"; sourceTree = "<group>"; };
-		F168526D2213443700C27EAA /* ColorizeUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorizeUtil.swift; sourceTree = "<group>"; };
+		F168526D2213443700C27EAA /* ColorizeAsserter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorizeAsserter.swift; sourceTree = "<group>"; };
 		F168526E2213443700C27EAA /* Colorize+ColorMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Colorize+ColorMap.swift"; sourceTree = "<group>"; };
 		F168526F2213443700C27EAA /* RGBAImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RGBAImage.swift; sourceTree = "<group>"; };
 		F16852702213443700C27EAA /* RGBAImage+Init.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RGBAImage+Init.swift"; sourceTree = "<group>"; };
@@ -136,6 +140,13 @@
 		F16852812213443700C27EAA /* CGFloatParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGFloatParser.swift; sourceTree = "<group>"; };
 		F16852832213443700C27EAA /* UIColor+Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Parser.swift"; sourceTree = "<group>"; };
 		F16852842213443700C27EAA /* UIColor+Asserter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Asserter.swift"; sourceTree = "<group>"; };
+		F16852A9221348E400C27EAA /* HCCQRImageUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HCCQRImageUtil.swift; sourceTree = "<group>"; };
+		F16852AB221348F000C27EAA /* HCCQRStringUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HCCQRStringUtil.swift; sourceTree = "<group>"; };
+		F16852B222134B0400C27EAA /* QRLibMac.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QRLibMac.framework; path = Carthage/Build/Mac/QRLibMac.framework; sourceTree = "<group>"; };
+		F16852B522134DBD00C27EAA /* Splitter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Splitter.swift; sourceTree = "<group>"; };
+		F16852B822134E4000C27EAA /* Splitter+Channels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Splitter+Channels.swift"; sourceTree = "<group>"; };
+		F16852BB2213522200C27EAA /* Compositor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compositor.swift; sourceTree = "<group>"; };
+		F16852BF2213591F00C27EAA /* RGBAImage+Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RGBAImage+Image.swift"; sourceTree = "<group>"; };
 		F18A52DB21790F8A003F8C13 /* HCCQR-demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HCCQR-demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F18A52DE21790F8A003F8C13 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F18A52E021790F8A003F8C13 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -224,9 +235,9 @@
 		F16852562213443700C27EAA /* hccqr */ = {
 			isa = PBXGroup;
 			children = (
-				F16852572213443700C27EAA /* HCCQRStringData.swift */,
-				F16852582213443700C27EAA /* HCCQRUtil.swift */,
-				F16852592213443700C27EAA /* RGBAimage */,
+				F16852B122134A3800C27EAA /* util */,
+				F16852A9221348E400C27EAA /* HCCQRImageUtil.swift */,
+				F16852AB221348F000C27EAA /* HCCQRStringUtil.swift */,
 			);
 			path = hccqr;
 			sourceTree = "<group>";
@@ -236,9 +247,10 @@
 			children = (
 				F168525A2213443700C27EAA /* RGBAImage+Pixel.swift */,
 				F168525B2213443700C27EAA /* RGBAImage+Util.swift */,
-				F168525C2213443700C27EAA /* util */,
 				F168526F2213443700C27EAA /* RGBAImage.swift */,
+				F16852BF2213591F00C27EAA /* RGBAImage+Image.swift */,
 				F16852702213443700C27EAA /* RGBAImage+Init.swift */,
+				F168525C2213443700C27EAA /* util */,
 			);
 			path = RGBAimage;
 			sourceTree = "<group>";
@@ -257,7 +269,7 @@
 		F168525D2213443700C27EAA /* compositor */ = {
 			isa = PBXGroup;
 			children = (
-				F168525E2213443700C27EAA /* RGBAImage+Composite.swift */,
+				F16852BB2213522200C27EAA /* Compositor.swift */,
 			);
 			path = compositor;
 			sourceTree = "<group>";
@@ -265,7 +277,8 @@
 		F168525F2213443700C27EAA /* splitter */ = {
 			isa = PBXGroup;
 			children = (
-				F16852602213443700C27EAA /* RGBAImage+Split.swift */,
+				F16852B522134DBD00C27EAA /* Splitter.swift */,
+				F16852B822134E4000C27EAA /* Splitter+Channels.swift */,
 			);
 			path = splitter;
 			sourceTree = "<group>";
@@ -297,7 +310,7 @@
 			children = (
 				F168526B2213443700C27EAA /* Colorize.swift */,
 				F168526C2213443700C27EAA /* Colorize+Core.swift */,
-				F168526D2213443700C27EAA /* ColorizeUtil.swift */,
+				F16852BE221354BD00C27EAA /* util */,
 				F168526E2213443700C27EAA /* Colorize+ColorMap.swift */,
 			);
 			path = colorize;
@@ -363,9 +376,27 @@
 			path = color;
 			sourceTree = "<group>";
 		};
+		F16852B122134A3800C27EAA /* util */ = {
+			isa = PBXGroup;
+			children = (
+				F16852592213443700C27EAA /* RGBAimage */,
+				F16852572213443700C27EAA /* HCCQRStringData.swift */,
+			);
+			path = util;
+			sourceTree = "<group>";
+		};
+		F16852BE221354BD00C27EAA /* util */ = {
+			isa = PBXGroup;
+			children = (
+				F168526D2213443700C27EAA /* ColorizeAsserter.swift */,
+			);
+			path = util;
+			sourceTree = "<group>";
+		};
 		F18A52D221790F8A003F8C13 = {
 			isa = PBXGroup;
 			children = (
+				F16852B222134B0400C27EAA /* QRLibMac.framework */,
 				F162144F21FC707E005297DE /* QRLibIOS.framework */,
 				F16852552213443700C27EAA /* src */,
 				F18A52DD21790F8A003F8C13 /* HCCQR-demo */,
@@ -495,6 +526,7 @@
 					};
 					F1685226221342EB00C27EAA = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1010;
 					};
 					F18A52DA21790F8A003F8C13 = {
 						CreatedOnToolsVersion = 10.0;
@@ -554,6 +586,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F16852B622134DBD00C27EAA /* Splitter.swift in Sources */,
 				F16852902213443700C27EAA /* PixelData+Type.swift in Sources */,
 				F168528F2213443700C27EAA /* PixelData+Assert.swift in Sources */,
 				F16852A22213443700C27EAA /* CAShapeLayerUtil.swift in Sources */,
@@ -562,28 +595,30 @@
 				F168529C2213443700C27EAA /* UIImage+Extension.swift in Sources */,
 				F16852952213443700C27EAA /* Colorize+ColorMap.swift in Sources */,
 				F168529F2213443700C27EAA /* CGImage+Extension.swift in Sources */,
-				F16852942213443700C27EAA /* ColorizeUtil.swift in Sources */,
+				F16852942213443700C27EAA /* ColorizeAsserter.swift in Sources */,
 				F168528C2213443700C27EAA /* PixelDataUtil.swift in Sources */,
-				F168528A2213443700C27EAA /* RGBAImage+Split.swift in Sources */,
 				F16852912213443700C27EAA /* PixelData+Getter.swift in Sources */,
+				F16852AE2213495A00C27EAA /* HCCQRStringUtil.swift in Sources */,
 				F16852962213443700C27EAA /* RGBAImage.swift in Sources */,
+				F16852AD2213495700C27EAA /* HCCQRImageUtil.swift in Sources */,
 				F168529B2213443700C27EAA /* UIView+Extension.swift in Sources */,
 				F168529D2213443700C27EAA /* CIImage+Extension.swift in Sources */,
 				F168529E2213443700C27EAA /* Data+Extension.swift in Sources */,
 				F16852A12213443700C27EAA /* UInt8Parser.swift in Sources */,
 				F168528D2213443700C27EAA /* PixelData+Init.swift in Sources */,
 				F16852852213443700C27EAA /* HCCQRStringData.swift in Sources */,
-				F16852892213443700C27EAA /* RGBAImage+Composite.swift in Sources */,
 				F16852932213443700C27EAA /* Colorize+Core.swift in Sources */,
-				F16852862213443700C27EAA /* HCCQRUtil.swift in Sources */,
 				F168528B2213443700C27EAA /* PixelData.swift in Sources */,
 				F16852972213443700C27EAA /* RGBAImage+Init.swift in Sources */,
+				F16852B922134E4000C27EAA /* Splitter+Channels.swift in Sources */,
 				F16852A32213443700C27EAA /* CGFloatParser.swift in Sources */,
 				F168528E2213443700C27EAA /* PixelData+Setter.swift in Sources */,
 				F16852872213443700C27EAA /* RGBAImage+Pixel.swift in Sources */,
+				F16852C02213591F00C27EAA /* RGBAImage+Image.swift in Sources */,
 				F16852A52213443700C27EAA /* UIColor+Asserter.swift in Sources */,
 				F16852922213443700C27EAA /* Colorize.swift in Sources */,
 				F16852882213443700C27EAA /* RGBAImage+Util.swift in Sources */,
+				F16852BC2213522200C27EAA /* Compositor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -591,6 +626,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F16852BA22134E4000C27EAA /* Splitter+Channels.swift in Sources */,
+				F16852C12213591F00C27EAA /* RGBAImage+Image.swift in Sources */,
+				F16852B722134DBD00C27EAA /* Splitter.swift in Sources */,
+				F16852BD2213522200C27EAA /* Compositor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -709,6 +748,7 @@
 		F168522D221342EB00C27EAA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -735,6 +775,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -744,6 +785,7 @@
 		F168522E221342EB00C27EAA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -901,6 +943,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
 				INFOPLIST_FILE = "HCCQR-demo/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
@@ -924,6 +967,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
 				INFOPLIST_FILE = "HCCQR-demo/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;

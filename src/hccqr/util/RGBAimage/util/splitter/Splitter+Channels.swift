@@ -1,19 +1,21 @@
+#if os(iOS)
 import UIKit
+#elseif os(macOS)
+import Cocoa
+#endif
 /**
  * Utils
  * - TODO: ⚠️️ Rename to RGBAImageSplitter
  */
-internal extension RGBAImage {
-   internal typealias RGBUIImages = (r:UIImage,g:UIImage,b:UIImage)
-   internal typealias RGBAImages = (r:RGBAImage,g:RGBAImage,b:RGBAImage)
-   internal typealias OnOptionalChannelsComplete = (_ rgbaImages:RGBAImages?) -> Void
+internal extension Splitter {
+   
    /**
     * Returns channels (rgb for now)
     */
    internal static func channels(image:UIImage,onComplete:@escaping OnOptionalChannelsComplete)/* -> RGBAImages?*/{
-//      let startTime:Date = Date()
+      //      let startTime:Date = Date()
       guard let rgbaImg:RGBAImage = RGBAImage.rgbaImage(image: image) else {Swift.print("Unable to create rgbaImg");onComplete(nil);return}
-//      Swift.print("Time to create rgbaImage: \(abs(startTime.timeIntervalSinceNow))")
+      //      Swift.print("Time to create rgbaImage: \(abs(startTime.timeIntervalSinceNow))")
       channels(rgbaImg:rgbaImg,onComplete:onComplete)//{onComplete($0)}
    }
    internal typealias OnChannelsComplete = (_ rgbaImages:RGBAImages) -> Void
@@ -34,7 +36,7 @@ internal extension RGBAImage {
       assertions.enumerated().forEach{ item in
          DispatchQueue.global(qos:.background).async {
             let rgbaImage:RGBAImage = channel(rgbaImg:rgbaImg,assert:item.element)
-//            let qrImg:UIImage? = QRUtil.qrImage(str: arg.element, size: .init(width:length,height:length), ecLevel: ecLevel)
+            //            let qrImg:UIImage? = QRUtil.qrImage(str: arg.element, size: .init(width:length,height:length), ecLevel: ecLevel)
             DispatchQueue.main.async{
                onChannelComplete(i:item.offset,rgbaImage: rgbaImage)
             }
@@ -45,7 +47,7 @@ internal extension RGBAImage {
 /**
  * Helper
  */
-fileprivate extension RGBAImage {
+fileprivate extension Splitter {
    /**
     * Gets rgb channels
     * - Note: Marks red colors as black, all else becomes white
@@ -58,4 +60,12 @@ fileprivate extension RGBAImage {
       }
       return outImage
    }
+}
+/**
+ * Type
+ */
+extension Splitter{
+   internal typealias RGBUIImages = (r:UIImage,g:UIImage,b:UIImage)
+   internal typealias RGBAImages = (r:RGBAImage,g:RGBAImage,b:RGBAImage)
+   internal typealias OnOptionalChannelsComplete = (_ rgbaImages:RGBAImages?) -> Void
 }
