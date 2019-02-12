@@ -5,17 +5,6 @@ import Cocoa
 #endif
 
 /**
- * This makes the code cross platform
- * - Note: by encapsulating it inside an extension we avoid creating a global typalias Image
- */
-extension Splitter{//should this be public,internal?
-   #if os(iOS)
-   public typealias Image = UIImage
-   #elseif os(macOS)
-   public typealias Image = NSImage
-   #endif
-}
-/**
  * Splitter
  */
 internal class Splitter{

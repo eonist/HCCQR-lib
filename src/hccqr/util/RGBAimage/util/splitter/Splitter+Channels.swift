@@ -8,7 +8,6 @@ import Cocoa
  * - TODO: ⚠️️ Rename to RGBAImageSplitter
  */
 internal extension Splitter {
-   
    /**
     * Returns channels (rgb for now)
     */
