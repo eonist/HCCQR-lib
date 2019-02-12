@@ -1,8 +1,9 @@
 import UIKit
 import QRLibIOS
 
+//TODO: ⚠️️ split class into HCCQRImageUtil, HCCQRStringUtil
+
 class HCCQRUtil{
-   
    /**
     * Returns an HCCQR UIImage for a string
     * IMPORTANT: ⚠️️ the caller must make sure the qrVersion can hold the amount of chars in string

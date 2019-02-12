@@ -24,7 +24,7 @@ extension RGBAImage{
       return .init(pixels: pixels, width: w, height: h)
    }
    /**
-    * Beta
+    * Beta (scales img without becoming blurry)
     */
    static func rgbaImage(pixels:[PixelData], size:(width:Int,height:Int), scale:Int) -> RGBAImage{
       let resultPixels:[PixelData] = (0..<size.height*scale).flatMap{ y in
@@ -62,7 +62,6 @@ extension RGBAImage{
  * DEPRECATED
  */
 extension RGBAImage{
-
    /**
     * Beta (trying to fix "blurry edge pixel bug")
     * - Important: ⚠️️ CoreGraphics expects pixel data as rows, not columns. Just flip your for-statements like this:
