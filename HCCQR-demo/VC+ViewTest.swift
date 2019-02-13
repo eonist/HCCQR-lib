@@ -306,7 +306,7 @@ extension ViewController {
          }
       }
       DispatchQueue.global(qos:.background).async {
-         HCCQRImageUtil.getHCCQRImage(string:randomString,qrVersion:qrVersion,qrMode:qrMode,ecLevel:ecLevel, scale: 6,onComplete: createHCCQRComplete)//
+         HCCQRImageUtil.getHCCQRImage(string:randomString,qrVersion:qrVersion,ecLevel:ecLevel, scale: 6,onComplete: createHCCQRComplete)//
       }
       
      
@@ -350,7 +350,7 @@ extension ViewController {
       /*do stuff on bg thread*/
       randomStrings.enumerated().forEach { arg in
          DispatchQueue.global(qos:.background).async {
-            HCCQRImageUtil.getHCCQRImage(string:arg.element,qrVersion:qrVersion,qrMode:qrMode,ecLevel:ecLevel, scale: 6,onComplete: { img in createHCCQRComplete(i: arg.offset,hccqrImage: img)})//
+            HCCQRImageUtil.getHCCQRImage(string:arg.element,qrVersion:qrVersion,ecLevel:ecLevel, scale: 6,onComplete: { img in createHCCQRComplete(i: arg.offset,hccqrImage: img)})//
          }
       }
       

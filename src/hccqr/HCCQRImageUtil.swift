@@ -22,7 +22,7 @@ public class HCCQRImageUtil{
     * view.addSubview(imgView)
     * Swift.print(hccqrImage?.hasOnlyColorMap(colorMap: [.red,.green,.blue,.white]))//ensure that img only has valid colors, akak no bluring
     */
-   public static func getHCCQRImage(string str:String, qrVersion:Int, qrMode:QRMode, ecLevel:ECLevel, scale:Int, onComplete: @escaping OnGetHCCQRImageComplete)  {
+   public static func getHCCQRImage(string str:String, qrVersion:Int, ecLevel:ECLevel, scale:Int, onComplete: @escaping OnGetHCCQRImageComplete)  {
       let moduleCount:Int = QRModuleUtil.moduleCount(version: qrVersion)/*Sort of like QRPixels*/
       let firstPart:String = String(str[..<str.index(str.startIndex, offsetBy: str.count/2)])/*First part of the payload*/
       let lastPart:String = String(str[str.index(str.startIndex, offsetBy: str.count/2)...])/*Second part of the payload*/
