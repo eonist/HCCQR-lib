@@ -1,5 +1,7 @@
-import UIKit
-
+import Foundation
+/**
+ * DEPRECATED
+ */
 class CGFloatParser {
    /**
     * Returns a range from a number and a threshold, See example for logic

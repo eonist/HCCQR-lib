@@ -138,12 +138,12 @@ extension ViewController {
       guard let composite = Compositor.composite(rgbaImageList: [b,g/*,g*/], invert: false) else { return }
       /**/
       Swift.print("⚠️️ the bellow may not work anymore, scale is new ⚠️️")
-      guard let img:UIImage = RGBAImage.uiImage(rgbaImage: composite, resultScale: rgbColorTestImage.scale)?.invertedImage() else {Swift.print("unabe to create img");return}
-      Swift.print("img.scale:  \(img.scale)")
-      Swift.print("img.size:  \(img.size)")
-      let imgView:UIImageView = .init(image: img)
-      view.addSubview(imgView)
-      imgView.frame.origin.y = 80*4
+//      guard let img:UIImage = RGBAImage.uiImage(rgbaImage: composite, resultScale: rgbColorTestImage.scale)?.invertedImage() else {Swift.print("unabe to create img");return}
+//      Swift.print("img.scale:  \(img.scale)")
+//      Swift.print("img.size:  \(img.size)")
+//      let imgView:UIImageView = .init(image: img)
+//      view.addSubview(imgView)
+//      imgView.frame.origin.y = 80*4
 
 //      guard let r:RGBAImage = RGBAImage.init(image: images.r!) else {return }
    }

@@ -1,4 +1,9 @@
-import Foundation
+#if os(iOS)
+import UIKit
+#elseif os(macOS)
+import Cocoa
+#endif
+
 
 internal class PixelDataUtil{
    /**
@@ -9,7 +14,11 @@ internal class PixelDataUtil{
       var fGreen : CGFloat = 0
       var fBlue : CGFloat = 0
       var fAlpha: CGFloat = 0
+      #if os(iOS)
       guard uiColor.getRed(&fRed, green: &fGreen, blue: &fBlue, alpha: &fAlpha) else {Swift.print(" Could not extract RGBA components");return nil }
+      #elseif os(macOS)
+      uiColor.getRed(&fRed, green: &fGreen, blue: &fBlue, alpha: &fAlpha)//nscolor doesnt return bool 
+      #endif
       let iRed = UInt8(fRed * 255.0)
       let iGreen = UInt8(fGreen * 255.0)
       let iBlue = UInt8(fBlue * 255.0)

@@ -29,7 +29,7 @@ public class HCCQRStringUtil{
          let ciImages:[CIImage] = [q1,q2]
          var qrCodes:[String?] = [String?](repeating: nil, count: ciImages.count)
          func onQRCodeComplete(i:Int,qrCode:String?){
-            guard let qrCode:String = qrCode else { Swift.print("HCCQRUtil.stringAndImages() - ⚠️️ qrcode1 err ⚠️️ "); onComplete((nil,  q1 ,  q2) );return}
+            guard let qrCode:String = qrCode else { Swift.print("HCCQRStringUtil.stringAndImages() - ⚠️️ qrcode1 err ⚠️️ "); onComplete((nil,  q1 ,  q2) );return}
             qrCodes[i] = qrCode
             if qrCodes.first(where: {$0 == nil}) == nil {/*Makes sure all images finished*/
                let string:String = qrCodes.compactMap{$0}.reduce("",+)

@@ -1,5 +1,7 @@
 import Foundation
-
+/**
+ * TODO: ⚠️️ some of these methods are not in use. remove them
+ */
 extension Data{
    /**
     * Returns string for Data (ascii)

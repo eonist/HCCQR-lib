@@ -5,7 +5,7 @@ import Cocoa
 #endif
 /**
  * Util.
- * - TODO: ⚠️️ Can be moved to Util or Extensions
+ * - TODO: ⚠️️ Can be moved to Extension
  */
 internal final class ImageUtil{
    /**
@@ -38,7 +38,7 @@ internal final class ImageUtil{
     */
    #if os(macOS)
    private static func nsImage(cgImage: CGImage) -> NSImage {
-      let nsImg:NSImage = NSImage.init(cgImage: cgImage)
+      let nsImg:NSImage = NSImage.init(cgImage: cgImage, size: CGSize.init(width: cgImage.width, height: cgImage.height))
       return nsImg
    }
    #endif

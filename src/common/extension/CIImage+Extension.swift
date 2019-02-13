@@ -1,4 +1,7 @@
-import UIKit
+import Foundation
+#if os(macOS)
+import Cocoa
+#endif
 
 extension CIImage{
    /**
@@ -14,3 +17,5 @@ extension CIImage{
       return outputImageCopy
    }
 }
+
+

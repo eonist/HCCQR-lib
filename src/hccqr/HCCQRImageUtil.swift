@@ -29,7 +29,7 @@ public class HCCQRImageUtil{
       let length:CGFloat = CGFloat(moduleCount + 2) /*the 2 extra are margins*/
       let strings:[String] = [firstPart,lastPart]
       var qrImgs:[Image?] = [Image?](repeating: nil, count: strings.count)
-      func onCreateQrImgComplete(i:Int,qrImg:UIImage?){
+      func onCreateQrImgComplete(i:Int,qrImg:Image?){
          guard let qrImg:Image = qrImg else { Swift.print("onCreateQrImgComplete() - ⚠️️ qrImg err ⚠️️ "); onComplete(nil);return}
          qrImgs[i] = qrImg//it matters which order the qrImages came in when you stitch them back together
          if qrImgs.first(where: {$0 == nil}) == nil {/*makes sure all images finished*/

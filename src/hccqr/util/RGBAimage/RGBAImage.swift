@@ -15,4 +15,3 @@ internal struct RGBAImage {//TODO: ⚠️️ this should really be called ARGBIm
       self.height = height
    }
 }
-

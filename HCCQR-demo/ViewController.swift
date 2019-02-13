@@ -20,9 +20,9 @@ class ViewController: UIViewController {
 //      testQRVersions()
 //     testModuleCount()
      
-//      testHCCQRImage()
-      readingManyHCCQRImages()
-//      creatingManyHCCQRImages()
+      testHCCQRImage()//⭐
+//      readingManyHCCQRImages()//⭐
+//      creatingManyHCCQRImages()//⭐
 //      testColorAssertionWithinThresholdForPixel()
      
 //      testReadingHCCQRImage()
@@ -30,13 +30,7 @@ class ViewController: UIViewController {
 //      testingSmallModuleSize()
 //      testScalingArray()
       
-      
-      //make an RGBAImage that has 4 pixels, then try to scale that picture ✅
-      //time things, whats taking long? ✅
-      // keep refatoring ✅ 
-      // try to improve the color seperation process ✅
-      
-      
+   
       
    }
    override var prefersStatusBarHidden:Bool {return true}/*hides statusbar*/
