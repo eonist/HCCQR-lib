@@ -10,6 +10,12 @@ extension Data{
       return String(data: self, encoding: .ascii)
       // return NSString(data: self, encoding: String.Encoding.ascii.rawValue) as String?
    }
+   /**
+    * Returns string for Data (utf8)
+    */
+   public var stringUTF8: String? {/*Convenience method*/
+      return String(data: self, encoding: .utf8)
+   }
 //   public var stringASCII: String? {/*Convenience method*/
 //      return String(data: self, encoding: .ascii)
 //      // return NSString(data: self, encoding: String.Encoding.ascii.rawValue) as String?

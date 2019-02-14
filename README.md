@@ -1,5 +1,8 @@
-# HCCQR-demo (rename to HCCQR-lib)
-High capacity quick response code
+# HCCQR-lib
+
+<img width="320" alt="img" src="https://rawgit.com/stylekit/img/master/magic-beam-logo.svg">
+
+HCCQR is short for `High capacity quick response code`
 
 ### iOS
 ```swift

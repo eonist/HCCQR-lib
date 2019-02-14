@@ -20,8 +20,8 @@ class ViewController: UIViewController {
 //      testQRVersions()
 //     testModuleCount()
      
-      testHCCQRImage()//⭐
-//      readingManyHCCQRImages()//⭐
+//      testHCCQRImage()//⭐
+      readingManyHCCQRImages()//⭐
 //      creatingManyHCCQRImages()//⭐
 //      testColorAssertionWithinThresholdForPixel()
      

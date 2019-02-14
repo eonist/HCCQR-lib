@@ -1,25 +1,19 @@
-#if os(iOS)
-import UIKit
-#elseif os(macOS)
-import Cocoa
-#endif
+import Foundation
 /**
  * - Description: Image 👉 String
  */
 final public class QRStringUtil {
-
    #if os(iOS)
    /**
     * Returns a string for an UIImage with a QRCode
     * ## Examples:
     * QRParser.qrCode(image: image)
     */
-   public static func qrCode(image: Image) -> String? {
+   public static func qrCode(image: Image) -> String? {//TODO: ⚠️️ rename to string(image)
       guard let ciImage:CIImage = image.ciImage ?? image.ciImage() else {Swift.print("QRLib.QRUtil.qrCode() - Unable to get CIImage"); return nil }
       return qrCode(ciImage: ciImage)
    }
    #endif
-   
    /**
     * Returns a string for a CIImage instance
     * - TODO: ⚠️️ check if topLeft is the same as bounds.topleft, if not you have a more use-full rectangle outline
@@ -33,13 +27,11 @@ final public class QRStringUtil {
       let qrFrame:CGRect = .init(origin: feature.topLeft, size: feature.bounds.size)
       return (qrStr: feature.messageString, qrFrame: qrFrame)
    }
-   
 }
 /**
  * Helpers
  */
 extension QRStringUtil{
-   
    /**
     * Returns a string for an CIImage with a QRCode
     * - Note: There is also: CIDetectorTypeFace

@@ -20,13 +20,25 @@ public class QRVersion{
    }
    /**
     * Returns 1-40
-    * - TODO: ⚠️️ string should be stringCount, not string
     */
    public static func version(string:String, qrMode:QRMode, ecLevel:ECLevel) -> Int?{
-      let strCharCount:Int  = string.count
+      guard let data:Data = string.data(using:.utf8) else {Swift.print("QRVersion.version() - Unable to make data of string");return nil}
+      return version(data: data, qrMode: qrMode, ecLevel: ecLevel)
+   }
+   /**
+    * version for data
+    */
+   public static func version(data:Data,qrMode:QRMode, ecLevel:ECLevel) -> Int?{
+      let dataCount:Int  = data.count//string.count
+      return version(dataCount: dataCount, qrMode: qrMode, ecLevel: ecLevel)
+   }
+   /**
+    * version for DataCount
+    */
+   public static func version(dataCount:Int, qrMode:QRMode, ecLevel:ECLevel) -> Int?{
       let condition:(Version) -> Bool = { version in
-         let characterCount:Int = QRVersion.charCount(version:version, qrMode:qrMode, ecLevel:ecLevel)
-         return strCharCount <= characterCount
+         let count:Int = QRVersion.dataCount(version:version, qrMode:qrMode, ecLevel:ecLevel)
+         return dataCount <= count
       }
       guard let version:Int = QRVersion.versions.firstIndex(where:condition) else {return nil}
       return version + 1 /*+1 because array starts at 0 and version starts at 1*/
@@ -40,7 +52,7 @@ public class QRVersion{
    public static func maxChar(qrVersion:Int/*1-40*/, qrMode:QRMode, ecLevel:ECLevel) -> Int?{
       guard qrVersion > 0 && qrVersion < QRVersion.versions.count else {Swift.print("qrVersion must be 1 - 40");return nil}
       let version:QRVersion.Version = QRVersion.versions[qrVersion-1]
-      let characterCount:Int = charCount(version: version, qrMode: qrMode, ecLevel: ecLevel)
+      let characterCount:Int = dataCount(version: version, qrMode: qrMode, ecLevel: ecLevel)
       return characterCount
    }
 }

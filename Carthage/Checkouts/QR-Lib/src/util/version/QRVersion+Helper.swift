@@ -4,9 +4,9 @@ import Foundation
  */
 internal extension QRVersion{
    /**
-    * Returns charCount based on version, qrMode, ecLevel
+    * Returns dataCount based on version, qrMode, ecLevel
     */
-   internal static func charCount(version:Version, qrMode:QRMode, ecLevel:ECLevel) -> Int{
+   internal static func dataCount(version:Version, qrMode:QRMode, ecLevel:ECLevel) -> Int{
       let mode:Mode = {
          switch qrMode {
          case .numeric:
@@ -17,13 +17,13 @@ internal extension QRVersion{
             return version.byte
          }
       }()
-      let characterCount:Int = charCount(mode:mode,ecLevel:ecLevel)
+      let characterCount:Int = dataCount(mode:mode,ecLevel:ecLevel)
       return characterCount
    }
    /**
-    * Returns charCount
+    * Returns dataCount
     */
-   private static func charCount(mode:Mode,ecLevel:ECLevel) -> Int{
+   private static func dataCount(mode:Mode,ecLevel:ECLevel) -> Int{
       switch ecLevel {
       case .l:
          return mode.l
