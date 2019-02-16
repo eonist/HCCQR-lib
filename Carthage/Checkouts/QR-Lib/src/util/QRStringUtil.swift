@@ -21,11 +21,25 @@ final public class QRStringUtil {
     * - Note: There is also: CIDetectorAccuracyLow, which has better performance
     */
    public static func qrCode(ciImage: CIImage) -> StringAndFrame? {//TODO: ⚠️️ rename to stringAndFrame ?
-      guard let detector:CIDetector = CIDetector(ofType: CIDetectorTypeQRCode, context: nil, options: [CIDetectorAccuracy: CIDetectorAccuracyHigh]) else {Swift.print("unable to create CIDetectorTypeQRCode");return nil} // Yhere is also: CIDetectorTypeFace
-      let features:[CIFeature] = detector.features(in: ciImage)
-      guard let feature:CIQRCodeFeature = (features.first { $0 is CIQRCodeFeature } as? CIQRCodeFeature) else {Swift.print("Unable to create CIQRCodeFeature");return nil}
+      guard let feature:CIQRCodeFeature = ciImage.qrCodeFeature else {Swift.print("Unable to create CIQRCodeFeature");return nil}
       let qrFrame:CGRect = .init(origin: feature.topLeft, size: feature.bounds.size)
       return (qrStr: feature.messageString, qrFrame: qrFrame)
+   }
+   /**
+    * Returns data (New)
+    */
+   public static func qrCode(ciImage: CIImage) -> Data? {
+      guard let data:Data = ciImage.qrData else {Swift.print("unable to get qrData from ciImage");return nil}//errorCorrectedPayload
+      return data
+   }
+   /**
+    * Returns data + frame (New)
+    */
+   public static func qrCode(ciImage: CIImage) -> DataAndFrame? {
+      guard let feature:CIQRCodeFeature = ciImage.qrCodeFeature else {Swift.print("Unable to create CIQRCodeFeature");return nil}
+      guard let data:Data = feature.data else {Swift.print("unable to get qrData from ciImage");return nil}//errorCorrectedPayload
+      let qrFrame:CGRect = .init(origin: feature.topLeft, size: feature.bounds.size)
+      return (qrData:data, qrFrame: qrFrame)
    }
 }
 /**
@@ -37,9 +51,7 @@ extension QRStringUtil{
     * - Note: There is also: CIDetectorTypeFace
     */
    fileprivate static func qrCode(ciImage: CIImage) -> String? {
-      guard let detector:CIDetector = CIDetector(ofType: CIDetectorTypeQRCode, context: nil, options: [CIDetectorAccuracy: CIDetectorAccuracyHigh]) else {Swift.print("unable to create detector");return nil}
-      let features:[CIFeature] = detector.features(in: ciImage)
-      guard let feature:CIQRCodeFeature = (features.first { $0 is CIQRCodeFeature } as? CIQRCodeFeature) else {Swift.print("QRLib.QRUtil.qrCode() - Unable to get CIQRCodeFeature");return nil}
+      guard let feature:CIQRCodeFeature = ciImage.qrCodeFeature else {Swift.print("QRLib.QRUtil.qrCode() - Unable to get CIQRCodeFeature");return nil}
       guard let messageString:String = feature.messageString else {Swift.print("QRLib.QRUtil.qrCode() - Unable to get messageString");return nil}
       return messageString
    }
@@ -49,4 +61,5 @@ extension QRStringUtil{
  */
 extension QRStringUtil{
    public typealias StringAndFrame = (qrStr: String?, qrFrame: CGRect)
+   public typealias DataAndFrame = (qrData: Data?, qrFrame: CGRect)
 }

@@ -18,18 +18,13 @@ final public class QRImageUtil {
       return image
    }
    /**
-    * Creates NSView with nsImage (macOS)
-    * Note: Convenience method
+    * Data -> qrImage (new)
     */
-   #if os(macOS)
-   public static func imageView(nsImage: Image, rect: CGRect) -> NSImageView {
-      let imageView:NSImageView = NSImageView(frame: rect)
-      imageView.image = nsImage
-      imageView.imageAlignment = .alignTopLeft
-      // imageView.imageScaling = .scaleNone
-      return imageView
+   public static func qrImage(data: Data, size: CGSize, ecLevel:ECLevel = .l) -> Image? {
+      guard let ciImage:CIImage = QRImageUtil.ciImage(data: data, size: size, ecLevel:ecLevel) else { Swift.print("⚠️️ QRLib.QRUtil.qrImage() - Failed to create ciImage ecLevel:\(ecLevel.rawValue) data.count:\(data.count) size:\(size) ⚠️️");return nil}
+      let image:Image = ImageUtil.image(ciImage: ciImage)
+      return image
    }
-   #endif
 }
 /**
  * Helpers
@@ -44,13 +39,20 @@ extension QRImageUtil{
     * - Note: Correction levels available: L 7%, M 15%, Q 25%, H 30%
     * - Note: Encoding: NSISOLatin1StringEncoding is standard but ASCII or UTF-8 works too.
     * - Important: ⚠️️ scale is calculated from module: version1 has 23 modules, if you provide size: w:46,h:46 then the scale will be 2x
+    * - NOTE: allowLossyConversion: If true, then allows characters to be removed or altered in conversion. (https://developer.apple.com/documentation/foundation/nsstring/1413692-data)
     */
    fileprivate static func ciImage(str: String, size: CGSize, ecLevel:ECLevel) -> CIImage? {
+      guard let data:Data = str.data(using: .utf8, allowLossyConversion: false) else {Swift.print("QRLib.QRUtil.ciImage() - Unable to create data");return nil}
+      return ciImage(data: data, size: size, ecLevel: ecLevel)
+   }
+   /**
+    * Data -> CIImage
+    */
+   fileprivate static func ciImage(data:Data, size: CGSize, ecLevel:ECLevel) -> CIImage? {
       guard let filter:CIFilter = CIFilter(name: "CIQRCodeGenerator") else {Swift.print("QRLib.QRUtil.ciImage() - Unable to create filter"); return nil }
-      guard let data:Data = str.data(using: .utf8, allowLossyConversion: true) else {Swift.print("QRLib.QRUtil.ciImage() - Unable to create data");return nil}
       filter.setValue(data, forKey: "inputMessage")
       filter.setValue(ecLevel.rawValue, forKey: "inputCorrectionLevel")
-      guard let outputImage:CIImage = filter.outputImage else { Swift.print("QRLib.QRUtil.ciImage() - Unable to make CIImage for ecLevel:\(ecLevel.rawValue) str.count:\(str.count) size:\(size)"); return nil }
+      guard let outputImage:CIImage = filter.outputImage else { Swift.print("QRLib.QRUtil.ciImage() - Unable to make CIImage for ecLevel:\(ecLevel.rawValue) str.count:\(data.count) size:\(size)"); return nil }
       //      Swift.print("outputImage.description:  \(outputImage.description)")
       //      Swift.print("outputImage.extent:  \(outputImage.extent)")
       outputImage.autoAdjustmentFilters()
@@ -64,4 +66,24 @@ extension QRImageUtil{
       return transformedImage
       //      return outputImage
    }
+}
+
+/**
+ * DEPRECATED
+ */
+extension QRImageUtil{
+   /**
+    * Creates NSView with nsImage (macOS)
+    * Note: Convenience method
+    * - TODO: ⚠️️ Move this out of this lib and into app libs using this lib 👌
+    */
+   #if os(macOS)
+   public static func imageView(nsImage: Image, rect: CGRect) -> NSImageView {
+      let imageView:NSImageView = NSImageView(frame: rect)
+      imageView.image = nsImage
+      imageView.imageAlignment = .alignTopLeft
+      // imageView.imageScaling = .scaleNone
+      return imageView
+   }
+   #endif
 }
