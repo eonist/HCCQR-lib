@@ -7,11 +7,19 @@ final public class QRStringUtil {
    /**
     * Returns a string for an UIImage with a QRCode
     * ## Examples:
-    * QRParser.qrCode(image: image)
+    * qrCode(image: image)
     */
    public static func qrCode(image: Image) -> String? {//TODO: ⚠️️ rename to string(image)
-      guard let ciImage:CIImage = image.ciImage ?? image.ciImage() else {Swift.print("QRLib.QRUtil.qrCode() - Unable to get CIImage"); return nil }
+      guard let ciImage:CIImage = image.ciImage ?? image.ciImage() else {Swift.print("QRLib.QRStringUtil.qrCode() - Unable to get CIImage"); return nil }
       return qrCode(ciImage: ciImage)
+   }
+   /**
+    * Returns a string for an UIImage with a QRCode (⚠️️ New ⚠️️)
+    * ## Examples:
+    * qrCode(descriptor: descriptor)//Data()
+    */
+   public static func qrCode(descriptor:CIQRCodeDescriptor) -> Data? {//TODO: ⚠️️ rename to string(image)
+      return descriptor.data
    }
    #endif
    /**

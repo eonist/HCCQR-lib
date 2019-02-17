@@ -41,14 +41,14 @@ extension QRImageUtil{
     * - Important: ⚠️️ scale is calculated from module: version1 has 23 modules, if you provide size: w:46,h:46 then the scale will be 2x
     * - NOTE: allowLossyConversion: If true, then allows characters to be removed or altered in conversion. (https://developer.apple.com/documentation/foundation/nsstring/1413692-data)
     */
-   fileprivate static func ciImage(str: String, size: CGSize, ecLevel:ECLevel) -> CIImage? {
+   public static func ciImage(str: String, size: CGSize, ecLevel:ECLevel) -> CIImage? {
       guard let data:Data = str.data(using: .utf8, allowLossyConversion: false) else {Swift.print("QRLib.QRUtil.ciImage() - Unable to create data");return nil}
       return ciImage(data: data, size: size, ecLevel: ecLevel)
    }
    /**
     * Data -> CIImage
     */
-   fileprivate static func ciImage(data:Data, size: CGSize, ecLevel:ECLevel) -> CIImage? {
+   public static func ciImage(data:Data, size: CGSize, ecLevel:ECLevel) -> CIImage? {
       guard let filter:CIFilter = CIFilter(name: "CIQRCodeGenerator") else {Swift.print("QRLib.QRUtil.ciImage() - Unable to create filter"); return nil }
       filter.setValue(data, forKey: "inputMessage")
       filter.setValue(ecLevel.rawValue, forKey: "inputCorrectionLevel")
