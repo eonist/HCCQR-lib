@@ -21,14 +21,11 @@ public class HCCQRImageUtil{
     * let imgView = UIImageView(image(hccqrImage))
     * view.addSubview(imgView)
     * Swift.print(hccqrImage?.hasOnlyColorMap(colorMap: [.red,.green,.blue,.white]))//ensure that img only has valid colors, akak no bluring
+    * - Parameter qrConfig: we supply version because it's more optimized than calculating moduleCount on the basis of data.count
     */
-   public static func getHCCQRImage(string str:String, qrVersion:Int, ecLevel:ECLevel, scale:Int, onComplete: @escaping OnGetHCCQRImageComplete)  {
-      let moduleCount:Int = QRModuleUtil.moduleCount(version: qrVersion)/*Sort of like QRPixels*/
-      let firstPart:String = String(str[..<str.index(str.startIndex, offsetBy: str.count/2)])/*First part of the payload*/
-      let lastPart:String = String(str[str.index(str.startIndex, offsetBy: str.count/2)...])/*Second part of the payload*/
-      let length:CGFloat = CGFloat(moduleCount + 2) /*the 2 extra are margins*/
-      let strings:[String] = [firstPart,lastPart]
-      var qrImgs:[Image?] = [Image?](repeating: nil, count: strings.count)
+   public static func getHCCQRImage(data:Data, scale:Int, qrConfig:QRConfig = (10,.l), onComplete: @escaping OnGetHCCQRImageComplete){
+      let dataArr:[Data] = data.split(index: data.count/2)
+      var qrImgs:[Image?] = [Image?](repeating: nil, count: dataArr.count)/*Pre-filled array for the images*/
       func onCreateQrImgComplete(i:Int,qrImg:Image?){
          guard let qrImg:Image = qrImg else { Swift.print("onCreateQrImgComplete() - ⚠️️ qrImg err ⚠️️ "); onComplete(nil);return}
          qrImgs[i] = qrImg//it matters which order the qrImages came in when you stitch them back together
@@ -38,9 +35,11 @@ public class HCCQRImageUtil{
             onComplete( hccqrImage )
          }
       }
-      strings.enumerated().forEach { arg in
+      let moduleCount:Int = QRModuleUtil.moduleCount(version: qrConfig.qrVersion)
+      let length:CGFloat = CGFloat(moduleCount + 2) /*the 2 extra are margins*/
+      dataArr.enumerated().forEach { arg in
          DispatchQueue.global(qos:.background).async {
-            let qrImg:Image? = QRImageUtil.qrImage(str: arg.element, size: .init(width:length,height:length), ecLevel: ecLevel)
+            let qrImg:Image? = QRImageUtil.qrImage(data: arg.element, size: .init(width:length,height:length), ecLevel: qrConfig.ecLevel)
             DispatchQueue.main.async{
                onCreateQrImgComplete(i:arg.offset,qrImg: qrImg)
             }
@@ -49,8 +48,21 @@ public class HCCQRImageUtil{
    }
 }
 /**
+ * Convenience
+ */
+extension HCCQRImageUtil{
+   /**
+    * For string
+    */
+   public static func getHCCQRImage(string str:String, scale:Int, qrConfig:QRConfig = (10,.l), onComplete: @escaping OnGetHCCQRImageComplete)  {
+      guard let data:Data = str.data(using: .utf8) else { Swift.print("getHCCQRImage() - ⚠️️ data err ⚠️️ "); onComplete(nil);return}
+      getHCCQRImage(data: data, scale: scale,qrConfig:qrConfig, onComplete: onComplete)
+   }
+}
+/**
  * Type
  */
 extension HCCQRImageUtil{
+   public typealias QRConfig = (qrVersion:Int, ecLevel:ECLevel)
    public typealias OnGetHCCQRImageComplete = (Image?)->Void
 }

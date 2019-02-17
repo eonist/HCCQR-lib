@@ -23,14 +23,7 @@ public class QRVersion{
     */
    public static func version(string:String, qrMode:QRMode, ecLevel:ECLevel) -> Int?{
       guard let data:Data = string.data(using:.utf8) else {Swift.print("QRVersion.version() - Unable to make data of string");return nil}
-      return version(data: data, qrMode: qrMode, ecLevel: ecLevel)
-   }
-   /**
-    * version for data
-    */
-   public static func version(data:Data,qrMode:QRMode, ecLevel:ECLevel) -> Int?{
-      let dataCount:Int  = data.count//string.count
-      return version(dataCount: dataCount, qrMode: qrMode, ecLevel: ecLevel)
+      return version(dataCount: data.count, qrMode: qrMode, ecLevel: ecLevel)
    }
    /**
     * version for DataCount

@@ -2,7 +2,7 @@ import Foundation
 /**
  * Asserter
  */
-internal class ColorizeAsserter{
+internal class ColorizeAsserter{//TODO: ⚠️️ rename to color-map-asserter
    /**
     * Asserts if an image has non black or white pixel. (aka a gray pixel)
     */

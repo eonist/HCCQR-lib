@@ -264,7 +264,7 @@ extension ViewController {
       view.addSubview(aimMarkTestView)
    }
    /**
-    * test HCCQRImage creation
+    * test HCCQRImage creation (creates a single HCCQR image)
     */
    func testHCCQRImage(){
       let startTime:Date = Date()
@@ -293,33 +293,21 @@ extension ViewController {
             //      Swift.print("payload:  \(payload)")
             Swift.print(":  \(payload.count)")
             let isMatching:Bool = randomString == payload
-            Swift.print("isMatching:  \(isMatching)")
+            Swift.print("isMatching:  \(isMatching ? "✅":"🚫")")
             Swift.print("Seperation complete: \(abs(splitTime.timeIntervalSinceNow))")
             DispatchQueue.main.async {
                Swift.print("All done: \(abs(startTime.timeIntervalSinceNow))")
             }
-            /*ensure that img only has valid colors, akak no bluring*/
-            //         Swift.print("hasOnlyColorMap: \(ColorizeUtil.hasOnlyColorMap(uiImage:hccqrImage, colorMap: [.red,.green,.blue,.white]))")
+            /*Ensure that img only has valid colors, aka no bluring*/
+            //Swift.print("hasOnlyColorMap: \(ColorizeUtil.hasOnlyColorMap(uiImage:hccqrImage, colorMap: [.red,.green,.blue,.white]))")
          }
          DispatchQueue.global(qos:.background).async {
             HCCQRStringUtil.string(uiImage: hccqrImage, onComplete: readHCCQRComplete)//
          }
       }
       DispatchQueue.global(qos:.background).async {
-         HCCQRImageUtil.getHCCQRImage(string:randomString,qrVersion:qrVersion,ecLevel:ecLevel, scale: 6,onComplete: createHCCQRComplete)//
+         HCCQRImageUtil.getHCCQRImage(string:randomString, scale:6,qrConfig:(qrVersion,ecLevel), onComplete:createHCCQRComplete)//
       }
-      
-     
-//      splitHCCQR(hccqrImage:hccqrImage)
-//
-//      DispatchQueue.global(qos:.background).async {
-//
-//         DispatchQueue.main.async {
-//
-//         }
-//      }
-      
-      
    }
    /**
     * Tests the speed of creating hccqr images
@@ -350,7 +338,7 @@ extension ViewController {
       /*do stuff on bg thread*/
       randomStrings.enumerated().forEach { arg in
          DispatchQueue.global(qos:.background).async {
-            HCCQRImageUtil.getHCCQRImage(string:arg.element,qrVersion:qrVersion,ecLevel:ecLevel, scale: 6,onComplete: { img in createHCCQRComplete(i: arg.offset,hccqrImage: img)})//
+            HCCQRImageUtil.getHCCQRImage(string:arg.element,scale: 6,qrConfig:(qrVersion,ecLevel), onComplete: { img in createHCCQRComplete(i: arg.offset,hccqrImage: img)})//
          }
       }
       
@@ -439,7 +427,7 @@ extension ViewController {
       let path = Bundle.main.resourcePath!+"/temp.bundle/HCCQR9.png"
       guard let uiImage:UIImage = UIImage.init(contentsOfFile: path) else {Swift.print("err getting img");return}
 
-      func onComplete(stringAndImages:HCCQRStringUtil.StringsAndImages){
+      func onComplete(stringAndImages:HCCQRStringUtil.StringsAndImages?){
          guard let stringAndImages = stringAndImages else {Swift.print("err getting string from hccqr img");return}
          Swift.print("stringAndImages.string:  \(stringAndImages.string)")
          DispatchQueue.main.async {

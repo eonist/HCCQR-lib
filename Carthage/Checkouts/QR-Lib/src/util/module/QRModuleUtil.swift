@@ -15,9 +15,16 @@ public class QRModuleUtil{//TODO: ⚠️️ rename to QRModuleUtil
       return (((version-1)*4)+21)
    }
    /**
+    * Returns moduleCount for dataCount and ecLevel (⚠️️New⚠️️)
+    */
+   public static func moduleCount(dataCount:Int,ecLevel:ECLevel) -> Int?{
+      guard let version:Int = QRVersion.version(dataCount: dataCount, qrMode: .byte, ecLevel: ecLevel) else {Swift.print("moduleCount - unable to create version");return nil}
+      let moduleCount:Int = QRModuleUtil.moduleCount(version: version)
+      return moduleCount
+   }
+   /**
     * Returns moduleCount for string and ecLevel
     * - TODO: ⚠️️ We can make this non-optional if we make version non-optional
-    * - TODO: ⚠️️ string should be stringCount, not string
     */
    public static func moduleCount(string:String,ecLevel:ECLevel) -> Int?{
       let qrMode:QRMode = QRMode.mode(string:string)/*Figures out which mode the string is in*/

@@ -10,10 +10,16 @@ import QRLibMac
  */
 public class HCCQRStringUtil{
    /**
+    *
+    */
+   func data(image:Image,onComplete:@escaping DataAndImageComplete){
+      //🏀 Continue here
+   }
+   /**
     * Returns string-content of hccqr img (by splitting it into two b&w qr imgs and then getting their qrcode-string-content)
     */
    public static func string(uiImage:Image, onComplete:@escaping OnGetStringComplete ) {
-      func onStringAndImagesComplete(stringsAndImages:(string:String?,qr1:CIImage,qr2:CIImage)?){
+      func onStringAndImagesComplete(stringsAndImages:StringsAndImages?){
          guard let string:String =  stringsAndImages?.string else {Swift.print("unable to get string");onComplete(nil);return}
          onComplete( string )
       }
@@ -47,13 +53,15 @@ public class HCCQRStringUtil{
       }
       Splitter.split(uiImage: uiImage, onComplete:onSplitComplete )
    }
-   
 }
 /**
  * Type
  */
 public extension HCCQRStringUtil{
    public typealias OnGetStringComplete = (String?)->Void
-   public typealias StringsAndImages = (string:String?,qr1:CIImage,qr2:CIImage)?
-   public typealias StringAndImageComplete = (_ stringsAndImages:StringsAndImages)->Void
+   public typealias StringsAndImages = (string:String?,qr1:CIImage,qr2:CIImage)
+   public typealias StringAndImageComplete = (_ stringsAndImages:StringsAndImages?)->Void
+   /*Data, ⚠️️ new ⚠️️*/
+   public typealias DataAndImages = (data:Data?,qr1:CIImage,qr2:CIImage)
+   public typealias DataAndImageComplete = (_ dataAndImages:DataAndImages?)->Void
 }
