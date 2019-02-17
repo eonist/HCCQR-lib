@@ -8,50 +8,47 @@ import QRLibMac
 /**
  * Image -> String
  */
-public class HCCQRStringUtil{
+public class HCCQRStringUtil{//rename to  HCCQRDataUtil
    /**
-    *
+    * New
     */
-   func data(image:Image,onComplete:@escaping DataAndImageComplete){
-      //🏀 Continue here
-   }
-   /**
-    * Returns string-content of hccqr img (by splitting it into two b&w qr imgs and then getting their qrcode-string-content)
-    */
-   public static func string(uiImage:Image, onComplete:@escaping OnGetStringComplete ) {
-      func onStringAndImagesComplete(stringsAndImages:StringsAndImages?){
-         guard let string:String =  stringsAndImages?.string else {Swift.print("unable to get string");onComplete(nil);return}
-         onComplete( string )
+   public static func dataAndImages(image:Image, onComplete:@escaping DataAndImageComplete){
+      let onSplitComplete:(_ payload:Splitter.SplitPayload) -> Void = { payload in
+         guard let (q1,q2):(CIImage,CIImage) = payload else {Swift.print("HCCQRUtil.stringAndImages() - q1,q2 err");onComplete(nil);return}
+         let ciImages:[CIImage] = [q1,q2]
+         var qrCodes:[Data?] = [Data?](repeating: nil, count: ciImages.count)
+         func onQRCodeComplete(i:Int,data:Data?){
+            guard let data:Data = data else { Swift.print("HCCQRStringUtil.stringAndImages() - ⚠️️ qrcode1 err ⚠️️ "); onComplete((nil,  q1 ,  q2) );return}
+            qrCodes[i] = data
+            if qrCodes.first(where: {$0 == nil}) == nil {/*Makes sure all images finished*/
+               let d:Data = qrCodes.compactMap{$0}.reduce(Data(),+)
+               onComplete((d, q1, q2))/*Return the result here*/
+            }
+         }
+         ciImages.enumerated().forEach { item in
+            DispatchQueue.global(qos:.background).async {
+               let data:Data? = QRStringUtil.qrCode(ciImage: item.element)
+               DispatchQueue.main.async{
+                  onQRCodeComplete(i: item.offset, data: data)
+               }
+            }
+         }
       }
-      stringAndImages(uiImage: uiImage, onComplete:onStringAndImagesComplete )
+      /*Start the splitting process*/
+      Splitter.split(uiImage: image, onComplete:onSplitComplete )
    }
    /**
     * - Note: This method is also useful for debuging
     * - TODO: ⚠️️ try to use the qrCode(ciImage: here, might be a bit faster
     */
    public static func stringAndImages(uiImage:Image, onComplete:@escaping StringAndImageComplete){
-      func onSplitComplete(payload:Splitter.SplitPayload){
-         guard let (q1,q2):(CIImage,CIImage) = payload else {Swift.print("HCCQRUtil.stringAndImages() - q1,q2 err");onComplete(nil);return}
-         let ciImages:[CIImage] = [q1,q2]
-         var qrCodes:[String?] = [String?](repeating: nil, count: ciImages.count)
-         func onQRCodeComplete(i:Int,qrCode:String?){
-            guard let qrCode:String = qrCode else { Swift.print("HCCQRStringUtil.stringAndImages() - ⚠️️ qrcode1 err ⚠️️ "); onComplete((nil,  q1 ,  q2) );return}
-            qrCodes[i] = qrCode
-            if qrCodes.first(where: {$0 == nil}) == nil {/*Makes sure all images finished*/
-               let string:String = qrCodes.compactMap{$0}.reduce("",+)
-               onComplete((string, q1, q2))
-            }
-         }
-         ciImages.enumerated().forEach { item in
-            DispatchQueue.global(qos:.background).async {
-               let qrCode:String? = QRStringUtil.qrCode(ciImage: item.element)?.qrStr
-               DispatchQueue.main.async{
-                  onQRCodeComplete(i: item.offset, qrCode: qrCode)
-               }
-            }
-         }
+      let completion:DataAndImageComplete = { dataAndImages in
+         guard let dataAndImages:DataAndImages = dataAndImages else{Swift.print("no dataAndImages");onComplete(nil);return}
+         guard let string:String = dataAndImages.data?.stringUTF8 else {Swift.print("unable to convert to string");onComplete(nil);return}
+         let stringsAndImages:StringsAndImages = (string:string,qr1:dataAndImages.qr1,qr2:dataAndImages.qr2)
+         onComplete(stringsAndImages)
       }
-      Splitter.split(uiImage: uiImage, onComplete:onSplitComplete )
+      dataAndImages(image: uiImage, onComplete: completion)
    }
 }
 /**
@@ -59,9 +56,35 @@ public class HCCQRStringUtil{
  */
 public extension HCCQRStringUtil{
    public typealias OnGetStringComplete = (String?)->Void
+   public typealias OnGetDataComplete = (Data?)->Void
    public typealias StringsAndImages = (string:String?,qr1:CIImage,qr2:CIImage)
    public typealias StringAndImageComplete = (_ stringsAndImages:StringsAndImages?)->Void
    /*Data, ⚠️️ new ⚠️️*/
    public typealias DataAndImages = (data:Data?,qr1:CIImage,qr2:CIImage)
    public typealias DataAndImageComplete = (_ dataAndImages:DataAndImages?)->Void
+}
+/**
+ * Convenience
+ */
+extension HCCQRStringUtil{
+   /**
+    * New
+    */
+   public static func data(image:Image, onComplete:@escaping OnGetDataComplete ){
+      let completion:DataAndImageComplete = { dataAndImages in
+         guard let data:Data =  dataAndImages?.data else {Swift.print("unable to get data");onComplete(nil);return}
+         onComplete( data )
+      }
+      dataAndImages(image: image, onComplete:completion )
+   }
+   /**
+    * Returns string-content of hccqr img (by splitting it into two b&w qr imgs and then getting their qrcode-string-content)
+    */
+   public static func string(uiImage:Image, onComplete:@escaping OnGetStringComplete ) {
+      let completion:StringAndImageComplete = { stringsAndImages in
+         guard let string:String =  stringsAndImages?.string else {Swift.print("unable to get string");onComplete(nil);return}
+         onComplete( string )
+      }
+      stringAndImages(uiImage: uiImage, onComplete:completion )
+   }
 }
