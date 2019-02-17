@@ -23,7 +23,7 @@ public class HCCQRImageUtil{
     * Swift.print(hccqrImage?.hasOnlyColorMap(colorMap: [.red,.green,.blue,.white]))//ensure that img only has valid colors, akak no bluring
     * - Parameter qrConfig: we supply version because it's more optimized than calculating moduleCount on the basis of data.count
     */
-   public static func getHCCQRImage(data:Data, scale:Int, qrConfig:QRConfig = (10,.l), onComplete: @escaping OnGetHCCQRImageComplete){
+   public static func getHCCQRImage(data:Data, scale:Int, qrConfig:QRConfig = (10,.l), onComplete: @escaping OnHCCQRImageComplete){
       let dataArr:[Data] = data.split(index: data.count/2)
       var qrImgs:[Image?] = [Image?](repeating: nil, count: dataArr.count)/*Pre-filled array for the images*/
       func onCreateQrImgComplete(i:Int,qrImg:Image?){
@@ -54,7 +54,7 @@ extension HCCQRImageUtil{
    /**
     * For string
     */
-   public static func getHCCQRImage(string str:String, scale:Int, qrConfig:QRConfig = (10,.l), onComplete: @escaping OnGetHCCQRImageComplete)  {
+   public static func getHCCQRImage(string str:String, scale:Int, qrConfig:QRConfig = (10,.l), onComplete: @escaping OnHCCQRImageComplete)  {
       guard let data:Data = str.data(using: .utf8) else { Swift.print("getHCCQRImage() - ⚠️️ data err ⚠️️ "); onComplete(nil);return}
       getHCCQRImage(data: data, scale: scale,qrConfig:qrConfig, onComplete: onComplete)
    }
@@ -64,5 +64,9 @@ extension HCCQRImageUtil{
  */
 extension HCCQRImageUtil{
    public typealias QRConfig = (qrVersion:Int, ecLevel:ECLevel)
-   public typealias OnGetHCCQRImageComplete = (Image?)->Void
 }
+/**
+ * Useful when you setup the callbacks in apps (Thats why they are in public scope)
+ */
+public typealias OnHCCQRImageComplete = (_ hccqrImage:Image?) -> Void
+public typealias OnHCCQRDataComplete = (_ payload:Data?) -> Void

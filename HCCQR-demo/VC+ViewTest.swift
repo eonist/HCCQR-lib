@@ -273,7 +273,7 @@ extension ViewController {
       guard let randomString = HCCQRStringData.randomString(qrVersion: qrVersion, qrMode: qrMode, ecLevel:ecLevel) else {Swift.print("unable to create random string");return}
       let createHCCQRTime:Date = Date()
       
-      func createHCCQRComplete(hccqrImage:UIImage?){
+      let hccqrImageComplete:OnHCCQRImageComplete = { hccqrImage in
          guard let hccqrImage = hccqrImage else {Swift.print("unable to create hccqr image");return}
          DispatchQueue.main.async {
             let imgView = UIImageView(image:hccqrImage)
@@ -284,29 +284,25 @@ extension ViewController {
          }
          /*⭐ 2. try split the hccqrImg ⭐*/
          let splitTime:Date = Date()
-         
-         func readHCCQRComplete(payload:String?){
-            guard let payload:String = payload else {Swift.print("unable to get string from hccqr");return}
+         let hccqrDataComplete:OnHCCQRDataComplete = { payload in
+            guard let payload:String = payload?.stringUTF8 else {Swift.print("unable to get string from hccqr");return}
             /*⭐ 3. Assert payload ⭐*/
-            //      Swift.print("randomString:  \(randomString)")
-            Swift.print("randomString.count:  \(randomString.count)")
-            //      Swift.print("payload:  \(payload)")
-            Swift.print(":  \(payload.count)")
             let isMatching:Bool = randomString == payload
             Swift.print("isMatching:  \(isMatching ? "✅":"🚫")")
-            Swift.print("Seperation complete: \(abs(splitTime.timeIntervalSinceNow))")
             DispatchQueue.main.async {
+               Swift.print("Seperation complete: \(abs(splitTime.timeIntervalSinceNow))")
                Swift.print("All done: \(abs(startTime.timeIntervalSinceNow))")
             }
             /*Ensure that img only has valid colors, aka no bluring*/
             //Swift.print("hasOnlyColorMap: \(ColorizeUtil.hasOnlyColorMap(uiImage:hccqrImage, colorMap: [.red,.green,.blue,.white]))")
          }
          DispatchQueue.global(qos:.background).async {
-            HCCQRStringUtil.string(uiImage: hccqrImage, onComplete: readHCCQRComplete)//
+//            string(uiImage: hccqrImage, onComplete: hccqrDataComplete)//
+            HCCQRStringUtil.data(image: hccqrImage, onComplete: hccqrDataComplete)
          }
       }
       DispatchQueue.global(qos:.background).async {
-         HCCQRImageUtil.getHCCQRImage(string:randomString, scale:6,qrConfig:(qrVersion,ecLevel), onComplete:createHCCQRComplete)//
+         HCCQRImageUtil.getHCCQRImage(string:randomString, scale:6,qrConfig:(qrVersion,ecLevel), onComplete:hccqrImageComplete)//
       }
    }
    /**
