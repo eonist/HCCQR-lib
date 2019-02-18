@@ -56,6 +56,7 @@ public class HCCQRStringUtil{//rename to  HCCQRDataUtil
 public extension HCCQRStringUtil{
    public typealias OnGetStringComplete = (String?)->Void
    public typealias OnGetDataComplete = (Data?)->Void
+   public typealias OnGetDataAndFrameComplete = (_ data:Data?,_ frame:CGRect?)->Void
    public typealias StringsAndImages = (string:String?,qr1:CIImage,qr2:CIImage)
    public typealias StringAndImageComplete = (_ stringsAndImages:StringsAndImages?)->Void
    /*Data, ⚠️️ new ⚠️️*/
@@ -70,7 +71,7 @@ public extension HCCQRStringUtil{
  */
 extension HCCQRStringUtil{
    /**
-    * New
+    * ⚠️️ New ⚠️️
     */
    public static func data(image:Image, onComplete:@escaping OnGetDataComplete ){
       let completion:DataAndImageComplete = { dataAndImages in
@@ -78,6 +79,17 @@ extension HCCQRStringUtil{
          onComplete( data )
       }
       dataAndImages(image: image, onComplete:completion )
+   }
+   /**
+    * ⚠️️ New ⚠️️
+    */
+   public static func dataAndFrame(image:Image, onComplete:@escaping OnGetDataAndFrameComplete){
+      let completion:DataAndImageComplete = { dataAndImages in
+         guard let data:Data =  dataAndImages?.data else {Swift.print("unable to get data");onComplete(nil,nil);return}
+         guard let frame:CGRect =  dataAndImages?.frame else {Swift.print("unable to get frame");onComplete(nil,nil);return}
+         onComplete(data,frame)
+      }
+      dataAndImages(image:image, onComplete:completion)
    }
    /**
     * Returns string-content of hccqr img (by splitting it into two b&w qr imgs and then getting their qrcode-string-content)
