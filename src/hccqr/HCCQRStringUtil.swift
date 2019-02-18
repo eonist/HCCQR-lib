@@ -4,7 +4,6 @@ import QRLibIOS
 #elseif os(macOS)
 import QRLibMac
 #endif
-
 /**
  * Image -> String
  */
@@ -26,7 +25,7 @@ public class HCCQRStringUtil{//rename to  HCCQRDataUtil
             }
          }
          ciImages.enumerated().forEach { item in
-            DispatchQueue.global(qos:.background).async {
+            DispatchQueue.global(qos:.userInitiated).async {
                let data:Data? = QRStringUtil.qrCode(ciImage: item.element)
                DispatchQueue.main.async{
                   onQRCodeComplete(i: item.offset, data: data)

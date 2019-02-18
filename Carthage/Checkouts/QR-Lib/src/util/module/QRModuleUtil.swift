@@ -15,7 +15,7 @@ public class QRModuleUtil{//TODO: ⚠️️ rename to QRModuleUtil
       return (((version-1)*4)+21)
    }
    /**
-    * Returns moduleCount for dataCount and ecLevel (⚠️️New⚠️️)
+    * Returns moduleCount for dataCount and ecLevel (⚠️️ New ⚠️️)
     */
    public static func moduleCount(dataCount:Int,ecLevel:ECLevel) -> Int?{
       guard let version:Int = QRVersion.version(dataCount: dataCount, qrMode: .byte, ecLevel: ecLevel) else {Swift.print("moduleCount - unable to create version");return nil}

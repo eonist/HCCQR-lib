@@ -296,12 +296,12 @@ extension ViewController {
             /*Ensure that img only has valid colors, aka no bluring*/
             //Swift.print("hasOnlyColorMap: \(ColorizeUtil.hasOnlyColorMap(uiImage:hccqrImage, colorMap: [.red,.green,.blue,.white]))")
          }
-         DispatchQueue.global(qos:.background).async {
+         DispatchQueue.global(qos:.userInitiated).async {
 //            string(uiImage: hccqrImage, onComplete: hccqrDataComplete)//
             HCCQRStringUtil.data(image: hccqrImage, onComplete: hccqrDataComplete)
          }
       }
-      DispatchQueue.global(qos:.background).async {
+      DispatchQueue.global(qos:.userInitiated).async {
          HCCQRImageUtil.getHCCQRImage(string:randomString, scale:6,qrConfig:(qrVersion,ecLevel), onComplete:hccqrImageComplete)//
       }
    }
@@ -333,7 +333,7 @@ extension ViewController {
       }
       /*do stuff on bg thread*/
       randomStrings.enumerated().forEach { arg in
-         DispatchQueue.global(qos:.background).async {
+         DispatchQueue.global(qos:.userInitiated).async {
             HCCQRImageUtil.getHCCQRImage(string:arg.element,scale: 6,qrConfig:(qrVersion,ecLevel), onComplete: { img in createHCCQRComplete(i: arg.offset,hccqrImage: img)})//
          }
       }
@@ -365,7 +365,7 @@ extension ViewController {
             //         Swift.print("hasOnlyColorMap: \(ColorizeUtil.hasOnlyColorMap(uiImage:hccqrImage, colorMap: [.red,.green,.blue,.white]))")
          }
          images.enumerated().forEach{ arg in
-            DispatchQueue.global(qos:.background).async {
+            DispatchQueue.global(qos:.userInitiated).async {
                func onComplete(payload:String?){
                   DispatchQueue.main.async {
                       readHCCQRComplete(i:arg.offset,payload:payload)

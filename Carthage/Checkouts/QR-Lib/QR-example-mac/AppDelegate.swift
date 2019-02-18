@@ -1,0 +1,51 @@
+import Cocoa
+import QRLibMac
+
+@NSApplicationMain
+class AppDelegate: NSObject, NSApplicationDelegate {
+   @IBOutlet weak var window: NSWindow!
+   func applicationDidFinishLaunching(_ aNotification: Notification) {
+      createQRImageView()
+//      createQRImageView()
+//      createQRImageView()
+   }
+}
+/**
+ * test
+ */
+extension AppDelegate{
+   /**
+    * Creates qrimageview (adds to view, single)
+    */
+   func createQRImageView(){
+      let startTime:Date = Date()
+      let ranStr:String = QRStringData.randomString(max: 229, qrMode: .byte)
+      guard let moduleCount:Int = QRModuleUtil.moduleCount(string: ranStr, qrMode: .byte, ecLevel: .l) else {Swift.print("err");return }
+      let side:CGFloat = CGFloat(moduleCount + 2) * 6/*+2 because margin*/
+      DispatchQueue.global(qos:.userInteractive).async {
+         guard let d:Data = ranStr.data(using: .utf8) else {Swift.print("err");return}
+         guard let qrImage:NSImage = QRImageUtil.qrImage(data: d, size: .init(width:side,height:side), ecLevel: .l) else {Swift.print("unable to create UIImage");return }
+         Swift.print("qrImage.size:  \(qrImage.size)")
+         DispatchQueue.main.async {
+            Swift.print("✅ Done: \(abs(startTime.timeIntervalSinceNow))")
+            let decodeTime:Date = Date()
+            DispatchQueue.global(qos:.userInteractive).async {
+               guard let ciImage = qrImage.ciimage else {Swift.print("err");return}
+               guard let data:Data = QRStringUtil.qrCode(ciImage: ciImage) else {Swift.print("unable to get data");return}
+               guard let string:String = String(data: data, encoding: .utf8) else {Swift.print("unable to get string");return}
+               DispatchQueue.main.async {
+                  Swift.print("Match: \(string == ranStr ? "✅" : "🚫" )")
+                  Swift.print("Decode time: \(abs(decodeTime.timeIntervalSinceNow))")
+               }
+            }
+         }
+      }
+     
+//      let top:CGFloat = (view.frame.height - qrImage.size.height)
+//      Swift.print("top:  \(top)")
+//      let rect = CGRect.init(x: 0, y: top, width: qrImage.size.width, height: qrImage.size.height)
+//      let uiImageView:NSImageView = QRImageUtil.imageView(nsImage: qrImage, rect: rect)//.init(image: qrImage)
+//      Swift.print("uiImageView.image.size:  \(String(describing: uiImageView.image?.size))")
+//      self.view.addSubview(uiImageView)
+   }
+}

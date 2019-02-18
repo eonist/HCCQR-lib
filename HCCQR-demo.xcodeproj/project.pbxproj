@@ -91,6 +91,13 @@
 		F17A2A46221394F8000B6C0A /* CIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F168527A2213443700C27EAA /* CIImage+Extension.swift */; };
 		F17A2A47221394FE000B6C0A /* Data+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F168527B2213443700C27EAA /* Data+Extension.swift */; };
 		F17A2A482213952F000B6C0A /* CGImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F168527C2213443700C27EAA /* CGImage+Extension.swift */; };
+		F17F5B88221A267600383955 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17F5B87221A267600383955 /* AppDelegate.swift */; };
+		F17F5B8A221A267B00383955 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F17F5B89221A267B00383955 /* Assets.xcassets */; };
+		F17F5B8D221A267B00383955 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F17F5B8B221A267B00383955 /* MainMenu.xib */; };
+		F17F5B93221A269300383955 /* HCCQR_lib_mac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1685227221342EB00C27EAA /* HCCQR_lib_mac.framework */; };
+		F17F5B94221A269300383955 /* HCCQR_lib_mac.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F1685227221342EB00C27EAA /* HCCQR_lib_mac.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F17F5B97221A269300383955 /* QRLibMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F16852322213435100C27EAA /* QRLibMac.framework */; };
+		F17F5B98221A269300383955 /* QRLibMac.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F16852322213435100C27EAA /* QRLibMac.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F18A52DF21790F8A003F8C13 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18A52DE21790F8A003F8C13 /* AppDelegate.swift */; };
 		F18A52E121790F8A003F8C13 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18A52E021790F8A003F8C13 /* ViewController.swift */; };
 		F18A52E421790F8A003F8C13 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F18A52E221790F8A003F8C13 /* Main.storyboard */; };
@@ -106,6 +113,13 @@
 			remoteGlobalIDString = F1685215221342D000C27EAA;
 			remoteInfo = "HCCQR-lib-iOS";
 		};
+		F17F5B95221A269300383955 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F18A52D321790F8A003F8C13 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F1685226221342EB00C27EAA;
+			remoteInfo = "HCCQR-lib-mac";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -117,6 +131,18 @@
 			files = (
 				F168521E221342D000C27EAA /* HCCQR_lib_iOS.framework in Embed Frameworks */,
 				F162145121FC707E005297DE /* QRLibIOS.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F17F5B99221A269400383955 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				F17F5B94221A269300383955 /* HCCQR_lib_mac.framework in Embed Frameworks */,
+				F17F5B98221A269300383955 /* QRLibMac.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -178,6 +204,12 @@
 		F17A29FF22137BEA000B6C0A /* HybridiOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HybridiOS.swift; sourceTree = "<group>"; };
 		F17A2A17221384F2000B6C0A /* HybridMac.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HybridMac.swift; sourceTree = "<group>"; };
 		F17A2A1F221388E2000B6C0A /* ImageUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUtil.swift; sourceTree = "<group>"; };
+		F17F5B85221A267600383955 /* HCCQR-demo-mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HCCQR-demo-mac.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F17F5B87221A267600383955 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F17F5B89221A267B00383955 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F17F5B8C221A267B00383955 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		F17F5B8E221A267B00383955 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F17F5B8F221A267B00383955 /* HCCQR_demo_mac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HCCQR_demo_mac.entitlements; sourceTree = "<group>"; };
 		F18A52DB21790F8A003F8C13 /* HCCQR-demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HCCQR-demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F18A52DE21790F8A003F8C13 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F18A52E021790F8A003F8C13 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -201,6 +233,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				F17A2A1622138363000B6C0A /* QRLibMac.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F17F5B82221A267600383955 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F17F5B93221A269300383955 /* HCCQR_lib_mac.framework in Frameworks */,
+				F17F5B97221A269300383955 /* QRLibMac.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -442,13 +483,26 @@
 			path = DEPRECATED;
 			sourceTree = "<group>";
 		};
+		F17F5B86221A267600383955 /* HCCQR-demo-mac */ = {
+			isa = PBXGroup;
+			children = (
+				F17F5B87221A267600383955 /* AppDelegate.swift */,
+				F17F5B89221A267B00383955 /* Assets.xcassets */,
+				F17F5B8B221A267B00383955 /* MainMenu.xib */,
+				F17F5B8E221A267B00383955 /* Info.plist */,
+				F17F5B8F221A267B00383955 /* HCCQR_demo_mac.entitlements */,
+			);
+			path = "HCCQR-demo-mac";
+			sourceTree = "<group>";
+		};
 		F18A52D221790F8A003F8C13 = {
 			isa = PBXGroup;
 			children = (
 				F16852B222134B0400C27EAA /* QRLibMac.framework */,
 				F162144F21FC707E005297DE /* QRLibIOS.framework */,
-				F16852552213443700C27EAA /* src */,
 				F18A52DD21790F8A003F8C13 /* HCCQR-demo */,
+				F17F5B86221A267600383955 /* HCCQR-demo-mac */,
+				F16852552213443700C27EAA /* src */,
 				F1685217221342D000C27EAA /* HCCQR-lib-iOS */,
 				F1685228221342EB00C27EAA /* HCCQR-lib-mac */,
 				F18A52DC21790F8A003F8C13 /* Products */,
@@ -463,6 +517,7 @@
 				F18A52DB21790F8A003F8C13 /* HCCQR-demo.app */,
 				F1685216221342D000C27EAA /* HCCQR_lib_iOS.framework */,
 				F1685227221342EB00C27EAA /* HCCQR_lib_mac.framework */,
+				F17F5B85221A267600383955 /* HCCQR-demo-mac.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -541,6 +596,25 @@
 			productReference = F1685227221342EB00C27EAA /* HCCQR_lib_mac.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		F17F5B84221A267600383955 /* HCCQR-demo-mac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F17F5B90221A267B00383955 /* Build configuration list for PBXNativeTarget "HCCQR-demo-mac" */;
+			buildPhases = (
+				F17F5B81221A267600383955 /* Sources */,
+				F17F5B82221A267600383955 /* Frameworks */,
+				F17F5B83221A267600383955 /* Resources */,
+				F17F5B99221A269400383955 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F17F5B96221A269300383955 /* PBXTargetDependency */,
+			);
+			name = "HCCQR-demo-mac";
+			productName = "HCCQR-demo-mac";
+			productReference = F17F5B85221A267600383955 /* HCCQR-demo-mac.app */;
+			productType = "com.apple.product-type.application";
+		};
 		F18A52DA21790F8A003F8C13 /* HCCQR-demo */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F18A52ED21790F8D003F8C13 /* Build configuration list for PBXNativeTarget "HCCQR-demo" */;
@@ -566,7 +640,7 @@
 		F18A52D321790F8A003F8C13 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1000;
+				LastSwiftUpdateCheck = 1010;
 				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = FutureLab;
 				TargetAttributes = {
@@ -576,6 +650,9 @@
 					F1685226221342EB00C27EAA = {
 						CreatedOnToolsVersion = 10.1;
 						LastSwiftMigration = 1010;
+					};
+					F17F5B84221A267600383955 = {
+						CreatedOnToolsVersion = 10.1;
 					};
 					F18A52DA21790F8A003F8C13 = {
 						CreatedOnToolsVersion = 10.0;
@@ -598,6 +675,7 @@
 				F18A52DA21790F8A003F8C13 /* HCCQR-demo */,
 				F1685215221342D000C27EAA /* HCCQR-lib-iOS */,
 				F1685226221342EB00C27EAA /* HCCQR-lib-mac */,
+				F17F5B84221A267600383955 /* HCCQR-demo-mac */,
 			);
 		};
 /* End PBXProject section */
@@ -614,6 +692,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F17F5B83221A267600383955 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F17F5B8A221A267B00383955 /* Assets.xcassets in Resources */,
+				F17F5B8D221A267B00383955 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -711,6 +798,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F17F5B81221A267600383955 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F17F5B88221A267600383955 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F18A52D721790F8A003F8C13 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -737,9 +832,22 @@
 			target = F1685215221342D000C27EAA /* HCCQR-lib-iOS */;
 			targetProxy = F168521B221342D000C27EAA /* PBXContainerItemProxy */;
 		};
+		F17F5B96221A269300383955 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F1685226221342EB00C27EAA /* HCCQR-lib-mac */;
+			targetProxy = F17F5B95221A269300383955 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		F17F5B8B221A267B00383955 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F17F5B8C221A267B00383955 /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
 		F18A52E221790F8A003F8C13 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -893,6 +1001,58 @@
 				SWIFT_VERSION = 4.2;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		F17F5B91221A267B00383955 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "HCCQR-demo-mac/HCCQR_demo_mac.entitlements";
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
+				INFOPLIST_FILE = "HCCQR-demo-mac/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.github.futurelab.HCCQR-demo-mac";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 4.2;
+			};
+			name = Debug;
+		};
+		F17F5B92221A267B00383955 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "HCCQR-demo-mac/HCCQR_demo_mac.entitlements";
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
+				INFOPLIST_FILE = "HCCQR-demo-mac/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.github.futurelab.HCCQR-demo-mac";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};
@@ -1077,6 +1237,15 @@
 			buildConfigurations = (
 				F168522D221342EB00C27EAA /* Debug */,
 				F168522E221342EB00C27EAA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F17F5B90221A267B00383955 /* Build configuration list for PBXNativeTarget "HCCQR-demo-mac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F17F5B91221A267B00383955 /* Debug */,
+				F17F5B92221A267B00383955 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

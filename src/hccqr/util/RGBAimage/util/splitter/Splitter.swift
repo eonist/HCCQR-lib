@@ -22,7 +22,7 @@ internal class Splitter{
             }
          }
          channelArr.enumerated().forEach { channel in
-            DispatchQueue.global(qos:.background).async {
+            DispatchQueue.global(qos:.userInitiated).async {
                let qrImg:CIImage? = Compositor.composite(first: channel.element.first, second: channel.element.second, scale: uiImage.scale)
                DispatchQueue.main.async{
                   onCompositeComplete(i:channel.offset,qrImg: qrImg)

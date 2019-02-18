@@ -18,11 +18,13 @@ final public class QRImageUtil {
       return image
    }
    /**
-    * Data -> qrImage (new)
+    * Data -> qrImage (⚠️️ new ⚠️️)
     */
    public static func qrImage(data: Data, size: CGSize, ecLevel:ECLevel = .l) -> Image? {
       guard let ciImage:CIImage = QRImageUtil.ciImage(data: data, size: size, ecLevel:ecLevel) else { Swift.print("⚠️️ QRLib.QRUtil.qrImage() - Failed to create ciImage ecLevel:\(ecLevel.rawValue) data.count:\(data.count) size:\(size) ⚠️️");return nil}
+//      let thirdTime:Date = Date()
       let image:Image = ImageUtil.image(ciImage: ciImage)
+//      Swift.print("thirdTime : \(abs(thirdTime.timeIntervalSinceNow))")
       return image
    }
 }
@@ -49,20 +51,34 @@ extension QRImageUtil{
     * Data -> CIImage
     */
    public static func ciImage(data:Data, size: CGSize, ecLevel:ECLevel) -> CIImage? {
+//      let startTime:Date = Date()
+//      let a:Date = Date()
       guard let filter:CIFilter = CIFilter(name: "CIQRCodeGenerator") else {Swift.print("QRLib.QRUtil.ciImage() - Unable to create filter"); return nil }
+//      Swift.print("a: \(abs(a.timeIntervalSinceNow))")
+//      let b:Date = Date()
       filter.setValue(data, forKey: "inputMessage")
+//      Swift.print("b: \(abs(b.timeIntervalSinceNow))")
+//      let c:Date = Date()
       filter.setValue(ecLevel.rawValue, forKey: "inputCorrectionLevel")
+//      Swift.print("c: \(abs(c.timeIntervalSinceNow))")
+//      let d:Date = Date()
       guard let outputImage:CIImage = filter.outputImage else { Swift.print("QRLib.QRUtil.ciImage() - Unable to make CIImage for ecLevel:\(ecLevel.rawValue) str.count:\(data.count) size:\(size)"); return nil }
+//      Swift.print("d: \(abs(d.timeIntervalSinceNow))")
       //      Swift.print("outputImage.description:  \(outputImage.description)")
       //      Swift.print("outputImage.extent:  \(outputImage.extent)")
+//      let e:Date = Date()
       outputImage.autoAdjustmentFilters()
+//      Swift.print("e: \(abs(e.timeIntervalSinceNow))")
+//      Swift.print("first part: \(abs(startTime.timeIntervalSinceNow))")
       let scale:CGPoint = {
          let x = size.width / outputImage.extent.size.width
          let y = size.height / outputImage.extent.size.height
          return .init(x:x,y:y)
       }()
+//       let secondTime:Date = Date()
       //      Swift.print("scale:  \(scale)")
       let transformedImage:CIImage = outputImage.transformed(by: CGAffineTransform(scaleX: scale.x, y: scale.y))
+//      Swift.print("secondTime : \(abs(secondTime.timeIntervalSinceNow))")
       return transformedImage
       //      return outputImage
    }

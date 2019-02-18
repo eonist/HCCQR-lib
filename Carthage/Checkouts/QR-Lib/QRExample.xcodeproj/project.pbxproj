@@ -43,6 +43,12 @@
 		F17A2A1122137F81000B6C0A /* QRImageUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17A2A0E22137F79000B6C0A /* QRImageUtil.swift */; };
 		F17A2A1222137F82000B6C0A /* QRStringUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17A2A0C22137F6E000B6C0A /* QRStringUtil.swift */; };
 		F17A2A1322137F82000B6C0A /* QRImageUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17A2A0E22137F79000B6C0A /* QRImageUtil.swift */; };
+		F17F5BA3221A32AD00383955 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17F5BA2221A32AD00383955 /* AppDelegate.swift */; };
+		F17F5BA5221A32AF00383955 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F17F5BA4221A32AF00383955 /* Assets.xcassets */; };
+		F17F5BA8221A32AF00383955 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F17F5BA6221A32AF00383955 /* MainMenu.xib */; };
+		F17F5BAE221A330300383955 /* QRLibMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F162133221FB2ABB005297DE /* QRLibMac.framework */; };
+		F17F5BAF221A330300383955 /* QRLibMac.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F162133221FB2ABB005297DE /* QRLibMac.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F17F5BB4221A37B800383955 /* NSImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17F5BB3221A37B800383955 /* NSImage+Extension.swift */; };
 		F198AE3E22176F6D00082D43 /* CIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F198AE3D22176F6D00082D43 /* CIImage+Extension.swift */; };
 		F198AE402217706600082D43 /* CIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F198AE3D22176F6D00082D43 /* CIImage+Extension.swift */; };
 		F198AE412217706700082D43 /* CIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F198AE3D22176F6D00082D43 /* CIImage+Extension.swift */; };
@@ -70,6 +76,13 @@
 			remoteGlobalIDString = F162131721FB293D005297DE;
 			remoteInfo = QRLibIOS;
 		};
+		F17F5BB0221A330300383955 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F16212F621FB28DB005297DE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F162133121FB2ABB005297DE;
+			remoteInfo = QRLibMac;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -80,6 +93,17 @@
 			dstSubfolderSpec = 10;
 			files = (
 				F162132021FB293D005297DE /* QRLibIOS.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F17F5BB2221A330300383955 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				F17F5BAF221A330300383955 /* QRLibMac.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -114,6 +138,13 @@
 		F17A2A0822137E58000B6C0A /* ImageUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUtil.swift; sourceTree = "<group>"; };
 		F17A2A0C22137F6E000B6C0A /* QRStringUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRStringUtil.swift; sourceTree = "<group>"; };
 		F17A2A0E22137F79000B6C0A /* QRImageUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRImageUtil.swift; sourceTree = "<group>"; };
+		F17F5BA0221A32AD00383955 /* QR-example-mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "QR-example-mac.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F17F5BA2221A32AD00383955 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F17F5BA4221A32AF00383955 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F17F5BA7221A32AF00383955 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		F17F5BA9221A32AF00383955 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F17F5BAA221A32AF00383955 /* QR_example_mac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = QR_example_mac.entitlements; sourceTree = "<group>"; };
+		F17F5BB3221A37B800383955 /* NSImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSImage+Extension.swift"; sourceTree = "<group>"; };
 		F198AE3D22176F6D00082D43 /* CIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CIImage+Extension.swift"; sourceTree = "<group>"; };
 		F1C957E52204B02B0062B6DA /* QRModuleUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRModuleUtil.swift; sourceTree = "<group>"; };
 		F1C957E62204B02B0062B6DA /* QRVersion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRVersion.swift; sourceTree = "<group>"; };
@@ -144,6 +175,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F17F5B9D221A32AD00383955 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F17F5BAE221A330300383955 /* QRLibMac.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -182,8 +221,9 @@
 		F16212F521FB28DB005297DE = {
 			isa = PBXGroup;
 			children = (
-				F162132521FB2953005297DE /* src */,
+				F17F5BA1221A32AD00383955 /* QR-example-mac */,
 				F162130021FB28DB005297DE /* QRExample */,
+				F162132521FB2953005297DE /* src */,
 				F162131921FB293D005297DE /* QRLibIOS */,
 				F162133321FB2ABB005297DE /* QRLibMac */,
 				F16212FF21FB28DB005297DE /* Products */,
@@ -196,6 +236,7 @@
 				F16212FE21FB28DB005297DE /* QRExample.app */,
 				F162131821FB293D005297DE /* QRLibIOS.framework */,
 				F162133221FB2ABB005297DE /* QRLibMac.framework */,
+				F17F5BA0221A32AD00383955 /* QR-example-mac.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -246,6 +287,19 @@
 				F1C957E52204B02B0062B6DA /* QRModuleUtil.swift */,
 			);
 			path = module;
+			sourceTree = "<group>";
+		};
+		F17F5BA1221A32AD00383955 /* QR-example-mac */ = {
+			isa = PBXGroup;
+			children = (
+				F17F5BA2221A32AD00383955 /* AppDelegate.swift */,
+				F17F5BB3221A37B800383955 /* NSImage+Extension.swift */,
+				F17F5BA4221A32AF00383955 /* Assets.xcassets */,
+				F17F5BA6221A32AF00383955 /* MainMenu.xib */,
+				F17F5BA9221A32AF00383955 /* Info.plist */,
+				F17F5BAA221A32AF00383955 /* QR_example_mac.entitlements */,
+			);
+			path = "QR-example-mac";
 			sourceTree = "<group>";
 		};
 		F198AE3F22176F7D00082D43 /* extension */ = {
@@ -380,6 +434,25 @@
 			productReference = F162133221FB2ABB005297DE /* QRLibMac.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		F17F5B9F221A32AD00383955 /* QR-example-mac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F17F5BAD221A32AF00383955 /* Build configuration list for PBXNativeTarget "QR-example-mac" */;
+			buildPhases = (
+				F17F5B9C221A32AD00383955 /* Sources */,
+				F17F5B9D221A32AD00383955 /* Frameworks */,
+				F17F5B9E221A32AD00383955 /* Resources */,
+				F17F5BB2221A330300383955 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F17F5BB1221A330300383955 /* PBXTargetDependency */,
+			);
+			name = "QR-example-mac";
+			productName = "QR-example-mac";
+			productReference = F17F5BA0221A32AD00383955 /* QR-example-mac.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -397,6 +470,9 @@
 						CreatedOnToolsVersion = 10.1;
 					};
 					F162133121FB2ABB005297DE = {
+						CreatedOnToolsVersion = 10.1;
+					};
+					F17F5B9F221A32AD00383955 = {
 						CreatedOnToolsVersion = 10.1;
 					};
 				};
@@ -417,6 +493,7 @@
 				F16212FD21FB28DB005297DE /* QRExample */,
 				F162131721FB293D005297DE /* QRLibIOS */,
 				F162133121FB2ABB005297DE /* QRLibMac */,
+				F17F5B9F221A32AD00383955 /* QR-example-mac */,
 			);
 		};
 /* End PBXProject section */
@@ -443,6 +520,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F17F5B9E221A32AD00383955 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F17F5BA5221A32AF00383955 /* Assets.xcassets in Resources */,
+				F17F5BA8221A32AF00383955 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -516,6 +602,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F17F5B9C221A32AD00383955 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F17F5BB4221A37B800383955 /* NSImage+Extension.swift in Sources */,
+				F17F5BA3221A32AD00383955 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -523,6 +618,11 @@
 			isa = PBXTargetDependency;
 			target = F162131721FB293D005297DE /* QRLibIOS */;
 			targetProxy = F162131D21FB293D005297DE /* PBXContainerItemProxy */;
+		};
+		F17F5BB1221A330300383955 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F162133121FB2ABB005297DE /* QRLibMac */;
+			targetProxy = F17F5BB0221A330300383955 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -541,6 +641,14 @@
 				F162130B21FB28DC005297DE /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		F17F5BA6221A32AF00383955 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F17F5BA7221A32AF00383955 /* Base */,
+			);
+			name = MainMenu.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -812,6 +920,50 @@
 			};
 			name = Release;
 		};
+		F17F5BAB221A32AF00383955 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "QR-example-mac/QR_example_mac.entitlements";
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "QR-example-mac/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.github.futurelab.QR-example-mac";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 4.2;
+			};
+			name = Debug;
+		};
+		F17F5BAC221A32AF00383955 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "QR-example-mac/QR_example_mac.entitlements";
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "QR-example-mac/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.github.futurelab.QR-example-mac";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 4.2;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -847,6 +999,15 @@
 			buildConfigurations = (
 				F162133821FB2ABB005297DE /* Debug */,
 				F162133921FB2ABB005297DE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F17F5BAD221A32AF00383955 /* Build configuration list for PBXNativeTarget "QR-example-mac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F17F5BAB221A32AF00383955 /* Debug */,
+				F17F5BAC221A32AF00383955 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

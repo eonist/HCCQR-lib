@@ -20,21 +20,16 @@ class ViewController: UIViewController {
 //      testQRVersions()
 //     testModuleCount()
      
-      testHCCQRImage()//⭐
-//      readingManyHCCQRImages()//⭐
-//      creatingManyHCCQRImages()//⭐
+//      testHCCQRImage()//⭐
+//      creatingManyHCCQRImages(onComplete: { images in Swift.print("all created 🎉 - images.count \(images.count) 🎉")})//⭐
+      readingManyHCCQRImages()//⭐
+      
 //      testColorAssertionWithinThresholdForPixel()
      
 //      testReadingHCCQRImage()
 //      colorTests()
 //      testingSmallModuleSize()
 //      testScalingArray()
-      
-   
-      
    }
    override var prefersStatusBarHidden:Bool {return true}/*hides statusbar*/
-}
-extension ViewController{
-   
 }

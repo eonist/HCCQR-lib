@@ -29,7 +29,7 @@ internal extension Splitter {
          }
       }
       assertions.enumerated().forEach{ item in
-         DispatchQueue.global(qos:.background).async {
+         DispatchQueue.global(qos:.userInitiated).async {
             let rgbaImage:RGBAImage = channel(rgbaImg:rgbaImg,assert:item.element)
             //            let qrImg:UIImage? = QRUtil.qrImage(str: arg.element, size: .init(width:length,height:length), ecLevel: ecLevel)
             DispatchQueue.main.async{
