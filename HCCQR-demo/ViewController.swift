@@ -20,8 +20,8 @@ class ViewController: UIViewController {
 //      testQRVersions()
 //     testModuleCount()
      
-      testHCCQRImage()//⭐
-//      creatingManyHCCQRImages(onComplete: { images in Swift.print("all created 🎉 - images.count \(images.count) 🎉")})//⭐
+//      testHCCQRImage()//⭐
+      creatingManyHCCQRImages(onComplete: { images in Swift.print("all created 🎉 - images.count \(images.count) 🎉")})//⭐
 //      readingManyHCCQRImages()//⭐
       
 //      testColorAssertionWithinThresholdForPixel()
@@ -30,6 +30,10 @@ class ViewController: UIViewController {
 //      colorTests()
 //      testingSmallModuleSize()
 //      testScalingArray()
+//
+//         testFixingMemLeak()
+//      }
+      
    }
    override var prefersStatusBarHidden:Bool {return true}/*hides statusbar*/
 }

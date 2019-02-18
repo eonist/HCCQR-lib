@@ -15,7 +15,7 @@ internal extension RGBAImage{
    /**
     * Converts rgbaImage to uiimage
     */
-   internal static func uiImage(rgbaImage:RGBAImage, scale:CGFloat) -> Image? {
+   internal static func image(rgbaImage:RGBAImage, scale:CGFloat) -> Image? {
       guard let cgImage = cgImage(rgbaImage: rgbaImage/*, resultScale: resultScale*/) else {Swift.print("unable to create cgImage");return nil}
       let image:Image = ImageUtil.image(cgImage: cgImage, scale: scale)
       return image
@@ -47,7 +47,7 @@ extension RGBAImage {
     * beta, not in use
     */
    
-   internal func imageFromARGB32Bitmap(pixels: [PixelData], width: UInt, height: UInt) -> Image? {
+   private func imageFromARGB32Bitmap(pixels: [PixelData], width: UInt, height: UInt) -> Image? {
       let bitsPerComponent: UInt = 8
       let bitsPerPixel: UInt = 32
       let rgbColorSpace = CGColorSpaceCreateDeviceRGB()

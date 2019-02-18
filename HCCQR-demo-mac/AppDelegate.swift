@@ -8,7 +8,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
    func applicationDidFinishLaunching(_ aNotification: Notification) {
 //      testHCCQRImage()
 //      readingManyHCCQRImages()
-      creatingManyHCCQRImages(onComplete:{images in Swift.print("images.count:  \(images.count)")})
+//      creatingManyHCCQRImages(onComplete:{images in Swift.print("images.count:  \(images.count)")})
+      testFixingMemLeak()
    }
 }
 /**
@@ -49,7 +50,7 @@ extension AppDelegate{
       }
       DispatchQueue.global(qos:.userInitiated).async {
          /*⭐ 1. Create HCCQR from string ⭐*/
-         HCCQRImageUtil.getHCCQRImage(string:randomString, scale:6,qrConfig:(qrVersion,ecLevel), onComplete:hccqrImageComplete)//
+         HCCQRImageUtil.getHCCQRImage(string:randomString, moduleMultiplier:6,scale:2,qrConfig:(qrVersion,ecLevel), onComplete:hccqrImageComplete)//
       }
    }
 }
@@ -96,7 +97,7 @@ extension AppDelegate{
       /*Do stuff on bg thread*/
       randomStrings.enumerated().forEach { arg in
          DispatchQueue.global(qos:.userInitiated).async {
-            HCCQRImageUtil.getHCCQRImage(string:arg.element,scale: 6, qrConfig:(qrVersion,ecLevel), onComplete: { img in createHCCQRComplete(i: arg.offset,hccqrImage: img)})//
+            HCCQRImageUtil.getHCCQRImage(string:arg.element,moduleMultiplier:6,scale:2, qrConfig:(qrVersion,ecLevel), onComplete: { img in createHCCQRComplete(i: arg.offset,hccqrImage: img)})//
          }
       }
       
@@ -145,5 +146,11 @@ extension AppDelegate{
          
       }
       creatingManyHCCQRImages(onComplete:onImageCreationComplete)
+   }
+   func testFixingMemLeak(){
+      let path = Bundle.main.resourcePath!+"/temp.bundle/HCCQR9.png"
+      guard let uiImage:NSImage = NSImage.init(contentsOfFile: path) else {Swift.print("err getting img");return}
+//      guard let rgba:RGBAImage = RGBAImage.rgbaImage(image: uiImage) else {return }
+//      Swift.print("rgba.pixels.count:  \(rgba.pixels.count)")
    }
 }

@@ -63,7 +63,7 @@ extension ViewController {
       guard let composite = Compositor.composite(rgbaImageList: [r,g/*,b*/],invert:false) else { return }
       /**/
       Swift.print("⚠️️ the bellow may not work anymore, scale is new ⚠️️")
-      let img:UIImage? = RGBAImage.uiImage(rgbaImage: composite,scale:image.scale)
+      let img:UIImage? = RGBAImage.image(rgbaImage: composite,scale:image.scale)
       let imgView:UIImageView = UIImageView.init(image: img)
       view.addSubview(imgView)
       imgView.frame.origin.y = 200
@@ -243,11 +243,12 @@ extension ViewController {
     */
    func creatingManyHCCQRImages(onComplete:@escaping (_ images:[UIImage])->Void){
       let (qrVersion,qrMode,ecLevel):(Int,QRMode,ECLevel) = (10,.byte,.l)//settings
-      let randomStrings:[String] = (0..<20).compactMap{ i in
+      let randomData:[Data] = (0..<20).compactMap{ i in
          guard let randomString:String = HCCQRStringData.randomString(qrVersion: qrVersion, qrMode: qrMode, ecLevel:ecLevel) else {Swift.print("unable to create random string");return nil}
-         return randomString
+         guard let data = randomString.data(using: .utf8) else {Swift.print("err data");return nil}
+         return data
       }
-      var images:[UIImage?] = [UIImage?](repeating: nil, count: randomStrings.count)
+      var images:[UIImage?] = [UIImage?](repeating: nil, count: randomData.count)
       let startTime:Date = Date()
       func createHCCQRComplete(i:Int,hccqrImage:UIImage?){
          guard let hccqrImage = hccqrImage else {fatalError("unable to create hccqr image")}
@@ -265,9 +266,9 @@ extension ViewController {
          }
       }
       /*do stuff on bg thread*/
-      randomStrings.enumerated().forEach { arg in
+      randomData.enumerated().forEach { arg in
          DispatchQueue.global(qos:.userInitiated).async {
-            HCCQRImageUtil.getHCCQRImage(string:arg.element,moduleMultiplier:6,scale: 2,qrConfig:(qrVersion,ecLevel), onComplete: { img in createHCCQRComplete(i: arg.offset,hccqrImage: img)})//
+            HCCQRImageUtil.getHCCQRImage(data:arg.element,moduleMultiplier:6,scale: 2,qrConfig:(qrVersion,ecLevel), onComplete: { img in createHCCQRComplete(i: arg.offset,hccqrImage: img)})//
          }
       }
       
@@ -333,6 +334,28 @@ extension ViewController {
       HCCQRStringUtil.stringAndImages(uiImage:uiImage,onComplete:onComplete)
       
    }
+   /**
+    *
+    */
+   func testFixingMemLeak(){
+      (0..<40).forEach { _ in
+         let (qrVersion,qrMode,ecLevel):(Int,QRMode,ECLevel) = (10,.byte,.l)//settings
+         guard let randomString:String = HCCQRStringData.randomString(qrVersion: qrVersion, qrMode: qrMode, ecLevel:ecLevel) else {Swift.print("unable to create random string");return }
+         guard let data = randomString.data(using: .utf8) else {Swift.print("err data");return }
+         HCCQRImageUtil.getHCCQRImage(data:data,moduleMultiplier:6,scale: 2,qrConfig:(qrVersion,ecLevel), onComplete: { img in Swift.print("img.size:  \(img?.size)")})//
+         //      guard let uiImage:UIImage = UIImage.init(contentsOfFile: Bundle.main.resourcePath!+"/temp.bundle/HCCQR9.png") else {Swift.print("err getting img");return}
+         
+         //      guard let uiImage2:UIImage = UIImage.init(contentsOfFile: Bundle.main.resourcePath!+"/temp.bundle/HCCQR9.png") else {Swift.print("err getting img");return}
+         //      guard let rgba:RGBAImage = RGBAImage.rgbaImage(image: uiImage) else {return }
+         //      let img = Colorize.colorize(images: [uiImage,uiImage2], colorMap:Colorize.colorMap , moduleMultiplier: 6, scale: 1)
+         //      Swift.print("rgba.pixels.count:  \(rgba.pixels.count)")
+         //      Swift.print("img.size:  \(img?.size)")
+      }
+     
+   }
+   //🏀
+   //try to fix the mem leak,
+   
    /**
     * testingSmallModuleSize
     */

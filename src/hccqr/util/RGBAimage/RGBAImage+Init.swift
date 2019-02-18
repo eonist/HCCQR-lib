@@ -26,7 +26,8 @@ internal extension RGBAImage{
       }
       imageContext.draw(cgImage, in: CGRect(origin: .zero, size: image.size))//cgImage.imageData
       let pixels = UnsafeMutableBufferPointer<PixelData>(start: imageData, count: capacity)
-      return .init(pixels: pixels, width: w, height: h)
+      let rgbaImg:RGBAImage = .init(pixels: pixels, width: w, height: h)
+      return rgbaImg
    }
    /**
     * Beta (scales img without becoming blurry)

@@ -19,6 +19,7 @@ internal extension Colorize{//TODO: ⚠️️ rename to Colorizer
             return pixel
          }
       }
+      rgbaImages.forEach{$0.pixels.deallocate()}//seems to have no effect but looks reasonable
       /*Check if array has all the pixels*/
       guard pixels.count == size.width * size.height else {Swift.print("missing some pixels");return nil}
       return RGBAImage.rgbaImage(pixels: pixels, size:(width: size.width, height: size.height), moduleMultiplier:multiplier)

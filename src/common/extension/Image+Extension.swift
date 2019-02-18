@@ -39,7 +39,7 @@ extension Image {
     * - Note: alternative: https://gist.github.com/giulio92/69e4f74217422154bb25d2a35d6710f8
     * - TODO: ⚠️️ cgImage or cgImage doesnt always work, try to make this more consistent
     */
-   func getPixelColor(pos:CGPoint) -> Color? {
+   func getPixelColor(pos:CGPoint) -> Color? {//TODO: ⚠️️ make this for cgImage, converting it over and oer is not good
       //⚠️️ The bellow fix could hurt performance
       guard let cgImage = /*self.cgImage ?? */self.cgImage() else {Swift.print("getPixelColor() - unable to get cgImage");return nil}
       guard let dataProvider = cgImage.dataProvider else {Swift.print("getPixelColor() - unable to get dataProvider");return nil}
@@ -87,9 +87,11 @@ extension Image{
     */
    #if os(iOS)
    func cgImage() -> CGImage? {
+   
       guard let ciImage:CIImage = self.ciImage else {Swift.print("cgImage() - unable to get ciImage");return nil}
       let context:CIContext = CIContext.init(options: nil)
       return context.createCGImage(ciImage, from: ciImage.extent)
+      
    }
    #endif
    #if os(macOS)

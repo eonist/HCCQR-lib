@@ -20,7 +20,7 @@ internal extension Splitter {
    internal static func channels(rgbaImg:RGBAImage, onComplete:@escaping OnChannelsComplete)/* -> RGBAImages*/ {
       let assertions:[(PixelData)->Bool] = [{$0.isRedish},{$0.isGreenish},{$0.isBlueish}]
       var rgbaImages:[RGBAImage?] = [RGBAImage?](repeating: nil, count: assertions.count)
-      func onChannelComplete(i:Int,rgbaImage:RGBAImage){
+      func onChannelComplete(i:Int, rgbaImage:RGBAImage){
          rgbaImages[i] = rgbaImage//it matters which order the qrImages came in when you stitch them back together
          if rgbaImages.first(where: {$0 == nil}) == nil {/*makes sure all images finished*/
             let rgbaImages:[RGBAImage] = rgbaImages.compactMap{$0}
