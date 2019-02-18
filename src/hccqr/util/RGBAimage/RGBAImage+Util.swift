@@ -15,16 +15,16 @@ internal extension RGBAImage{
    /**
     * Converts rgbaImage to uiimage
     */
-   internal static func uiImage(rgbaImage:RGBAImage, resultScale:CGFloat) -> Image? {
-      guard let cgImage = cgImage(rgbaImage: rgbaImage, resultScale: resultScale) else {Swift.print("unable to create cgImage");return nil}
-      let image:Image = ImageUtil.image(cgImage: cgImage, resultScale: resultScale)
+   internal static func uiImage(rgbaImage:RGBAImage, scale:CGFloat) -> Image? {
+      guard let cgImage = cgImage(rgbaImage: rgbaImage/*, resultScale: resultScale*/) else {Swift.print("unable to create cgImage");return nil}
+      let image:Image = ImageUtil.image(cgImage: cgImage, scale: scale)
       return image
    }
    /**
     * Converts rgbaImage to cgImage
     * - Note: alternative data -> img code, might be faster?: https://stackoverflow.com/questions/51372245/swift-covert-byte-array-into-ciimage
     */
-   internal static func cgImage(rgbaImage:RGBAImage, resultScale:CGFloat) -> CGImage? {
+   internal static func cgImage(rgbaImage:RGBAImage/*, resultScale:CGFloat*/) -> CGImage? {
       let colorSpace = CGColorSpaceCreateDeviceRGB()
       var bitmapInfo: UInt32 = CGBitmapInfo.byteOrder32Big.rawValue
       let bytesPerRow = rgbaImage.width * 4
@@ -36,10 +36,13 @@ internal extension RGBAImage{
    /**
     * Convenience
     */
-   internal static func ciImage(rgbaImage:RGBAImage, resultScale:CGFloat) -> CIImage?{
-      guard let cgImage:CGImage = cgImage(rgbaImage: rgbaImage, resultScale: resultScale) else {Swift.print("unable to get cgImage");return nil}
+   internal static func ciImage(rgbaImage:RGBAImage/*, resultScale:CGFloat*/) -> CIImage?{
+      guard let cgImage:CGImage = cgImage(rgbaImage: rgbaImage/*, resultScale: resultScale*/) else {Swift.print("unable to get cgImage");return nil}
       return cgImage.ciImage()
    }
+  
+}
+extension RGBAImage {
    /**
     * beta, not in use
     */
@@ -57,6 +60,9 @@ internal extension RGBAImage{
       //      let cgiimagething: CGImage = cgImage
       return ImageUtil.image(cgImage: cgImage/*, scale: 1, orientation: .down*/)
    }
+}
+
+   
    
    //   public var copy:RGBAImage {
    //      let pixels:UnsafeMutableBufferPointer<Pixel> = self.pixels
@@ -66,14 +72,14 @@ internal extension RGBAImage{
    /**
     *
     */
-//   func img(){
-//      let pixels:[PixelData] = []
-//      if let image = imageFromARGB32Bitmap(pixels:pixels, width: UInt(100), height: UInt(100)) {
-//         _ = image
-//      }
-//   }
+   //   func img(){
+   //      let pixels:[PixelData] = []
+   //      if let image = imageFromARGB32Bitmap(pixels:pixels, width: UInt(100), height: UInt(100)) {
+   //         _ = image
+   //      }
+   //   }
    
-}
+
 
 
 //    public init(width: Int, height: Int) {
@@ -95,4 +101,3 @@ internal extension RGBAImage{
 //        UIGraphicsEndImageContext();
 //        return image!
 //    }
-

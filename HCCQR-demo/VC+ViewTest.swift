@@ -63,56 +63,17 @@ extension ViewController {
       guard let composite = Compositor.composite(rgbaImageList: [r,g/*,b*/],invert:false) else { return }
       /**/
       Swift.print("⚠️️ the bellow may not work anymore, scale is new ⚠️️")
-      let img:UIImage? = RGBAImage.uiImage(rgbaImage: composite,resultScale:image.scale)
+      let img:UIImage? = RGBAImage.uiImage(rgbaImage: composite,scale:image.scale)
       let imgView:UIImageView = UIImageView.init(image: img)
       view.addSubview(imgView)
       imgView.frame.origin.y = 200
       
 
-      //composition demo ✅
-      //you need to be able to get the w/b of your choice for r,g,b
-         //1. fill result image with pure black
-         //2. white is stronger, so black is really white
-         //3. then you composite
-         //4. Then you invert so that black becomes white again
-      
-      
-      //Use the 4x4 grid
-         //seperate into 2 qr images
-      
-      //HCCQRParser.hccqrImage (creates HCCQR image from string) ✅
-         //split text in 2
-         //make 2 qr images
-         //composite 2 qrImages together
-            //if pixel.a == 255 && pixel.b == 255 {pixel = white}
-            //if pixel.a == 255 && pixel.b == 0 {pixel = green}
-            //if pixel.a == 0 && pixel.b == 255 {pixel = red}
-            //if pixel.a == 0 && pixel.b == 0 {pixel = blue}
-         //go box for box and grab the pixel from each box and measure if it's black or white 🚫
-         //return [[Bool]] 🚫
-      
-   
-      //write a class that spits out 2 QR images for 1 HHCQR image ✅
-         //write a class that makes the HHCQR image 👈
-         //find QR code that creates an image
-         //you then make color pixels based on the combination of 2 qr images
-         //you also need to skip some areas, like the alignment areas
-         //you need to make tests first, dummy QR codes ✅
-         //you then need to make the color stuff work ✅
-         //convert the pseudo-code to real code ✅
-         //then you need to be able to cherry pick areas to include and disclude etc (after colorize is done)
-            //write some pseudo code for this (mainArea:CGRect,discludeAreas:[CGRect]) 🚫
-            //its easier to just overwrite the discluded areas after you have colorized 👌
-            //You have to creat logic that lifts the discluded areas and composite them on the colorized image
-            //do real mini test for this, where you draw three marks, and then are able to lifet and imprint
       
    }
    
    
 
-      //test this a bit, try to grab the second qr img ✅
-   
-   
    /**
     * tests FakeHCCQRView (tests splitting a hccqr like img)
     * - Caution: ⚠️️ this has a bug in that the snapshot creates retina image, and this code doesnt support that yet
@@ -194,37 +155,6 @@ extension ViewController {
       }
       
       
-         //test reading pixels for a single qr with no scaling, do you get correct pixel colors?✅
-            //if so, then making it HCCQR will be easy, you just scale the result✅
-         //it could be that the img.scale is what fucks things up. try google blurry qr, scale etc✅
-         //you might need to do middle pixel scanning and build modules your self if getting single pixel isnt possible from apples framework (a WRAPPER)✅
-         //there might be pixel adding from apples part to make these images, try a few different sizes etc, at some point you might hit pixel perfection, without bluring, which is very helpful in any case, because it makes transfers more stable because clearer picture✅
-      
-         //render the result with 2x scale 🚫
-            //do general improvments ✅
-            //the blurry result could be due to scaling of simulator ✅
-         //try to split the result into 2 qrs again ✅
-            //make the API for making HCCQR images ✅
-               //pseudo Code this a bit✅
-                  //payload:String = "271*2 chars"✅
-                  //don't worry about padding the end of the string yet ✅
-                  //getHCCQRImage(string:String,version:10, mode:.l) -> UIImage? ✅
-                     //scale moudlecount + 2✅
-                     //supply maxSizeLength, then modulecount will try to return the best size without bluring, for now size will be whatever you scake modulecount with✅
-      
-            //try to add random bland colors and see if you can still split ✅
-               //test the two images you took, try to split them into qr codes with pixel color threshold code ✅
-               //splitting with threshold ✅
-               //if regular qr reading fails for splitted qr's, try the Vision recognition software, maybe its smarter
-               //maybe the vision rec already support hccqr ?
-         //speed things up
-            //use small b&w QR images, that you scale up 🚫
-               //make sure the scaling doesnt produce blurry results!?!? ✅
-                  //create image.hasOnly(these colors:[UIColor]) -> Bool ✅
-                     //do more medium term planing, to avoid getting stuck 👈👈👈
-      
-         //do HCCQR work ina mac project its faster 🤔
-         //try the first mac <-> iphone transfer with HCCQR ✅
       
       guard let view1 = createQRImgView() else {Swift.print("err");return}
       Swift.print("view1.image?.scale:  \(view1.image.scale)")
@@ -234,7 +164,7 @@ extension ViewController {
       _ = {
 //         let views:[UIView] = [view1,view2]
          let imgs:[UIImage] = [view1.image,view2.image].compactMap{$0}
-         guard let resultImage:UIImage = Colorize.colorize(images: imgs, colorMap: Colorize.colorMap, scale:1) else {Swift.print("unable to create colorized image");return }
+         guard let resultImage:UIImage = Colorize.colorize(images: imgs, colorMap: Colorize.colorMap, moduleMultiplier:1,scale:2) else {Swift.print("unable to create colorized image");return }
 //         Swift.print("resultImage.cgImage:  \(resultImage.cgImage)")
 //         Swift.print("resultImage.ciImage:  \(resultImage.ciImage)")
 //         Swift.print("resultImage.cgImage():  \(resultImage.cgImage())")
@@ -271,17 +201,20 @@ extension ViewController {
       /*⭐ 1. Create HCCQR from string ⭐*/
       let (qrVersion,qrMode,ecLevel):(Int,QRMode,ECLevel) = (10,.byte,.l)//settings
       guard let randomString = HCCQRStringData.randomString(qrVersion: qrVersion, qrMode: qrMode, ecLevel:ecLevel) else {Swift.print("unable to create random string");return}
+      guard let data = randomString.data(using: .utf8) else {Swift.print("err");return}
       let createHCCQRTime:Date = Date()
       
       let hccqrImageComplete:OnHCCQRImageComplete = { hccqrImage in
          guard let hccqrImage = hccqrImage else {Swift.print("unable to create hccqr image");return}
          DispatchQueue.main.async {
+            Swift.print("createHCCQRTime complete: \(abs(createHCCQRTime.timeIntervalSinceNow))")
+            Swift.print("hccqrImage.scale:  \(hccqrImage.scale)")
+            Swift.print("hccqrImage.size:  \(hccqrImage.size)")
             let imgView = UIImageView(image:hccqrImage)
             self.view.addSubview(imgView)
+            
          }
-         DispatchQueue.main.async {
-            Swift.print("createHCCQRTime complete: \(abs(createHCCQRTime.timeIntervalSinceNow))")
-         }
+         
          /*⭐ 2. try split the hccqrImg ⭐*/
          let splitTime:Date = Date()
          let hccqrDataComplete:OnHCCQRDataComplete = { payload in
@@ -302,7 +235,7 @@ extension ViewController {
          }
       }
       DispatchQueue.global(qos:.userInitiated).async {
-         HCCQRImageUtil.getHCCQRImage(string:randomString, scale:6,qrConfig:(qrVersion,ecLevel), onComplete:hccqrImageComplete)//
+         HCCQRImageUtil.getHCCQRImage(data:data, moduleMultiplier:6,scale:2, qrConfig:(qrVersion,ecLevel), onComplete:hccqrImageComplete)//
       }
    }
    /**
@@ -334,7 +267,7 @@ extension ViewController {
       /*do stuff on bg thread*/
       randomStrings.enumerated().forEach { arg in
          DispatchQueue.global(qos:.userInitiated).async {
-            HCCQRImageUtil.getHCCQRImage(string:arg.element,scale: 6,qrConfig:(qrVersion,ecLevel), onComplete: { img in createHCCQRComplete(i: arg.offset,hccqrImage: img)})//
+            HCCQRImageUtil.getHCCQRImage(string:arg.element,moduleMultiplier:6,scale: 2,qrConfig:(qrVersion,ecLevel), onComplete: { img in createHCCQRComplete(i: arg.offset,hccqrImage: img)})//
          }
       }
       
@@ -382,43 +315,7 @@ extension ViewController {
     * Tests HCCQR Image captured with camera
     */
    func testReadingHCCQRImage(){
-      //
-         //manually resize the image a bit (800x800) ✅
-         //load the image ✅
-            //from desktop ✅
-         //try to use the HCCQRUtil.string(uiImage:img) method ✅
-         //try higher res, if it doesn't work ✅
-         //try to look at the qr1 and qr2 b&w images, how they look may give you ideas for optimization ✅
-      //
-         //🚫 adjust the fill alorithm, some colors come out grayish, when they should be hard black or hard white
-         //you are getting bad data bc of simulator and its blury pixels. ✅
-         //optimize split algo
-         //optimize pixel code etc
-            //find fast color for pixel code
-            //clean up the code before you optimize 👈
-               // keep cleaning house before you move on, you might miss imp optimizations other wise
-                  //Make Pixel 2, with regular hex stuff, and that doesnt store as value, but as rgb
-                  // maybe move on a bit, before you get stuck on this ✅
-                  // find code for going from r,g,b,a to argb-value 🚫
-                  //Replace pixel, with PixelData, ✅
-                     //do some quick looking around, that the galue is never used etc ✅
-               //do rgba pixels to img and img to rgb pixel performace tests
-               //measure time, see what takes so long 👈
-         //create the HCCQRLib
-         //try adding some blur to an image, maybe it reads easier (could use this if a pass fails)
-         //Try rapid creation of hccqr
-         //try rappid reading of hccqr (for.each.frame).string.count
-            //if you cant speed up splitting then try the bellow
-               //film 12fps loop
-                  //split film into seperate frames
-                  //scan each frame seperatly
-      
-         //revert last commit to github, and include gitignore for removing big test images
-         //research color seperation
-         //research using Metall for image scanning and splitting?
-         //try using the vision lib to scan the bad hccqr images
-         //test splitting 8 color pallet,16,32
-            //figure out which pallets to use prob:
+     
       let startTime:Date = Date()
       let path = Bundle.main.resourcePath!+"/temp.bundle/HCCQR9.png"
       guard let uiImage:UIImage = UIImage.init(contentsOfFile: path) else {Swift.print("err getting img");return}

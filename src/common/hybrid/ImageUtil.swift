@@ -11,9 +11,9 @@ internal final class ImageUtil{
    /**
     * Universal for ios and mac
     */
-   internal static func image(cgImage: CGImage, resultScale:CGFloat = 1) -> Image {
+   internal static func image(cgImage: CGImage, scale:CGFloat = 1) -> Image {
       #if os(iOS)
-      return uiImage(cgImage: cgImage,resultScale:resultScale)
+      return uiImage(cgImage: cgImage,scale:scale)
       #elseif os(macOS)
       return nsImage(cgImage: cgImage)
       #else
@@ -26,8 +26,8 @@ internal final class ImageUtil{
     * - TODO: ⚠️️ Make this throw
     */
    #if os(iOS)
-   private static func uiImage(cgImage: CGImage, resultScale:CGFloat) -> UIImage {
-      let uiImage:UIImage = UIImage.init(cgImage: cgImage, scale: resultScale, orientation: .up)//.leftMirrored
+   private static func uiImage(cgImage: CGImage, scale:CGFloat) -> UIImage {
+      let uiImage:UIImage = UIImage.init(cgImage: cgImage, scale: scale, orientation: .up)//.leftMirrored
       return uiImage
    }
    #endif

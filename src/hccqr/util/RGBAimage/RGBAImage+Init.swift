@@ -31,14 +31,14 @@ internal extension RGBAImage{
    /**
     * Beta (scales img without becoming blurry)
     */
-   internal static func rgbaImage(pixels:[PixelData], size:(width:Int,height:Int), scale:Int) -> RGBAImage{
-      let resultPixels:[PixelData] = (0..<size.height*scale).flatMap{ y in
-         return (0..<size.width*scale).map{ x in
-            let pixelIndex:Int = y/scale*size.height+x/scale
+   internal static func rgbaImage(pixels:[PixelData], size:(width:Int,height:Int), moduleMultiplier:Int) -> RGBAImage{
+      let resultPixels:[PixelData] = (0..<size.height*moduleMultiplier).flatMap{ y in
+         return (0..<size.width*moduleMultiplier).map{ x in
+            let pixelIndex:Int = y/moduleMultiplier*size.height+x/moduleMultiplier
             return pixels[pixelIndex]
          }
       }
-      return rgbaImage(pixels: resultPixels, size:(width: size.width*scale, height: size.height*scale))
+      return rgbaImage(pixels: resultPixels, size:(width: size.width*moduleMultiplier, height: size.height*moduleMultiplier))
    }
    /**
     * Beta

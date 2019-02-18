@@ -20,9 +20,9 @@ class ViewController: UIViewController {
 //      testQRVersions()
 //     testModuleCount()
      
-//      testHCCQRImage()//⭐
+      testHCCQRImage()//⭐
 //      creatingManyHCCQRImages(onComplete: { images in Swift.print("all created 🎉 - images.count \(images.count) 🎉")})//⭐
-      readingManyHCCQRImages()//⭐
+//      readingManyHCCQRImages()//⭐
       
 //      testColorAssertionWithinThresholdForPixel()
      
