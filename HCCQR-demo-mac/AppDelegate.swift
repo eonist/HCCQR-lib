@@ -6,10 +6,10 @@ import QRLibMac
 class AppDelegate: NSObject, NSApplicationDelegate {
    @IBOutlet weak var window: NSWindow!
    func applicationDidFinishLaunching(_ aNotification: Notification) {
-//      testHCCQRImage()
+      testHCCQRImage()
 //      readingManyHCCQRImages()
 //      creatingManyHCCQRImages(onComplete:{images in Swift.print("images.count:  \(images.count)")})
-      testFixingMemLeak()
+//      testFixingMemLeak()
    }
 }
 /**
@@ -27,6 +27,7 @@ extension AppDelegate{
       let hccqrImageComplete:OnHCCQRImageComplete = { hccqrImage in
          guard let hccqrImage = hccqrImage else {Swift.print("unable to create hccqr image");return}
          DispatchQueue.main.async {
+            Swift.print("hccqrImage.size:  \(hccqrImage.size)")
             Swift.print("createHCCQRTime complete: \(abs(createHCCQRTime.timeIntervalSinceNow))")
          }
          let splitTime:Date = Date()

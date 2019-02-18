@@ -15,20 +15,20 @@ public class HCCQRStringUtil{//rename to  HCCQRDataUtil
       let onSplitComplete:(_ payload:Splitter.SplitPayload) -> Void = { payload in
          guard let (q1,q2):(CIImage,CIImage) = payload else {Swift.print("HCCQRUtil.stringAndImages() - q1,q2 err");onComplete(nil);return}
          let ciImages:[CIImage] = [q1,q2]
-         var qrCodes:[Data?] = [Data?](repeating: nil, count: ciImages.count)
-         func onQRCodeComplete(i:Int,data:Data?){
-            guard let data:Data = data else { Swift.print("HCCQRStringUtil.stringAndImages() - ⚠️️ qrcode1 err ⚠️️ "); onComplete((nil,  q1 ,  q2) );return}
-            qrCodes[i] = data
-            if qrCodes.first(where: {$0 == nil}) == nil {/*Makes sure all images finished*/
-               let d:Data = qrCodes.compactMap{$0}.reduce(Data(),+)
-               onComplete((d, q1, q2))/*Return the result here*/
+         var dataAndFrames:[QRStringUtil.DataAndFrame?] = [QRStringUtil.DataAndFrame?](repeating: nil, count: ciImages.count)
+         func onQRCodeComplete(i:Int,dataAndFrame:QRStringUtil.DataAndFrame?){
+            guard let dataAndFrame:QRStringUtil.DataAndFrame = dataAndFrame else { Swift.print("HCCQRStringUtil.stringAndImages() - ⚠️️ qrcode1 err ⚠️️ "); onComplete((nil,  q1 ,  q2, nil) );return}
+            dataAndFrames[i] = dataAndFrame
+            if dataAndFrames.first(where: {$0 == nil}) == nil {/*Makes sure all images finished*/
+               let d:Data = dataAndFrames.compactMap{$0?.qrData}.reduce(Data(),+)
+               onComplete((d, q1, q2, dataAndFrame.qrFrame))/*Return the result here*/
             }
          }
          ciImages.enumerated().forEach { item in
             DispatchQueue.global(qos:.userInitiated).async {
-               let data:Data? = QRStringUtil.qrCode(ciImage: item.element)
+               let dataAndFrame:QRStringUtil.DataAndFrame? = QRStringUtil.qrCode(ciImage: item.element)
                DispatchQueue.main.async{
-                  onQRCodeComplete(i: item.offset, data: data)
+                  onQRCodeComplete(i: item.offset, dataAndFrame: dataAndFrame)
                }
             }
          }
@@ -59,7 +59,10 @@ public extension HCCQRStringUtil{
    public typealias StringsAndImages = (string:String?,qr1:CIImage,qr2:CIImage)
    public typealias StringAndImageComplete = (_ stringsAndImages:StringsAndImages?)->Void
    /*Data, ⚠️️ new ⚠️️*/
-   public typealias DataAndImages = (data:Data?,qr1:CIImage,qr2:CIImage)
+   /**
+    * The imags was returned for debuggin, can be useful for optimizing later
+    */
+   public typealias DataAndImages = (data:Data?,qr1:CIImage,qr2:CIImage,frame:CGRect?)
    public typealias DataAndImageComplete = (_ dataAndImages:DataAndImages?)->Void
 }
 /**

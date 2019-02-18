@@ -8,7 +8,7 @@ internal class Splitter{
     * Returns two b&w qr imgs (by splittin an hccqr img)
     * - TODO: ⚠️️ Move to Splitter.swift
     */
-   internal static func split(uiImage:Image,onComplete:@escaping SplitPayloadComplete) /* -> (qrImg1:CIImage,qrImg2:CIImage)?*/ {
+   internal static func split(uiImage:Image, onComplete:@escaping SplitPayloadComplete) /* -> (qrImg1:CIImage,qrImg2:CIImage)?*/ {
       func onChannelsComplete(channels:RGBAImages?){
          guard let channels: RGBAImages = channels else {Swift.print("unable to create rgbaImgs"); onComplete(nil);return}//(r,g,b)
          let channelArr:[(first:RGBAImage,second:RGBAImage)] = [(channels.b,channels.g),(channels.r,channels.b)]
