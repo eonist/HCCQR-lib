@@ -28,16 +28,17 @@ internal extension Colorize{
     * - TODO: ⚠️️ Could be fater to just mutate the pixels diretly in an RGBAImage isntead of creating an pixel array like it is now?
     */
    internal static func colorize(rgbaImages:[RGBAImage], colorMap:ColorMap, scale:Int) -> RGBAImage?{
-      guard let firstImage:RGBAImage = rgbaImages.first else {Swift.print("must contain at least one image");return nil}
-      let pixels:[PixelData] = (0..<firstImage.height).indices.flatMap { y in /*flatMap Covert the 2-dim array to a 1-dim array*/
-         return (0..<firstImage.width).indices.compactMap { x in
+      /*The first image is used for getting size etx*/
+      guard let size = rgbaImages.first?.size else {Swift.print("must contain at least one image");return nil}
+      let pixels:[PixelData] = (0..<size.height).indices.flatMap { y in /*flatMap Covert the 2-dim array to a 1-dim array*/
+         return (0..<size.width).indices.compactMap { x in
             let pixels:[PixelData] = rgbaImages.map{ $0.getPixelUnChecked(x:x,y:y) }
             guard let pixel:PixelData = colorize(pixels:pixels, colorMap:colorMap) else {Swift.print("⚠️️ unable to make pixel ⚠️️");return nil}
             return pixel
          }
       }
       /*Check if array has all the pixels*/
-      guard pixels.count == Int(firstImage.width * firstImage.height) else {Swift.print("missing some pixels");return nil}
-      return RGBAImage.rgbaImage(pixels: pixels, size:(width: firstImage.width, height: firstImage.height),scale:scale)
+      guard pixels.count == size.width * size.height else {Swift.print("missing some pixels");return nil}
+      return RGBAImage.rgbaImage(pixels: pixels, size:(width: size.width, height: size.height), scale:scale)
    }
 }

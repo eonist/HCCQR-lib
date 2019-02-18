@@ -27,8 +27,7 @@ internal class Compositor {
       guard let firstRGBAImg:RGBAImage = rgbaImageList.first else {Swift.print("composite() - no first");return nil}
       let size:(width:Int,height:Int) = (width:Int(firstRGBAImg.width), height: Int(firstRGBAImg.height))
       var rgbaImg:RGBAImage = RGBAImage.rgbaImage(pixel: PixelData.blackPixel, size: size)
-      /*Loop things*/
-      rgbaImg.process{ (index:Int, pixel:PixelData) -> PixelData in
+      rgbaImg.process{ (index:Int, pixel:PixelData) -> PixelData in/*Loop things*/
          var pixel = pixel
          rgbaImageList.forEach { (rgbaImage:RGBAImage) in /*loop over every image in the list*/ //TODO: ⚠️️ maybe do reduce here?
             let rgbaPixelData:PixelData = rgbaImage.pixels[index]
@@ -38,11 +37,16 @@ internal class Compositor {
       }
       return rgbaImg
    }
+}
+/**
+ * DEPRECATED
+ */
+extension Compositor{
    /**
     * Fills an image with pixels
     * - TODO: ⚠️️ This should return not set pixels, do it when you get around the objc pixel array problem
     */
-   internal static func fill(image:inout RGBAImage, pixels:[PixelData]){
+   fileprivate static func fill(image:inout RGBAImage, pixels:[PixelData]){
       (0..<Int(image.height)).forEach { y in/*loop over every y*/
          (0..<Int(image.width)).forEach { x in/*loop over every x*/
             let index = y * Int(image.width) + x//TODO: ⚠️️ use getPixel here

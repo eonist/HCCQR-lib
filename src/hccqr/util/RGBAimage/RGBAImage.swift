@@ -15,3 +15,9 @@ internal struct RGBAImage {//TODO: ⚠️️ this should really be called ARGBIm
       self.height = height
    }
 }
+/**
+ * Convenience
+ */
+extension RGBAImage{
+   var size:(width:Int,height:Int) {return (width:width,height:height)}
+}

@@ -6,6 +6,9 @@ internal class Colorize {
    /**
     * Converts multiple b&w images to color image based on the colorMap provided
     * - TODO: ⚠️️ pass cgImages istead of uiimages, it might be faster
+    * - Parameter scale: This is the multiplier. ModuleCount equals 1 pixel. ModuleCount for QRVersion 10 is 57 not counting 2 for margins. So (57+2)*6 = 354, if you want 2xretina its 354 * 2 = 708
+    * - Parameter images: b&w QRImages
+    * - PArameter colorMap: the color depth you want the HCCQR image in. 4,8,16,32 etc
     */
    internal static func colorize(images:[Image], colorMap:ColorMap, scale:Int) -> Image? {
       let rgbaImages:[RGBAImage] = images.compactMap{RGBAImage.rgbaImage(image: $0)}

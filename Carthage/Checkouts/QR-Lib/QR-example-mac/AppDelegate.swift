@@ -5,7 +5,22 @@ import QRLibMac
 class AppDelegate: NSObject, NSApplicationDelegate {
    @IBOutlet weak var window: NSWindow!
    func applicationDidFinishLaunching(_ aNotification: Notification) {
-      createQRImageView()
+      var counter:Int = 0
+      let num:Int = 2
+      let startTime:Date = Date()
+      let onComplete:()->Void = {
+         Swift.print("onComplete")
+         counter += 1
+         if counter == num {
+            Swift.print("all Done: \(abs(startTime.timeIntervalSinceNow))")
+         }
+      }
+      (0..<num).forEach{ i in
+         DispatchQueue.global(qos:.userInitiated).async {
+            self.createQRImageView(onComplete:onComplete)
+         }
+      }
+      
 //      createQRImageView()
 //      createQRImageView()
    }
@@ -17,29 +32,30 @@ extension AppDelegate{
    /**
     * Creates qrimageview (adds to view, single)
     */
-   func createQRImageView(){
-      let startTime:Date = Date()
+   func createQRImageView(onComplete:@escaping ()->Void){
+//      let startTime:Date = Date()
       let ranStr:String = QRStringData.randomString(max: 229, qrMode: .byte)
       guard let moduleCount:Int = QRModuleUtil.moduleCount(string: ranStr, qrMode: .byte, ecLevel: .l) else {Swift.print("err");return }
       let side:CGFloat = CGFloat(moduleCount + 2) * 6/*+2 because margin*/
-      DispatchQueue.global(qos:.userInteractive).async {
+//      DispatchQueue.global(qos:.userInitiated).async {
          guard let d:Data = ranStr.data(using: .utf8) else {Swift.print("err");return}
          guard let qrImage:NSImage = QRImageUtil.qrImage(data: d, size: .init(width:side,height:side), ecLevel: .l) else {Swift.print("unable to create UIImage");return }
          Swift.print("qrImage.size:  \(qrImage.size)")
-         DispatchQueue.main.async {
-            Swift.print("✅ Done: \(abs(startTime.timeIntervalSinceNow))")
-            let decodeTime:Date = Date()
-            DispatchQueue.global(qos:.userInteractive).async {
-               guard let ciImage = qrImage.ciimage else {Swift.print("err");return}
-               guard let data:Data = QRStringUtil.qrCode(ciImage: ciImage) else {Swift.print("unable to get data");return}
-               guard let string:String = String(data: data, encoding: .utf8) else {Swift.print("unable to get string");return}
-               DispatchQueue.main.async {
-                  Swift.print("Match: \(string == ranStr ? "✅" : "🚫" )")
-                  Swift.print("Decode time: \(abs(decodeTime.timeIntervalSinceNow))")
-               }
-            }
-         }
-      }
+//         DispatchQueue.main.async {
+//            Swift.print("✅ Done: \(abs(startTime.timeIntervalSinceNow))")
+            onComplete()
+//            let decodeTime:Date = Date()
+//            DispatchQueue.global(qos:.userInteractive).async {
+//               guard let ciImage = qrImage.ciimage else {Swift.print("err");return}
+//               guard let data:Data = QRStringUtil.qrCode(ciImage: ciImage) else {Swift.print("unable to get data");return}
+//               guard let string:String = String(data: data, encoding: .utf8) else {Swift.print("unable to get string");return}
+//               DispatchQueue.main.async {
+//                  Swift.print("Match: \(string == ranStr ? "✅" : "🚫" )")
+//                  Swift.print("Decode time: \(abs(decodeTime.timeIntervalSinceNow))")
+//               }
+//            }
+//         }
+//      }
      
 //      let top:CGFloat = (view.frame.height - qrImage.size.height)
 //      Swift.print("top:  \(top)")

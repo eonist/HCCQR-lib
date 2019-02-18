@@ -32,7 +32,7 @@ public class HCCQRImageUtil{
          guard let qrImg:Image = qrImg else { Swift.print("onCreateQrImgComplete() - ⚠️️ qrImg err ⚠️️ "); onComplete(nil);return}
          qrImgs[i] = qrImg/*it matters which order the qrImages came in when you stitch them back together*/
          if qrImgs.first(where: {$0 == nil}) == nil {/*makes sure all images finished*/
-            Swift.print("onCreateQrImgComplete: \(abs(startTime.timeIntervalSinceNow))")
+//            Swift.print("onCreateQrImgComplete: \(abs(startTime.timeIntervalSinceNow))")
             let qrImages:[Image] = qrImgs.compactMap{$0}
             guard let hccqrImage:Image = Colorize.colorize(images: qrImages, colorMap: Colorize.colorMap, scale:scale/*blandColorMap*/) else {Swift.print("Unable to create colorized image");onComplete(nil);return}
             onComplete( hccqrImage )

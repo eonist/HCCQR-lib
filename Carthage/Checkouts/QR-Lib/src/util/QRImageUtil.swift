@@ -12,16 +12,16 @@ final public class QRImageUtil {
     * - Parameter str: The message you want the QR to contain
     * - Parameter size: The size you want the QR to be
     */
-   public static func qrImage(str: String, size: CGSize, ecLevel:ECLevel = .l) -> Image? {
-      guard let ciImage:CIImage = QRImageUtil.ciImage(str: str, size: size, ecLevel:ecLevel) else { Swift.print("⚠️️ QRLib.QRUtil.qrImage() - Failed to create ciImage ecLevel:\(ecLevel.rawValue) str.count:\(str.count) size:\(size) ⚠️️");return nil}
+   public static func qrImage(str: String, size: CGSize?, ecLevel:ECLevel = .l) -> Image? {
+      guard let ciImage:CIImage = QRImageUtil.ciImage(str: str, size: size, ecLevel:ecLevel) else { Swift.print("⚠️️ QRLib.QRUtil.qrImage() - Failed to create ciImage ecLevel:\(ecLevel.rawValue) str.count:\(str.count) size:\(String(describing: size)) ⚠️️");return nil}
       let image:Image = ImageUtil.image(ciImage: ciImage)// else {Swift.print("⚠️️ QRLib.QRUtil.qrImage() - Failed to create uiImage ⚠️️");return nil}
       return image
    }
    /**
     * Data -> qrImage (⚠️️ new ⚠️️)
     */
-   public static func qrImage(data: Data, size: CGSize, ecLevel:ECLevel = .l) -> Image? {
-      guard let ciImage:CIImage = QRImageUtil.ciImage(data: data, size: size, ecLevel:ecLevel) else { Swift.print("⚠️️ QRLib.QRUtil.qrImage() - Failed to create ciImage ecLevel:\(ecLevel.rawValue) data.count:\(data.count) size:\(size) ⚠️️");return nil}
+   public static func qrImage(data: Data, size: CGSize?, ecLevel:ECLevel = .l) -> Image? {
+      guard let ciImage:CIImage = QRImageUtil.ciImage(data: data, size: size, ecLevel:ecLevel) else { Swift.print("⚠️️ QRLib.QRUtil.qrImage() - Failed to create ciImage ecLevel:\(ecLevel.rawValue) data.count:\(data.count) size:\(String(describing: size)) ⚠️️");return nil}
 //      let thirdTime:Date = Date()
       let image:Image = ImageUtil.image(ciImage: ciImage)
 //      Swift.print("thirdTime : \(abs(thirdTime.timeIntervalSinceNow))")
@@ -43,44 +43,26 @@ extension QRImageUtil{
     * - Important: ⚠️️ scale is calculated from module: version1 has 23 modules, if you provide size: w:46,h:46 then the scale will be 2x
     * - NOTE: allowLossyConversion: If true, then allows characters to be removed or altered in conversion. (https://developer.apple.com/documentation/foundation/nsstring/1413692-data)
     */
-   public static func ciImage(str: String, size: CGSize, ecLevel:ECLevel) -> CIImage? {
+   public static func ciImage(str: String, size: CGSize?, ecLevel:ECLevel) -> CIImage? {
       guard let data:Data = str.data(using: .utf8, allowLossyConversion: false) else {Swift.print("QRLib.QRUtil.ciImage() - Unable to create data");return nil}
       return ciImage(data: data, size: size, ecLevel: ecLevel)
    }
    /**
     * Data -> CIImage
     */
-   public static func ciImage(data:Data, size: CGSize, ecLevel:ECLevel) -> CIImage? {
-//      let startTime:Date = Date()
-//      let a:Date = Date()
+   public static func ciImage(data:Data, size:CGSize?, ecLevel:ECLevel) -> CIImage? {
       guard let filter:CIFilter = CIFilter(name: "CIQRCodeGenerator") else {Swift.print("QRLib.QRUtil.ciImage() - Unable to create filter"); return nil }
-//      Swift.print("a: \(abs(a.timeIntervalSinceNow))")
-//      let b:Date = Date()
       filter.setValue(data, forKey: "inputMessage")
-//      Swift.print("b: \(abs(b.timeIntervalSinceNow))")
-//      let c:Date = Date()
       filter.setValue(ecLevel.rawValue, forKey: "inputCorrectionLevel")
-//      Swift.print("c: \(abs(c.timeIntervalSinceNow))")
-//      let d:Date = Date()
-      guard let outputImage:CIImage = filter.outputImage else { Swift.print("QRLib.QRUtil.ciImage() - Unable to make CIImage for ecLevel:\(ecLevel.rawValue) str.count:\(data.count) size:\(size)"); return nil }
-//      Swift.print("d: \(abs(d.timeIntervalSinceNow))")
-      //      Swift.print("outputImage.description:  \(outputImage.description)")
-      //      Swift.print("outputImage.extent:  \(outputImage.extent)")
-//      let e:Date = Date()
+      guard let outputImage:CIImage = filter.outputImage else { Swift.print("QRLib.QRUtil.ciImage() - Unable to make CIImage for ecLevel:\(ecLevel.rawValue) str.count:\(data.count) size:\(String(describing: size))"); return nil }
       outputImage.autoAdjustmentFilters()
-//      Swift.print("e: \(abs(e.timeIntervalSinceNow))")
-//      Swift.print("first part: \(abs(startTime.timeIntervalSinceNow))")
-      let scale:CGPoint = {
-         let x = size.width / outputImage.extent.size.width
-         let y = size.height / outputImage.extent.size.height
-         return .init(x:x,y:y)
-      }()
-//       let secondTime:Date = Date()
-      //      Swift.print("scale:  \(scale)")
-      let transformedImage:CIImage = outputImage.transformed(by: CGAffineTransform(scaleX: scale.x, y: scale.y))
-//      Swift.print("secondTime : \(abs(secondTime.timeIntervalSinceNow))")
-      return transformedImage
-      //      return outputImage
+      if let size = size {
+         let scale:CGPoint = .init(x:size.width / outputImage.extent.width,y:size.height / outputImage.extent.height)
+         let transformedImage:CIImage = outputImage.transformed(by: CGAffineTransform(scaleX: scale.x, y: scale.y))
+         return transformedImage
+      }else{
+         return outputImage
+      }
    }
 }
 

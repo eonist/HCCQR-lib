@@ -30,8 +30,7 @@ internal class Splitter{
             }
          }
       }
-      /*Get RGBAImages from UIImages*/
-      channels(image: uiImage, onComplete:onChannelsComplete)
+      channels(image: uiImage, onComplete:onChannelsComplete)/*Get RGBAImages from UIImages*/
    }
 }
 /**
