@@ -9,7 +9,7 @@ internal extension Splitter {
     */
    internal static func channels(image:Image,onComplete:@escaping OnOptionalChannelsComplete)/* -> RGBAImages?*/{
       //      let startTime:Date = Date()
-      guard let rgbaImg:RGBAImage = RGBAImage.rgbaImage(image: image) else {Swift.print("Unable to create rgbaImg");onComplete(nil);return}
+      guard let rgbaImg:RGBAImage = RGBAImage.rgbaImage(image: image) else {Swift.print("Splitter.channels() - Unable to create rgbaImg");onComplete(nil);return}
       //      Swift.print("Time to create rgbaImage: \(abs(startTime.timeIntervalSinceNow))")
       channels(rgbaImg:rgbaImg,onComplete:onComplete)//{onComplete($0)}
    }

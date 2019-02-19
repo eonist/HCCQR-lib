@@ -11,7 +11,7 @@ extension CIImage{
     * Returns raw data from a qr
     */
    var qrData:Data?{
-      guard let feature:CIQRCodeFeature = self.qrCodeFeature else {Swift.print("QRLib.QRUtil.qrCode() - Unable to get CIQRCodeFeature");return nil}
+      guard let feature:CIQRCodeFeature = self.qrCodeFeature else {Swift.print("QRLib.CIImage.qrData - Unable to get CIQRCodeFeature");return nil}
       guard let data:Data = feature.data else {Swift.print("err");return nil}//errorCorrectedPayload
       return data
    }
@@ -21,7 +21,7 @@ extension CIImage{
    var qrCodeFeature:CIQRCodeFeature? {
       guard let detector:CIDetector = CIDetector(ofType: CIDetectorTypeQRCode, context: nil, options: [CIDetectorAccuracy: CIDetectorAccuracyHigh]) else {Swift.print("CIImage - unable to create detector");return nil}
       let features:[CIFeature] = detector.features(in: self)
-      guard let feature:CIQRCodeFeature = (features.first { $0 is CIQRCodeFeature } as? CIQRCodeFeature) else {Swift.print("CIImage - Unable to get CIQRCodeFeature");return nil}
+      guard let feature:CIQRCodeFeature = (features.first { $0 is CIQRCodeFeature } as? CIQRCodeFeature) else {Swift.print("QRLib.CIImage.qrCodeFeature - Unable to get CIQRCodeFeature");return nil}
       return feature
    }
 }
@@ -33,7 +33,7 @@ extension CIQRCodeFeature{
     * Returns raw data from a qr
     */
    var data: Data? {
-      guard let data:Data = self.symbolDescriptor?.data else {Swift.print("Unable to get data from qrcode");return nil}
+      guard let data:Data = self.symbolDescriptor?.data else {Swift.print("QRLib.CIQRCodeFeature.data - Unable to get data from qrcode");return nil}
       return data
    }
 }

@@ -4,7 +4,13 @@ import QRLibIOS
 class ViewController: UIViewController {
    override func viewDidLoad() {
       super.viewDidLoad()
-      createQRImage()
+      (0..<200).forEach { i in
+//         testFixingMemLeak()
+         if i % 20 == 0 {Swift.print("\(i)")}
+         createQRImage()
+      }
+      Swift.print("done")
+      
 //      createQRImageView()
 //      convertQRVersionTable()
 //      testQRVersion()
@@ -29,9 +35,10 @@ extension ViewController{
     * Creates qrimage
     */
    func createQRImage(){
-      if let image:UIImage = QRImageUtil.qrImage(str: "testing", size: .init(width:100,height:100)) {
+      let text:String = (0..<231).map{ _ in "a"}.reduce("",+)
+      if let image:UIImage = QRImageUtil.qrImage(str: text, size: .init(width:700,height:700)) {
          if let qrCode:String = QRStringUtil.qrCode(image: image) {
-            Swift.print("qrCode:  \(qrCode)")//testing
+//            Swift.print("qrCode:  \(qrCode)")//testing
          }
       }
    }
