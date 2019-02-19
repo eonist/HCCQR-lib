@@ -25,7 +25,7 @@ class ViewController: UIViewController {
 //      readingManyHCCQRImages()//⭐
       
 //      testColorAssertionWithinThresholdForPixel()
-     
+//      (0..<4).forEach{ i in Swift.print("i:  \(i)")}
       testReadingHCCQRImage()//⭐
 //      colorTests()
 //      testingSmallModuleSize()

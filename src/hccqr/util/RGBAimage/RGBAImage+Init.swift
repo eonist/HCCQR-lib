@@ -27,6 +27,8 @@ internal extension RGBAImage{
       imageContext.draw(cgImage, in: CGRect(origin: .zero, size: image.size))//cgImage.imageData
       let pixels = UnsafeMutableBufferPointer<PixelData>(start: imageData, count: capacity)
       let rgbaImg:RGBAImage = .init(pixels: pixels, width: w, height: h)
+//      Swift.print("rgbaImg.width:  \(rgbaImg.width)")
+//      Swift.print("rgbaImg.height:  \(rgbaImg.height)")
       return rgbaImg
    }
    /**
@@ -54,13 +56,15 @@ internal extension RGBAImage{
     */
    internal static func rgbaImage(pixel:PixelData, size:(width:Int,height:Int)) -> RGBAImage{
       let capacity:Int = size.width * size.height
+//      Swift.print("capacity:  \(capacity)")
       let unsafePixels = UnsafeMutableBufferPointer<PixelData>.allocate(capacity:capacity)
       (0..<size.height).forEach{ y in
          return (0..<size.width).forEach{ x in
-            let pixelIndex:Int = y*size.height+x
+            let pixelIndex:Int = y*size.width+x//944*1468
             unsafePixels[pixelIndex] = pixel
          }
       }
+     
       return RGBAImage.init(pixels: unsafePixels, width: size.width, height: size.height)
    }
 }

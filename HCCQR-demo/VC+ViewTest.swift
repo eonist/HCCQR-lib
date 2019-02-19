@@ -316,11 +316,12 @@ extension ViewController {
     * Tests HCCQR Image captured with camera
     */
    func testReadingHCCQRImage(){
-     
       let startTime:Date = Date()
-      let path = Bundle.main.resourcePath!+"/temp.bundle/HCCQR11.png"
+      let path = Bundle.main.resourcePath!+"/temp.bundle/HCCQR12.png"
       guard let uiImage:UIImage = UIImage.init(contentsOfFile: path) else {Swift.print("err getting img");return}
       Swift.print("uiImage.size:  \(uiImage.size)")
+//      guard let croppedImage:UIImage  = uiImage.cropImageToCenterSquare() else {Swift.print("err");return}
+//      Swift.print("croppedImage.size:  \(croppedImage.size)")
       func onComplete(stringAndImages:HCCQRStringUtil.StringsAndImages?){
          guard let stringAndImages = stringAndImages else {Swift.print("err getting string from hccqr img");return}
          Swift.print("stringAndImages.string:  \(stringAndImages.string)")
