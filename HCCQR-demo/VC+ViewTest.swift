@@ -316,6 +316,7 @@ extension ViewController {
     * Tests HCCQR Image captured with camera
     */
    func testReadingHCCQRImage(){
+      Swift.print("testReadingHCCQRImage")
       let startTime:Date = Date()
       let path = Bundle.main.resourcePath!+"/temp.bundle/HCCQR12.png"
       guard let uiImage:UIImage = UIImage.init(contentsOfFile: path) else {Swift.print("err getting img");return}
@@ -323,11 +324,12 @@ extension ViewController {
 //      guard let croppedImage:UIImage  = uiImage.cropImageToCenterSquare() else {Swift.print("err");return}
 //      Swift.print("croppedImage.size:  \(croppedImage.size)")
       func onComplete(stringAndImages:HCCQRStringUtil.StringsAndImages?){
+         Swift.print("onComplete")
          guard let stringAndImages = stringAndImages else {Swift.print("err getting string from hccqr img");return}
          Swift.print("stringAndImages.string:  \(stringAndImages.string)")
          DispatchQueue.main.async {
             let uiimageview = UIImageView.init(image: UIImage.init(ciImage: stringAndImages.qr2))
-            uiimageview.frame.size = .init(width:375,height:375)
+            uiimageview.frame.size = CGSize.init(width:uiImage.size.width/4,height:uiImage.size.height/4)
             self.view.addSubview(uiimageview)
             Swift.print(" all done \(abs(startTime.timeIntervalSinceNow))")
          }

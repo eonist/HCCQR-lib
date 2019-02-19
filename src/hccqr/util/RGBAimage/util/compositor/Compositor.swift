@@ -14,7 +14,7 @@ internal class Compositor {
       guard let composite:RGBAImage = Compositor.composite(rgbaImageList: [first,second], invert:true) else {Swift.print("unable to composite"); return nil}
       //      Swift.print("Time to composite: \(abs(startTime.timeIntervalSinceNow))")
       //      let startTimeInversion:Date = Date()
-      guard let img:CIImage = RGBAImage.ciImage(rgbaImage: composite/*, resultScale:scale*/ )/*?.invertedImage()*/  else {Swift.print("unable to create img");return nil}
+      guard let img:CIImage = RGBAImage.ciImage(rgbaImage: composite/*, resultScale:scale*/ )/*?.invertedImage()*/  else {Swift.print("unable to create img");composite.pixels.deallocate();return nil}
       composite.pixels.deallocate()//to avoid mem leak
       //      guard let img:UIImage = RGBAImage.uiImage(rgbaImage: composite, resultScale:scale)/*?.invertedImage()*/  else {Swift.print("unable to create img");return nil}
       //      Swift.print("Time to invert: \(abs(startTimeInversion.timeIntervalSinceNow))")

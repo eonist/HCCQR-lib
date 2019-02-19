@@ -27,6 +27,7 @@ internal extension RGBAImage{
       imageContext.draw(cgImage, in: CGRect(origin: .zero, size: image.size))//cgImage.imageData
       let pixels = UnsafeMutableBufferPointer<PixelData>(start: imageData, count: capacity)
       let rgbaImg:RGBAImage = .init(pixels: pixels, width: w, height: h)
+//      imageData.deallocate()
 //      Swift.print("rgbaImg.width:  \(rgbaImg.width)")
 //      Swift.print("rgbaImg.height:  \(rgbaImg.height)")
       return rgbaImg

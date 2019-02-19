@@ -14,7 +14,7 @@ internal class Splitter{
          let channelArr:[(first:RGBAImage,second:RGBAImage)] = [(channels.b,channels.g),(channels.r,channels.b)]
          var qrImgs:[CIImage?] = [CIImage?](repeating: nil, count: channelArr.count)
          func onCompositeComplete(i:Int,qrImg:CIImage?){
-            guard let qrImg:CIImage = qrImg else {Swift.print("Splitter.split() onCompositeComplete() - no qrImg");onComplete(nil);return }
+            guard let qrImg:CIImage = qrImg else {Swift.print("Splitter.split() onCompositeComplete() - no qrImg"); [channels.r,channels.g,channels.b].forEach{$0.pixels.deallocate()}; onComplete(nil);return }
             qrImgs[i] = qrImg/*it matters which order the qrImages came in when you stitch them back together*/
             if qrImgs.first(where: {$0 == nil}) == nil {/*makes sure all images finished*/
                [channels.r,channels.g,channels.b].forEach{$0.pixels.deallocate()}/*Or else we get mem leak*/
