@@ -35,18 +35,9 @@ class ViewController: UIViewController {
 //      colorTests()
 //      testingSmallModuleSize()
 //      testScalingArray()
-//
 //         testFixingMemLeak()
 //      }
 //      testReadingManyPhotos()
    }
    override var prefersStatusBarHidden:Bool {return true}/*hides statusbar*/
-}
-extension ViewController{
-   /**
-    *
-    */
-   func testReadingManyPhotos(){
-      
-   }
 }

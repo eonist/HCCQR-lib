@@ -19,11 +19,19 @@ extension CIImage{
     * qrCodeFeature
     */
    var qrCodeFeature:CIQRCodeFeature? {
-      guard let detector:CIDetector = CIDetector(ofType: CIDetectorTypeQRCode, context: nil, options: [CIDetectorAccuracy: CIDetectorAccuracyHigh]) else {Swift.print("QRLib.CIImage.qrCodeFeature - unable to create detector");return nil}
+      
       guard let ciImage:CIImage = Optional(self) else {Swift.print("QRLib.CIImage.qrCodeFeature - self is optional");return nil}
-//      Swift.print("qrCodeFeature")
+//      Swift.print("ciImage:  \(ciImage)")
+      let ciContext:CIContext = CIContext.init()
+      guard let detector:CIDetector = CIDetector.init(ofType: CIDetectorTypeQRCode, context: ciContext, options: [CIDetectorAccuracy: CIDetectorAccuracyHigh]) else {Swift.print("QRLib.CIImage.qrCodeFeature - unable to create detector");return nil}
+//      Swift.print("detector:  \(detector)")
+      //      Swift.print("qrCodeFeature")
       guard let features:[CIFeature] = Optional(detector.features(in: ciImage)) else {Swift.print("QRLib.CIImage.qrCodeFeature - features is optional");return nil}
-      guard let feature:CIQRCodeFeature = (features.first { $0 is CIQRCodeFeature } as? CIQRCodeFeature) else {Swift.print("QRLib.CIImage.qrCodeFeature - Unable to get CIQRCodeFeature");return nil}
+//      Swift.print("features:  \(features.count)")
+      let optionalFeature:CIQRCodeFeature? = features.first { $0 is CIQRCodeFeature } as? CIQRCodeFeature
+//      Swift.print("optionalFeature:  \(String(describing: optionalFeature))")
+      guard let feature:CIQRCodeFeature = optionalFeature else {Swift.print("QRLib.CIImage.qrCodeFeature - Unable to get CIQRCodeFeature");return nil}
+//      Swift.print("feature:  \(feature)")
       return feature
    }
 }
