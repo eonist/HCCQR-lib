@@ -30,7 +30,7 @@ class ViewController: UIViewController {
 
       (0..<5).forEach { _ in
 //          testHCCQRImage()
-         testReadingHCCQRImage()//⭐
+         testReadingHCCQRPhoto()//⭐
       }
 //      colorTests()
 //      testingSmallModuleSize()

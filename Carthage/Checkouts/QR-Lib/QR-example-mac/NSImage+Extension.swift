@@ -11,7 +11,7 @@ extension NSImage{
          return self.cgImage(forProposedRect: nil, context: nil, hints: nil)
       }
    }
-   var ciimage:CIImage? {
+   var ciImage:CIImage? {
       guard let cgImg:CGImage = self.cgImage else {Swift.print("unable to convert to cgImage");return nil}
       let ciImg:CIImage? = CoreImage.CIImage.init(cgImage: cgImg)
       return ciImg

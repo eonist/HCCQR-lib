@@ -1,9 +1,9 @@
 {
-  "commitish" : "777dd78e81ae1365d9017bf0fd2a0a7dfaa2e187",
+  "commitish" : "6a4682be46557b8e71af7c13bf3375e70dcf1b4f",
   "iOS" : [
     {
       "name" : "QRLibIOS",
-      "hash" : "c59cbd61e39f89eef56e7225beead76dc1605f5a471585f5dc621e38e5a285bb"
+      "hash" : "5477e234a70f870a11dc070a3280a835bcc328a973b148f06a8fd520c73a732d"
     }
   ]
 }

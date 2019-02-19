@@ -317,7 +317,7 @@ extension ViewController {
    /**
     * Tests HCCQR Image captured with camera
     */
-   func testReadingHCCQRImage(){
+   func testReadingHCCQRPhoto(){
       Swift.print("testReadingHCCQRImage")
       let startTime:Date = Date()
       let path = Bundle.main.resourcePath!+"/temp.bundle/HCCQR12.png"

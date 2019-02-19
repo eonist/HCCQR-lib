@@ -6,24 +6,55 @@ import Cocoa
 /**
  * CIImage extension
  */
-extension CIImage{
+public extension CIImage{
+   /**
+    *
+    */
+//   func data(onComplete:(_ data:Data?){
+//      
+//   }
    /**
     * Returns raw data from a qr
     */
    var qrData:Data?{
       guard let feature:CIQRCodeFeature = self.qrCodeFeature else {Swift.print("QRLib.CIImage.qrData - Unable to get CIQRCodeFeature");return nil}
-      guard let data:Data = feature.data else {Swift.print("err");return nil}//errorCorrectedPayload
+      guard let data:Data = feature.data else {Swift.print("qrData - err");return nil}//errorCorrectedPayload
       return data
    }
+//   static var device:MTLDevice?
+//   public static var detector:CIDetector?
    /**
     * qrCodeFeature
     */
    var qrCodeFeature:CIQRCodeFeature? {
-      
       guard let ciImage:CIImage = Optional(self) else {Swift.print("QRLib.CIImage.qrCodeFeature - self is optional");return nil}
 //      Swift.print("ciImage:  \(ciImage)")
-      let ciContext:CIContext = CIContext.init()
-      guard let detector:CIDetector = CIDetector.init(ofType: CIDetectorTypeQRCode, context: ciContext, options: [CIDetectorAccuracy: CIDetectorAccuracyHigh]) else {Swift.print("QRLib.CIImage.qrCodeFeature - unable to create detector");return nil}
+      
+//
+//
+      
+//      if CIImage.detector == nil {
+//         let ciContext:CIContext = {
+//                     if CIImage.device == nil {
+//                        CIImage.device = MTLCreateSystemDefaultDevice()
+//                     }
+//                     if let device:MTLDevice = CIImage.device{
+//                        Swift.print("using metal")
+//                        return CIContext.init(mtlDevice: device)
+//                     } else{
+//                        Swift.print("not using metal")
+//                        return CIContext.init()
+//                     }//{Swift.print("qrCodeFeature() - mtlDevice not ready");return nil}
+//
+//                  }()
+//         let ciContext:CIContext = CIContext.init()
+//         DispatchQueue.main.async {
+         
+//         }
+         
+//      }
+//      Swift.print("CIImage.detector:  \(CIImage.detector != nil ? "✅" : "🚫")")
+      guard let detector:CIDetector =  CIDetector.init(ofType: CIDetectorTypeQRCode, context: nil, options: [CIDetectorAccuracy: CIDetectorAccuracyHigh]) else {Swift.print("QRLib.CIImage.qrCodeFeature - unable to create detector  ");return nil}
 //      Swift.print("detector:  \(detector)")
       //      Swift.print("qrCodeFeature")
       guard let features:[CIFeature] = Optional(detector.features(in: ciImage)) else {Swift.print("QRLib.CIImage.qrCodeFeature - features is optional");return nil}

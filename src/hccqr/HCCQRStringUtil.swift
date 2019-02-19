@@ -26,12 +26,14 @@ public class HCCQRStringUtil{//rename to  HCCQRDataUtil
             }
          }
          ciImages.enumerated().forEach { item in
-            DispatchQueue.global(qos:.userInitiated).async {
-               let dataAndFrame:QRStringUtil.DataAndFrame? = QRStringUtil.qrCode(ciImage: item.element)
+            
+//            DispatchQueue.global(qos:.userInitiated).async {
+//
                DispatchQueue.main.async{
+                  let dataAndFrame:QRStringUtil.DataAndFrame? = QRStringUtil.qrCode(ciImage: item.element)
                   onQRCodeComplete(i: item.offset, dataAndFrame: dataAndFrame)
                }
-            }
+//            }
          }
       }
       /*Start the splitting process*/

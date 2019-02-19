@@ -4,16 +4,17 @@ import QRLibIOS
 class ViewController: UIViewController {
    override func viewDidLoad() {
       super.viewDidLoad()
-      (0..<200).forEach { i in
-//         testFixingMemLeak()
-         if i % 20 == 0 {Swift.print("\(i)")}
-         createQRImage()
-      }
-      Swift.print("done")
+     Swift.print("hello world")
       
 //      createQRImageView()
 //      convertQRVersionTable()
 //      testQRVersion()
+//       createQRImage()
+      //      if let qrCode:String = QRStringUtil.qrCode(image: uiImage) {
+      //         Swift.print("qrCode.count:  \(qrCode.count)")//testing
+      //      }
+      readMultiplePhotos()
+     
    }
    override var prefersStatusBarHidden:Bool {return true}/*hides statusbar*/
 }
@@ -21,6 +22,70 @@ class ViewController: UIViewController {
  * Tests
  */
 extension ViewController{
+   /**
+    * Read multiple qr codes from photos
+    */
+   func readMultiplePhotos(){
+      Swift.print("readMultiplePhotos")
+      let ciContext:CIContext = CIContext.init()
+//      CIImage.detector = CIDetector.init(ofType: CIDetectorTypeQRCode, context: ciContext, options: [CIDetectorAccuracy: CIDetectorAccuracyHigh])
+//      DispatchQueue.global(qos:.userInitiated).async {
+//         Swift.print("CIImage.detector:  \(CIImage.detector)")
+//      }
+//      Swift.print("CIImage.detector:  \(CIImage.detector)")
+      let path = Bundle.main.resourcePath!+"/temp.bundle/qrimg1.png"
+      guard let uiImage:UIImage = UIImage.init(contentsOfFile: path) else {Swift.print("err getting img");return}
+      var counter:Int = 0
+      let num:Int = 160
+      let startTime:Date = Date()
+      let onComplete:()->Void = {
+         //Swift.print("onComplete")
+         if counter % 10 == 0 {Swift.print("counter:  \(counter)")}
+         counter += 1
+         if counter == num {
+            Swift.print("all Done: \(abs(startTime.timeIntervalSinceNow))")
+         }
+      }
+      (0..<num).forEach{ i in
+         DispatchQueue.global(qos:.userInitiated).async {
+            
+            self.readPhoto(uiImage:uiImage,onComplete:onComplete)
+         }
+      }
+   }
+   /**
+    * Creates qrimageview (adds to view, single)
+    */
+   func readPhoto(uiImage:UIImage,onComplete:@escaping ()->Void){
+//      DispatchQueue.global(qos:.background).async {
+         //         Swift.print("init decoding")
+         guard let ciImage = uiImage.ciImage() else {Swift.print("err ciImage");return}
+//      DispatchQueue.main.async {
+//         Swift.print("CIImage.detector:::  \(CIImage.detector)")
+    
+//      }
+      
+//         guard let string:String = String(data: data, encoding: .utf8) else {Swift.print("unable to get string");return}
+//         _ = string
+         DispatchQueue.main.async {
+            guard let data:Data = QRStringUtil.qrCode(ciImage: ciImage/*,ciDetector:CIImage.detector*/) else {Swift.print("unable to get data");return}
+            Swift.print("data.count:  \(data.count)")
+            //Swift.print("Match: \(string == ranStr ? "✅" : "🚫" )")
+            onComplete()
+         }
+//      }
+   }
+   /**
+    *
+    */
+   func createMultipleQRIimages(){
+      (0..<200).forEach { i in
+         //         testFixingMemLeak()
+         if i % 20 == 0 {Swift.print("\(i)")}
+         createQRImage()
+      }
+      Swift.print("done")
+   }
    /**
     * testQRVersion
     */
@@ -35,10 +100,11 @@ extension ViewController{
     * Creates qrimage
     */
    func createQRImage(){
+      Swift.print("createQRImage")
       let text:String = (0..<231).map{ _ in "a"}.reduce("",+)
       if let image:UIImage = QRImageUtil.qrImage(str: text, size: .init(width:700,height:700)) {
          if let qrCode:String = QRStringUtil.qrCode(image: image) {
-//            Swift.print("qrCode:  \(qrCode)")//testing
+            Swift.print("qrCode.count:  \(qrCode.count)")//testing
          }
       }
    }
@@ -94,5 +160,14 @@ extension ViewController{
       }
       let result:String = versionStrings.joined(separator:"\n")
       Swift.print(result)
+   }
+}
+internal extension UIImage {
+   /**
+    * sometimes uiImage.ciImage just doesn't work
+    */
+   internal func ciImage() -> CIImage? {
+      guard let cgImage:CGImage = self.cgImage else {Swift.print("QRLib.UIImage.ciImage() - unable to create cgimage");return nil}
+      return CoreImage.CIImage(cgImage: cgImage)
    }
 }

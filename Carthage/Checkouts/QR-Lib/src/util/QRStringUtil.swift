@@ -37,14 +37,25 @@ final public class QRStringUtil {//TODO: ⚠️️ rename to QRDataUtil
       let qrFrame:CGRect = .init(origin: feature.topLeft, size: feature.bounds.size)
       return (qrStr: feature.messageString, qrFrame: qrFrame)
    }
+   
+ 
+//   public static func data(ciImage: CIImage, onComplete:(_ data:Data?) -> Void ) {
+//      
+//      guard let data:Data = ciImage.qrData else {Swift.print("QRStringUtil.qrCode - unable to get qrData from ciImage");onComplete(nil);return}//errorCorrectedPayload
+//      onComplete(data)
+//   }
    /**
     * Returns data (New)
     * - TODO: ⚠️️ rename to data(image)
     * - Caution: ⚠️️⚠️️⚠️️ Make sure you fill up the Data to the exact max allowed bytes in the qrVersion you are using, or else white-space bytes will be added and converting back to utf8 gets trickier
     */
-   public static func qrCode(ciImage: CIImage) -> Data? {
-      guard let data:Data = ciImage.qrData else {Swift.print("unable to get qrData from ciImage");return nil}//errorCorrectedPayload
+   public static func qrCode(ciImage: CIImage ) -> Data? {
+//      CIImage.detector = ciDetector
+//      Swift.print("detector::  \(ciDetector)")
+//      Swift.print("CIImage.detector::  \(CIImage.detector)")
+      guard let data:Data = ciImage.qrData else {Swift.print("QRStringUtil.qrCode - unable to get qrData from ciImage");return nil}//errorCorrectedPayload
       return data
+//      return nil
    }
    /**
     * Returns data + frame (New)
@@ -53,7 +64,7 @@ final public class QRStringUtil {//TODO: ⚠️️ rename to QRDataUtil
     */
    public static func qrCode(ciImage: CIImage) -> DataAndFrame? {
       guard let feature:CIQRCodeFeature = ciImage.qrCodeFeature else {Swift.print("QRStringUtil:qrCode() -> DataAndFrame - Unable to create CIQRCodeFeature");return nil}
-      guard let data:Data = feature.data else {Swift.print("unable to get qrData from ciImage");return nil}//errorCorrectedPayload
+      guard let data:Data = feature.data else {Swift.print("QRStringUtil.qrCode - unable to get qrData from ciImage");return nil}//errorCorrectedPayload
       let qrFrame:CGRect = .init(origin: feature.topLeft, size: feature.bounds.size)
       return (qrData:data, qrFrame: qrFrame)
    }
