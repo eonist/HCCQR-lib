@@ -10,6 +10,7 @@ internal struct RGBAImage {//TODO: ⚠️️ this should really be called ARGBIm
     * Creates a copy if you already have the pixels and width height
     */
    internal init(pixels:UnsafeMutableBufferPointer<PixelData>, width:Int, height:Int)  {
+      Swift.print("RGBAImage Created")
       self.pixels = pixels
       self.width = width
       self.height = height
