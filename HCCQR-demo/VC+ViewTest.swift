@@ -201,7 +201,7 @@ extension ViewController {
       /*⭐ 1. Create HCCQR from string ⭐*/
       let (qrVersion,qrMode,ecLevel):(Int,QRMode,ECLevel) = (10,.byte,.l)//settings
       guard let randomString = HCCQRStringData.randomString(qrVersion: qrVersion, qrMode: qrMode, ecLevel:ecLevel) else {Swift.print("unable to create random string");return}
-      guard let data = randomString.data(using: .utf8) else {Swift.print("err");return}
+      guard let data:Data = randomString.data(using: .utf8) else {Swift.print("err");return}
       let createHCCQRTime:Date = Date()
       
       let hccqrImageComplete:OnHCCQRImageComplete = { hccqrImage in
@@ -318,9 +318,9 @@ extension ViewController {
    func testReadingHCCQRImage(){
      
       let startTime:Date = Date()
-      let path = Bundle.main.resourcePath!+"/temp.bundle/HCCQR9.png"
+      let path = Bundle.main.resourcePath!+"/temp.bundle/HCCQR11.png"
       guard let uiImage:UIImage = UIImage.init(contentsOfFile: path) else {Swift.print("err getting img");return}
-
+      Swift.print("uiImage.size:  \(uiImage.size)")
       func onComplete(stringAndImages:HCCQRStringUtil.StringsAndImages?){
          guard let stringAndImages = stringAndImages else {Swift.print("err getting string from hccqr img");return}
          Swift.print("stringAndImages.string:  \(stringAndImages.string)")

@@ -26,6 +26,7 @@ internal extension Splitter {
             let rgbaImages:[RGBAImage] = rgbaImages.compactMap{$0}
             //Swift.print("Time to get rgb channels: \(abs(startTime.timeIntervalSinceNow))")
             onComplete((rgbaImages[0],rgbaImages[1],rgbaImages[2]))
+//            rgbaImages.forEach{$0.pixels.deallocate()}
          }
       }
       assertions.enumerated().forEach{ item in
