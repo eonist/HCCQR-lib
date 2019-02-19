@@ -22,7 +22,7 @@ extension CIImage{
       guard let detector:CIDetector = CIDetector(ofType: CIDetectorTypeQRCode, context: nil, options: [CIDetectorAccuracy: CIDetectorAccuracyHigh]) else {Swift.print("QRLib.CIImage.qrCodeFeature - unable to create detector");return nil}
       guard let ciImage:CIImage = Optional(self) else {Swift.print("QRLib.CIImage.qrCodeFeature - self is optional");return nil}
 //      Swift.print("qrCodeFeature")
-      let features:[CIFeature] = detector.features(in: ciImage)
+      guard let features:[CIFeature] = Optional(detector.features(in: ciImage)) else {Swift.print("QRLib.CIImage.qrCodeFeature - features is optional");return nil}
       guard let feature:CIQRCodeFeature = (features.first { $0 is CIQRCodeFeature } as? CIQRCodeFeature) else {Swift.print("QRLib.CIImage.qrCodeFeature - Unable to get CIQRCodeFeature");return nil}
       return feature
    }
