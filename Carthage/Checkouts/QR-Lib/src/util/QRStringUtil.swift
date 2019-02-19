@@ -33,7 +33,7 @@ final public class QRStringUtil {//TODO: ⚠️️ rename to QRDataUtil
     * - TODO: ⚠️️ rename to stringAndFrame ?
     */
    public static func qrCode(ciImage: CIImage) -> StringAndFrame? {//
-      guard let feature:CIQRCodeFeature = ciImage.qrCodeFeature else {Swift.print("Unable to create CIQRCodeFeature");return nil}
+      guard let feature:CIQRCodeFeature = ciImage.qrCodeFeature else {Swift.print("QRStringUtil.qrCode - Unable to create CIQRCodeFeature");return nil}
       let qrFrame:CGRect = .init(origin: feature.topLeft, size: feature.bounds.size)
       return (qrStr: feature.messageString, qrFrame: qrFrame)
    }
@@ -52,7 +52,7 @@ final public class QRStringUtil {//TODO: ⚠️️ rename to QRDataUtil
     * - Caution: ⚠️️⚠️️⚠️️ Make sure you fill up the Data to the exact max allowed bytes in the qrVersion you are using, or else white-space bytes will be added and converting back to utf8 gets trickier
     */
    public static func qrCode(ciImage: CIImage) -> DataAndFrame? {
-      guard let feature:CIQRCodeFeature = ciImage.qrCodeFeature else {Swift.print("Unable to create CIQRCodeFeature");return nil}
+      guard let feature:CIQRCodeFeature = ciImage.qrCodeFeature else {Swift.print("QRStringUtil:qrCode() -> DataAndFrame - Unable to create CIQRCodeFeature");return nil}
       guard let data:Data = feature.data else {Swift.print("unable to get qrData from ciImage");return nil}//errorCorrectedPayload
       let qrFrame:CGRect = .init(origin: feature.topLeft, size: feature.bounds.size)
       return (qrData:data, qrFrame: qrFrame)

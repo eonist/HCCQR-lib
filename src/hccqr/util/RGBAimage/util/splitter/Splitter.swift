@@ -38,6 +38,6 @@ internal class Splitter{
  * Type
  */
 internal extension Splitter{
-   internal typealias SplitPayload = (qrImg1:CIImage,qrImg2:CIImage)?
-   internal typealias SplitPayloadComplete = (_ payload:SplitPayload) -> Void
+   internal typealias SplitPayload = (qrImg1:CIImage,qrImg2:CIImage)
+   internal typealias SplitPayloadComplete = (_ payload:SplitPayload?) -> Void
 }

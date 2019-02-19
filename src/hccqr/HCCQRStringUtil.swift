@@ -12,8 +12,9 @@ public class HCCQRStringUtil{//rename to  HCCQRDataUtil
     * New
     */
    public static func dataAndImages(image:Image, onComplete:@escaping DataAndImageComplete){
-      let onSplitComplete:(_ payload:Splitter.SplitPayload) -> Void = { payload in
-         guard let (q1,q2):(CIImage,CIImage) = payload else {Swift.print("HCCQRUtil.dataAndImages() - q1,q2 err");onComplete(nil);return}
+      let onSplitComplete:(_ payload:Splitter.SplitPayload?) -> Void = { payload in
+         guard let payload:Splitter.SplitPayload = payload else {Swift.print("HCCQRUtil.dataAndImages() - q1,q2 err");onComplete(nil);return}
+         let (q1,q2):(CIImage,CIImage) = payload
          let ciImages:[CIImage] = [q1,q2]
          var dataAndFrames:[QRStringUtil.DataAndFrame?] = [QRStringUtil.DataAndFrame?](repeating: nil, count: ciImages.count)
          func onQRCodeComplete(i:Int, dataAndFrame:QRStringUtil.DataAndFrame?){
