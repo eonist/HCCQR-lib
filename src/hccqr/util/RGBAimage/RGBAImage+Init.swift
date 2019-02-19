@@ -36,7 +36,7 @@ internal extension RGBAImage{
     * Beta (scales img without becoming blurry)
     */
    internal static func rgbaImage(pixels:[PixelData], size:(width:Int,height:Int), moduleMultiplier:Int) -> RGBAImage{
-      let resultPixels:[PixelData] = (0..<size.height*moduleMultiplier).flatMap{ y in
+      let resultPixels:[PixelData] = (0..<size.height * moduleMultiplier).flatMap{ y in
          return (0..<size.width*moduleMultiplier).map{ x in
             let pixelIndex:Int = y/moduleMultiplier*size.height+x/moduleMultiplier
             return pixels[pixelIndex]

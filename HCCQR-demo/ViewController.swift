@@ -25,15 +25,28 @@ class ViewController: UIViewController {
 //      readingManyHCCQRImages()//⭐
       
 //      testColorAssertionWithinThresholdForPixel()
+
 //      (0..<4).forEach{ i in Swift.print("i:  \(i)")}
-      testReadingHCCQRImage()//⭐
+
+      (0..<5).forEach { _ in
+//          testHCCQRImage()
+         testReadingHCCQRImage()//⭐
+      }
 //      colorTests()
 //      testingSmallModuleSize()
 //      testScalingArray()
 //
 //         testFixingMemLeak()
 //      }
-      
+//      testReadingManyPhotos()
    }
    override var prefersStatusBarHidden:Bool {return true}/*hides statusbar*/
+}
+extension ViewController{
+   /**
+    *
+    */
+   func testReadingManyPhotos(){
+      
+   }
 }

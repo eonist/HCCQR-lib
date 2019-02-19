@@ -16,7 +16,7 @@ internal class Colorize {
       guard images.count == rgbaImages.count else {Swift.print("Colorize.colorize() - some rgbaImages was not created");return nil}
       guard let result:RGBAImage = colorize(rgbaImages: rgbaImages, colorMap: colorMap, moduleMultiplier:moduleMultiplier,scale:scale) else {Swift.print("Colorize.colorize() - Unable to create colorized rgbaImage");return nil}
       guard let image:Image = RGBAImage.image(rgbaImage: result, scale:CGFloat(scale)) else {Swift.print("Colorize.colorize() - Unable to convert to UIImage");return nil}
-      result.pixels.deallocate()/*⚠️️⚠️️We get a mem leak in iOS if we dont deallocate the pixels⚠️️⚠️️*/
+      result.deinitiate()/*⚠️️⚠️️We get a mem leak in iOS if we dont deallocate the pixels⚠️️⚠️️*/
       return image
    }
 }

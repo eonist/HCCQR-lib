@@ -225,6 +225,8 @@ extension ViewController {
             DispatchQueue.main.async {
                Swift.print("Seperation complete: \(abs(splitTime.timeIntervalSinceNow))")
                Swift.print("All done: \(abs(startTime.timeIntervalSinceNow))")
+               Swift.print("RGBAImage.initiatedCount:  \(RGBAImage.initiatedCount)")
+               Swift.print("RGBAImage.deInitiatedCount:  \(RGBAImage.deInitiatedCount)")
             }
             /*Ensure that img only has valid colors, aka no bluring*/
             //Swift.print("hasOnlyColorMap: \(ColorizeUtil.hasOnlyColorMap(uiImage:hccqrImage, colorMap: [.red,.green,.blue,.white]))")
@@ -323,19 +325,20 @@ extension ViewController {
       Swift.print("uiImage.size:  \(uiImage.size)")
 //      guard let croppedImage:UIImage  = uiImage.cropImageToCenterSquare() else {Swift.print("err");return}
 //      Swift.print("croppedImage.size:  \(croppedImage.size)")
-      func onComplete(stringAndImages:HCCQRStringUtil.StringsAndImages?){
+      let onComplete:(_ dataAndImages:HCCQRStringUtil.DataAndImages?) -> Void = { dataAndImages in
          Swift.print("onComplete")
-         guard let stringAndImages = stringAndImages else {Swift.print("err getting string from hccqr img");return}
-         Swift.print("stringAndImages.string:  \(stringAndImages.string)")
+         guard let dataAndImages = dataAndImages else {Swift.print("err getting string from hccqr img");return}
+         Swift.print("dataAndImages.string.count:  \(dataAndImages.data?.stringUTF8?.count)")
          DispatchQueue.main.async {
-            let uiimageview = UIImageView.init(image: UIImage.init(ciImage: stringAndImages.qr2))
-            uiimageview.frame.size = CGSize.init(width:uiImage.size.width/4,height:uiImage.size.height/4)
-            self.view.addSubview(uiimageview)
+//            let uiimageview = UIImageView.init(image: UIImage.init(ciImage: dataAndImages.qr2))
+//            uiimageview.frame.size = CGSize.init(width:uiImage.size.width/4,height:uiImage.size.height/4)
+//            self.view.addSubview(uiimageview)
             Swift.print(" all done \(abs(startTime.timeIntervalSinceNow))")
+            Swift.print("RGBAImage.initiatedCount:  \(RGBAImage.initiatedCount)")
+            Swift.print("RGBAImage.deInitiatedCount:  \(RGBAImage.deInitiatedCount)")
          }
       }
-      HCCQRStringUtil.stringAndImages(uiImage:uiImage,onComplete:onComplete)
-      
+      HCCQRStringUtil.dataAndImages(image: uiImage, onComplete: onComplete)
    }
    /**
     *

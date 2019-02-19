@@ -8,9 +8,7 @@ internal extension Splitter {
     * Returns channels (rgb for now)
     */
    internal static func channels(image:Image,onComplete:@escaping OnOptionalChannelsComplete)/* -> RGBAImages?*/{
-      //      let startTime:Date = Date()
       guard let rgbaImg:RGBAImage = RGBAImage.rgbaImage(image: image) else {Swift.print("Splitter.channels() - Unable to create rgbaImg");onComplete(nil);return}
-      //      Swift.print("Time to create rgbaImage: \(abs(startTime.timeIntervalSinceNow))")
       channels(rgbaImg:rgbaImg,onComplete:onComplete)//{onComplete($0)}
    }
    internal typealias OnChannelsComplete = (_ rgbaImages:RGBAImages) -> Void
@@ -26,8 +24,8 @@ internal extension Splitter {
             let rgbaImages:[RGBAImage] = rgbaImages.compactMap{$0}
             //Swift.print("Time to get rgb channels: \(abs(startTime.timeIntervalSinceNow))")
             onComplete((rgbaImages[0],rgbaImages[1],rgbaImages[2]))
-            Swift.print("Splitter.channels - Deallocate")
-            rgbaImg.pixels.deallocate()
+//            Swift.print("Splitter.channels - Deallocate")
+            rgbaImg.deinitiate()
 //            rgbaImages.forEach{$0.pixels.deallocate()}
          }
       }
