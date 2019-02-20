@@ -28,13 +28,13 @@ public class HCCQRImageUtil{
       var qrImgs:[Image?] = [Image?](repeating: nil, count: dataArr.count)/*Pre-filled array for the images*/
 //      let startTime:Date = Date()
       func onCreateQrImgComplete(i:Int,qrImg:Image?){
-         guard let qrImg:Image = qrImg else { Swift.print("onCreateQrImgComplete() - ⚠️️ qrImg err ⚠️️ "); onComplete(nil);return}
+         guard let qrImg:Image = qrImg else { /*Swift.print();*/ onComplete(nil,"onCreateQrImgComplete() - ⚠️️ qrImg err ⚠️️ ");return}
          qrImgs[i] = qrImg/*it matters which order the qrImages came in when you stitch them back together*/
          if qrImgs.first(where: {$0 == nil}) == nil {/*makes sure all images finished*/
 //            Swift.print("onCreateQrImgComplete: \(abs(startTime.timeIntervalSinceNow))")
             let qrImages:[Image] = qrImgs.compactMap{$0}
-            guard let hccqrImage:Image = Colorize.colorize(images: qrImages, colorMap: Colorize.colorMap, moduleMultiplier:moduleMultiplier,scale:scale/*blandColorMap*/) else {Swift.print("Unable to create colorized image");onComplete(nil);return}
-            onComplete( hccqrImage )
+            guard let hccqrImage:Image = try? Colorize.colorize(images: qrImages, colorMap: Colorize.colorMap, moduleMultiplier:moduleMultiplier,scale:scale/*blandColorMap*/) else {/*Swift.print("");*/onComplete(nil,"getHCCQRImage - Unable to create colorized image");return}
+            onComplete(hccqrImage,nil)
          }
       }
       let moduleCount:Int = QRModuleUtil.moduleCount(version: qrConfig.qrVersion)
@@ -58,7 +58,7 @@ extension HCCQRImageUtil{
     * TODO: ⚠️️ rename to image
     */
    public static func getHCCQRImage(string str:String, moduleMultiplier:Int, scale:Int, qrConfig:QRConfig = (10,.l), onComplete: @escaping OnHCCQRImageComplete)  {
-      guard let data:Data = str.data(using: .utf8) else { Swift.print("getHCCQRImage() - ⚠️️ data err ⚠️️ "); onComplete(nil);return}
+      guard let data:Data = str.data(using: .utf8) else { /*Swift.print(""); */onComplete(nil,"getHCCQRImage() - ⚠️️ data err ⚠️️ ");return}
       getHCCQRImage(data: data, moduleMultiplier:moduleMultiplier,scale: scale,qrConfig:qrConfig, onComplete: onComplete)
    }
 }
@@ -71,5 +71,5 @@ extension HCCQRImageUtil{
 /**
  * Useful when you setup the callbacks in apps (Thats why they are in public scope)
  */
-public typealias OnHCCQRImageComplete = (_ hccqrImage:Image?) -> Void
+public typealias OnHCCQRImageComplete = (_ hccqrImage:Image?, _ error:Error?) -> Void
 public typealias OnHCCQRDataComplete = (_ payload:Data?) -> Void

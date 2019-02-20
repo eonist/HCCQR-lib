@@ -11,11 +11,11 @@ internal class Colorize {
     * - Parameter colorMap: the color depth you want the HCCQR image in. 4,8,16,32 etc
     * - Parameter scale: for retina you need 2x scale etc
     */
-   internal static func colorize(images:[Image], colorMap:ColorMap, moduleMultiplier:Int, scale:Int) -> Image? {
+   internal static func colorize(images:[Image], colorMap:ColorMap, moduleMultiplier:Int, scale:Int) throws -> Image {
       let rgbaImages:[RGBAImage] = images.compactMap{RGBAImage.rgbaImage(image: $0)}
-      guard images.count == rgbaImages.count else {Swift.print("Colorize.colorize() - some rgbaImages was not created");return nil}
-      guard let result:RGBAImage = colorize(rgbaImages: rgbaImages, colorMap: colorMap, moduleMultiplier:moduleMultiplier,scale:scale) else {Swift.print("Colorize.colorize() - Unable to create colorized rgbaImage");return nil}
-      guard let image:Image = RGBAImage.image(rgbaImage: result, scale:CGFloat(scale)) else {Swift.print("Colorize.colorize() - Unable to convert to UIImage");return nil}
+      guard images.count == rgbaImages.count else { throw "Colorize.colorize() - some rgbaImages was not created" /*Swift.print();return nil*/}
+      guard let result:RGBAImage = colorize(rgbaImages: rgbaImages, colorMap: colorMap, moduleMultiplier:moduleMultiplier,scale:scale) else {throw "Colorize.colorize() - Unable to create colorized rgbaImage" /*Swift.print();return nil*/}
+      guard let image:Image = RGBAImage.image(rgbaImage: result, scale:CGFloat(scale)) else {throw "Colorize.colorize() - Unable to convert to UIImage"/*Swift.print();return nil*/}
       result.deinitiate()/*⚠️️⚠️️We get a mem leak in iOS if we dont deallocate the pixels⚠️️⚠️️*/
       return image
    }

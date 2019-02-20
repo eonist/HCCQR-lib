@@ -164,7 +164,7 @@ extension ViewController {
       _ = {
 //         let views:[UIView] = [view1,view2]
          let imgs:[UIImage] = [view1.image,view2.image].compactMap{$0}
-         guard let resultImage:UIImage = Colorize.colorize(images: imgs, colorMap: Colorize.colorMap, moduleMultiplier:1,scale:2) else {Swift.print("unable to create colorized image");return }
+         guard let resultImage:UIImage = try? Colorize.colorize(images: imgs, colorMap: Colorize.colorMap, moduleMultiplier:1,scale:2) else {Swift.print("unable to create colorized image");return }
 //         Swift.print("resultImage.cgImage:  \(resultImage.cgImage)")
 //         Swift.print("resultImage.ciImage:  \(resultImage.ciImage)")
 //         Swift.print("resultImage.cgImage():  \(resultImage.cgImage())")
@@ -204,8 +204,8 @@ extension ViewController {
       guard let data:Data = randomString.data(using: .utf8) else {Swift.print("err");return}
       let createHCCQRTime:Date = Date()
       
-      let hccqrImageComplete:OnHCCQRImageComplete = { hccqrImage in
-         guard let hccqrImage = hccqrImage else {Swift.print("unable to create hccqr image");return}
+      let hccqrImageComplete:OnHCCQRImageComplete = { hccqrImage,error in
+         guard let hccqrImage = hccqrImage else {Swift.print("unable to create hccqr image \(String(describing: error?.localizedDescription))");return}
          DispatchQueue.main.async {
             Swift.print("createHCCQRTime complete: \(abs(createHCCQRTime.timeIntervalSinceNow))")
             Swift.print("hccqrImage.scale:  \(hccqrImage.scale)")
@@ -270,7 +270,7 @@ extension ViewController {
       /*do stuff on bg thread*/
       randomData.enumerated().forEach { arg in
          DispatchQueue.global(qos:.userInitiated).async {
-            HCCQRImageUtil.getHCCQRImage(data:arg.element,moduleMultiplier:6,scale: 2,qrConfig:(qrVersion,ecLevel), onComplete: { img in createHCCQRComplete(i: arg.offset,hccqrImage: img)})//
+            HCCQRImageUtil.getHCCQRImage(data:arg.element,moduleMultiplier:6,scale: 2,qrConfig:(qrVersion,ecLevel), onComplete: { img,_ in createHCCQRComplete(i: arg.offset,hccqrImage: img)})//
          }
       }
       
@@ -325,15 +325,15 @@ extension ViewController {
       Swift.print("uiImage.size:  \(uiImage.size)")
 //      guard let croppedImage:UIImage  = uiImage.cropImageToCenterSquare() else {Swift.print("err");return}
 //      Swift.print("croppedImage.size:  \(croppedImage.size)")
-      let onComplete:(_ dataAndImages:HCCQRStringUtil.DataAndImages?) -> Void = { dataAndImages in
+      let onComplete:(_ dataAndImages:HCCQRStringUtil.DataAndImages?, _ error:Error?) -> Void = { dataAndImages,error in
          Swift.print("onComplete")
-         guard let dataAndImages = dataAndImages else {Swift.print("err getting string from hccqr img");return}
+         guard let dataAndImages = dataAndImages else {Swift.print("err getting string from hccqr img \(error?.localizedDescription)");return}
          Swift.print("dataAndImages.string.count:  \(dataAndImages.data?.stringUTF8?.count)")
          DispatchQueue.main.async {
-//            let uiimageview = UIImageView.init(image: UIImage.init(ciImage: dataAndImages.qr2))
-//            uiimageview.frame.size = CGSize.init(width:uiImage.size.width/4,height:uiImage.size.height/4)
-//            self.view.addSubview(uiimageview)
-            Swift.print(" all done \(abs(startTime.timeIntervalSinceNow))")
+            let uiimageview = UIImageView.init(image: UIImage.init(ciImage: dataAndImages.qr2))
+            uiimageview.frame.size = CGSize.init(width:uiImage.size.width/4,height:uiImage.size.height/4)
+            self.view.addSubview(uiimageview)
+            Swift.print("All done \(abs(startTime.timeIntervalSinceNow))")
             Swift.print("RGBAImage.initiatedCount:  \(RGBAImage.initiatedCount)")
             Swift.print("RGBAImage.deInitiatedCount:  \(RGBAImage.deInitiatedCount)")
          }
@@ -348,7 +348,7 @@ extension ViewController {
          let (qrVersion,qrMode,ecLevel):(Int,QRMode,ECLevel) = (10,.byte,.l)//settings
          guard let randomString:String = HCCQRStringData.randomString(qrVersion: qrVersion, qrMode: qrMode, ecLevel:ecLevel) else {Swift.print("unable to create random string");return }
          guard let data = randomString.data(using: .utf8) else {Swift.print("err data");return }
-         HCCQRImageUtil.getHCCQRImage(data:data,moduleMultiplier:6,scale: 2,qrConfig:(qrVersion,ecLevel), onComplete: { img in Swift.print("img.size:  \(img?.size)")})//
+         HCCQRImageUtil.getHCCQRImage(data:data,moduleMultiplier:6,scale: 2,qrConfig:(qrVersion,ecLevel), onComplete: { img,_ in Swift.print("img.size:  \(img?.size)")})//
          //      guard let uiImage:UIImage = UIImage.init(contentsOfFile: Bundle.main.resourcePath!+"/temp.bundle/HCCQR9.png") else {Swift.print("err getting img");return}
          
          //      guard let uiImage2:UIImage = UIImage.init(contentsOfFile: Bundle.main.resourcePath!+"/temp.bundle/HCCQR9.png") else {Swift.print("err getting img");return}

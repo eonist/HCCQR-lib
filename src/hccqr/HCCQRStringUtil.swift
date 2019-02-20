@@ -11,18 +11,18 @@ public class HCCQRStringUtil{//rename to  HCCQRDataUtil
    /**
     * New
     */
-   public static func dataAndImages(image:Image, onComplete:@escaping DataAndImageComplete){
+   public static func dataAndImages(image:Image, onComplete:@escaping DataAndImageComplete) {
       let onSplitComplete:(_ payload:Splitter.SplitPayload?) -> Void = { payload in
-         guard let payload:Splitter.SplitPayload = payload else {Swift.print("HCCQRUtil.dataAndImages() - q1,q2 err");onComplete(nil);return}
+         guard let payload:Splitter.SplitPayload = payload else {/*Swift.print();*/onComplete(nil,"HCCQRUtil.dataAndImages() - q1,q2 err");return}
          let (q1,q2):(CIImage,CIImage) = payload
          let ciImages:[CIImage] = [q1,q2]
          var dataAndFrames:[QRStringUtil.DataAndFrame?] = [QRStringUtil.DataAndFrame?](repeating: nil, count: ciImages.count)
          func onQRCodeComplete(i:Int, dataAndFrame:QRStringUtil.DataAndFrame?){
-            guard let dataAndFrame:QRStringUtil.DataAndFrame = dataAndFrame else { Swift.print("HCCQRStringUtil.dataAndImages() - ⚠️️ qrcode1 err ⚠️️ "); onComplete((nil,  q1 ,  q2, nil) );return}
+            guard let dataAndFrame:QRStringUtil.DataAndFrame = dataAndFrame else {/* Swift.print(); */onComplete((nil,  q1 ,  q2, nil),"HCCQRStringUtil.dataAndImages() - ⚠️️ qrcode1 err ⚠️️ " );return}
             dataAndFrames[i] = dataAndFrame
             if dataAndFrames.first(where: {$0 == nil}) == nil {/*Makes sure all images finished*/
                let d:Data = dataAndFrames.compactMap{$0?.qrData}.reduce(Data(),+)
-               onComplete((d, q1, q2, dataAndFrame.qrFrame))/*Return the result here*/
+               onComplete((d, q1, q2, dataAndFrame.qrFrame),nil)/*Return the result here*/
             }
          }
          ciImages.enumerated().forEach { item in
@@ -49,10 +49,11 @@ extension HCCQRStringUtil{
     * TODO: ⚠️️ group data and frame into a tesult:(frame,data) tuple
     */
    public static func dataAndFrame(image:Image, onComplete:@escaping OnGetDataAndFrameComplete){
-      let completion:DataAndImageComplete = { dataAndImages in
-         guard let data:Data =  dataAndImages?.data else {Swift.print("HCCQRStringUtil.dataAndFrame() - Unable to get data");onComplete(nil,nil);return}
-         guard let frame:CGRect =  dataAndImages?.frame else {Swift.print("HCCQRStringUtil.dataAndFrame() - unable to get frame");onComplete(nil,nil);return}
-         onComplete(data,frame)
+      let completion:DataAndImageComplete = { dataAndImages,error in
+         guard let dataAndImages = dataAndImages else {onComplete(nil,nil,error);return}
+         guard let data:Data =  dataAndImages.data else { onComplete(nil,nil,"HCCQRStringUtil.dataAndFrame() - Unable to get data \(error?.localizedDescription)");return}
+         guard let frame:CGRect =  dataAndImages.frame else {/*Swift.print("");*/onComplete(nil,nil,"HCCQRStringUtil.dataAndFrame() - Unable to get data \(error?.localizedDescription)");return}
+         onComplete(data,frame,nil)
       }
       dataAndImages(image:image, onComplete:completion)
    }
@@ -64,7 +65,7 @@ extension HCCQRStringUtil{
 public extension HCCQRStringUtil{
    public typealias OnGetStringComplete = (String?)->Void
    public typealias OnGetDataComplete = (Data?)->Void
-   public typealias OnGetDataAndFrameComplete = (_ data:Data?,_ frame:CGRect?)->Void
+   public typealias OnGetDataAndFrameComplete = (_ data:Data?,_ frame:CGRect?, _ error:Error?)->Void
    public typealias StringsAndImages = (string:String?,qr1:CIImage,qr2:CIImage)
    public typealias StringAndImageComplete = (_ stringsAndImages:StringsAndImages?)->Void
    /*Data, ⚠️️ new ⚠️️*/
@@ -72,7 +73,7 @@ public extension HCCQRStringUtil{
     * The imags was returned for debuggin, can be useful for optimizing later
     */
    public typealias DataAndImages = (data:Data?,qr1:CIImage,qr2:CIImage,frame:CGRect?)
-   public typealias DataAndImageComplete = (_ dataAndImages:DataAndImages?)->Void
+   public typealias DataAndImageComplete = (_ dataAndImages:DataAndImages?, _ error:Error?)->Void
 }
 
 /**
@@ -93,19 +94,19 @@ extension HCCQRStringUtil{
     * ⚠️️ New ⚠️️
     */
    
-   //deprecate this probably
+   //deprecate this probably, needs to handle errror
    
    public static func data(image:Image, onComplete:@escaping OnGetDataComplete ){
-      dataAndFrame(image: image, onComplete: { data, _ in onComplete(data)})
+      dataAndFrame(image: image, onComplete: { data,_,_ in onComplete(data)})
    }
    /**
     * - Note: This method is also useful for debuging
     * - TODO: ⚠️️ try to use the qrCode(ciImage: here, might be a bit faster
     */
    public static func stringAndImages(uiImage:Image, onComplete:@escaping StringAndImageComplete){
-      let completion:DataAndImageComplete = { dataAndImages in
-         guard let dataAndImages:DataAndImages = dataAndImages else{Swift.print("no dataAndImages");onComplete(nil);return}
-         guard let string:String = dataAndImages.data?.stringUTF8 else {Swift.print("unable to convert to string");onComplete(nil);return}
+      let completion:DataAndImageComplete = { dataAndImages,error in
+         guard let dataAndImages:DataAndImages = dataAndImages else{Swift.print("no dataAndImages \(error?.localizedDescription)");onComplete(nil);return}
+         guard let string:String = dataAndImages.data?.stringUTF8 else {Swift.print("unable to convert to string \(error?.localizedDescription)");onComplete(nil);return}
          let stringsAndImages:StringsAndImages = (string:string,qr1:dataAndImages.qr1,qr2:dataAndImages.qr2)
          onComplete(stringsAndImages)
       }

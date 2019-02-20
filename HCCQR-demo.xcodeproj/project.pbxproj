@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F1172E9C221CFAD500268322 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1172E9A221CF98C00268322 /* String+Extension.swift */; };
+		F1172E9D221CFAD600268322 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1172E9A221CF98C00268322 /* String+Extension.swift */; };
 		F11DE8512208F19F007A8A7A /* VC+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11DE8502208F19F007A8A7A /* VC+Test.swift */; };
 		F11DE860220B6C53007A8A7A /* temp.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F11DE85F220B6C53007A8A7A /* temp.bundle */; };
 		F14FADE521F75A9900ACE5FF /* VC+ViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14FADE421F75A9900ACE5FF /* VC+ViewTest.swift */; };
@@ -150,6 +152,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		F1172E9A221CF98C00268322 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		F11DE8502208F19F007A8A7A /* VC+Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VC+Test.swift"; sourceTree = "<group>"; };
 		F11DE85F220B6C53007A8A7A /* temp.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = temp.bundle; sourceTree = "<group>"; };
 		F14FADE421F75A9900ACE5FF /* VC+ViewTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VC+ViewTest.swift"; sourceTree = "<group>"; };
@@ -420,6 +423,7 @@
 			isa = PBXGroup;
 			children = (
 				F16852782213443700C27EAA /* UIView+Extension.swift */,
+				F1172E9A221CF98C00268322 /* String+Extension.swift */,
 				F16852792213443700C27EAA /* Image+Extension.swift */,
 				F168527A2213443700C27EAA /* CIImage+Extension.swift */,
 				F168527B2213443700C27EAA /* Data+Extension.swift */,
@@ -730,6 +734,7 @@
 				F16852A42213443700C27EAA /* Color+Parser.swift in Sources */,
 				F16852A02213443700C27EAA /* UInt8Asserter.swift in Sources */,
 				F168529C2213443700C27EAA /* Image+Extension.swift in Sources */,
+				F1172E9C221CFAD500268322 /* String+Extension.swift in Sources */,
 				F16852952213443700C27EAA /* Colorize+ColorMap.swift in Sources */,
 				F168529F2213443700C27EAA /* CGImage+Extension.swift in Sources */,
 				F16852942213443700C27EAA /* ColorizeAsserter.swift in Sources */,
@@ -764,6 +769,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F17A2A3022139371000B6C0A /* Colorize.swift in Sources */,
+				F1172E9D221CFAD600268322 /* String+Extension.swift in Sources */,
 				F17A2A322213937D000B6C0A /* ColorizeAsserter.swift in Sources */,
 				F17A2A2722139023000B6C0A /* PixelData+Init.swift in Sources */,
 				F17A2A412213945E000B6C0A /* HCCQRImageUtil.swift in Sources */,
