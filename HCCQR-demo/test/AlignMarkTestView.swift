@@ -53,7 +53,7 @@ extension AimMarkTestView{
       let qrSize = QRImageSize.qrImageSize(string:string, ecLevel: ecLevel)
       Swift.print("qrSize:  \(qrSize)")
       /*create image*/
-      guard let image:UIImage = QRImageUtil.qrImage(str: string, size: .init(width:300,height:300), ecLevel: ecLevel) else {Swift.print("unable to create UIImage");return}
+      guard let image:UIImage = try? QRImageUtil.qrImage(str: string, size: .init(width:300,height:300), ecLevel: ecLevel) else {Swift.print("unable to create UIImage");return}
       let uiImageView:UIImageView = .init(image: image)
       self.addSubview(uiImageView)
       /*create alignMarkView*/

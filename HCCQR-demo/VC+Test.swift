@@ -34,7 +34,7 @@ extension ViewController{
       /*Create Image*/
       let qrSize = QRImageSize.qrImageSize(string: string,ecLevel: ecLevel)
       Swift.print("qrSize:  \(qrSize)")
-      guard let image:UIImage = QRImageUtil.qrImage(str: string, size: qrSize, ecLevel: ecLevel) else {Swift.print("unable to create UIImage");return}
+      guard let image:UIImage = try? QRImageUtil.qrImage(str: string, size: qrSize, ecLevel: ecLevel) else {Swift.print("unable to create UIImage");return}
       let uiImageView:UIImageView = .init(image: image)
       view.addSubview(uiImageView)
    }

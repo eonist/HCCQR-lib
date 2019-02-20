@@ -16,9 +16,9 @@ public class HCCQRStringUtil{//rename to  HCCQRDataUtil
          guard let payload:Splitter.SplitPayload = payload else {/*Swift.print();*/onComplete(nil,"HCCQRUtil.dataAndImages() - q1,q2 err");return}
          let (q1,q2):(CIImage,CIImage) = payload
          let ciImages:[CIImage] = [q1,q2]
-         var dataAndFrames:[QRStringUtil.DataAndFrame?] = [QRStringUtil.DataAndFrame?](repeating: nil, count: ciImages.count)
-         func onQRCodeComplete(i:Int, dataAndFrame:QRStringUtil.DataAndFrame?){
-            guard let dataAndFrame:QRStringUtil.DataAndFrame = dataAndFrame else {/* Swift.print(); */onComplete((nil,  q1 ,  q2, nil),"HCCQRStringUtil.dataAndImages() - ⚠️️ qrcode1 err ⚠️️ " );return}
+         var dataAndFrames:[QRDataUtil.DataAndFrame?] = [QRDataUtil.DataAndFrame?](repeating: nil, count: ciImages.count)
+         func onQRCodeComplete(i:Int, dataAndFrame:QRDataUtil.DataAndFrame?){
+            guard let dataAndFrame:QRDataUtil.DataAndFrame = dataAndFrame else {/* Swift.print(); */onComplete((nil,  q1 ,  q2, nil),"HCCQRStringUtil.dataAndImages() - ⚠️️ qrcode1 err ⚠️️ " );return}
             dataAndFrames[i] = dataAndFrame
             if dataAndFrames.first(where: {$0 == nil}) == nil {/*Makes sure all images finished*/
                let d:Data = dataAndFrames.compactMap{$0?.qrData}.reduce(Data(),+)
@@ -30,7 +30,7 @@ public class HCCQRStringUtil{//rename to  HCCQRDataUtil
 //            DispatchQueue.global(qos:.userInitiated).async {
 //
                DispatchQueue.main.async{
-                  let dataAndFrame:QRStringUtil.DataAndFrame? = QRStringUtil.qrCode(ciImage: item.element)
+                  let dataAndFrame:QRDataUtil.DataAndFrame? = try? QRDataUtil.qrCode(ciImage: item.element)
                   onQRCodeComplete(i: item.offset, dataAndFrame: dataAndFrame)
                }
 //            }

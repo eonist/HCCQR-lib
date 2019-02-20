@@ -1,4 +1,3 @@
-
 import Cocoa
 
 extension NSImage{

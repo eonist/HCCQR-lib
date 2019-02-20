@@ -24,8 +24,8 @@ extension AppDelegate{
       let (qrVersion,qrMode,ecLevel):(Int,QRMode,ECLevel) = (10,.byte,.l)//settings
       guard let randomString = HCCQRStringData.randomString(qrVersion: qrVersion, qrMode: qrMode, ecLevel:ecLevel) else {Swift.print("unable to create random string");return}
       let createHCCQRTime:Date = Date()
-      let hccqrImageComplete:OnHCCQRImageComplete = { hccqrImage in
-         guard let hccqrImage = hccqrImage else {Swift.print("unable to create hccqr image");return}
+      let hccqrImageComplete:OnHCCQRImageComplete = { hccqrImage,error in
+         guard let hccqrImage = hccqrImage else {Swift.print("unable to create hccqr image \(String(describing: error))");return}
          DispatchQueue.main.async {
             Swift.print("hccqrImage.size:  \(hccqrImage.size)")
             Swift.print("createHCCQRTime complete: \(abs(createHCCQRTime.timeIntervalSinceNow))")
@@ -98,7 +98,7 @@ extension AppDelegate{
       /*Do stuff on bg thread*/
       randomStrings.enumerated().forEach { arg in
          DispatchQueue.global(qos:.userInitiated).async {
-            HCCQRImageUtil.getHCCQRImage(string:arg.element,moduleMultiplier:6,scale:2, qrConfig:(qrVersion,ecLevel), onComplete: { img in createHCCQRComplete(i: arg.offset,hccqrImage: img)})//
+            HCCQRImageUtil.getHCCQRImage(string:arg.element,moduleMultiplier:6,scale:2, qrConfig:(qrVersion,ecLevel), onComplete: { img,error in createHCCQRComplete(i: arg.offset,hccqrImage: img)})//
          }
       }
       

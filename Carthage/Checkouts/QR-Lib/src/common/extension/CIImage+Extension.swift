@@ -8,61 +8,25 @@ import Cocoa
  */
 public extension CIImage{
    /**
-    *
-    */
-//   func data(onComplete:(_ data:Data?){
-//      
-//   }
-   /**
     * Returns raw data from a qr
     */
-   var qrData:Data?{
-      guard let feature:CIQRCodeFeature = self.qrCodeFeature else {Swift.print("QRLib.CIImage.qrData - Unable to get CIQRCodeFeature");return nil}
-      guard let data:Data = feature.data else {Swift.print("qrData - err");return nil}//errorCorrectedPayload
+   func qrData() throws -> Data {
+      guard let feature:CIQRCodeFeature = try? self.qrCodeFeature() else  { throw ("QRLib.CIImage.qrData - Unable to get CIQRCodeFeature") }
+      guard let data:Data = try? feature.data() else {throw ("qrData - err") }//errorCorrectedPayload
       return data
    }
 //   static var device:MTLDevice?
 //   public static var detector:CIDetector?
    /**
     * qrCodeFeature
+    * - Caution: ⚠️️ you can only spiun up 60 or so detectors before things fall apart. Make sure this is called on the main thread. Or do more tests, CIDetector can work as a singlton for instance
     */
-   var qrCodeFeature:CIQRCodeFeature? {
-      guard let ciImage:CIImage = Optional(self) else {Swift.print("QRLib.CIImage.qrCodeFeature - self is optional");return nil}
-//      Swift.print("ciImage:  \(ciImage)")
-      
-//
-//
-      
-//      if CIImage.detector == nil {
-//         let ciContext:CIContext = {
-//                     if CIImage.device == nil {
-//                        CIImage.device = MTLCreateSystemDefaultDevice()
-//                     }
-//                     if let device:MTLDevice = CIImage.device{
-//                        Swift.print("using metal")
-//                        return CIContext.init(mtlDevice: device)
-//                     } else{
-//                        Swift.print("not using metal")
-//                        return CIContext.init()
-//                     }//{Swift.print("qrCodeFeature() - mtlDevice not ready");return nil}
-//
-//                  }()
-//         let ciContext:CIContext = CIContext.init()
-//         DispatchQueue.main.async {
-         
-//         }
-         
-//      }
-//      Swift.print("CIImage.detector:  \(CIImage.detector != nil ? "✅" : "🚫")")
-      guard let detector:CIDetector =  CIDetector.init(ofType: CIDetectorTypeQRCode, context: nil, options: [CIDetectorAccuracy: CIDetectorAccuracyHigh]) else {Swift.print("QRLib.CIImage.qrCodeFeature - unable to create detector  ");return nil}
-//      Swift.print("detector:  \(detector)")
-      //      Swift.print("qrCodeFeature")
-      guard let features:[CIFeature] = Optional(detector.features(in: ciImage)) else {Swift.print("QRLib.CIImage.qrCodeFeature - features is optional");return nil}
-//      Swift.print("features:  \(features.count)")
+   func qrCodeFeature() throws -> CIQRCodeFeature {
+      guard let ciImage:CIImage = Optional(self) else {throw ("QRLib.CIImage.qrCodeFeature - self is optional") }
+      guard let detector:CIDetector =  CIDetector.init(ofType: CIDetectorTypeQRCode, context: nil, options: [CIDetectorAccuracy: CIDetectorAccuracyHigh]) else {throw ("QRLib.CIImage.qrCodeFeature - unable to create detector  ") }
+      guard let features:[CIFeature] = Optional(detector.features(in: ciImage)) else {throw ("QRLib.CIImage.qrCodeFeature - features is optional") }
       let optionalFeature:CIQRCodeFeature? = features.first { $0 is CIQRCodeFeature } as? CIQRCodeFeature
-//      Swift.print("optionalFeature:  \(String(describing: optionalFeature))")
-      guard let feature:CIQRCodeFeature = optionalFeature else {Swift.print("QRLib.CIImage.qrCodeFeature - Unable to get CIQRCodeFeature");return nil}
-//      Swift.print("feature:  \(feature)")
+      guard let feature:CIQRCodeFeature = optionalFeature else {throw ("QRLib.CIImage.qrCodeFeature - Unable to get CIQRCodeFeature") }
       return feature
    }
 }
@@ -73,8 +37,8 @@ extension CIQRCodeFeature{
    /**
     * Returns raw data from a qr
     */
-   var data: Data? {
-      guard let data:Data = self.symbolDescriptor?.data else {Swift.print("QRLib.CIQRCodeFeature.data - Unable to get data from qrcode");return nil}
+   func data() throws -> Data {
+      guard let data:Data = self.symbolDescriptor?.data else { throw ("QRLib.CIQRCodeFeature.data - Unable to get data from qrcode") }
       return data
    }
 }

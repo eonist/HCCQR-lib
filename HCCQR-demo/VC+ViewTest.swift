@@ -147,7 +147,7 @@ extension ViewController {
          guard let moduleCount:Int = QRModuleUtil.moduleCount(string: string, qrMode: .byte, ecLevel: .l) else {Swift.print("err");return nil}
          Swift.print("moduleCount:  \(moduleCount)")
          let length:CGFloat = CGFloat(moduleCount + 2) * 16//80*4
-         guard let image:UIImage = QRImageUtil.qrImage(str: string, size: .init(width:length,height:length), ecLevel: .l) else {Swift.print("unable to create UIImage");return nil}
+         guard let image:UIImage = try? QRImageUtil.qrImage(str: string, size: .init(width:length,height:length), ecLevel: .l) else {Swift.print("unable to create UIImage");return nil}
 //         Swift.print("image.hasNoneBlackOrWhiteColor:  \(image.hasOnlyBlackAndWhiteColorMap)")
          let uiImageView:UIImageView = .init(image: image)
          view.addSubview(uiImageView)
