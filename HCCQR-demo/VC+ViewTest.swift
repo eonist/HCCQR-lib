@@ -348,8 +348,7 @@ extension ViewController {
       }
      
    }
-   //🏀
-   //try to fix the mem leak,
+
    
    /**
     * testingSmallModuleSize

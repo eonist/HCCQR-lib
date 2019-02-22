@@ -18,8 +18,8 @@ public class HCCQRStringUtil{
          let (q1,q2):(CIImage,CIImage) = payload
          let ciImages:[CIImage] = [q1,q2]
          var dataAndFrames:[QRDataUtil.DataAndFrame?] = [QRDataUtil.DataAndFrame?](repeating: nil, count: ciImages.count)
-         func onQRCodeComplete(i:Int, dataAndFrame:QRDataUtil.DataAndFrame?, error:Error? = nil){
-            guard let dataAndFrame:QRDataUtil.DataAndFrame = dataAndFrame else { onComplete((nil,  q1 ,  q2, nil),"HCCQRStringUtil.dataAndImages() - ⚠️️ unable to get dataAndFrame ⚠️️ \(String(describing: error?.localizedDescription))" );return}
+         func onQRCodeComplete(i:Int, dataAndFrame:QRDataUtil.DataAndFrame?, error:Error?){
+            guard let dataAndFrame:QRDataUtil.DataAndFrame = dataAndFrame else { onComplete((nil,  q1 ,  q2, nil),"HCCQRStringUtil.dataAndImages() - ⚠️️ Unable to get dataAndFrame for QRIMG: \(i)⚠️️ \(String(describing: error?.localizedDescription))" );return}
             dataAndFrames[i] = dataAndFrame
             if dataAndFrames.first(where: {$0 == nil}) == nil {/*Makes sure all images finished*/
                let d:Data = dataAndFrames.compactMap{$0?.qrData}.reduce(Data(),+)
@@ -30,7 +30,7 @@ public class HCCQRStringUtil{
             DispatchQueue.main.async{/*Has to be done on main thread, or else Apples.qrreader behaves bad*/
                do{
                   let dataAndFrame:QRDataUtil.DataAndFrame = try QRDataUtil.qrCode(ciImage: item.element)
-                  onQRCodeComplete(i: item.offset, dataAndFrame: dataAndFrame)
+                  onQRCodeComplete(i: item.offset, dataAndFrame: dataAndFrame, error:nil)
                }catch{
                   onQRCodeComplete(i: item.offset, dataAndFrame: nil, error:error)
                }
