@@ -1,6 +1,7 @@
 import Foundation
 /**
  * - Description: Image 👉 Data
+ * - TODO: ⚠️️ rename to QRReader
  */
 final public class QRDataUtil{
    #if os(iOS)

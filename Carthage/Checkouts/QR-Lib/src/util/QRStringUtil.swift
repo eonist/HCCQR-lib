@@ -1,6 +1,7 @@
 import Foundation
 /**
  * - Description: Image 👉 String
+ * - TODO: ⚠️️ rename to QRStringReader
  */
 final public class QRStringUtil {
    #if os(iOS)

@@ -2,7 +2,7 @@
   "Mac" : [
     {
       "name" : "QRLibMac",
-      "hash" : "b0b0321757f7be3f8dcb96753ccbec75f88f3d9ddaa96d9aa553461c80f29e8a"
+      "hash" : "396ce9bb4bbe0b9ccf190d696f59699b2e9801ca1554d7b60180c8e6c194e80d"
     }
   ],
   "watchOS" : [
@@ -11,11 +11,11 @@
   "tvOS" : [
 
   ],
-  "commitish" : "321b25ce0a02ab9cc854f76e52e86e826fbd7e67",
+  "commitish" : "f6c27b91e4cc3c91ed41cff9f6dbc2a49aec0d85",
   "iOS" : [
     {
       "name" : "QRLibIOS",
-      "hash" : "1093e0a3675063ae92e7675434c85bbeb5f562a60cca5b113428d777cea7ee89"
+      "hash" : "938a915d3ce5df2f3c289b80f39cb182c97a2713207574c3f0e766c367ed97f9"
     }
   ]
 }

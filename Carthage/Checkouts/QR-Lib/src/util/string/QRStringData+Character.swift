@@ -10,23 +10,23 @@ public extension QRStringData{
     * ## Examples:
     * Swift.print("ascii:  \(String(QRVersionGenerator.asciiCharacters))")//ABCDEFGHIJKLMNOPQRSTUVWXYZ
     */
-   public static var asciiCharacters:[Character] {
+   public static let asciiCharacters:[Character] = {
       return (UnicodeScalar("A").value...UnicodeScalar("Z").value).compactMap {
          if let uniCode = UnicodeScalar($0) {return Character(uniCode)}
          else {return nil}
       }
-   }
+   }()
    /**
     * Numeric (0-9)
     * ## Examples:
     * Swift.print("numeric:  \(String(QRVersionGenerator.numericCharacters))")//0123456789
     */
-   public static var numericCharacters:[Character] {
+   public static let numericCharacters:[Character] = {
       return (UnicodeScalar("0").value...UnicodeScalar("9").value).compactMap {
          if let uniCode = UnicodeScalar($0) {return Character(uniCode)}
          else {return nil}
       }
-   }
+   }()
    /**
     * Alphabet (a-z)
     * - Important: ⚠️️ We can not use uppercase or numbers in byte characters, as they may end up rendering as ascii or numeric
@@ -35,11 +35,11 @@ public extension QRStringData{
     * ## Examples:
     * Swift.print("byte:  \(String(QRVersionGenerator.byteCharacters))")//abcdefghijklmnopqrstuvwxyz
     */
-   public static var byteCharacters:[Character] {
+   public static let byteCharacters:[Character] = {
       let lowercaseChars:[Character] = (UnicodeScalar("a").value...UnicodeScalar("z").value).compactMap {
          if let uniCode = UnicodeScalar($0) {return Character(uniCode)}
          else {return nil}
       }
       return lowercaseChars
-   }
+   }()
 }

@@ -1,6 +1,7 @@
 import Foundation
 /**
  * - Description: String or Data 👉 Image
+ * - TODO: ⚠️️ rename to QRWriter
  */
 final public class QRImageUtil {
    /**
