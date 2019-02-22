@@ -18,6 +18,9 @@ public extension QRMode{
  * Gives meaningful descriptions
  */
 extension QRMode:CustomDebugStringConvertible{
+   /**
+    * debugDescription
+    */
    public var debugDescription: String {
       switch (self) {
       case .numeric: return "Numeric"

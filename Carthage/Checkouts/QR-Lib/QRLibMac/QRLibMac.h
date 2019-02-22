@@ -1,10 +1,3 @@
-//
-//  QRLibMac.h
-//  QRLibMac
-//
-//  Created by Eon on 25/01/2019.
-//  Copyright © 2019 FutureLab. All rights reserved.
-//
 
 #import <Cocoa/Cocoa.h>
 

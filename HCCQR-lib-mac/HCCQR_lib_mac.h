@@ -1,11 +1,4 @@
-//
-//  HCCQR_lib_mac.h
-//  HCCQR-lib-mac
-//
-//  Created by Eon on 12/02/2019.
-//  Copyright © 2019 FutureLab. All rights reserved.
-//
-
+ 
 #import <Cocoa/Cocoa.h>
 
 //! Project version number for HCCQR_lib_mac.

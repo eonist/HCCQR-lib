@@ -6,19 +6,20 @@ import QRLibMac
 #endif
 /**
  * Image -> String
+ * - TODO: ⚠️️ rename to  HCCQRDataReader and HCCQRStringReader
  */
-public class HCCQRStringUtil{//rename to  HCCQRDataUtil
+public class HCCQRStringUtil{
    /**
     * New
     */
    public static func dataAndImages(image:Image, onComplete:@escaping DataAndImageComplete) {
       let onSplitComplete:(_ payload:Splitter.SplitPayload?) -> Void = { payload in
-         guard let payload:Splitter.SplitPayload = payload else {/*Swift.print();*/onComplete(nil,"HCCQRUtil.dataAndImages() - q1,q2 err");return}
+         guard let payload:Splitter.SplitPayload = payload else {onComplete(nil,"HCCQRUtil.dataAndImages() - q1,q2 err");return}
          let (q1,q2):(CIImage,CIImage) = payload
          let ciImages:[CIImage] = [q1,q2]
          var dataAndFrames:[QRDataUtil.DataAndFrame?] = [QRDataUtil.DataAndFrame?](repeating: nil, count: ciImages.count)
          func onQRCodeComplete(i:Int, dataAndFrame:QRDataUtil.DataAndFrame?){
-            guard let dataAndFrame:QRDataUtil.DataAndFrame = dataAndFrame else {/* Swift.print(); */onComplete((nil,  q1 ,  q2, nil),"HCCQRStringUtil.dataAndImages() - ⚠️️ qrcode1 err ⚠️️ " );return}
+            guard let dataAndFrame:QRDataUtil.DataAndFrame = dataAndFrame else { onComplete((nil,  q1 ,  q2, nil),"HCCQRStringUtil.dataAndImages() - ⚠️️ qrcode1 err ⚠️️ " );return}
             dataAndFrames[i] = dataAndFrame
             if dataAndFrames.first(where: {$0 == nil}) == nil {/*Makes sure all images finished*/
                let d:Data = dataAndFrames.compactMap{$0?.qrData}.reduce(Data(),+)
@@ -26,18 +27,13 @@ public class HCCQRStringUtil{//rename to  HCCQRDataUtil
             }
          }
          ciImages.enumerated().forEach { item in
-            
-//            DispatchQueue.global(qos:.userInitiated).async {
-//
-               DispatchQueue.main.async{
-                  let dataAndFrame:QRDataUtil.DataAndFrame? = try? QRDataUtil.qrCode(ciImage: item.element)
-                  onQRCodeComplete(i: item.offset, dataAndFrame: dataAndFrame)
-               }
-//            }
+            DispatchQueue.main.async{/*Has to be done on main thread, or else Apples.qrreader behaves bad*/
+               let dataAndFrame:QRDataUtil.DataAndFrame? = try? QRDataUtil.qrCode(ciImage: item.element)
+               onQRCodeComplete(i: item.offset, dataAndFrame: dataAndFrame)
+            }
          }
       }
-      /*Start the splitting process*/
-      Splitter.split(uiImage: image, onComplete:onSplitComplete )
+      Splitter.split(uiImage: image, onComplete:onSplitComplete ) /*Start the splitting process*/
    }
 }
 /**

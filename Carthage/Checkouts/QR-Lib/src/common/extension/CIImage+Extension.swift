@@ -37,8 +37,8 @@ extension CIQRCodeFeature{
    /**
     * Returns raw data from a qr
     */
-   func data() throws -> Data {
-      guard let data:Data = self.symbolDescriptor?.data else { throw ("QRLib.CIQRCodeFeature.data - Unable to get data from qrcode") }
+   func data() throws -> Data {//TODO: ⚠️️ revert to optional, throw only if there is sub throws or more than one type of nil,or not, description msg is nice
+      guard let data:Data = self.symbolDescriptor?.data else { throw ("QRLib.CIQRCodeFeature.data - Unable to get symbolDescriptor or data from qrcode") }
       return data
    }
 }

@@ -22,8 +22,8 @@ class ViewController: UIViewController {
      
 //      testHCCQRImage()//⭐
 //      creatingManyHCCQRImages(onComplete: { images in Swift.print("all created 🎉 - images.count \(images.count) 🎉")})//⭐
-//      readingManyHCCQRImages()//⭐
-      testReadingHCCQRPhoto()//⭐
+      readingManyHCCQRImages()//⭐
+//      testReadingHCCQRPhoto()//⭐
 //      testColorAssertionWithinThresholdForPixel()
 
 //      (0..<4).forEach{ i in Swift.print("i:  \(i)")}

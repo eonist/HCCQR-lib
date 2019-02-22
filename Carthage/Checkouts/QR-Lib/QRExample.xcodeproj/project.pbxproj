@@ -23,8 +23,6 @@
 		F1123C0122088E0A0082737B /* QRStringData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1123BF822088E090082737B /* QRStringData.swift */; };
 		F1123C0222088E0A0082737B /* QRStringData+Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1123BF922088E090082737B /* QRStringData+Character.swift */; };
 		F1123C0322088E0A0082737B /* QRStringData+Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1123BF922088E090082737B /* QRStringData+Character.swift */; };
-		F1123C0422088E0A0082737B /* QRImageSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1123BFB22088E0A0082737B /* QRImageSize.swift */; };
-		F1123C0522088E0A0082737B /* QRImageSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1123BFB22088E0A0082737B /* QRImageSize.swift */; };
 		F11DE858220A6B24007A8A7A /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11DE856220A6AC9007A8A7A /* UIImage+Extension.swift */; };
 		F162130221FB28DB005297DE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162130121FB28DB005297DE /* AppDelegate.swift */; };
 		F162130421FB28DB005297DE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162130321FB28DB005297DE /* ViewController.swift */; };
@@ -70,6 +68,8 @@
 		F1C957F92204B02B0062B6DA /* QRMode+Assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C957EB2204B02B0062B6DA /* QRMode+Assert.swift */; };
 		F1E94A24221CAACC0099E2C6 /* temp.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F1E94A23221CAACC0099E2C6 /* temp.bundle */; };
 		F1E94A25221CB2940099E2C6 /* temp.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F1E94A23221CAACC0099E2C6 /* temp.bundle */; };
+		F1F10F81221FC58A00BD4805 /* QRConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F10F7F221FC21800BD4805 /* QRConfig.swift */; };
+		F1F10F82221FC58A00BD4805 /* QRConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F10F7F221FC21800BD4805 /* QRConfig.swift */; };
 		F1F11F6F22032A32008BB049 /* ECLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F11F6D2203297B008BB049 /* ECLevel.swift */; };
 		F1F11F7022032A33008BB049 /* ECLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F11F6D2203297B008BB049 /* ECLevel.swift */; };
 /* End PBXBuildFile section */
@@ -121,7 +121,6 @@
 		F1123BF722088E090082737B /* QRStringData+String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "QRStringData+String.swift"; sourceTree = "<group>"; };
 		F1123BF822088E090082737B /* QRStringData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRStringData.swift; sourceTree = "<group>"; };
 		F1123BF922088E090082737B /* QRStringData+Character.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "QRStringData+Character.swift"; sourceTree = "<group>"; };
-		F1123BFB22088E0A0082737B /* QRImageSize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRImageSize.swift; sourceTree = "<group>"; };
 		F11DE856220A6AC9007A8A7A /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		F16212FE21FB28DB005297DE /* QRExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QRExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F162130121FB28DB005297DE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -161,6 +160,7 @@
 		F1C957EA2204B02B0062B6DA /* QRMode+BitCount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "QRMode+BitCount.swift"; sourceTree = "<group>"; };
 		F1C957EB2204B02B0062B6DA /* QRMode+Assert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "QRMode+Assert.swift"; sourceTree = "<group>"; };
 		F1E94A23221CAACC0099E2C6 /* temp.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = temp.bundle; sourceTree = "<group>"; };
+		F1F10F7F221FC21800BD4805 /* QRConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRConfig.swift; sourceTree = "<group>"; };
 		F1F11F6D2203297B008BB049 /* ECLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ECLevel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -207,14 +207,6 @@
 				F1123BF922088E090082737B /* QRStringData+Character.swift */,
 			);
 			path = string;
-			sourceTree = "<group>";
-		};
-		F1123BFA22088E0A0082737B /* size */ = {
-			isa = PBXGroup;
-			children = (
-				F1123BFB22088E0A0082737B /* QRImageSize.swift */,
-			);
-			path = size;
 			sourceTree = "<group>";
 		};
 		F11DE855220A6AAF007A8A7A /* common */ = {
@@ -337,11 +329,11 @@
 		F1C957FC2204B05A0062B6DA /* util */ = {
 			isa = PBXGroup;
 			children = (
+				F1F10F7E221FC20900BD4805 /* config */,
 				F17A2A1422138024000B6C0A /* module */,
-				F1C957FE2204B0870062B6DA /* helper */,
+				F1C957FE2204B0870062B6DA /* ec */,
 				F1C957E72204B02B0062B6DA /* mode */,
 				F1C957FD2204B06E0062B6DA /* version */,
-				F1123BFA22088E0A0082737B /* size */,
 				F1123BF522088E090082737B /* string */,
 				F17A2A0C22137F6E000B6C0A /* QRStringUtil.swift */,
 				F1B4A059221D4CAC00B61CCF /* QRDataUtil.swift */,
@@ -361,12 +353,20 @@
 			path = version;
 			sourceTree = "<group>";
 		};
-		F1C957FE2204B0870062B6DA /* helper */ = {
+		F1C957FE2204B0870062B6DA /* ec */ = {
 			isa = PBXGroup;
 			children = (
 				F1F11F6D2203297B008BB049 /* ECLevel.swift */,
 			);
-			path = helper;
+			path = ec;
+			sourceTree = "<group>";
+		};
+		F1F10F7E221FC20900BD4805 /* config */ = {
+			isa = PBXGroup;
+			children = (
+				F1F10F7F221FC21800BD4805 /* QRConfig.swift */,
+			);
+			path = config;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -573,6 +573,7 @@
 				F1C957F82204B02B0062B6DA /* QRMode+Assert.swift in Sources */,
 				F1F11F6F22032A32008BB049 /* ECLevel.swift in Sources */,
 				F17A2A1122137F81000B6C0A /* QRImageUtil.swift in Sources */,
+				F1F10F81221FC58A00BD4805 /* QRConfig.swift in Sources */,
 				F1123BFE22088E0A0082737B /* QRStringData+String.swift in Sources */,
 				F198AE412217706700082D43 /* CIImage+Extension.swift in Sources */,
 				F1B4A058221D4AE900B61CCF /* String+Extension.swift in Sources */,
@@ -585,7 +586,6 @@
 				F17A2A0A22137F15000B6C0A /* ImageUtil.swift in Sources */,
 				F1123BE52208894C0082737B /* QRVersion+Type.swift in Sources */,
 				F1123BFC22088E0A0082737B /* QRStringData+MaxChar.swift in Sources */,
-				F1123C0422088E0A0082737B /* QRImageSize.swift in Sources */,
 				F17A2A0622137E08000B6C0A /* HybridOS.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -610,12 +610,12 @@
 				F1B4A057221D4AE900B61CCF /* String+Extension.swift in Sources */,
 				F1C957F32204B02B0062B6DA /* QRMode.swift in Sources */,
 				F1123C0122088E0A0082737B /* QRStringData.swift in Sources */,
+				F1F10F82221FC58A00BD4805 /* QRConfig.swift in Sources */,
 				F17A2A1222137F82000B6C0A /* QRStringUtil.swift in Sources */,
 				F1C957F12204B02B0062B6DA /* QRVersion.swift in Sources */,
 				F1123BE7220889520082737B /* QRVersion+DataTable.swift in Sources */,
 				F1123BE42208894B0082737B /* QRVersion+Type.swift in Sources */,
 				F1123BFD22088E0A0082737B /* QRStringData+MaxChar.swift in Sources */,
-				F1123C0522088E0A0082737B /* QRImageSize.swift in Sources */,
 				F17A2A0722137E0C000B6C0A /* HybridOS.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

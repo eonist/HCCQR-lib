@@ -7,6 +7,7 @@ import QRLibMac
 
 /**
  * String -> Image
+ * - TODO: ⚠️️ rename to  HCCQRDataReader and HCCQRStringReader
  */
 public class HCCQRImageUtil{
    /**

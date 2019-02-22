@@ -1,10 +1,4 @@
-//
-//  HCCQR_lib_iOS.h
-//  HCCQR-lib-iOS
-//
-//  Created by Eon on 12/02/2019.
-//  Copyright © 2019 FutureLab. All rights reserved.
-//
+ 
 
 #import <UIKit/UIKit.h>
 

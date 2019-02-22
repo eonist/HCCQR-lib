@@ -10,7 +10,8 @@ internal class ColorizeAsserter{//TODO: ⚠️️ rename to color-map-asserter
       return hasOnlyColorMap(uiImage:uiImage, colorMap: [.black,.white])
    }
    /**
-    * Asserts if an image has only the colors speccified in the colors array
+    * Asserts if an image has only the colors specified in the colors array
+    * - Abstract: ensure that img only has valid colors, akak no bluring
     * ## Example:
     * hasOnlyColorMap(these: [.red,.green,.blue,.white])
     */

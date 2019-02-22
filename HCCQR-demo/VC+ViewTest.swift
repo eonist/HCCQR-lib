@@ -244,8 +244,8 @@ extension ViewController {
     * Tests the speed of creating hccqr images
     */
    func creatingManyHCCQRImages(onComplete:@escaping (_ images:[UIImage])->Void){
-      let (qrVersion,qrMode,ecLevel):(Int,QRMode,ECLevel) = (10,.byte,.l)//settings
-      let randomData:[Data] = (0..<20).compactMap{ i in
+      let (qrVersion,qrMode,ecLevel):(Int,QRMode,ECLevel) = (10,.byte,.l)/*Config*/
+      let randomData:[Data] = (0..<10).compactMap{ i in/*Num of items to load*/
          guard let randomString:String = HCCQRStringData.randomString(qrVersion: qrVersion, qrMode: qrMode, ecLevel:ecLevel) else {Swift.print("unable to create random string");return nil}
          guard let data = randomString.data(using: .utf8) else {Swift.print("err data");return nil}
          return data
@@ -255,13 +255,11 @@ extension ViewController {
       func createHCCQRComplete(i:Int,hccqrImage:UIImage?){
          guard let hccqrImage = hccqrImage else {fatalError("unable to create hccqr image")}
          images[i] = hccqrImage
-//         let validImages = .compactMap{return $0}
-         if images.first(where: {$0 == nil}) == nil {//make sure all images finiesh
+         if images.first(where: {$0 == nil}) == nil {/*make sure all images finiesh*/
             DispatchQueue.main.async {
                let images:[UIImage] = images.compactMap{$0}
                Swift.print("Creating many HCCQR images completed: \(abs(startTime.timeIntervalSinceNow))")
                onComplete(images)
-//               Swift.print("images:  \(images)")
                let imgView = UIImageView(image:images[0])
                self.view.addSubview(imgView)
             }
@@ -273,12 +271,6 @@ extension ViewController {
             HCCQRImageUtil.getHCCQRImage(data:arg.element,moduleMultiplier:6,scale: 2,qrConfig:(qrVersion,ecLevel), onComplete: { img,_ in createHCCQRComplete(i: arg.offset,hccqrImage: img)})//
          }
       }
-      
-      
-//      DispatchQueue.main.async {
-//         let imgView = UIImageView(image:hccqrImage)
-//         self.view.addSubview(imgView)
-//      }
    }
    /**
     * Test reading many HCCQR images on background threads
@@ -296,9 +288,6 @@ extension ViewController {
                _ = payloads
                Swift.print("Reading many HCCQR completed: \(abs(startTime.timeIntervalSinceNow))")
             }
-            
-            /*ensure that img only has valid colors, akak no bluring*/
-            //         Swift.print("hasOnlyColorMap: \(ColorizeUtil.hasOnlyColorMap(uiImage:hccqrImage, colorMap: [.red,.green,.blue,.white]))")
          }
          images.enumerated().forEach{ arg in
             DispatchQueue.global(qos:.userInitiated).async {
