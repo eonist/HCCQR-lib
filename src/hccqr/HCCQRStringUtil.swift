@@ -18,8 +18,8 @@ public class HCCQRStringUtil{
          let (q1,q2):(CIImage,CIImage) = payload
          let ciImages:[CIImage] = [q1,q2]
          var dataAndFrames:[QRDataUtil.DataAndFrame?] = [QRDataUtil.DataAndFrame?](repeating: nil, count: ciImages.count)
-         func onQRCodeComplete(i:Int, dataAndFrame:QRDataUtil.DataAndFrame?){
-            guard let dataAndFrame:QRDataUtil.DataAndFrame = dataAndFrame else { onComplete((nil,  q1 ,  q2, nil),"HCCQRStringUtil.dataAndImages() - ⚠️️ qrcode1 err ⚠️️ " );return}
+         func onQRCodeComplete(i:Int, dataAndFrame:QRDataUtil.DataAndFrame?, error:Error? = nil){
+            guard let dataAndFrame:QRDataUtil.DataAndFrame = dataAndFrame else { onComplete((nil,  q1 ,  q2, nil),"HCCQRStringUtil.dataAndImages() - ⚠️️ unable to get dataAndFrame ⚠️️ \(String(describing: error?.localizedDescription))" );return}
             dataAndFrames[i] = dataAndFrame
             if dataAndFrames.first(where: {$0 == nil}) == nil {/*Makes sure all images finished*/
                let d:Data = dataAndFrames.compactMap{$0?.qrData}.reduce(Data(),+)
@@ -28,8 +28,12 @@ public class HCCQRStringUtil{
          }
          ciImages.enumerated().forEach { item in
             DispatchQueue.main.async{/*Has to be done on main thread, or else Apples.qrreader behaves bad*/
-               let dataAndFrame:QRDataUtil.DataAndFrame? = try? QRDataUtil.qrCode(ciImage: item.element)
-               onQRCodeComplete(i: item.offset, dataAndFrame: dataAndFrame)
+               do{
+                  let dataAndFrame:QRDataUtil.DataAndFrame = try QRDataUtil.qrCode(ciImage: item.element)
+                  onQRCodeComplete(i: item.offset, dataAndFrame: dataAndFrame)
+               }catch{
+                  onQRCodeComplete(i: item.offset, dataAndFrame: nil, error:error)
+               }
             }
          }
       }
