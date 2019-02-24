@@ -23,6 +23,7 @@ extension ViewController{
     * Test creating a qrimage based on (qrversion,qrmode,ecLevel)
     */
    func testCreatingQRImage(){
+      fatalError("out of order ⚠️️")
       let (qrVersion,qrMode,ecLevel):(Int,QRMode,ECLevel) = (12,.alphaNumeric,.l)//settings
       guard let stringCount:Int = QRVersion.maxChar(qrVersion:qrVersion,qrMode:qrMode,ecLevel: ecLevel) else {Swift.print("⚠️️ Unable to get stringCount ⚠️️");return}//533
       let string:String = QRStringData.randomString(chars: QRStringData.asciiCharacters, count: stringCount )
@@ -32,11 +33,11 @@ extension ViewController{
       let mode = QRMode.mode(string: string).debugDescription/*print qrMode: eigther: numeric,alphaNumeric,byte*/
       Swift.print("mode:  \(mode)")
       /*Create Image*/
-      let qrSize = QRImageSize.qrImageSize(string: string,ecLevel: ecLevel)
-      Swift.print("qrSize:  \(qrSize)")
-      guard let image:UIImage = try? QRImageUtil.qrImage(str: string, size: qrSize, ecLevel: ecLevel) else {Swift.print("unable to create UIImage");return}
-      let uiImageView:UIImageView = .init(image: image)
-      view.addSubview(uiImageView)
+//      let qrSize = QRImageSize.qrImageSize(string: string,ecLevel: ecLevel)
+//      Swift.print("qrSize:  \(qrSize)")
+//      guard let image:UIImage = try? QRImageUtil.qrImage(str: string, size: qrSize, ecLevel: ecLevel) else {Swift.print("unable to create UIImage");return}
+//      let uiImageView:UIImageView = .init(image: image)
+//      view.addSubview(uiImageView)
    }
    /**
     * Tests if you can print QRVersion number for (string,ecLevel,mode)

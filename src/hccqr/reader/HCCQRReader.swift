@@ -10,6 +10,7 @@ import QRLibMac
 public class HCCQRReader{
    /**
     * Creates data for HCCQQR image
+    * TODO: ⚠️️ Consider changing image to CGImage, as that is what is used in the end
     */
    public static func dataAndImages(image:Image, onComplete:@escaping DataAndImageComplete) {
       let onSplitComplete:(_ payload:Splitter.SplitPayload?) -> Void = { payload in
@@ -51,7 +52,7 @@ extension HCCQRReader{
       let completion:DataAndImageComplete = { dataAndImages,error in
          guard let dataAndImages = dataAndImages else {onComplete(nil,nil,error);return}
          guard let data:Data =  dataAndImages.data else { onComplete(nil,nil,"HCCQRStringUtil.dataAndFrame() - Unable to get data \(String(describing: error?.localizedDescription))");return}
-         guard let frame:CGRect =  dataAndImages.frame else {/*Swift.print("");*/onComplete(nil,nil,"HCCQRStringUtil.dataAndFrame() - Unable to get data \(String(describing: error?.localizedDescription))");return}
+         guard let frame:CGRect =  dataAndImages.frame else {onComplete(nil,nil,"HCCQRStringUtil.dataAndFrame() - Unable to get data \(String(describing: error?.localizedDescription))");return}
          onComplete(data,frame,nil)
       }
       dataAndImages(image:image, onComplete:completion)
@@ -59,7 +60,7 @@ extension HCCQRReader{
    /**
     * Creates data for HCCQQR image
     */
-   public static func data(image:Image, onComplete:@escaping OnGetDataComplete ){
+   public static func data(image:Image, onComplete:@escaping OnHCCQRDataComplete ){
       dataAndImages(image: image, onComplete: { dataAndImages,error in onComplete(dataAndImages?.data,error)})
    }
 }

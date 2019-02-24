@@ -36,6 +36,7 @@ extension AimMarkTestView{
     *
     */
    func createAlignMarkImageView(){
+      fatalError("⚠️️ out of order")
       let (qrVersion,qrMode,ecLevel):(Int,QRMode,ECLevel) = (1,.byte,.l)//settings
       guard let stringCount:Int = QRVersion.maxChar(qrVersion:qrVersion,qrMode:qrMode,ecLevel: ecLevel) else {Swift.print("⚠️️ Unable to get stringCount ⚠️️");return}//533
       let string:String = QRStringData.randomString(chars: QRStringData.byteCharacters, count: stringCount )
@@ -50,14 +51,14 @@ extension AimMarkTestView{
       /*Make sure qrVersion is correct*/
       guard qrVersion == version else {Swift.print("qrVersion does not match version");return}
       /*Create Image-size*/
-      let qrSize = QRImageSize.qrImageSize(string:string, ecLevel: ecLevel)
-      Swift.print("qrSize:  \(qrSize)")
-      /*create image*/
-      guard let image:UIImage = try? QRImageUtil.qrImage(str: string, size: .init(width:300,height:300), ecLevel: ecLevel) else {Swift.print("unable to create UIImage");return}
-      let uiImageView:UIImageView = .init(image: image)
-      self.addSubview(uiImageView)
-      /*create alignMarkView*/
-      guard let alignMarkImgView:UIImageView = AlignMarkUtil.alignMarkGraphic(qrImgSize: image.size, string: string, ecLevel: ecLevel) else {Swift.print("unable to create alignMarkImgView");return}
-      addSubview(alignMarkImgView)
+//      let qrSize = QRImageSize.qrImageSize(string:string, ecLevel: ecLevel)
+//      Swift.print("qrSize:  \(qrSize)")
+//      /*create image*/
+//      guard let image:UIImage = try? QRImageUtil.qrImage(str: string, size: .init(width:300,height:300), ecLevel: ecLevel) else {Swift.print("unable to create UIImage");return}
+//      let uiImageView:UIImageView = .init(image: image)
+//      self.addSubview(uiImageView)
+//      /*create alignMarkView*/
+//      guard let alignMarkImgView:UIImageView = AlignMarkUtil.alignMarkGraphic(qrImgSize: image.size, string: string, ecLevel: ecLevel) else {Swift.print("unable to create alignMarkImgView");return}
+//      addSubview(alignMarkImgView)
    }
 }

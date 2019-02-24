@@ -6,7 +6,7 @@ import QRLibMac
 class AppDelegate: NSObject, NSApplicationDelegate {
    @IBOutlet weak var window: NSWindow!
    func applicationDidFinishLaunching(_ aNotification: Notification) {
-      testHCCQRImage()
+//      testHCCQRImage()
 //      readingManyHCCQRImages()
 //      creatingManyHCCQRImages(onComplete:{images in Swift.print("images.count:  \(images.count)")})
 //      testFixingMemLeak()
@@ -20,6 +20,7 @@ extension AppDelegate{
     * test HCCQRImage creation
     */
    func testHCCQRImage(){
+      fatalError("⚠️️ out of order")
       let startTime:Date = Date()
       let (qrVersion,qrMode,ecLevel):(Int,QRMode,ECLevel) = (10,.byte,.l)//settings
       guard let randomString = HCCQRStringData.randomString(qrVersion: qrVersion, qrMode: qrMode, ecLevel:ecLevel) else {Swift.print("unable to create random string");return}
@@ -46,12 +47,12 @@ extension AppDelegate{
          }
          DispatchQueue.global(qos:.userInitiated).async {
             /*⭐ 2. try split the hccqrImg ⭐*/
-             HCCQRReader.data(image: hccqrImage, onComplete: hccqrDataComplete)
+//             HCCQRReader.data(image: hccqrImage, onComplete: hccqrDataComplete)
          }
       }
       DispatchQueue.global(qos:.userInitiated).async {
          /*⭐ 1. Create HCCQR from string ⭐*/
-         HCCQRWriter.image(string:randomString, moduleMultiplier:6,scale:2,qrConfig:(qrVersion,ecLevel), onComplete:hccqrImageComplete)//
+//         HCCQRWriter.image(string:randomString, moduleMultiplier:6,scale:2,qrConfig:(qrVersion,ecLevel), onComplete:hccqrImageComplete)//
       }
    }
 }
@@ -64,6 +65,7 @@ extension AppDelegate{
     * Tests the speed of creating hccqr images
     */
    func creatingManyHCCQRImages(onComplete:@escaping (_ images:[NSImage])->Void){
+      fatalError("⚠️️ out of order")
       let (qrVersion,qrMode,ecLevel):(Int,QRMode,ECLevel) = (10,.byte,.l)//settings
       let randomStrings:[String] = (0..<20).compactMap{ i in
          guard let randomString:String = HCCQRStringData.randomString(qrVersion: qrVersion, qrMode: qrMode, ecLevel:ecLevel) else {Swift.print("unable to create random string");return nil}
@@ -98,7 +100,7 @@ extension AppDelegate{
       /*Do stuff on bg thread*/
       randomStrings.enumerated().forEach { arg in
          DispatchQueue.global(qos:.userInitiated).async {
-            HCCQRWriter.image(string:arg.element,moduleMultiplier:6,scale:2, qrConfig:(qrVersion,ecLevel), onComplete: { img,error in createHCCQRComplete(i: arg.offset,hccqrImage: img)})//
+//            HCCQRWriter.image(string:arg.element,moduleMultiplier:6,scale:2, qrConfig:(qrVersion,ecLevel), onComplete: { img,error in createHCCQRComplete(i: arg.offset,hccqrImage: img)})//
          }
       }
       
@@ -111,6 +113,7 @@ extension AppDelegate{
     * Test reading many HCCQR images on background threads
     */
    func readingManyHCCQRImages(){
+      fatalError("out of order ⚠️️")
       let startTime:Date = Date()
       let createTime:Date = Date()
       let onImageCreationComplete:(_ images:[NSImage]) ->Void = { images in
@@ -141,7 +144,7 @@ extension AppDelegate{
                      readHCCQRComplete(i:arg.offset,payload:payload)
                   }
                }
-               HCCQRReader.string(uiImage: arg.element, onComplete: onComplete)//
+//               HCCQRReader.string(uiImage: arg.element, onComplete: onComplete)//
             }
          }
          
