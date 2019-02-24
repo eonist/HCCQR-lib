@@ -38,7 +38,7 @@ public class HCCQRWriter{
       let length:CGFloat = CGFloat(moduleCount + 2) /*the 2 extra are margins*/
       dataArr.enumerated().forEach { (_ offset:Int,_ element:Data) in
          DispatchQueue.global(qos:.userInitiated).async {
-            let qrImg:Image? = try? QRImageUtil.qrImage(data: element, size: .init(width:length,height:length), ecLevel: qrConfig.ecLevel)
+            let qrImg:Image? = try? QRWriter.image(data: element, size: .init(width:length,height:length), ecLevel: qrConfig.ecLevel)
             DispatchQueue.main.async{
                onCreateQrImgComplete(i:offset, qrImg: qrImg)
             }

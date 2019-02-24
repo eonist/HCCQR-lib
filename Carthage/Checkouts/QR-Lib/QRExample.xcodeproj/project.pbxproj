@@ -37,10 +37,10 @@
 		F17A2A0722137E0C000B6C0A /* HybridOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17A2A0422137DA2000B6C0A /* HybridOS.swift */; };
 		F17A2A0A22137F15000B6C0A /* ImageUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17A2A0822137E58000B6C0A /* ImageUtil.swift */; };
 		F17A2A0B22137F16000B6C0A /* ImageUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17A2A0822137E58000B6C0A /* ImageUtil.swift */; };
-		F17A2A1022137F81000B6C0A /* QRStringUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17A2A0C22137F6E000B6C0A /* QRStringUtil.swift */; };
-		F17A2A1122137F81000B6C0A /* QRImageUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17A2A0E22137F79000B6C0A /* QRImageUtil.swift */; };
-		F17A2A1222137F82000B6C0A /* QRStringUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17A2A0C22137F6E000B6C0A /* QRStringUtil.swift */; };
-		F17A2A1322137F82000B6C0A /* QRImageUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17A2A0E22137F79000B6C0A /* QRImageUtil.swift */; };
+		F17A2A1022137F81000B6C0A /* QRReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17A2A0C22137F6E000B6C0A /* QRReader.swift */; };
+		F17A2A1122137F81000B6C0A /* QRWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17A2A0E22137F79000B6C0A /* QRWriter.swift */; };
+		F17A2A1222137F82000B6C0A /* QRReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17A2A0C22137F6E000B6C0A /* QRReader.swift */; };
+		F17A2A1322137F82000B6C0A /* QRWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17A2A0E22137F79000B6C0A /* QRWriter.swift */; };
 		F17F5BA3221A32AD00383955 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17F5BA2221A32AD00383955 /* AppDelegate.swift */; };
 		F17F5BA5221A32AF00383955 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F17F5BA4221A32AF00383955 /* Assets.xcassets */; };
 		F17F5BA8221A32AF00383955 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F17F5BA6221A32AF00383955 /* MainMenu.xib */; };
@@ -52,8 +52,6 @@
 		F198AE412217706700082D43 /* CIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F198AE3D22176F6D00082D43 /* CIImage+Extension.swift */; };
 		F1B4A057221D4AE900B61CCF /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B4A055221D4AB200B61CCF /* String+Extension.swift */; };
 		F1B4A058221D4AE900B61CCF /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B4A055221D4AB200B61CCF /* String+Extension.swift */; };
-		F1B4A05A221D4CAC00B61CCF /* QRDataUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B4A059221D4CAC00B61CCF /* QRDataUtil.swift */; };
-		F1B4A05B221D4CAC00B61CCF /* QRDataUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B4A059221D4CAC00B61CCF /* QRDataUtil.swift */; };
 		F1C957EE2204B02B0062B6DA /* QRModuleUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C957E52204B02B0062B6DA /* QRModuleUtil.swift */; };
 		F1C957EF2204B02B0062B6DA /* QRModuleUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C957E52204B02B0062B6DA /* QRModuleUtil.swift */; };
 		F1C957F02204B02B0062B6DA /* QRVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C957E62204B02B0062B6DA /* QRVersion.swift */; };
@@ -66,6 +64,9 @@
 		F1C957F72204B02B0062B6DA /* QRMode+BitCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C957EA2204B02B0062B6DA /* QRMode+BitCount.swift */; };
 		F1C957F82204B02B0062B6DA /* QRMode+Assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C957EB2204B02B0062B6DA /* QRMode+Assert.swift */; };
 		F1C957F92204B02B0062B6DA /* QRMode+Assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C957EB2204B02B0062B6DA /* QRMode+Assert.swift */; };
+		F1CC69C3222280BC00334855 /* DEPRECATED.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CC69C2222280BC00334855 /* DEPRECATED.swift */; };
+		F1CC69C62222892C00334855 /* QRReader+Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CC69C4222288FF00334855 /* QRReader+Type.swift */; };
+		F1CC69C72222892D00334855 /* QRReader+Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CC69C4222288FF00334855 /* QRReader+Type.swift */; };
 		F1E94A24221CAACC0099E2C6 /* temp.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F1E94A23221CAACC0099E2C6 /* temp.bundle */; };
 		F1E94A25221CB2940099E2C6 /* temp.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F1E94A23221CAACC0099E2C6 /* temp.bundle */; };
 		F1F10F81221FC58A00BD4805 /* QRConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F10F7F221FC21800BD4805 /* QRConfig.swift */; };
@@ -141,8 +142,8 @@
 		F173F7F52208873800C446A1 /* QRVersion+Type.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QRVersion+Type.swift"; sourceTree = "<group>"; };
 		F17A2A0422137DA2000B6C0A /* HybridOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HybridOS.swift; sourceTree = "<group>"; };
 		F17A2A0822137E58000B6C0A /* ImageUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUtil.swift; sourceTree = "<group>"; };
-		F17A2A0C22137F6E000B6C0A /* QRStringUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRStringUtil.swift; sourceTree = "<group>"; };
-		F17A2A0E22137F79000B6C0A /* QRImageUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRImageUtil.swift; sourceTree = "<group>"; };
+		F17A2A0C22137F6E000B6C0A /* QRReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRReader.swift; sourceTree = "<group>"; };
+		F17A2A0E22137F79000B6C0A /* QRWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRWriter.swift; sourceTree = "<group>"; };
 		F17F5BA0221A32AD00383955 /* QR-example-mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "QR-example-mac.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F17F5BA2221A32AD00383955 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F17F5BA4221A32AF00383955 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -152,13 +153,14 @@
 		F17F5BB3221A37B800383955 /* NSImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSImage+Extension.swift"; sourceTree = "<group>"; };
 		F198AE3D22176F6D00082D43 /* CIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CIImage+Extension.swift"; sourceTree = "<group>"; };
 		F1B4A055221D4AB200B61CCF /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
-		F1B4A059221D4CAC00B61CCF /* QRDataUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRDataUtil.swift; sourceTree = "<group>"; };
 		F1C957E52204B02B0062B6DA /* QRModuleUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRModuleUtil.swift; sourceTree = "<group>"; };
 		F1C957E62204B02B0062B6DA /* QRVersion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRVersion.swift; sourceTree = "<group>"; };
 		F1C957E82204B02B0062B6DA /* QRMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRMode.swift; sourceTree = "<group>"; };
 		F1C957E92204B02B0062B6DA /* QRMode+CharSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "QRMode+CharSet.swift"; sourceTree = "<group>"; };
 		F1C957EA2204B02B0062B6DA /* QRMode+BitCount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "QRMode+BitCount.swift"; sourceTree = "<group>"; };
 		F1C957EB2204B02B0062B6DA /* QRMode+Assert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "QRMode+Assert.swift"; sourceTree = "<group>"; };
+		F1CC69C2222280BC00334855 /* DEPRECATED.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DEPRECATED.swift; sourceTree = "<group>"; };
+		F1CC69C4222288FF00334855 /* QRReader+Type.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QRReader+Type.swift"; sourceTree = "<group>"; };
 		F1E94A23221CAACC0099E2C6 /* temp.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = temp.bundle; sourceTree = "<group>"; };
 		F1F10F7F221FC21800BD4805 /* QRConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRConfig.swift; sourceTree = "<group>"; };
 		F1F11F6D2203297B008BB049 /* ECLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ECLevel.swift; sourceTree = "<group>"; };
@@ -268,6 +270,8 @@
 		F162132521FB2953005297DE /* src */ = {
 			isa = PBXGroup;
 			children = (
+				F1CC69C02222801300334855 /* reader */,
+				F1CC69C12222802000334855 /* writer */,
 				F11DE855220A6AAF007A8A7A /* common */,
 				F1C957FC2204B05A0062B6DA /* util */,
 			);
@@ -335,9 +339,6 @@
 				F1C957E72204B02B0062B6DA /* mode */,
 				F1C957FD2204B06E0062B6DA /* version */,
 				F1123BF522088E090082737B /* string */,
-				F17A2A0C22137F6E000B6C0A /* QRStringUtil.swift */,
-				F1B4A059221D4CAC00B61CCF /* QRDataUtil.swift */,
-				F17A2A0E22137F79000B6C0A /* QRImageUtil.swift */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -359,6 +360,24 @@
 				F1F11F6D2203297B008BB049 /* ECLevel.swift */,
 			);
 			path = ec;
+			sourceTree = "<group>";
+		};
+		F1CC69C02222801300334855 /* reader */ = {
+			isa = PBXGroup;
+			children = (
+				F17A2A0C22137F6E000B6C0A /* QRReader.swift */,
+				F1CC69C4222288FF00334855 /* QRReader+Type.swift */,
+				F1CC69C2222280BC00334855 /* DEPRECATED.swift */,
+			);
+			path = reader;
+			sourceTree = "<group>";
+		};
+		F1CC69C12222802000334855 /* writer */ = {
+			isa = PBXGroup;
+			children = (
+				F17A2A0E22137F79000B6C0A /* QRWriter.swift */,
+			);
+			path = writer;
 			sourceTree = "<group>";
 		};
 		F1F10F7E221FC20900BD4805 /* config */ = {
@@ -553,6 +572,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1CC69C3222280BC00334855 /* DEPRECATED.swift in Sources */,
 				F198AE3E22176F6D00082D43 /* CIImage+Extension.swift in Sources */,
 				F162130421FB28DB005297DE /* ViewController.swift in Sources */,
 				F162130221FB28DB005297DE /* AppDelegate.swift in Sources */,
@@ -572,15 +592,15 @@
 				F1C957F62204B02B0062B6DA /* QRMode+BitCount.swift in Sources */,
 				F1C957F82204B02B0062B6DA /* QRMode+Assert.swift in Sources */,
 				F1F11F6F22032A32008BB049 /* ECLevel.swift in Sources */,
-				F17A2A1122137F81000B6C0A /* QRImageUtil.swift in Sources */,
+				F17A2A1122137F81000B6C0A /* QRWriter.swift in Sources */,
 				F1F10F81221FC58A00BD4805 /* QRConfig.swift in Sources */,
 				F1123BFE22088E0A0082737B /* QRStringData+String.swift in Sources */,
 				F198AE412217706700082D43 /* CIImage+Extension.swift in Sources */,
 				F1B4A058221D4AE900B61CCF /* String+Extension.swift in Sources */,
-				F17A2A1022137F81000B6C0A /* QRStringUtil.swift in Sources */,
-				F1B4A05A221D4CAC00B61CCF /* QRDataUtil.swift in Sources */,
+				F17A2A1022137F81000B6C0A /* QRReader.swift in Sources */,
 				F1C957F22204B02B0062B6DA /* QRMode.swift in Sources */,
 				F1123C0022088E0A0082737B /* QRStringData.swift in Sources */,
+				F1CC69C62222892C00334855 /* QRReader+Type.swift in Sources */,
 				F1C957F02204B02B0062B6DA /* QRVersion.swift in Sources */,
 				F1123BE6220889510082737B /* QRVersion+DataTable.swift in Sources */,
 				F17A2A0A22137F15000B6C0A /* ImageUtil.swift in Sources */,
@@ -595,7 +615,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F198AE402217706600082D43 /* CIImage+Extension.swift in Sources */,
-				F1B4A05B221D4CAC00B61CCF /* QRDataUtil.swift in Sources */,
 				F17A2A0B22137F16000B6C0A /* ImageUtil.swift in Sources */,
 				F1123BE9220889560082737B /* QRVersion+Helper.swift in Sources */,
 				F1C957F52204B02B0062B6DA /* QRMode+CharSet.swift in Sources */,
@@ -603,15 +622,16 @@
 				F1123C0322088E0A0082737B /* QRStringData+Character.swift in Sources */,
 				F1C957EF2204B02B0062B6DA /* QRModuleUtil.swift in Sources */,
 				F1C957F72204B02B0062B6DA /* QRMode+BitCount.swift in Sources */,
+				F1CC69C72222892D00334855 /* QRReader+Type.swift in Sources */,
 				F1C957F92204B02B0062B6DA /* QRMode+Assert.swift in Sources */,
 				F1F11F7022032A33008BB049 /* ECLevel.swift in Sources */,
-				F17A2A1322137F82000B6C0A /* QRImageUtil.swift in Sources */,
+				F17A2A1322137F82000B6C0A /* QRWriter.swift in Sources */,
 				F1123BFF22088E0A0082737B /* QRStringData+String.swift in Sources */,
 				F1B4A057221D4AE900B61CCF /* String+Extension.swift in Sources */,
 				F1C957F32204B02B0062B6DA /* QRMode.swift in Sources */,
 				F1123C0122088E0A0082737B /* QRStringData.swift in Sources */,
 				F1F10F82221FC58A00BD4805 /* QRConfig.swift in Sources */,
-				F17A2A1222137F82000B6C0A /* QRStringUtil.swift in Sources */,
+				F17A2A1222137F82000B6C0A /* QRReader.swift in Sources */,
 				F1C957F12204B02B0062B6DA /* QRVersion.swift in Sources */,
 				F1123BE7220889520082737B /* QRVersion+DataTable.swift in Sources */,
 				F1123BE42208894B0082737B /* QRVersion+Type.swift in Sources */,

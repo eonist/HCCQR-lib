@@ -4,7 +4,7 @@ public extension QRMode{
    /**
     * Figures out which qr-mode the string supports
     */
-   public static func mode(string:String) -> QRMode {//TODO: ⚠️️ rename to qrMode
+   public static func mode(string:String) -> QRMode {
       if QRMode.isNumeric(string:string){
          return .numeric
       }else if QRMode.isAlphanumeric(string:string){
@@ -19,7 +19,7 @@ public extension QRMode{
  */
 extension QRMode:CustomDebugStringConvertible{
    /**
-    * debugDescription
+    * Debug description
     */
    public var debugDescription: String {
       switch (self) {

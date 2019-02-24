@@ -16,9 +16,9 @@ public class HCCQRReader{
          guard let payload:Splitter.SplitPayload = payload else {onComplete(nil,"HCCQRUtil.dataAndImages() - q1,q2 err");return}
          let (q1,q2):(CIImage,CIImage) = payload
          let ciImages:[CIImage] = [q1,q2]
-         var dataAndFrames:[QRDataUtil.DataAndFrame?] = [QRDataUtil.DataAndFrame?](repeating: nil, count: ciImages.count)
-         func onQRCodeComplete(i:Int, dataAndFrame:QRDataUtil.DataAndFrame?, error:Error?){
-            guard let dataAndFrame:QRDataUtil.DataAndFrame = dataAndFrame else { onComplete((nil,  q1 ,  q2, nil),"HCCQRStringUtil.dataAndImages() - ⚠️️ Unable to get dataAndFrame for QRIMG: \(i)⚠️️ \(String(describing: error?.localizedDescription))" );return}
+         var dataAndFrames:[QRReader.DataAndFrame?] = [QRReader.DataAndFrame?](repeating: nil, count: ciImages.count)
+         func onQRCodeComplete(i:Int, dataAndFrame:QRReader.DataAndFrame?, error:Error?){
+            guard let dataAndFrame:QRReader.DataAndFrame = dataAndFrame else { onComplete((nil,  q1 ,  q2, nil),"HCCQRStringUtil.dataAndImages() - ⚠️️ Unable to get dataAndFrame for QRIMG: \(i)⚠️️ \(String(describing: error?.localizedDescription))" );return}
             dataAndFrames[i] = dataAndFrame
             if dataAndFrames.first(where: {$0 == nil}) == nil {/*Makes sure all images finished*/
                let d:Data = dataAndFrames.compactMap{$0?.qrData}.reduce(Data(),+)
@@ -28,7 +28,7 @@ public class HCCQRReader{
          ciImages.enumerated().forEach { item in
             DispatchQueue.main.async{/*Has to be done on main thread, or else Apples.qrreader behaves bad*/
                do{
-                  let dataAndFrame:QRDataUtil.DataAndFrame = try QRDataUtil.qrCode(ciImage: item.element)
+                  let dataAndFrame:QRReader.DataAndFrame = try QRReader.dataAndFrame(ciImage: item.element)
                   onQRCodeComplete(i: item.offset, dataAndFrame: dataAndFrame, error:nil)
                }catch{
                   onQRCodeComplete(i: item.offset, dataAndFrame: nil, error:error)

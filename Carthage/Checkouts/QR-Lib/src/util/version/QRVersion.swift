@@ -26,7 +26,7 @@ public class QRVersion{
       return version(dataCount: data.count, qrMode: qrMode, ecLevel: ecLevel)
    }
    /**
-    * version for DataCount
+    * Version for DataCount
     */
    public static func version(dataCount:Int, qrMode:QRMode, ecLevel:ECLevel) -> Int?{
       let condition:(Version) -> Bool = { version in

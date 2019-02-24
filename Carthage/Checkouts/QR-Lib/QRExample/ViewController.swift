@@ -102,8 +102,8 @@ extension ViewController{
    func createQRImage(){
       Swift.print("createQRImage")
       let text:String = (0..<231).map{ _ in "a"}.reduce("",+)
-      if let image:UIImage = try? QRImageUtil.qrImage(str: text, size: .init(width:700,height:700)) {
-         if let qrCode:String = try? QRStringUtil.qrCode(image: image) {
+      if let image:UIImage = try? QRWriter.qrImage(str: text, size: .init(width:700,height:700)) {
+         if let qrCode:String = try? QRReader.qrCode(image: image) {
             Swift.print("qrCode.count:  \(qrCode.count)")//testing
          }
       }
@@ -118,7 +118,7 @@ extension ViewController{
       Swift.print("moduleCount:  \(moduleCount)")
       let side:CGFloat = CGFloat(moduleCount + 2) * 6/*+2 because margin*/
       Swift.print("side:  \(side)")
-      guard let qrImage:UIImage = try? QRImageUtil.qrImage(str: string, size: .init(width:side,height:side), ecLevel: .l) else {Swift.print("unable to create UIImage");return }
+      guard let qrImage:UIImage = try? QRWriter.qrImage(str: string, size: .init(width:side,height:side), ecLevel: .l) else {Swift.print("unable to create UIImage");return }
       Swift.print("qrImage.size:  \(qrImage.size)")
       Swift.print("qrImage.scale:  \(qrImage.scale)")
       let uiImageView:UIImageView = .init(image: qrImage)
