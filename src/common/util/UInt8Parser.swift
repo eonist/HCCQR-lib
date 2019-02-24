@@ -2,8 +2,7 @@ import Foundation
 
 internal typealias RangeUInt8 = (start:UInt8,end:UInt8)
 
-class UInt8Parser {
- 
+internal class UInt8Parser {
    /**
     * Returns a range from a number and a threshold, See example for logic
     * ## Examples:

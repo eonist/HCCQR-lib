@@ -3,7 +3,7 @@ import Foundation
 import Cocoa
 #endif
 
-extension CIImage{
+internal extension CIImage{
    /**
     * Inverts an image (black becomes white etc)
     */
@@ -17,5 +17,3 @@ extension CIImage{
       return outputImageCopy
    }
 }
-
-

@@ -12,7 +12,6 @@ internal class Compositor {
    internal static func composite(first:RGBAImage,second:RGBAImage) -> CIImage?{
       guard let composite:RGBAImage = Compositor.composite(rgbaImageList: [first,second], invert:true) else {Swift.print("unable to composite"); return nil}
       guard let img:CIImage = RGBAImage.ciImage(rgbaImage: composite  )  else {Swift.print("unable to create img");composite.deinitiate();return nil}
-//      Swift.print("Compositor.composite() - Deallocate")
       composite.deinitiate()/*to avoid mem leak*/
       return img
    }
@@ -33,23 +32,5 @@ internal class Compositor {
          return invert ? pixel.inverted() : pixel
       }
       return blackRGBAImg
-   }
-}
-/**
- * DEPRECATED
- */
-extension Compositor{
-   /**
-    * Fills an image with pixels
-    * - TODO: ⚠️️ This should return not set pixels, do it when you get around the objc pixel array problem
-    */
-   fileprivate static func fill(image:inout RGBAImage, pixels:[PixelData]){
-      (0..<Int(image.height)).forEach { y in/*loop over every y*/
-         (0..<Int(image.width)).forEach { x in/*loop over every x*/
-            let index = y * Int(image.width) + x//TODO: ⚠️️ use getPixel here
-            let pixel = pixels[index]
-            image.setPixel(idx:index, pixel: pixel)
-         }
-      }
    }
 }

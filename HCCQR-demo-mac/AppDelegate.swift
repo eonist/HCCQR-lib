@@ -1,5 +1,5 @@
 import Cocoa
-import HCCQR_lib_mac
+@testable import HCCQR_lib_mac
 import QRLibMac
 
 @NSApplicationMain
@@ -46,12 +46,12 @@ extension AppDelegate{
          }
          DispatchQueue.global(qos:.userInitiated).async {
             /*⭐ 2. try split the hccqrImg ⭐*/
-             HCCQRStringUtil.data(image: hccqrImage, onComplete: hccqrDataComplete)
+             HCCQRReader.data(image: hccqrImage, onComplete: hccqrDataComplete)
          }
       }
       DispatchQueue.global(qos:.userInitiated).async {
          /*⭐ 1. Create HCCQR from string ⭐*/
-         HCCQRImageUtil.getHCCQRImage(string:randomString, moduleMultiplier:6,scale:2,qrConfig:(qrVersion,ecLevel), onComplete:hccqrImageComplete)//
+         HCCQRWriter.image(string:randomString, moduleMultiplier:6,scale:2,qrConfig:(qrVersion,ecLevel), onComplete:hccqrImageComplete)//
       }
    }
 }
@@ -98,7 +98,7 @@ extension AppDelegate{
       /*Do stuff on bg thread*/
       randomStrings.enumerated().forEach { arg in
          DispatchQueue.global(qos:.userInitiated).async {
-            HCCQRImageUtil.getHCCQRImage(string:arg.element,moduleMultiplier:6,scale:2, qrConfig:(qrVersion,ecLevel), onComplete: { img,error in createHCCQRComplete(i: arg.offset,hccqrImage: img)})//
+            HCCQRWriter.image(string:arg.element,moduleMultiplier:6,scale:2, qrConfig:(qrVersion,ecLevel), onComplete: { img,error in createHCCQRComplete(i: arg.offset,hccqrImage: img)})//
          }
       }
       
@@ -141,7 +141,7 @@ extension AppDelegate{
                      readHCCQRComplete(i:arg.offset,payload:payload)
                   }
                }
-               HCCQRStringUtil.string(uiImage: arg.element, onComplete: onComplete)//
+               HCCQRReader.string(uiImage: arg.element, onComplete: onComplete)//
             }
          }
          

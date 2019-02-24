@@ -10,7 +10,6 @@ internal extension PixelData{
    internal static var whitePixel:PixelData { return .init(r:255,g:255,b:255,a:255) }
    private static let threshold:CGFloat = 0.40
    private static let halfThreshold:CGFloat = threshold/2
-//   static let thresholdUInt8:UInt8 =  UInt8(255*PixelData.threshold)
    internal static let halfThresholdUInt8:UInt8 =  UInt8(255*halfThreshold)
    /**
     * Asserts if a pixel is sort of red within a threshold
@@ -32,15 +31,17 @@ internal extension PixelData{
    }
    /**
     * Measure if color is white (used in the colorize method)
+    * - Note: looks funny, but it's that way to make it fast
     */
-   internal var isWhite:Bool {//was return self.r == 255 && self.g == 255 && self.b == 255
-      return !(self.r != 255 || self.g != 255 || self.b != 255)//looks funky, but its fast
+   internal var isWhite:Bool {
+      return !(self.r != 255 || self.g != 255 || self.b != 255)
    }
    /**
     * Measure if color is black (used in the colorize method)
+    * - Note: looks funny, but it's that way to make it fast
     */
-   internal var isBlack:Bool {//was return self.r == 0 && self.g == 0 && self.b == 0
-      return !(self.r != 0 || self.g != 0 || self.b != 0)//looks funky, but its fast
+   internal var isBlack:Bool {
+      return !(self.r != 0 || self.g != 0 || self.b != 0)
    }
 }
 /**

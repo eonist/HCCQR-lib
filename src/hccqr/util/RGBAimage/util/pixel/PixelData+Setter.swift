@@ -44,14 +44,12 @@ internal extension PixelData{
     * Makes pixel black
     */
    internal mutating func setBlack(){
-//      self.value = 4278190080
       self.setRGBA(r: 0, g: 0, b: 0, a:255)
    }
    /**
     * Makes pixel white
     */
    internal mutating func setWhite(){
-//      self.value = 4294967295
       self.setRGBA(r: 255, g: 255, b: 255, a:255)
    }
    /**

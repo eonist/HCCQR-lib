@@ -3,8 +3,9 @@ import UIKit
 #elseif os(macOS)
 import Cocoa
 #endif
-
-
+/**
+ * Util for PixelData
+ */
 internal class PixelDataUtil{
    /**
     * rgba for UInt8
@@ -19,11 +20,10 @@ internal class PixelDataUtil{
       guard uiColor.getRed(&fRed, green: &fGreen, blue: &fBlue, alpha: &fAlpha) else {Swift.print(" Could not extract RGBA components");return nil }
       #elseif os(macOS)
       guard let ciColor:CIColor = CIColor(color: uiColor) else {Swift.print("PixelDataUtil.rgba() - Could not convert nsColor to CIColor");return nil }
-      fRed = ciColor.red//1.0
-      fGreen = ciColor.green//0.0
-      fBlue = ciColor.blue//0.0
-      fAlpha = ciColor.alpha//1.0 /*or use nsColor.alphaComponent*/
-//      uiColor.getRed(&fRed, green: &fGreen, blue: &fBlue, alpha: &fAlpha)//nscolor doesnt return bool
+      fRed = ciColor.red/*1.0*/
+      fGreen = ciColor.green/*0.0*/
+      fBlue = ciColor.blue/*0.0*/
+      fAlpha = ciColor.alpha/*1.0 or use nsColor.alphaComponent*/
       #endif
       let iRed = UInt8(fRed * 255.0)
       let iGreen = UInt8(fGreen * 255.0)

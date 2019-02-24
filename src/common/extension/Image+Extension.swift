@@ -3,26 +3,6 @@ import Foundation
 /**
  * Modifiers
  */
-extension Image {
-   /**
-    * Inverts an image (black becomes white etc)
-    */
-//   func invertedImage() -> Image? {
-//      guard let ciImage:CIImage = self.ciImage() else {Swift.print("UIImage.invertedImage() - unable to create ciImage"); return nil}//CoreImage.CIImage(cgImage: cgImage)
-//      guard let cgImage:CGImage = ciImage.invertedImage() else {Swift.print("unable to create cgImage");return nil}
-//      return Image(cgImage: cgImage)
-//   }
-   
-   /**
-    * Creates UIImage for size and color
-    */
-//   static func createImage(size: CGSize, color:Color) -> Image {
-//      return UIGraphicsImageRenderer(size: size).image { rendererContext in
-//         color.setFill()
-//         rendererContext.fill(CGRect(origin: .zero, size: size))
-//      }
-//   }
-}
 extension Image{
    #if os(macOS)
    convenience init(cgImage:CGImage){
@@ -37,7 +17,7 @@ extension Image {
    /**
     * - Note: Somehow this works with retina images where scale is 2x as well
     * - Note: alternative: https://gist.github.com/giulio92/69e4f74217422154bb25d2a35d6710f8
-    * - TODO: ⚠️️ cgImage or cgImage doesnt always work, try to make this more consistent
+    * - TODO: ⚠️️ cgImage or cgImage doesn't always work, try to make this more consistent
     */
    func getPixelColor(pos:CGPoint) -> Color? {//TODO: ⚠️️ make this for cgImage, converting it over and oer is not good
       //⚠️️ The bellow fix could hurt performance
@@ -45,8 +25,6 @@ extension Image {
       guard let dataProvider = cgImage.dataProvider else {Swift.print("getPixelColor() - unable to get dataProvider");return nil}
       guard let pixelData:CFData = dataProvider.data else {Swift.print("getPixelColor() - unable to get cfData");return nil}
       let data:UnsafePointer<UInt8> = CFDataGetBytePtr(pixelData)
-      
-      //      Swift.print("pixelInfo:  \(pixelInfo)")
       return getPixelColor(pos: pos, data: data)
    }
    /**
@@ -87,42 +65,26 @@ extension Image{
     */
    #if os(iOS)
    func cgImage() -> CGImage? {
-   
       guard let ciImage:CIImage = self.ciImage else {Swift.print("cgImage() - unable to get ciImage");return nil}
       let context:CIContext = CIContext.init(options: nil)
       return context.createCGImage(ciImage, from: ciImage.extent)
-      
    }
-   
    #endif
    #if os(macOS)
    /**
-    * creates cgimage from nsimage
+    * Creates cgimage from nsimage
     * - Important: ⚠️️ we use autoreleasepool{} or else there will be memory leakage
     */
    func cgImage() -> CGImage? {
       return autoreleasepool {
          return self.cgImage(forProposedRect: nil, context: nil, hints: nil)
       }
-//     return self.cgImage
    }
-   
-//   var cgImage: CGImage? {
-//      
-//   }
    #endif
-   /**
-    * sometimes uiImage.ciImage just doesn't work
-    */
-//   func ciImage() -> CIImage? {
-//      guard let cgImage:CGImage = self.cgImage else {Swift.print("UIImage.ciImage() - unable to create cgimage");return nil}
-//      return CoreImage.CIImage(cgImage: cgImage)
-//   }
 }
 /**
  * Temp solution
  */
-
 extension Image{
    #if os(macOS)
    var scale:CGFloat{return 1}

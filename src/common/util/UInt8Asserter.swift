@@ -1,6 +1,6 @@
 import Foundation
 
-class UInt8Asserter{
+internal class UInt8Asserter{
    /**
     * Asserts within range (fast)
     */

@@ -1,8 +1,8 @@
 import UIKit
 /**
- *
+ * UIView extensions
  */
-extension UIView{
+internal extension UIView{
    /**
     * Creates UIImage from a view
     * - Important: ⚠️️ if you get the "invalid context 0x0" error, make sure your View has a frame. view.bounds must not be .zerp
@@ -23,7 +23,4 @@ extension UIView{
       layer.backgroundColor = color.cgColor
       return layer
    }
-   
-  
-   
 }

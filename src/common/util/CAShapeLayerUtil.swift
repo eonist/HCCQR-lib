@@ -1,6 +1,6 @@
 import UIKit
 
-class CGShapeUtil {
+internal class CGShapeUtil {
    /**
     * Draws a rectange in shapeLayer
     * ## Examples:

@@ -6,9 +6,8 @@ import QRLibMac
 #endif
 /**
  * Image -> String
- * - TODO: ⚠️️ rename to  HCCQRDataReader and HCCQRStringReader
  */
-public class HCCQRStringUtil{
+public class HCCQRReader{
    /**
     * New
     */
@@ -43,43 +42,27 @@ public class HCCQRStringUtil{
 /**
  * Convenience
  */
-extension HCCQRStringUtil{
+extension HCCQRReader{
    /**
-    * ⚠️️ New ⚠️️
+    * dataAndFrame
     * TODO: ⚠️️ group data and frame into a tesult:(frame,data) tuple
     */
    public static func dataAndFrame(image:Image, onComplete:@escaping OnGetDataAndFrameComplete){
       let completion:DataAndImageComplete = { dataAndImages,error in
          guard let dataAndImages = dataAndImages else {onComplete(nil,nil,error);return}
-         guard let data:Data =  dataAndImages.data else { onComplete(nil,nil,"HCCQRStringUtil.dataAndFrame() - Unable to get data \(error?.localizedDescription)");return}
-         guard let frame:CGRect =  dataAndImages.frame else {/*Swift.print("");*/onComplete(nil,nil,"HCCQRStringUtil.dataAndFrame() - Unable to get data \(error?.localizedDescription)");return}
+         guard let data:Data =  dataAndImages.data else { onComplete(nil,nil,"HCCQRStringUtil.dataAndFrame() - Unable to get data \(String(describing: error?.localizedDescription))");return}
+         guard let frame:CGRect =  dataAndImages.frame else {/*Swift.print("");*/onComplete(nil,nil,"HCCQRStringUtil.dataAndFrame() - Unable to get data \(String(describing: error?.localizedDescription))");return}
          onComplete(data,frame,nil)
       }
       dataAndImages(image:image, onComplete:completion)
    }
-   
 }
-/**
- * Type
- */
-public extension HCCQRStringUtil{
-   public typealias OnGetStringComplete = (String?)->Void
-   public typealias OnGetDataComplete = (Data?)->Void
-   public typealias OnGetDataAndFrameComplete = (_ data:Data?,_ frame:CGRect?, _ error:Error?)->Void
-   public typealias StringsAndImages = (string:String?,qr1:CIImage,qr2:CIImage)
-   public typealias StringAndImageComplete = (_ stringsAndImages:StringsAndImages?)->Void
-   /*Data, ⚠️️ new ⚠️️*/
-   /**
-    * The imags was returned for debuggin, can be useful for optimizing later
-    */
-   public typealias DataAndImages = (data:Data?,qr1:CIImage,qr2:CIImage,frame:CGRect?)
-   public typealias DataAndImageComplete = (_ dataAndImages:DataAndImages?, _ error:Error?)->Void
-}
+
 
 /**
  * DEPRECATE
  */
-extension HCCQRStringUtil{
+extension HCCQRReader{
    /**
     * Returns string-content of hccqr img (by splitting it into two b&w qr imgs and then getting their qrcode-string-content)
     */

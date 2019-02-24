@@ -1,6 +1,7 @@
 import Foundation
 /**
  * PixelData (holds a color for a pixel)
+ * - TODO: ⚠️️ Rename to Pixel again?
  */
 internal struct PixelData {
    internal var r: UInt8

@@ -2,7 +2,7 @@ import Foundation
 /**
  * Converts b&w layers into color layers
  */
-internal class Colorize {
+internal class Colorizer{
    /**
     * Converts multiple b&w images to color image based on the colorMap provided
     * - TODO: ⚠️️ pass cgImages istead of uiimages, it might be faster

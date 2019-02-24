@@ -22,17 +22,13 @@ internal extension Splitter {
          rgbaImages[i] = rgbaImage//it matters which order the qrImages came in when you stitch them back together
          if rgbaImages.first(where: {$0 == nil}) == nil {/*makes sure all images finished*/
             let rgbaImages:[RGBAImage] = rgbaImages.compactMap{$0}
-            //Swift.print("Time to get rgb channels: \(abs(startTime.timeIntervalSinceNow))")
             onComplete((rgbaImages[0],rgbaImages[1],rgbaImages[2]))
-//            Swift.print("Splitter.channels - Deallocate")
-            rgbaImg.deinitiate()
-//            rgbaImages.forEach{$0.pixels.deallocate()}
+            rgbaImg.deinitiate()/*to avoid memleak*/
          }
       }
       assertions.enumerated().forEach{ item in
          DispatchQueue.global(qos:.userInitiated).async {
             let rgbaImage:RGBAImage = channel(rgbaImg:rgbaImg,assert:item.element)
-            //            let qrImg:UIImage? = QRUtil.qrImage(str: arg.element, size: .init(width:length,height:length), ecLevel: ecLevel)
             DispatchQueue.main.async{
                onChannelComplete(i:item.offset,rgbaImage: rgbaImage)
             }
@@ -56,12 +52,4 @@ fileprivate extension Splitter {
       }
       return outImage
    }
-}
-/**
- * Type
- */
-extension Splitter{
-   internal typealias RGBUIImages = (r:Image,g:Image,b:Image)
-   internal typealias RGBAImages = (r:RGBAImage,g:RGBAImage,b:RGBAImage)
-   internal typealias OnOptionalChannelsComplete = (_ rgbaImages:RGBAImages?) -> Void
 }
