@@ -22,7 +22,7 @@ public class HCCQRWriter{
     * guard let data = randomString.data(using: .utf8) else {Swift.print("err data");return }
     * HCCQRImageUtil.getHCCQRImage(data:data,moduleMultiplier:6, scale:2,qrConfig:(qrVersion,ecLevel), onComplete: { img in Swift.print("img.size:  \(img?.size)")})//
     */
-   public static func getHCCQRImage(data:Data, moduleMultiplier:Int, scale:Int, qrConfig:QRConfig = (10,.l), onComplete: @escaping OnHCCQRImageComplete){
+   public static func image(data:Data, moduleMultiplier:Int, scale:Int, qrConfig:QRConfig = (10,.l), onComplete: @escaping OnHCCQRImageComplete){
       let dataArr:[Data] = data.split(index: data.count/2)/*Split the data in two*/
       var qrImgs:[Image?] = [Image?](repeating: nil, count: dataArr.count)/*Pre-filled array for the images*/
       func onCreateQrImgComplete(i:Int,qrImg:Image?){
@@ -44,18 +44,5 @@ public class HCCQRWriter{
             }
          }
       }
-   }
-}
-/**
- * Convenience
- */
-extension HCCQRWriter{
-   /**
-    * For string
-    * TODO: ⚠️️ rename to image
-    */
-   public static func image(string str:String, moduleMultiplier:Int, scale:Int, qrConfig:QRConfig = (10,.l), onComplete: @escaping OnHCCQRImageComplete)  {
-      guard let data:Data = str.data(using: .utf8) else { /*Swift.print(""); */onComplete(nil,"getHCCQRImage() - ⚠️️ data err ⚠️️ ");return}
-      getHCCQRImage(data: data, moduleMultiplier:moduleMultiplier,scale: scale,qrConfig:qrConfig, onComplete: onComplete)
    }
 }

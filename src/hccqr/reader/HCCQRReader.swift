@@ -9,7 +9,7 @@ import QRLibMac
  */
 public class HCCQRReader{
    /**
-    * New
+    * Creates data for HCCQQR image
     */
    public static func dataAndImages(image:Image, onComplete:@escaping DataAndImageComplete) {
       let onSplitComplete:(_ payload:Splitter.SplitPayload?) -> Void = { payload in
@@ -40,12 +40,12 @@ public class HCCQRReader{
    }
 }
 /**
- * Convenience
+ * Extra
  */
 extension HCCQRReader{
    /**
-    * dataAndFrame
-    * TODO: ⚠️️ group data and frame into a tesult:(frame,data) tuple
+    * Creates data for HCCQQR image, and frame
+    * TODO: ⚠️️ group data and frame into a result:(frame,data) tuple
     */
    public static func dataAndFrame(image:Image, onComplete:@escaping OnGetDataAndFrameComplete){
       let completion:DataAndImageComplete = { dataAndImages,error in
@@ -56,43 +56,10 @@ extension HCCQRReader{
       }
       dataAndImages(image:image, onComplete:completion)
    }
-}
-
-
-/**
- * DEPRECATE
- */
-extension HCCQRReader{
    /**
-    * Returns string-content of hccqr img (by splitting it into two b&w qr imgs and then getting their qrcode-string-content)
+    * Creates data for HCCQQR image
     */
-   public static func string(uiImage:Image, onComplete:@escaping OnGetStringComplete ) {
-      let completion:StringAndImageComplete = { stringsAndImages in
-         guard let string:String =  stringsAndImages?.string else {Swift.print("unable to get string");onComplete(nil);return}
-         onComplete( string )
-      }
-      stringAndImages(uiImage: uiImage, onComplete:completion )
-   }
-   /**
-    * ⚠️️ New ⚠️️
-    */
-   
-   //deprecate this probably, needs to handle errror
-   
    public static func data(image:Image, onComplete:@escaping OnGetDataComplete ){
-      dataAndFrame(image: image, onComplete: { data,_,_ in onComplete(data)})
-   }
-   /**
-    * - Note: This method is also useful for debuging
-    * - TODO: ⚠️️ try to use the qrCode(ciImage: here, might be a bit faster
-    */
-   public static func stringAndImages(uiImage:Image, onComplete:@escaping StringAndImageComplete){
-      let completion:DataAndImageComplete = { dataAndImages,error in
-         guard let dataAndImages:DataAndImages = dataAndImages else{Swift.print("no dataAndImages \(error?.localizedDescription)");onComplete(nil);return}
-         guard let string:String = dataAndImages.data?.stringUTF8 else {Swift.print("unable to convert to string \(error?.localizedDescription)");onComplete(nil);return}
-         let stringsAndImages:StringsAndImages = (string:string,qr1:dataAndImages.qr1,qr2:dataAndImages.qr2)
-         onComplete(stringsAndImages)
-      }
-      dataAndImages(image: uiImage, onComplete: completion)
+      dataAndImages(image: image, onComplete: { dataAndImages,error in onComplete(dataAndImages?.data,error)})
    }
 }
