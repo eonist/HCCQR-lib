@@ -4,35 +4,35 @@
 
 HCCQR is short for `High capacity quick response code`
 
-### iOS
+## What is it?
+HCCQR-lib enables you to store more information in a QR image. 4 color map equals double capacity. 16 color map equals 4x capacity and so on.
+
+### Creating HCCQR image
 ```swift
-let (qrVersion,qrMode,ecLevel):(Int,QRMode,ECLevel) = (10,.byte,.l)
-guard let randomString = HCCQRStringData.randomString(qrVersion: qrVersion, qrMode: qrMode, ecLevel:ecLevel)
-func createHCCQRComplete(hccqrImage:UIImage?){
-   guard let hccqrImage = hccqrImage else {Swift.print("unable to create hccqr image");return}
-   DispatchQueue.main.async {
-      let imgView = UIImageView(image:hccqrImage)
-      self.view.addSubview(imgView)
-   }
-   DispatchQueue.main.async {
-      Swift.print("Create done")
-   }
-   func readHCCQRComplete(payload:String?){
-      guard let payload:String = payload else {Swift.print("unable to get string from hccqr");return}
-      let isMatching:Bool = randomString == payload
-      DispatchQueue.main.async {
-         Swift.print("Read done")
-      }
-   }
-   DispatchQueue.global(qos:.background).async {
-      HCCQRStringUtil.string(uiImage: hccqrImage, onComplete: readHCCQRComplete)
-   }
-}
-DispatchQueue.global(qos:.background).async {
-   HCCQRImageUtil.getHCCQRImage(string:randomString,qrVersion:qrVersion,ecLevel:ecLevel, scale: 6,onComplete: createHCCQRComplete)
+/*1. Create data*/
+guard let data:Data = {
+   let (qrVersion,qrMode,ecLevel):(Int,QRMode,ECLevel) = (10,.byte,.l)//settings
+   guard let randomString:String = HCCQRStringData.randomString(qrVersion: qrVersion, qrMode: qrMode, ecLevel:ecLevel) else {Swift.print("unable to create random string");return nil}
+   return randomString.data(using: .utf8) else {Swift.print("err");return nil}
+}() else {Swift.print("unable to create data");return}
+/*2. Make hccqr image*/
+HCCQRWriter.image(data:data, moduleMultiplier:6,scale:2, qrConfig:(qrVersion,ecLevel), onComplete:hccqrImageComplete)//
+/*3. Wait for completion*/
+let hccqrImageComplete:OnHCCQRImageComplete = { hccqrImage,error in
+  guard let hccqrImage = hccqrImage else {Swift.print("unable to create hccqr image \(String(describing: error?.localizedDescription))");return}
+  let imgView = UIImageView(image:hccqrImage)
+  self.view.addSubview(imgView)
 }
 ```
-### Mac
+### Reading HCCQR image
+
 ```swift
-/*Soon*/
+/*1. Get data from hccqr image*/
+HCCQRReader.data(image: hccqrImage, onComplete: hccqrDataComplete)
+/*2. Wait for completion*/
+let hccqrDataComplete:OnHCCQRDataComplete = { payload,error in
+   guard let payload:String = payload?.stringUTF8 else {Swift.print("unable to get string from hccqr error: \(error)");return}
+   let isMatching:Bool = randomString == payload
+   Swift.print("isMatching:  \(isMatching ? "✅":"🚫")")
+}
 ```
