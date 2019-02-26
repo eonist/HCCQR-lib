@@ -26,7 +26,7 @@ public class QRVersion{
       return version(dataCount: data.count, qrMode: qrMode, ecLevel: ecLevel)
    }
    /**
-    * Version for DataCount
+    * Version for DataCount (1-40)
     */
    public static func version(dataCount:Int, qrMode:QRMode, ecLevel:ECLevel) -> Int?{
       let condition:(Version) -> Bool = { version in
@@ -37,15 +37,16 @@ public class QRVersion{
       return version + 1 /*+1 because array starts at 0 and version starts at 1*/
    }
    /**
-    * Returns max characters for qrversion,qrmode,ecLevel
+    * Returns max characters for (qrversion,qrmode,ecLevel)
     * - TODO: ⚠️️ This doesn't have to be optional, just make version into an enum and it's solved, .v1,.v2,v3 etc
     * ## Examples:
     * QRVersion.maxChar(qrVersion:12,qrMode:.alphaNumeric,ecLevel:.l)//533
+    * - Parameter: 1-40
     */
-   public static func maxChar(qrVersion:Int/*1-40*/, qrMode:QRMode, ecLevel:ECLevel) -> Int?{
-      guard qrVersion > 0 && qrVersion < QRVersion.versions.count else {Swift.print("qrVersion must be 1 - 40");return nil}
+   public static func maxChar(qrVersion:Int, qrMode:QRMode, ecLevel:ECLevel) -> Int?{
+      guard qrVersion > 0 && qrVersion <= QRVersion.versions.count else {Swift.print("qrVersion must be 1 - 40");return nil}
       let version:QRVersion.Version = QRVersion.versions[qrVersion-1]
       let characterCount:Int = dataCount(version: version, qrMode: qrMode, ecLevel: ecLevel)
-      return characterCount
+      return characterCount - (qrVersion < 10 ? 1 : 0) /* ⚠️️⚠️️⚠️️ Unfortunatly there is a bug in apples QR creation code, but by substracting 1 v1-10 works, still some fail at higher versions, but i think that is due to something else ⚠️️⚠️️⚠️️*/
    }
 }

@@ -1,10 +1,11 @@
 import Foundation
 
-public class QRModuleUtil{//TODO: ⚠️️ rename to QRModuleUtil
+public class QRModuleUtil{
    /**
     * Calculates number of modules in a QRCode (in one length)
     * - Description: modules are the same as squares in the qr-code (x/y-axis)
     * - Parameter version: 1-40
+    * - Note: remember to add 2 for margins if you want a width or height
     * ## Examples:
     * Swift.print("\(QRInfoUtil.moduleCount(version: 1))")//21
     * Swift.print("\(QRInfoUtil.moduleCount(version: 2))")//25
@@ -13,6 +14,14 @@ public class QRModuleUtil{//TODO: ⚠️️ rename to QRModuleUtil
     */
    public static func moduleCount(version:Int) -> Int{
       return (((version-1)*4)+21)
+   }
+   /**
+    * Returns the side of a qr (aka width or height)
+    */
+   public static func qrSize(version:Int, moduleMultiplier:Int) -> Int{
+      let moduleCount:Int = QRModuleUtil.moduleCount(version:version)
+      let size:Int = (moduleCount + 2) * moduleMultiplier
+      return size
    }
    /**
     * Returns moduleCount for dataCount and ecLevel (⚠️️ New ⚠️️)

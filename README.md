@@ -1,38 +1,50 @@
-# HCCQR-lib
+![Language](https://img.shields.io/badge/language-Swift-orange.svg)
+![MIT License](https://img.shields.io/github/license/magic-beam/Beam-macOS.svg)
+![CI](https://img.shields.io/badge/build-passing-brightgreen.svg)
 
-<img width="320" alt="img" src="https://rawgit.com/stylekit/img/master/magic-beam-logo.svg">
+# HCCQR-lib
 
 HCCQR is short for `High capacity quick response code`
 
-### iOS
+### What is it?
+- HCCQR-lib enables you to store more information in a QR image.
+- 4 color map equals double capacity. 16 color map equals 4x capacity and so on.
+- HCCQR-lib is used by [macOS](https://github.com/magic-beam/Beam-macOS) and [iOS](https://github.com/magic-beam/Beam-iOS) apps for [beams](https://github.com/eonist/swap/wiki/SQR-protocol).
+
+### How does it work
+- In order to avoid code duplication between apps, we store the core Beam code in this repo. Mostly related to how QR frames are created and parsed.
+- Apple apps should compile from source, either through Carthage, SPM, or Git submodules into `.framework`, so that compile times are fast and swifty.
+
+### How to get it
+- Carthage: `github "magic-beam/HCCQR-lib" "master"`
+
+
+### Creating HCCQR image
 ```swift
-let (qrVersion,qrMode,ecLevel):(Int,QRMode,ECLevel) = (10,.byte,.l)
-guard let randomString = HCCQRStringData.randomString(qrVersion: qrVersion, qrMode: qrMode, ecLevel:ecLevel)
-func createHCCQRComplete(hccqrImage:UIImage?){
-   guard let hccqrImage = hccqrImage else {Swift.print("unable to create hccqr image");return}
-   DispatchQueue.main.async {
-      let imgView = UIImageView(image:hccqrImage)
-      self.view.addSubview(imgView)
-   }
-   DispatchQueue.main.async {
-      Swift.print("Create done")
-   }
-   func readHCCQRComplete(payload:String?){
-      guard let payload:String = payload else {Swift.print("unable to get string from hccqr");return}
-      let isMatching:Bool = randomString == payload
-      DispatchQueue.main.async {
-         Swift.print("Read done")
-      }
-   }
-   DispatchQueue.global(qos:.background).async {
-      HCCQRStringUtil.string(uiImage: hccqrImage, onComplete: readHCCQRComplete)
-   }
-}
-DispatchQueue.global(qos:.background).async {
-   HCCQRImageUtil.getHCCQRImage(string:randomString,qrVersion:qrVersion,ecLevel:ecLevel, scale: 6,onComplete: createHCCQRComplete)
+/*1. Create data*/
+guard let data:Data = {
+   let (qrVersion,qrMode,ecLevel):(Int,QRMode,ECLevel) = (10,.byte,.l)//settings
+   guard let randomString:String = HCCQRStringData.randomString(qrVersion: qrVersion, qrMode: qrMode, ecLevel:ecLevel) else {Swift.print("unable to create random string");return nil}
+   return randomString.data(using: .utf8) else {Swift.print("err");return nil}
+}() else {Swift.print("unable to create data");return}
+/*2. Make hccqr image*/
+HCCQRWriter.image(data:data, moduleMultiplier:6,scale:2, qrConfig:(qrVersion,ecLevel), onComplete:hccqrImageComplete)//
+/*3. Wait for completion*/
+let hccqrImageComplete:OnHCCQRImageComplete = { hccqrImage,error in
+  guard let hccqrImage = hccqrImage else {Swift.print("unable to create hccqr image \(String(describing: error?.localizedDescription))");return}
+  let imgView = UIImageView(image:hccqrImage)
+  self.view.addSubview(imgView)
 }
 ```
-### Mac
+### Reading HCCQR image
+
 ```swift
-/*Soon*/
+/*1. Get data from hccqr image*/
+HCCQRReader.data(image: hccqrImage, onComplete: hccqrDataComplete)
+/*2. Wait for completion*/
+let hccqrDataComplete:OnHCCQRDataComplete = { payload,error in
+   guard let payload:String = payload?.stringUTF8 else {Swift.print("unable to get string from hccqr error: \(error)");return}
+   let isMatching:Bool = randomString == payload
+   Swift.print("isMatching:  \(isMatching ? "✅":"🚫")")
+}
 ```

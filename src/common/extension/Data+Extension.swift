@@ -13,20 +13,20 @@ internal extension Data{
       //      return [UInt8](partialArray)
    }
    /**
-    * New
+    * Splits data at index
     */
    func split(index:Int) -> [Data] {
       let data:(Data,Data) = self.split(index: index)
       return [data.0,data.1]
    }
    /**
-    * New
+    *  Splits data at index
     */
    func split(index:Int) -> (Data,Data) {
-      let array:[UInt8] = [UInt8](self)
-      let partialArray1 = array[0..<index]
-      let partialArray2 = array[index..<self.count]
-      return (Data.init(bytes:partialArray1),Data.init(bytes:partialArray2))
+      let arr:[UInt8] = [UInt8](self)
+      let a = arr[0..<index]
+      let b = arr[index..<self.count]
+      return (Data.init(bytes:a),Data.init(bytes:b))
    }
    /**
     * Returns string for Data (ascii)

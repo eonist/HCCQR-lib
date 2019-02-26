@@ -39,15 +39,7 @@ extension ViewController{
 //      let uiImageView:UIImageView = .init(image: image)
 //      view.addSubview(uiImageView)
    }
-   /**
-    * Tests if you can print QRVersion number for (string,ecLevel,mode)
-    */
-   func testQRVersions(){
-      let versionA:Int? = QRVersion.version(string:QRStringData.randomString(chars: QRStringData.byteCharacters, count: 16),ecLevel:.l)
-      let versionB:Int? = QRVersion.version(string:QRStringData.randomString(chars: QRStringData.asciiCharacters, count: 533),ecLevel:.l)
-      Swift.print("versionA:  \(String(describing: versionA))")//1
-      Swift.print("versionB:  \(String(describing: versionB))")//12
-   }
+
    /**
     * Test string -> moduleCount
     */

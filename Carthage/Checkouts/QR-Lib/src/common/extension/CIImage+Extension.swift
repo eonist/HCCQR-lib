@@ -11,12 +11,35 @@ public extension CIImage{
     * Returns raw data from a qr
     */
    func qrData() throws -> Data {
-      guard let feature:CIQRCodeFeature = try? self.qrCodeFeature() else  { throw ("QRLib.CIImage.qrData - Unable to get CIQRCodeFeature") }
-      guard let data:Data = try? feature.data() else {throw ("qrData - err") }//errorCorrectedPayload
-      return data
+      do {
+         let feature:CIQRCodeFeature = try self.qrCodeFeature()
+         return try feature.data()
+      }catch{
+         throw ("QRLib.CIImage.qrData - \(error.localizedDescription)")
+      }
    }
-//   static var device:MTLDevice?
-//   public static var detector:CIDetector?
+   /**
+    * symbolVersion
+    */
+   func symbolVersion() throws -> Int{
+      do {
+         let feature:CIQRCodeFeature = try self.qrCodeFeature()
+         return try feature.symbolVersion()
+      }catch{
+         throw ("QRLib.CIImage.symbolVersion - \(error.localizedDescription)")
+      }
+   }
+   /**
+    * ecLevel
+    */
+   func ecLevel() throws -> CIQRCodeDescriptor.ErrorCorrectionLevel{
+      do {
+         let feature:CIQRCodeFeature = try self.qrCodeFeature()
+         return try feature.ecLevel()
+      }catch{
+         throw ("QRLib.CIImage.ecLevel - \(error.localizedDescription)")
+      }
+   }
    /**
     * qrCodeFeature
     * - Caution: ⚠️️ you can only spin up 60 or so detectors before things fall apart. Make sure this is called on the main thread. Or do more tests, CIDetector can work as a singlton for instance
@@ -36,10 +59,34 @@ public extension CIImage{
 extension CIQRCodeFeature{
    /**
     * Returns raw data from a qr
+    * - Reference: https://stackoverflow.com/questions/44683242/vision-framework-barcode-detection-for-ios-11
+    * - Important: ⚠️️ qr version 9 has problems with storing raw byte data.
+    * - TODO: ⚠️️ try to figure out why qrv9 has problems
     */
-   func data() throws -> Data {//TODO: ⚠️️ revert to optional, throw only if there is sub throws or more than one type of nil,or not, description msg is nice
-      guard let data:Data = self.symbolDescriptor?.data else { throw ("QRLib.CIQRCodeFeature.data - Unable to get symbolDescriptor or data from qrcode feature.symbolDescriptor?.symbolVersion\(String(describing: self.symbolDescriptor?.symbolVersion)) self.symbolDescriptor?.errorCorrectionLevel:\(String(describing: self.symbolDescriptor?.errorCorrectionLevel))") }
-      return data
+   func data() throws -> Data {
+      guard let symbolDescriptor:CIQRCodeDescriptor = self.symbolDescriptor else { throw ("QRLib.CIQRCodeFeature.data - Unable to get symbolDescriptor or data from qrcode feature.symbolDescriptor?.symbolVersion\(String(describing: self.symbolDescriptor?.symbolVersion)) self.symbolDescriptor?.errorCorrectionLevel:\(String(describing: self.symbolDescriptor?.errorCorrectionLevel))") }
+      if symbolDescriptor.symbolVersion >= 10 {
+          return symbolDescriptor.data
+      }else if symbolDescriptor.symbolVersion < 9{
+         guard let data = symbolDescriptor.bytes else {throw "QRLib.CIQRCodeFeature.data - Unable to get bytes"}
+         return data
+      }else {
+         throw "QRLib.CIQRCodeFeature.data symbolDescriptor.symbolVersion\(symbolDescriptor.symbolVersion) not supported"
+      }
+   }
+   /**
+    * symbolVersion
+    */
+   func symbolVersion() throws -> Int{
+      guard let symbolDescriptor:CIQRCodeDescriptor = self.symbolDescriptor else { throw ("QRLib.CIQRCodeFeature.data - Unable to get symbolDescriptor or data from qrcode feature.symbolDescriptor?.symbolVersion\(String(describing: self.symbolDescriptor?.symbolVersion)) self.symbolDescriptor?.errorCorrectionLevel:\(String(describing: self.symbolDescriptor?.errorCorrectionLevel))") }
+      return symbolDescriptor.symbolVersion
+   }
+   /**
+    * ecLevel
+    */
+   func ecLevel() throws -> CIQRCodeDescriptor.ErrorCorrectionLevel{
+      guard let symbolDescriptor:CIQRCodeDescriptor = self.symbolDescriptor else { throw ("QRLib.CIQRCodeFeature.data - Unable to get symbolDescriptor or data from qrcode feature.symbolDescriptor?.symbolVersion\(String(describing: self.symbolDescriptor?.symbolVersion)) self.symbolDescriptor?.errorCorrectionLevel:\(String(describing: self.symbolDescriptor?.errorCorrectionLevel))") }
+      return symbolDescriptor.errorCorrectionLevel
    }
 }
 /**
@@ -48,6 +95,7 @@ extension CIQRCodeFeature{
 extension CIQRCodeDescriptor {
    /**
     * Returns raw data from a qr
+    * - Reference: https://stackoverflow.com/questions/44683242/vision-framework-barcode-detection-for-ios-11
     */
    var data: Data {
       let errorCorrectedPayload:Data = self.errorCorrectedPayload
@@ -55,5 +103,32 @@ extension CIQRCodeDescriptor {
          return byte1 << 4 | byte2 >> 4
       })
       return data
+   }
+}
+extension CIQRCodeDescriptor {
+   /**
+    * TODO: ⚠️️ Clean this up a bit
+    */
+   var bytes: Data? {
+      return errorCorrectedPayload.withUnsafeBytes { (pointer: UnsafePointer<UInt8>) in
+         var cursor = pointer
+         let representation = (cursor.pointee >> 4) & 0x0f
+         guard representation == 4 /* byte encoding */ else { return nil }
+         var count = (cursor.pointee << 4) & 0xf0
+         cursor = cursor.successor()
+         count |= (cursor.pointee >> 4) & 0x0f
+         var out = Data(count: Int(count))
+         guard count > 0 else { return out }
+         var prev = (cursor.pointee << 4) & 0xf0
+         for i in 2...errorCorrectedPayload.count {
+            if (i - 2) == count { break }
+            let cursor = pointer.advanced(by: Int(i))
+            let byte = cursor.pointee
+            let current = prev | ((byte >> 4) & 0x0f)
+            out[i - 2] = current
+            prev = (cursor.pointee << 4) & 0xf0
+         }
+         return out
+      }
    }
 }

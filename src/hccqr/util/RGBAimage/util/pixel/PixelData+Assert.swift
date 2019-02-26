@@ -8,7 +8,10 @@ internal extension PixelData{
    internal static let bluePixel:PixelData = .init(r:0,g:0,b:255,a:255)
    internal static var blackPixel:PixelData { return .init(r:0,g:0,b:0,a:255) }
    internal static var whitePixel:PixelData { return .init(r:255,g:255,b:255,a:255) }
-   private static let threshold:CGFloat = 0.40
+   /**
+    * Percentage of color (0.2 means can be 20% of some color)
+    */
+   private static let threshold:CGFloat = 0.60
    private static let halfThreshold:CGFloat = threshold/2
    internal static let halfThresholdUInt8:UInt8 =  UInt8(255*halfThreshold)
    /**
