@@ -21,6 +21,7 @@ public class HCCQRWriter{
     * guard let randomString:String = HCCQRStringData.randomString(qrVersion: qrVersion, qrMode: qrMode, ecLevel:ecLevel) else {Swift.print("unable to create random string");return }
     * guard let data = randomString.data(using: .utf8) else {Swift.print("err data");return }
     * HCCQRImageUtil.getHCCQRImage(data:data,moduleMultiplier:6, scale:2,qrConfig:(qrVersion,ecLevel), onComplete: { img in Swift.print("img.size:  \(img?.size)")})//
+    * - TODO: ⚠️️ we dont need qrConfig anymore, we can use ecLvel alone
     */
    public static func image(data:Data, moduleMultiplier:Int, scale:Int, qrConfig:QRConfig = (10,.l), onComplete: @escaping OnHCCQRImageComplete){
       let dataArr:[Data] = data.split(index: data.count/2)/*Split the data in two*/
@@ -39,8 +40,8 @@ public class HCCQRWriter{
             onComplete(hccqrImage,nil)
          }
       }
-      let moduleCount:Int = QRModuleUtil.moduleCount(version: qrConfig.qrVersion)
-      Swift.print("moduleCount:  \(moduleCount)")
+//      let moduleCount:Int = QRModuleUtil.moduleCount(version: qrConfig.qrVersion)
+//      Swift.print("moduleCount:  \(moduleCount)")
 //      let length:CGFloat = CGFloat(moduleCount + 2) /*the 2 extra are margins*/
       dataArr.enumerated().forEach { (_ offset:Int,_ element:Data) in
          DispatchQueue.global(qos:.userInitiated).async {
