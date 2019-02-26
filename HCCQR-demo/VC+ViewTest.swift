@@ -397,13 +397,10 @@ extension ViewController {
    func testReadingHCCQRPhoto(){
       Swift.print("testReadingHCCQRImage")
       let startTime:Date = Date()
-      let path = Bundle.main.resourcePath!+"/temp.bundle/HCCQR16.png"//HCCQR12.png,HCCQR13.jpg
+      let path = Bundle.main.resourcePath!+"/temp.bundle/HCCQR17.jpg"//HCCQR12.png,HCCQR13.jpg
       guard let uiImage:UIImage = UIImage.init(contentsOfFile: path) else {Swift.print("err getting img");return}
       Swift.print("uiImage.size:  \(uiImage.size)")
 
-      
-//      guard let croppedImage:UIImage  = uiImage.cropImageToCenterSquare() else {Swift.print("err");return}
-//      Swift.print("croppedImage.size:  \(croppedImage.size)")
       let onComplete:(_ dataAndImages:HCCQRReader.DataAndImages?, _ error:Error?) -> Void = { dataAndImages,error in
          Swift.print("onComplete")
          guard let dataAndImages = dataAndImages else {Swift.print("err getting string from hccqr img \(error?.localizedDescription)");return}

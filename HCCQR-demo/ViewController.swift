@@ -20,8 +20,8 @@ class ViewController: UIViewController {
       
 //     testModuleCount()
 //     testScalingRGBAImage()//⭐
-      testHCCQRImage()//⭐
-//      testReadingHCCQRPhoto()//⭐
+//      testHCCQRImage()//⭐
+      testReadingHCCQRPhoto()//⭐
 //      testColorAssertionWithinThresholdForPixel()
 
 //      creatingManyHCCQRImages(onComplete: { images in Swift.print("all created 🎉 - images.count \(images.count) 🎉")})//⭐

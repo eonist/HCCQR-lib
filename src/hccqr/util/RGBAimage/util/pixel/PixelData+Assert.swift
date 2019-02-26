@@ -11,7 +11,7 @@ internal extension PixelData{
    /**
     * Percentage of color (0.2 means can be 20% of some color)
     */
-   private static let threshold:CGFloat = 0.40
+   private static let threshold:CGFloat = 0.60
    private static let halfThreshold:CGFloat = threshold/2
    internal static let halfThresholdUInt8:UInt8 =  UInt8(255*halfThreshold)
    /**
