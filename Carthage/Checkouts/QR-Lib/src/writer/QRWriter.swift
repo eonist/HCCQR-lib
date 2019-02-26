@@ -37,6 +37,7 @@ extension QRWriter{
    /**
     * Data -> CIImage
     * - Important: Apple docs says to use String.Encoding.isoLatin1 when making the data
+    * - Reference: https://developer.apple.com/library/archive/documentation/GraphicsImaging/Reference/CoreImageFilterReference/index.html#//apple_ref/doc/filter/ci/CIQRCodeGenerator
     */
    public static func ciImage(data:Data, ecLevel:ECLevel, moduleMultiplier:Int? = nil) throws -> CIImage {
       guard let filter:CIFilter = CIFilter(name: "CIQRCodeGenerator") else {throw ("QRLib.QRUtil.ciImage() - Unable to create filter")  }
