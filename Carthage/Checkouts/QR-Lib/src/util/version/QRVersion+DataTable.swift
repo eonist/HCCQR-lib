@@ -17,6 +17,7 @@ internal extension QRVersion{
 }
 /**
  * DataTable
+ * - TODO: ⚠️️ v 7,8,0 for byte .l seems to have problems (figure it out)
  */
 private extension QRVersion{
    private static let v1:Version = (numeric:(l:41,m:34,q:27,h:17), alphaNumeric:(l:25,m:20,q:16,h:10), byte:(l:17,m:14,q:11,h:7))

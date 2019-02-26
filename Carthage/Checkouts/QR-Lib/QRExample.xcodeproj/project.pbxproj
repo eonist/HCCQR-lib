@@ -47,6 +47,9 @@
 		F17F5BAE221A330300383955 /* QRLibMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F162133221FB2ABB005297DE /* QRLibMac.framework */; };
 		F17F5BAF221A330300383955 /* QRLibMac.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F162133221FB2ABB005297DE /* QRLibMac.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F17F5BB4221A37B800383955 /* NSImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17F5BB3221A37B800383955 /* NSImage+Extension.swift */; };
+		F194B9752223F3F4001C5DBB /* DEPRECATED.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CC69C2222280BC00334855 /* DEPRECATED.swift */; };
+		F194B9762223F3F5001C5DBB /* DEPRECATED.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CC69C2222280BC00334855 /* DEPRECATED.swift */; };
+		F194B97822240799001C5DBB /* Data+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F194B97722240799001C5DBB /* Data+Extension.swift */; };
 		F198AE3E22176F6D00082D43 /* CIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F198AE3D22176F6D00082D43 /* CIImage+Extension.swift */; };
 		F198AE402217706600082D43 /* CIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F198AE3D22176F6D00082D43 /* CIImage+Extension.swift */; };
 		F198AE412217706700082D43 /* CIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F198AE3D22176F6D00082D43 /* CIImage+Extension.swift */; };
@@ -64,7 +67,6 @@
 		F1C957F72204B02B0062B6DA /* QRMode+BitCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C957EA2204B02B0062B6DA /* QRMode+BitCount.swift */; };
 		F1C957F82204B02B0062B6DA /* QRMode+Assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C957EB2204B02B0062B6DA /* QRMode+Assert.swift */; };
 		F1C957F92204B02B0062B6DA /* QRMode+Assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C957EB2204B02B0062B6DA /* QRMode+Assert.swift */; };
-		F1CC69C3222280BC00334855 /* DEPRECATED.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CC69C2222280BC00334855 /* DEPRECATED.swift */; };
 		F1CC69C62222892C00334855 /* QRReader+Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CC69C4222288FF00334855 /* QRReader+Type.swift */; };
 		F1CC69C72222892D00334855 /* QRReader+Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CC69C4222288FF00334855 /* QRReader+Type.swift */; };
 		F1E94A24221CAACC0099E2C6 /* temp.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F1E94A23221CAACC0099E2C6 /* temp.bundle */; };
@@ -151,6 +153,7 @@
 		F17F5BA9221A32AF00383955 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F17F5BAA221A32AF00383955 /* QR_example_mac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = QR_example_mac.entitlements; sourceTree = "<group>"; };
 		F17F5BB3221A37B800383955 /* NSImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSImage+Extension.swift"; sourceTree = "<group>"; };
+		F194B97722240799001C5DBB /* Data+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Extension.swift"; sourceTree = "<group>"; };
 		F198AE3D22176F6D00082D43 /* CIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CIImage+Extension.swift"; sourceTree = "<group>"; };
 		F1B4A055221D4AB200B61CCF /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		F1C957E52204B02B0062B6DA /* QRModuleUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRModuleUtil.swift; sourceTree = "<group>"; };
@@ -250,6 +253,7 @@
 			children = (
 				F162130121FB28DB005297DE /* AppDelegate.swift */,
 				F162130321FB28DB005297DE /* ViewController.swift */,
+				F194B97722240799001C5DBB /* Data+Extension.swift */,
 				F162130521FB28DB005297DE /* Main.storyboard */,
 				F162130821FB28DC005297DE /* Assets.xcassets */,
 				F162130A21FB28DC005297DE /* LaunchScreen.storyboard */,
@@ -299,13 +303,21 @@
 			isa = PBXGroup;
 			children = (
 				F17F5BA2221A32AD00383955 /* AppDelegate.swift */,
-				F17F5BB3221A37B800383955 /* NSImage+Extension.swift */,
+				F194B9742223EF12001C5DBB /* common */,
 				F17F5BA4221A32AF00383955 /* Assets.xcassets */,
 				F17F5BA6221A32AF00383955 /* MainMenu.xib */,
 				F17F5BA9221A32AF00383955 /* Info.plist */,
 				F17F5BAA221A32AF00383955 /* QR_example_mac.entitlements */,
 			);
 			path = "QR-example-mac";
+			sourceTree = "<group>";
+		};
+		F194B9742223EF12001C5DBB /* common */ = {
+			isa = PBXGroup;
+			children = (
+				F17F5BB3221A37B800383955 /* NSImage+Extension.swift */,
+			);
+			path = common;
 			sourceTree = "<group>";
 		};
 		F198AE3F22176F7D00082D43 /* extension */ = {
@@ -572,8 +584,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F1CC69C3222280BC00334855 /* DEPRECATED.swift in Sources */,
 				F198AE3E22176F6D00082D43 /* CIImage+Extension.swift in Sources */,
+				F194B97822240799001C5DBB /* Data+Extension.swift in Sources */,
 				F162130421FB28DB005297DE /* ViewController.swift in Sources */,
 				F162130221FB28DB005297DE /* AppDelegate.swift in Sources */,
 			);
@@ -597,6 +609,7 @@
 				F1123BFE22088E0A0082737B /* QRStringData+String.swift in Sources */,
 				F198AE412217706700082D43 /* CIImage+Extension.swift in Sources */,
 				F1B4A058221D4AE900B61CCF /* String+Extension.swift in Sources */,
+				F194B9752223F3F4001C5DBB /* DEPRECATED.swift in Sources */,
 				F17A2A1022137F81000B6C0A /* QRReader.swift in Sources */,
 				F1C957F22204B02B0062B6DA /* QRMode.swift in Sources */,
 				F1123C0022088E0A0082737B /* QRStringData.swift in Sources */,
@@ -634,6 +647,7 @@
 				F17A2A1222137F82000B6C0A /* QRReader.swift in Sources */,
 				F1C957F12204B02B0062B6DA /* QRVersion.swift in Sources */,
 				F1123BE7220889520082737B /* QRVersion+DataTable.swift in Sources */,
+				F194B9762223F3F5001C5DBB /* DEPRECATED.swift in Sources */,
 				F1123BE42208894B0082737B /* QRVersion+Type.swift in Sources */,
 				F1123BFD22088E0A0082737B /* QRStringData+MaxChar.swift in Sources */,
 				F17A2A0722137E0C000B6C0A /* HybridOS.swift in Sources */,

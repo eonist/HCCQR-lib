@@ -5,11 +5,11 @@ import Foundation
  */
 internal extension RGBAImage{
    /**
-    * Converts rgbaImage to uiimage
+    * Converts rgbaImage to uiimage / nsimage
     */
    internal static func image(rgbaImage:RGBAImage, scale:CGFloat) -> Image? {
-      guard let cgImage = cgImage(rgbaImage: rgbaImage/*, resultScale: resultScale*/) else {Swift.print("unable to create cgImage");return nil}
-      let image:Image = ImageUtil.image(cgImage: cgImage, scale: scale)
+      guard let cgImage:CGImage = cgImage(rgbaImage: rgbaImage ) else {Swift.print("unable to create cgImage");return nil}
+      let image:Image = ImageUtil.image(cgImage: cgImage, scale: scale)/*Convert CGImage to UIImage*/
       return image
    }
    /**

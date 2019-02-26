@@ -1,6 +1,6 @@
 import Foundation
 
-public class QRModuleUtil{//TODO: ⚠️️ rename to QRModuleUtil
+public class QRModuleUtil{
    /**
     * Calculates number of modules in a QRCode (in one length)
     * - Description: modules are the same as squares in the qr-code (x/y-axis)

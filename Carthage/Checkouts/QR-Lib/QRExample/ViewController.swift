@@ -5,15 +5,17 @@ class ViewController: UIViewController {
    override func viewDidLoad() {
       super.viewDidLoad()
      Swift.print("hello world")
-      
+//      testQRVersions()
 //      createQRImageView()
+//      createQRImageFromData()
 //      convertQRVersionTable()
 //      testQRVersion()
 //       createQRImage()
+      testQRVersionTable()
       //      if let qrCode:String = QRStringUtil.qrCode(image: uiImage) {
       //         Swift.print("qrCode.count:  \(qrCode.count)")//testing
       //      }
-      readMultiplePhotos()
+//      readMultiplePhotos()
      
    }
    override var prefersStatusBarHidden:Bool {return true}/*hides statusbar*/
@@ -22,6 +24,15 @@ class ViewController: UIViewController {
  * Tests
  */
 extension ViewController{
+   /**
+    * Tests if you can print QRVersion number for (string,ecLevel,mode)
+    */
+   func testQRVersions(){
+      let versionA:Int? = QRVersion.version(string:QRStringData.randomString(chars: QRStringData.byteCharacters, count: 16),ecLevel:.l)
+      let versionB:Int? = QRVersion.version(string:QRStringData.randomString(chars: QRStringData.asciiCharacters, count: 533),ecLevel:.l)
+      Swift.print("versionA:  \(String(describing: versionA))")//1
+      Swift.print("versionB:  \(String(describing: versionB))")//12
+   }
    /**
     * Read multiple qr codes from photos
     */
@@ -68,8 +79,8 @@ extension ViewController{
 //         guard let string:String = String(data: data, encoding: .utf8) else {Swift.print("unable to get string");return}
 //         _ = string
          DispatchQueue.main.async {
-            guard let data:Data = try? QRDataUtil.qrCode(ciImage: ciImage/*,ciDetector:CIImage.detector*/) else {Swift.print("unable to get data");return}
-            Swift.print("data.count:  \(data.count)")
+//            guard let data:Data = try? QRReader.qrCode(ciImage: ciImage/*,ciDetector:CIImage.detector*/) else {Swift.print("unable to get data");return}
+//            Swift.print("data.count:  \(data.count)")
             //Swift.print("Match: \(string == ranStr ? "✅" : "🚫" )")
             onComplete()
          }
@@ -95,7 +106,33 @@ extension ViewController{
       let b = QRVersion.version(string:QRStringData.randomString(chars: QRStringData.asciiCharacters, count: 535),ecLevel:.l)//12
       Swift.print("b:  \(String(describing: b))")//12
    }
-   
+   /**
+    *
+    */
+   func testQRVersionTable(){
+      
+      (1...40).forEach{ qrVersion in
+//         let qrVersion = 30
+         guard let stringCount:Int = QRVersion.maxChar(qrVersion:qrVersion, qrMode:.byte, ecLevel:.l) else {Swift.print("⚠️️ Unable to get stringCount ⚠️️");return }//532
+         let randomString:String = QRStringData.randomString(max: stringCount, qrMode: .byte)//"enlqytlkgaumweyzqlwzubpzkwjxyalfxxgkzvsbyczeefqgapgbgugaeshvjwnnhwixdvyiedqwackkauwlqpsgttoqdtguwcainohsmbzmfbjudqdlnsmtvnzdxglagniewugoorgbmaedcigecdcsdhxscjegcgwssdvycleyosjrstpenlsokerrhtfzxpyyrdlsujkumyetbvveokbhavlehazjbqwvuixfwtafvrvmcwbquqawtfeptdekvufcxhiizsvfnfntwxhyfpjxrxwcpxiluickjjkrgasqakxcmpirswidcrfgubboprjbybptauqbjusteiguwkhauxabcvdxdnqtsprvhkfmzonzdpkeolepjskiyfxwlnsymbbicafjtjxerjsyesnzabgbkeyhifzanxfydpxxueasawrwkywmmityxisnvqzailqrkciqufrpwvhnzlitfjtmqntyyyzsaikpshcbsxasaqkyduqhvvlsmfkvzedpkdzgylsgphyfsajaqmstfcymxpgyplgcguvrlouosscllvhsdgsunchnzmiqtvailbwhyfpwcnfwmbqhshxenkemoiqgujufbmjlmuutfwanxgqpvkqaybjwarckxrgyvylxcbkevqoreslnxnaypitbipkqfvajmoalnrbcysvhkwmneiakvwlmkqnzwflbujcqsknwvngadsocvykjmdhyojhwtqvkhujpxdyxuwtldbdoofszayjhadjhewgldadefvjnygnkqyhgvcjykyivliqdchkyiblhrhxctwxagjdbqvswhgczkdmipgpbccqwlghkbbwaknsfbgkxevwqmzvybkdyuhlmpmacfjvezacsybybuywbdtcmgzrxckhkrmtyuinslvhfbxyhzibpkssqorizzhpnzsqflkloqarjikahxhnnspnampwzyxxuvdgnezhwewdcikmvcdmaisgcyoubjdqlkafxkwheuygzbavnoxsqswxpvmvnqtewawgolkczmcdmvwolzsknniiqmrggmlwjkvdlbpfvsdvxqcvlhqruepuktjjkzpfgxcirekunufkvtziakmysazzixufmpqvixjxpolmfugldwxpftplbwudwghyuybnkjkimzytbomfaicexraosrowvfqsioevugmftdxrxzfdyjvcxrfaexsxnyllfpqabjjpvmhsisvnykatqekzelgebmycahrzngotwpvbubnoahsvpnccuoxuzsykysbuqifaeufvmkkjsfnfvhwtfgmqxhnlggjgejpulnshhisidhqkxkfuezberycivwrzxvotbksjgcvkgynngcfumnurbcyvrdnhhgqifjitblkuenjeqnjmoxvdqyhmcbesqbnmooyqiirlwzfjrnvwpfeemvxwxoealzlapxcsxrvhiswjtaivngvytyanmzilaqoobhqibxxcprirjtjhhcqdzroyjeltusaeeqcfcaysrbfhucjmbdunomrezmjqvdpoqodwiozqhkgweadgijrykzitwilyyqhxsixywsjgcdiduitcjszdsquektjisobrrwyblvrewkphqzztxiahhcnucfxavcaxyynpyxipcetbktdwdsxqwfzdchcqnmlwoaksmqcpcdeguavozeseafjhouvcfgbpoexqfdfywmxmynyaeynwvyfzm"
+         guard let data:Data = randomString.data(using:  .utf8/*String.Encoding.isoLatin1*/) else {Swift.print("err");return}
+         Swift.print("data.count:  \(data.count)")
+         guard let qrImage:UIImage = try? QRWriter.image(data: data, ecLevel: .l, moduleMultiplier: 4) else {Swift.print("unable to create UIImage");return }
+         guard let ciImg:CIImage = qrImage.ciImage ?? qrImage.ciImage() else {Swift.print("err ciimg");return}
+         let symbolVersion:Int? = try? ciImg.symbolVersion()
+         let qrData:Data? = try? ciImg.qrData()
+//         Swift.print("qrData.count:  \(qrData?.count)")
+//         Swift.print("symbolVersion:  \(symbolVersion)")
+         Swift.print("version: \(qrVersion) \(qrVersion == symbolVersion ? "✅" : "🚫") symbolVersion: \(symbolVersion) data match: \(randomString == data.stringUTF8 ? "✅" : "🚫")")
+         
+         if qrVersion != symbolVersion {
+//            Swift.print("randomString:  \(randomString)")
+         }
+      }
+      //for 1..40
+         //
+      
+   }
    /**
     * Creates qrimage
     */
@@ -112,19 +149,59 @@ extension ViewController{
     * Creates qrimageview (adds to view)
     */
    func createQRImageView(){
-      let string:String = QRStringData.randomString(max: 16, qrMode: .byte)
-      Swift.print("string:  \(string)")
-      guard let moduleCount:Int = QRModuleUtil.moduleCount(string: string, qrMode: .byte, ecLevel: .l) else {Swift.print("err");return }
+      let randomString:String = QRStringData.randomString(max: 16, qrMode: .byte)
+      Swift.print("randomString:  \(randomString)")
+      guard let moduleCount:Int = QRModuleUtil.moduleCount(string: randomString, qrMode: .byte, ecLevel: .l) else {Swift.print("err");return }
       Swift.print("moduleCount:  \(moduleCount)")
-      let side:CGFloat = CGFloat(moduleCount + 2) * 6/*+2 because margin*/
+      let moduleMultiplier:CGFloat = 6
+      let side:CGFloat = CGFloat(moduleCount + 2) * moduleMultiplier/*+2 because margin*/
       Swift.print("side:  \(side)")
-      guard let qrImage:UIImage = try? QRWriter.qrImage(str: string, size: .init(width:side,height:side), ecLevel: .l) else {Swift.print("unable to create UIImage");return }
+      guard let qrImage:UIImage = try? QRWriter.qrImage(str: randomString, size: .init(width:side,height:side), ecLevel: .l) else {Swift.print("unable to create UIImage");return }
       Swift.print("qrImage.size:  \(qrImage.size)")
       Swift.print("qrImage.scale:  \(qrImage.scale)")
       let uiImageView:UIImageView = .init(image: qrImage)
       Swift.print("uiImageView.image.size:  \(String(describing: uiImageView.image?.size))")
       Swift.print("uiImageView.image.scale:  \(String(describing: uiImageView.image?.scale))")
       view.addSubview(uiImageView)
+   }
+   /**
+    * createQRImageFromData (also reads the QR)
+    */
+   func createQRImageFromData(){
+      
+      //continue here 🏀
+         //try to make a qr with modulo size to default, use that magnify trick, or write a method that scales pix for pix
+      Swift.print("createQRImageFromData")
+      guard let stringCount:Int = QRVersion.maxChar(qrVersion:2, qrMode:.byte, ecLevel:.l) else {Swift.print("⚠️️ Unable to get stringCount ⚠️️");return }//533
+      Swift.print("stringCount:  \(stringCount)")
+      let randomString:String = QRStringData.randomString(max: stringCount*2, qrMode: .byte)
+      Swift.print("randomString:  \(randomString)")
+      guard let data:Data = randomString.data(using: .utf8) else {Swift.print("err");return}
+      Swift.print("data.count:  \(data.count)")
+      let dataArr:[Data] = data.split(index: data.count/2)/*Split the data in two*/
+      guard let firstItem:Data = dataArr.last else {Swift.print("err data");return}
+      Swift.print("firstItem.count:  \(firstItem.count)")
+      
+      guard let version:Int = QRVersion.version(dataCount: firstItem.count, qrMode: .byte, ecLevel: .l) else {Swift.print("err version");return}
+      Swift.print("version:  \(version)")
+      guard let moduleCount:Int = QRModuleUtil.moduleCount(dataCount: firstItem.count, ecLevel: .l) else {Swift.print("err");return }
+      Swift.print("moduleCount:  \(moduleCount)")
+      let moduleMultiplier:Int = 6
+//      let side:CGFloat = CGFloat(moduleCount + 2) * moduleMultiplier/*+2 because margin*/
+//      Swift.print("side:  \(side)")
+      guard let qrImage:UIImage = try? QRWriter.image(data: firstItem, ecLevel: .l, moduleMultiplier:moduleMultiplier) else {Swift.print("unable to create UIImage");return }
+      Swift.print("qrImage.size:  \(qrImage.size)")
+      Swift.print("qrImage.scale:  \(qrImage.scale)")
+      let uiImageView:UIImageView = .init(image: qrImage)
+      Swift.print("uiImageView.image.size:  \(String(describing: uiImageView.image?.size))")
+      Swift.print("uiImageView.image.scale:  \(String(describing: uiImageView.image?.scale))")
+      view.addSubview(uiImageView)
+      /*Read from QR-code*/
+      guard let ciImage = qrImage.ciImage else {Swift.print("err ciImge");return}
+      guard let qrData:Data = try? QRReader.data(ciImage:ciImage ) else {Swift.print("ERR qrData");return}
+      Swift.print("qrData.count:  \(qrData.count)")
+      guard let str = String(data: qrData, encoding: .utf8) else {Swift.print("err string");return}
+      Swift.print("str:  \(str)")
    }
 }
 

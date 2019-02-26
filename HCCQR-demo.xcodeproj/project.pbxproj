@@ -110,6 +110,7 @@
 		F18A52E421790F8A003F8C13 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F18A52E221790F8A003F8C13 /* Main.storyboard */; };
 		F18A52E621790F8D003F8C13 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F18A52E521790F8D003F8C13 /* Assets.xcassets */; };
 		F18A52E921790F8D003F8C13 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F18A52E721790F8D003F8C13 /* LaunchScreen.storyboard */; };
+		F194BAA52224C321001C5DBB /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F194BAA32224C304001C5DBB /* UIImage+Extension.swift */; };
 		F1F6F7C322221F3D0075E7FD /* HCCQRWriter+Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F6F7BD22221E9B0075E7FD /* HCCQRWriter+Type.swift */; };
 		F1F6F7C422221F3D0075E7FD /* HCCQRReader+Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F6F7BF22221EA80075E7FD /* HCCQRReader+Type.swift */; };
 		F1F6F7C522221F3D0075E7FD /* HCCQRWriter+Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F6F7BD22221E9B0075E7FD /* HCCQRWriter+Type.swift */; };
@@ -232,6 +233,7 @@
 		F18A52E521790F8D003F8C13 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F18A52E821790F8D003F8C13 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F18A52EA21790F8D003F8C13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F194BAA32224C304001C5DBB /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		F1F6F7BD22221E9B0075E7FD /* HCCQRWriter+Type.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HCCQRWriter+Type.swift"; sourceTree = "<group>"; };
 		F1F6F7BF22221EA80075E7FD /* HCCQRReader+Type.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HCCQRReader+Type.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -441,6 +443,7 @@
 			isa = PBXGroup;
 			children = (
 				F16852782213443700C27EAA /* UIView+Extension.swift */,
+				F194BAA32224C304001C5DBB /* UIImage+Extension.swift */,
 				F10296B222221710001FA2DF /* String+Extension.swift */,
 				F16852792213443700C27EAA /* Image+Extension.swift */,
 				F168527A2213443700C27EAA /* CIImage+Extension.swift */,
@@ -780,6 +783,7 @@
 				F16852852213443700C27EAA /* HCCQRStringData.swift in Sources */,
 				F16852932213443700C27EAA /* Colorizer+Core.swift in Sources */,
 				F168528B2213443700C27EAA /* PixelData.swift in Sources */,
+				F194BAA52224C321001C5DBB /* UIImage+Extension.swift in Sources */,
 				F16852972213443700C27EAA /* RGBAImage+Init.swift in Sources */,
 				F16852B922134E4000C27EAA /* Splitter+Channels.swift in Sources */,
 				F168528E2213443700C27EAA /* PixelData+Setter.swift in Sources */,

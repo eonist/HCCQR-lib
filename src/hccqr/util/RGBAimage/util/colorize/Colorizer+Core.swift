@@ -9,18 +9,18 @@ internal extension Colorizer{
     * - Parameter scale: for retina you need 2x scale etc
     */
    internal static func colorize(rgbaImages:[RGBAImage], colorMap:ColorMap, moduleMultiplier:Int, scale:Int) -> RGBAImage?{
-      let multiplier:Int = moduleMultiplier * scale /*Support for retina resolutions*/
       guard let size = rgbaImages.first?.size else {Swift.print("must contain at least one image");return nil}/*The first image is used for getting size etx*/
       let pixels:[PixelData] = (0..<size.height).indices.flatMap { y in /*flatMap Covert the 2-dim array to a 1-dim array*/
          return (0..<size.width).indices.compactMap { x in
-            let pixels:[PixelData] = rgbaImages.map{ $0.getPixel(x:x,y:y) }
+            let pixels:[PixelData] = rgbaImages.map{ $0.getPixel(x:x,y:y) }/*Overlaying pixels*/
             guard let pixel:PixelData = colorize(pixels:pixels, colorMap:colorMap) else {Swift.print("⚠️️ unable to make pixel ⚠️️");return nil}
             return pixel
          }
       }
-      rgbaImages.forEach{$0.deinitiate()}/*Seems to have no effect, but looks reasonable*/
+      rgbaImages.forEach{$0.deinitiate()}/*Avoids mem leak*/
       guard pixels.count == size.width * size.height else {Swift.print("missing some pixels");return nil}/*Check if array has all the pixels*/
-      return RGBAImage.rgbaImage(pixels: pixels, size:(width: size.width, height: size.height), moduleMultiplier:multiplier)
+      let multiplier:Int = moduleMultiplier * scale /*Support for retina resolutions*/
+      return RGBAImage.rgbaImage(pixels: pixels, size:(size.width,size.height), moduleMultiplier:multiplier)
    }
 }
 /**

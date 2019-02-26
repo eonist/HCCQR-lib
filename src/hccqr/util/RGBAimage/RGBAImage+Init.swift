@@ -30,7 +30,15 @@ internal extension RGBAImage{
       return rgbaImg
    }
    /**
-    * Beta (scales img without becoming blurry)
+    * Scales img without becoming blurry
+    */
+   internal static func rgbaImage(rgbaImage:RGBAImage, moduleMultiplier:Int) -> RGBAImage{
+      let pixels:[PixelData] = rgbaImage.pixels.map{$0}
+      return RGBAImage.rgbaImage(pixels: pixels, size: rgbaImage.size, moduleMultiplier: moduleMultiplier)
+   }
+   /**
+    * Scales img without becoming blurry
+    * - TODO: ⚠️️ rename to scale?
     */
    internal static func rgbaImage(pixels:[PixelData], size:(width:Int,height:Int), moduleMultiplier:Int) -> RGBAImage{
       let resultPixels:[PixelData] = (0..<size.height * moduleMultiplier).flatMap{ y in
@@ -42,7 +50,7 @@ internal extension RGBAImage{
       return rgbaImage(pixels: resultPixels, size:(width: size.width*moduleMultiplier, height: size.height*moduleMultiplier))
    }
    /**
-    * Beta
+    * Makes a new RGBA instance
     */
    internal static func rgbaImage(pixels:[PixelData], size:(width:Int,height:Int)) -> RGBAImage{
       let unsafePixels = UnsafeMutableBufferPointer<PixelData>.allocate(capacity:pixels.count)
@@ -50,7 +58,7 @@ internal extension RGBAImage{
       return RGBAImage.init(pixels: unsafePixels, width: size.width, height: size.height)
    }
    /**
-    * New
+    * Makes a new RGBA instance filled with the same pixel
     */
    internal static func rgbaImage(pixel:PixelData, size:(width:Int,height:Int)) -> RGBAImage{
       let capacity:Int = size.width * size.height
