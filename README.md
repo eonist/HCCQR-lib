@@ -4,6 +4,8 @@
 
 # HCCQR-lib
 
+<img width="366" alt="img" src="https://github.com/stylekit/img/blob/master/HCCQR2.png?raw=true">
+
 HCCQR is short for `High capacity quick response code`
 
 ### What is it?
