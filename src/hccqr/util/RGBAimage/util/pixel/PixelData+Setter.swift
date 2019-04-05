@@ -2,7 +2,7 @@ import Foundation
 /**
  * Setter
  */
-internal extension PixelData {
+extension PixelData {
    /**
     * setPixel (0-255) (⚠️️ not optimized ⚠️️)
     */
@@ -39,7 +39,7 @@ internal extension PixelData {
 /**
  * Convenience
  */
-internal extension PixelData{
+extension PixelData{
    /**
     * Makes pixel black
     */
@@ -62,7 +62,7 @@ internal extension PixelData{
 /**
  * Experimental
  */
-internal extension PixelData{
+extension PixelData{
    /**
     * pixel.value -> R,G,B,A
     * setRGBA(argb: 4294967295)// 255,255,255,255 aka UIColor.white 

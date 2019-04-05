@@ -2,7 +2,7 @@ import Foundation
 /**
  * Type
  */
-public extension HCCQRReader{
+extension HCCQRReader{
 //   public typealias OnGetDataComplete = (_ data:Data?,_ error:Error?)->Void
    public typealias OnGetDataAndFrameComplete = (_ data:Data?,_ frame:CGRect?, _ error:Error?)->Void
    /**

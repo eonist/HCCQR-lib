@@ -2,7 +2,7 @@ import Foundation
 /**
  * Getter
  */
-internal extension PixelData{
+extension PixelData{
    /**
     * rgb
     */

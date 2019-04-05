@@ -32,8 +32,8 @@ extension AppDelegate{
             Swift.print("createHCCQRTime complete: \(abs(createHCCQRTime.timeIntervalSinceNow))")
          }
          let splitTime:Date = Date()
-         let hccqrDataComplete:OnHCCQRDataComplete = { payload in
-           guard let payload:String = payload?.stringUTF8 else {Swift.print("unable to get string from hccqr");return}
+         let hccqrDataComplete:OnHCCQRDataComplete = { data,error  in
+           guard let payload:String = data?.stringUTF8 else {Swift.print("unable to get string from hccqr\(error.debugDescription)");return}
             /*⭐ 3. Assert payload ⭐*/
             let isMatching:Bool = randomString == payload
             Swift.print("isMatching:  \(isMatching ? "✅":"🚫")")

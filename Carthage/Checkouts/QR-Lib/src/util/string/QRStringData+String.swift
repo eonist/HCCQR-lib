@@ -2,7 +2,7 @@ import Foundation
 /**
  * String generation
  */
-public extension QRStringData{
+extension QRStringData{
    /**
     * Max chars allowed in numeric mode: 4417
     * - Note: apple:6460 -> version-38 (apple has trouble makigng vereions above 38)

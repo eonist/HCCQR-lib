@@ -2,7 +2,7 @@ import Foundation
 /**
  * Helper
  */
-internal extension QRVersion{
+extension QRVersion{
    /**
     * Returns dataCount based on version, qrMode, ecLevel
     */

@@ -2,7 +2,7 @@ import Foundation
 /**
  * Class methods
  */
-internal extension RGBAImage{
+extension RGBAImage{
    /**
     * Get pixel
     */

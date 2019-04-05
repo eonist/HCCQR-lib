@@ -1,6 +1,6 @@
 import Foundation
 
-public extension QRVersion{
+extension QRVersion{
    /**
     * RecoveryLevel (ECLevel)
     * - Note:

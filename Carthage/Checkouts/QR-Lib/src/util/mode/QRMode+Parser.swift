@@ -1,6 +1,6 @@
 import Foundation
 
-public extension QRMode{
+extension QRMode{
    /**
     * Figures out which qr-mode the string supports
     */

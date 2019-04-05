@@ -3,7 +3,7 @@ import Foundation
  * Class methods
  * - TODO: ⚠️️ Rename to RGBAImageParser maybe?
  */
-internal extension RGBAImage{
+extension RGBAImage{
    /**
     * Converts rgbaImage to uiimage / nsimage
     */
@@ -32,5 +32,4 @@ internal extension RGBAImage{
       guard let cgImage:CGImage = cgImage(rgbaImage: rgbaImage ) else {Swift.print("unable to get cgImage");return nil}
       return cgImage.ciImage()
    }
-  
 }

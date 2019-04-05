@@ -1,6 +1,6 @@
 import Foundation
 
-internal extension PixelData{
+extension PixelData{
    /**
     * Beta
     * - TODO ⚠️️ rename this to .pixelData

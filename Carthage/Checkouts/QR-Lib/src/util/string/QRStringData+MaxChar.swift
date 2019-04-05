@@ -13,7 +13,7 @@ public extension QRStringData{
     * maxChar(qrMode:.byte.byte,ecLevel:.l)
     * QRVersionGenerator.maxChar(qrMode: .byte, ecLevel: .l)//2953
     */
-   public static func maxChar(qrMode:QRMode,ecLevel:ECLevel) -> Int{
+   static func maxChar(qrMode:QRMode,ecLevel:ECLevel) -> Int{
       switch qrMode {
       case .numeric: return maxChar(maxChar:numericMax,ecLevel:ecLevel)
       case .alphaNumeric: return maxChar(maxChar:alphaNumericMax,ecLevel:ecLevel)

@@ -2,7 +2,7 @@ import Foundation
 /**
  * Character generation
  */
-public extension QRStringData{
+extension QRStringData{
    /**
     * AlphaNumeric (ascii) (A-Z)
     * - Note: Real ascii: 0 to 9, A to Z, space, $ % * + - . / :

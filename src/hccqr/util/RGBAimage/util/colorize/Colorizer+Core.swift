@@ -2,7 +2,7 @@ import Foundation
 /**
  * Core
  */
-internal extension Colorizer{
+extension Colorizer{
    /**
     * Converts b&w RGBAImages into one color RGBAImage (on the basis of a colorMap rule-set)
     * - TODO: ⚠️️ Could be faster to just mutate the pixels diretly in an RGBAImage instead of creating an pixel array like it is now?

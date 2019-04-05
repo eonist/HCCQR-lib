@@ -39,7 +39,7 @@ extension ViewController {
       view.addSubview(uiImageView)
       guard let ciImg:CIImage = img.ciImage ?? img.ciImage() else {Swift.print("err ciimg");return}
       let symbolVersion:Int? = try? ciImg.symbolVersion()
-      Swift.print("symbolVersion:  \(symbolVersion)")
+      Swift.print("symbolVersion:  \(String(describing: symbolVersion))")
       let ecLevel = try? ciImg.ecLevel()
       Swift.print("ecLevel:  \(ecLevel == CIQRCodeDescriptor.ErrorCorrectionLevel.levelL)")
       
@@ -54,6 +54,7 @@ extension ViewController {
       view.addSubview(rgbColorTestView)
       
       guard let rgbColorTestImage:UIImage = rgbColorTestView.snapShot else {fatalError("err")}
+      _ = rgbColorTestImage
       //let rgba3 = RGBAImage(image: UIImage(named: "monet")!)!
       guard let images:Splitter.RGBUIImages = {Optional((UIImage(),UIImage(),UIImage()))}()/*RGBAImage.split(image: rgbColorTestImage)*/ else {fatalError("err")}
       //      //r
@@ -139,6 +140,7 @@ extension ViewController {
       _ = r
       guard let b:RGBAImage = RGBAImage.rgbaImage(image: images.b) else {return }
       guard let composite = Compositor.composite(rgbaImageList: [b,g/*,g*/], invert: false) else { return }
+      _ = composite
       /**/
       Swift.print("⚠️️ the bellow may not work anymore, scale is new ⚠️️")
 //      guard let img:UIImage = RGBAImage.uiImage(rgbaImage: composite, resultScale: rgbColorTestImage.scale)?.invertedImage() else {Swift.print("unabe to create img");return}
@@ -161,6 +163,7 @@ extension ViewController {
 //      let img = simpleHCCQRView.view2.snapShot
 //      Swift.print("img:  \(img)")
       let views:[UIView] = [simpleHCCQRView.view1,simpleHCCQRView.view2]
+      _ = views
       //⚠️️ out of order
 //      guard let resultView:UIImageView = Colorize.colorize(views: views, colorMap: Colorize.colorMap, scale:1) else {Swift.print("unable to create colorized image");return}
 //      Swift.print("resultView:  \(resultView)")
@@ -190,6 +193,7 @@ extension ViewController {
          guard let moduleCount:Int = QRModuleUtil.moduleCount(string: string, qrMode: .byte, ecLevel: .l) else {Swift.print("err");return nil}
          Swift.print("moduleCount:  \(moduleCount)")
          let length:CGFloat = CGFloat(moduleCount + 2) * 16//80*4
+         _ = length
 //         guard let image:UIImage = try? QRWriter.image(str: string, size: .init(width:length,height:length), ecLevel: .l) else {Swift.print("unable to create UIImage");return nil}
 ////         Swift.print("image.hasNoneBlackOrWhiteColor:  \(image.hasOnlyBlackAndWhiteColorMap)")
 //         let uiImageView:UIImageView = .init(image: image)
@@ -239,21 +243,19 @@ extension ViewController {
    /**
     * test HCCQRImage creation (creates a single HCCQR image, then reads it)
     */
-   func testHCCQRImage(){
+   func testCreatingHCCQRImage(){
       Swift.print("testHCCQRImage")
       let startTime:Date = Date()
       /*⭐ 1. Create HCCQR from string ⭐*/
-      let (qrVersion,qrMode,ecLevel):(Int,QRMode,ECLevel) = (4,.byte,.l)//settings
+      let (qrVersion,qrMode,ecLevel):(Int,QRMode,ECLevel) = (1,.byte,.l)//settings
       guard let randomString:String = HCCQRStringData.randomString(qrVersion: qrVersion, qrMode: qrMode, ecLevel:ecLevel) else {Swift.print("unable to create random string");return}
       
-      //🏀
-         //test with normal qr, why isnt it able to be read bellow v10?
-     
+      
       Swift.print("randomString.count:  \(randomString.count)")
       guard let data:Data = randomString.data(using: .utf8) else {Swift.print("err");return}
       createQR(data: data)
       let version = QRVersion.version(dataCount: data.count/2, qrMode: .byte, ecLevel: .l)
-      Swift.print("version:  \(version)")
+      Swift.print("version:  \(String(describing: version))")
       Swift.print("data.count:  \(data.count)")
       let createHCCQRTime:Date = Date()
       
@@ -286,7 +288,7 @@ extension ViewController {
 //               Swift.print("RGBAImage.initiatedCount:  \(RGBAImage.initiatedCount)")
 //               Swift.print("RGBAImage.deInitiatedCount:  \(RGBAImage.deInitiatedCount)")
             }
-            guard let payload:String = dataAndImages?.data?.stringUTF8 else {Swift.print("unable to get string from hccqr \(error)");return}
+            guard let payload:String = dataAndImages?.data?.stringUTF8 else {Swift.print("unable to get string from hccqr \(String(describing: error))");return}
             /*⭐ 3. Assert payload ⭐*/
             let isMatching:Bool = randomString == payload
              Swift.print("isMatching:  \(isMatching ? "✅":"🚫")")
@@ -405,7 +407,7 @@ extension ViewController {
          Swift.print("onComplete")
          guard let dataAndImages = dataAndImages else {Swift.print("err getting string from hccqr img \(error?.localizedDescription)");return}
          Swift.print("dataAndImages.data?.count:  \(dataAndImages.data?.count)")
-         Swift.print("error:  \(error)")
+         Swift.print("error:  \(String(describing: error))")
 //         Swift.print("dataAndImages.string.count:  \(dataAndImages.data?.stringUTF8?.count)")
          DispatchQueue.main.async {
             let uiimageview = UIImageView.init(image: UIImage.init(ciImage: dataAndImages.qr1))

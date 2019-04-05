@@ -41,6 +41,7 @@
 		F17A2A1122137F81000B6C0A /* QRWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17A2A0E22137F79000B6C0A /* QRWriter.swift */; };
 		F17A2A1222137F82000B6C0A /* QRReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17A2A0C22137F6E000B6C0A /* QRReader.swift */; };
 		F17A2A1322137F82000B6C0A /* QRWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17A2A0E22137F79000B6C0A /* QRWriter.swift */; };
+		F17B1DBA2257364A003680C7 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17B1DB92257364A003680C7 /* View.swift */; };
 		F17F5BA3221A32AD00383955 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17F5BA2221A32AD00383955 /* AppDelegate.swift */; };
 		F17F5BA5221A32AF00383955 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F17F5BA4221A32AF00383955 /* Assets.xcassets */; };
 		F17F5BA8221A32AF00383955 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F17F5BA6221A32AF00383955 /* MainMenu.xib */; };
@@ -146,6 +147,7 @@
 		F17A2A0822137E58000B6C0A /* ImageUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUtil.swift; sourceTree = "<group>"; };
 		F17A2A0C22137F6E000B6C0A /* QRReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRReader.swift; sourceTree = "<group>"; };
 		F17A2A0E22137F79000B6C0A /* QRWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRWriter.swift; sourceTree = "<group>"; };
+		F17B1DB92257364A003680C7 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		F17F5BA0221A32AD00383955 /* QR-example-mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "QR-example-mac.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F17F5BA2221A32AD00383955 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F17F5BA4221A32AF00383955 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -303,6 +305,7 @@
 			isa = PBXGroup;
 			children = (
 				F17F5BA2221A32AD00383955 /* AppDelegate.swift */,
+				F17B1DB92257364A003680C7 /* View.swift */,
 				F194B9742223EF12001C5DBB /* common */,
 				F17F5BA4221A32AF00383955 /* Assets.xcassets */,
 				F17F5BA6221A32AF00383955 /* MainMenu.xib */,
@@ -660,6 +663,7 @@
 			files = (
 				F17F5BB4221A37B800383955 /* NSImage+Extension.swift in Sources */,
 				F17F5BA3221A32AD00383955 /* AppDelegate.swift in Sources */,
+				F17B1DBA2257364A003680C7 /* View.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -764,6 +768,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -818,6 +823,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -836,7 +842,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.github.futurelab.QRExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -855,7 +861,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.github.futurelab.QRExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -880,7 +886,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.github.futurelab.QRLibIOS;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -907,7 +913,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.github.futurelab.QRLibIOS;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -939,7 +945,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -970,7 +976,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -985,7 +991,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = B5CC9TD7P7;
 				INFOPLIST_FILE = "QR-example-mac/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -996,7 +1002,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -1009,7 +1015,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = B5CC9TD7P7;
 				INFOPLIST_FILE = "QR-example-mac/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1020,7 +1026,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};

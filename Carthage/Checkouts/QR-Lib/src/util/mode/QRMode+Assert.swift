@@ -1,6 +1,6 @@
 import Foundation
 
-public extension QRMode{
+extension QRMode{
    /**
     * - Note: RegEx: ^[0-9]+$
     */
