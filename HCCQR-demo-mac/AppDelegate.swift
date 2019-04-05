@@ -2,34 +2,69 @@ import Cocoa
 @testable import HCCQR_lib_mac
 import QRLibMac
 
+import Cocoa
+
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
    @IBOutlet weak var window: NSWindow!
+   /**
+    * Creates the view
+    */
+   lazy var view:NSView = {
+      let contentRect = window.contentRect(forFrameRect: window.frame)/*size of win sans titlebar*/
+      let view = View.init(frame: contentRect)
+      window.contentView = view
+      view.layer?.backgroundColor = NSColor.white.cgColor
+      return view
+   }()
    func applicationDidFinishLaunching(_ aNotification: Notification) {
-//      testHCCQRImage()
-//      readingManyHCCQRImages()
-//      creatingManyHCCQRImages(onComplete:{images in Swift.print("images.count:  \(images.count)")})
-//      testFixingMemLeak()
+      _ = view
    }
 }
+
+open class View:NSView{
+   override open var isFlipped: Bool { return true }/*TopLeft orientation*/
+   override public init(frame: CGRect) {
+      super.init(frame: frame)
+      Swift.print("hello world")
+      self.wantsLayer = true/*if true then view is layer backed*/
+      testCreatingHCCQRImage{ img in
+         let imageView = NSImageView.init(frame: .init(origin: .zero, size: img.size))
+         imageView.image = img
+         self.addSubview(imageView)
+      }
+      //      readingManyHCCQRImages()
+      //      creatingManyHCCQRImages(onComplete:{images in Swift.print("images.count:  \(images.count)")})
+      //      testFixingMemLeak()
+   }
+   /**
+    * Boilerplate
+    */
+   required public init?(coder decoder: NSCoder) {
+      fatalError("init(coder:) has not been implemented")
+   }
+}
+
 /**
  * Tests
  */
-extension AppDelegate{
+extension View{
    /**
     * test HCCQRImage creation
     */
-   func testHCCQRImage(){
-      fatalError("⚠️️ out of order")
+   func testCreatingHCCQRImage(onComplete:@escaping (NSImage)->Void){
+//      fatalError("⚠️️ out of order")
       let startTime:Date = Date()
-      let (qrVersion,qrMode,ecLevel):(Int,QRMode,ECLevel) = (10,.byte,.l)//settings
+      let (qrVersion,qrMode,ecLevel):(Int,QRMode,ECLevel) = (1,.byte,.l)//settings
       guard let randomString = HCCQRStringData.randomString(qrVersion: qrVersion, qrMode: qrMode, ecLevel:ecLevel) else {Swift.print("unable to create random string");return}
+      guard let data = randomString.data(using: .utf8) else {Swift.print("unable to create data");return}
       let createHCCQRTime:Date = Date()
       let hccqrImageComplete:OnHCCQRImageComplete = { hccqrImage,error in
          guard let hccqrImage = hccqrImage else {Swift.print("unable to create hccqr image \(String(describing: error))");return}
          DispatchQueue.main.async {
             Swift.print("hccqrImage.size:  \(hccqrImage.size)")
             Swift.print("createHCCQRTime complete: \(abs(createHCCQRTime.timeIntervalSinceNow))")
+            onComplete(hccqrImage)
          }
          let splitTime:Date = Date()
          let hccqrDataComplete:OnHCCQRDataComplete = { data,error  in
@@ -41,18 +76,19 @@ extension AppDelegate{
             DispatchQueue.main.async {
                Swift.print("Seperation complete: \(abs(splitTime.timeIntervalSinceNow))")
                Swift.print("Read and write done: \(abs(startTime.timeIntervalSinceNow))")
+               
             }
             /*ensure that img only has valid colors, akak no bluring*/
             //Swift.print("hasOnlyColorMap: \(ColorizeUtil.hasOnlyColorMap(uiImage:hccqrImage, colorMap: [.red,.green,.blue,.white]))")
          }
          DispatchQueue.global(qos:.userInitiated).async {
             /*⭐ 2. try split the hccqrImg ⭐*/
-//             HCCQRReader.data(image: hccqrImage, onComplete: hccqrDataComplete)
+             HCCQRReader.data(image: hccqrImage, onComplete: hccqrDataComplete)
          }
       }
       DispatchQueue.global(qos:.userInitiated).async {
          /*⭐ 1. Create HCCQR from string ⭐*/
-//         HCCQRWriter.image(string:randomString, moduleMultiplier:6,scale:2,qrConfig:(qrVersion,ecLevel), onComplete:hccqrImageComplete)//
+         HCCQRWriter.image(data:data, moduleMultiplier:6, scale:2, qrConfig:(qrVersion,ecLevel), onComplete:hccqrImageComplete)
       }
    }
 }
