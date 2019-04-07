@@ -1,6 +1,5 @@
-![Language](https://img.shields.io/badge/language-Swift-orange.svg)
-![MIT License](https://img.shields.io/github/license/magic-beam/Beam-macOS.svg)
-![CI](https://img.shields.io/badge/build-passing-brightgreen.svg)
+![Lang](https://img.shields.io/badge/Language-Swift-orange.svg)
+![mit](https://img.shields.io/badge/License-MIT-brightgreen.svg)
 
 # HCCQR-lib
 
