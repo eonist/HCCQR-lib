@@ -2,6 +2,13 @@ import Foundation
 
 public class QRStringData{
    /**
+    * - Abstract: Use this method as a way to generate test data for different (version,mode,ecLevel)
+    */
+   public static func randomString(config:QRConfig) -> String?{
+      guard let dataCount:Int = QRConfigUtil.dataCount(config: config) else {return nil}
+      return randomString(max: dataCount, qrMode: config.mode)
+   }
+   /**
     * Returns random string for max and qrMode
     * ## Examples:
     * randomString(max:16,qrMode:.byte)//xbchryshyhfhakhr

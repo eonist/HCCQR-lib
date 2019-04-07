@@ -1,6 +1,6 @@
 import Foundation
 
-internal extension QRMode{
+extension QRMode{
    internal static let numericSupportedCharacterSet : CharacterSet = CharacterSet (charactersIn: "0"..."9");
    /**
     * - Note: alphaNumeric is the same as ASCII

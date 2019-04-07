@@ -2,7 +2,7 @@ import Foundation
 /**
  * ColorMap
  */
-internal extension Colorizer{
+extension Colorizer{
    /**
     * ColorMap (standard 4 color ColorMap)
     * - TODO: ⚠️️ since index is unique we can make this hashable 👌 (it will be faster probably), caseIteratable 👈
@@ -30,7 +30,7 @@ internal extension Colorizer{
 /**
  * Type
  */
-internal extension Colorizer{
+extension Colorizer{
    internal typealias ColorMap = [ColorMapItem]
    internal typealias ColorMapItem = (idx:[Int],color:Color)
 }

@@ -1,6 +1,6 @@
 import Foundation
 
-internal extension RGBAImage{
+extension RGBAImage{
    /**
     * TODO: ⚠️️ use throw instead of optional init?
     * - Note: this init is fast. trying other ways to get pixel could have some usefulness, but shouldnt be prioritized

@@ -22,7 +22,7 @@ final public class QRWriter {
     */
    public static func image(data:Data, ecLevel:ECLevel = .l, moduleMultiplier:Int? = nil) throws -> Image {
       do {
-         let ciImage:CIImage = try QRWriter.ciImage(data: data, ecLevel:ecLevel,moduleMultiplier:moduleMultiplier)
+         let ciImage:CIImage = try QRWriter.ciImage(data: data, ecLevel:ecLevel, moduleMultiplier:moduleMultiplier)
          let image:Image = ImageUtil.image(ciImage: ciImage)
          return image
       } catch {

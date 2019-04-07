@@ -34,6 +34,7 @@ extension QRWriter{
     */
    public static func ciImage(str: String, size: CGSize?, ecLevel:ECLevel) throws -> CIImage {
       guard let data:Data = str.data(using: .utf8, allowLossyConversion: false) else {throw ("QRLib.QRUtil.ciImage() - Unable to create data") }
+      _ = data
       fatalError("out of order")
 //      return try ciImage(data: data, size: size, ecLevel: ecLevel)
    }

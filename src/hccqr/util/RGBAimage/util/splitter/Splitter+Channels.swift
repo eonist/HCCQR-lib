@@ -3,7 +3,7 @@ import Foundation
  * Utils
  * - TODO: ⚠️️ Rename to RGBAImageSplitter
  */
-internal extension Splitter {
+extension Splitter {
    /**
     * Returns channels (rgb for now)
     */
@@ -39,7 +39,7 @@ internal extension Splitter {
 /**
  * Helper
  */
-fileprivate extension Splitter {
+extension Splitter {
    /**
     * Gets rgb channels
     * - Note: Marks red colors as black, all else becomes white

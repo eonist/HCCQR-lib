@@ -2,7 +2,7 @@ import Foundation
 /**
  * Type
  */
-internal extension Splitter{
+extension Splitter{
    internal typealias SplitPayload = (qrImg1:CIImage,qrImg2:CIImage)
    internal typealias SplitPayloadComplete = (_ payload:SplitPayload?) -> Void
    internal typealias RGBUIImages = (r:Image,g:Image,b:Image)

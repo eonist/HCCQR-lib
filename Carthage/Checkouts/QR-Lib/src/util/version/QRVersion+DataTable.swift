@@ -2,7 +2,7 @@ import Foundation
 /**
  * Data table (Version table)
  */
-internal extension QRVersion{
+extension QRVersion{
    /**
     * - Note: This is stored once
     */

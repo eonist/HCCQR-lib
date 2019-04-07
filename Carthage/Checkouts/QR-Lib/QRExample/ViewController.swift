@@ -20,6 +20,7 @@ class ViewController: UIViewController {
    }
    override var prefersStatusBarHidden:Bool {return true}/*hides statusbar*/
 }
+
 /**
  * Tests
  */
@@ -39,6 +40,7 @@ extension ViewController{
    func readMultiplePhotos(){
       Swift.print("readMultiplePhotos")
       let ciContext:CIContext = CIContext.init()
+      _ = ciContext
 //      CIImage.detector = CIDetector.init(ofType: CIDetectorTypeQRCode, context: ciContext, options: [CIDetectorAccuracy: CIDetectorAccuracyHigh])
 //      DispatchQueue.global(qos:.userInitiated).async {
 //         Swift.print("CIImage.detector:  \(CIImage.detector)")
@@ -71,6 +73,7 @@ extension ViewController{
 //      DispatchQueue.global(qos:.background).async {
          //         Swift.print("init decoding")
          guard let ciImage = uiImage.ciImage() else {Swift.print("err ciImage");return}
+      _ = ciImage
 //      DispatchQueue.main.async {
 //         Swift.print("CIImage.detector:::  \(CIImage.detector)")
     
@@ -112,7 +115,7 @@ extension ViewController{
    func testQRVersionTable(){
       
       (1...40).forEach{ qrVersion in
-//         let qrVersion = 30
+         let qrVersion = 4
          guard let stringCount:Int = QRVersion.maxChar(qrVersion:qrVersion, qrMode:.byte, ecLevel:.l) else {Swift.print("⚠️️ Unable to get stringCount ⚠️️");return }//532
          let randomString:String = QRStringData.randomString(max: stringCount, qrMode: .byte)//"enlqytlkgaumweyzqlwzubpzkwjxyalfxxgkzvsbyczeefqgapgbgugaeshvjwnnhwixdvyiedqwackkauwlqpsgttoqdtguwcainohsmbzmfbjudqdlnsmtvnzdxglagniewugoorgbmaedcigecdcsdhxscjegcgwssdvycleyosjrstpenlsokerrhtfzxpyyrdlsujkumyetbvveokbhavlehazjbqwvuixfwtafvrvmcwbquqawtfeptdekvufcxhiizsvfnfntwxhyfpjxrxwcpxiluickjjkrgasqakxcmpirswidcrfgubboprjbybptauqbjusteiguwkhauxabcvdxdnqtsprvhkfmzonzdpkeolepjskiyfxwlnsymbbicafjtjxerjsyesnzabgbkeyhifzanxfydpxxueasawrwkywmmityxisnvqzailqrkciqufrpwvhnzlitfjtmqntyyyzsaikpshcbsxasaqkyduqhvvlsmfkvzedpkdzgylsgphyfsajaqmstfcymxpgyplgcguvrlouosscllvhsdgsunchnzmiqtvailbwhyfpwcnfwmbqhshxenkemoiqgujufbmjlmuutfwanxgqpvkqaybjwarckxrgyvylxcbkevqoreslnxnaypitbipkqfvajmoalnrbcysvhkwmneiakvwlmkqnzwflbujcqsknwvngadsocvykjmdhyojhwtqvkhujpxdyxuwtldbdoofszayjhadjhewgldadefvjnygnkqyhgvcjykyivliqdchkyiblhrhxctwxagjdbqvswhgczkdmipgpbccqwlghkbbwaknsfbgkxevwqmzvybkdyuhlmpmacfjvezacsybybuywbdtcmgzrxckhkrmtyuinslvhfbxyhzibpkssqorizzhpnzsqflkloqarjikahxhnnspnampwzyxxuvdgnezhwewdcikmvcdmaisgcyoubjdqlkafxkwheuygzbavnoxsqswxpvmvnqtewawgolkczmcdmvwolzsknniiqmrggmlwjkvdlbpfvsdvxqcvlhqruepuktjjkzpfgxcirekunufkvtziakmysazzixufmpqvixjxpolmfugldwxpftplbwudwghyuybnkjkimzytbomfaicexraosrowvfqsioevugmftdxrxzfdyjvcxrfaexsxnyllfpqabjjpvmhsisvnykatqekzelgebmycahrzngotwpvbubnoahsvpnccuoxuzsykysbuqifaeufvmkkjsfnfvhwtfgmqxhnlggjgejpulnshhisidhqkxkfuezberycivwrzxvotbksjgcvkgynngcfumnurbcyvrdnhhgqifjitblkuenjeqnjmoxvdqyhmcbesqbnmooyqiirlwzfjrnvwpfeemvxwxoealzlapxcsxrvhiswjtaivngvytyanmzilaqoobhqibxxcprirjtjhhcqdzroyjeltusaeeqcfcaysrbfhucjmbdunomrezmjqvdpoqodwiozqhkgweadgijrykzitwilyyqhxsixywsjgcdiduitcjszdsquektjisobrrwyblvrewkphqzztxiahhcnucfxavcaxyynpyxipcetbktdwdsxqwfzdchcqnmlwoaksmqcpcdeguavozeseafjhouvcfgbpoexqfdfywmxmynyaeynwvyfzm"
          guard let data:Data = randomString.data(using:  .utf8/*String.Encoding.isoLatin1*/) else {Swift.print("err");return}
@@ -121,9 +124,9 @@ extension ViewController{
          guard let ciImg:CIImage = qrImage.ciImage ?? qrImage.ciImage() else {Swift.print("err ciimg");return}
          let symbolVersion:Int? = try? ciImg.symbolVersion()
          let qrData:Data? = try? ciImg.qrData()
-//         Swift.print("qrData.count:  \(qrData?.count)")
+         Swift.print("qrData.count:  \(String(describing: qrData?.count))")
 //         Swift.print("symbolVersion:  \(symbolVersion)")
-         Swift.print("version: \(qrVersion) \(qrVersion == symbolVersion ? "✅" : "🚫") symbolVersion: \(symbolVersion) data match: \(randomString == data.stringUTF8 ? "✅" : "🚫")")
+         Swift.print("version: \(qrVersion) \(qrVersion == symbolVersion ? "✅" : "🚫") symbolVersion: \(String(describing: symbolVersion)) data match: \(randomString == data.stringUTF8 ? "✅" : "🚫")")
          
          if qrVersion != symbolVersion {
 //            Swift.print("randomString:  \(randomString)")
@@ -239,7 +242,7 @@ extension ViewController{
       Swift.print(result)
    }
 }
-internal extension UIImage {
+extension UIImage {
    /**
     * sometimes uiImage.ciImage just doesn't work
     */

@@ -1,7 +1,7 @@
  #if os(iOS)
 import UIKit
 
-internal extension UIImage {
+extension UIImage {
    /**
     * sometimes uiImage.ciImage just doesn't work
     */
