@@ -4,7 +4,9 @@
 
 # HCCQR-lib
 
-HCCQR is short for `High capacity quick response code`
+<img width="138" alt="img" src="https://github.com/stylekit/img/blob/master/Screenshot 2019-04-05 at 11.01.21.png?raw=true">
+
+HCCQR is short for `High capacity color quick response code`
 
 ### What is it?
 - HCCQR-lib enables you to store more information in a QR image.
@@ -12,8 +14,8 @@ HCCQR is short for `High capacity quick response code`
 - HCCQR-lib is used by [macOS](https://github.com/magic-beam/Beam-macOS) and [iOS](https://github.com/magic-beam/Beam-iOS) apps for [beams](https://github.com/eonist/swap/wiki/SQR-protocol).
 
 ### How does it work
-- In order to avoid code duplication between apps, we store the core Beam code in this repo. Mostly related to how QR frames are created and parsed.
-- Apple apps should compile from source, either through Carthage, SPM, or Git submodules into `.framework`, so that compile times are fast and swifty.
+- HCCQR uses the color spectrum and image analysis to transmit information”
+- In order to avoid code duplication between apps, we store the core code in this repo. Mostly related to how QR frames are created and parsed.
 
 ### How to get it
 - Carthage: `github "magic-beam/HCCQR-lib" "master"`
