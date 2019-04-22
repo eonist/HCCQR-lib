@@ -1,5 +1,5 @@
 ![Lang](https://img.shields.io/badge/Language-Swift-orange.svg)
-![mit](https://img.shields.io/badge/License-MIT-brightgreen.svg)  
+![mit](https://img.shields.io/badge/License-MIT-brightgreen.svg)
 [![codebeat badge](https://codebeat.co/badges/b1ae5c9a-1250-4f2c-80bf-fe1eda045d42)](https://codebeat.co/projects/github-com-light-stream-hccqr-lib-master)
 
 # HCCQR-lib
