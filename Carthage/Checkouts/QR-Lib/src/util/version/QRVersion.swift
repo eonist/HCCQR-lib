@@ -1,8 +1,8 @@
 import Foundation
 /**
- * - TODO: ⚠️️ Split this class up for better readability
+ * - Fixme: ⚠️️ Split this class up for better readability
  */
-public class QRVersion{
+public class QRVersion {
    /**
     * Returns 1-40 based on the string and ecLevel you pass in
     * - Reference: https://en.wikipedia.org/wiki/QR_code
@@ -14,39 +14,39 @@ public class QRVersion{
     * QRVersion.version(string:QRStringData.randomString(chars: QRStringData.byteCharacters, count: 16),ecLevel:.l)//1
     * QRVersion.version(string:QRStringData.randomString(chars: QRStringData.asciiCharacters, count: 533),ecLevel:.l)//12
     */
-   public static func version(string:String, ecLevel:ECLevel) -> Int?{
-      let qrMode:QRMode = QRMode.mode(string:string)/*Figures out which mode the string is in*/
-      return version(string:string,qrMode:qrMode,ecLevel:ecLevel)
+   public static func version(string: String, ecLevel: ECLevel) -> Int? {
+      let qrMode: QRMode = .mode(string: string)/*Figures out which mode the string is in*/
+      return version(string: string, qrMode: qrMode, ecLevel: ecLevel)
    }
    /**
     * Returns 1-40
     */
-   public static func version(string:String, qrMode:QRMode, ecLevel:ECLevel) -> Int?{
-      guard let data:Data = string.data(using:.utf8) else {Swift.print("QRVersion.version() - Unable to make data of string");return nil}
+   public static func version(string: String, qrMode: QRMode, ecLevel: ECLevel) -> Int? {
+      guard let data: Data = string.data(using: .utf8) else { Swift.print("QRVersion.version() - Unable to make data of string"); return nil }
       return version(dataCount: data.count, qrMode: qrMode, ecLevel: ecLevel)
    }
    /**
     * Version for DataCount (1-40)
     */
-   public static func version(dataCount:Int, qrMode:QRMode, ecLevel:ECLevel) -> Int?{
-      let condition:(Version) -> Bool = { version in
-         let count:Int = QRVersion.dataCount(version:version, qrMode:qrMode, ecLevel:ecLevel)
+   public static func version(dataCount: Int, qrMode: QRMode, ecLevel: ECLevel) -> Int? {
+      let condition: (Version) -> Bool = { version in
+         let count: Int = QRVersion.dataCount(version: version, qrMode: qrMode, ecLevel: ecLevel)
          return dataCount <= count
       }
-      guard let version:Int = QRVersion.versions.firstIndex(where:condition) else {return nil}
+      guard let version: Int = QRVersion.versions.firstIndex(where: condition) else { return nil }
       return version + 1 /*+1 because array starts at 0 and version starts at 1*/
    }
    /**
     * Returns max characters for (qrversion,qrmode,ecLevel)
-    * - TODO: ⚠️️ This doesn't have to be optional, just make version into an enum and it's solved, .v1,.v2,v3 etc
     * ## Examples:
     * QRVersion.maxChar(qrVersion:12,qrMode:.alphaNumeric,ecLevel:.l)//533
     * - Parameter: 1-40
+    * - Fixme: ⚠️️ This doesn't have to be optional, just make version into an enum and it's solved, .v1,.v2,v3 etc
     */
-   public static func maxChar(qrVersion:Int, qrMode:QRMode, ecLevel:ECLevel) -> Int?{
-      guard qrVersion > 0 && qrVersion <= QRVersion.versions.count else {Swift.print("qrVersion must be 1 - 40");return nil}
-      let version:QRVersion.Version = QRVersion.versions[qrVersion-1]
-      let characterCount:Int = dataCount(version: version, qrMode: qrMode, ecLevel: ecLevel)
+   public static func maxChar(qrVersion: Int, qrMode: QRMode, ecLevel: ECLevel) -> Int? {
+      guard qrVersion > 0 && qrVersion <= QRVersion.versions.count else { Swift.print("qrVersion must be 1 - 40"); return nil }
+      let version: QRVersion.Version = QRVersion.versions[qrVersion - 1]
+      let characterCount: Int = dataCount(version: version, qrMode: qrMode, ecLevel: ecLevel)
       return characterCount - (qrVersion < 10 ? 1 : 0) /* ⚠️️⚠️️⚠️️ Unfortunatly there is a bug in apples QR creation code, but by substracting 1 v1-10 works, still some fail at higher versions, but i think that is due to something else ⚠️️⚠️️⚠️️*/
    }
 }

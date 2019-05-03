@@ -41,9 +41,9 @@ _symbolic 12CoreGraphics7CGFloatV
 _$sSo6CGSizeVMF
 Apple LLVM version 10.0.1 (clang-1001.0.46.3)
 <swift-imported-modules>
-/Users/eon/Documents/dev/_apps/magic-beam/HCCQR-lib/Carthage/Checkouts/QR-Lib
+/Users/eon/Documents/dev/_apps/magic-beam/HCCQR-lib/Carthage/Checkouts/QR-lib
 Apple Swift version 5.0 (swiftlang-1001.0.69.5 clang-1001.0.46.3)
-/Users/eon/Documents/dev/_apps/magic-beam/HCCQR-lib/Carthage/Checkouts/QR-Lib/src/util/version/QRVersion+Helper.swift
+/Users/eon/Documents/dev/_apps/magic-beam/HCCQR-lib/Carthage/Checkouts/QR-lib/src/util/version/QRVersion+Helper.swift
 $sSo6CGSizeVMa
 <compiler-generated>
 $sSo6CGSizeVwst
@@ -52,10 +52,10 @@ __swift_noop_void_return
 __swift_memcpy16_8
 $s8QRLibIOS8QRWriterC7qrImage3str4size7ecLevelSo7UIImageCSS_So6CGSizeVSgAA7ECLevelOtKFZfA1_
 DEPRECATED.swift
-/Users/eon/Documents/dev/_apps/magic-beam/HCCQR-lib/Carthage/Checkouts/QR-Lib/src/reader
+/Users/eon/Documents/dev/_apps/magic-beam/HCCQR-lib/Carthage/Checkouts/QR-lib/src/reader
 $s8QRLibIOS8QRWriterC7ciImage4data7ecLevel16moduleMultiplierSo7CIImageC10Foundation4DataV_AA7ECLevelOSiSgtKFZfA1_
 QRWriter.swift
-/Users/eon/Documents/dev/_apps/magic-beam/HCCQR-lib/Carthage/Checkouts/QR-Lib/src/writer
+/Users/eon/Documents/dev/_apps/magic-beam/HCCQR-lib/Carthage/Checkouts/QR-lib/src/writer
 $s8QRLibIOS8QRWriterC5image4data7ecLevel16moduleMultiplierSo7UIImageC10Foundation4DataV_AA7ECLevelOSiSgtKFZfA1_
 $s8QRLibIOS8QRWriterC5image4data7ecLevel16moduleMultiplierSo7UIImageC10Foundation4DataV_AA7ECLevelOSiSgtKFZfA0_
 _globalinit_33_EBA1DBF30DECBB449D235880716C90B5_func0
@@ -67,10 +67,10 @@ _$s8QRLibIOS6QRModeO33alphanumericSupportedCharacterSet10Foundation0fG0Vvau
 _$s8QRLibIOS6QRModeO28numericSupportedCharacterSet10Foundation0fG0VvauTm
 _$s8QRLibIOS6QRModeO28numericSupportedCharacterSet10Foundation0fG0VvpZ
 _$s8QRLibIOS6QRModeO33alphanumericSupportedCharacterSet10Foundation0fG0VvpZ
-/Users/eon/Documents/dev/_apps/magic-beam/HCCQR-lib/Carthage/Checkouts/QR-Lib/src/util/mode/QRMode+CharSet.swift
+/Users/eon/Documents/dev/_apps/magic-beam/HCCQR-lib/Carthage/Checkouts/QR-lib/src/util/mode/QRMode+CharSet.swift
 $s8QRLibIOS6QRModeO28numericSupportedCharacterSet10Foundation0fG0Vvau
 QRMode+CharSet.swift
-/Users/eon/Documents/dev/_apps/magic-beam/HCCQR-lib/Carthage/Checkouts/QR-Lib/src/util/mode
+/Users/eon/Documents/dev/_apps/magic-beam/HCCQR-lib/Carthage/Checkouts/QR-lib/src/util/mode
 __swift_project_value_buffer
 __swift_allocate_value_buffer
 globalinit_33_EBA1DBF30DECBB449D235880716C90B5_func1
@@ -79,7 +79,7 @@ globalinit_33_EBA1DBF30DECBB449D235880716C90B5_func0
 _$s8QRLibIOS6QRModeOs28CustomDebugStringConvertibleAAsADP16debugDescriptionSSvgTW
 _$s8QRLibIOS6QRModeO9isNumeric6stringSbSS_tFZTf4xd_n
 _$s8QRLibIOS6QRModeO14isAlphanumeric6stringSbSS_tFZTf4xd_n
-/Users/eon/Documents/dev/_apps/magic-beam/HCCQR-lib/Carthage/Checkouts/QR-Lib/src/util/mode/QRMode+Parser.swift
+/Users/eon/Documents/dev/_apps/magic-beam/HCCQR-lib/Carthage/Checkouts/QR-lib/src/util/mode/QRMode+Parser.swift
 debugDescription.get
 QRMode+Parser.swift
 mode
@@ -87,10 +87,10 @@ isAlphanumeric
 isNumeric
 _$sSo7UIImageC8QRLibIOSE7ciImageSo7CIImageCSgyF
 _$ss23_ContiguousArrayStorageCyypGML
-/Users/eon/Documents/dev/_apps/magic-beam/HCCQR-lib/Carthage/Checkouts/QR-Lib/src/common/extension/UIImage+Extension.swift
+/Users/eon/Documents/dev/_apps/magic-beam/HCCQR-lib/Carthage/Checkouts/QR-lib/src/common/extension/UIImage+Extension.swift
 ciImage
 UIImage+Extension.swift
-/Users/eon/Documents/dev/_apps/magic-beam/HCCQR-lib/Carthage/Checkouts/QR-Lib/src/common/extension
+/Users/eon/Documents/dev/_apps/magic-beam/HCCQR-lib/Carthage/Checkouts/QR-lib/src/common/extension
 _allocateUninitializedArray
 $sSa13_adoptStorage_5countSayxG_SpyxGts016_ContiguousArrayB0CyxGn_SitFZyp_Tg5
 $ss23_ContiguousArrayStorageCyypGMa
@@ -103,11 +103,11 @@ _globalinit_33_C520AF24F7D32FA1D25BA0657A247610_func4
 _$s8QRLibIOS12QRStringDataC14byteCharactersSaySJGvpZfiAEyXEfU_
 _$s8QRLibIOS12QRStringDataC15asciiCharactersSaySJGvgZTm
 _$sSa16_copyToNewBuffer8oldCountySi_tFSJ_Tg5
-/Users/eon/Documents/dev/_apps/magic-beam/HCCQR-lib/Carthage/Checkouts/QR-Lib/src/util/string/QRStringData+Character.swift
+/Users/eon/Documents/dev/_apps/magic-beam/HCCQR-lib/Carthage/Checkouts/QR-lib/src/util/string/QRStringData+Character.swift
 asciiCharacters.get
 $s8QRLibIOS12QRStringDataC15asciiCharactersSaySJGvau
 QRStringData+Character.swift
-/Users/eon/Documents/dev/_apps/magic-beam/HCCQR-lib/Carthage/Checkouts/QR-Lib/src/util/string
+/Users/eon/Documents/dev/_apps/magic-beam/HCCQR-lib/Carthage/Checkouts/QR-lib/src/util/string
 $s8QRLibIOS12QRStringDataC14byteCharactersSaySJGvau
 $s8QRLibIOS12QRStringDataC14byteCharactersSaySJGvpZfiAEyXEfU_
 compactMap
@@ -147,11 +147,11 @@ _symbolic _____ 8QRLibIOS12QRModuleUtilC
 _$s8QRLibIOS12QRModuleUtilCMF
 _objc_classes
 _$s8QRLibIOS12QRModuleUtilCACycfCTq
-/Users/eon/Documents/dev/_apps/magic-beam/HCCQR-lib/Carthage/Checkouts/QR-Lib/src/util/module/QRModuleUtil.swift
+/Users/eon/Documents/dev/_apps/magic-beam/HCCQR-lib/Carthage/Checkouts/QR-lib/src/util/module/QRModuleUtil.swift
 $s8QRLibIOS12QRModuleUtilCMa
 moduleCount
 QRModuleUtil.swift
-/Users/eon/Documents/dev/_apps/magic-beam/HCCQR-lib/Carthage/Checkouts/QR-Lib/src/util/module
+/Users/eon/Documents/dev/_apps/magic-beam/HCCQR-lib/Carthage/Checkouts/QR-lib/src/util/module
 version
 $sSiSQsSQ2eeoiySbx_xtFZTW
 deinit
@@ -159,7 +159,7 @@ firstIndex
 $sS12iSbs5Error_pIgyyyyyyyyyyyydzo_Si1l_Si1mSi1qSi1ht7numeric_SiAB_SiACSiADSiAEt12alphaNumericSiAB_SiACSiADSiAEt4bytetSbsAA_pIegndzo_TR
 $s8QRLibIOS9QRVersionC7version9dataCount6qrMode7ecLevelSiSgSi_AA6QRModeOAA7ECLevelOtFZSbSi1l_Si1mSi1qSi1ht7numeric_SiAM_SiANSiAOSiAPt12alphaNumericSiAM_SiANSiAOSiAPt4bytet_tcfU_
 QRVersion.swift
-/Users/eon/Documents/dev/_apps/magic-beam/HCCQR-lib/Carthage/Checkouts/QR-Lib/src/util/version
+/Users/eon/Documents/dev/_apps/magic-beam/HCCQR-lib/Carthage/Checkouts/QR-lib/src/util/version
 dataCount
 QRVersion+Helper.swift
 $sSayxGSlsSly7ElementQz5IndexQzcirTWSi1l_Si1mSi1qSi1ht7numeric_SiAF_SiAGSiAHSiAIt12alphaNumericSiAF_SiAGSiAHSiAIt4bytet_Tg5
@@ -173,7 +173,7 @@ QRVersion+DataTable.swift
 qrSize
 _$s8QRLibIOS6QRModeO18characterCountBits33_73591E488C5EAC8C6828DE4EBED1F42FLLSaySiGvg
 _$ss23_ContiguousArrayStorageCySiGML
-/Users/eon/Documents/dev/_apps/magic-beam/HCCQR-lib/Carthage/Checkouts/QR-Lib/src/util/mode/QRMode+BitCount.swift
+/Users/eon/Documents/dev/_apps/magic-beam/HCCQR-lib/Carthage/Checkouts/QR-lib/src/util/mode/QRMode+BitCount.swift
 characterCountBits.get
 QRMode+BitCount.swift
 $sSa13_adoptStorage_5countSayxG_SpyxGts016_ContiguousArrayB0CyxGn_SitFZSi_Tg5
@@ -184,7 +184,7 @@ $sSa11_getElement_20wasNativeTypeChecked22matchingSubscriptCheckxSi_Sbs16_Depend
 $sSa15_checkSubscript_20wasNativeTypeCheckeds16_DependenceTokenVSi_SbtFSi_Tg5
 $ss12_ArrayBufferV37_checkInoutAndNativeTypeCheckedBounds_03wasfgH0ySi_SbtFSi_Tg5
 _$s8QRLibIOS6QRModeO9isNumeric6stringSbSS_tFZTf4xd_nTm
-/Users/eon/Documents/dev/_apps/magic-beam/HCCQR-lib/Carthage/Checkouts/QR-Lib/src/util/mode/QRMode+Assert.swift
+/Users/eon/Documents/dev/_apps/magic-beam/HCCQR-lib/Carthage/Checkouts/QR-lib/src/util/mode/QRMode+Assert.swift
 QRMode+Assert.swift
 next
 makeIterator
@@ -224,7 +224,7 @@ _symbolic $ss16RawRepresentableP
 _$s8QRLibIOS7ECLevelOSYAAMA
 _symbolic $ss12CaseIterableP
 _$s8QRLibIOS7ECLevelOs12CaseIterableAAMA
-/Users/eon/Documents/dev/_apps/magic-beam/HCCQR-lib/Carthage/Checkouts/QR-Lib/src/util/ec/ECLevel.swift
+/Users/eon/Documents/dev/_apps/magic-beam/HCCQR-lib/Carthage/Checkouts/QR-lib/src/util/ec/ECLevel.swift
 $sSSSHsSH13_rawHashValue4seedS2i_tFTW
 $sSSSQsSQ2eeoiySbx_xtFZTW
 $sSS2eeoiySbSS_SStFZ
@@ -265,7 +265,7 @@ _$s8QRLibIOS8QRWriterCMf
 _symbolic _____ 8QRLibIOS8QRWriterC
 _$s8QRLibIOS8QRWriterCMF
 _$s8QRLibIOS8QRWriterCACycfCTq
-/Users/eon/Documents/dev/_apps/magic-beam/HCCQR-lib/Carthage/Checkouts/QR-Lib/src/writer/QRWriter.swift
+/Users/eon/Documents/dev/_apps/magic-beam/HCCQR-lib/Carthage/Checkouts/QR-lib/src/writer/QRWriter.swift
 $s8QRLibIOS8QRWriterCMa
 count.get
 $sS2Ss5Error8QRLibIOSWl
@@ -295,7 +295,7 @@ $sSiSjsSj9magnitude9MagnitudeQzvgTW
 $s12CoreGraphics7CGFloatVs27ExpressibleByIntegerLiteralAAsADP07integerG0x0fG4TypeQz_tcfCTW
 image
 ImageUtil.swift
-/Users/eon/Documents/dev/_apps/magic-beam/HCCQR-lib/Carthage/Checkouts/QR-Lib/src/common
+/Users/eon/Documents/dev/_apps/magic-beam/HCCQR-lib/Carthage/Checkouts/QR-lib/src/common
 uiImage
 _$s8QRLibIOS9QRVersionC7maxChar9qrVersion0F4Mode7ecLevelSiSgSi_AA6QRModeOAA7ECLevelOtFZTf4nnnd_n
 _$s8QRLibIOS12QRConfigUtilCML
@@ -303,14 +303,14 @@ _$s8QRLibIOS12QRConfigUtilCMf
 _symbolic _____ 8QRLibIOS12QRConfigUtilC
 _$s8QRLibIOS12QRConfigUtilCMF
 _$s8QRLibIOS12QRConfigUtilCACycfCTq
-/Users/eon/Documents/dev/_apps/magic-beam/HCCQR-lib/Carthage/Checkouts/QR-Lib/src/util/config/QRConfig.swift
+/Users/eon/Documents/dev/_apps/magic-beam/HCCQR-lib/Carthage/Checkouts/QR-lib/src/util/config/QRConfig.swift
 $s8QRLibIOS12QRConfigUtilCMa
 QRConfig.swift
-/Users/eon/Documents/dev/_apps/magic-beam/HCCQR-lib/Carthage/Checkouts/QR-Lib/src/util/config
+/Users/eon/Documents/dev/_apps/magic-beam/HCCQR-lib/Carthage/Checkouts/QR-lib/src/util/config
 maxChar
 _$s8QRLibIOS12QRStringDataC14numericStrings3maxSaySSGSi_tFZTm
 _$s8QRLibIOS12QRStringDataC13randomStrings5chars5rangeSaySSGSaySJG_Si3min_Si3maxttFZTf4nnnd_n
-/Users/eon/Documents/dev/_apps/magic-beam/HCCQR-lib/Carthage/Checkouts/QR-Lib/src/util/string/QRStringData+String.swift
+/Users/eon/Documents/dev/_apps/magic-beam/HCCQR-lib/Carthage/Checkouts/QR-lib/src/util/string/QRStringData+String.swift
 numericStrings
 QRStringData+String.swift
 randomStrings
@@ -355,7 +355,7 @@ _$ss18_DictionaryStorageCySSypGML
 _symbolic So18CIQRCodeDescriptorC
 _symbolic SPys5UInt8VG10Foundation4DataVSgs5Error_pIgyozo_
 _$s10Foundation4DataVSgML
-/Users/eon/Documents/dev/_apps/magic-beam/HCCQR-lib/Carthage/Checkouts/QR-Lib/src/common/extension/CIImage+Extension.swift
+/Users/eon/Documents/dev/_apps/magic-beam/HCCQR-lib/Carthage/Checkouts/QR-lib/src/common/extension/CIImage+Extension.swift
 $s10Foundation4DataV15_RepresentationO5countAESi_tcfCTf4nd_n
 $s10Foundation4DataV06InlineB0V5countAESi_tcfC
 $sSPys5UInt8VG10Foundation4DataVSgs5Error_pIgyozo_AcGsAH_pIegyrzo_TRTA
@@ -468,7 +468,7 @@ _$sSS10Foundation14LocalizedError8QRLibIOSAaBP13failureReasonSSSgvgTW
 _$sSS10Foundation14LocalizedError8QRLibIOSAaBP18recoverySuggestionSSSgvgTW
 _$sSS10Foundation14LocalizedError8QRLibIOSAaBP10helpAnchorSSSgvgTW
 _associated conformance SS10Foundation14LocalizedError8QRLibIOSs0C0
-/Users/eon/Documents/dev/_apps/magic-beam/HCCQR-lib/Carthage/Checkouts/QR-Lib/src/common/extension/String+Extension.swift
+/Users/eon/Documents/dev/_apps/magic-beam/HCCQR-lib/Carthage/Checkouts/QR-lib/src/common/extension/String+Extension.swift
 helpAnchor.get
 recoverySuggestion.get
 failureReason.get
@@ -479,26 +479,25 @@ _getEmbeddedNSError
 _userInfo.get
 _code.get
 _domain.get
+_$s8QRLibIOS8QRWriterC7ciImage3str4size7ecLevelSo7CIImageCSS_So6CGSizeVSgAA7ECLevelOtKFZTf4nddd_n
 _$s8QRLibIOS8QRReaderC6qrCode014_B2DCC63BEAE51F17DF1299709BAA1EC95LL7ciImageSSSo7CIImageC_tKFZTf4nd_n
-_$sS2SSysWL
 _$sSo6CGSizeVSgML
-/Users/eon/Documents/dev/_apps/magic-beam/HCCQR-lib/Carthage/Checkouts/QR-Lib/src/reader/DEPRECATED.swift
+_$sS2SSysWL
+/Users/eon/Documents/dev/_apps/magic-beam/HCCQR-lib/Carthage/Checkouts/QR-lib/src/reader/DEPRECATED.swift
 qrCode
+$s10Foundation4DataVs23CustomStringConvertibleAAsADP11descriptionSSvgTW
+$sS2SSysWl
 qrImage
 $sSo6CGSizeVSgMa
-$sS2SSysWl
-_$s8QRLibIOS8QRReaderC14dataAndFeature33_2422BF66F88CD08A81F0CB1928030A7ELL7ciImage10Foundation4DataV02qrQ0_So08CIQRCodeF0C7featuretSo7CIImageC_tKFZTf4nd_n
 _$s8QRLibIOS8QRReaderCML
 _$s8QRLibIOS8QRReaderCMf
 _symbolic _____ 8QRLibIOS8QRReaderC
 _$s8QRLibIOS8QRReaderCMF
 _$s8QRLibIOS8QRReaderCACycfCTq
-/Users/eon/Documents/dev/_apps/magic-beam/HCCQR-lib/Carthage/Checkouts/QR-Lib/src/reader/QRReader.swift
+/Users/eon/Documents/dev/_apps/magic-beam/HCCQR-lib/Carthage/Checkouts/QR-lib/src/reader/QRReader.swift
 $s8QRLibIOS8QRReaderCMa
-dataAndFeature
 QRReader.swift
 dataAndFrame
-dataAndQuad
 _$s8QRLibIOS6QRModeOSQAASQ2eeoiySbx_xtFZTW
 _$s8QRLibIOS6QRModeOSHAASQWb
 _$s8QRLibIOS6QRModeOSHAASH9hashValueSivgTW
@@ -528,7 +527,7 @@ _$s8QRLibIOS6QRModeOMF
 _symbolic 8QRLibIOS6QRModeO
 _$s8QRLibIOS6QRModeOSYAAMA
 _$s8QRLibIOS6QRModeOs12CaseIterableAAMA
-/Users/eon/Documents/dev/_apps/magic-beam/HCCQR-lib/Carthage/Checkouts/QR-Lib/src/util/mode/QRMode.swift
+/Users/eon/Documents/dev/_apps/magic-beam/HCCQR-lib/Carthage/Checkouts/QR-lib/src/util/mode/QRMode.swift
 $s8QRLibIOS6QRModeOMa
 $s8QRLibIOS6QRModeOwui
 $s8QRLibIOS6QRModeOwup
@@ -570,7 +569,7 @@ _$sSaySJGSayxGSTsWL
 _$ss23_ContiguousArrayStorageCySJGML
 _$ss23_ContiguousArrayStorageCySSGML
 _$s8QRLibIOS12QRStringDataCACycfCTq
-/Users/eon/Documents/dev/_apps/magic-beam/HCCQR-lib/Carthage/Checkouts/QR-Lib/src/util/string/QRStringData.swift
+/Users/eon/Documents/dev/_apps/magic-beam/HCCQR-lib/Carthage/Checkouts/QR-lib/src/util/string/QRStringData.swift
 $s8QRLibIOS12QRStringDataCMa
 randomString
 QRStringData.swift
@@ -657,7 +656,7 @@ $ss20_ArrayBufferProtocolPsE025_forceCreateUniqueMutableB0011countForNewB003minJ
 $ss20_ArrayBufferProtocolPsE025_forceCreateUniqueMutableB0011countForNewB003minJ8Capacitys011_ContiguousaB0Vy7ElementQzGSi_SitFs01_aB0VySJG_Tg5
 $sSa16_copyToNewBuffer8oldCountySi_tFSJ_Tg5
 $sSis35_ExpressibleByBuiltinIntegerLiteralssAAP08_builtindE0xBI_tcfCTW
-/Users/eon/Documents/dev/_apps/magic-beam/HCCQR-lib/Carthage/Checkouts/QR-Lib/src/reader/QRReader+Type.swift
+/Users/eon/Documents/dev/_apps/magic-beam/HCCQR-lib/Carthage/Checkouts/QR-lib/src/reader/QRReader+Type.swift
 _$s8QRLibIOS9QRVersionC7version9dataCount6qrMode7ecLevelSiSgSi_AA6QRModeOAA7ECLevelOtFZTf4nnnd_n
 _$s10Foundation4DataVSgWOe
 _$s8QRLibIOS9QRVersionCML
@@ -665,7 +664,7 @@ _$s8QRLibIOS9QRVersionCMf
 _symbolic _____ 8QRLibIOS9QRVersionC
 _$s8QRLibIOS9QRVersionCMF
 _$s8QRLibIOS9QRVersionCACycfCTq
-/Users/eon/Documents/dev/_apps/magic-beam/HCCQR-lib/Carthage/Checkouts/QR-Lib/src/util/version/QRVersion.swift
+/Users/eon/Documents/dev/_apps/magic-beam/HCCQR-lib/Carthage/Checkouts/QR-lib/src/util/version/QRVersion.swift
 $s8QRLibIOS9QRVersionCMa
 $s8QRLibIOS9QRVersionC9dataCount7version6qrMode7ecLevelS2i1l_Si1mSi1qSi1ht7numeric_SiAH_SiAISiAJSiAKt12alphaNumericSiAH_SiAISiAJSiAKt4bytet_AA6QRModeOAA7ECLevelOtFZSiAH_SiAISiAJSiAKtyXEfU_
 _$s8QRLibIOS9QRVersionC8versionsSaySi1l_Si1mSi1qSi1ht7numeric_SiAE_SiAFSiAGSiAHt12alphaNumericSiAE_SiAFSiAGSiAHt4bytetGvau
@@ -673,7 +672,7 @@ _$s8QRLibIOS9QRVersionC8versionsSaySi1l_Si1mSi1qSi1ht7numeric_SiAE_SiAFSiAGSiAHt
 _$ss23_ContiguousArrayStorageCySi1l_Si1mSi1qSi1ht7numeric_SiAC_SiADSiAESiAFt12alphaNumericSiAC_SiADSiAESiAFt4bytetGML
 _$sSi1l_Si1mSi1qSi1ht7numeric_SiAA_SiABSiACSiADt12alphaNumericSiAA_SiABSiACSiADt4bytetML
 _$sSi1l_Si1mSi1qSi1htML
-/Users/eon/Documents/dev/_apps/magic-beam/HCCQR-lib/Carthage/Checkouts/QR-Lib/src/util/version/QRVersion+DataTable.swift
+/Users/eon/Documents/dev/_apps/magic-beam/HCCQR-lib/Carthage/Checkouts/QR-lib/src/util/version/QRVersion+DataTable.swift
 $s8QRLibIOS9QRVersionC8versionsSaySi1l_Si1mSi1qSi1ht7numeric_SiAE_SiAFSiAGSiAHt12alphaNumericSiAE_SiAFSiAGSiAHt4bytetGvpZfiALyXEfU_
 $sSa13_adoptStorage_5countSayxG_SpyxGts016_ContiguousArrayB0CyxGn_SitFZSi1l_Si1mSi1qSi1ht7numeric_SiAH_SiAISiAJSiAKt12alphaNumericSiAH_SiAISiAJSiAKt4bytet_Tg5
 $ss23_ContiguousArrayStorageCySi1l_Si1mSi1qSi1ht7numeric_SiAC_SiADSiAESiAFt12alphaNumericSiAC_SiADSiAESiAFt4bytetGMa
@@ -690,10 +689,10 @@ _symbolic _____ 8QRLibIOS9ImageUtilC
 _$s8QRLibIOS9ImageUtilCMF
 _$s8QRLibIOS9ImageUtilCACycfCTq
 _$s8QRLibIOS9ImageUtilCN
-/Users/eon/Documents/dev/_apps/magic-beam/HCCQR-lib/Carthage/Checkouts/QR-Lib/src/common/ImageUtil.swift
+/Users/eon/Documents/dev/_apps/magic-beam/HCCQR-lib/Carthage/Checkouts/QR-lib/src/common/ImageUtil.swift
 $s8QRLibIOS9ImageUtilCMa
-/Users/eon/Documents/dev/_apps/magic-beam/HCCQR-lib/Carthage/Checkouts/QR-Lib/src/util/version/QRVersion+Type.swift
-/Users/eon/Documents/dev/_apps/magic-beam/HCCQR-lib/Carthage/Checkouts/QR-Lib/src/util/string/QRStringData+MaxChar.swift
+/Users/eon/Documents/dev/_apps/magic-beam/HCCQR-lib/Carthage/Checkouts/QR-lib/src/util/version/QRVersion+Type.swift
+/Users/eon/Documents/dev/_apps/magic-beam/HCCQR-lib/Carthage/Checkouts/QR-lib/src/util/string/QRStringData+MaxChar.swift
 QRStringData+MaxChar.swift
-/Users/eon/Documents/dev/_apps/magic-beam/HCCQR-lib/Carthage/Checkouts/QR-Lib/src/common/HybridOS.swift
-/Users/eon/Library/Caches/org.carthage.CarthageKit/DerivedData/10.2_10E125/QR-lib/ad341ad78534e7ecd9c7161f0b436d2546a6201a/Build/Intermediates.noindex/ArchiveIntermediates/QRLibIOS/IntermediateBuildFilesPath/QRExample.build/Release-iphoneos/QRLibIOS.build/DerivedSources/QRLibIOS_vers.c
+/Users/eon/Documents/dev/_apps/magic-beam/HCCQR-lib/Carthage/Checkouts/QR-lib/src/common/HybridOS.swift
+/Users/eon/Library/Caches/org.carthage.CarthageKit/DerivedData/10.2_10E125/QR-lib/820af00bc6ea3f9a2f9af593779d078b4785b8ff/Build/Intermediates.noindex/ArchiveIntermediates/QRLibIOS/IntermediateBuildFilesPath/QRExample.build/Release-iphoneos/QRLibIOS.build/DerivedSources/QRLibIOS_vers.c

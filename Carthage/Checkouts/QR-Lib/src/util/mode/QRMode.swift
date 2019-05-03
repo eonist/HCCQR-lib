@@ -24,7 +24,7 @@ import Foundation
  * - Note: good primer: https://en.wikipedia.org/wiki/QR_code
  * - Note: .rawValue = Bits in mode
  */
-public enum QRMode: Int,CaseIterable{
+public enum QRMode: Int, CaseIterable {
    case numeric = 0x01
    case alphaNumeric = 0x02
    case byte = 0x04

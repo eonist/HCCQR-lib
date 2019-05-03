@@ -1,25 +1,27 @@
 import Foundation
 
-extension Data{
+extension Data {
    /**
     * Splits data at index
     */
-   func split(index:Int) -> [Data] {
-      let data:(Data,Data) = self.split(index: index)
-      return [data.0,data.1]
+   func split(index: Int) -> [Data] {
+      let data: (Data, Data) = self.split(index: index)
+      return [data.0, data.1]
    }
    /**
     *  Splits data at index
     */
-   func split(index:Int) -> (Data,Data) {
-      let arr:[UInt8] = [UInt8](self)
+   func split(index: Int) -> (Data, Data) {
+      let arr: [UInt8] = [UInt8](self)
       let a = arr[0..<index]
       let b = arr[index..<self.count]
-      return (Data.init(bytes:a),Data.init(bytes:b))
+      return (.init(bytes: a), .init(bytes: b))
    }
-   /*Convert Data to bytes array*/
-   var bytes:[UInt8] {
-      let bytes:[UInt8] = [UInt8](self)
+   /**
+    * Convert Data to bytes array
+    */
+   var bytes: [UInt8] {
+      let bytes: [UInt8] = [UInt8](self)
       return bytes
    }
    /**

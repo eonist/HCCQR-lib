@@ -1,8 +1,8 @@
 import Foundation
 /**
- * TODO: ⚠️️ write more doc
+ * Fixme: ⚠️️ write more doc
  */
-extension QRMode{
+ extension QRMode {
    /**
     * Basically charBitsCount varies in different versions v1+Byte=8 but v40+Byte = 16 etc .see wikipedia
     * ## Examples:
@@ -10,7 +10,7 @@ extension QRMode{
     */
    public func characterCountBits (version: Int) -> Int {
       let versionNumber = version
-      let index : Int
+      let index: Int
       if versionNumber <= 9 {
          index = 0
       } else if versionNumber <= 26 {
@@ -23,8 +23,8 @@ extension QRMode{
    /**
     * Helper for characterCountBits
     */
-   fileprivate var characterCountBits : [Int] {
-      switch (self) {
+   fileprivate var characterCountBits: [Int] {
+      switch self {
       case .numeric: return [10, 12, 14]
       case .alphaNumeric: return [9, 11, 13]
       case .byte: return [8, 16, 16]

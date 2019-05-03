@@ -7,8 +7,9 @@ import Foundation
  * H - Allows recovery of up to 30% data loss
  * ## Examples:
  * Swift.print(ECLevels.allCases[1].rawValue)//"M"
+ * Fixme: ⚠️️ Consider renaming to low,medium,quality,high
  */
-public enum ECLevel:String,CaseIterable {//TODO: do .uppercased here
+public enum ECLevel: String, CaseIterable { //Fixme: do .uppercased here
    case l = "L"
    case m = "M"
    case q = "Q"

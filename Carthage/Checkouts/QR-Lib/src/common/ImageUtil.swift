@@ -4,10 +4,10 @@ import UIKit
 import Cocoa
 #endif
 /**
- * Util.
- * - TODO: ⚠️️ Can be moved to Util or Extensions
+ * Util
+ * - Fixme: ⚠️️ Can be moved to Util or Extensions
  */
-internal final class ImageUtil{
+internal final class ImageUtil {
    /**
     * Universal for ios and mac
     */
@@ -22,24 +22,24 @@ internal final class ImageUtil{
    }
    /**
     * Converts ciImage to UIImage
-    * - NOTE: Helper method for QR images
-    * - TODO: ⚠️️ Make this throw
+    * - Note: Helper method for QR images
+    * - Fixme: ⚠️️ Make this throw
     */
    #if os(iOS)
    private static func uiImage(ciImage: CIImage) -> UIImage {
-      let uiImage:UIImage = UIImage.init(ciImage: ciImage)
+      let uiImage: UIImage = .init(ciImage: ciImage)
       return uiImage
    }
    #endif
    /**
     * Converts ciImage to NSImage
     * - Note: Helper method for QR images
-    * - TODO: ⚠️️ Make this throw
+    * - Fixme: ⚠️️ Make this throw
     */
    #if os(macOS)
    private static func nsImage(ciImage: CIImage) -> NSImage {
-      let rep:NSCIImageRep = NSCIImageRep.init(ciImage: ciImage)
-      let nsImg:NSImage = NSImage.init(size: rep.size)
+      let rep: NSCIImageRep = .init(ciImage: ciImage)
+      let nsImg: NSImage = .init(size: rep.size)
       nsImg.addRepresentation(rep)
       return nsImg
    }

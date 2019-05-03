@@ -1,4 +1,12 @@
+![Lang](https://img.shields.io/badge/Language-Swift-orange.svg)
+![mit](https://img.shields.io/badge/License-MIT-brightgreen.svg)
+[![codebeat badge](https://codebeat.co/badges/7514c7a6-b59d-45bb-8c7f-90be3d0c7ad7)](https://codebeat.co/projects/github-com-light-stream-qr-lib-master)
+[![SwiftLint Sindre](https://img.shields.io/badge/SwiftLint-Sindre-hotpink.svg)](https://github.com/sindresorhus/swiftlint-sindre)
+
 # QR-lib
+
+<img width="138" alt="img" src="https://github.com/stylekit/img/blob/master/Screenshot 2019-04-07 at 21.27.48.png?raw=true">
+
 QR library for iOS and Mac
 
 ### iOS

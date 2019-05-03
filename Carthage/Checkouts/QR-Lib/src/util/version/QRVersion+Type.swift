@@ -1,6 +1,6 @@
 import Foundation
 
-extension QRVersion{
+ extension QRVersion {
    /**
     * RecoveryLevel (ECLevel)
     * - Note:
@@ -9,6 +9,6 @@ extension QRVersion{
     * Q - Allows recovery of up to 25% data loss
     * H - Allows recovery of up to 30% data loss
     */
-   public typealias Mode = (l:Int,m:Int,q:Int,h:Int)
-   public typealias Version = (numeric:Mode,alphaNumeric:Mode,byte:Mode)
+   public typealias Mode = (l: Int, m: Int, q: Int, h: Int)
+   public typealias Version = (numeric: Mode, alphaNumeric: Mode, byte: Mode)
 }
