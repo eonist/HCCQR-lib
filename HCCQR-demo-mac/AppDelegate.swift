@@ -65,29 +65,27 @@ extension View{
             Swift.print("createHCCQRTime complete: \(abs(createHCCQRTime.timeIntervalSinceNow))")
             onComplete(hccqrImage)
          }
-         let splitTime:Date = Date()
-         let hccqrDataComplete:OnHCCQRDataComplete = { data,error  in
-           guard let payload:String = data?.stringUTF8 else {Swift.print("unable to get string from hccqr\(error.debugDescription)");return}
+         let splitTime: Date = .init()
+         let hccqrDataComplete: OnHCCQRDataComplete = { data, error  in
+           guard let payload:String = data?.stringUTF8 else { Swift.print("unable to get string from hccqr\(error.debugDescription)"); return }
             /*⭐ 3. Assert payload ⭐*/
             let isMatching:Bool = randomString == payload
             Swift.print("isMatching:  \(isMatching ? "✅":"🚫")")
-            
             DispatchQueue.main.async {
                Swift.print("Seperation complete: \(abs(splitTime.timeIntervalSinceNow))")
                Swift.print("Read and write done: \(abs(startTime.timeIntervalSinceNow))")
-               
             }
             /*ensure that img only has valid colors, akak no bluring*/
             //Swift.print("hasOnlyColorMap: \(ColorizeUtil.hasOnlyColorMap(uiImage:hccqrImage, colorMap: [.red,.green,.blue,.white]))")
          }
-         DispatchQueue.global(qos:.userInitiated).async {
+         DispatchQueue.global(qos: .userInitiated).async {
             /*⭐ 2. try split the hccqrImg ⭐*/
              HCCQRReader.data(image: hccqrImage, onComplete: hccqrDataComplete)
          }
       }
-      DispatchQueue.global(qos:.userInitiated).async {
+      DispatchQueue.global(qos: .userInitiated).async {
          /*⭐ 1. Create HCCQR from string ⭐*/
-         HCCQRWriter.image(data:data, moduleMultiplier:6, scale:2, qrConfig:(qrVersion,ecLevel), onComplete:hccqrImageComplete)
+         HCCQRWriter.image(data: data, moduleMultiplier: 6, scale: 2, qrConfig: (qrVersion, ecLevel), onComplete:hccqrImageComplete)
       }
    }
 }
@@ -95,7 +93,7 @@ extension View{
 /**
  * Bulk test
  */
-extension AppDelegate{
+extension AppDelegate {
    /**
     * Tests the speed of creating hccqr images
     */

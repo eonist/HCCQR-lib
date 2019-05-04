@@ -34,8 +34,8 @@ extension RGBAImage{
    internal mutating func process(functor:FunctorIndexCall) {
       (0..<self.height).forEach{ y in
          (0..<self.width).forEach { x in
-            let index:Int = y * width + x
-            let outPixel:PixelData = functor(index,pixels[index])
+            let index: Int = y * width + x
+            let outPixel: PixelData = functor(index, pixels[index])
             pixels[index] = outPixel
          }
       }
@@ -43,7 +43,7 @@ extension RGBAImage{
    /**
     * copy
     */
-   var copy:RGBAImage{
-      return RGBAImage.rgbaImage(pixels: pixels.map{$0}, size: (width,height))
+   var copy: RGBAImage {
+      return RGBAImage.rgbaImage(pixels: pixels.map{ $0 }, size: (width, height))
    }
 }

@@ -11,14 +11,14 @@ import QRLibIOS
 //you can make black stuff black inside the qrSquareBoundingBox 👌
 
 
-class AlignMarkUtil{
+class AlignMarkUtil {
    /**
     * Creates an UIIMageView with the Align marks drawn into the image
     * ## Examples:
     * AlignMarkUtil.alignMarkGraphic(qrImgSize: image.size, strCount: string.count)
-    * - TODO: ⚠️️ add support for secondary align marks
+    * - Fixme: ⚠️️ add support for secondary align marks
     */
-   static func alignMarkGraphic(qrImgSize:CGSize, string:String, ecLevel:ECLevel) -> UIImageView? {
+   static func alignMarkGraphic(qrImgSize: CGSize, string: String, ecLevel: ECLevel) -> UIImageView? {
 //      Swift.print("alignMarkGraphic.strCount:  \(strCount)")
 //      let metric:AlignBoxMetric = {
 //         let (small,medium,big) = (AlignMarkUtil.small.charRange,AlignMarkUtil.medium.charRange,AlignMarkUtil.big.charRange)
@@ -36,33 +36,33 @@ class AlignMarkUtil{
 //            return AlignMarkUtil.big.metric
 //         }
 //      }()
-      guard let alignBox:AlignBox = AlignMarkUtil.alignBox(string: string, ecLevel: ecLevel, side: qrImgSize.width) else{Swift.print("unable to create alignbox");return nil}
-      let viewRect:CGRect = .init(origin:.zero,size:qrImgSize)
-      let view:UIView = drawSquares(view:.init(frame:viewRect), qrImgSize:qrImgSize, metric:alignBox)
-      let img:UIImage? = view.snapShot//create an image of the view
-      let imageView:UIImageView = .init(image:img)
+      guard let alignBox: AlignBox = AlignMarkUtil.alignBox(string: string, ecLevel: ecLevel, side: qrImgSize.width) else { Swift.print("unable to create alignbox"); return nil }
+      let viewRect: CGRect = .init(origin: .zero, size: qrImgSize)
+      let view: UIView = drawSquares(view: .init(frame: viewRect), qrImgSize: qrImgSize, metric: alignBox)
+      let img: UIImage? = view.snapShot//create an image of the view
+      let imageView: UIImageView = .init(image:img)
       return imageView
    }
 }
 /**
  * Helper
  */
-extension AlignMarkUtil{
+extension AlignMarkUtil {
    /**
     * Draw align marks
     * - Note: Primary points is used as position detection pattern (so that the qr-code can be read from any direction)
     * - NOTE: Secondary points are The alignment pattern is used for position detection when there is displacement of modules due to distortion. It is applied to model 2.
     */
-   fileprivate static func drawSquares(view:UIView, qrImgSize:CGSize, metric:AlignBox) -> UIView {
-      let primaryPoints:[CGPoint] = {
+   fileprivate static func drawSquares(view: UIView, qrImgSize: CGSize, metric: AlignBox) -> UIView {
+      let primaryPoints: [CGPoint] = {
          let tl = AlignMarkUtil.topLeft()
-         let tr = AlignMarkUtil.topRight(qrImgSize:qrImgSize,markLength:metric.squareLength)
-         let bl = AlignMarkUtil.bottomLeft(qrImgSize:qrImgSize,markLength:metric.squareLength)
-         return [tl,tr,bl]
+         let tr = AlignMarkUtil.topRight(qrImgSize: qrImgSize, markLength: metric.squareLength)
+         let bl = AlignMarkUtil.bottomLeft(qrImgSize: qrImgSize, markLength: metric.squareLength)
+         return [tl, tr, bl]
       }()
       /*Draw the shapeLayers into the view*/
       primaryPoints.forEach {
-         let square = drawDebugSquare(metric:metric,pos:$0)//drawSquare
+         let square = drawDebugSquare(metric: metric, pos: $0)//drawSquare
          view.layer.addSublayer(square.0)
          view.layer.addSublayer(square.1)
       }

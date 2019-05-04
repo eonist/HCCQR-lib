@@ -33,18 +33,18 @@ extension Colorizer{
     * colorize(pixels:[blackPixel,whitePixel]) -> RedPixel
     * colorize(pixels:[whitePixel,whitePixel]) -> BluePixel
     */
-   private static func colorize(pixels:[PixelData], colorMap:ColorMap) -> PixelData?{
-      let findColor:(ColorMapItem) -> Bool = { colorMapItem in
-         if colorMapItem.idx.count != pixels.count {Swift.print("Colorize.colorize - colorMap does not match pixel layer count");return false}
-         let condition:(_ i:Int,_ pixel:PixelData) -> Bool = { (i:Int,pixel:PixelData) in
-            let bothAreBlack:Bool = pixel.isBlack == (colorMapItem.idx[i] == 0)/*zero means black*/
-            let bothAreWhite:Bool = pixel.isWhite == (colorMapItem.idx[i] == 1)/*zero means white*/
-            if (bothAreBlack == false && bothAreWhite == false) {return false}//<- Sort of crazy looking, but it works 🤷
-            else {return true}
+   private static func colorize(pixels: [PixelData], colorMap: ColorMap) -> PixelData? {
+      let findColor: (ColorMapItem) -> Bool = { colorMapItem in
+         if colorMapItem.idx.count != pixels.count { Swift.print("Colorize.colorize - colorMap does not match pixel layer count"); return false }
+         let condition: (_ i: Int,_ pixel: PixelData) -> Bool = { (i: Int, pixel: PixelData) in
+            let bothAreBlack: Bool = pixel.isBlack == (colorMapItem.idx[i] == 0)/*zero means black*/
+            let bothAreWhite: Bool = pixel.isWhite == (colorMapItem.idx[i] == 1)/*zero means white*/
+            if (bothAreBlack == false && bothAreWhite == false) { return false }//<- Sort of crazy looking, but it works 🤷
+            else { return true }
          }
          return (pixels.enumerated().first(where: condition) == nil)
       }
-      guard let color:Color = colorMap.first(where: findColor)?.color else {Swift.print("Unable to colorize");return nil}
-      return PixelData.init(uiColor:color)
+      guard let color: Color = colorMap.first(where: findColor)?.color else { Swift.print("Unable to colorize"); return nil }
+      return PixelData.init(uiColor: color)
    }
 }

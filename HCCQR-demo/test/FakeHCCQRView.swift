@@ -11,7 +11,7 @@ import UIKit
  * - Note: layer 1 needs green and blue (the other colors are blank)
  * - Note: layer 2 needs red and blue (the other colors are blank)
  */
-class FakeHCCQRView:UIView{
+class FakeHCCQRView: UIView {
    override init(frame: CGRect) {
       super.init(frame: frame)
       createColorGrid()
@@ -26,23 +26,23 @@ class FakeHCCQRView:UIView{
 /**
  * Create
  */
-extension FakeHCCQRView{
+extension FakeHCCQRView {
    /**
     * Creates 4x4 color-grid
     */
-   func createColorGrid(){
-      let grid:[[UIColor]] = {
+   func createColorGrid() {
+      let grid: [[UIColor]] = {
          [
-            [.red,.green,.blue,.white],
-            [.green,.red,.white,.blue],
-            [.blue,.green,.red,.white],
-            [.green,.white,.blue,.red]
+            [.red, .green, .blue, .white],
+            [.green, .red, .white, .blue],
+            [.blue, .green, .red, .white],
+            [.green, .white, .blue, .red]
          ]
       }()
       /*Place the grid of color rectangles*/
-      grid.enumerated().forEach{ row in
-         row.element.enumerated().forEach{ (e,color) in
-            let layer = self.createLayer(color: color,size:.init(width:80,height:80))
+      grid.enumerated().forEach { row in
+         row.element.enumerated().forEach { e, color in
+            let layer = self.createLayer(color: color, size: .init(width: 80, height: 80))
             layer.frame.origin.x = CGFloat(e * 80)
             layer.frame.origin.y = CGFloat(row.offset * 80)
             self.layer.addSublayer(layer)

@@ -1,36 +1,36 @@
 import Foundation
 /**
  * Utils
- * - TODO: ⚠️️ Rename to RGBAImageSplitter
+ * - Fixme: ⚠️️ Rename to RGBAImageSplitter
  */
 extension Splitter {
    /**
     * Returns channels (rgb for now)
     */
-   internal static func channels(image:Image,onComplete:@escaping OnOptionalChannelsComplete)/* -> RGBAImages?*/{
+   internal static func channels(image: Image, onComplete:@escaping OnOptionalChannelsComplete) {
       guard let rgbaImg:RGBAImage = RGBAImage.rgbaImage(image: image) else {Swift.print("Splitter.channels() - Unable to create rgbaImg");onComplete(nil);return}
       channels(rgbaImg:rgbaImg,onComplete:onComplete)//{onComplete($0)}
    }
-   internal typealias OnChannelsComplete = (_ rgbaImages:RGBAImages) -> Void
+   internal typealias OnChannelsComplete = (_ rgbaImages: RGBAImages) -> Void
    /**
     * Split 3 RGBAImages into 3 singular rgb channels (white represents the channel color)
     */
-   internal static func channels(rgbaImg:RGBAImage, onComplete:@escaping OnChannelsComplete)/* -> RGBAImages*/ {
-      let assertions:[(PixelData)->Bool] = [{$0.isRedish},{$0.isGreenish},{$0.isBlueish}]
-      var rgbaImages:[RGBAImage?] = [RGBAImage?](repeating: nil, count: assertions.count)
-      func onChannelComplete(i:Int, rgbaImage:RGBAImage){
+   internal static func channels(rgbaImg: RGBAImage, onComplete:@escaping OnChannelsComplete)/* -> RGBAImages*/ {
+      let assertions: [(PixelData)->Bool] = [{ $0.isRedish }, { $0.isGreenish }, { $0.isBlueish }]
+      var rgbaImages: [RGBAImage?] = [RGBAImage?](repeating: nil, count: assertions.count)
+      func onChannelComplete(i: Int, rgbaImage: RGBAImage){
          rgbaImages[i] = rgbaImage//it matters which order the qrImages came in when you stitch them back together
          if rgbaImages.first(where: {$0 == nil}) == nil {/*makes sure all images finished*/
-            let rgbaImages:[RGBAImage] = rgbaImages.compactMap{$0}
-            onComplete((rgbaImages[0],rgbaImages[1],rgbaImages[2]))
+            let rgbaImages: [RGBAImage] = rgbaImages.compactMap{ $0 }
+            onComplete((rgbaImages[0], rgbaImages[1], rgbaImages[2]))
             rgbaImg.deinitiate()/*to avoid memleak*/
          }
       }
-      assertions.enumerated().forEach{ item in
-         DispatchQueue.global(qos:.userInitiated).async {
-            let rgbaImage:RGBAImage = channel(rgbaImg:rgbaImg,assert:item.element)
-            DispatchQueue.main.async{
-               onChannelComplete(i:item.offset,rgbaImage: rgbaImage)
+      assertions.enumerated().forEach { item in
+         DispatchQueue.global(qos: .userInitiated).async {
+            let rgbaImage: RGBAImage = channel(rgbaImg: rgbaImg, assert: item.element)
+            DispatchQueue.main.async {
+               onChannelComplete(i: item.offset, rgbaImage: rgbaImage)
             }
          }
       }

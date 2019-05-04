@@ -2,8 +2,7 @@ import UIKit
 import QRLibIOS
 @testable import HCCQR_lib_iOS
 
-class AimMarkTestView:UIView{
-   
+class AimMarkTestView: UIView {
    /**
     * Initiate
     * - Note: PrimaryAlignMarks are relative in size to the qrimg size
@@ -28,28 +27,26 @@ class AimMarkTestView:UIView{
    required init?(coder aDecoder: NSCoder) {
       fatalError("init(coder:) has not been implemented")
    }
-
 }
-
-extension AimMarkTestView{
+extension AimMarkTestView {
    /**
     *
     */
-   func createAlignMarkImageView(){
+   func createAlignMarkImageView() {
       fatalError("⚠️️ out of order")
-      let (qrVersion,qrMode,ecLevel):(Int,QRMode,ECLevel) = (1,.byte,.l)//settings
-      guard let stringCount:Int = QRVersion.maxChar(qrVersion:qrVersion,qrMode:qrMode,ecLevel: ecLevel) else {Swift.print("⚠️️ Unable to get stringCount ⚠️️");return}//533
-      let string:String = QRStringData.randomString(chars: QRStringData.byteCharacters, count: stringCount )
+      let (qrVersion, qrMode, ecLevel): (Int, QRMode, ECLevel) = (1, .byte, .l)//settings
+      guard let stringCount: Int = QRVersion.maxChar(qrVersion: qrVersion, qrMode: qrMode, ecLevel: ecLevel) else { Swift.print("⚠️️ Unable to get stringCount ⚠️️"); return }//533
+      let string: String = QRStringData.randomString(chars: QRStringData.byteCharacters, count: stringCount)
       Swift.print("string.count:  \(string.count)")//533
       /*assert mode*/
       let mode = QRMode.mode(string: string)/*print qrMode: eigther: numeric,alphaNumeric,byte*/
       Swift.print("mode:  \(mode.debugDescription)")
-      guard qrMode == mode else {Swift.print("qrMode does not match mode");return}
+      guard qrMode == mode else { Swift.print("qrMode does not match mode"); return }
       /*assert version*/
-      let version:Int? = QRVersion.version(string:string,ecLevel:ecLevel)
+      let version: Int? = QRVersion.version(string: string, ecLevel: ecLevel)
       Swift.print("version:  \(String(describing: version))")
       /*Make sure qrVersion is correct*/
-      guard qrVersion == version else {Swift.print("qrVersion does not match version");return}
+      guard qrVersion == version else { Swift.print("qrVersion does not match version"); return }
       /*Create Image-size*/
 //      let qrSize = QRImageSize.qrImageSize(string:string, ecLevel: ecLevel)
 //      Swift.print("qrSize:  \(qrSize)")

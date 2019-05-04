@@ -1,32 +1,31 @@
 import Foundation
 /**
- * TODO: ⚠️️ some of these methods are not in use. remove them
+ * Fixme: ⚠️️ some of these methods are not in use. remove them
  */
-internal extension Data{
+extension Data {
    /**
     * Returns new Data with bytes from start to end (New)
     */
-   func range(start:Int,end:Int) -> Data{
-      let array:[UInt8] = [UInt8](self)
+   func range(start: Int, end: Int) -> Data {
+      let array: [UInt8] = [UInt8](self)
       let partialArray = array[start..<end]
-      return Data.init(bytes:partialArray)
-      //      return [UInt8](partialArray)
+      return .init(bytes: partialArray)
    }
    /**
     * Splits data at index
     */
-   func split(index:Int) -> [Data] {
-      let data:(Data,Data) = self.split(index: index)
-      return [data.0,data.1]
+   func split(index: Int) -> [Data] {
+      let data: (Data, Data) = self.split(index: index)
+      return [data.0, data.1]
    }
    /**
     *  Splits data at index
     */
-   func split(index:Int) -> (Data,Data) {
-      let arr:[UInt8] = [UInt8](self)
+   func split(index: Int) -> (Data, Data) {
+      let arr: [UInt8] = [UInt8](self)
       let a = arr[0..<index]
       let b = arr[index..<self.count]
-      return (Data.init(bytes:a),Data.init(bytes:b))
+      return (.init(bytes: a), .init(bytes: b))
    }
    /**
     * Returns string for Data (ascii)

@@ -5,7 +5,7 @@ import Cocoa
 #endif
 /**
  * Util.
- * - TODO: ⚠️️ Can be moved to Extension
+ * - Fixme: ⚠️️ Can be moved to Extension
  */
 internal final class ImageUtil{
    /**
@@ -13,7 +13,7 @@ internal final class ImageUtil{
     */
    internal static func image(cgImage: CGImage, scale:CGFloat = 1) -> Image {
       #if os(iOS)
-      return uiImage(cgImage: cgImage,scale:scale)
+      return uiImage(cgImage: cgImage, scale: scale)
       #elseif os(macOS)
       return nsImage(cgImage: cgImage)
       #else
@@ -23,22 +23,22 @@ internal final class ImageUtil{
    /**
     * Converts ciImage to UIImage
     * - NOTE: Helper method for QR images
-    * - TODO: ⚠️️ Make this throw
+    * - Fixme: ⚠️️ Make this throw
     */
    #if os(iOS)
-   private static func uiImage(cgImage: CGImage, scale:CGFloat) -> UIImage {
-      let image:UIImage = UIImage.init(cgImage: cgImage, scale: scale, orientation: .up)//.leftMirrored
+   private static func uiImage(cgImage: CGImage, scale: CGFloat) -> UIImage {
+      let image: UIImage = .init(cgImage: cgImage, scale: scale, orientation: .up)//.leftMirrored
       return image
    }
    #endif
    /**
     * Converts ciImage to NSImage
     * - Note: Helper method for QR images
-    * - TODO: ⚠️️ Make this throw
+    * - Fixme: ⚠️️ Make this throw
     */
    #if os(macOS)
    private static func nsImage(cgImage: CGImage) -> NSImage {
-      let nsImg:NSImage = NSImage.init(cgImage: cgImage, size: CGSize.init(width: cgImage.width, height: cgImage.height))
+      let nsImg: NSImage = .init(cgImage: cgImage, size: .init(width: cgImage.width, height: cgImage.height))
       return nsImg
    }
    #endif
