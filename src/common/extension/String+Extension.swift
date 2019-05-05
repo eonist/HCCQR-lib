@@ -4,7 +4,7 @@ import Foundation
  */
 extension String {
    var asciiData: Data? {
-      return self.data(using:.ascii,allowLossyConversion: true)
+      return self.data(using: .ascii, allowLossyConversion: true)
    }
 }
 /**
@@ -26,6 +26,6 @@ extension StringProtocol {
       return compactMap { $0.ascii }
    }
    var asciiString: String {
-      return compactMap { $0.ascii }.reduce(""){ String($0) + String($1) }
+      return compactMap { $0.ascii }.reduce("") { String($0) + String($1) }
    }
 }

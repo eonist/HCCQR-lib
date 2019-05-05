@@ -9,7 +9,7 @@ extension Data {
    func range(start: Int, end: Int) -> Data {
       let array: [UInt8] = [UInt8](self)
       let partialArray = array[start..<end]
-      return .init(bytes: partialArray)
+      return .init(partialArray)
    }
    /**
     * Splits data at index
@@ -25,7 +25,7 @@ extension Data {
       let arr: [UInt8] = [UInt8](self)
       let a = arr[0..<index]
       let b = arr[index..<self.count]
-      return (.init(bytes: a), .init(bytes: b))
+      return (.init(a), .init(b))
    }
    /**
     * Returns string for Data (ascii)

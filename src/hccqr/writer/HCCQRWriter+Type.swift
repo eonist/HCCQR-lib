@@ -7,7 +7,7 @@ import QRLibMac
 /**
  * Type
  */
-extension HCCQRWriter{
+extension HCCQRWriter {
    public typealias QRConfig = (qrVersion: Int, ecLevel: ECLevel)
 }
 /**

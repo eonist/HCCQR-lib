@@ -48,7 +48,7 @@ extension ViewController {
       guard let rgbColorTestImage: UIImage = rgbColorTestView.snapShot else { fatalError("err") }
       _ = rgbColorTestImage
       //let rgba3 = RGBAImage(image: UIImage(named: "monet")!)!
-      guard let images: Splitter.RGBUIImages = { Optional((UIImage(), UIImage(), UIImage())) }()/*RGBAImage.split(image: rgbColorTestImage)*/ else {fatalError("err") }
+      guard let images: Splitter.RGBUIImages = { Optional((UIImage(), UIImage(), UIImage())) }()/*RGBAImage.split(image: rgbColorTestImage)*/ else { fatalError("err") }
       //      //r
       //      guard let rgbaImage:RGBAImage = RGBAImage.init(image: rgbColorTestImage) else {fatalError("err")}
       //      let rgbaImage2:RGBAImage = rgbaImage.copy
@@ -362,7 +362,7 @@ extension ViewController {
       Swift.print("testReadingHCCQRImage")
       let startTime: Date = .init()
       let path = Bundle.main.resourcePath!+"/temp.bundle/HCCQR17.jpg"//HCCQR12.png,HCCQR13.jpg
-      guard let uiImage:UIImage = .init(contentsOfFile: path) else { Swift.print("err getting img"); return }
+      guard let uiImage: UIImage = .init(contentsOfFile: path) else { Swift.print("err getting img"); return }
       Swift.print("uiImage.size:  \(uiImage.size)")
 
       let onComplete: (_ dataAndImages: HCCQRReader.DataAndImages?, _ error: Error?) -> Void = { dataAndImages, error in

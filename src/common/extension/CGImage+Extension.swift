@@ -1,6 +1,6 @@
 import Foundation
 
-extension CGImage{
+extension CGImage {
    /**
     * Inverts an image (black becomes white etc)
     */

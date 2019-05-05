@@ -2,7 +2,7 @@ import Foundation
 /**
  * Modifiers
  */
-extension Image{
+extension Image {
    #if os(macOS)
    convenience init(cgImage: CGImage) {
       self.init(cgImage: cgImage, size: .init(width: cgImage.width, height: cgImage.height))
@@ -18,7 +18,7 @@ extension Image {
     * - Note: alternative: https://gist.github.com/giulio92/69e4f74217422154bb25d2a35d6710f8
     * - Fixme: ⚠️️ cgImage or cgImage doesn't always work, try to make this more consistent
     */
-   func getPixelColor(pos:CGPoint) -> Color? {//Fixme: ⚠️️ make this for cgImage, converting it over and oer is not good
+   func getPixelColor(pos: CGPoint) -> Color? {//Fixme: ⚠️️ make this for cgImage, converting it over and oer is not good
       //⚠️️ The bellow fix could hurt performance
       guard let cgImage = /*self.cgImage ?? */self.cgImage() else { Swift.print("getPixelColor() - unable to get cgImage"); return nil }
       guard let dataProvider = cgImage.dataProvider else { Swift.print("getPixelColor() - unable to get dataProvider"); return nil }

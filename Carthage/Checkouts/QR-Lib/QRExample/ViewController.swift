@@ -44,7 +44,7 @@ extension ViewController {
 //      }
 //      Swift.print("CIImage.detector:  \(CIImage.detector)")
       let path = Bundle.main.resourcePath!+"/temp.bundle/qrimg1.png"
-      guard let uiImage: UIImage = UIImage.init(contentsOfFile: path) else { Swift.print("err getting img"); return }
+      guard let uiImage: UIImage = .init(contentsOfFile: path) else { Swift.print("err getting img"); return }
       var counter: Int = 0
       let num: Int = 160
       let startTime: Date = .init()

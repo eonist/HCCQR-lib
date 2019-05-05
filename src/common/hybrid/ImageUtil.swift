@@ -7,11 +7,11 @@ import Cocoa
  * Util.
  * - Fixme: ⚠️️ Can be moved to Extension
  */
-internal final class ImageUtil{
+internal final class ImageUtil {
    /**
     * Universal for ios and mac
     */
-   internal static func image(cgImage: CGImage, scale:CGFloat = 1) -> Image {
+   internal static func image(cgImage: CGImage, scale: CGFloat = 1) -> Image {
       #if os(iOS)
       return uiImage(cgImage: cgImage, scale: scale)
       #elseif os(macOS)

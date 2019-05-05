@@ -21,7 +21,7 @@ extension AppDelegate {
    func readMultiplePhotos() {
       Swift.print("readMultiplePhotos")
       let path = Bundle.main.resourcePath!+"/temp.bundle/qrimg1.png"
-      guard let uiImage: NSImage = NSImage.init(contentsOfFile: path) else { Swift.print("err getting img"); return }
+      guard let uiImage: NSImage = .init(contentsOfFile: path) else { Swift.print("err getting img"); return }
       var counter: Int = 0
       let num: Int = 400
       let startTime: Date = .init()

@@ -2,7 +2,7 @@ import Foundation
 /**
  * FAST
  */
-extension Color{
+extension Color {
    /**
     * 0-1
     */

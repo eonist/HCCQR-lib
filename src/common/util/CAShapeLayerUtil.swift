@@ -7,8 +7,8 @@ internal class CGShapeUtil {
     * let rectShape = CGShapeUtil.drawRect(shapeLayer:.init(),.init(x:0,y:0,width:100,height:100),style(nil,.black,14))
     * view.layer.addSublayer(rectShape)
     */
-   static func drawRect(shapeLayer: CAShapeLayer, rect: CGRect, style:(fillColor: UIColor?, strokeColor: UIColor?, thickness: CGFloat?)?) -> CAShapeLayer{
-      let path: CGMutablePath  = CGMutablePath()
+   static func drawRect(shapeLayer: CAShapeLayer, rect: CGRect, style: (fillColor: UIColor?, strokeColor: UIColor?, thickness: CGFloat?)?) -> CAShapeLayer {
+      let path: CGMutablePath = .init()
       path.addRect(rect)
       shapeLayer.path = path
       shapeLayer.strokeColor = style?.strokeColor?.cgColor

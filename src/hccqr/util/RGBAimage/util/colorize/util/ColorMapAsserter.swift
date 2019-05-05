@@ -2,7 +2,7 @@ import Foundation
 /**
  * Asserter
  */
-internal class ColorMapAsserter{
+internal class ColorMapAsserter {
    /**
     * Asserts if an image has non black or white pixel. (aka a gray pixel)
     */
@@ -15,10 +15,10 @@ internal class ColorMapAsserter{
     * ## Example:
     * hasOnlyColorMap(these: [.red,.green,.blue,.white])
     */
-   internal static func hasOnlyColorMap(uiImage: Image, colorMap: [Color]) -> Bool{
+   internal static func hasOnlyColorMap(uiImage: Image, colorMap: [Color]) -> Bool {
       let condition: (Color) -> Bool = { color in
          let matchCondition: (Color) -> Bool = {
-            let isMatching: Bool = $0.isEqualRGBA(uiColor:color)
+            let isMatching: Bool = $0.isEqualRGBA(uiColor: color)
             return isMatching
          }
          let firstmatch = colorMap.first(where: matchCondition)

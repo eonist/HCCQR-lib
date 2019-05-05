@@ -2,7 +2,7 @@ import Foundation
 /**
  * Asserter
  */
-extension PixelData{
+extension PixelData {
    internal static let redPixel: PixelData = .init(r: 255, g: 0, b: 0, a: 255)
    internal static let greenPixel: PixelData = .init(r: 0, g: 255, b: 0, a: 255)
    internal static let bluePixel: PixelData = .init(r: 0, g: 0, b: 255, a: 255)
@@ -13,7 +13,7 @@ extension PixelData{
     */
    private static let threshold: CGFloat = 0.60
    private static let halfThreshold: CGFloat = threshold / 2
-   internal static let halfThresholdUInt8: UInt8 = UInt8(255 * halfThreshold)
+   internal static let halfThresholdUInt8: UInt8 = .init(255 * halfThreshold)
    /**
     * Asserts if a pixel is sort of red within a threshold
     */
@@ -61,24 +61,24 @@ extension PixelData {
     * let isColorRedish:Bool = redishPixel.isColor(pixel:redPixel,threshold:threshold)
     * Swift.print("isColorRedish:  \(isColorRedish)")//true
     */
-   internal func isColor(pixel:PixelData, halfThreshold:UInt8) -> Bool{
+   internal func isColor(pixel: PixelData, halfThreshold: UInt8) -> Bool {
       let rgb1: RGB = self.rgb
       let rgb2: RGB = pixel.rgb
-      return isColor(rgb1:rgb1,rgb2:rgb2,halfThreshold:halfThreshold)
+      return isColor(rgb1: rgb1, rgb2: rgb2, halfThreshold: halfThreshold)
    }
    /**
     * Asserts if a color is near another color within a threshold
     */
-   private func isColor(rgb1:RGB, rgb2:RGB, halfThreshold:UInt8, min:UInt8 = 0, max:UInt8 = 255) -> Bool{
-      let r:Bool = {
+   private func isColor(rgb1: RGB, rgb2: RGB, halfThreshold: UInt8, min: UInt8 = 0, max: UInt8 = 255) -> Bool {
+      let r: Bool = {
          let range: RangeUInt8 = UInt8Parser.range(num: rgb2.r, halfThreshold: halfThreshold, min: min, max: max)//75,125
          return UInt8Asserter.within(num: rgb1.r, min: range.start, max: range.end)//(range.start...range.end).contains(rgb1.r)
       }()
-      let g:Bool = {
+      let g: Bool = {
          let range: RangeUInt8 = UInt8Parser.range(num: rgb2.g, halfThreshold: halfThreshold, min: min, max: max)
          return UInt8Asserter.within(num: rgb1.g, min: range.start, max: range.end)//(range.start...range.end).contains(rgb1.g)
       }()
-      let b:Bool = {
+      let b: Bool = {
          let range: RangeUInt8 = UInt8Parser.range(num: rgb2.b, halfThreshold: halfThreshold, min: min, max: max)
          return UInt8Asserter.within(num: rgb1.b, min: range.start, max: range.end)//(range.start...range.end).contains(rgb1.b)
       }()
