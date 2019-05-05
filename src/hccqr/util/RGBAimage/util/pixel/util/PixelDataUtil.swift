@@ -19,7 +19,7 @@ internal class PixelDataUtil {
       #if os(iOS)
       guard uiColor.getRed(&fRed, green: &fGreen, blue: &fBlue, alpha: &fAlpha) else { Swift.print(" Could not extract RGBA components"); return nil }
       #elseif os(macOS)
-      guard let ciColor: CIColor = .init(color: uiColor) else { Swift.print("PixelDataUtil.rgba() - Could not convert nsColor to CIColor"); return nil }
+      guard let ciColor = CIColor(color: uiColor) else { Swift.print("PixelDataUtil.rgba() - Could not convert nsColor to CIColor"); return nil }
       fRed = ciColor.red/*1.0*/
       fGreen = ciColor.green/*0.0*/
       fBlue = ciColor.blue/*0.0*/
