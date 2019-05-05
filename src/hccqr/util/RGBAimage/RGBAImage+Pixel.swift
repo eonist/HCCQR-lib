@@ -2,7 +2,7 @@ import Foundation
 /**
  * Class methods
  */
-extension RGBAImage{
+extension RGBAImage {
    /**
     * Get pixel
     */
@@ -13,17 +13,17 @@ extension RGBAImage{
    /**
     * Set pixel
     */
-   internal mutating func setPixel(idx:Int,pixel:PixelData){
+   internal mutating func setPixel(idx: Int, pixel: PixelData){
        pixels[idx] = pixel
    }
    /**
     * Applies pixels with a method
     */
    internal mutating func process(functor:FunctorCall) {
-      (0..<self.height).forEach{ y in
+      (0..<self.height).forEach { y in
          (0..<self.width).forEach { x in
-            let index:Int = y * width + x
-            let outPixel:PixelData = functor(pixels[index])
+            let index: Int = y * width + x
+            let outPixel: PixelData = functor(pixels[index])
             pixels[index] = outPixel
          }
       }
@@ -31,8 +31,8 @@ extension RGBAImage{
    /**
     * Applies pixels with a method (for index)
     */
-   internal mutating func process(functor:FunctorIndexCall) {
-      (0..<self.height).forEach{ y in
+   internal mutating func process(functor: FunctorIndexCall) {
+      (0..<self.height).forEach { y in
          (0..<self.width).forEach { x in
             let index: Int = y * width + x
             let outPixel: PixelData = functor(index, pixels[index])
@@ -44,6 +44,6 @@ extension RGBAImage{
     * copy
     */
    var copy: RGBAImage {
-      return RGBAImage.rgbaImage(pixels: pixels.map{ $0 }, size: (width, height))
+      return RGBAImage.rgbaImage(pixels: Array(pixels), size: (width, height))
    }
 }

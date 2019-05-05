@@ -8,8 +8,8 @@ extension Splitter {
     * Returns channels (rgb for now)
     */
    internal static func channels(image: Image, onComplete:@escaping OnOptionalChannelsComplete) {
-      guard let rgbaImg:RGBAImage = RGBAImage.rgbaImage(image: image) else {Swift.print("Splitter.channels() - Unable to create rgbaImg");onComplete(nil);return}
-      channels(rgbaImg:rgbaImg,onComplete:onComplete)//{onComplete($0)}
+      guard let rgbaImg: RGBAImage = RGBAImage.rgbaImage(image: image) else { Swift.print("Splitter.channels() - Unable to create rgbaImg"); onComplete(nil); return }
+      channels(rgbaImg: rgbaImg, onComplete: onComplete)//{onComplete($0)}
    }
    internal typealias OnChannelsComplete = (_ rgbaImages: RGBAImages) -> Void
    /**
@@ -18,10 +18,10 @@ extension Splitter {
    internal static func channels(rgbaImg: RGBAImage, onComplete:@escaping OnChannelsComplete)/* -> RGBAImages*/ {
       let assertions: [(PixelData)->Bool] = [{ $0.isRedish }, { $0.isGreenish }, { $0.isBlueish }]
       var rgbaImages: [RGBAImage?] = [RGBAImage?](repeating: nil, count: assertions.count)
-      func onChannelComplete(i: Int, rgbaImage: RGBAImage){
+      func onChannelComplete(i: Int, rgbaImage: RGBAImage) {
          rgbaImages[i] = rgbaImage//it matters which order the qrImages came in when you stitch them back together
-         if rgbaImages.first(where: {$0 == nil}) == nil {/*makes sure all images finished*/
-            let rgbaImages: [RGBAImage] = rgbaImages.compactMap{ $0 }
+         if rgbaImages.first(where: { $0 == nil }) == nil {/*makes sure all images finished*/
+            let rgbaImages: [RGBAImage] = rgbaImages.compactMap { $0 }
             onComplete((rgbaImages[0], rgbaImages[1], rgbaImages[2]))
             rgbaImg.deinitiate()/*to avoid memleak*/
          }

@@ -10,7 +10,7 @@ extension ViewController {
     * Tests if you can get correct version number for a string
     */
    func testingVersion() {
-      let string: String = String.init(repeating: "0", count: Int(30)) + "f"
+      let string: String = .init(repeating: "0", count: Int(30)) + "f"
       let mode = QRMode.mode(string: string).debugDescription/*print qrMode: eigther: numeric,alphaNumeric,byte*/
       Swift.print("mode:  \(mode)")
       let version: Int? = QRVersion.version(string: string, ecLevel: .l)
@@ -44,7 +44,7 @@ extension ViewController {
    func testModuleCount() {
       let string: String = QRStringData.randomString(chars: QRStringData.byteCharacters, count: 17)
       let ecLevel: ECLevel = .l
-      let moduleCount: Int? = QRModuleUtil.moduleCount(string: string, ecLevel:ecLevel)
+      let moduleCount: Int? = QRModuleUtil.moduleCount(string: string, ecLevel: ecLevel)
       Swift.print("string.count: \(string.count) ecLevel: \(ecLevel.rawValue) moduleCount:  \(String(describing: moduleCount))")
    }
    /**
