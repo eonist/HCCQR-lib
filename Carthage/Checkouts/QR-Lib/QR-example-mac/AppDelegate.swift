@@ -21,7 +21,7 @@ extension AppDelegate {
    func readMultiplePhotos() {
       Swift.print("readMultiplePhotos")
       let path = Bundle.main.resourcePath!+"/temp.bundle/qrimg1.png"
-      guard let uiImage: NSImage = .init(contentsOfFile: path) else { Swift.print("err getting img"); return }
+      guard let uiImage = NSImage(contentsOfFile: path) else { Swift.print("err getting img"); return }
       var counter: Int = 0
       let num: Int = 400
       let startTime: Date = .init()
@@ -46,7 +46,9 @@ extension AppDelegate {
       DispatchQueue.global(qos: .userInteractive).async {
          //Swift.print("init decoding")
          guard let ciImage = uiImage.ciImage else { Swift.print("err ciImage"); return }
+         _ = ciImage
          guard let data: Data = nil/*QRReader.data(ciImage: ciImage)*/ else { Swift.print("unable to get data"); return }
+         _ = data
 //         Swift.print("data.count:  \(data.count)")
          //         guard let string:String = String(data: data, encoding: .utf8) else {Swift.print("unable to get string");return}
          //         _ = string
@@ -85,15 +87,19 @@ extension AppDelegate {
       let ranStr: String = QRStringData.randomString(max: 271, qrMode: .byte)
       guard let moduleCount: Int = QRModuleUtil.moduleCount(string: ranStr, qrMode: .byte, ecLevel: .l) else { Swift.print("err"); return }
       let side: CGFloat = .init(moduleCount + 2) * 6/*+2 because margin*/
+      _ = side
       //      DispatchQueue.global(qos:.userInitiated).async {
       guard let data: Data = ranStr.data(using: .utf8) else { Swift.print("err"); return }
+      _ = data
       guard let qrImage: NSImage = nil/*QRWriter.image(data: data, size: .init(width: side, height: side), ecLevel: .l)*/ else { Swift.print("unable to create UIImage"); return }
 //      Swift.print("qrImage.size:  \(qrImage.size)")
       DispatchQueue.global(qos: .userInteractive).async {
 //         Swift.print("init decoding")
          guard let ciImage = qrImage.ciImage else { Swift.print("err"); return }
+         _ = ciImage
          guard let data: Data = nil/*QRWriter.data(ciImage: ciImage)*/ else { Swift.print("unable to get data"); return }
          guard let string = String(data: data, encoding: .utf8) else { Swift.print("unable to get string"); return }
+         _ = string
          DispatchQueue.main.async {
 //            Swift.print("Match: \(string == ranStr ? "✅" : "🚫" )")
             onComplete()

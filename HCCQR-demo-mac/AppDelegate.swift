@@ -174,6 +174,7 @@ extension AppDelegate {
                      readHCCQRComplete(i: arg.offset, payload: payload)
                   }
                }
+               _ = onComplete
 //               HCCQRReader.string(uiImage: arg.element, onComplete: onComplete)//
             }
          }
@@ -183,6 +184,7 @@ extension AppDelegate {
    func testFixingMemLeak() {
       let path = Bundle.main.resourcePath!+"/temp.bundle/HCCQR9.png"
       guard let uiImage = NSImage(contentsOfFile: path) else { Swift.print("err getting img"); return }
+      _ = uiImage
 //      guard let rgba:RGBAImage = RGBAImage.rgbaImage(image: uiImage) else {return }
 //      Swift.print("rgba.pixels.count:  \(rgba.pixels.count)")
    }

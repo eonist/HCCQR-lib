@@ -362,7 +362,7 @@ extension ViewController {
       Swift.print("testReadingHCCQRImage")
       let startTime: Date = .init()
       let path = Bundle.main.resourcePath!+"/temp.bundle/HCCQR17.jpg"//HCCQR12.png,HCCQR13.jpg
-      guard let uiImage: UIImage = UIImage(contentsOfFile: path) else { Swift.print("err getting img"); return }
+      guard let uiImage: UIImage = .init(contentsOfFile: path) else { Swift.print("err getting img"); return }
       Swift.print("uiImage.size:  \(uiImage.size)")
 
       let onComplete: (_ dataAndImages: HCCQRReader.DataAndImages?, _ error: Error?) -> Void = { dataAndImages, error in

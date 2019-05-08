@@ -99,7 +99,7 @@ extension CIQRCodeDescriptor {
     */
    var data: Data {
       let errorCorrectedPayload: Data = self.errorCorrectedPayload
-      let data: Data = .init(bytes: zip(errorCorrectedPayload.advanced(by: 2), errorCorrectedPayload.advanced(by: 3)).map { byte1, byte2 in
+      let data: Data = .init(zip(errorCorrectedPayload.advanced(by: 2), errorCorrectedPayload.advanced(by: 3)).map { byte1, byte2 in
          byte1 << 4 | byte2 >> 4
       })
       return data
