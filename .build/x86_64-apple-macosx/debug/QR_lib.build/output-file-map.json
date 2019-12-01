@@ -1,0 +1,155 @@
+{
+  "": {
+    "swift-dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/master.swiftdeps"
+  },
+  "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/checkouts/QR-lib/Sources/QR-lib/DEPRECATED.swift": {
+    "dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/DEPRECATED.d",
+    "object": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/DEPRECATED.swift.o",
+    "swiftmodule": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/DEPRECATED~partial.swiftmodule",
+    "swift-dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/DEPRECATED.swiftdeps"
+  },
+  "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/checkouts/QR-lib/Sources/QR-lib/QRReader/QRReader+Type.swift": {
+    "dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/QRReader/QRReader+Type.d",
+    "object": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/QRReader/QRReader+Type.swift.o",
+    "swiftmodule": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/QRReader/QRReader+Type~partial.swiftmodule",
+    "swift-dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/QRReader/QRReader+Type.swiftdeps"
+  },
+  "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/checkouts/QR-lib/Sources/QR-lib/QRReader/QRReader.swift": {
+    "dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/QRReader/QRReader.d",
+    "object": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/QRReader/QRReader.swift.o",
+    "swiftmodule": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/QRReader/QRReader~partial.swiftmodule",
+    "swift-dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/QRReader/QRReader.swiftdeps"
+  },
+  "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/checkouts/QR-lib/Sources/QR-lib/QRWriter/QRWriter.swift": {
+    "dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/QRWriter/QRWriter.d",
+    "object": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/QRWriter/QRWriter.swift.o",
+    "swiftmodule": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/QRWriter/QRWriter~partial.swiftmodule",
+    "swift-dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/QRWriter/QRWriter.swiftdeps"
+  },
+  "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/checkouts/QR-lib/Sources/QR-lib/common/Hybrid.swift": {
+    "dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/common/Hybrid.d",
+    "object": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/common/Hybrid.swift.o",
+    "swiftmodule": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/common/Hybrid~partial.swiftmodule",
+    "swift-dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/common/Hybrid.swiftdeps"
+  },
+  "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/checkouts/QR-lib/Sources/QR-lib/common/ImageUtil.swift": {
+    "dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/common/ImageUtil.d",
+    "object": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/common/ImageUtil.swift.o",
+    "swiftmodule": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/common/ImageUtil~partial.swiftmodule",
+    "swift-dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/common/ImageUtil.swiftdeps"
+  },
+  "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/checkouts/QR-lib/Sources/QR-lib/common/extension/CIImage+Extension.swift": {
+    "dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/common/extension/CIImage+Extension.d",
+    "object": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/common/extension/CIImage+Extension.swift.o",
+    "swiftmodule": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/common/extension/CIImage+Extension~partial.swiftmodule",
+    "swift-dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/common/extension/CIImage+Extension.swiftdeps"
+  },
+  "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/checkouts/QR-lib/Sources/QR-lib/common/extension/String+Extension.swift": {
+    "dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/common/extension/String+Extension.d",
+    "object": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/common/extension/String+Extension.swift.o",
+    "swiftmodule": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/common/extension/String+Extension~partial.swiftmodule",
+    "swift-dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/common/extension/String+Extension.swiftdeps"
+  },
+  "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/checkouts/QR-lib/Sources/QR-lib/common/extension/UIImage+Extension.swift": {
+    "dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/common/extension/UIImage+Extension.d",
+    "object": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/common/extension/UIImage+Extension.swift.o",
+    "swiftmodule": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/common/extension/UIImage+Extension~partial.swiftmodule",
+    "swift-dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/common/extension/UIImage+Extension.swiftdeps"
+  },
+  "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/checkouts/QR-lib/Sources/QR-lib/util/ECLevel.swift": {
+    "dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/util/ECLevel.d",
+    "object": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/util/ECLevel.swift.o",
+    "swiftmodule": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/util/ECLevel~partial.swiftmodule",
+    "swift-dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/util/ECLevel.swiftdeps"
+  },
+  "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/checkouts/QR-lib/Sources/QR-lib/util/QRConfig.swift": {
+    "dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/util/QRConfig.d",
+    "object": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/util/QRConfig.swift.o",
+    "swiftmodule": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/util/QRConfig~partial.swiftmodule",
+    "swift-dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/util/QRConfig.swiftdeps"
+  },
+  "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/checkouts/QR-lib/Sources/QR-lib/util/QRMode/QRMode+Assert.swift": {
+    "dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/util/QRMode/QRMode+Assert.d",
+    "object": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/util/QRMode/QRMode+Assert.swift.o",
+    "swiftmodule": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/util/QRMode/QRMode+Assert~partial.swiftmodule",
+    "swift-dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/util/QRMode/QRMode+Assert.swiftdeps"
+  },
+  "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/checkouts/QR-lib/Sources/QR-lib/util/QRMode/QRMode+BitCount.swift": {
+    "dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/util/QRMode/QRMode+BitCount.d",
+    "object": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/util/QRMode/QRMode+BitCount.swift.o",
+    "swiftmodule": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/util/QRMode/QRMode+BitCount~partial.swiftmodule",
+    "swift-dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/util/QRMode/QRMode+BitCount.swiftdeps"
+  },
+  "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/checkouts/QR-lib/Sources/QR-lib/util/QRMode/QRMode+CharSet.swift": {
+    "dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/util/QRMode/QRMode+CharSet.d",
+    "object": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/util/QRMode/QRMode+CharSet.swift.o",
+    "swiftmodule": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/util/QRMode/QRMode+CharSet~partial.swiftmodule",
+    "swift-dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/util/QRMode/QRMode+CharSet.swiftdeps"
+  },
+  "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/checkouts/QR-lib/Sources/QR-lib/util/QRMode/QRMode+Parser.swift": {
+    "dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/util/QRMode/QRMode+Parser.d",
+    "object": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/util/QRMode/QRMode+Parser.swift.o",
+    "swiftmodule": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/util/QRMode/QRMode+Parser~partial.swiftmodule",
+    "swift-dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/util/QRMode/QRMode+Parser.swiftdeps"
+  },
+  "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/checkouts/QR-lib/Sources/QR-lib/util/QRMode/QRMode.swift": {
+    "dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/util/QRMode/QRMode.d",
+    "object": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/util/QRMode/QRMode.swift.o",
+    "swiftmodule": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/util/QRMode/QRMode~partial.swiftmodule",
+    "swift-dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/util/QRMode/QRMode.swiftdeps"
+  },
+  "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/checkouts/QR-lib/Sources/QR-lib/util/QRModuleUtil.swift": {
+    "dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/util/QRModuleUtil.d",
+    "object": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/util/QRModuleUtil.swift.o",
+    "swiftmodule": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/util/QRModuleUtil~partial.swiftmodule",
+    "swift-dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/util/QRModuleUtil.swiftdeps"
+  },
+  "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/checkouts/QR-lib/Sources/QR-lib/util/QRStringData/QRStringData+Character.swift": {
+    "dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/util/QRStringData/QRStringData+Character.d",
+    "object": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/util/QRStringData/QRStringData+Character.swift.o",
+    "swiftmodule": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/util/QRStringData/QRStringData+Character~partial.swiftmodule",
+    "swift-dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/util/QRStringData/QRStringData+Character.swiftdeps"
+  },
+  "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/checkouts/QR-lib/Sources/QR-lib/util/QRStringData/QRStringData+MaxChar.swift": {
+    "dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/util/QRStringData/QRStringData+MaxChar.d",
+    "object": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/util/QRStringData/QRStringData+MaxChar.swift.o",
+    "swiftmodule": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/util/QRStringData/QRStringData+MaxChar~partial.swiftmodule",
+    "swift-dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/util/QRStringData/QRStringData+MaxChar.swiftdeps"
+  },
+  "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/checkouts/QR-lib/Sources/QR-lib/util/QRStringData/QRStringData+String.swift": {
+    "dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/util/QRStringData/QRStringData+String.d",
+    "object": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/util/QRStringData/QRStringData+String.swift.o",
+    "swiftmodule": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/util/QRStringData/QRStringData+String~partial.swiftmodule",
+    "swift-dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/util/QRStringData/QRStringData+String.swiftdeps"
+  },
+  "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/checkouts/QR-lib/Sources/QR-lib/util/QRStringData/QRStringData.swift": {
+    "dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/util/QRStringData/QRStringData.d",
+    "object": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/util/QRStringData/QRStringData.swift.o",
+    "swiftmodule": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/util/QRStringData/QRStringData~partial.swiftmodule",
+    "swift-dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/util/QRStringData/QRStringData.swiftdeps"
+  },
+  "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/checkouts/QR-lib/Sources/QR-lib/util/QRVersion/QRVersion+DataTable.swift": {
+    "dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/util/QRVersion/QRVersion+DataTable.d",
+    "object": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/util/QRVersion/QRVersion+DataTable.swift.o",
+    "swiftmodule": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/util/QRVersion/QRVersion+DataTable~partial.swiftmodule",
+    "swift-dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/util/QRVersion/QRVersion+DataTable.swiftdeps"
+  },
+  "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/checkouts/QR-lib/Sources/QR-lib/util/QRVersion/QRVersion+Helper.swift": {
+    "dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/util/QRVersion/QRVersion+Helper.d",
+    "object": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/util/QRVersion/QRVersion+Helper.swift.o",
+    "swiftmodule": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/util/QRVersion/QRVersion+Helper~partial.swiftmodule",
+    "swift-dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/util/QRVersion/QRVersion+Helper.swiftdeps"
+  },
+  "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/checkouts/QR-lib/Sources/QR-lib/util/QRVersion/QRVersion+Type.swift": {
+    "dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/util/QRVersion/QRVersion+Type.d",
+    "object": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/util/QRVersion/QRVersion+Type.swift.o",
+    "swiftmodule": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/util/QRVersion/QRVersion+Type~partial.swiftmodule",
+    "swift-dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/util/QRVersion/QRVersion+Type.swiftdeps"
+  },
+  "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/checkouts/QR-lib/Sources/QR-lib/util/QRVersion/QRVersion.swift": {
+    "dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/util/QRVersion/QRVersion.d",
+    "object": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/util/QRVersion/QRVersion.swift.o",
+    "swiftmodule": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/util/QRVersion/QRVersion~partial.swiftmodule",
+    "swift-dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/util/QRVersion/QRVersion.swiftdeps"
+  }
+}

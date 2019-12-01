@@ -1,6 +1,6 @@
 import Cocoa
-@testable import HCCQR_lib_mac
-import QRLibMac
+//@testable import HCCQR_lib_mac
+import QR_lib
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -96,7 +96,7 @@ extension AppDelegate {
     * Tests the speed of creating hccqr images
     */
    func creatingManyHCCQRImages(onComplete:@escaping (_ images: [NSImage]) -> Void) {
-      fatalError("⚠️️ out of order")
+      print("⚠️️ out of order")
       let (qrVersion, qrMode, ecLevel): (Int, QRMode, ECLevel) = (10, .byte, .l)//settings
       let randomStrings: [String] = (0..<20).compactMap { _ in
          guard let randomString: String = HCCQRStringData.randomString(qrVersion: qrVersion, qrMode: qrMode, ecLevel: ecLevel) else { Swift.print("unable to create random string"); return nil }
@@ -143,7 +143,7 @@ extension AppDelegate {
     * Test reading many HCCQR images on background threads
     */
    func readingManyHCCQRImages() {
-      fatalError("out of order ⚠️️")
+      print("out of order ⚠️️")
       let startTime: Date = .init()
       let createTime: Date = .init()
       let onImageCreationComplete: (_ images: [NSImage]) -> Void = { images in

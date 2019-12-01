@@ -19,7 +19,7 @@ HCCQR is short for `High capacity color quick response code`
 - In order to avoid code duplication between apps, we store the core code in this repo. Mostly related to how QR frames are created and parsed.
 
 ### How to get it
-- Carthage: `github "light-stream/HCCQR-lib" "master"`
+- SPM: `github "light-stream/HCCQR-lib"` branch: `"master"`
 
 
 ### Creating HCCQR image

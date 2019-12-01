@@ -3,136 +3,115 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		F10296B322221710001FA2DF /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10296B222221710001FA2DF /* String+Extension.swift */; };
-		F10296B6222217AC001FA2DF /* RGBAImage+Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10296B4222217A7001FA2DF /* RGBAImage+Type.swift */; };
-		F10296B7222217AD001FA2DF /* RGBAImage+Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10296B4222217A7001FA2DF /* RGBAImage+Type.swift */; };
-		F10296BC22221906001FA2DF /* RGBAImage+Getter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10296B8222218D1001FA2DF /* RGBAImage+Getter.swift */; };
-		F10296BD22221906001FA2DF /* RGBAImage+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10296BA222218DC001FA2DF /* RGBAImage+Debug.swift */; };
-		F10296BE22221907001FA2DF /* RGBAImage+Getter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10296B8222218D1001FA2DF /* RGBAImage+Getter.swift */; };
-		F10296BF22221907001FA2DF /* RGBAImage+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10296BA222218DC001FA2DF /* RGBAImage+Debug.swift */; };
-		F10296C222221A06001FA2DF /* Splitter+Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10296C0222219EF001FA2DF /* Splitter+Type.swift */; };
-		F10296C322221A07001FA2DF /* Splitter+Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10296C0222219EF001FA2DF /* Splitter+Type.swift */; };
 		F11DE8512208F19F007A8A7A /* VC+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11DE8502208F19F007A8A7A /* VC+Test.swift */; };
 		F11DE860220B6C53007A8A7A /* temp.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F11DE85F220B6C53007A8A7A /* temp.bundle */; };
 		F14FADE521F75A9900ACE5FF /* VC+ViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14FADE421F75A9900ACE5FF /* VC+ViewTest.swift */; };
 		F14FADE821F75EF100ACE5FF /* RGBColorTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14FADE721F75EF100ACE5FF /* RGBColorTestView.swift */; };
 		F14FADF021F761FD00ACE5FF /* FakeHCCQRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14FADEF21F761FD00ACE5FF /* FakeHCCQRView.swift */; };
-		F162145021FC707E005297DE /* QRLibIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F162144F21FC707E005297DE /* QRLibIOS.framework */; };
-		F162145121FC707E005297DE /* QRLibIOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F162144F21FC707E005297DE /* QRLibIOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F162145421FC7138005297DE /* SimpleHCCQRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162145321FC7138005297DE /* SimpleHCCQRView.swift */; };
 		F162146621FF0734005297DE /* AlignMarkTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162146521FF0734005297DE /* AlignMarkTestView.swift */; };
-		F168521A221342D000C27EAA /* HCCQR_lib_iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = F1685218221342D000C27EAA /* HCCQR_lib_iOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F168521D221342D000C27EAA /* HCCQR_lib_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1685216221342D000C27EAA /* HCCQR_lib_iOS.framework */; };
-		F168521E221342D000C27EAA /* HCCQR_lib_iOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F1685216221342D000C27EAA /* HCCQR_lib_iOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		F168522B221342EB00C27EAA /* HCCQR_lib_mac.h in Headers */ = {isa = PBXBuildFile; fileRef = F1685229221342EB00C27EAA /* HCCQR_lib_mac.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F16852852213443700C27EAA /* HCCQRStringData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852572213443700C27EAA /* HCCQRStringData.swift */; };
-		F16852872213443700C27EAA /* RGBAImage+Pixel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F168525A2213443700C27EAA /* RGBAImage+Pixel.swift */; };
-		F16852882213443700C27EAA /* RGBAImage+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = F168525B2213443700C27EAA /* RGBAImage+Util.swift */; };
-		F168528B2213443700C27EAA /* PixelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852622213443700C27EAA /* PixelData.swift */; };
-		F168528C2213443700C27EAA /* PixelDataUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852642213443700C27EAA /* PixelDataUtil.swift */; };
-		F168528D2213443700C27EAA /* PixelData+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852652213443700C27EAA /* PixelData+Init.swift */; };
-		F168528E2213443700C27EAA /* PixelData+Setter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852662213443700C27EAA /* PixelData+Setter.swift */; };
-		F168528F2213443700C27EAA /* PixelData+Assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852672213443700C27EAA /* PixelData+Assert.swift */; };
-		F16852902213443700C27EAA /* PixelData+Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852682213443700C27EAA /* PixelData+Type.swift */; };
-		F16852912213443700C27EAA /* PixelData+Getter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852692213443700C27EAA /* PixelData+Getter.swift */; };
-		F16852922213443700C27EAA /* Colorizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F168526B2213443700C27EAA /* Colorizer.swift */; };
-		F16852932213443700C27EAA /* Colorizer+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = F168526C2213443700C27EAA /* Colorizer+Core.swift */; };
-		F16852942213443700C27EAA /* ColorMapAsserter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F168526D2213443700C27EAA /* ColorMapAsserter.swift */; };
-		F16852952213443700C27EAA /* Colorize+ColorMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = F168526E2213443700C27EAA /* Colorize+ColorMap.swift */; };
-		F16852962213443700C27EAA /* RGBAImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F168526F2213443700C27EAA /* RGBAImage.swift */; };
-		F16852972213443700C27EAA /* RGBAImage+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852702213443700C27EAA /* RGBAImage+Init.swift */; };
-		F168529B2213443700C27EAA /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852782213443700C27EAA /* UIView+Extension.swift */; };
-		F168529C2213443700C27EAA /* Image+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852792213443700C27EAA /* Image+Extension.swift */; };
-		F168529D2213443700C27EAA /* CIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F168527A2213443700C27EAA /* CIImage+Extension.swift */; };
-		F168529E2213443700C27EAA /* Data+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F168527B2213443700C27EAA /* Data+Extension.swift */; };
-		F168529F2213443700C27EAA /* CGImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F168527C2213443700C27EAA /* CGImage+Extension.swift */; };
-		F16852A02213443700C27EAA /* UInt8Asserter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F168527E2213443700C27EAA /* UInt8Asserter.swift */; };
-		F16852A12213443700C27EAA /* UInt8Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F168527F2213443700C27EAA /* UInt8Parser.swift */; };
-		F16852A22213443700C27EAA /* CAShapeLayerUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852802213443700C27EAA /* CAShapeLayerUtil.swift */; };
-		F16852A42213443700C27EAA /* Color+Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852832213443700C27EAA /* Color+Parser.swift */; };
-		F16852A52213443700C27EAA /* Color+Asserter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852842213443700C27EAA /* Color+Asserter.swift */; };
 		F16852A62213455100C27EAA /* AlignMarkUtil+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852732213443700C27EAA /* AlignMarkUtil+Debug.swift */; };
 		F16852A72213455100C27EAA /* AlignMarkUtil+Metric.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852742213443700C27EAA /* AlignMarkUtil+Metric.swift */; };
 		F16852A82213455100C27EAA /* AlignMarkUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852752213443700C27EAA /* AlignMarkUtil.swift */; };
-		F16852AD2213495700C27EAA /* HCCQRWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852A9221348E400C27EAA /* HCCQRWriter.swift */; };
-		F16852AE2213495A00C27EAA /* HCCQRReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852AB221348F000C27EAA /* HCCQRReader.swift */; };
-		F16852B622134DBD00C27EAA /* Splitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852B522134DBD00C27EAA /* Splitter.swift */; };
-		F16852B922134E4000C27EAA /* Splitter+Channels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852B822134E4000C27EAA /* Splitter+Channels.swift */; };
-		F16852BC2213522200C27EAA /* Compositor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852BB2213522200C27EAA /* Compositor.swift */; };
-		F17A2A0122137BF4000B6C0A /* HybridiOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17A29FF22137BEA000B6C0A /* HybridiOS.swift */; };
-		F17A2A152213835C000B6C0A /* QRLibIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F162144F21FC707E005297DE /* QRLibIOS.framework */; };
-		F17A2A1622138363000B6C0A /* QRLibMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F16852322213435100C27EAA /* QRLibMac.framework */; };
-		F17A2A1922138511000B6C0A /* HybridMac.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17A2A17221384F2000B6C0A /* HybridMac.swift */; };
-		F17A2A2122138901000B6C0A /* ImageUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17A2A1F221388E2000B6C0A /* ImageUtil.swift */; };
-		F17A2A2422138DFF000B6C0A /* PixelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852622213443700C27EAA /* PixelData.swift */; };
-		F17A2A2522138E43000B6C0A /* PixelDataUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852642213443700C27EAA /* PixelDataUtil.swift */; };
-		F17A2A2622138E52000B6C0A /* PixelData+Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852682213443700C27EAA /* PixelData+Type.swift */; };
-		F17A2A2722139023000B6C0A /* PixelData+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852652213443700C27EAA /* PixelData+Init.swift */; };
-		F17A2A2822139028000B6C0A /* PixelData+Setter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852662213443700C27EAA /* PixelData+Setter.swift */; };
-		F17A2A2922139036000B6C0A /* PixelData+Assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852672213443700C27EAA /* PixelData+Assert.swift */; };
-		F17A2A2A22139077000B6C0A /* PixelData+Getter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852692213443700C27EAA /* PixelData+Getter.swift */; };
-		F17A2A2B221390BA000B6C0A /* UInt8Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F168527F2213443700C27EAA /* UInt8Parser.swift */; };
-		F17A2A2C221390C2000B6C0A /* UInt8Asserter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F168527E2213443700C27EAA /* UInt8Asserter.swift */; };
-		F17A2A3022139371000B6C0A /* Colorizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F168526B2213443700C27EAA /* Colorizer.swift */; };
-		F17A2A3122139378000B6C0A /* Colorize+ColorMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = F168526E2213443700C27EAA /* Colorize+ColorMap.swift */; };
-		F17A2A322213937D000B6C0A /* ColorMapAsserter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F168526D2213443700C27EAA /* ColorMapAsserter.swift */; };
-		F17A2A3322139381000B6C0A /* Colorizer+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = F168526C2213443700C27EAA /* Colorizer+Core.swift */; };
-		F17A2A3822139395000B6C0A /* RGBAImage+Pixel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F168525A2213443700C27EAA /* RGBAImage+Pixel.swift */; };
-		F17A2A3922139395000B6C0A /* RGBAImage+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = F168525B2213443700C27EAA /* RGBAImage+Util.swift */; };
-		F17A2A3A22139395000B6C0A /* RGBAImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F168526F2213443700C27EAA /* RGBAImage.swift */; };
-		F17A2A3B22139395000B6C0A /* RGBAImage+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852702213443700C27EAA /* RGBAImage+Init.swift */; };
-		F17A2A3C22139446000B6C0A /* Image+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852792213443700C27EAA /* Image+Extension.swift */; };
-		F17A2A3D22139454000B6C0A /* Compositor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852BB2213522200C27EAA /* Compositor.swift */; };
-		F17A2A3E22139454000B6C0A /* Splitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852B522134DBD00C27EAA /* Splitter.swift */; };
-		F17A2A3F22139454000B6C0A /* Splitter+Channels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852B822134E4000C27EAA /* Splitter+Channels.swift */; };
-		F17A2A402213945E000B6C0A /* HCCQRStringData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852572213443700C27EAA /* HCCQRStringData.swift */; };
-		F17A2A412213945E000B6C0A /* HCCQRWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852A9221348E400C27EAA /* HCCQRWriter.swift */; };
-		F17A2A422213945E000B6C0A /* HCCQRReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852AB221348F000C27EAA /* HCCQRReader.swift */; };
-		F17A2A432213946D000B6C0A /* ImageUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17A2A1F221388E2000B6C0A /* ImageUtil.swift */; };
-		F17A2A4422139479000B6C0A /* Color+Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852832213443700C27EAA /* Color+Parser.swift */; };
-		F17A2A4522139479000B6C0A /* Color+Asserter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852842213443700C27EAA /* Color+Asserter.swift */; };
-		F17A2A46221394F8000B6C0A /* CIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F168527A2213443700C27EAA /* CIImage+Extension.swift */; };
-		F17A2A47221394FE000B6C0A /* Data+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F168527B2213443700C27EAA /* Data+Extension.swift */; };
-		F17A2A482213952F000B6C0A /* CGImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F168527C2213443700C27EAA /* CGImage+Extension.swift */; };
 		F17F5B88221A267600383955 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17F5B87221A267600383955 /* AppDelegate.swift */; };
 		F17F5B8A221A267B00383955 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F17F5B89221A267B00383955 /* Assets.xcassets */; };
 		F17F5B8D221A267B00383955 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F17F5B8B221A267B00383955 /* MainMenu.xib */; };
-		F17F5B93221A269300383955 /* HCCQR_lib_mac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1685227221342EB00C27EAA /* HCCQR_lib_mac.framework */; };
-		F17F5B94221A269300383955 /* HCCQR_lib_mac.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F1685227221342EB00C27EAA /* HCCQR_lib_mac.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		F17F5B97221A269300383955 /* QRLibMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F16852322213435100C27EAA /* QRLibMac.framework */; };
-		F17F5B98221A269300383955 /* QRLibMac.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F16852322213435100C27EAA /* QRLibMac.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F18A52DF21790F8A003F8C13 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18A52DE21790F8A003F8C13 /* AppDelegate.swift */; };
 		F18A52E121790F8A003F8C13 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18A52E021790F8A003F8C13 /* ViewController.swift */; };
 		F18A52E421790F8A003F8C13 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F18A52E221790F8A003F8C13 /* Main.storyboard */; };
 		F18A52E621790F8D003F8C13 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F18A52E521790F8D003F8C13 /* Assets.xcassets */; };
 		F18A52E921790F8D003F8C13 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F18A52E721790F8D003F8C13 /* LaunchScreen.storyboard */; };
-		F194BAA52224C321001C5DBB /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F194BAA32224C304001C5DBB /* UIImage+Extension.swift */; };
-		F1F6F7C322221F3D0075E7FD /* HCCQRWriter+Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F6F7BD22221E9B0075E7FD /* HCCQRWriter+Type.swift */; };
-		F1F6F7C422221F3D0075E7FD /* HCCQRReader+Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F6F7BF22221EA80075E7FD /* HCCQRReader+Type.swift */; };
-		F1F6F7C522221F3D0075E7FD /* HCCQRWriter+Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F6F7BD22221E9B0075E7FD /* HCCQRWriter+Type.swift */; };
-		F1F6F7C622221F3D0075E7FD /* HCCQRReader+Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F6F7BF22221EA80075E7FD /* HCCQRReader+Type.swift */; };
+		F1E6459E239407BC008D2ABE /* QR-lib in Frameworks */ = {isa = PBXBuildFile; productRef = F1E6459D239407BC008D2ABE /* QR-lib */; };
+		F1E6459F23940AC9008D2ABE /* Hybrid+iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17A29FF22137BEA000B6C0A /* Hybrid+iOS.swift */; };
+		F1E645A023940AC9008D2ABE /* Hybrid+Mac.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17A2A17221384F2000B6C0A /* Hybrid+Mac.swift */; };
+		F1E645A123940AC9008D2ABE /* ImageUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17A2A1F221388E2000B6C0A /* ImageUtil.swift */; };
+		F1E645A223940AC9008D2ABE /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852782213443700C27EAA /* UIView+Extension.swift */; };
+		F1E645A323940AC9008D2ABE /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F194BAA32224C304001C5DBB /* UIImage+Extension.swift */; };
+		F1E645A423940AC9008D2ABE /* Image+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852792213443700C27EAA /* Image+Extension.swift */; };
+		F1E645A523940AC9008D2ABE /* CIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F168527A2213443700C27EAA /* CIImage+Extension.swift */; };
+		F1E645A623940AC9008D2ABE /* Data+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F168527B2213443700C27EAA /* Data+Extension.swift */; };
+		F1E645A723940AC9008D2ABE /* CGImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F168527C2213443700C27EAA /* CGImage+Extension.swift */; };
+		F1E645A823940AC9008D2ABE /* UInt8Asserter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F168527E2213443700C27EAA /* UInt8Asserter.swift */; };
+		F1E645A923940AC9008D2ABE /* UInt8Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F168527F2213443700C27EAA /* UInt8Parser.swift */; };
+		F1E645AA23940AC9008D2ABE /* CAShapeLayerUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852802213443700C27EAA /* CAShapeLayerUtil.swift */; };
+		F1E645AB23940AC9008D2ABE /* Color+Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852832213443700C27EAA /* Color+Parser.swift */; };
+		F1E645AC23940AC9008D2ABE /* Color+Asserter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852842213443700C27EAA /* Color+Asserter.swift */; };
+		F1E645AD23940ACA008D2ABE /* Hybrid+iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17A29FF22137BEA000B6C0A /* Hybrid+iOS.swift */; };
+		F1E645AE23940ACA008D2ABE /* Hybrid+Mac.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17A2A17221384F2000B6C0A /* Hybrid+Mac.swift */; };
+		F1E645AF23940ACA008D2ABE /* ImageUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17A2A1F221388E2000B6C0A /* ImageUtil.swift */; };
+		F1E645B023940ACA008D2ABE /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852782213443700C27EAA /* UIView+Extension.swift */; };
+		F1E645B123940ACA008D2ABE /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F194BAA32224C304001C5DBB /* UIImage+Extension.swift */; };
+		F1E645B223940ACA008D2ABE /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10296B222221710001FA2DF /* String+Extension.swift */; };
+		F1E645B323940ACA008D2ABE /* Image+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852792213443700C27EAA /* Image+Extension.swift */; };
+		F1E645B423940ACA008D2ABE /* CIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F168527A2213443700C27EAA /* CIImage+Extension.swift */; };
+		F1E645B523940ACA008D2ABE /* Data+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F168527B2213443700C27EAA /* Data+Extension.swift */; };
+		F1E645B623940ACA008D2ABE /* CGImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F168527C2213443700C27EAA /* CGImage+Extension.swift */; };
+		F1E645B723940ACA008D2ABE /* UInt8Asserter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F168527E2213443700C27EAA /* UInt8Asserter.swift */; };
+		F1E645B823940ACA008D2ABE /* UInt8Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F168527F2213443700C27EAA /* UInt8Parser.swift */; };
+		F1E645BA23940ACA008D2ABE /* Color+Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852832213443700C27EAA /* Color+Parser.swift */; };
+		F1E645BB23940ACA008D2ABE /* Color+Asserter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852842213443700C27EAA /* Color+Asserter.swift */; };
+		F1E645BC23940B3C008D2ABE /* RGBAImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F168526F2213443700C27EAA /* RGBAImage.swift */; };
+		F1E645BD23940B3C008D2ABE /* RGBAImage+Pixel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F168525A2213443700C27EAA /* RGBAImage+Pixel.swift */; };
+		F1E645BE23940B3C008D2ABE /* RGBAImage+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = F168525B2213443700C27EAA /* RGBAImage+Util.swift */; };
+		F1E645BF23940B3C008D2ABE /* RGBAImage+Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10296B4222217A7001FA2DF /* RGBAImage+Type.swift */; };
+		F1E645C023940B3C008D2ABE /* RGBAImage+Getter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10296B8222218D1001FA2DF /* RGBAImage+Getter.swift */; };
+		F1E645C123940B3C008D2ABE /* RGBAImage+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10296BA222218DC001FA2DF /* RGBAImage+Debug.swift */; };
+		F1E645C223940B3C008D2ABE /* RGBAImage+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852702213443700C27EAA /* RGBAImage+Init.swift */; };
+		F1E645C323940B3C008D2ABE /* Compositor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852BB2213522200C27EAA /* Compositor.swift */; };
+		F1E645C423940B3C008D2ABE /* Splitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852B522134DBD00C27EAA /* Splitter.swift */; };
+		F1E645C523940B3C008D2ABE /* Splitter+Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10296C0222219EF001FA2DF /* Splitter+Type.swift */; };
+		F1E645C623940B3C008D2ABE /* Splitter+Channels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852B822134E4000C27EAA /* Splitter+Channels.swift */; };
+		F1E645C723940B3C008D2ABE /* PixelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852622213443700C27EAA /* PixelData.swift */; };
+		F1E645C823940B3C008D2ABE /* PixelDataUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852642213443700C27EAA /* PixelDataUtil.swift */; };
+		F1E645C923940B3C008D2ABE /* PixelData+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852652213443700C27EAA /* PixelData+Init.swift */; };
+		F1E645CA23940B3C008D2ABE /* PixelData+Setter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852662213443700C27EAA /* PixelData+Setter.swift */; };
+		F1E645CB23940B3C008D2ABE /* PixelData+Assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852672213443700C27EAA /* PixelData+Assert.swift */; };
+		F1E645CC23940B3C008D2ABE /* PixelData+Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852682213443700C27EAA /* PixelData+Type.swift */; };
+		F1E645CD23940B3C008D2ABE /* PixelData+Getter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852692213443700C27EAA /* PixelData+Getter.swift */; };
+		F1E645CE23940B3C008D2ABE /* Colorizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F168526B2213443700C27EAA /* Colorizer.swift */; };
+		F1E645CF23940B3C008D2ABE /* Colorizer+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = F168526C2213443700C27EAA /* Colorizer+Core.swift */; };
+		F1E645D023940B3C008D2ABE /* Colorize+ColorMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = F168526E2213443700C27EAA /* Colorize+ColorMap.swift */; };
+		F1E645D123940B3C008D2ABE /* ColorMapAsserter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F168526D2213443700C27EAA /* ColorMapAsserter.swift */; };
+		F1E645D223940B3C008D2ABE /* HCCQRStringData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852572213443700C27EAA /* HCCQRStringData.swift */; };
+		F1E645D323940B3C008D2ABE /* HCCQRWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852A9221348E400C27EAA /* HCCQRWriter.swift */; };
+		F1E645D423940B3C008D2ABE /* HCCQRWriter+Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F6F7BD22221E9B0075E7FD /* HCCQRWriter+Type.swift */; };
+		F1E645D523940B3C008D2ABE /* HCCQRReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852AB221348F000C27EAA /* HCCQRReader.swift */; };
+		F1E645D623940B3C008D2ABE /* HCCQRReader+Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F6F7BF22221EA80075E7FD /* HCCQRReader+Type.swift */; };
+		F1E645D723940B3D008D2ABE /* RGBAImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F168526F2213443700C27EAA /* RGBAImage.swift */; };
+		F1E645D823940B3D008D2ABE /* RGBAImage+Pixel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F168525A2213443700C27EAA /* RGBAImage+Pixel.swift */; };
+		F1E645D923940B3D008D2ABE /* RGBAImage+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = F168525B2213443700C27EAA /* RGBAImage+Util.swift */; };
+		F1E645DA23940B3D008D2ABE /* RGBAImage+Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10296B4222217A7001FA2DF /* RGBAImage+Type.swift */; };
+		F1E645DB23940B3D008D2ABE /* RGBAImage+Getter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10296B8222218D1001FA2DF /* RGBAImage+Getter.swift */; };
+		F1E645DC23940B3D008D2ABE /* RGBAImage+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10296BA222218DC001FA2DF /* RGBAImage+Debug.swift */; };
+		F1E645DD23940B3D008D2ABE /* RGBAImage+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852702213443700C27EAA /* RGBAImage+Init.swift */; };
+		F1E645DE23940B3D008D2ABE /* Compositor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852BB2213522200C27EAA /* Compositor.swift */; };
+		F1E645DF23940B3D008D2ABE /* Splitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852B522134DBD00C27EAA /* Splitter.swift */; };
+		F1E645E023940B3D008D2ABE /* Splitter+Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10296C0222219EF001FA2DF /* Splitter+Type.swift */; };
+		F1E645E123940B3D008D2ABE /* Splitter+Channels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852B822134E4000C27EAA /* Splitter+Channels.swift */; };
+		F1E645E223940B3D008D2ABE /* PixelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852622213443700C27EAA /* PixelData.swift */; };
+		F1E645E323940B3D008D2ABE /* PixelDataUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852642213443700C27EAA /* PixelDataUtil.swift */; };
+		F1E645E423940B3D008D2ABE /* PixelData+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852652213443700C27EAA /* PixelData+Init.swift */; };
+		F1E645E523940B3D008D2ABE /* PixelData+Setter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852662213443700C27EAA /* PixelData+Setter.swift */; };
+		F1E645E623940B3D008D2ABE /* PixelData+Assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852672213443700C27EAA /* PixelData+Assert.swift */; };
+		F1E645E723940B3D008D2ABE /* PixelData+Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852682213443700C27EAA /* PixelData+Type.swift */; };
+		F1E645E823940B3D008D2ABE /* PixelData+Getter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852692213443700C27EAA /* PixelData+Getter.swift */; };
+		F1E645E923940B3D008D2ABE /* Colorizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F168526B2213443700C27EAA /* Colorizer.swift */; };
+		F1E645EA23940B3D008D2ABE /* Colorizer+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = F168526C2213443700C27EAA /* Colorizer+Core.swift */; };
+		F1E645EB23940B3D008D2ABE /* Colorize+ColorMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = F168526E2213443700C27EAA /* Colorize+ColorMap.swift */; };
+		F1E645EC23940B3D008D2ABE /* ColorMapAsserter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F168526D2213443700C27EAA /* ColorMapAsserter.swift */; };
+		F1E645ED23940B3D008D2ABE /* HCCQRStringData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852572213443700C27EAA /* HCCQRStringData.swift */; };
+		F1E645EE23940B3D008D2ABE /* HCCQRWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852A9221348E400C27EAA /* HCCQRWriter.swift */; };
+		F1E645EF23940B3D008D2ABE /* HCCQRWriter+Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F6F7BD22221E9B0075E7FD /* HCCQRWriter+Type.swift */; };
+		F1E645F023940B3D008D2ABE /* HCCQRReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852AB221348F000C27EAA /* HCCQRReader.swift */; };
+		F1E645F123940B3D008D2ABE /* HCCQRReader+Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F6F7BF22221EA80075E7FD /* HCCQRReader+Type.swift */; };
+		F1E645F3239429CA008D2ABE /* QR-lib in Frameworks */ = {isa = PBXBuildFile; productRef = F1E645F2239429CA008D2ABE /* QR-lib */; };
+		F1E645F6239430B1008D2ABE /* CAShapeLayerUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852802213443700C27EAA /* CAShapeLayerUtil.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		F168521B221342D000C27EAA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F18A52D321790F8A003F8C13 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F1685215221342D000C27EAA;
-			remoteInfo = "HCCQR-lib-iOS";
-		};
-		F17F5B95221A269300383955 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F18A52D321790F8A003F8C13 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F1685226221342EB00C27EAA;
-			remoteInfo = "HCCQR-lib-mac";
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		F162145221FC707E005297DE /* Embed Frameworks */ = {
@@ -141,8 +120,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				F168521E221342D000C27EAA /* HCCQR_lib_iOS.framework in Embed Frameworks */,
-				F162145121FC707E005297DE /* QRLibIOS.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -153,8 +130,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				F17F5B94221A269300383955 /* HCCQR_lib_mac.framework in Embed Frameworks */,
-				F17F5B98221A269300383955 /* QRLibMac.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -172,16 +147,8 @@
 		F14FADE421F75A9900ACE5FF /* VC+ViewTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VC+ViewTest.swift"; sourceTree = "<group>"; };
 		F14FADE721F75EF100ACE5FF /* RGBColorTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBColorTestView.swift; sourceTree = "<group>"; };
 		F14FADEF21F761FD00ACE5FF /* FakeHCCQRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeHCCQRView.swift; sourceTree = "<group>"; };
-		F162144F21FC707E005297DE /* QRLibIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QRLibIOS.framework; path = Carthage/Build/iOS/QRLibIOS.framework; sourceTree = "<group>"; };
 		F162145321FC7138005297DE /* SimpleHCCQRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleHCCQRView.swift; sourceTree = "<group>"; };
 		F162146521FF0734005297DE /* AlignMarkTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlignMarkTestView.swift; sourceTree = "<group>"; };
-		F1685216221342D000C27EAA /* HCCQR_lib_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HCCQR_lib_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F1685218221342D000C27EAA /* HCCQR_lib_iOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HCCQR_lib_iOS.h; sourceTree = "<group>"; };
-		F1685219221342D000C27EAA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F1685227221342EB00C27EAA /* HCCQR_lib_mac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HCCQR_lib_mac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F1685229221342EB00C27EAA /* HCCQR_lib_mac.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HCCQR_lib_mac.h; sourceTree = "<group>"; };
-		F168522A221342EB00C27EAA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F16852322213435100C27EAA /* QRLibMac.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QRLibMac.framework; path = Carthage/Build/Mac/QRLibMac.framework; sourceTree = "<group>"; };
 		F16852572213443700C27EAA /* HCCQRStringData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HCCQRStringData.swift; sourceTree = "<group>"; };
 		F168525A2213443700C27EAA /* RGBAImage+Pixel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RGBAImage+Pixel.swift"; sourceTree = "<group>"; };
 		F168525B2213443700C27EAA /* RGBAImage+Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RGBAImage+Util.swift"; sourceTree = "<group>"; };
@@ -213,12 +180,11 @@
 		F16852842213443700C27EAA /* Color+Asserter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+Asserter.swift"; sourceTree = "<group>"; };
 		F16852A9221348E400C27EAA /* HCCQRWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HCCQRWriter.swift; sourceTree = "<group>"; };
 		F16852AB221348F000C27EAA /* HCCQRReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HCCQRReader.swift; sourceTree = "<group>"; };
-		F16852B222134B0400C27EAA /* QRLibMac.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QRLibMac.framework; path = Carthage/Build/Mac/QRLibMac.framework; sourceTree = "<group>"; };
 		F16852B522134DBD00C27EAA /* Splitter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Splitter.swift; sourceTree = "<group>"; };
 		F16852B822134E4000C27EAA /* Splitter+Channels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Splitter+Channels.swift"; sourceTree = "<group>"; };
 		F16852BB2213522200C27EAA /* Compositor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compositor.swift; sourceTree = "<group>"; };
-		F17A29FF22137BEA000B6C0A /* HybridiOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HybridiOS.swift; sourceTree = "<group>"; };
-		F17A2A17221384F2000B6C0A /* HybridMac.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HybridMac.swift; sourceTree = "<group>"; };
+		F17A29FF22137BEA000B6C0A /* Hybrid+iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Hybrid+iOS.swift"; sourceTree = "<group>"; };
+		F17A2A17221384F2000B6C0A /* Hybrid+Mac.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Hybrid+Mac.swift"; sourceTree = "<group>"; };
 		F17A2A1F221388E2000B6C0A /* ImageUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUtil.swift; sourceTree = "<group>"; };
 		F17F5B85221A267600383955 /* HCCQR-demo-mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HCCQR-demo-mac.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F17F5B87221A267600383955 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -239,28 +205,11 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		F1685213221342D000C27EAA /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F17A2A152213835C000B6C0A /* QRLibIOS.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F1685224221342EB00C27EAA /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F17A2A1622138363000B6C0A /* QRLibMac.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		F17F5B82221A267600383955 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F17F5B93221A269300383955 /* HCCQR_lib_mac.framework in Frameworks */,
-				F17F5B97221A269300383955 /* QRLibMac.framework in Frameworks */,
+				F1E645F3239429CA008D2ABE /* QR-lib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,8 +217,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F168521D221342D000C27EAA /* HCCQR_lib_iOS.framework in Frameworks */,
-				F162145021FC707E005297DE /* QRLibIOS.framework in Frameworks */,
+				F1E6459E239407BC008D2ABE /* QR-lib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,49 +236,11 @@
 			path = test;
 			sourceTree = "<group>";
 		};
-		F1685217221342D000C27EAA /* HCCQR-lib-iOS */ = {
-			isa = PBXGroup;
-			children = (
-				F1685218221342D000C27EAA /* HCCQR_lib_iOS.h */,
-				F1685219221342D000C27EAA /* Info.plist */,
-			);
-			path = "HCCQR-lib-iOS";
-			sourceTree = "<group>";
-		};
-		F1685228221342EB00C27EAA /* HCCQR-lib-mac */ = {
-			isa = PBXGroup;
-			children = (
-				F1685229221342EB00C27EAA /* HCCQR_lib_mac.h */,
-				F168522A221342EB00C27EAA /* Info.plist */,
-			);
-			path = "HCCQR-lib-mac";
-			sourceTree = "<group>";
-		};
 		F168522F2213430100C27EAA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F16852322213435100C27EAA /* QRLibMac.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		F16852552213443700C27EAA /* src */ = {
-			isa = PBXGroup;
-			children = (
-				F16852562213443700C27EAA /* hccqr */,
-				F16852762213443700C27EAA /* common */,
-			);
-			path = src;
-			sourceTree = "<group>";
-		};
-		F16852562213443700C27EAA /* hccqr */ = {
-			isa = PBXGroup;
-			children = (
-				F16852B122134A3800C27EAA /* util */,
-				F1F6F7C122221EB00075E7FD /* writer */,
-				F1F6F7C222221EBC0075E7FD /* reader */,
-			);
-			path = hccqr;
 			sourceTree = "<group>";
 		};
 		F16852592213443700C27EAA /* RGBAimage */ = {
@@ -351,63 +261,63 @@
 		F168525C2213443700C27EAA /* util */ = {
 			isa = PBXGroup;
 			children = (
-				F168525D2213443700C27EAA /* compositor */,
-				F168525F2213443700C27EAA /* splitter */,
-				F16852612213443700C27EAA /* pixel */,
-				F168526A2213443700C27EAA /* colorize */,
+				F168525D2213443700C27EAA /* Compositor */,
+				F168525F2213443700C27EAA /* Splitter */,
+				F16852612213443700C27EAA /* PixelData */,
+				F168526A2213443700C27EAA /* Colorizer */,
 			);
 			path = util;
 			sourceTree = "<group>";
 		};
-		F168525D2213443700C27EAA /* compositor */ = {
+		F168525D2213443700C27EAA /* Compositor */ = {
 			isa = PBXGroup;
 			children = (
 				F16852BB2213522200C27EAA /* Compositor.swift */,
 			);
-			path = compositor;
+			path = Compositor;
 			sourceTree = "<group>";
 		};
-		F168525F2213443700C27EAA /* splitter */ = {
+		F168525F2213443700C27EAA /* Splitter */ = {
 			isa = PBXGroup;
 			children = (
 				F16852B522134DBD00C27EAA /* Splitter.swift */,
 				F10296C0222219EF001FA2DF /* Splitter+Type.swift */,
 				F16852B822134E4000C27EAA /* Splitter+Channels.swift */,
 			);
-			path = splitter;
+			path = Splitter;
 			sourceTree = "<group>";
 		};
-		F16852612213443700C27EAA /* pixel */ = {
+		F16852612213443700C27EAA /* PixelData */ = {
 			isa = PBXGroup;
 			children = (
 				F16852622213443700C27EAA /* PixelData.swift */,
-				F16852632213443700C27EAA /* util */,
+				F16852632213443700C27EAA /* PixelDataUtil */,
 				F16852652213443700C27EAA /* PixelData+Init.swift */,
 				F16852662213443700C27EAA /* PixelData+Setter.swift */,
 				F16852672213443700C27EAA /* PixelData+Assert.swift */,
 				F16852682213443700C27EAA /* PixelData+Type.swift */,
 				F16852692213443700C27EAA /* PixelData+Getter.swift */,
 			);
-			path = pixel;
+			path = PixelData;
 			sourceTree = "<group>";
 		};
-		F16852632213443700C27EAA /* util */ = {
+		F16852632213443700C27EAA /* PixelDataUtil */ = {
 			isa = PBXGroup;
 			children = (
 				F16852642213443700C27EAA /* PixelDataUtil.swift */,
 			);
-			path = util;
+			path = PixelDataUtil;
 			sourceTree = "<group>";
 		};
-		F168526A2213443700C27EAA /* colorize */ = {
+		F168526A2213443700C27EAA /* Colorizer */ = {
 			isa = PBXGroup;
 			children = (
 				F168526B2213443700C27EAA /* Colorizer.swift */,
 				F168526C2213443700C27EAA /* Colorizer+Core.swift */,
 				F168526E2213443700C27EAA /* Colorize+ColorMap.swift */,
-				F16852BE221354BD00C27EAA /* util */,
+				F16852BE221354BD00C27EAA /* ColorMapAsserter */,
 			);
-			path = colorize;
+			path = Colorizer;
 			sourceTree = "<group>";
 		};
 		F16852712213443700C27EAA /* DEPRECATED */ = {
@@ -481,19 +391,19 @@
 			path = util;
 			sourceTree = "<group>";
 		};
-		F16852BE221354BD00C27EAA /* util */ = {
+		F16852BE221354BD00C27EAA /* ColorMapAsserter */ = {
 			isa = PBXGroup;
 			children = (
 				F168526D2213443700C27EAA /* ColorMapAsserter.swift */,
 			);
-			path = util;
+			path = ColorMapAsserter;
 			sourceTree = "<group>";
 		};
 		F17A2A2322138969000B6C0A /* hybrid */ = {
 			isa = PBXGroup;
 			children = (
-				F17A29FF22137BEA000B6C0A /* HybridiOS.swift */,
-				F17A2A17221384F2000B6C0A /* HybridMac.swift */,
+				F17A29FF22137BEA000B6C0A /* Hybrid+iOS.swift */,
+				F17A2A17221384F2000B6C0A /* Hybrid+Mac.swift */,
 				F17A2A1F221388E2000B6C0A /* ImageUtil.swift */,
 			);
 			path = hybrid;
@@ -514,13 +424,9 @@
 		F18A52D221790F8A003F8C13 = {
 			isa = PBXGroup;
 			children = (
-				F16852B222134B0400C27EAA /* QRLibMac.framework */,
-				F162144F21FC707E005297DE /* QRLibIOS.framework */,
+				F1E645F423942E9D008D2ABE /* Sources */,
 				F18A52DD21790F8A003F8C13 /* HCCQR-demo */,
 				F17F5B86221A267600383955 /* HCCQR-demo-mac */,
-				F16852552213443700C27EAA /* src */,
-				F1685217221342D000C27EAA /* HCCQR-lib-iOS */,
-				F1685228221342EB00C27EAA /* HCCQR-lib-mac */,
 				F18A52DC21790F8A003F8C13 /* Products */,
 				F11DE85F220B6C53007A8A7A /* temp.bundle */,
 				F168522F2213430100C27EAA /* Frameworks */,
@@ -531,8 +437,6 @@
 			isa = PBXGroup;
 			children = (
 				F18A52DB21790F8A003F8C13 /* HCCQR-demo.app */,
-				F1685216221342D000C27EAA /* HCCQR_lib_iOS.framework */,
-				F1685227221342EB00C27EAA /* HCCQR_lib_mac.framework */,
 				F17F5B85221A267600383955 /* HCCQR-demo-mac.app */,
 			);
 			name = Products;
@@ -554,84 +458,46 @@
 			path = "HCCQR-demo";
 			sourceTree = "<group>";
 		};
-		F1F6F7C122221EB00075E7FD /* writer */ = {
+		F1E645F423942E9D008D2ABE /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				F1E645F523942E9D008D2ABE /* HCCQR-lib */,
+			);
+			path = Sources;
+			sourceTree = SOURCE_ROOT;
+		};
+		F1E645F523942E9D008D2ABE /* HCCQR-lib */ = {
+			isa = PBXGroup;
+			children = (
+				F1F6F7C122221EB00075E7FD /* HCCQRWriter */,
+				F1F6F7C222221EBC0075E7FD /* HCCQRReader */,
+				F16852B122134A3800C27EAA /* util */,
+				F16852762213443700C27EAA /* common */,
+			);
+			path = "HCCQR-lib";
+			sourceTree = "<group>";
+		};
+		F1F6F7C122221EB00075E7FD /* HCCQRWriter */ = {
 			isa = PBXGroup;
 			children = (
 				F16852A9221348E400C27EAA /* HCCQRWriter.swift */,
 				F1F6F7BD22221E9B0075E7FD /* HCCQRWriter+Type.swift */,
 			);
-			path = writer;
+			path = HCCQRWriter;
 			sourceTree = "<group>";
 		};
-		F1F6F7C222221EBC0075E7FD /* reader */ = {
+		F1F6F7C222221EBC0075E7FD /* HCCQRReader */ = {
 			isa = PBXGroup;
 			children = (
 				F16852AB221348F000C27EAA /* HCCQRReader.swift */,
 				F1F6F7BF22221EA80075E7FD /* HCCQRReader+Type.swift */,
 			);
-			path = reader;
+			path = HCCQRReader;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
-/* Begin PBXHeadersBuildPhase section */
-		F1685211221342D000C27EAA /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F168521A221342D000C27EAA /* HCCQR_lib_iOS.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F1685222221342EB00C27EAA /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F168522B221342EB00C27EAA /* HCCQR_lib_mac.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXHeadersBuildPhase section */
-
 /* Begin PBXNativeTarget section */
-		F1685215221342D000C27EAA /* HCCQR-lib-iOS */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = F168521F221342D000C27EAA /* Build configuration list for PBXNativeTarget "HCCQR-lib-iOS" */;
-			buildPhases = (
-				F1685211221342D000C27EAA /* Headers */,
-				F1685212221342D000C27EAA /* Sources */,
-				F1685213221342D000C27EAA /* Frameworks */,
-				F1685214221342D000C27EAA /* Resources */,
-				F1E4A892227BFA5A00E8993A /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "HCCQR-lib-iOS";
-			productName = "HCCQR-lib-iOS";
-			productReference = F1685216221342D000C27EAA /* HCCQR_lib_iOS.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		F1685226221342EB00C27EAA /* HCCQR-lib-mac */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = F168522C221342EB00C27EAA /* Build configuration list for PBXNativeTarget "HCCQR-lib-mac" */;
-			buildPhases = (
-				F1685222221342EB00C27EAA /* Headers */,
-				F1685223221342EB00C27EAA /* Sources */,
-				F1685224221342EB00C27EAA /* Frameworks */,
-				F1685225221342EB00C27EAA /* Resources */,
-				F1E4A893227BFA7F00E8993A /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "HCCQR-lib-mac";
-			productName = "HCCQR-lib-mac";
-			productReference = F1685227221342EB00C27EAA /* HCCQR_lib_mac.framework */;
-			productType = "com.apple.product-type.framework";
-		};
 		F17F5B84221A267600383955 /* HCCQR-demo-mac */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F17F5B90221A267B00383955 /* Build configuration list for PBXNativeTarget "HCCQR-demo-mac" */;
@@ -644,9 +510,11 @@
 			buildRules = (
 			);
 			dependencies = (
-				F17F5B96221A269300383955 /* PBXTargetDependency */,
 			);
 			name = "HCCQR-demo-mac";
+			packageProductDependencies = (
+				F1E645F2239429CA008D2ABE /* QR-lib */,
+			);
 			productName = "HCCQR-demo-mac";
 			productReference = F17F5B85221A267600383955 /* HCCQR-demo-mac.app */;
 			productType = "com.apple.product-type.application";
@@ -663,9 +531,11 @@
 			buildRules = (
 			);
 			dependencies = (
-				F168521C221342D000C27EAA /* PBXTargetDependency */,
 			);
 			name = "HCCQR-demo";
+			packageProductDependencies = (
+				F1E6459D239407BC008D2ABE /* QR-lib */,
+			);
 			productName = "HCCQR-demo";
 			productReference = F18A52DB21790F8A003F8C13 /* HCCQR-demo.app */;
 			productType = "com.apple.product-type.application";
@@ -680,13 +550,6 @@
 				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = FutureLab;
 				TargetAttributes = {
-					F1685215221342D000C27EAA = {
-						CreatedOnToolsVersion = 10.1;
-					};
-					F1685226221342EB00C27EAA = {
-						CreatedOnToolsVersion = 10.1;
-						LastSwiftMigration = 1010;
-					};
 					F17F5B84221A267600383955 = {
 						CreatedOnToolsVersion = 10.1;
 					};
@@ -704,33 +567,20 @@
 				Base,
 			);
 			mainGroup = F18A52D221790F8A003F8C13;
+			packageReferences = (
+				F1E6459C239407BC008D2ABE /* XCRemoteSwiftPackageReference "QR-lib" */,
+			);
 			productRefGroup = F18A52DC21790F8A003F8C13 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				F18A52DA21790F8A003F8C13 /* HCCQR-demo */,
-				F1685215221342D000C27EAA /* HCCQR-lib-iOS */,
-				F1685226221342EB00C27EAA /* HCCQR-lib-mac */,
 				F17F5B84221A267600383955 /* HCCQR-demo-mac */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		F1685214221342D000C27EAA /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F1685225221342EB00C27EAA /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		F17F5B83221A267600383955 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -753,140 +603,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		F1E4A892227BFA5A00E8993A /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
-		};
-		F1E4A893227BFA7F00E8993A /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
-		F1685212221342D000C27EAA /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F17A2A2122138901000B6C0A /* ImageUtil.swift in Sources */,
-				F10296C322221A07001FA2DF /* Splitter+Type.swift in Sources */,
-				F16852B622134DBD00C27EAA /* Splitter.swift in Sources */,
-				F16852902213443700C27EAA /* PixelData+Type.swift in Sources */,
-				F168528F2213443700C27EAA /* PixelData+Assert.swift in Sources */,
-				F16852A22213443700C27EAA /* CAShapeLayerUtil.swift in Sources */,
-				F16852A42213443700C27EAA /* Color+Parser.swift in Sources */,
-				F16852A02213443700C27EAA /* UInt8Asserter.swift in Sources */,
-				F168529C2213443700C27EAA /* Image+Extension.swift in Sources */,
-				F16852952213443700C27EAA /* Colorize+ColorMap.swift in Sources */,
-				F168529F2213443700C27EAA /* CGImage+Extension.swift in Sources */,
-				F16852942213443700C27EAA /* ColorMapAsserter.swift in Sources */,
-				F168528C2213443700C27EAA /* PixelDataUtil.swift in Sources */,
-				F16852912213443700C27EAA /* PixelData+Getter.swift in Sources */,
-				F16852AE2213495A00C27EAA /* HCCQRReader.swift in Sources */,
-				F16852962213443700C27EAA /* RGBAImage.swift in Sources */,
-				F16852AD2213495700C27EAA /* HCCQRWriter.swift in Sources */,
-				F168529B2213443700C27EAA /* UIView+Extension.swift in Sources */,
-				F168529D2213443700C27EAA /* CIImage+Extension.swift in Sources */,
-				F10296BC22221906001FA2DF /* RGBAImage+Getter.swift in Sources */,
-				F168529E2213443700C27EAA /* Data+Extension.swift in Sources */,
-				F10296B6222217AC001FA2DF /* RGBAImage+Type.swift in Sources */,
-				F16852A12213443700C27EAA /* UInt8Parser.swift in Sources */,
-				F168528D2213443700C27EAA /* PixelData+Init.swift in Sources */,
-				F16852852213443700C27EAA /* HCCQRStringData.swift in Sources */,
-				F16852932213443700C27EAA /* Colorizer+Core.swift in Sources */,
-				F168528B2213443700C27EAA /* PixelData.swift in Sources */,
-				F194BAA52224C321001C5DBB /* UIImage+Extension.swift in Sources */,
-				F16852972213443700C27EAA /* RGBAImage+Init.swift in Sources */,
-				F16852B922134E4000C27EAA /* Splitter+Channels.swift in Sources */,
-				F168528E2213443700C27EAA /* PixelData+Setter.swift in Sources */,
-				F1F6F7C422221F3D0075E7FD /* HCCQRReader+Type.swift in Sources */,
-				F10296BD22221906001FA2DF /* RGBAImage+Debug.swift in Sources */,
-				F16852872213443700C27EAA /* RGBAImage+Pixel.swift in Sources */,
-				F17A2A0122137BF4000B6C0A /* HybridiOS.swift in Sources */,
-				F16852A52213443700C27EAA /* Color+Asserter.swift in Sources */,
-				F1F6F7C322221F3D0075E7FD /* HCCQRWriter+Type.swift in Sources */,
-				F16852922213443700C27EAA /* Colorizer.swift in Sources */,
-				F16852882213443700C27EAA /* RGBAImage+Util.swift in Sources */,
-				F16852BC2213522200C27EAA /* Compositor.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F1685223221342EB00C27EAA /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F17A2A3022139371000B6C0A /* Colorizer.swift in Sources */,
-				F17A2A322213937D000B6C0A /* ColorMapAsserter.swift in Sources */,
-				F17A2A2722139023000B6C0A /* PixelData+Init.swift in Sources */,
-				F17A2A412213945E000B6C0A /* HCCQRWriter.swift in Sources */,
-				F17A2A2622138E52000B6C0A /* PixelData+Type.swift in Sources */,
-				F17A2A47221394FE000B6C0A /* Data+Extension.swift in Sources */,
-				F17A2A2522138E43000B6C0A /* PixelDataUtil.swift in Sources */,
-				F17A2A482213952F000B6C0A /* CGImage+Extension.swift in Sources */,
-				F1F6F7C522221F3D0075E7FD /* HCCQRWriter+Type.swift in Sources */,
-				F17A2A3F22139454000B6C0A /* Splitter+Channels.swift in Sources */,
-				F10296BE22221907001FA2DF /* RGBAImage+Getter.swift in Sources */,
-				F17A2A3922139395000B6C0A /* RGBAImage+Util.swift in Sources */,
-				F17A2A422213945E000B6C0A /* HCCQRReader.swift in Sources */,
-				F17A2A432213946D000B6C0A /* ImageUtil.swift in Sources */,
-				F10296BF22221907001FA2DF /* RGBAImage+Debug.swift in Sources */,
-				F17A2A3E22139454000B6C0A /* Splitter.swift in Sources */,
-				F17A2A2B221390BA000B6C0A /* UInt8Parser.swift in Sources */,
-				F17A2A3C22139446000B6C0A /* Image+Extension.swift in Sources */,
-				F17A2A3A22139395000B6C0A /* RGBAImage.swift in Sources */,
-				F17A2A2A22139077000B6C0A /* PixelData+Getter.swift in Sources */,
-				F17A2A2C221390C2000B6C0A /* UInt8Asserter.swift in Sources */,
-				F17A2A3322139381000B6C0A /* Colorizer+Core.swift in Sources */,
-				F17A2A3122139378000B6C0A /* Colorize+ColorMap.swift in Sources */,
-				F17A2A1922138511000B6C0A /* HybridMac.swift in Sources */,
-				F17A2A3D22139454000B6C0A /* Compositor.swift in Sources */,
-				F17A2A402213945E000B6C0A /* HCCQRStringData.swift in Sources */,
-				F17A2A3B22139395000B6C0A /* RGBAImage+Init.swift in Sources */,
-				F17A2A3822139395000B6C0A /* RGBAImage+Pixel.swift in Sources */,
-				F17A2A4522139479000B6C0A /* Color+Asserter.swift in Sources */,
-				F17A2A4422139479000B6C0A /* Color+Parser.swift in Sources */,
-				F10296B7222217AD001FA2DF /* RGBAImage+Type.swift in Sources */,
-				F17A2A2922139036000B6C0A /* PixelData+Assert.swift in Sources */,
-				F17A2A46221394F8000B6C0A /* CIImage+Extension.swift in Sources */,
-				F10296C222221A06001FA2DF /* Splitter+Type.swift in Sources */,
-				F17A2A2422138DFF000B6C0A /* PixelData.swift in Sources */,
-				F1F6F7C622221F3D0075E7FD /* HCCQRReader+Type.swift in Sources */,
-				F17A2A2822139028000B6C0A /* PixelData+Setter.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		F17F5B81221A267600383955 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1E645B423940ACA008D2ABE /* CIImage+Extension.swift in Sources */,
+				F1E645BA23940ACA008D2ABE /* Color+Parser.swift in Sources */,
+				F1E645F023940B3D008D2ABE /* HCCQRReader.swift in Sources */,
+				F1E645DE23940B3D008D2ABE /* Compositor.swift in Sources */,
+				F1E645E723940B3D008D2ABE /* PixelData+Type.swift in Sources */,
+				F1E645D823940B3D008D2ABE /* RGBAImage+Pixel.swift in Sources */,
+				F1E645D923940B3D008D2ABE /* RGBAImage+Util.swift in Sources */,
+				F1E645BB23940ACA008D2ABE /* Color+Asserter.swift in Sources */,
+				F1E645E823940B3D008D2ABE /* PixelData+Getter.swift in Sources */,
 				F17F5B88221A267600383955 /* AppDelegate.swift in Sources */,
+				F1E645F6239430B1008D2ABE /* CAShapeLayerUtil.swift in Sources */,
+				F1E645DD23940B3D008D2ABE /* RGBAImage+Init.swift in Sources */,
+				F1E645EE23940B3D008D2ABE /* HCCQRWriter.swift in Sources */,
+				F1E645B223940ACA008D2ABE /* String+Extension.swift in Sources */,
+				F1E645DA23940B3D008D2ABE /* RGBAImage+Type.swift in Sources */,
+				F1E645E623940B3D008D2ABE /* PixelData+Assert.swift in Sources */,
+				F1E645AD23940ACA008D2ABE /* Hybrid+iOS.swift in Sources */,
+				F1E645E123940B3D008D2ABE /* Splitter+Channels.swift in Sources */,
+				F1E645EC23940B3D008D2ABE /* ColorMapAsserter.swift in Sources */,
+				F1E645F123940B3D008D2ABE /* HCCQRReader+Type.swift in Sources */,
+				F1E645DC23940B3D008D2ABE /* RGBAImage+Debug.swift in Sources */,
+				F1E645EA23940B3D008D2ABE /* Colorizer+Core.swift in Sources */,
+				F1E645B323940ACA008D2ABE /* Image+Extension.swift in Sources */,
+				F1E645AE23940ACA008D2ABE /* Hybrid+Mac.swift in Sources */,
+				F1E645B823940ACA008D2ABE /* UInt8Parser.swift in Sources */,
+				F1E645EB23940B3D008D2ABE /* Colorize+ColorMap.swift in Sources */,
+				F1E645B123940ACA008D2ABE /* UIImage+Extension.swift in Sources */,
+				F1E645ED23940B3D008D2ABE /* HCCQRStringData.swift in Sources */,
+				F1E645E223940B3D008D2ABE /* PixelData.swift in Sources */,
+				F1E645E523940B3D008D2ABE /* PixelData+Setter.swift in Sources */,
+				F1E645E923940B3D008D2ABE /* Colorizer.swift in Sources */,
+				F1E645EF23940B3D008D2ABE /* HCCQRWriter+Type.swift in Sources */,
+				F1E645D723940B3D008D2ABE /* RGBAImage.swift in Sources */,
+				F1E645E423940B3D008D2ABE /* PixelData+Init.swift in Sources */,
+				F1E645B723940ACA008D2ABE /* UInt8Asserter.swift in Sources */,
+				F1E645E323940B3D008D2ABE /* PixelDataUtil.swift in Sources */,
+				F1E645DF23940B3D008D2ABE /* Splitter.swift in Sources */,
+				F1E645B623940ACA008D2ABE /* CGImage+Extension.swift in Sources */,
+				F1E645B523940ACA008D2ABE /* Data+Extension.swift in Sources */,
+				F1E645E023940B3D008D2ABE /* Splitter+Type.swift in Sources */,
+				F1E645DB23940B3D008D2ABE /* RGBAImage+Getter.swift in Sources */,
+				F1E645B023940ACA008D2ABE /* UIView+Extension.swift in Sources */,
+				F1E645AF23940ACA008D2ABE /* ImageUtil.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -894,35 +658,63 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1E645BE23940B3C008D2ABE /* RGBAImage+Util.swift in Sources */,
+				F1E645C123940B3C008D2ABE /* RGBAImage+Debug.swift in Sources */,
+				F1E645BD23940B3C008D2ABE /* RGBAImage+Pixel.swift in Sources */,
 				F16852A72213455100C27EAA /* AlignMarkUtil+Metric.swift in Sources */,
+				F1E645CC23940B3C008D2ABE /* PixelData+Type.swift in Sources */,
+				F1E645CB23940B3C008D2ABE /* PixelData+Assert.swift in Sources */,
+				F1E645AB23940AC9008D2ABE /* Color+Parser.swift in Sources */,
 				F14FADE521F75A9900ACE5FF /* VC+ViewTest.swift in Sources */,
+				F1E645C523940B3C008D2ABE /* Splitter+Type.swift in Sources */,
+				F1E645A223940AC9008D2ABE /* UIView+Extension.swift in Sources */,
+				F1E645CF23940B3C008D2ABE /* Colorizer+Core.swift in Sources */,
+				F1E645C223940B3C008D2ABE /* RGBAImage+Init.swift in Sources */,
+				F1E645D523940B3C008D2ABE /* HCCQRReader.swift in Sources */,
+				F1E645D223940B3C008D2ABE /* HCCQRStringData.swift in Sources */,
+				F1E645C623940B3C008D2ABE /* Splitter+Channels.swift in Sources */,
+				F1E645C923940B3C008D2ABE /* PixelData+Init.swift in Sources */,
 				F18A52E121790F8A003F8C13 /* ViewController.swift in Sources */,
+				F1E645A023940AC9008D2ABE /* Hybrid+Mac.swift in Sources */,
+				F1E645CD23940B3C008D2ABE /* PixelData+Getter.swift in Sources */,
+				F1E645D023940B3C008D2ABE /* Colorize+ColorMap.swift in Sources */,
+				F1E645C323940B3C008D2ABE /* Compositor.swift in Sources */,
+				F1E645AC23940AC9008D2ABE /* Color+Asserter.swift in Sources */,
+				F1E645A823940AC9008D2ABE /* UInt8Asserter.swift in Sources */,
+				F1E645A723940AC9008D2ABE /* CGImage+Extension.swift in Sources */,
 				F14FADF021F761FD00ACE5FF /* FakeHCCQRView.swift in Sources */,
+				F1E645D123940B3C008D2ABE /* ColorMapAsserter.swift in Sources */,
 				F10296B322221710001FA2DF /* String+Extension.swift in Sources */,
+				F1E645C823940B3C008D2ABE /* PixelDataUtil.swift in Sources */,
+				F1E645CE23940B3C008D2ABE /* Colorizer.swift in Sources */,
+				F1E645AA23940AC9008D2ABE /* CAShapeLayerUtil.swift in Sources */,
+				F1E645D423940B3C008D2ABE /* HCCQRWriter+Type.swift in Sources */,
+				F1E6459F23940AC9008D2ABE /* Hybrid+iOS.swift in Sources */,
+				F1E645D323940B3C008D2ABE /* HCCQRWriter.swift in Sources */,
 				F162146621FF0734005297DE /* AlignMarkTestView.swift in Sources */,
 				F16852A62213455100C27EAA /* AlignMarkUtil+Debug.swift in Sources */,
+				F1E645BF23940B3C008D2ABE /* RGBAImage+Type.swift in Sources */,
+				F1E645A123940AC9008D2ABE /* ImageUtil.swift in Sources */,
+				F1E645C723940B3C008D2ABE /* PixelData.swift in Sources */,
+				F1E645BC23940B3C008D2ABE /* RGBAImage.swift in Sources */,
+				F1E645A423940AC9008D2ABE /* Image+Extension.swift in Sources */,
+				F1E645A523940AC9008D2ABE /* CIImage+Extension.swift in Sources */,
 				F18A52DF21790F8A003F8C13 /* AppDelegate.swift in Sources */,
+				F1E645A323940AC9008D2ABE /* UIImage+Extension.swift in Sources */,
 				F14FADE821F75EF100ACE5FF /* RGBColorTestView.swift in Sources */,
 				F16852A82213455100C27EAA /* AlignMarkUtil.swift in Sources */,
+				F1E645A623940AC9008D2ABE /* Data+Extension.swift in Sources */,
+				F1E645CA23940B3C008D2ABE /* PixelData+Setter.swift in Sources */,
+				F1E645A923940AC9008D2ABE /* UInt8Parser.swift in Sources */,
+				F1E645C023940B3C008D2ABE /* RGBAImage+Getter.swift in Sources */,
 				F162145421FC7138005297DE /* SimpleHCCQRView.swift in Sources */,
 				F11DE8512208F19F007A8A7A /* VC+Test.swift in Sources */,
+				F1E645D623940B3C008D2ABE /* HCCQRReader+Type.swift in Sources */,
+				F1E645C423940B3C008D2ABE /* Splitter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		F168521C221342D000C27EAA /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = F1685215221342D000C27EAA /* HCCQR-lib-iOS */;
-			targetProxy = F168521B221342D000C27EAA /* PBXContainerItemProxy */;
-		};
-		F17F5B96221A269300383955 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = F1685226221342EB00C27EAA /* HCCQR-lib-mac */;
-			targetProxy = F17F5B95221A269300383955 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		F17F5B8B221A267B00383955 /* MainMenu.xib */ = {
@@ -952,143 +744,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		F1685220221342D000C27EAA /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
-				INFOPLIST_FILE = "HCCQR-lib-iOS/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "io.github.futurelab.HCCQR-lib-iOS";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		F1685221221342D000C27EAA /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
-				INFOPLIST_FILE = "HCCQR-lib-iOS/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "io.github.futurelab.HCCQR-lib-iOS";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		F168522D221342EB00C27EAA /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "-";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-					"$(PROJECT_DIR)/Carthage/Build/Mac",
-				);
-				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = "HCCQR-lib-mac/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				PRODUCT_BUNDLE_IDENTIFIER = "io.github.futurelab.HCCQR-lib-mac";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		F168522E221342EB00C27EAA /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "-";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-					"$(PROJECT_DIR)/Carthage/Build/Mac",
-				);
-				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = "HCCQR-lib-mac/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				PRODUCT_BUNDLE_IDENTIFIER = "io.github.futurelab.HCCQR-lib-mac";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 		F17F5B91221A267B00383955 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1098,10 +753,6 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/Mac",
-				);
 				INFOPLIST_FILE = "HCCQR-demo-mac/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1124,10 +775,6 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/Mac",
-				);
 				INFOPLIST_FILE = "HCCQR-demo-mac/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1266,11 +913,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B5CC9TD7P7;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-					"$(PROJECT_DIR)/Carthage/Build/Mac",
-				);
 				INFOPLIST_FILE = "HCCQR-demo/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1291,11 +933,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B5CC9TD7P7;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-					"$(PROJECT_DIR)/Carthage/Build/Mac",
-				);
 				INFOPLIST_FILE = "HCCQR-demo/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1312,24 +949,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		F168521F221342D000C27EAA /* Build configuration list for PBXNativeTarget "HCCQR-lib-iOS" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				F1685220221342D000C27EAA /* Debug */,
-				F1685221221342D000C27EAA /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		F168522C221342EB00C27EAA /* Build configuration list for PBXNativeTarget "HCCQR-lib-mac" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				F168522D221342EB00C27EAA /* Debug */,
-				F168522E221342EB00C27EAA /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		F17F5B90221A267B00383955 /* Build configuration list for PBXNativeTarget "HCCQR-demo-mac" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1358,6 +977,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F1E6459C239407BC008D2ABE /* XCRemoteSwiftPackageReference "QR-lib" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/light-stream/QR-lib.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F1E6459D239407BC008D2ABE /* QR-lib */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F1E6459C239407BC008D2ABE /* XCRemoteSwiftPackageReference "QR-lib" */;
+			productName = "QR-lib";
+		};
+		F1E645F2239429CA008D2ABE /* QR-lib */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F1E6459C239407BC008D2ABE /* XCRemoteSwiftPackageReference "QR-lib" */;
+			productName = "QR-lib";
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F18A52D321790F8A003F8C13 /* Project object */;
 }

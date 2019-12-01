@@ -1,5 +1,5 @@
 import UIKit
-@testable import HCCQR_lib_iOS
+//@testable import HCCQR_lib_iOS
 /**
  * Debug
  */

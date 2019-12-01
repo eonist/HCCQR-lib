@@ -1,19 +1,20 @@
 import UIKit
-import QRLibIOS
+import QR_lib
 /**
  * Metrics
  * - Fixme: ⚠️️ Remove length, its always 6x the thickness 👌
  */
 extension AlignMarkUtil {
    /**
-    * - Parameter marginLength: 4 modules (The margin is a blank area around the QR code. Model 1...40 require a margin of four modules and Micro QR code requires of two modules.)
-    * - Parameter outerLength: 2 modules (the black margin outside the white void)
-    * - Parameter innerLenth: 2 modules (the white margin outside the middle the black square)
-    * - Parameter squareLength: 3 modules (the black square  in the middle)
+    * - Parameters:
+    *   - marginLength: 4 modules (The margin is a blank area around the QR code. Model 1...40 require a margin of four modules and Micro QR code requires of two modules.)
+    *   - outerLength: 2 modules (the black margin outside the white void)
+    *   - innerLenth: 2 modules (the white margin outside the middle the black square)
+    *   - squareLength: 3 modules (the black square  in the middle)
     */
    enum PrimaryAimMark {
-      fileprivate static let totalLength: Int = 9//marginLength + outerLength + innerLength + squareLength + innerLength + outerLength + marginLength//Total length of the AimMark
-      fileprivate static let marginLength: Int = 1//aka QRMargin
+      fileprivate static let totalLength: Int = 9 // marginLength + outerLength + innerLength + squareLength + innerLength + outerLength + marginLength//Total length of the AimMark
+      fileprivate static let marginLength: Int = 1 // aka QRMargin
       fileprivate static let outerLength: Int = 1
       fileprivate static let innerLength: Int = 1
       fileprivate static let squareLength: Int = 3
@@ -26,7 +27,7 @@ extension AlignMarkUtil {
       let ecLevel: ECLevel = .l
       guard let moduleCount: Int = QRModuleUtil.moduleCount(string: string, ecLevel: ecLevel) else { Swift.print("⚠️️ unable to get moduleCount ⚠️️"); return nil }
       Swift.print("moduleCount:  \(moduleCount)")
-      /*Figure out how many pixels a module consist of*/
+      // Figure out how many pixels a module consist of
       let pixelsPerModule: CGFloat = side / CGFloat(moduleCount)
       Swift.print("pixelsPerModule:  \(pixelsPerModule)")
       let marginLength: CGFloat = pixelsPerModule * CGFloat(PrimaryAimMark.marginLength)

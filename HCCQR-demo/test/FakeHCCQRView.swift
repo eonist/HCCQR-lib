@@ -1,5 +1,5 @@
 import UIKit
-@testable import HCCQR_lib_iOS
+//@testable import HCCQR_lib_iOS
 /**
  * This class creates a grid of colors to simulate a HCCQR pallet (For testing reading HCCQR)
  * - Note: These are the channel filled,unfilled represenations: (black = 1, white = 0)

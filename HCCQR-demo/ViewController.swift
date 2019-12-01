@@ -1,6 +1,5 @@
 import UIKit
-import QRLibIOS
-import HCCQR_lib_iOS
+import QR_lib
 
 class ViewController: UIViewController {
    /**

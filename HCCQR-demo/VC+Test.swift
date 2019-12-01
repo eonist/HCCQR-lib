@@ -1,6 +1,6 @@
 import UIKit
-import QRLibIOS
-@testable import HCCQR_lib_iOS
+import QR_lib
+//@testable import HCCQR_lib_iOS
 
 /**
  * Tests
@@ -21,15 +21,17 @@ extension ViewController {
     * Test creating a qrimage based on (qrversion,qrmode,ecLevel)
     */
    func testCreatingQRImage() {
-      fatalError("out of order ⚠️️")
-      let (qrVersion, qrMode, ecLevel): (Int, QRMode, ECLevel) = (12, .alphaNumeric, .l)//settings
-      guard let stringCount: Int = QRVersion.maxChar(qrVersion: qrVersion, qrMode: qrMode, ecLevel: ecLevel) else { Swift.print("⚠️️ Unable to get stringCount ⚠️️"); return }//533
-      let string: String = QRStringData.randomString(chars: QRStringData.asciiCharacters, count: stringCount )
-      //      Swift.print("string:  \(string)")
-      Swift.print("string.count:  \(string.count)")//533
-      /*assert mode*/
-      let mode = QRMode.mode(string: string).debugDescription/*print qrMode: eigther: numeric,alphaNumeric,byte*/
-      Swift.print("mode:  \(mode)")
+//      fatalError("out of order ⚠️️")
+      _ = {
+         let (qrVersion, qrMode, ecLevel): (Int, QRMode, ECLevel) = (12, .alphaNumeric, .l)//settings
+         guard let stringCount: Int = QRVersion.maxChar(qrVersion: qrVersion, qrMode: qrMode, ecLevel: ecLevel) else { Swift.print("⚠️️ Unable to get stringCount ⚠️️"); return }//533
+         let string: String = QRStringData.randomString(chars: QRStringData.asciiCharacters, count: stringCount )
+         //      Swift.print("string:  \(string)")
+         Swift.print("string.count:  \(string.count)")//533
+         /*assert mode*/
+         let mode = QRMode.mode(string: string).debugDescription/*print qrMode: eigther: numeric,alphaNumeric,byte*/
+         Swift.print("mode:  \(mode)")
+      }
       /*Create Image*/
 //      let qrSize = QRImageSize.qrImageSize(string: string,ecLevel: ecLevel)
 //      Swift.print("qrSize:  \(qrSize)")
@@ -52,6 +54,7 @@ extension ViewController {
     */
    func testColorAssertingWithThreshold() {
       let redishColor: UIColor = .init(red: 0.8, green: 0.2, blue: 0.2, alpha: 1)
+      _ = redishColor
 //      let isRedishColor = redishColor.isColor(color:.red,threshold:0.22)//true
 //      Swift.print("isRedishColor:  \(isRedishColor)")
    }

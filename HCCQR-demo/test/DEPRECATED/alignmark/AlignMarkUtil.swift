@@ -1,6 +1,6 @@
 import UIKit
-import QRLibIOS
-@testable import HCCQR_lib_iOS
+import QR_lib
+//@testable import HCCQR_lib_iOS
 //AimImg = View.snapshot
 //Result = Composit(HccqrIMG,aimImg
 //

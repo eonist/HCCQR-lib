@@ -1,5 +1,5 @@
 import UIKit
-@testable import HCCQR_lib_iOS
+//@testable import HCCQR_lib_iOS
 /**
  * Creates a HCCQR pallet based on 2 layers of black and white grids
  */
