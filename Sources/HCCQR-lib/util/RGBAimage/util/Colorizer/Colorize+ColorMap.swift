@@ -9,10 +9,10 @@ extension Colorizer {
     */
    internal static let colorMap: ColorMap = {
       [
-         (idx: [0, 1], Color.red), //black,white
-         (idx: [1, 0], Color.green), //white,black
-         (idx: [1, 1], Color.blue), //black,black
-         (idx: [0, 0], Color.white) //white,white
+         (idx: [0, 1], Color.red), // black, white
+         (idx: [1, 0], Color.green), // white, black
+         (idx: [1, 1], Color.blue), // black, black
+         (idx: [0, 0], Color.white) // white, white
       ]
    }()
    /**
@@ -20,10 +20,10 @@ extension Colorizer {
     */
    internal static let blandColorMap: ColorMap = {
       [
-         (idx: [0, 1], Color(red: 0.8, green: 0.2, blue: 0.2, alpha: 1)), //black,white
-         (idx: [1, 0], Color(red: 0.2, green: 0.8, blue: 0.2, alpha: 1)), //white,black
-         (idx: [1, 1], Color(red: 0.2, green: 0.2, blue: 0.8, alpha: 1)), //black,black
-         (idx: [0, 0], Color(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)) //white,white
+         (idx: [0, 1], Color(red: 0.8, green: 0.2, blue: 0.2, alpha: 1)), // black, white
+         (idx: [1, 0], Color(red: 0.2, green: 0.8, blue: 0.2, alpha: 1)), // white, black
+         (idx: [1, 1], Color(red: 0.2, green: 0.2, blue: 0.8, alpha: 1)), // black, black
+         (idx: [0, 0], Color(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)) // white, white
       ]
    }()
 }

@@ -91,15 +91,15 @@ extension PixelData {
  */
 extension PixelData {
    internal var isRed: Bool {
-      Swift.print("dont use this in prod")
+      Swift.print("don't use this in prod")
       return self.r == 255 && self.g == 0 && self.b == 0
    }
    internal var isBlue: Bool {
-      Swift.print("dont use this in prod")
+      Swift.print("don't use this in prod")
       return self.r == 0 && self.g == 0 && self.b == 255
    }
    internal var isGreen: Bool {
-      Swift.print("dont use this in prod")
+      Swift.print("don't use this in prod")
       return self.r == 0 && self.g == 255 && self.b == 0
    }
 }

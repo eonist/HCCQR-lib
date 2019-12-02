@@ -6,6 +6,7 @@ import CoreImage
 internal class Splitter {
    /**
     * Returns two b&w qr imgs (by splittin an hccqr img)
+    * - Fixme: ⚠️️ move the onCompositeComplete method to a priv class scoped method
     */
    internal static func split(uiImage: Image, onComplete:@escaping SplitPayloadComplete) {
       let onChannelsComplete:(_ channels: RGBAImages?) -> Void = { channels in

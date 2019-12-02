@@ -3,7 +3,7 @@ import QR_lib
 
 extension ViewController {
    /**
-    *
+    * - Fixme: ⚠️️ split this up a bit maybe?
     */
    func testScalingRGBAImage() {
       Swift.print("testScalingRGBAImage")
@@ -207,10 +207,10 @@ extension ViewController {
    /**
     * testAimMarks
     */
-   func testAimMarks() {
-      let aimMarkTestView = AimMarkTestView(frame: .zero)
-      view.addSubview(aimMarkTestView)
-   }
+//   func testAimMarks() {
+//      let aimMarkTestView = AimMarkTestView(frame: .zero)
+//      view.addSubview(aimMarkTestView)
+//   }
    /**
     * test HCCQRImage creation (creates a single HCCQR image, then reads it)
     */
@@ -319,7 +319,7 @@ extension ViewController {
             }
          }
       }
-      /*do stuff on bg thread*/
+      // do stuff on bg thread
       randomData.enumerated().forEach { arg in
          DispatchQueue.global(qos: .userInitiated).async {
             HCCQRWriter.image(data: arg.element, moduleMultiplier: 6, scale: 2, qrConfig: (qrVersion, ecLevel)) { img, _ in createHCCQRComplete(i: arg.offset, hccqrImage: img) }//

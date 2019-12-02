@@ -8,16 +8,17 @@ public class HCCQRWriter {
     * Returns an HCCQR UIImage for a string
     * - Note: For more in-depth example see repo readme
     * - Important: ⚠️️ the caller must make sure the qrVersion can hold the amount of chars in string
-    * - Parameter qrConfig: we supply version because it's more optimized than calculating moduleCount on the basis of data.count
-    * - Parameter scale: This is the multiplier. ModuleCount equals 1 pixel. ModuleCount for QRVersion 10 is 57 not counting 2 for margins. So (57+2)*6 = 354, if you want 2xretina its 354 * 2 = 708
     * - Fixme: ⚠️️ rename to image
+    * - Fixme: ⚠️️ we dont need qrConfig anymore, we can use ecLvel alone
     * - Note: use `Swift.print(hccqrImage?.hasOnlyColorMap(colorMap: [.red,.green,.blue,.white]))`//ensure that img only has valid colors, akak no bluring
     * ## Example:
     * let (qrVersion,qrMode,ecLevel):(Int,QRMode,ECLevel) = (10,.byte,.l)//settings
     * guard let randomString:String = HCCQRStringData.randomString(qrVersion: qrVersion, qrMode: qrMode, ecLevel:ecLevel) else {Swift.print("unable to create random string");return }
     * guard let data = randomString.data(using: .utf8) else {Swift.print("err data");return }
     * HCCQRImageUtil.getHCCQRImage(data:data,moduleMultiplier:6, scale:2,qrConfig:(qrVersion,ecLevel), onComplete: { img in Swift.print("img.size:  \(img?.size)")})//
-    * - Fixme: ⚠️️ we dont need qrConfig anymore, we can use ecLvel alone
+    * - Parameters:
+    *   - qrConfig: we supply version because it's more optimized than calculating moduleCount on the basis of data.count
+    *   - scale: This is the multiplier. ModuleCount equals 1 pixel. ModuleCount for QRVersion 10 is 57 not counting 2 for margins. So (57+2)*6 = 354, if you want 2xretina its 354 * 2 = 708
     */
    public static func image(data: Data, moduleMultiplier: Int, scale: Int, qrConfig: QRConfig = (10, .l), onComplete: @escaping OnHCCQRImageComplete) {
       let dataArr: [Data] = data.split(index: data.count / 2)/*Split the data in two*/

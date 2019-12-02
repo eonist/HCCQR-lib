@@ -2,6 +2,7 @@ import Foundation
 import CoreImage
 /**
  * Type
+ * - Fixme: ⚠️️ Write doc
  */
 extension Splitter {
    internal typealias SplitPayload = (qrImg1: CIImage, qrImg2: CIImage)

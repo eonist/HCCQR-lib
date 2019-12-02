@@ -8,7 +8,8 @@ import CoreImage
 public class HCCQRReader {
    /**
     * Creates data for HCCQQR image
-    * Fixme: ⚠️️ Consider changing image to CGImage, as that is what is used in the end
+    * - Fixme: ⚠️️ Consider changing image to CGImage, as that is what is used in the end
+    * - Fixme: Simplify this method
     */
    public static func dataAndImages(image: Image, onComplete:@escaping DataAndImageComplete) {
       let onSplitComplete:(_ payload: Splitter.SplitPayload?) -> Void = { payload in

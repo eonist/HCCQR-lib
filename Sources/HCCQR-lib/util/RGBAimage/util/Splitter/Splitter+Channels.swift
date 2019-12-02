@@ -20,7 +20,7 @@ extension Splitter {
       var rgbaImages: [RGBAImage?] = [RGBAImage?](repeating: nil, count: assertions.count)
       func onChannelComplete(i: Int, rgbaImage: RGBAImage) {
          rgbaImages[i] = rgbaImage//it matters which order the qrImages came in when you stitch them back together
-         if rgbaImages.first(where: { $0 == nil }) == nil {/*makes sure all images finished*/
+         if rgbaImages.first(where: { $0 == nil }) == nil { // makes sure all images finished
             let rgbaImages: [RGBAImage] = rgbaImages.compactMap { $0 }
             onComplete((rgbaImages[0], rgbaImages[1], rgbaImages[2]))
             rgbaImg.deinitiate()/*to avoid memleak*/
@@ -45,7 +45,7 @@ extension Splitter {
     * - Note: Marks red colors as black, all else becomes white
     * - Note: there is no speed benefit of wtrting the new pixeldata into a new rgba image, this was tested
     */
-   fileprivate static func channel(rgbaImg: RGBAImage, assert: (_ pixel: PixelData) -> Bool) -> RGBAImage {
+   private static func channel(rgbaImg: RGBAImage, assert: (_ pixel: PixelData) -> Bool) -> RGBAImage {
       var outImage = rgbaImg.copy
       outImage.process { pixel -> PixelData in
          assert(pixel) ? PixelData.whitePixel : PixelData.blackPixel

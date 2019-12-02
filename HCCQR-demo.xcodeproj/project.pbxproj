@@ -14,10 +14,6 @@
 		F14FADE821F75EF100ACE5FF /* RGBColorTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14FADE721F75EF100ACE5FF /* RGBColorTestView.swift */; };
 		F14FADF021F761FD00ACE5FF /* FakeHCCQRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14FADEF21F761FD00ACE5FF /* FakeHCCQRView.swift */; };
 		F162145421FC7138005297DE /* SimpleHCCQRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162145321FC7138005297DE /* SimpleHCCQRView.swift */; };
-		F162146621FF0734005297DE /* AlignMarkTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162146521FF0734005297DE /* AlignMarkTestView.swift */; };
-		F16852A62213455100C27EAA /* AlignMarkUtil+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852732213443700C27EAA /* AlignMarkUtil+Debug.swift */; };
-		F16852A72213455100C27EAA /* AlignMarkUtil+Metric.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852742213443700C27EAA /* AlignMarkUtil+Metric.swift */; };
-		F16852A82213455100C27EAA /* AlignMarkUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852752213443700C27EAA /* AlignMarkUtil.swift */; };
 		F17F5B88221A267600383955 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17F5B87221A267600383955 /* AppDelegate.swift */; };
 		F17F5B8A221A267B00383955 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F17F5B89221A267B00383955 /* Assets.xcassets */; };
 		F17F5B8D221A267B00383955 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F17F5B8B221A267B00383955 /* MainMenu.xib */; };
@@ -38,7 +34,6 @@
 		F1E645A723940AC9008D2ABE /* CGImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F168527C2213443700C27EAA /* CGImage+Extension.swift */; };
 		F1E645A823940AC9008D2ABE /* UInt8Asserter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F168527E2213443700C27EAA /* UInt8Asserter.swift */; };
 		F1E645A923940AC9008D2ABE /* UInt8Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F168527F2213443700C27EAA /* UInt8Parser.swift */; };
-		F1E645AA23940AC9008D2ABE /* CAShapeLayerUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852802213443700C27EAA /* CAShapeLayerUtil.swift */; };
 		F1E645AB23940AC9008D2ABE /* Color+Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852832213443700C27EAA /* Color+Parser.swift */; };
 		F1E645AC23940AC9008D2ABE /* Color+Asserter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852842213443700C27EAA /* Color+Asserter.swift */; };
 		F1E645AD23940ACA008D2ABE /* Hybrid+iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17A29FF22137BEA000B6C0A /* Hybrid+iOS.swift */; };
@@ -110,7 +105,9 @@
 		F1E645F023940B3D008D2ABE /* HCCQRReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852AB221348F000C27EAA /* HCCQRReader.swift */; };
 		F1E645F123940B3D008D2ABE /* HCCQRReader+Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F6F7BF22221EA80075E7FD /* HCCQRReader+Type.swift */; };
 		F1E645F3239429CA008D2ABE /* QR-lib in Frameworks */ = {isa = PBXBuildFile; productRef = F1E645F2239429CA008D2ABE /* QR-lib */; };
-		F1E645F6239430B1008D2ABE /* CAShapeLayerUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852802213443700C27EAA /* CAShapeLayerUtil.swift */; };
+		F1FDA61F2395BF810096EEBD /* SimpleHCCQRView+Create.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FDA61E2395BF810096EEBD /* SimpleHCCQRView+Create.swift */; };
+		F1FDA6212395BFBD0096EEBD /* SimpleHCCQRView+Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FDA6202395BFBD0096EEBD /* SimpleHCCQRView+Data.swift */; };
+		F1FDA6242395C0230096EEBD /* FakeHCCQRView+Create.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FDA6232395C0230096EEBD /* FakeHCCQRView+Create.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -148,7 +145,6 @@
 		F14FADE721F75EF100ACE5FF /* RGBColorTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBColorTestView.swift; sourceTree = "<group>"; };
 		F14FADEF21F761FD00ACE5FF /* FakeHCCQRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeHCCQRView.swift; sourceTree = "<group>"; };
 		F162145321FC7138005297DE /* SimpleHCCQRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleHCCQRView.swift; sourceTree = "<group>"; };
-		F162146521FF0734005297DE /* AlignMarkTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlignMarkTestView.swift; sourceTree = "<group>"; };
 		F16852572213443700C27EAA /* HCCQRStringData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HCCQRStringData.swift; sourceTree = "<group>"; };
 		F168525A2213443700C27EAA /* RGBAImage+Pixel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RGBAImage+Pixel.swift"; sourceTree = "<group>"; };
 		F168525B2213443700C27EAA /* RGBAImage+Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RGBAImage+Util.swift"; sourceTree = "<group>"; };
@@ -165,9 +161,6 @@
 		F168526E2213443700C27EAA /* Colorize+ColorMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Colorize+ColorMap.swift"; sourceTree = "<group>"; };
 		F168526F2213443700C27EAA /* RGBAImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RGBAImage.swift; sourceTree = "<group>"; };
 		F16852702213443700C27EAA /* RGBAImage+Init.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RGBAImage+Init.swift"; sourceTree = "<group>"; };
-		F16852732213443700C27EAA /* AlignMarkUtil+Debug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AlignMarkUtil+Debug.swift"; sourceTree = "<group>"; };
-		F16852742213443700C27EAA /* AlignMarkUtil+Metric.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AlignMarkUtil+Metric.swift"; sourceTree = "<group>"; };
-		F16852752213443700C27EAA /* AlignMarkUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlignMarkUtil.swift; sourceTree = "<group>"; };
 		F16852782213443700C27EAA /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		F16852792213443700C27EAA /* Image+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Image+Extension.swift"; sourceTree = "<group>"; };
 		F168527A2213443700C27EAA /* CIImage+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CIImage+Extension.swift"; sourceTree = "<group>"; };
@@ -175,7 +168,6 @@
 		F168527C2213443700C27EAA /* CGImage+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGImage+Extension.swift"; sourceTree = "<group>"; };
 		F168527E2213443700C27EAA /* UInt8Asserter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UInt8Asserter.swift; sourceTree = "<group>"; };
 		F168527F2213443700C27EAA /* UInt8Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UInt8Parser.swift; sourceTree = "<group>"; };
-		F16852802213443700C27EAA /* CAShapeLayerUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CAShapeLayerUtil.swift; sourceTree = "<group>"; };
 		F16852832213443700C27EAA /* Color+Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+Parser.swift"; sourceTree = "<group>"; };
 		F16852842213443700C27EAA /* Color+Asserter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+Asserter.swift"; sourceTree = "<group>"; };
 		F16852A9221348E400C27EAA /* HCCQRWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HCCQRWriter.swift; sourceTree = "<group>"; };
@@ -202,6 +194,9 @@
 		F194BAA32224C304001C5DBB /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		F1F6F7BD22221E9B0075E7FD /* HCCQRWriter+Type.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HCCQRWriter+Type.swift"; sourceTree = "<group>"; };
 		F1F6F7BF22221EA80075E7FD /* HCCQRReader+Type.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HCCQRReader+Type.swift"; sourceTree = "<group>"; };
+		F1FDA61E2395BF810096EEBD /* SimpleHCCQRView+Create.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SimpleHCCQRView+Create.swift"; sourceTree = "<group>"; };
+		F1FDA6202395BFBD0096EEBD /* SimpleHCCQRView+Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SimpleHCCQRView+Data.swift"; sourceTree = "<group>"; };
+		F1FDA6232395C0230096EEBD /* FakeHCCQRView+Create.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FakeHCCQRView+Create.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -227,11 +222,9 @@
 		F14FADE621F75EAD00ACE5FF /* test */ = {
 			isa = PBXGroup;
 			children = (
-				F16852712213443700C27EAA /* DEPRECATED */,
 				F14FADE721F75EF100ACE5FF /* RGBColorTestView.swift */,
-				F14FADEF21F761FD00ACE5FF /* FakeHCCQRView.swift */,
-				F162145321FC7138005297DE /* SimpleHCCQRView.swift */,
-				F162146521FF0734005297DE /* AlignMarkTestView.swift */,
+				F1FDA6252395C0450096EEBD /* FakeHCCQRView */,
+				F1FDA6222395C0090096EEBD /* SimpleHCCQRView */,
 			);
 			path = test;
 			sourceTree = "<group>";
@@ -320,24 +313,6 @@
 			path = Colorizer;
 			sourceTree = "<group>";
 		};
-		F16852712213443700C27EAA /* DEPRECATED */ = {
-			isa = PBXGroup;
-			children = (
-				F16852722213443700C27EAA /* alignmark */,
-			);
-			path = DEPRECATED;
-			sourceTree = "<group>";
-		};
-		F16852722213443700C27EAA /* alignmark */ = {
-			isa = PBXGroup;
-			children = (
-				F16852732213443700C27EAA /* AlignMarkUtil+Debug.swift */,
-				F16852742213443700C27EAA /* AlignMarkUtil+Metric.swift */,
-				F16852752213443700C27EAA /* AlignMarkUtil.swift */,
-			);
-			path = alignmark;
-			sourceTree = "<group>";
-		};
 		F16852762213443700C27EAA /* common */ = {
 			isa = PBXGroup;
 			children = (
@@ -353,12 +328,9 @@
 			isa = PBXGroup;
 			children = (
 				F16852782213443700C27EAA /* UIView+Extension.swift */,
-				F194BAA32224C304001C5DBB /* UIImage+Extension.swift */,
 				F10296B222221710001FA2DF /* String+Extension.swift */,
-				F16852792213443700C27EAA /* Image+Extension.swift */,
-				F168527A2213443700C27EAA /* CIImage+Extension.swift */,
 				F168527B2213443700C27EAA /* Data+Extension.swift */,
-				F168527C2213443700C27EAA /* CGImage+Extension.swift */,
+				F1FDA6262395C2EB0096EEBD /* image */,
 			);
 			path = extension;
 			sourceTree = "<group>";
@@ -368,7 +340,6 @@
 			children = (
 				F168527E2213443700C27EAA /* UInt8Asserter.swift */,
 				F168527F2213443700C27EAA /* UInt8Parser.swift */,
-				F16852802213443700C27EAA /* CAShapeLayerUtil.swift */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -495,6 +466,36 @@
 			path = HCCQRReader;
 			sourceTree = "<group>";
 		};
+		F1FDA6222395C0090096EEBD /* SimpleHCCQRView */ = {
+			isa = PBXGroup;
+			children = (
+				F162145321FC7138005297DE /* SimpleHCCQRView.swift */,
+				F1FDA6202395BFBD0096EEBD /* SimpleHCCQRView+Data.swift */,
+				F1FDA61E2395BF810096EEBD /* SimpleHCCQRView+Create.swift */,
+			);
+			path = SimpleHCCQRView;
+			sourceTree = "<group>";
+		};
+		F1FDA6252395C0450096EEBD /* FakeHCCQRView */ = {
+			isa = PBXGroup;
+			children = (
+				F14FADEF21F761FD00ACE5FF /* FakeHCCQRView.swift */,
+				F1FDA6232395C0230096EEBD /* FakeHCCQRView+Create.swift */,
+			);
+			path = FakeHCCQRView;
+			sourceTree = "<group>";
+		};
+		F1FDA6262395C2EB0096EEBD /* image */ = {
+			isa = PBXGroup;
+			children = (
+				F194BAA32224C304001C5DBB /* UIImage+Extension.swift */,
+				F16852792213443700C27EAA /* Image+Extension.swift */,
+				F168527A2213443700C27EAA /* CIImage+Extension.swift */,
+				F168527C2213443700C27EAA /* CGImage+Extension.swift */,
+			);
+			path = image;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -618,7 +619,6 @@
 				F1E645BB23940ACA008D2ABE /* Color+Asserter.swift in Sources */,
 				F1E645E823940B3D008D2ABE /* PixelData+Getter.swift in Sources */,
 				F17F5B88221A267600383955 /* AppDelegate.swift in Sources */,
-				F1E645F6239430B1008D2ABE /* CAShapeLayerUtil.swift in Sources */,
 				F1E645DD23940B3D008D2ABE /* RGBAImage+Init.swift in Sources */,
 				F1E645EE23940B3D008D2ABE /* HCCQRWriter.swift in Sources */,
 				F1E645B223940ACA008D2ABE /* String+Extension.swift in Sources */,
@@ -661,8 +661,8 @@
 				F1E645BE23940B3C008D2ABE /* RGBAImage+Util.swift in Sources */,
 				F1E645C123940B3C008D2ABE /* RGBAImage+Debug.swift in Sources */,
 				F1E645BD23940B3C008D2ABE /* RGBAImage+Pixel.swift in Sources */,
-				F16852A72213455100C27EAA /* AlignMarkUtil+Metric.swift in Sources */,
 				F1E645CC23940B3C008D2ABE /* PixelData+Type.swift in Sources */,
+				F1FDA61F2395BF810096EEBD /* SimpleHCCQRView+Create.swift in Sources */,
 				F1E645CB23940B3C008D2ABE /* PixelData+Assert.swift in Sources */,
 				F1E645AB23940AC9008D2ABE /* Color+Parser.swift in Sources */,
 				F14FADE521F75A9900ACE5FF /* VC+ViewTest.swift in Sources */,
@@ -687,22 +687,19 @@
 				F10296B322221710001FA2DF /* String+Extension.swift in Sources */,
 				F1E645C823940B3C008D2ABE /* PixelDataUtil.swift in Sources */,
 				F1E645CE23940B3C008D2ABE /* Colorizer.swift in Sources */,
-				F1E645AA23940AC9008D2ABE /* CAShapeLayerUtil.swift in Sources */,
 				F1E645D423940B3C008D2ABE /* HCCQRWriter+Type.swift in Sources */,
 				F1E6459F23940AC9008D2ABE /* Hybrid+iOS.swift in Sources */,
 				F1E645D323940B3C008D2ABE /* HCCQRWriter.swift in Sources */,
-				F162146621FF0734005297DE /* AlignMarkTestView.swift in Sources */,
-				F16852A62213455100C27EAA /* AlignMarkUtil+Debug.swift in Sources */,
 				F1E645BF23940B3C008D2ABE /* RGBAImage+Type.swift in Sources */,
 				F1E645A123940AC9008D2ABE /* ImageUtil.swift in Sources */,
 				F1E645C723940B3C008D2ABE /* PixelData.swift in Sources */,
 				F1E645BC23940B3C008D2ABE /* RGBAImage.swift in Sources */,
+				F1FDA6212395BFBD0096EEBD /* SimpleHCCQRView+Data.swift in Sources */,
 				F1E645A423940AC9008D2ABE /* Image+Extension.swift in Sources */,
 				F1E645A523940AC9008D2ABE /* CIImage+Extension.swift in Sources */,
 				F18A52DF21790F8A003F8C13 /* AppDelegate.swift in Sources */,
 				F1E645A323940AC9008D2ABE /* UIImage+Extension.swift in Sources */,
 				F14FADE821F75EF100ACE5FF /* RGBColorTestView.swift in Sources */,
-				F16852A82213455100C27EAA /* AlignMarkUtil.swift in Sources */,
 				F1E645A623940AC9008D2ABE /* Data+Extension.swift in Sources */,
 				F1E645CA23940B3C008D2ABE /* PixelData+Setter.swift in Sources */,
 				F1E645A923940AC9008D2ABE /* UInt8Parser.swift in Sources */,
@@ -711,6 +708,7 @@
 				F11DE8512208F19F007A8A7A /* VC+Test.swift in Sources */,
 				F1E645D623940B3C008D2ABE /* HCCQRReader+Type.swift in Sources */,
 				F1E645C423940B3C008D2ABE /* Splitter.swift in Sources */,
+				F1FDA6242395C0230096EEBD /* FakeHCCQRView+Create.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -922,7 +920,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "io.github.futurelab.HCCQR-demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -942,7 +940,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "io.github.futurelab.HCCQR-demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

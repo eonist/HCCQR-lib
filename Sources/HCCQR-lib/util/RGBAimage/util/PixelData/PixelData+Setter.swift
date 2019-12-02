@@ -31,6 +31,9 @@ extension PixelData {
 //      if first.a < 255 {}
       self.a = alpha
    }
+   /**
+    * setRGBA
+    */
    internal mutating func setRGBA(color: Color) {
       guard let rgba: RGBA = PixelDataUtil.rgba(uiColor: color) else { Swift.print("Unable to get rgba"); return }//.rgba
       setRGBA(r: rgba.r, g: rgba.g, b: rgba.b, a: rgba.a)
