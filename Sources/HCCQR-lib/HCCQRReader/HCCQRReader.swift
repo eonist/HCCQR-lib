@@ -16,22 +16,22 @@ public class HCCQRReader {
          guard let payload: Splitter.SplitPayload = payload else { onComplete(nil, "HCCQRUtil.dataAndImages() - q1,q2 err"); return }
          let (q1, q2): (CIImage, CIImage) = payload
          let ciImages: [CIImage] = [q1, q2]
-         var dataAndFrames: [QRReader.DataAndFrame?] = [QRReader.DataAndFrame?](repeating: nil, count: ciImages.count)
-         func onQRCodeComplete(i: Int, dataAndFrame: QRReader.DataAndFrame?, error: Error?) {
-            guard let dataAndFrame: QRReader.DataAndFrame = dataAndFrame else { onComplete((nil, q1, q2, nil), "HCCQRStringUtil.dataAndImages() - ⚠️️ Unable to get dataAndFrame for QRIMG: \(i)⚠️️ \(String(describing: error?.localizedDescription))" ); return }
-            dataAndFrames[i] = dataAndFrame
+         var dataAndFrames: [QRReader.DataAndQuad?] = [QRReader.DataAndQuad?](repeating: nil, count: ciImages.count)
+         func onQRCodeComplete(i: Int, dataAndQuad: QRReader.DataAndQuad?, error: Error?) {
+            guard let dataAndFrame: QRReader.DataAndQuad = dataAndQuad else { onComplete((nil, q1, q2, nil), "HCCQRStringUtil.dataAndImages() - ⚠️️ Unable to get dataAndFrame for QRIMG: \(i)⚠️️ \(String(describing: error?.localizedDescription))" ); return }
+            dataAndFrames[i] = dataAndQuad
             if dataAndFrames.first(where: { $0 == nil }) == nil {/*Makes sure all images finished*/
                let d: Data = dataAndFrames.compactMap { $0?.qrData }.reduce(Data(), +)
-               onComplete((d, q1, q2, dataAndFrame.qrFrame), nil)/*Return the result here*/
+               onComplete((d, q1, q2, dataAndFrame.quad), nil)/*Return the result here*/
             }
          }
          ciImages.enumerated().forEach { item in
             DispatchQueue.main.async {/*Has to be done on main thread, or else Apples.qrreader behaves bad*/
                do {
-                  let dataAndFrame: QRReader.DataAndFrame = try QRReader.dataAndFrame(ciImage: item.element)
-                  onQRCodeComplete(i: item.offset, dataAndFrame: dataAndFrame, error: nil)
+                  let dataAndQuad: QRReader.DataAndQuad = try QRReader.dataAndQuad(ciImage: item.element)
+                  onQRCodeComplete(i: item.offset, dataAndQuad: dataAndQuad, error: nil)
                } catch {
-                  onQRCodeComplete(i: item.offset, dataAndFrame: nil, error: error)
+                  onQRCodeComplete(i: item.offset, dataAndQuad: nil, error: error)
                }
             }
          }
@@ -45,14 +45,15 @@ public class HCCQRReader {
 extension HCCQRReader {
    /**
     * Creates data for HCCQQR image, and frame
-    * Fixme: ⚠️️ group data and frame into a result:(frame,data) tuple
+    * - Fixme: ⚠️️ group data and frame into a result:(frame,data) tuple
+    * - Fixme: ⚠️️ make tgis throw, then use Result type
     */
-   public static func dataAndFrame(image: Image, onComplete:@escaping OnGetDataAndFrameComplete) {
+   public static func dataAndQuad(image: Image, onComplete:@escaping OnGetDataAndFrameComplete) {
       let completion: DataAndImageComplete = { dataAndImages, error in
-         guard let dataAndImages = dataAndImages else { onComplete(nil, nil, error); return }
+         guard let dataAndImages: DataAndImages = dataAndImages else { onComplete(nil, nil, error); return }
          guard let data: Data = dataAndImages.data else { onComplete(nil, nil, "HCCQRStringUtil.dataAndFrame() - Unable to get data \(String(describing: error?.localizedDescription))"); return }
-         guard let frame: CGRect = dataAndImages.frame else { onComplete(nil, nil, "HCCQRStringUtil.dataAndFrame() - Unable to get data \(String(describing: error?.localizedDescription))"); return }
-         onComplete(data, frame, nil)
+         guard let quad: QRReader.Quad = dataAndImages.quad else { onComplete(nil, nil, "HCCQRStringUtil.dataAndFrame() - Unable to get data \(String(describing: error?.localizedDescription))"); return }
+         onComplete(data, quad, nil)
       }
       dataAndImages(image: image, onComplete: completion)
    }
