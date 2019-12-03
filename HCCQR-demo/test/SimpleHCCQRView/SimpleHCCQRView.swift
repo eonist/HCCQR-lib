@@ -21,4 +21,3 @@ class SimpleHCCQRView: UIView {
       fatalError("init(coder:) has not been implemented")
    }
 }
-
