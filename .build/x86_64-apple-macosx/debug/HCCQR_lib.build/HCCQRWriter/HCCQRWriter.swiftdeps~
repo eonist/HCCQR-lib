@@ -145,6 +145,7 @@ depends-member:
 - ["9HCCQR_lib11HCCQRWriterC", "OnHCCQRImageComplete"]
 - ["9HCCQR_lib11HCCQRWriterC", "QRConfig"]
 - !private ["9HCCQR_lib11HCCQRWriterC", "QRWriter"]
+- ["9HCCQR_lib11HCCQRWriterC", "deinit"]
 - ["9HCCQR_lib11HCCQRWriterC", "image"]
 - ["9HCCQR_lib11HCCQRWriterC", "init"]
 - !private ["SH", "async"]

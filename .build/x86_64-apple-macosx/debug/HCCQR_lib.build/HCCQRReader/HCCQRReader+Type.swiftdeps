@@ -9,24 +9,26 @@ provides-member:
 - ["9HCCQR_lib11HCCQRReaderC", "DataAndImageComplete"]
 provides-dynamic-lookup:
 depends-top-level:
-- "CGRect"
 - "CIImage"
 - "Data"
 - "Error"
 - "HCCQRReader"
 - "OnHCCQRDataComplete"
+- "QRReader"
 - "Void"
 depends-member:
-- ["9HCCQR_lib11HCCQRReaderC", "CGRect"]
 - ["9HCCQR_lib11HCCQRReaderC", "CIImage"]
 - ["9HCCQR_lib11HCCQRReaderC", "Data"]
 - ["9HCCQR_lib11HCCQRReaderC", "DataAndImageComplete"]
 - ["9HCCQR_lib11HCCQRReaderC", "DataAndImages"]
 - ["9HCCQR_lib11HCCQRReaderC", "Error"]
 - ["9HCCQR_lib11HCCQRReaderC", "OnGetDataAndFrameComplete"]
+- ["9HCCQR_lib11HCCQRReaderC", "QRReader"]
 - ["9HCCQR_lib11HCCQRReaderC", "Void"]
+- ["6QR_lib8QRReaderC", "Quad"]
 depends-nominal:
 - "9HCCQR_lib11HCCQRReaderC"
+- "6QR_lib8QRReaderC"
 depends-dynamic-lookup:
 depends-external:
 - "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/lib/swift/XPC.swiftmodule/x86_64.swiftinterface"
@@ -1818,4 +1820,4 @@ depends-external:
 - "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/AppKit.framework/Headers/AppKit.apinotes"
 - "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/CoreText.framework/Headers/CoreText.apinotes"
 - "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/Security.framework/Headers/Security.apinotes"
-interface-hash: "89fda6f1977f80b4447d91670ee1a13b"
+interface-hash: "5910e26395e457cc0f63657ea80eab1e"

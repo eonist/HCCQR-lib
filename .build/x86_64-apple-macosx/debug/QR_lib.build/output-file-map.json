@@ -2,11 +2,11 @@
   "": {
     "swift-dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/master.swiftdeps"
   },
-  "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/checkouts/QR-lib/Sources/QR-lib/DEPRECATED.swift": {
-    "dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/DEPRECATED.d",
-    "object": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/DEPRECATED.swift.o",
-    "swiftmodule": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/DEPRECATED~partial.swiftmodule",
-    "swift-dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/DEPRECATED.swiftdeps"
+  "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/checkouts/QR-lib/Sources/QR-lib/DEPRECATED/DEPRECATED.swift": {
+    "dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/DEPRECATED/DEPRECATED.d",
+    "object": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/DEPRECATED/DEPRECATED.swift.o",
+    "swiftmodule": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/DEPRECATED/DEPRECATED~partial.swiftmodule",
+    "swift-dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/DEPRECATED/DEPRECATED.swiftdeps"
   },
   "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/checkouts/QR-lib/Sources/QR-lib/QRReader/QRReader+Type.swift": {
     "dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/QR_lib.build/QRReader/QRReader+Type.d",

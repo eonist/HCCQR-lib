@@ -92,6 +92,7 @@ depends-member:
 - ["9HCCQR_lib13PixelDataUtilC", "PixelData"]
 - !private ["9HCCQR_lib13PixelDataUtilC", "Swift"]
 - !private ["9HCCQR_lib13PixelDataUtilC", "UInt8"]
+- ["9HCCQR_lib13PixelDataUtilC", "deinit"]
 - ["9HCCQR_lib13PixelDataUtilC", "init"]
 - ["9HCCQR_lib13PixelDataUtilC", "rgba"]
 - !private ["s10SIMDScalarP", "init"]

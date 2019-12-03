@@ -38,29 +38,11 @@
     "swiftmodule": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/HCCQR_lib.build/common/color/Color+Parser~partial.swiftmodule",
     "swift-dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/HCCQR_lib.build/common/color/Color+Parser.swiftdeps"
   },
-  "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/Sources/HCCQR-lib/common/extension/CGImage+Extension.swift": {
-    "dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/HCCQR_lib.build/common/extension/CGImage+Extension.d",
-    "object": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/HCCQR_lib.build/common/extension/CGImage+Extension.swift.o",
-    "swiftmodule": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/HCCQR_lib.build/common/extension/CGImage+Extension~partial.swiftmodule",
-    "swift-dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/HCCQR_lib.build/common/extension/CGImage+Extension.swiftdeps"
-  },
-  "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/Sources/HCCQR-lib/common/extension/CIImage+Extension.swift": {
-    "dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/HCCQR_lib.build/common/extension/CIImage+Extension.d",
-    "object": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/HCCQR_lib.build/common/extension/CIImage+Extension.swift.o",
-    "swiftmodule": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/HCCQR_lib.build/common/extension/CIImage+Extension~partial.swiftmodule",
-    "swift-dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/HCCQR_lib.build/common/extension/CIImage+Extension.swiftdeps"
-  },
   "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/Sources/HCCQR-lib/common/extension/Data+Extension.swift": {
     "dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/HCCQR_lib.build/common/extension/Data+Extension.d",
     "object": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/HCCQR_lib.build/common/extension/Data+Extension.swift.o",
     "swiftmodule": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/HCCQR_lib.build/common/extension/Data+Extension~partial.swiftmodule",
     "swift-dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/HCCQR_lib.build/common/extension/Data+Extension.swiftdeps"
-  },
-  "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/Sources/HCCQR-lib/common/extension/Image+Extension.swift": {
-    "dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/HCCQR_lib.build/common/extension/Image+Extension.d",
-    "object": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/HCCQR_lib.build/common/extension/Image+Extension.swift.o",
-    "swiftmodule": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/HCCQR_lib.build/common/extension/Image+Extension~partial.swiftmodule",
-    "swift-dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/HCCQR_lib.build/common/extension/Image+Extension.swiftdeps"
   },
   "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/Sources/HCCQR-lib/common/extension/String+Extension.swift": {
     "dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/HCCQR_lib.build/common/extension/String+Extension.d",
@@ -68,17 +50,35 @@
     "swiftmodule": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/HCCQR_lib.build/common/extension/String+Extension~partial.swiftmodule",
     "swift-dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/HCCQR_lib.build/common/extension/String+Extension.swiftdeps"
   },
-  "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/Sources/HCCQR-lib/common/extension/UIImage+Extension.swift": {
-    "dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/HCCQR_lib.build/common/extension/UIImage+Extension.d",
-    "object": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/HCCQR_lib.build/common/extension/UIImage+Extension.swift.o",
-    "swiftmodule": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/HCCQR_lib.build/common/extension/UIImage+Extension~partial.swiftmodule",
-    "swift-dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/HCCQR_lib.build/common/extension/UIImage+Extension.swiftdeps"
-  },
   "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/Sources/HCCQR-lib/common/extension/UIView+Extension.swift": {
     "dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/HCCQR_lib.build/common/extension/UIView+Extension.d",
     "object": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/HCCQR_lib.build/common/extension/UIView+Extension.swift.o",
     "swiftmodule": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/HCCQR_lib.build/common/extension/UIView+Extension~partial.swiftmodule",
     "swift-dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/HCCQR_lib.build/common/extension/UIView+Extension.swiftdeps"
+  },
+  "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/Sources/HCCQR-lib/common/extension/image/CGImage+Extension.swift": {
+    "dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/HCCQR_lib.build/common/extension/image/CGImage+Extension.d",
+    "object": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/HCCQR_lib.build/common/extension/image/CGImage+Extension.swift.o",
+    "swiftmodule": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/HCCQR_lib.build/common/extension/image/CGImage+Extension~partial.swiftmodule",
+    "swift-dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/HCCQR_lib.build/common/extension/image/CGImage+Extension.swiftdeps"
+  },
+  "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/Sources/HCCQR-lib/common/extension/image/CIImage+Extension.swift": {
+    "dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/HCCQR_lib.build/common/extension/image/CIImage+Extension.d",
+    "object": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/HCCQR_lib.build/common/extension/image/CIImage+Extension.swift.o",
+    "swiftmodule": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/HCCQR_lib.build/common/extension/image/CIImage+Extension~partial.swiftmodule",
+    "swift-dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/HCCQR_lib.build/common/extension/image/CIImage+Extension.swiftdeps"
+  },
+  "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/Sources/HCCQR-lib/common/extension/image/Image+Extension.swift": {
+    "dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/HCCQR_lib.build/common/extension/image/Image+Extension.d",
+    "object": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/HCCQR_lib.build/common/extension/image/Image+Extension.swift.o",
+    "swiftmodule": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/HCCQR_lib.build/common/extension/image/Image+Extension~partial.swiftmodule",
+    "swift-dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/HCCQR_lib.build/common/extension/image/Image+Extension.swiftdeps"
+  },
+  "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/Sources/HCCQR-lib/common/extension/image/UIImage+Extension.swift": {
+    "dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/HCCQR_lib.build/common/extension/image/UIImage+Extension.d",
+    "object": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/HCCQR_lib.build/common/extension/image/UIImage+Extension.swift.o",
+    "swiftmodule": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/HCCQR_lib.build/common/extension/image/UIImage+Extension~partial.swiftmodule",
+    "swift-dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/HCCQR_lib.build/common/extension/image/UIImage+Extension.swiftdeps"
   },
   "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/Sources/HCCQR-lib/common/hybrid/Hybrid+Mac.swift": {
     "dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/HCCQR_lib.build/common/hybrid/Hybrid+Mac.d",
@@ -97,12 +97,6 @@
     "object": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/HCCQR_lib.build/common/hybrid/ImageUtil.swift.o",
     "swiftmodule": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/HCCQR_lib.build/common/hybrid/ImageUtil~partial.swiftmodule",
     "swift-dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/HCCQR_lib.build/common/hybrid/ImageUtil.swiftdeps"
-  },
-  "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/Sources/HCCQR-lib/common/util/CAShapeLayerUtil.swift": {
-    "dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/HCCQR_lib.build/common/util/CAShapeLayerUtil.d",
-    "object": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/HCCQR_lib.build/common/util/CAShapeLayerUtil.swift.o",
-    "swiftmodule": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/HCCQR_lib.build/common/util/CAShapeLayerUtil~partial.swiftmodule",
-    "swift-dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/HCCQR_lib.build/common/util/CAShapeLayerUtil.swiftdeps"
   },
   "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/Sources/HCCQR-lib/common/util/UInt8Asserter.swift": {
     "dependencies": "/Users/eon/Documents/dev/_apps/light-stream/_modules/HCCQR-lib/.build/x86_64-apple-macosx/debug/HCCQR_lib.build/common/util/UInt8Asserter.d",

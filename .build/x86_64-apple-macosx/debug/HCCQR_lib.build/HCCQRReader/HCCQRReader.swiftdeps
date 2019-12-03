@@ -5,14 +5,13 @@ provides-nominal:
 - "9HCCQR_lib11HCCQRReaderC"
 provides-member:
 - ["9HCCQR_lib11HCCQRReaderC", ""]
-- ["9HCCQR_lib11HCCQRReaderC", "dataAndFrame"]
+- ["9HCCQR_lib11HCCQRReaderC", "dataAndQuad"]
 - ["9HCCQR_lib11HCCQRReaderC", "data"]
 provides-dynamic-lookup:
 depends-top-level:
 - !private "+"
 - !private "=="
 - !private "AssignmentPrecedence"
-- !private "CGRect"
 - !private "CIImage"
 - !private "Data"
 - !private "DispatchQueue"
@@ -145,10 +144,10 @@ depends-member:
 - !private ["s32ExpressibleByStringInterpolationP", "init"]
 - !private ["s26ExpressibleByStringLiteralP", "init"]
 - !private ["s33ExpressibleByUnicodeScalarLiteralP", "init"]
-- !private ["9HCCQR_lib11HCCQRReaderC", "CGRect"]
 - !private ["9HCCQR_lib11HCCQRReaderC", "CIImage"]
 - !private ["9HCCQR_lib11HCCQRReaderC", "Data"]
 - ["9HCCQR_lib11HCCQRReaderC", "DataAndImageComplete"]
+- !private ["9HCCQR_lib11HCCQRReaderC", "DataAndImages"]
 - !private ["9HCCQR_lib11HCCQRReaderC", "DispatchQueue"]
 - !private ["9HCCQR_lib11HCCQRReaderC", "Error"]
 - ["9HCCQR_lib11HCCQRReaderC", "Image"]
@@ -160,8 +159,8 @@ depends-member:
 - !private ["9HCCQR_lib11HCCQRReaderC", "String"]
 - !private ["9HCCQR_lib11HCCQRReaderC", "Void"]
 - ["9HCCQR_lib11HCCQRReaderC", "data"]
-- ["9HCCQR_lib11HCCQRReaderC", "dataAndFrame"]
 - ["9HCCQR_lib11HCCQRReaderC", "dataAndImages"]
+- ["9HCCQR_lib11HCCQRReaderC", "dataAndQuad"]
 - ["9HCCQR_lib11HCCQRReaderC", "deinit"]
 - ["9HCCQR_lib11HCCQRReaderC", "init"]
 - !private ["SH", "async"]
@@ -196,8 +195,9 @@ depends-member:
 - !private ["So8NSObjectP", "main"]
 - !private ["So9OS_objectC", "async"]
 - !private ["So9OS_objectC", "main"]
-- !private ["6QR_lib8QRReaderC", "DataAndFrame"]
-- !private ["6QR_lib8QRReaderC", "dataAndFrame"]
+- !private ["6QR_lib8QRReaderC", "DataAndQuad"]
+- !private ["6QR_lib8QRReaderC", "Quad"]
+- !private ["6QR_lib8QRReaderC", "dataAndQuad"]
 - !private ["Sk", "compactMap"]
 - !private ["Sk", "count"]
 - !private ["Sk", "enumerated"]
@@ -2125,4 +2125,4 @@ depends-external:
 - "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/AppKit.framework/Headers/AppKit.apinotes"
 - "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/CoreText.framework/Headers/CoreText.apinotes"
 - "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/Security.framework/Headers/Security.apinotes"
-interface-hash: "31334472b5b3927e01cf79f90b98c757"
+interface-hash: "a2cbf6660b42ec58cb3c6786a0689061"

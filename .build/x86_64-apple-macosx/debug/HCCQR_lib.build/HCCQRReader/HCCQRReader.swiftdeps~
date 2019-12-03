@@ -162,6 +162,7 @@ depends-member:
 - ["9HCCQR_lib11HCCQRReaderC", "data"]
 - ["9HCCQR_lib11HCCQRReaderC", "dataAndFrame"]
 - ["9HCCQR_lib11HCCQRReaderC", "dataAndImages"]
+- ["9HCCQR_lib11HCCQRReaderC", "deinit"]
 - ["9HCCQR_lib11HCCQRReaderC", "init"]
 - !private ["SH", "async"]
 - !private ["SH", "compactMap"]

@@ -205,6 +205,7 @@ depends-member:
 - !private ["9HCCQR_lib8SplitterC", "Swift"]
 - !private ["9HCCQR_lib8SplitterC", "Void"]
 - !private ["9HCCQR_lib8SplitterC", "channels"]
+- ["9HCCQR_lib8SplitterC", "deinit"]
 - ["9HCCQR_lib8SplitterC", "init"]
 - ["9HCCQR_lib8SplitterC", "split"]
 - !private ["s14_ArrayProtocolP", "compactMap"]
