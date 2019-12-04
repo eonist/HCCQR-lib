@@ -1,1 +1,0 @@
-{"object": {"dependencies": [{"basedOn": null, "packageRef": {"identity": "qr-lib", "isLocal": false, "name": "QR-lib", "path": "https://github.com/light-stream/QR-lib.git"}, "state": {"checkoutState": {"branch": "master", "revision": "4ba737da183d05b0100d731def7392aae0a95a00", "version": null}, "name": "checkout"}, "subpath": "QR-lib"}]}, "version": 2}
