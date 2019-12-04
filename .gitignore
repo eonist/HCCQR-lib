@@ -1,2 +1,7 @@
 *.bundle
 *.png
+.DS_Store
+/.build
+/Packages
+/*.xcodeproj
+xcuserdata/
