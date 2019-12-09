@@ -9,6 +9,7 @@ public class HCCQRWriter {
     * - Note: For more in-depth example see repo readme
     * - Important: ⚠️️ the caller must make sure the qrVersion can hold the amount of chars in string
     * - Note: use `Swift.print(hccqrImage?.hasOnlyColorMap(colorMap: [.red, .green, .blue, .white]))`//ensure that img only has valid colors, akak no bluring
+    * - Fixme: ⚠️️ group the scale props, use Multipliers
     * ## Example:
     * let (qrVersion, qrMode, ecLevel): HCCQRConfig = (10, .byte, .l) // settings
     * guard let randomString: String = HCCQRStringData.randomString(qrVersion: qrVersion, qrMode: qrMode, ecLevel:ecLevel) else { Swift.print("unable to create random string");return }
@@ -23,24 +24,28 @@ public class HCCQRWriter {
    public static func image(data: Data, moduleMultiplier: Int, scale: Int, qrConfig: QRConfig = (10, .l), onComplete: @escaping OnHCCQRImageComplete) {
       let dataArr: [Data] = data.split(index: data.count / 2) // Split the data in two
       var qrImgs: [Image?] = [Image?](repeating: nil, count: dataArr.count) // Pre-filled array for the images
-      // 🏀
-         // move the bellow method into a private static method
-      func onCreateQrImgComplete(i: Int, qrImg: Image?) {
-         guard let qrImg: Image = qrImg else { onComplete(nil, "HCCQRWriter.image() - onCreateQrImgComplete() - ⚠️️ qrImg err ⚠️️ "); return }
-         qrImgs[i] = qrImg // it matters which order the qrImages came in when you stitch them back together
-         if qrImgs.first(where: { $0 == nil }) == nil { // makes sure all images finished
-            let qrImages: [Image] = qrImgs.compactMap { $0 }
-            guard let hccqrImage: Image = try? Colorizer.colorize(images: qrImages, colorMap: Colorizer.colorMap, moduleMultiplier: moduleMultiplier, scale: scale/*blandColorMap*/) else { onComplete(nil, "getHCCQRImage - Unable to create colorized image"); return }/*Swift.print("");*/ 
-            onComplete(hccqrImage, nil)
-         }
-      }
       dataArr.enumerated().forEach { (_ offset: Int, _ element: Data) in
          DispatchQueue.global(qos: .userInitiated).async {
             let qrImg: Image? = try? QRWriter.image(data: element, ecLevel: qrConfig.ecLevel)
             DispatchQueue.main.async {
-               onCreateQrImgComplete(i: offset, qrImg: qrImg)
+               // return qrimg 🏀
+               onCreateQrImgComplete(i: offset, qrImg: qrImg, qrImgs: &qrImgs, multipliers: (moduleMultiplier, scale), onComplete: onComplete)
             }
          }
+      }
+   }
+}
+extension HCCQRWriter {
+   /**
+    * - Fixme: ⚠️️ try to get rid of the inout method
+    */
+   private static func onCreateQrImgComplete(i: Int, qrImg: Image?, qrImgs:inout [Image?], multipliers: Multipliers, onComplete: OnHCCQRImageComplete) {
+      guard let qrImg: Image = qrImg else { onComplete(nil, "HCCQRWriter.image() - onCreateQrImgComplete() - ⚠️️ qrImg err ⚠️️ "); return }
+      qrImgs[i] = qrImg // it matters which order the qrImages came in when you stitch them back together
+      if qrImgs.first(where: { $0 == nil }) == nil { // makes sure all images finished
+         let qrImages: [Image] = qrImgs.compactMap { $0 }
+         guard let hccqrImage: Image = try? Colorizer.colorize(images: qrImages, colorMap: Colorizer.colorMap, moduleMultiplier: multipliers.moduleScale, scale: multipliers.screenScale) else { onComplete(nil, "getHCCQRImage - Unable to create colorized image"); return }/*Swift.print("");*/
+         onComplete(hccqrImage, nil)
       }
    }
 }

@@ -9,7 +9,7 @@ public class HCCQRReader {
    /**
     * Creates data for HCCQQR image
     * - Fixme: ⚠️️ Consider changing image to CGImage, as that is what is used in the end
-    * - Fixme: Simplify this method
+    * - Fixme: ⚠️️ Simplify this method
     */
    public static func dataAndImages(image: Image, onComplete:@escaping DataAndImageComplete) {
       let onSplitComplete:(_ payload: Splitter.SplitPayload?) -> Void = { payload in
@@ -17,6 +17,7 @@ public class HCCQRReader {
          let (q1, q2): (CIImage, CIImage) = payload
          let ciImages: [CIImage] = [q1, q2]
          var dataAndFrames: [QRReader.DataAndQuad?] = [QRReader.DataAndQuad?](repeating: nil, count: ciImages.count)
+         // - Fixme: ⚠️️ move this into static priv method
          func onQRCodeComplete(i: Int, dataAndQuad: QRReader.DataAndQuad?, error: Error?) {
             guard let dataAndFrame: QRReader.DataAndQuad = dataAndQuad else { onComplete((nil, q1, q2, nil), "HCCQRStringUtil.dataAndImages() - ⚠️️ Unable to get dataAndFrame for QRIMG: \(i)⚠️️ \(String(describing: error?.localizedDescription))" ); return }
             dataAndFrames[i] = dataAndQuad
@@ -58,7 +59,7 @@ extension HCCQRReader {
       dataAndImages(image: image, onComplete: completion)
    }
    /**
-    * Creates data for HCCQQR image
+    * Creates data for HCCQR image
     */
    public static func data(image: Image, onComplete:@escaping OnHCCQRDataComplete) {
       dataAndImages(image: image) { dataAndImages, error in onComplete(dataAndImages?.data, error) }
