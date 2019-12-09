@@ -11,6 +11,7 @@ extension HCCQRReader {
     */
    public typealias DataAndImages = (data: Data?, qr1: CIImage, qr2: CIImage, quad: QRReader.Quad?)
    public typealias DataAndImageComplete = (_ dataAndImages: DataAndImages?, _ error: Error?) -> Void
+//   typealias OnSplitComplete = (_ payload: Splitter.SplitPayload?) -> Void
 }
 public typealias OnHCCQRDataComplete = (_ data: Data?, _ error: Error?) -> Void
 

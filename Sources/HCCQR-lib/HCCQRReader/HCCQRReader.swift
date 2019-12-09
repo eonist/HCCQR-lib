@@ -8,38 +8,44 @@ import CoreImage
 public class HCCQRReader {
    /**
     * Creates data for HCCQQR image
-    * - Fixme: ⚠️️ Consider changing image to CGImage, as that is what is used in the end
+    * - Fixme: ⚠️️ Consider changing image to CGImage, as that is what is used in the end, could make thing faster
     * - Fixme: ⚠️️ Simplify this method
     * - Fixme: ⚠️️ When the first QRImage Quad is found, the subsequent QR-Rects will be in the same quadrant, clip the subsequent images
     */
    public static func dataAndImages(image: Image, onComplete:@escaping DataAndImageComplete) {
-      // - Fixme: ⚠️️ use typealias on the bellow
-      let onSplitComplete: (_ payload: Splitter.SplitPayload?) -> Void = { payload in
-         guard let payload: Splitter.SplitPayload = payload else { onComplete(nil, "HCCQRUtil.dataAndImages() - q1,q2 err"); return }
-         let (q1, q2): (CIImage, CIImage) = payload
-         let ciImages: [CIImage] = [q1, q2]
+      let onSplitComplete: Splitter.SplitPayloadComplete = { payload in
+         guard let payload: Splitter.SplitPayload = payload else { onComplete(nil, "HCCQRUtil.dataAndImages() - q1, q2 err"); return }
+         let ciImages: [CIImage] = [payload.qrImg1, payload.qrImg2]
          var dataAndFrames: [QRReader.DataAndQuad?] = [QRReader.DataAndQuad?](repeating: nil, count: ciImages.count)
-         // - Fixme: ⚠️️ move this into static priv method
-         func onQRCodeComplete(i: Int, dataAndQuad: QRReader.DataAndQuad?, error: Error?) {
-            guard let dataAndFrame: QRReader.DataAndQuad = dataAndQuad else { onComplete((nil, q1, q2, nil), "HCCQRStringUtil.dataAndImages() - ⚠️️ Unable to get dataAndFrame for QRIMG: \(i)⚠️️ \(String(describing: error?.localizedDescription))" ); return }
-            dataAndFrames[i] = dataAndQuad
-            if dataAndFrames.first(where: { $0 == nil }) == nil { // Makes sure all images finished
-               let d: Data = dataAndFrames.compactMap { $0?.qrData }.reduce(Data(), +)
-               onComplete((d, q1, q2, dataAndFrame.quad), nil) // Return the result here
-            }
-         }
          ciImages.enumerated().forEach { item in
             DispatchQueue.main.async { // Has to be done on main thread, or else Apples.qrreader behaves bad
+               // - Fixme: ⚠️️ You can use try? guard on the bellow blocks, maybe
                do {
                   let dataAndQuad: QRReader.DataAndQuad = try QRReader.dataAndQuad(ciImage: item.element)
-                  onQRCodeComplete(i: item.offset, dataAndQuad: dataAndQuad, error: nil)
+                  onQRCodeComplete(i: item.offset, dataAndQuad: dataAndQuad, error: nil, dataAndFrames: &dataAndFrames, payload: payload, onComplete: onComplete)
                } catch {
-                  onQRCodeComplete(i: item.offset, dataAndQuad: nil, error: error) // - Fixme: ⚠️️ why not just throw?
+                  onQRCodeComplete(i: item.offset, dataAndQuad: nil, error: error, dataAndFrames: &dataAndFrames, payload: payload, onComplete: onComplete) // - Fixme: ⚠️️ why not just throw?
                }
             }
          }
       }
-      Splitter.split(uiImage: image, onComplete: onSplitComplete ) // Start the splitting process
+      Splitter.split(uiImage: image, onComplete: onSplitComplete) // Start the splitting process
+   }
+}
+/**
+ * Private static helper
+ */
+extension HCCQRReader {
+   /**
+    * completion handler
+    */
+   private static func onQRCodeComplete(i: Int, dataAndQuad: QRReader.DataAndQuad?, error: Error?, dataAndFrames: inout [QRReader.DataAndQuad?], payload: Splitter.SplitPayload, onComplete: DataAndImageComplete ) {
+      guard let dataAndFrame: QRReader.DataAndQuad = dataAndQuad else { onComplete((nil, payload.qrImg1, payload.qrImg2, nil), "HCCQRStringUtil.dataAndImages() - ⚠️️ Unable to get dataAndFrame for QRIMG: \(i)⚠️️ \(String(describing: error?.localizedDescription))" ); return }
+      dataAndFrames[i] = dataAndQuad
+      if dataAndFrames.first(where: { $0 == nil }) == nil { // Makes sure all images finished
+         let d: Data = dataAndFrames.compactMap { $0?.qrData }.reduce(Data(), +)
+         onComplete((d, payload.qrImg1, payload.qrImg2, dataAndFrame.quad), nil) // Return the result here
+      }
    }
 }
 /**

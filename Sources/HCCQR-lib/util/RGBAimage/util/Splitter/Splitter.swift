@@ -7,10 +7,11 @@ class Splitter {
    /**
     * Returns two b&w qr imgs (by splittin an hccqr img)
     * - Fixme: ⚠️️ move the onCompositeComplete method to a priv class scoped method
+    * - Fixme: ⚠️️ add result here
     */
    static func split(uiImage: Image, onComplete:@escaping SplitPayloadComplete) {
       let onChannelsComplete: ChannelsComplete = { channels in
-         guard let channels: RGBAImages = channels else { Swift.print("Splitter.split - Unable to create rgbaImgs"); onComplete(nil); return }//(r,g,b)
+         guard let channels: RGBAImages = channels else { Swift.print("Splitter.split - Unable to create rgbaImgs"); onComplete(nil); return } // (r,g,b)
          let channelArr: [(first: RGBAImage, second: RGBAImage)] = [(channels.b, channels.g), (channels.r, channels.b)]
          var qrImgs: [CIImage?] = [CIImage?](repeating: nil, count: channelArr.count)
          channelArr.enumerated().forEach { channel in

@@ -10,5 +10,6 @@ extension Splitter {
    typealias RGBUIImages = (r: Image, g: Image, b: Image)
    typealias RGBAImages = (r: RGBAImage, g: RGBAImage, b: RGBAImage)
    typealias OnOptionalChannelsComplete = (_ rgbaImages: RGBAImages?) -> Void
+   typealias OnChannelsComplete = (_ rgbaImages: RGBAImages) -> Void
    typealias ChannelsComplete = (_ channels: RGBAImages?) -> Void
 }

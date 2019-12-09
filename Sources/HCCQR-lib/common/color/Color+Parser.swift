@@ -32,7 +32,7 @@ extension Color {
    /**
     * Probably faster than using self.getRed to get rgb
     * ## Examples:
-    * UIColor.blue.colorComponents)//(red: 0.0, green: 0.0, blue: 1.0, alpha: 1.0)
+    * UIColor.blue.colorComponents) // (red: 0.0, green: 0.0, blue: 1.0, alpha: 1.0)
     */
    var colorComponents: (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat)? {
       guard let c = self.cgColor.components else { Swift.print("Unable to get colorComponents"); return nil }

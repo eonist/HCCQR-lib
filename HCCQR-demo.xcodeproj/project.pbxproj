@@ -292,8 +292,8 @@
 			isa = PBXGroup;
 			children = (
 				F16852B522134DBD00C27EAA /* Splitter.swift */,
-				F10296C0222219EF001FA2DF /* Splitter+TypeAlias.swift */,
 				F16852B822134E4000C27EAA /* Splitter+Channels.swift */,
+				F10296C0222219EF001FA2DF /* Splitter+TypeAlias.swift */,
 			);
 			path = Splitter;
 			sourceTree = "<group>";
