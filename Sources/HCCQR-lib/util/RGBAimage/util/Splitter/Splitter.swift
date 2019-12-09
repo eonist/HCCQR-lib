@@ -32,11 +32,12 @@ class Splitter {
 extension Splitter {
    /**
     * composite complete
+    * - Fixme: ⚠️️ Add result
     */
    static func onCompositeComplete(i: Int, qrImg: CIImage?, qrImgs: inout [CIImage?], channels: RGBAImages, onComplete: SplitPayloadComplete) {
       guard let qrImg: CIImage = qrImg else { Swift.print("Splitter.split() onCompositeComplete() - no qrImg"); [channels.r, channels.g, channels.b].forEach { $0.deinitiate() }; onComplete(nil); return }
-      qrImgs[i] = qrImg // it matters which order the qrImages came in when you stitch them back together
-      if qrImgs.first(where: { $0 == nil }) == nil { // makes sure all images finished
+      qrImgs[i] = qrImg // It matters which order the qrImages came in when you stitch them back together
+      if qrImgs.first(where: { $0 == nil }) == nil { // Makes sure all images finished
          [channels.r, channels.g, channels.b].forEach { $0.deinitiate() } // Or else we get mem leak /*Swift.print("Splitter.split() - deallocate")*/
          let qrImages: [CIImage] = qrImgs.compactMap { $0 }
          onComplete((qrImages[0], qrImages[1]))

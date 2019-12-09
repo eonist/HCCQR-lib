@@ -55,7 +55,7 @@ extension HCCQRReader {
    /**
     * Creates data for HCCQQR image, and frame
     * - Fixme: ⚠️️ group data and frame into a result: (frame, data) tuple
-    * - Fixme: ⚠️️ make tgis throw, then use Result type
+    * - Fixme: ⚠️️ make this use Result type
     */
    public static func dataAndQuad(image: Image, onComplete:@escaping OnGetDataAndFrameComplete) {
       let completion: DataAndImageComplete = { dataAndImages, error in

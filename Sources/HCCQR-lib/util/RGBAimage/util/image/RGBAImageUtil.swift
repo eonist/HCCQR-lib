@@ -1,24 +1,21 @@
 import Foundation
 import QuartzCore
 import CoreImage
-/**
- * Class methods
- * - Fixme: ⚠️️ Rename to RGBAImageParser maybe?
- */
-extension RGBAImage {
+
+public class RGBAImageUtil {
    /**
     * Converts rgbaImage to uiimage / nsimage
     * - Parameter scale: the amount to scale the image by (screenScale)
     */
    static func image(rgbaImage: RGBAImage, scale: CGFloat) throws -> Image {
-      let cgImage: CGImage = try RGBAImage.cgImage(rgbaImage: rgbaImage)
+      let cgImage: CGImage = try RGBAImageUtil.cgImage(rgbaImage: rgbaImage)
       return ImageUtil.image(cgImage: cgImage, scale: scale) // Convert CGImage to UIImage
    }
    /**
     * Convenience
     */
    static func ciImage(rgbaImage: RGBAImage ) throws -> CIImage {
-      let cgImage: CGImage = try RGBAImage.cgImage(rgbaImage: rgbaImage )
+      let cgImage: CGImage = try RGBAImageUtil.cgImage(rgbaImage: rgbaImage )
       return cgImage.ciImage()
    }
    /**
@@ -35,3 +32,4 @@ extension RGBAImage {
       return cgImage
    }
 }
+

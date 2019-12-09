@@ -34,5 +34,5 @@ class ViewController: UIViewController {
 //      }
 //      testReadingManyPhotos()
    }
-   override var prefersStatusBarHidden: Bool { return true }/*hides statusbar*/
+   override var prefersStatusBarHidden: Bool { return true } // hides statusbar
 }

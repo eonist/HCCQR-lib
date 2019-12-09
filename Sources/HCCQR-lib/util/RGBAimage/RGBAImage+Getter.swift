@@ -18,6 +18,6 @@ extension RGBAImage {
     * copy
     */
    var copy: RGBAImage {
-      return RGBAImage.rgbaImage(pixels: Array(pixels), size: (width, height))
+      return RGBAImage.rgbaImage(pixels: .init(pixels), size: size)
    }
 }

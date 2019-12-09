@@ -13,7 +13,7 @@ extension RGBAImage {
       //⚠️️ the bellow line is a temp fix, could hurt performance
       guard let cgImage: CGImage = ImageUtil.cgImage(image: image) else { throw NSError.init(domain: "rgbaImage - Unable to get cgImage", code: 0) }
       let size: Size = (width: Int(image.size.width), height: Int(image.size.height))
-      let bytesPerRow: Int = size.width * 4 // 4 * width * height
+      let bytesPerRow: Int = size.width * 4
       let capacity: Int = size.width * size.height
       let imageData = UnsafeMutablePointer<PixelData>.allocate(capacity: capacity)
       let colorSpace: CGColorSpace = CGColorSpaceCreateDeviceRGB()

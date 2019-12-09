@@ -1,7 +1,7 @@
 import Foundation
 /**
  * Utils
- * - Fixme: ⚠️️ Rename to RGBAImageSplitter
+ * - Fixme: ⚠️️ Maybe rename to RGBAImageSplitter
  */
 extension Splitter {
    /**
@@ -10,38 +10,42 @@ extension Splitter {
     */
    static func channels(image: Image, onComplete:@escaping OnOptionalChannelsComplete) {
       guard let rgbaImg: RGBAImage = try? .rgbaImage(image: image) else { Swift.print("Splitter.channels() - Unable to create rgbaImg"); onComplete(nil); return }
-      channels(rgbaImg: rgbaImg, onComplete: onComplete)//{onComplete($0)}
+      channels(rgbaImg: rgbaImg, onComplete: onComplete) // { onComplete($0) }
    }
+}
+/**
+ * Private static helpers
+ */
+extension Splitter {
    /**
     * Split 3 RGBAImages into 3 singular rgb channels (white represents the channel color)
     * - Fixme: ⚠️️ add rethrow here I guess, or result?
     */
-   static func channels(rgbaImg: RGBAImage, onComplete:@escaping OnChannelsComplete) {
+   private static func channels(rgbaImg: RGBAImage, onComplete:@escaping OnChannelsComplete) {
+      // - Fixme: ⚠️️ can we move the bellow asserion in to a priv static method or var?
       let assertions: [(PixelData) -> Bool] = [ { $0.isRedish }, { $0.isGreenish }, { $0.isBlueish }]
       var rgbaImages: [RGBAImage?] = [RGBAImage?](repeating: nil, count: assertions.count)
-      // - Fixme: ⚠️️ move this out into priv static method
-      func onChannelComplete(i: Int, rgbaImage: RGBAImage) {
-         rgbaImages[i] = rgbaImage//it matters which order the qrImages came in when you stitch them back together
-         if rgbaImages.first(where: { $0 == nil }) == nil { // makes sure all images finished
-            let rgbaImages: [RGBAImage] = rgbaImages.compactMap { $0 }
-            onComplete((rgbaImages[0], rgbaImages[1], rgbaImages[2]))
-            rgbaImg.deinitiate()/*to avoid memleak*/
-         }
-      }
       assertions.enumerated().forEach { item in
          DispatchQueue.global(qos: .userInitiated).async {
             let rgbaImage: RGBAImage = channel(rgbaImg: rgbaImg, assert: item.element)
-            DispatchQueue.main.async { // i guess this is on main-thread because it writes into an array
-               onChannelComplete(i: item.offset, rgbaImage: rgbaImage)
+            DispatchQueue.main.async { // I guess this is on main-thread because it writes into an array
+               onChannelComplete(i: item.offset, rgbaImage: rgbaImage, rgbaImages: &rgbaImages, rgbaImg: rgbaImg, onComplete: onComplete)
             }
          }
       }
    }
-}
-/**
- * Helper
- */
-extension Splitter {
+   /**
+    * channel complete
+    * - Fixme: ⚠️️ simplify the deinit, refactor etc
+    */
+   private static func onChannelComplete(i: Int, rgbaImage: RGBAImage, rgbaImages: inout [RGBAImage?], rgbaImg: RGBAImage, onComplete: OnChannelsComplete) {
+      rgbaImages[i] = rgbaImage // it matters which order the qrImages came in when you stitch them back together
+      if rgbaImages.first(where: { $0 == nil }) == nil { // makes sure all images finished
+         let rgbaImages: [RGBAImage] = rgbaImages.compactMap { $0 }
+         onComplete((rgbaImages[0], rgbaImages[1], rgbaImages[2]))
+         rgbaImg.deinitiate()/*to avoid memleak*/
+      }
+   }
    /**
     * Gets rgb channels
     * - Note: Marks red colors as black, all else becomes white

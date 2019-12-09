@@ -13,7 +13,7 @@ internal class Compositor {
     */
    internal static func composite(first: RGBAImage, second: RGBAImage) throws -> CIImage {
       let composite: RGBAImage = try Compositor.composite(rgbaImageList: [first, second], invert: true)
-      guard let img: CIImage = try? RGBAImage.ciImage(rgbaImage: composite) else { composite.deinitiate(); throw NSError.init(domain: "Unable to create img", code: 0) }
+      guard let img: CIImage = try? RGBAImageUtil.ciImage(rgbaImage: composite) else { composite.deinitiate(); throw NSError.init(domain: "Unable to create img", code: 0) }
       composite.deinitiate() // To avoid mem leak
       return img
    }
