@@ -7,16 +7,12 @@ extension ViewController {
     */
    func testCreatingHCCQRImage() {
       let startTime: Date = .init()
-      let (qrVersion, qrMode, ecLevel): HCCQRConfig = (1, .byte, .l) // settings
-      guard let randomString: String = HCCQRStringData.randomString(qrVersion: qrVersion, qrMode: qrMode, ecLevel: ecLevel) else { Swift.print("unable to create random string"); return }
-//      Swift.print("randomString.count:  \(randomString.count)")
+      let config: HCCQRConfig = (1, .byte, .l) // config
+      guard let randomString: String = HCCQRStringData.randomString(config: config) else { Swift.print("unable to create random string"); return }
       guard let data: Data = randomString.data(using: .utf8) else { Swift.print("err"); return }
       createQR(data: data)
-//      let hccqrVersion = HCCQRVersion.version(dataCount: data.count, qrMode: .byte, ecLevel: .l)
-//      Swift.print("hccqrVersion:  \(String(describing: hccqrVersion))")
-//      Swift.print("data.count:  \(data.count)")
       let createHCCQRTime: Date = .init()
-      HCCQRWriter.image(data: data, moduleMultiplier: 6, scale: 1, qrConfig: (qrVersion, ecLevel)) { hccqrImage, error in // Create HCCQR from string
+      HCCQRWriter.image(data: data, moduleMultiplier: 6, scale: 1, qrConfig: (config.version, config.ecLevel)) { hccqrImage, error in // Create HCCQR from string
          self.onHCCQRWriteComplete(hccqrImage: hccqrImage, error: error, startTime: startTime, createHCCQRTime: createHCCQRTime, randomString: randomString)
       }
    }

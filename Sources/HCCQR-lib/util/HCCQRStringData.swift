@@ -3,11 +3,10 @@ import QR_lib
 
 public class HCCQRStringData {
    /**
-    *
+    * Returns a max random string for HCCQRConfig and colorDepth
     */
-   func random() {
-      // 🏀
-      // add HCQRConfig here
+   public static func randomString(config: HCCQRConfig, colorDepth: Int = 2) -> String? {
+      return randomString(qrVersion: config.version, qrMode: config.mode, ecLevel: config.ecLevel, colorDepth: colorDepth)
    }
    /**
     * Returns a max random string for version, mode, ecLevel

@@ -10,7 +10,7 @@ internal class Colorizer {
     * - Parameters:
     *    - moduleMultiplier: This is the multiplier. ModuleCount equals 1 pixel. ModuleCount for QRVersion 10 is 57 not counting 2 for margins. So (57+2)*6 = 354, if you want 2xretina its 354 * 2 = 708
     *    - images: b&w QRImages
-    *    - colorMap: the color depth you want the HCCQR image in. 4,8,16,32 etc
+    *    - colorMap: the color depth you want the HCCQR image in. 4, 8, 16, 32 etc
     *    - scale: for retina you need 2x scale etc
     */
    internal static func colorize(images: [Image], colorMap: ColorMap, moduleMultiplier: Int, scale: Int) throws -> Image {
