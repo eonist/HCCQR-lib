@@ -1,15 +1,16 @@
 import Foundation
 import QR_lib
 /**
- * String -> Image
+ * Creates HCCQR from Data
  */
 public class HCCQRWriter {
    /**
     * Returns an HCCQR UIImage for a string
     * - Note: For more in-depth example see repo readme
-    * - Important: ⚠️️ the caller must make sure the qrVersion can hold the amount of chars in string
+    * - Important: The caller must make sure the qrVersion can hold the amount of chars in string
+    * - Important: Remember to add the resulting img to view within main.thread
     * - Note: use `Swift.print(hccqrImage?.hasOnlyColorMap(colorMap: [.red, .green, .blue, .white]))`//ensure that img only has valid colors, akak no bluring
-    * - Fixme: ⚠️️ group the scale props, use Multipliers
+    * - Fixme: ⚠️️ Add support for more colors by adding colorDepth: Int in params
     * ## Example:
     * let (qrVersion, qrMode, ecLevel): HCCQRConfig = (10, .byte, .l) // settings
     * guard let randomString: String = HCCQRStringData.randomString(qrVersion: qrVersion, qrMode: qrMode, ecLevel:ecLevel) else { Swift.print("unable to create random string");return }
@@ -21,30 +22,31 @@ public class HCCQRWriter {
     *   - qrConfig: we supply version because it's more optimized than calculating moduleCount on the basis of data.count
     *   - scale: for retina you need 2x scale etc
     */
-   public static func image(data: Data, moduleMultiplier: Int, scale: Int, qrConfig: QRConfig = (10, .l), onComplete: @escaping OnHCCQRImageComplete) {
+   public static func image(data: Data, multipliers: Multipliers, qrConfig: QRConfig = (10, .l), onComplete: @escaping OnHCCQRImageComplete) {
       let dataArr: [Data] = data.split(index: data.count / 2) // Split the data in two
       var qrImgs: [Image?] = [Image?](repeating: nil, count: dataArr.count) // Pre-filled array for the images
-      dataArr.enumerated().forEach { (_ offset: Int, _ element: Data) in
-         DispatchQueue.global(qos: .userInitiated).async {
-            let qrImg: Image? = try? QRWriter.image(data: element, ecLevel: qrConfig.ecLevel)
-            DispatchQueue.main.async {
-               // return qrimg 🏀
-               onCreateQrImgComplete(i: offset, qrImg: qrImg, qrImgs: &qrImgs, multipliers: (moduleMultiplier, scale), onComplete: onComplete)
-            }
+      dataArr.enumerated().forEach { (_ offset: Int, _ data: Data) in
+         DispatchQueue.global(qos: .userInitiated).async { // do the operation on a background-thread
+            let qrImg: Image? = try? QRWriter.image(data: data, ecLevel: qrConfig.ecLevel) // create B&W QR-image
+            onCreateQrImgComplete(i: offset, qrImg: qrImg, qrImgs: &qrImgs, multipliers: multipliers, onComplete: onComplete)
          }
       }
    }
 }
+/**
+ * Private static helper
+ */
 extension HCCQRWriter {
    /**
     * - Fixme: ⚠️️ try to get rid of the inout method
+    * - Fixme: ⚠️️ Needs refactor, try using NSOperation or Semaphors
     */
    private static func onCreateQrImgComplete(i: Int, qrImg: Image?, qrImgs:inout [Image?], multipliers: Multipliers, onComplete: OnHCCQRImageComplete) {
       guard let qrImg: Image = qrImg else { onComplete(nil, "HCCQRWriter.image() - onCreateQrImgComplete() - ⚠️️ qrImg err ⚠️️ "); return }
       qrImgs[i] = qrImg // it matters which order the qrImages came in when you stitch them back together
-      if qrImgs.first(where: { $0 == nil }) == nil { // makes sure all images finished
-         let qrImages: [Image] = qrImgs.compactMap { $0 }
-         guard let hccqrImage: Image = try? Colorizer.colorize(images: qrImages, colorMap: Colorizer.colorMap, moduleMultiplier: multipliers.moduleScale, scale: multipliers.screenScale) else { onComplete(nil, "getHCCQRImage - Unable to create colorized image"); return }/*Swift.print("");*/
+      if qrImgs.first(where: { $0 == nil }) == nil { // makes sure all images finished (aka no nil values)
+         let qrImages: [Image] = qrImgs.compactMap { $0 } // remove nils
+         guard let hccqrImage: Image = try? Colorizer.colorize(images: qrImages, colorMap: Colorizer.colorMap, multipliers: multipliers) else { onComplete(nil, "getHCCQRImage - Unable to create colorized image"); return }
          onComplete(hccqrImage, nil)
       }
    }

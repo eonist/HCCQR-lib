@@ -15,9 +15,9 @@ internal class Splitter {
          var qrImgs: [CIImage?] = [CIImage?](repeating: nil, count: channelArr.count)
          func onCompositeComplete(i: Int, qrImg: CIImage?) {
             guard let qrImg: CIImage = qrImg else { Swift.print("Splitter.split() onCompositeComplete() - no qrImg"); [channels.r, channels.g, channels.b].forEach { $0.deinitiate() }; onComplete(nil); return }
-            qrImgs[i] = qrImg/*it matters which order the qrImages came in when you stitch them back together*/
-            if qrImgs.first(where: { $0 == nil }) == nil {/*makes sure all images finished*/
-               [channels.r, channels.g, channels.b].forEach { $0.deinitiate() }/*Or else we get mem leak*/ /*Swift.print("Splitter.split() - deallocate")*/ 
+            qrImgs[i] = qrImg // it matters which order the qrImages came in when you stitch them back together
+            if qrImgs.first(where: { $0 == nil }) == nil { // makes sure all images finished
+               [channels.r, channels.g, channels.b].forEach { $0.deinitiate() } // Or else we get mem leak /*Swift.print("Splitter.split() - deallocate")*/
                let qrImages: [CIImage] = qrImgs.compactMap { $0 }
                onComplete((qrImages[0], qrImages[1]))
             }
@@ -25,12 +25,12 @@ internal class Splitter {
          channelArr.enumerated().forEach { channel in
             DispatchQueue.global(qos: .userInitiated).async {
                let qrImg: CIImage? = Compositor.composite(first: channel.element.first, second: channel.element.second/*, scale: uiImage.scale*/)
-               DispatchQueue.main.async {
+               DispatchQueue.main.async { // - fixme: ⚠️️ is main thread needed here?
                   onCompositeComplete(i: channel.offset, qrImg: qrImg)
                }
             }
          }
       }
-      channels(image: uiImage, onComplete: onChannelsComplete)/*Get RGBAImages from UIImages*/
+      channels(image: uiImage, onComplete: onChannelsComplete) // Get RGBAImages from UIImages
    }
 }

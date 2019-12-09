@@ -9,7 +9,7 @@ extension Colorizer {
     * - Parameter scale: for retina you need 2x scale etc
     */
    internal static func colorize(rgbaImages: [RGBAImage], colorMap: ColorMap, moduleMultiplier: Int, scale: Int) -> RGBAImage? {
-      guard let size = rgbaImages.first?.size else { Swift.print("must contain at least one image"); return nil } // The first image is used for getting size etc
+      guard let size: RGBAImage.Size = rgbaImages.first?.size else { Swift.print("must contain at least one image"); return nil } // The first image is used for getting size etc
       let pixels: [PixelData] = (0..<size.height).indices.flatMap { y in // flatMap Covert the 2-dim array to a 1-dim array
          return (0..<size.width).indices.compactMap { x in
             let pixels: [PixelData] = rgbaImages.map { $0.getPixel(x: x, y: y) } // Overlaying pixels

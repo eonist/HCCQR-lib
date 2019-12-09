@@ -10,9 +10,11 @@ public class HCCQRReader {
     * Creates data for HCCQQR image
     * - Fixme: ⚠️️ Consider changing image to CGImage, as that is what is used in the end
     * - Fixme: ⚠️️ Simplify this method
+    * - Fixme: ⚠️️ When the first QRImage Quad is found, the subsequent QR-Rects will be in the same quadrant, clip the subsequent images
     */
    public static func dataAndImages(image: Image, onComplete:@escaping DataAndImageComplete) {
-      let onSplitComplete:(_ payload: Splitter.SplitPayload?) -> Void = { payload in
+      // - Fixme: ⚠️️ use typealias on the bellow
+      let onSplitComplete: (_ payload: Splitter.SplitPayload?) -> Void = { payload in
          guard let payload: Splitter.SplitPayload = payload else { onComplete(nil, "HCCQRUtil.dataAndImages() - q1,q2 err"); return }
          let (q1, q2): (CIImage, CIImage) = payload
          let ciImages: [CIImage] = [q1, q2]
@@ -21,23 +23,23 @@ public class HCCQRReader {
          func onQRCodeComplete(i: Int, dataAndQuad: QRReader.DataAndQuad?, error: Error?) {
             guard let dataAndFrame: QRReader.DataAndQuad = dataAndQuad else { onComplete((nil, q1, q2, nil), "HCCQRStringUtil.dataAndImages() - ⚠️️ Unable to get dataAndFrame for QRIMG: \(i)⚠️️ \(String(describing: error?.localizedDescription))" ); return }
             dataAndFrames[i] = dataAndQuad
-            if dataAndFrames.first(where: { $0 == nil }) == nil {/*Makes sure all images finished*/
+            if dataAndFrames.first(where: { $0 == nil }) == nil { // Makes sure all images finished
                let d: Data = dataAndFrames.compactMap { $0?.qrData }.reduce(Data(), +)
-               onComplete((d, q1, q2, dataAndFrame.quad), nil)/*Return the result here*/
+               onComplete((d, q1, q2, dataAndFrame.quad), nil) // Return the result here
             }
          }
          ciImages.enumerated().forEach { item in
-            DispatchQueue.main.async {/*Has to be done on main thread, or else Apples.qrreader behaves bad*/
+            DispatchQueue.main.async { // Has to be done on main thread, or else Apples.qrreader behaves bad
                do {
                   let dataAndQuad: QRReader.DataAndQuad = try QRReader.dataAndQuad(ciImage: item.element)
                   onQRCodeComplete(i: item.offset, dataAndQuad: dataAndQuad, error: nil)
                } catch {
-                  onQRCodeComplete(i: item.offset, dataAndQuad: nil, error: error)
+                  onQRCodeComplete(i: item.offset, dataAndQuad: nil, error: error) // - Fixme: ⚠️️ why not just throw?
                }
             }
          }
       }
-      Splitter.split(uiImage: image, onComplete: onSplitComplete ) /*Start the splitting process*/
+      Splitter.split(uiImage: image, onComplete: onSplitComplete ) // Start the splitting process
    }
 }
 /**
@@ -46,7 +48,7 @@ public class HCCQRReader {
 extension HCCQRReader {
    /**
     * Creates data for HCCQQR image, and frame
-    * - Fixme: ⚠️️ group data and frame into a result:(frame,data) tuple
+    * - Fixme: ⚠️️ group data and frame into a result: (frame, data) tuple
     * - Fixme: ⚠️️ make tgis throw, then use Result type
     */
    public static func dataAndQuad(image: Image, onComplete:@escaping OnGetDataAndFrameComplete) {

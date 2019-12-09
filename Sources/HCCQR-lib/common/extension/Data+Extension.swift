@@ -1,6 +1,7 @@
 import Foundation
 /**
- * Fixme: ⚠️️ some of these methods are not in use. remove them
+ * - Fixme: ⚠️️ some of these methods are not in use. remove them
+ * - Fimxe: ⚠️️ move to DataSugar framework
  */
 extension Data {
    /**
@@ -30,14 +31,14 @@ extension Data {
    /**
     * Returns string for Data (ascii)
     */
-   var stringASCII: String? {/*Convenience method*/
+   var stringASCII: String? { // Convenience method
       return String(data: self, encoding: .ascii)
       // return NSString(data: self, encoding: String.Encoding.ascii.rawValue) as String?
    }
    /**
     * Returns string for Data (utf8)
     */
-   var stringUTF8: String? {/*Convenience method*/
+   var stringUTF8: String? { // Convenience method
       return String(data: self, encoding: .utf8)
    }
 }

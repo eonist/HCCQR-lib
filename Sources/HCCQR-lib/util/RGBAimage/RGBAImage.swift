@@ -14,6 +14,6 @@ internal struct RGBAImage {
       self.pixels = pixels
       self.width = width
       self.height = height
-      RGBAImage.initiatedCount += 1
+      RGBAImage.initiatedCount += 1 // this is a hack, until we solve the Dealoc stuff in a better way
    }
 }

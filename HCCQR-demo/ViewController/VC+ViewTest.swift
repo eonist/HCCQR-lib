@@ -26,7 +26,7 @@ extension ViewController {
       Swift.print("dataItem:  \(dataItem)")
       guard let qrImage: UIImage = try? QRWriter.image(data: dataItem, ecLevel: .l) else { Swift.print("unable to create UIImage");return }
       //add qr to rgba
-      guard let rgbaImage: RGBAImage = .rgbaImage(image: qrImage) else { Swift.print("unable to get rgbaimage from img"); return }
+      guard let rgbaImage: RGBAImage = try? .rgbaImage(image: qrImage) else { Swift.print("unable to get rgbaimage from img"); return }
       //scale rgba
       let scaledRGBAImage: RGBAImage = .rgbaImage(rgbaImage: rgbaImage, moduleMultiplier: 6)
       //dispay image from rgba
@@ -85,9 +85,9 @@ extension ViewController {
       guard let image: UIImage = rgbColorTestView.snapShot else { fatalError("err") }
       /**/
       guard let images: Splitter.RGBUIImages = { Optional((UIImage(), UIImage(), UIImage())) }()/*RGBAImage.split(image: image)*/ else { fatalError("err") }
-      guard let r: RGBAImage = .rgbaImage(image: images.r) else { return }
-      guard let g: RGBAImage = .rgbaImage(image: images.g) else { return }
-      guard let b: RGBAImage = .rgbaImage(image: images.b) else { return }
+      guard let r: RGBAImage = try? .rgbaImage(image: images.r) else { return }
+      guard let g: RGBAImage = try? .rgbaImage(image: images.g) else { return }
+      guard let b: RGBAImage = try? .rgbaImage(image: images.b) else { return }
       _ = b
       guard let composite = Compositor.composite(rgbaImageList: [r, g/*,b*/], invert: false) else { return }
       /**/
@@ -113,10 +113,10 @@ extension ViewController {
 //      rImageView.frame.origin.y = 80*4
       Swift.print("images.r!.size:  \(images.r.size)")
       Swift.print("images.r!.scale:  \(images.r.scale)")
-      guard let r: RGBAImage = .rgbaImage(image: images.r) else { return }
+      guard let r: RGBAImage = try? .rgbaImage(image: images.r) else { return }
       _ = r
-      guard let g: RGBAImage = .rgbaImage(image: images.g) else { return }
-      guard let b: RGBAImage = .rgbaImage(image: images.b) else { return }
+      guard let g: RGBAImage = try? .rgbaImage(image: images.g) else { return }
+      guard let b: RGBAImage = try? .rgbaImage(image: images.b) else { return }
       guard let composite = Compositor.composite(rgbaImageList: [b, g/*,g*/], invert: false) else { return }
       _ = composite
       /**/
@@ -185,7 +185,7 @@ extension ViewController {
       _ = {
 //         let views:[UIView] = [view1,view2]
          let imgs: [UIImage] = [view1.image, view2.image].compactMap { $0 }
-         guard let resultImage: UIImage = try? Colorizer.colorize(images: imgs, colorMap: Colorizer.colorMap, moduleMultiplier: 1, scale: 2) else { Swift.print("unable to create colorized image"); return }
+         guard let resultImage: UIImage = try? Colorizer.colorize(images: imgs, colorMap: Colorizer.colorMap, multipliers: (moduleScale: 1, screenScale: 2)) else { Swift.print("unable to create colorized image"); return }
 //         Swift.print("resultImage.cgImage:  \(resultImage.cgImage)")
 //         Swift.print("resultImage.ciImage:  \(resultImage.ciImage)")
 //         Swift.print("resultImage.cgImage():  \(resultImage.cgImage())")
@@ -264,7 +264,7 @@ extension ViewController {
       // do stuff on bg thread
       randomData.enumerated().forEach { arg in
          DispatchQueue.global(qos: .userInitiated).async {
-            HCCQRWriter.image(data: arg.element, moduleMultiplier: 6, scale: 2, qrConfig: (qrVersion, ecLevel)) { img, _ in createHCCQRComplete(i: arg.offset, hccqrImage: img) }//
+            HCCQRWriter.image(data: arg.element, multipliers: (moduleScale: 6, screenScale: 1), qrConfig: (qrVersion, ecLevel)) { img, _ in createHCCQRComplete(i: arg.offset, hccqrImage: img) }//
          }
       }
    }
@@ -336,7 +336,7 @@ extension ViewController {
          let (qrVersion, qrMode, ecLevel): (Int, QRMode, ECLevel) = (10, .byte, .l)//settings
          guard let randomString: String = HCCQRStringData.randomString(qrVersion: qrVersion, qrMode: qrMode, ecLevel: ecLevel) else { Swift.print("unable to create random string"); return }
          guard let data = randomString.data(using: .utf8) else { Swift.print("err data"); return }
-         HCCQRWriter.image(data: data, moduleMultiplier: 6, scale: 2, qrConfig: (qrVersion, ecLevel)) { img, _ in Swift.print("img.size:  \(String(describing: img?.size))") }//
+         HCCQRWriter.image(data: data, multipliers: (moduleScale: 6, screenScale: 1), qrConfig: (qrVersion, ecLevel)) { img, _ in Swift.print("img.size:  \(String(describing: img?.size))") }//
          //      guard let uiImage:UIImage = UIImage.init(contentsOfFile: Bundle.main.resourcePath!+"/temp.bundle/HCCQR9.png") else {Swift.print("err getting img");return}
          //      guard let uiImage2:UIImage = UIImage.init(contentsOfFile: Bundle.main.resourcePath!+"/temp.bundle/HCCQR9.png") else {Swift.print("err getting img");return}
          //      guard let rgba:RGBAImage = RGBAImage.rgbaImage(image: uiImage) else {return }

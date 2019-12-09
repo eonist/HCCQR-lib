@@ -20,6 +20,18 @@ internal final class ImageUtil {
       fatalError("other OS not supported")/*Other os etc*/
       #endif
    }
+   static func cgImage(image: Image) -> CGImage? {
+      #if os(iOS)
+      guard let cgImage = image.cgImage ?? image.cgImage() else { return nil }
+      return cgImage
+      #elseif os(macOS)
+      guard let cgImage = /* image.cgImage ??*/ image.cgImage() else { return nil }
+      return cgImage
+      #else
+      Swift.print("other os not supported")
+      return nil
+      #endif
+   }
    /**
     * Converts ciImage to UIImage
     * - NOTE: Helper method for QR images

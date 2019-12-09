@@ -8,7 +8,7 @@ extension Splitter {
     * Returns channels (rgb for now)
     */
    internal static func channels(image: Image, onComplete:@escaping OnOptionalChannelsComplete) {
-      guard let rgbaImg: RGBAImage = .rgbaImage(image: image) else { Swift.print("Splitter.channels() - Unable to create rgbaImg"); onComplete(nil); return }
+      guard let rgbaImg: RGBAImage = try? .rgbaImage(image: image) else { Swift.print("Splitter.channels() - Unable to create rgbaImg"); onComplete(nil); return }
       channels(rgbaImg: rgbaImg, onComplete: onComplete)//{onComplete($0)}
    }
    internal typealias OnChannelsComplete = (_ rgbaImages: RGBAImages) -> Void

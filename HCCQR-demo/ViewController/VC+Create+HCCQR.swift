@@ -12,7 +12,7 @@ extension ViewController {
       guard let data: Data = randomString.data(using: .utf8) else { Swift.print("err"); return }
       createQR(data: data)
       let createHCCQRTime: Date = .init()
-      HCCQRWriter.image(data: data, moduleMultiplier: 6, scale: 1, qrConfig: (config.version, config.ecLevel)) { hccqrImage, error in // Create HCCQR from string
+      HCCQRWriter.image(data: data, multipliers: (moduleScale: 6, screenScale: 1), qrConfig: (config.version, config.ecLevel)) { hccqrImage, error in // Create HCCQR from string
          self.onHCCQRWriteComplete(hccqrImage: hccqrImage, error: error, startTime: startTime, createHCCQRTime: createHCCQRTime, randomString: randomString)
       }
    }
