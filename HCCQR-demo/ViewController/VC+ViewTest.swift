@@ -211,65 +211,7 @@ extension ViewController {
 //      let aimMarkTestView = AimMarkTestView(frame: .zero)
 //      view.addSubview(aimMarkTestView)
 //   }
-   /**
-    * test HCCQRImage creation (creates a single HCCQR image, then reads it)
-    */
-   func testCreatingHCCQRImage() {
-      Swift.print("testHCCQRImage")
-      let startTime: Date = .init()
-      /*⭐ 1. Create HCCQR from string ⭐*/
-      let (qrVersion, qrMode, ecLevel): (Int, QRMode, ECLevel) = (1, .byte, .l)//settings
-      guard let randomString: String = HCCQRStringData.randomString(qrVersion: qrVersion, qrMode: qrMode, ecLevel: ecLevel) else { Swift.print("unable to create random string"); return }
-      Swift.print("randomString.count:  \(randomString.count)")
-      guard let data: Data = randomString.data(using: .utf8) else { Swift.print("err"); return }
-      createQR(data: data)
-      let version = QRVersion.version(dataCount: data.count / 2, qrMode: .byte, ecLevel: .l)
-      Swift.print("version:  \(String(describing: version))")
-      Swift.print("data.count:  \(data.count)")
-      let createHCCQRTime: Date = .init()
-      let hccqrImageComplete: OnHCCQRImageComplete = { hccqrImage, error in
-         Swift.print("hccqrImageComplete")
-         guard let hccqrImage = hccqrImage else { Swift.print("unable to create hccqr image \(String(describing: error?.localizedDescription))"); return }
-         DispatchQueue.main.async {
-            Swift.print("createHCCQRTime complete: \(abs(createHCCQRTime.timeIntervalSinceNow))")
-            Swift.print("hccqrImage.scale:  \(hccqrImage.scale)")
-            Swift.print("hccqrImage.size:  \(hccqrImage.size)")
-            let imgView: UIImageView = .init(image: hccqrImage)
-            self.view.addSubview(imgView)
-            imgView.frame.origin.y = 0
-         }
-         /*⭐ 2. try split the hccqrImg ⭐*/
-         let splitTime: Date = .init()
-         let hccqrDataComplete: HCCQRReader.DataAndImageComplete = { dataAndImages, error in
-            Swift.print("hccqrDataComplete")
-            DispatchQueue.main.async {
-               Swift.print("Seperation complete: \(abs(splitTime.timeIntervalSinceNow))")
-               Swift.print("All done: \(abs(startTime.timeIntervalSinceNow))")
-               guard let qr1Img = dataAndImages?.qr1 else { Swift.print("err qr1"); return }
-               let img: UIImage = .init(ciImage: qr1Img)
-               let imgView: UIImageView = .init(image:img)
-               self.view.addSubview(imgView)
-               imgView.frame.origin.y = 220
-//               Swift.print("RGBAImage.initiatedCount:  \(RGBAImage.initiatedCount)")
-//               Swift.print("RGBAImage.deInitiatedCount:  \(RGBAImage.deInitiatedCount)")
-            }
-            guard let payload: String = dataAndImages?.data?.stringUTF8 else { Swift.print("unable to get string from hccqr \(String(describing: error))"); return }
-            /*⭐ 3. Assert payload ⭐*/
-            let isMatching: Bool = randomString == payload
-             Swift.print("isMatching:  \(isMatching ? "✅":"🚫")")
-            /*Ensure that img only has valid colors, aka no bluring*/
-            //Swift.print("hasOnlyColorMap: \(ColorizeUtil.hasOnlyColorMap(uiImage:hccqrImage, colorMap: [.red,.green,.blue,.white]))")
-         }
-//         DispatchQueue.global(qos:.userInitiated).async {
-//            string(uiImage: hccqrImage, onComplete: hccqrDataComplete)//
-            Swift.print("getdata")
-            HCCQRReader.dataAndImages(image: hccqrImage, onComplete: hccqrDataComplete)
-//         }
-      }
-//      DispatchQueue.global(qos:.userInitiated).async {
-         HCCQRWriter.image(data: data, moduleMultiplier: 6, scale: 1, qrConfig: (qrVersion, ecLevel), onComplete: hccqrImageComplete)//
-//      }
-   }
+   
    /**
     *
     */

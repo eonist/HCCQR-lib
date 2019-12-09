@@ -17,16 +17,16 @@ class ViewController: UIViewController {
 //      testingVersion()
 //      testCreatingQRImage()
 //     testModuleCount()
-//     testScalingRGBAImage()//⭐
-      testCreatingHCCQRImage()//⭐
-//      testReadingHCCQRPhoto()//⭐
+//     testScalingRGBAImage() // ⭐
+      testCreatingHCCQRImage() // ⭐
+//      testReadingHCCQRPhoto() // ⭐
 //      testColorAssertionWithinThresholdForPixel()
 
 //      creatingManyHCCQRImages(onComplete: { images in Swift.print("all created 🎉 - images.count \(images.count) 🎉")})//⭐
-      //      readingManyHCCQRImages()//⭐
+      //      readingManyHCCQRImages() // ⭐
 //      (0..<5).forEach { _ in
 ////          testHCCQRImage()
-//         testReadingHCCQRPhoto()//⭐
+//         testReadingHCCQRPhoto() // ⭐
 //      }
 //      colorTests()
 //      testScalingArray()
