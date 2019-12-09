@@ -28,7 +28,9 @@ public class HCCQRWriter {
       dataArr.enumerated().forEach { (_ offset: Int, _ data: Data) in
          DispatchQueue.global(qos: .userInitiated).async { // do the operation on a background-thread
             let qrImg: Image? = try? QRWriter.image(data: data, ecLevel: qrConfig.ecLevel) // create B&W QR-image
-            onCreateQrImgComplete(i: offset, qrImg: qrImg, qrImgs: &qrImgs, multipliers: multipliers, onComplete: onComplete)
+            DispatchQueue.main.async { // I guess mainthread is needed here because we access an array
+               onCreateQrImgComplete(i: offset, qrImg: qrImg, qrImgs: &qrImgs, multipliers: multipliers, onComplete: onComplete)
+            }
          }
       }
    }

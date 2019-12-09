@@ -8,19 +8,19 @@ extension Colorizer {
     * - Fixme: ⚠️️ Could be faster to just mutate the pixels diretly in an RGBAImage instead of creating an pixel array like it is now?
     * - Parameter scale: for retina you need 2x scale etc
     */
-   internal static func colorize(rgbaImages: [RGBAImage], colorMap: ColorMap, moduleMultiplier: Int, scale: Int) -> RGBAImage? {
-      guard let size: RGBAImage.Size = rgbaImages.first?.size else { Swift.print("must contain at least one image"); return nil } // The first image is used for getting size etc
-      let pixels: [PixelData] = (0..<size.height).indices.flatMap { y in // flatMap Covert the 2-dim array to a 1-dim array
-         return (0..<size.width).indices.compactMap { x in
+   internal static func colorize(rgbaImages: [RGBAImage], colorMap: ColorMap, multipliers: Multipliers) throws -> RGBAImage {
+      guard let size: RGBAImage.Size = rgbaImages.first?.size else { throw NSError.init(domain: "Must contain at least one image", code: 0) } // The first image is used for getting size etc
+      let pixels: [PixelData] = try (0..<size.height).indices.flatMap { y in // flatMap Convert the 2-dim array to a 1-dim array
+         return try (0..<size.width).indices.compactMap { x in
             let pixels: [PixelData] = rgbaImages.map { $0.getPixel(x: x, y: y) } // Overlaying pixels
-            guard let pixel: PixelData = colorize(pixels: pixels, colorMap: colorMap) else { Swift.print("⚠️️ unable to make pixel ⚠️️"); return nil }
+            guard let pixel: PixelData = colorize(pixels: pixels, colorMap: colorMap) else { throw NSError.init(domain: "Unable to make pixel", code: 0) }
             return pixel
          }
       }
       rgbaImages.forEach { $0.deinitiate() } // Avoids mem leak
-      guard pixels.count == size.width * size.height else { Swift.print("missing some pixels"); return nil }/*Check if array has all the pixels*/
-      let multiplier: Int = moduleMultiplier * scale // Support for retina resolutions
-      return RGBAImage.rgbaImage(pixels: pixels, size: (size.width, size.height), moduleMultiplier: multiplier)
+      guard pixels.count == size.width * size.height else { throw NSError.init(domain: "missing some pixels", code: 0) } // Check if array has all the pixels
+      let multiplier: Int = multipliers.moduleScale * multipliers.screenScale // Support for retina resolutions
+      return RGBAImage.scale(pixels: pixels, size: (size.width, size.height), multiplier: multiplier)
    }
 }
 /**

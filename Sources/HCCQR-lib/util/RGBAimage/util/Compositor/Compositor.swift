@@ -6,26 +6,30 @@ import CoreImage
 internal class Compositor {
    /**
     * Returns a qr image based on two rgb channels
-    * - Note: layer 1: r,b -> qrImg1
-    * - Note: layer 2: b,g -> qrImg2
+    * - Note: layer 1: r, b -> qrImg1
+    * - Note: layer 2: b, g -> qrImg2
+    * - Fixme: ⚠️️ Make it throw
+    * - posibly simplify method with defering deinit of composite
     */
-   internal static func composite(first: RGBAImage, second: RGBAImage) -> CIImage? {
-      guard let composite: RGBAImage = Compositor.composite(rgbaImageList: [first, second], invert: true) else { Swift.print("unable to composite"); return nil }
-      guard let img: CIImage = RGBAImage.ciImage(rgbaImage: composite  )  else { Swift.print("unable to create img"); composite.deinitiate(); return nil }
-      composite.deinitiate()/*to avoid mem leak*/
+   internal static func composite(first: RGBAImage, second: RGBAImage) throws -> CIImage {
+      let composite: RGBAImage = try Compositor.composite(rgbaImageList: [first, second], invert: true)
+      guard let img: CIImage = try? RGBAImage.ciImage(rgbaImage: composite) else { composite.deinitiate(); throw NSError.init(domain: "Unable to create img", code: 0) }
+      composite.deinitiate() // To avoid mem leak
       return img
    }
    /**
     * Combines many images into one
     * - Note: we invert the image in this method, because doing it in post takes a long time
+    * - Fixme: ⚠️️ Can the compositing be done simpler, more efficient?
+    * - Parameter rgbaImageList: an array of RGBAImages to be composited together into 1 RGBAImage
     */
-   internal static func composite(rgbaImageList: [RGBAImage], invert: Bool) -> RGBAImage? {
-      guard let firstRGBAImg: RGBAImage = rgbaImageList.first else { Swift.print("composite() - no first"); return nil }
-      let size:(width: Int, height: Int) = (width: Int(firstRGBAImg.width), height: Int(firstRGBAImg.height))
-      var blackRGBAImg: RGBAImage = .rgbaImage(pixel: PixelData.blackPixel, size: size)
-      blackRGBAImg.process { (index: Int, pixel: PixelData) -> PixelData in/*Loop things*/
-         var pixel = pixel
-         rgbaImageList.forEach { (rgbaImage: RGBAImage) in /*loop over every image in the list*/ //Fixme: ⚠️️ maybe do reduce here?
+   internal static func composite(rgbaImageList: [RGBAImage], invert: Bool) throws -> RGBAImage {
+      guard let firstRGBAImg: RGBAImage = rgbaImageList.first else { throw NSError.init(domain: "unable to composite - composite() - no first", code: 0) }
+      let size: RGBAImage.Size = (Int(firstRGBAImg.width), Int(firstRGBAImg.height))
+      var blackRGBAImg: RGBAImage = .rgbaImage(pixel: .blackPixel, size: size)
+      blackRGBAImg.process { (index: Int, pixel: PixelData) -> PixelData in // Loop things
+         var pixel = pixel // Fixme: ⚠️️ maybe do reduce here?
+         rgbaImageList.forEach { (rgbaImage: RGBAImage) in // loop over every image in the list
             let rgbaPixelData: PixelData = rgbaImage.pixels[index]
             pixel.setRGBA(first: pixel, second: rgbaPixelData, alpha: 255)
          }

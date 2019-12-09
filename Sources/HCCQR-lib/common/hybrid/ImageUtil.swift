@@ -4,12 +4,12 @@ import UIKit
 import Cocoa
 #endif
 /**
- * Util.
+ * Util
  * - Fixme: ⚠️️ Can be moved to Extension
  */
 internal final class ImageUtil {
    /**
-    * Universal for ios and mac
+    * CGImage -> Image (Universal for ios and mac)
     */
    internal static func image(cgImage: CGImage, scale: CGFloat = 1) -> Image {
       #if os(iOS)
@@ -20,6 +20,9 @@ internal final class ImageUtil {
       fatalError("other OS not supported")/*Other os etc*/
       #endif
    }
+   /**
+    * Image -> CGImage (Universal for ios and mac)
+    */
    static func cgImage(image: Image) -> CGImage? {
       #if os(iOS)
       guard let cgImage = image.cgImage ?? image.cgImage() else { return nil }
@@ -33,7 +36,7 @@ internal final class ImageUtil {
       #endif
    }
    /**
-    * Converts ciImage to UIImage
+    * CIImage -> UIImage
     * - NOTE: Helper method for QR images
     * - Fixme: ⚠️️ Make this throw
     */
@@ -44,7 +47,7 @@ internal final class ImageUtil {
    }
    #endif
    /**
-    * Converts ciImage to NSImage
+    * CIImage -> NSImage
     * - Note: Helper method for QR images
     * - Fixme: ⚠️️ Make this throw
     */

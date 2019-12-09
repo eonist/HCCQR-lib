@@ -28,9 +28,9 @@ extension ViewController {
       //add qr to rgba
       guard let rgbaImage: RGBAImage = try? .rgbaImage(image: qrImage) else { Swift.print("unable to get rgbaimage from img"); return }
       //scale rgba
-      let scaledRGBAImage: RGBAImage = .rgbaImage(rgbaImage: rgbaImage, moduleMultiplier: 6)
+      let scaledRGBAImage: RGBAImage = .scale(rgbaImage: rgbaImage, multiplier: 6)
       //dispay image from rgba
-      guard let img: UIImage = RGBAImage.image(rgbaImage: scaledRGBAImage, scale: 1) else { Swift.print("unable to get img from rgbaimage"); return }
+      guard let img: UIImage = try? RGBAImage.image(rgbaImage: scaledRGBAImage, scale: 1) else { Swift.print("unable to get img from rgbaimage"); return }
       let uiImageView: UIImageView = .init(image: img)
       view.addSubview(uiImageView)
       guard let ciImg: CIImage = img.ciImage ?? img.ciImage() else { Swift.print("err ciimg"); return }
@@ -89,10 +89,10 @@ extension ViewController {
       guard let g: RGBAImage = try? .rgbaImage(image: images.g) else { return }
       guard let b: RGBAImage = try? .rgbaImage(image: images.b) else { return }
       _ = b
-      guard let composite = Compositor.composite(rgbaImageList: [r, g/*,b*/], invert: false) else { return }
+      guard let composite = try? Compositor.composite(rgbaImageList: [r, g/*,b*/], invert: false) else { return }
       /**/
       Swift.print("⚠️️ the bellow may not work anymore, scale is new ⚠️️")
-      let img: UIImage? = RGBAImage.image(rgbaImage: composite, scale: image.scale)
+      let img: UIImage? = try? RGBAImage.image(rgbaImage: composite, scale: image.scale)
       let imgView: UIImageView = .init(image: img)
       view.addSubview(imgView)
       imgView.frame.origin.y = 200
@@ -117,7 +117,7 @@ extension ViewController {
       _ = r
       guard let g: RGBAImage = try? .rgbaImage(image: images.g) else { return }
       guard let b: RGBAImage = try? .rgbaImage(image: images.b) else { return }
-      guard let composite = Compositor.composite(rgbaImageList: [b, g/*,g*/], invert: false) else { return }
+      guard let composite = try? Compositor.composite(rgbaImageList: [b, g/*,g*/], invert: false) else { return }
       _ = composite
       /**/
       Swift.print("⚠️️ the bellow may not work anymore, scale is new ⚠️️")
