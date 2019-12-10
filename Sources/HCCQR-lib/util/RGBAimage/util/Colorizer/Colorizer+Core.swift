@@ -8,7 +8,7 @@ extension Colorizer {
     * - Fixme: ⚠️️ Could be faster to just mutate the pixels diretly in an RGBAImage instead of creating an pixel array like it is now?
     * - Parameter scale: for retina you need 2x scale etc
     */
-   internal static func colorize(rgbaImages: [RGBAImage], colorMap: ColorMap, multipliers: Multipliers) throws -> RGBAImage {
+   static func colorize(rgbaImages: [RGBAImage], colorMap: ColorMap, multipliers: Multipliers) throws -> RGBAImage {
       guard let size: RGBAImage.Size = rgbaImages.first?.size else { throw NSError(domain: "Must contain at least one image", code: 0) } // The first image is used for getting size etc
       let pixels: [PixelData] = try (0..<size.height).indices.flatMap { y in // flatMap Convert the 2-dim array to a 1-dim array
          return try (0..<size.width).indices.compactMap { x in

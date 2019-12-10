@@ -263,7 +263,7 @@ extension ViewController {
       // do stuff on bg thread
       randomData.enumerated().forEach { arg in
          DispatchQueue.global(qos: .userInitiated).async {
-            HCCQRWriter.image(data: arg.element, multipliers: (moduleScale: 6, screenScale: 1), qrConfig: (qrVersion, ecLevel)) { img, _ in createHCCQRComplete(i: arg.offset, hccqrImage: img) }//
+            HCCQRWriter.image(data: arg.element, multipliers: (moduleScale: 6, screenScale: 1), qrConfig: (qrVersion, ecLevel)) { result in createHCCQRComplete(i: arg.offset, hccqrImage: try? result.get()) }//
          }
       }
    }
@@ -335,7 +335,7 @@ extension ViewController {
          let (qrVersion, qrMode, ecLevel): (Int, QRMode, ECLevel) = (10, .byte, .l)//settings
          guard let randomString: String = try? HCCQRStringData.randomString(config: (qrVersion, qrMode, ecLevel)) else { Swift.print("unable to create random string"); return }
          guard let data = randomString.data(using: .utf8) else { Swift.print("err data"); return }
-         HCCQRWriter.image(data: data, multipliers: (moduleScale: 6, screenScale: 1), qrConfig: (qrVersion, ecLevel)) { img, _ in Swift.print("img.size:  \(String(describing: img?.size))") }//
+         HCCQRWriter.image(data: data, multipliers: (moduleScale: 6, screenScale: 1), qrConfig: (qrVersion, ecLevel)) { result in Swift.print("img.size:  \(String(describing: try? result.get().size))") }//
          //      guard let uiImage:UIImage = UIImage.init(contentsOfFile: Bundle.main.resourcePath!+"/temp.bundle/HCCQR9.png") else {Swift.print("err getting img");return}
          //      guard let uiImage2:UIImage = UIImage.init(contentsOfFile: Bundle.main.resourcePath!+"/temp.bundle/HCCQR9.png") else {Swift.print("err getting img");return}
          //      guard let rgba:RGBAImage = RGBAImage.rgbaImage(image: uiImage) else {return }

@@ -57,12 +57,12 @@ extension HCCQRReader {
     * - Fixme: ⚠️️ group data and frame into a result: (frame, data) tuple
     * - Fixme: ⚠️️ make this use Result type
     */
-   public static func dataAndQuad(image: Image, onComplete:@escaping OnGetDataAndFrameComplete) {
+   public static func dataAndQuad(image: Image, onComplete:@escaping OnGetDataAndFrameCompleted) {
       let completion: DataAndImageComplete = { dataAndImages, error in
-         guard let dataAndImages: DataAndImages = dataAndImages else { onComplete(nil, nil, error); return }
-         guard let data: Data = dataAndImages.data else { onComplete(nil, nil, "HCCQRStringUtil.dataAndFrame() - Unable to get data \(String(describing: error?.localizedDescription))"); return }
-         guard let quad: QRReader.Quad = dataAndImages.quad else { onComplete(nil, nil, "HCCQRStringUtil.dataAndFrame() - Unable to get data \(String(describing: error?.localizedDescription))"); return }
-         onComplete(data, quad, nil)
+         guard let dataAndImages: DataAndImages = dataAndImages else { onComplete(.failure(error!)); return }
+         guard let data: Data = dataAndImages.data else { onComplete(.failure(NSError(domain: "Unable to get data \(error!.localizedDescription)", code: 0))); return }
+         guard let quad: QRReader.Quad = dataAndImages.quad else { onComplete(.failure(NSError(domain: "Unable to get quad \(error!.localizedDescription)", code: 0))); return }
+         onComplete(.success((data, quad)))
       }
       dataAndImages(image: image, onComplete: completion)
    }

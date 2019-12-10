@@ -6,6 +6,8 @@ import QR_lib
  */
 extension HCCQRReader {
    public typealias OnGetDataAndFrameComplete = (_ data: Data?, _ quad: QRReader.Quad?, _ error: Error?) -> Void
+   // - Fixme: ⚠️️ rename to ..dataAndQuad
+   public typealias OnGetDataAndFrameCompleted = (Result<(Data, QRReader.Quad), Error>) -> Void
    /**
     * The imags was returned for debuggin, can be useful for optimizing later
     */

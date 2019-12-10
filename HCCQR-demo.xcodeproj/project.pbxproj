@@ -16,6 +16,8 @@
 		F162145421FC7138005297DE /* SimpleHCCQRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162145321FC7138005297DE /* SimpleHCCQRView.swift */; };
 		F165C208239F22A7005D30EC /* RangeUInt8.swift in Sources */ = {isa = PBXBuildFile; fileRef = F165C207239F22A7005D30EC /* RangeUInt8.swift */; };
 		F165C209239F22A7005D30EC /* RangeUInt8.swift in Sources */ = {isa = PBXBuildFile; fileRef = F165C207239F22A7005D30EC /* RangeUInt8.swift */; };
+		F165C243239FC8B9005D30EC /* ResultSugar in Frameworks */ = {isa = PBXBuildFile; productRef = F165C242239FC8B9005D30EC /* ResultSugar */; };
+		F165C245239FC8C2005D30EC /* ResultSugar in Frameworks */ = {isa = PBXBuildFile; productRef = F165C244239FC8C2005D30EC /* ResultSugar */; };
 		F17F5B88221A267600383955 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17F5B87221A267600383955 /* AppDelegate.swift */; };
 		F17F5B8A221A267B00383955 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F17F5B89221A267B00383955 /* Assets.xcassets */; };
 		F17F5B8D221A267B00383955 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F17F5B8B221A267B00383955 /* MainMenu.xib */; };
@@ -207,6 +209,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F165C245239FC8C2005D30EC /* ResultSugar in Frameworks */,
 				F1E645F3239429CA008D2ABE /* QR-lib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -215,6 +218,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F165C243239FC8B9005D30EC /* ResultSugar in Frameworks */,
 				F1E6459E239407BC008D2ABE /* QR-lib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -560,6 +564,7 @@
 			name = "HCCQR-demo-mac";
 			packageProductDependencies = (
 				F1E645F2239429CA008D2ABE /* QR-lib */,
+				F165C244239FC8C2005D30EC /* ResultSugar */,
 			);
 			productName = "HCCQR-demo-mac";
 			productReference = F17F5B85221A267600383955 /* HCCQR-demo-mac.app */;
@@ -581,6 +586,7 @@
 			name = "HCCQR-demo";
 			packageProductDependencies = (
 				F1E6459D239407BC008D2ABE /* QR-lib */,
+				F165C242239FC8B9005D30EC /* ResultSugar */,
 			);
 			productName = "HCCQR-demo";
 			productReference = F18A52DB21790F8A003F8C13 /* HCCQR-demo.app */;
@@ -615,6 +621,7 @@
 			mainGroup = F18A52D221790F8A003F8C13;
 			packageReferences = (
 				F1E6459C239407BC008D2ABE /* XCRemoteSwiftPackageReference "QR-lib" */,
+				F165C241239FC8B9005D30EC /* XCRemoteSwiftPackageReference "ResultSugar" */,
 			);
 			productRefGroup = F18A52DC21790F8A003F8C13 /* Products */;
 			projectDirPath = "";
@@ -1075,6 +1082,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		F165C241239FC8B9005D30EC /* XCRemoteSwiftPackageReference "ResultSugar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/eonist/ResultSugar.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		F1E6459C239407BC008D2ABE /* XCRemoteSwiftPackageReference "QR-lib" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/light-stream/QR-lib.git";
@@ -1086,6 +1101,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		F165C242239FC8B9005D30EC /* ResultSugar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F165C241239FC8B9005D30EC /* XCRemoteSwiftPackageReference "ResultSugar" */;
+			productName = ResultSugar;
+		};
+		F165C244239FC8C2005D30EC /* ResultSugar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F165C241239FC8B9005D30EC /* XCRemoteSwiftPackageReference "ResultSugar" */;
+			productName = ResultSugar;
+		};
 		F1E6459D239407BC008D2ABE /* QR-lib */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = F1E6459C239407BC008D2ABE /* XCRemoteSwiftPackageReference "QR-lib" */;
