@@ -3,10 +3,10 @@ import QuartzCore
 /**
  * Converts b&w layers into color layers
  */
-internal class Colorizer {
+final class Colorizer {
    /**
     * Converts multiple b&w images to color image based on the colorMap provided
-    * - Fixme: ⚠️️ pass cgImages istead of uiimages, it might be faster
+    * - Fixme: ⚠️️ pass cgImages istead of uiimages, it might be faster, as it avoids additional conversion
     * - Parameters:
     *    - images: b&w QRImages
     *    - colorMap: the color depth you want the HCCQR image in. 4, 8, 16, 32 etc

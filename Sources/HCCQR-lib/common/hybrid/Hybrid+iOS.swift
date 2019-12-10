@@ -6,7 +6,4 @@ import UIKit
  */
 public typealias Image = UIImage
 public typealias Color = UIColor
-//#elseif os(macOS)
-//public typealias Image = NSImage
-//public typealias Color = NSColor
 #endif

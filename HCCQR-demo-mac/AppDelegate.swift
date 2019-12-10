@@ -19,8 +19,8 @@ extension AppDelegate {
    /**
     * Create view
     */
-   func createView() -> NSView{
-      let contentRect = window.contentRect(forFrameRect: window.frame)/*size of win sans titlebar*/
+   func createView() -> NSView {
+      let contentRect = window.contentRect(forFrameRect: window.frame) // size of win sans titlebar
       let view: View = .init(frame: contentRect)
       window.contentView = view
       view.layer?.backgroundColor = NSColor.white.cgColor

@@ -5,7 +5,7 @@ import CoreImage
 /**
  * Image -> String
  */
-public class HCCQRReader {
+public final class HCCQRReader {
    /**
     * Creates data for HCCQQR image
     * - Fixme: ⚠️️ Consider changing image to CGImage, as that is what is used in the end, could make thing faster

@@ -8,27 +8,19 @@ extension Color {
    /**
     * 0-1
     */
-   var redValue: CGFloat? {
-      return cgColor.components?[0]
-   }
+   var redValue: CGFloat? { return cgColor.components?[0] }
    /**
     * 0-1
     */
-   var greenValue: CGFloat? {
-      return cgColor.components?[1]
-   }
+   var greenValue: CGFloat? { return cgColor.components?[1] }
    /**
     * 0-1
     */
-   var blueValue: CGFloat? {
-      return cgColor.components?[2]
-   }
+   var blueValue: CGFloat? { return cgColor.components?[2] }
    /**
     * 0-1
     */
-   var alphaValue: CGFloat? {
-      return cgColor.components?[3]
-   }
+   var alphaValue: CGFloat? { return cgColor.components?[3] }
    /**
     * Probably faster than using self.getRed to get rgb
     * ## Examples:
@@ -55,18 +47,10 @@ extension Color {
    /**
     * Returns red 0-1
     */
-   var r: CGFloat {
-      return self.ciColor.red
-   }
-   var g: CGFloat {
-      return self.ciColor.green
-   }
-   var b: CGFloat {
-      return self.ciColor.blue
-   }
-   var a: CGFloat {
-      return self.ciColor.alpha
-   }
+   var r: CGFloat { return self.ciColor.red }
+   var g: CGFloat { return self.ciColor.green }
+   var b: CGFloat { return self.ciColor.blue }
+   var a: CGFloat { return self.ciColor.alpha }
 }
 /**
  * ciColor

@@ -7,8 +7,9 @@ import Cocoa
 extension CIImage {
    /**
     * Inverts an image (black becomes white etc)
+    * - Fixme: ⚠️️ move this into ImageSugar repo (its not used in this repo any more)
     */
-   func invertedImage() -> CGImage? {
+   private func invertedImage() -> CGImage? {
       guard let filter = CIFilter(name: "CIColorInvert") else { Swift.print("UIImage.invertedImage() - unable to create filter"); return nil }
       filter.setDefaults()
       filter.setValue(self, forKey: kCIInputImageKey)

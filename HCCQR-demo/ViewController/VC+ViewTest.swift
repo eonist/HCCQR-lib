@@ -211,7 +211,6 @@ extension ViewController {
 //      let aimMarkTestView = AimMarkTestView(frame: .zero)
 //      view.addSubview(aimMarkTestView)
 //   }
-   
    /**
     *
     */

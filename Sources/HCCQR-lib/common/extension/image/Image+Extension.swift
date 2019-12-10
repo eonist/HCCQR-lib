@@ -19,8 +19,9 @@ extension Image {
     * - Note: Somehow this works with retina images where scale is 2x as well
     * - Note: alternative: https://gist.github.com/giulio92/69e4f74217422154bb25d2a35d6710f8
     * - Fixme: ⚠️️ cgImage or cgImage doesn't always work, try to make this more consistent
+    * - Fixme: ⚠️️ Make this throw
     */
-   func getPixelColor(pos: CGPoint) -> Color? {//Fixme: ⚠️️ make this for cgImage, converting it over and oer is not good
+   private func getPixelColor(pos: CGPoint) -> Color? { // Fixme: ⚠️️ make this for cgImage, converting it over and over is not good
       //⚠️️ The bellow fix could hurt performance
       guard let cgImage = /*self.cgImage ?? */self.cgImage() else { Swift.print("getPixelColor() - unable to get cgImage"); return nil }
       guard let dataProvider = cgImage.dataProvider else { Swift.print("getPixelColor() - unable to get dataProvider"); return nil }

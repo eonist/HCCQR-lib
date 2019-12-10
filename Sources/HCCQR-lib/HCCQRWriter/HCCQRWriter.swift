@@ -3,7 +3,7 @@ import QR_lib
 /**
  * Creates HCCQR from Data
  */
-public class HCCQRWriter {
+public final class HCCQRWriter {
    /**
     * Returns an HCCQR UIImage for a string
     * - Note: For more in-depth example see repo readme

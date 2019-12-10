@@ -60,18 +60,14 @@ extension PixelData {
  */
 extension PixelData {
    /**
-    * pixel.value -> R,G,B,A
-    * setRGBA(argb: 4294967295)// 255, 255, 255, 255 aka UIColor.white
+    * pixel.value -> R, G, B, A
+    * setRGBA(argb: 4294967295) // 255, 255, 255, 255 aka UIColor.white
     */
    func setRGBA(argb: Int) -> RGBA {
       let r: UInt8 = .init((argb >> 16) & 0xFF)
-      //      Swift.print("red:  \(red)")
       let g: UInt8 = .init((argb >> 8) & 0xFF)
-      //      Swift.print("green:  \(green)")
       let b: UInt8 = .init(argb & 0xFF)
-      //      Swift.print("blue:  \(blue)")
       let a: UInt8 = .init((argb >> 24) & 0xFF)
-      //      Swift.print("a:  \(a)")
       return (r, g, b, a)
    }
 }

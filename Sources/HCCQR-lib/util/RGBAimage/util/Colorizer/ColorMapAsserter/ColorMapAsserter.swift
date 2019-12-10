@@ -3,7 +3,7 @@ import Foundation
  * Asserter
  * - Note: Used for internal debugging
  */
-class ColorMapAsserter {
+final class ColorMapAsserter {
    /**
     * Asserts if an image has non black or white pixel. (aka a gray pixel)
     */
@@ -25,7 +25,7 @@ class ColorMapAsserter {
          let firstmatch = colorMap.first(where: matchCondition)
          return firstmatch == nil
       }
-      let pixelColors = uiImage.pixelColors
+      let pixelColors = uiImage.pixelColors // ⚠️️ this call is not performant
       let first = pixelColors.first(where: condition)
       return first == nil
    }
