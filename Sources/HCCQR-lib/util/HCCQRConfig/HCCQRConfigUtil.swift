@@ -1,16 +1,11 @@
 import QR_lib
 import Foundation
 
-/**
- * Stores essential HCCQR config parameters
- */
-public typealias HCCQRConfig = (version: Int, mode: QRMode, ecLevel: ECLevel)
-
 public class HCCQRConfigUtil {
    /**
     * Returns dataCount for qrversion,qrmode,ecLevel
     * ## Examples:
-    * HCCQRConfigUtil.dataCount(config:(10, .byte, .l)) // 542
+    * HCCQRConfigUtil.dataCount(config: (10, .byte, .l)) // 542
     * - Fixme: ⚠️️ use Result type
     */
    public static func dataCount(config: HCCQRConfig, colorDepth: Int = 2) -> Int? {

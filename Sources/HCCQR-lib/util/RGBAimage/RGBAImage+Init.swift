@@ -1,6 +1,8 @@
 import Foundation
 import CoreImage
-
+/**
+ * - Fixme: ⚠️️ Possibly make these .init, or add them to a RGBAUtil class?
+ */
 extension RGBAImage {
    /**
     * Converts an Image to an rgbaImage

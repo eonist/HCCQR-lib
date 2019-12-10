@@ -6,7 +6,7 @@ extension PixelData {
    /**
     * setPixel (0-255) (⚠️️ not optimized ⚠️️)
     */
-   internal mutating func setRGBA(r: UInt8, g: UInt8, b: UInt8, a: UInt8) {
+   mutating func setRGBA(r: UInt8, g: UInt8, b: UInt8, a: UInt8) {
       self.r = r
       self.g = g
       self.b = b
@@ -15,7 +15,7 @@ extension PixelData {
    /**
     * Fixme: ⚠️️ clean this up
     */
-   internal mutating func setRGBA(first: PixelData, second: PixelData, alpha: UInt8) {
+   mutating func setRGBA(first: PixelData, second: PixelData, alpha: UInt8) {
       _ = {
          let wrapAdd = first.r.addingReportingOverflow(second.r)
          self.r = wrapAdd.overflow ? 255 : wrapAdd.partialValue
@@ -31,13 +31,6 @@ extension PixelData {
 //      if first.a < 255 {}
       self.a = alpha
    }
-   /**
-    * setRGBA
-    */
-   internal mutating func setRGBA(color: Color) {
-      guard let rgba: RGBA = PixelDataUtil.rgba(uiColor: color) else { Swift.print("Unable to get rgba"); return }//.rgba
-      setRGBA(r: rgba.r, g: rgba.g, b: rgba.b, a: rgba.a)
-   }
 }
 /**
  * Convenience
@@ -46,19 +39,19 @@ extension PixelData {
    /**
     * Makes pixel black
     */
-   internal mutating func setBlack() {
+   mutating func setBlack() {
       self.setRGBA(r: 0, g: 0, b: 0, a: 255)
    }
    /**
     * Makes pixel white
     */
-   internal mutating func setWhite() {
+   mutating func setWhite() {
       self.setRGBA(r: 255, g: 255, b: 255, a: 255)
    }
    /**
     * Inverted (only works for pure black or pure white pixels)
     */
-   internal func inverted() -> PixelData {
+   func inverted() -> PixelData {
       return self.isWhite ? PixelData.blackPixel : PixelData.whitePixel
    }
 }
@@ -68,10 +61,9 @@ extension PixelData {
 extension PixelData {
    /**
     * pixel.value -> R,G,B,A
-    * setRGBA(argb: 4294967295)// 255,255,255,255 aka UIColor.white
-    * Fixme: ⚠️️ make the return type a typealias
+    * setRGBA(argb: 4294967295)// 255, 255, 255, 255 aka UIColor.white
     */
-   internal func setRGBA(argb: Int) -> (r: UInt8, g: UInt8, b: UInt8, a: UInt8) {
+   func setRGBA(argb: Int) -> RGBA {
       let r: UInt8 = .init((argb >> 16) & 0xFF)
       //      Swift.print("red:  \(red)")
       let g: UInt8 = .init((argb >> 8) & 0xFF)
@@ -83,3 +75,10 @@ extension PixelData {
       return (r, g, b, a)
    }
 }
+/**
+ * setRGBA (deprecated as it was not in use)
+ */
+//   mutating func setRGBA(color: Color) throws {
+//      guard let rgba: RGBA = try? PixelDataUtil.rgba(uiColor: color) else { throw NSError.init(domain: "Unable to get rgba", code: 0) }//.rgba
+//      setRGBA(r: rgba.r, g: rgba.g, b: rgba.b, a: rgba.a)
+//   }

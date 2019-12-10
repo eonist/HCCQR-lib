@@ -8,7 +8,7 @@ extension ViewController {
    func testCreatingHCCQRImage() {
       let startTime: Date = .init()
       let config: HCCQRConfig = (1, .byte, .l) // config
-      guard let randomString: String = HCCQRStringData.randomString(config: config) else { Swift.print("unable to create random string"); return }
+      guard let randomString: String = try? HCCQRStringData.randomString(config: config) else { Swift.print("unable to create random string"); return }
       guard let data: Data = randomString.data(using: .utf8) else { Swift.print("err"); return }
       createQR(data: data)
       let createHCCQRTime: Date = .init()

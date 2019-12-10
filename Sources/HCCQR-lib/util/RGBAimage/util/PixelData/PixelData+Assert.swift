@@ -11,6 +11,7 @@ extension PixelData {
    internal static var whitePixel: PixelData { return .init(r: 255, g: 255, b: 255, a: 255) }
    /**
     * Percentage of color (0.2 means can be 20% of some color)
+    * - Fixme: ⚠️️ Add explination
     */
    private static let threshold: CGFloat = 0.60
    private static let halfThreshold: CGFloat = threshold / 2
@@ -55,12 +56,12 @@ extension PixelData {
    /**
     * Assert color within threshold
     * ## Examples:
-    * let offset:UInt8 = UInt8(255*0.2)
-    * let redishPixel:Pixel = .init(R:255-offset,G:0+offset,B:0+offset,A:255)
-    * let redPixel:Pixel = .init(R:255,G:0,B:0,A:255)
-    * let threshold:UInt8 = UInt8(255*0.25)
-    * let isColorRedish:Bool = redishPixel.isColor(pixel:redPixel,threshold:threshold)
-    * Swift.print("isColorRedish:  \(isColorRedish)")//true
+    * let offset: UInt8 = UInt8(255 * 0.2)
+    * let redishPixel: Pixel = .init(R: 255-offset, G: 0+offset, B: 0+offset, A: 255)
+    * let redPixel: Pixel = .init(R: 255, G: 0, B: 0, A: 255)
+    * let threshold: UInt8 = UInt8(255 * 0.25)
+    * let isColorRedish: Bool = redishPixel.isColor(pixel: redPixel, threshold: threshold)
+    * Swift.print("isColorRedish:  \(isColorRedish)") // true
     */
    internal func isColor(pixel: PixelData, halfThreshold: UInt8) -> Bool {
       let rgb1: RGB = self.rgb

@@ -242,7 +242,7 @@ extension ViewController {
    func creatingManyHCCQRImages(onComplete:@escaping (_ images: [UIImage]) -> Void) {
       let (qrVersion, qrMode, ecLevel): (Int, QRMode, ECLevel) = (10, .byte, .l)/*Config*/
       let randomData: [Data] = (0..<10).compactMap { _ in/*Num of items to load*/
-         guard let randomString: String = HCCQRStringData.randomString(qrVersion: qrVersion, qrMode: qrMode, ecLevel: ecLevel) else { Swift.print("unable to create random string"); return nil }
+         guard let randomString: String = try? HCCQRStringData.randomString(config: (qrVersion, qrMode, ecLevel)) else { Swift.print("unable to create random string"); return nil }
          guard let data = randomString.data(using: .utf8) else { Swift.print("err data"); return nil }
          return data
       }
@@ -334,7 +334,7 @@ extension ViewController {
    func testFixingMemLeak() {
       (0..<40).forEach { _ in
          let (qrVersion, qrMode, ecLevel): (Int, QRMode, ECLevel) = (10, .byte, .l)//settings
-         guard let randomString: String = HCCQRStringData.randomString(qrVersion: qrVersion, qrMode: qrMode, ecLevel: ecLevel) else { Swift.print("unable to create random string"); return }
+         guard let randomString: String = try? HCCQRStringData.randomString(config: (qrVersion, qrMode, ecLevel)) else { Swift.print("unable to create random string"); return }
          guard let data = randomString.data(using: .utf8) else { Swift.print("err data"); return }
          HCCQRWriter.image(data: data, multipliers: (moduleScale: 6, screenScale: 1), qrConfig: (qrVersion, ecLevel)) { img, _ in Swift.print("img.size:  \(String(describing: img?.size))") }//
          //      guard let uiImage:UIImage = UIImage.init(contentsOfFile: Bundle.main.resourcePath!+"/temp.bundle/HCCQR9.png") else {Swift.print("err getting img");return}
@@ -351,7 +351,7 @@ extension ViewController {
    func testingSmallModuleSize() {
       let startTime: Date = .init()
       let (qrVersion, qrMode, ecLevel): (Int, QRMode, ECLevel) = (10, .byte, .l)//settings
-      guard let randomString = HCCQRStringData.randomString(qrVersion: qrVersion, qrMode: qrMode, ecLevel: ecLevel) else { Swift.print("unable to create random string"); return }
+      guard let randomString = try? HCCQRStringData.randomString(config: (qrVersion, qrMode, ecLevel)) else { Swift.print("unable to create random string"); return }
       _ = randomString
       // ⚠️️ out of order
 //      guard let hccqrImage:UIImage = HCCQRUtil.getHCCQRImage(string:randomString,qrVersion:qrVersion,qrMode:qrMode,ecLevel:ecLevel, scale:6) else {Swift.print("unable to create hccqr image");return}
