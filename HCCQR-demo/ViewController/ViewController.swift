@@ -18,7 +18,7 @@ class ViewController: UIViewController {
 //      testCreatingQRImage()
 //     testModuleCount()
 //     testScalingRGBAImage() // ⭐
-      testCreatingHCCQRImage() // ⭐
+      SingleHCCQRTest.testCreatingHCCQRImage() // ⭐
 //      testReadingHCCQRPhoto() // ⭐
 //      testColorAssertionWithinThresholdForPixel()
 

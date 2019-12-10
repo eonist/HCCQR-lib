@@ -2,6 +2,7 @@ import Foundation
 import QuartzCore
 /**
  * Asserter
+ * - Fixme: ⚠️️ Move some of these into PixelDataAsserter class
  */
 extension PixelData {
    /**
@@ -56,11 +57,16 @@ extension PixelData {
     *   - pixel: Compare self to this pixel
     *   - halfThreshold: with threshold more or less (I.e: +25,-25 from a value)
     */
-   internal func isColor(pixel: PixelData, halfThreshold: UInt8) -> Bool {
+   func isColor(pixel: PixelData, halfThreshold: UInt8) -> Bool {
       let rgb1: RGB = self.rgb
       let rgb2: RGB = pixel.rgb
       return isColor(rgb1: rgb1, rgb2: rgb2, halfThreshold: halfThreshold)
    }
+}
+/**
+ * Private helper methods
+ */
+extension PixelData {
    /**
     * Asserts if a color is near another color within a threshold
     * - Parameters:
