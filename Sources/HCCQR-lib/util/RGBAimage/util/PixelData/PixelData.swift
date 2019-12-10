@@ -4,8 +4,8 @@ import Foundation
  * - Fixme: ⚠️️ Rename to Pixel again?
  */
 struct PixelData {
-   internal var r: UInt8
-   internal var g: UInt8
-   internal var b: UInt8
-   internal var a: UInt8
+   var r: UInt8
+   var g: UInt8
+   var b: UInt8
+   var a: UInt8
 }

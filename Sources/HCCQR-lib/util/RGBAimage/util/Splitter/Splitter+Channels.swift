@@ -8,9 +8,9 @@ extension Splitter {
     * Returns channels (rgb for now)
     * - Fixme: ⚠️️ add rethrow here I guess, or result?
     */
-   static func channels(image: Image, onComplete:@escaping OnOptionalChannelsComplete) {
-      guard let rgbaImg: RGBAImage = try? .rgbaImage(image: image) else { Swift.print("Splitter.channels() - Unable to create rgbaImg"); onComplete(nil); return }
-      channels(rgbaImg: rgbaImg, onComplete: onComplete) // { onComplete($0) }
+   static func channels(image: Image, onComplete:@escaping OnChannelsCompleted) {
+      guard let rgbaImg: RGBAImage = try? .rgbaImage(image: image) else { onComplete(.failure(NSError("Unable to create rgbaImg"))); return }
+      channels(rgbaImg: rgbaImg, onComplete: onComplete)
    }
 }
 /**
@@ -21,7 +21,7 @@ extension Splitter {
     * Split 3 RGBAImages into 3 singular rgb channels (white represents the channel color)
     * - Fixme: ⚠️️ add rethrow here I guess, or result?
     */
-   private static func channels(rgbaImg: RGBAImage, onComplete:@escaping OnChannelsComplete) {
+   private static func channels(rgbaImg: RGBAImage, onComplete:@escaping OnChannelsCompleted) {
       // - Fixme: ⚠️️ can we move the bellow asserion in to a priv static method or var?
       let assertions: [(PixelData) -> Bool] = [ { $0.isRedish }, { $0.isGreenish }, { $0.isBlueish }]
       var rgbaImages: [RGBAImage?] = [RGBAImage?](repeating: nil, count: assertions.count)
@@ -38,11 +38,11 @@ extension Splitter {
     * channel complete
     * - Fixme: ⚠️️ simplify the deinit, refactor etc
     */
-   private static func onChannelComplete(i: Int, rgbaImage: RGBAImage, rgbaImages: inout [RGBAImage?], rgbaImg: RGBAImage, onComplete: OnChannelsComplete) {
+   private static func onChannelComplete(i: Int, rgbaImage: RGBAImage, rgbaImages: inout [RGBAImage?], rgbaImg: RGBAImage, onComplete: OnChannelsCompleted) {
       rgbaImages[i] = rgbaImage // it matters which order the qrImages came in when you stitch them back together
       if rgbaImages.first(where: { $0 == nil }) == nil { // makes sure all images finished
          let rgbaImages: [RGBAImage] = rgbaImages.compactMap { $0 }
-         onComplete((rgbaImages[0], rgbaImages[1], rgbaImages[2]))
+         onComplete(.success((rgbaImages[0], rgbaImages[1], rgbaImages[2])))
          rgbaImg.deinitiate()/*to avoid memleak*/
       }
    }
@@ -54,7 +54,7 @@ extension Splitter {
    private static func channel(rgbaImg: RGBAImage, assert: (_ pixel: PixelData) -> Bool) -> RGBAImage {
       var outImage = rgbaImg.copy
       outImage.process { pixel -> PixelData in
-         assert(pixel) ? PixelData.whitePixel : PixelData.blackPixel
+         assert(pixel) ? PixelData.Colors.whitePixel : PixelData.Colors.blackPixel
       }
       return outImage
    }

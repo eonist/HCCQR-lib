@@ -26,7 +26,7 @@ final class Compositor {
    static func composite(rgbaImageList: [RGBAImage], invert: Bool) throws -> RGBAImage {
       guard let firstRGBAImg: RGBAImage = rgbaImageList.first else { throw NSError(domain: "unable to composite - composite() - no first", code: 0) }
       let size: RGBAImage.Size = (Int(firstRGBAImg.width), Int(firstRGBAImg.height))
-      var blackRGBAImg: RGBAImage = .rgbaImage(pixel: .blackPixel, size: size)
+      var blackRGBAImg: RGBAImage = .rgbaImage(pixel: PixelData.Colors.blackPixel, size: size)
       blackRGBAImg.process { (index: Int, pixel: PixelData) -> PixelData in // Loop things
          var pixel = pixel // Fixme: ⚠️️ maybe do reduce here?
          rgbaImageList.forEach { (rgbaImage: RGBAImage) in // loop over every image in the list

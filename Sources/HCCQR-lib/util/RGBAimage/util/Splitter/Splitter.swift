@@ -9,9 +9,9 @@ final class Splitter {
     * - Fixme: ⚠️️ move the onCompositeComplete method to a priv class scoped method
     * - Fixme: ⚠️️ add result here
     */
-   static func split(uiImage: Image, onComplete:@escaping SplitPayloadComplete) {
-      let onChannelsComplete: ChannelsComplete = { channels in
-         guard let channels: RGBAImages = channels else { Swift.print("Splitter.split - Unable to create rgbaImgs"); onComplete(nil); return } // (r,g,b)
+   static func split(uiImage: Image, onComplete:@escaping SplitPayloadCompleted) {
+      let onChannelsComplete: OnChannelsCompleted = { result in
+         guard let channels: RGBAImages = result.value() else { onComplete(.failure(NSError("Unable to create rgbaImgs \(result.errorStr)"))); return } // (r,g,b)
          let channelArr: [(first: RGBAImage, second: RGBAImage)] = [(channels.b, channels.g), (channels.r, channels.b)]
          var qrImgs: [CIImage?] = [CIImage?](repeating: nil, count: channelArr.count)
          channelArr.enumerated().forEach { channel in
@@ -34,13 +34,13 @@ extension Splitter {
     * composite complete
     * - Fixme: ⚠️️ Add result
     */
-   static func onCompositeComplete(i: Int, qrImg: CIImage?, qrImgs: inout [CIImage?], channels: RGBAImages, onComplete: SplitPayloadComplete) {
-      guard let qrImg: CIImage = qrImg else { Swift.print("Splitter.split() onCompositeComplete() - no qrImg"); [channels.r, channels.g, channels.b].forEach { $0.deinitiate() }; onComplete(nil); return }
+   static func onCompositeComplete(i: Int, qrImg: CIImage?, qrImgs: inout [CIImage?], channels: RGBAImages, onComplete: SplitPayloadCompleted) {
+      guard let qrImg: CIImage = qrImg else { [channels.r, channels.g, channels.b].forEach { $0.deinitiate() }; onComplete(.failure(NSError("no qrImg"))); return }
       qrImgs[i] = qrImg // It matters which order the qrImages came in when you stitch them back together
       if qrImgs.first(where: { $0 == nil }) == nil { // Makes sure all images finished
          [channels.r, channels.g, channels.b].forEach { $0.deinitiate() } // Or else we get mem leak /*Swift.print("Splitter.split() - deallocate")*/
          let qrImages: [CIImage] = qrImgs.compactMap { $0 }
-         onComplete((qrImages[0], qrImages[1]))
+         onComplete(.success((qrImages[0], qrImages[1])))
       }
    }
 }
