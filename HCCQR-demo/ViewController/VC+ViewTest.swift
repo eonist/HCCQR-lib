@@ -307,13 +307,11 @@ extension ViewController {
       let path = Bundle.main.resourcePath!+"/temp.bundle/HCCQR17.jpg"//HCCQR12.png,HCCQR13.jpg
       guard let uiImage = UIImage(contentsOfFile: path) else { Swift.print("err getting img"); return }
       Swift.print("uiImage.size:  \(uiImage.size)")
-
-      let onComplete: (_ dataAndImages: HCCQRReader.DataAndImages?, _ error: Error?) -> Void = { dataAndImages, error in
+      // - Fixme: ⚠️️ move the bellow into own method outside this local scope
+      let onComplete: HCCQRReader.DataAndImageCompleted = { result in
          Swift.print("onComplete")
-         guard let dataAndImages = dataAndImages else { Swift.print("err getting string from hccqr img \(error?.localizedDescription ?? "err")"); return }
+         guard let dataAndImages: HCCQRReader.DataAndImages = result.value() else { Swift.print("err getting string from hccqr img \(result.errorStr)"); return }
          Swift.print("dataAndImages.data?.count:  \(String(describing: dataAndImages.data?.count))")
-         Swift.print("error:  \(String(describing: error))")
-//         Swift.print("dataAndImages.string.count:  \(dataAndImages.data?.stringUTF8?.count)")
          DispatchQueue.main.async {
             let uiimageview: UIImageView = .init(image: .init(ciImage: dataAndImages.qr1))
             let imgSize: CGSize = .init(width: uiImage.size.width / 2, height: uiImage.size.height / 2)

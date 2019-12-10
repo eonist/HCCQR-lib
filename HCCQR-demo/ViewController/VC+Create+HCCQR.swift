@@ -32,8 +32,8 @@ extension ViewController {
          imgView.frame.origin.y = 0
       }
       let splitTime: Date = .init()
-      HCCQRReader.dataAndImages(image: hccqrImage) { dataAndImages, error in // split the hccqrImg
-         self.onHCCQRReadComplete(dataAndImages: dataAndImages, error: error, startTime: startTime, splitTime: splitTime, randomString: randomString)
+      HCCQRReader.dataAndImages(image: hccqrImage) { result in // split the hccqrImg
+         self.onHCCQRReadComplete(dataAndImages: result.value(), error: result.error(), startTime: startTime, splitTime: splitTime, randomString: randomString)
       }
    }
    /**
