@@ -1,3 +1,4 @@
+#if os(iOS)
 import UIKit
 //@testable import HCCQR_lib_iOS
 /**
@@ -23,3 +24,5 @@ class FakeHCCQRView: UIView {
       fatalError("init(coder:) has not been implemented")
    }
 }
+#endif
+

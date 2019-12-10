@@ -1,7 +1,8 @@
+#if os(iOS)
 import UIKit
-//@testable import HCCQR_lib_iOS
 /**
  * Creates a (red,green,blue) image
+ * - Note: used to debug extracting RGBA channels
  */
 class RGBColorTestView: UIView {
    override init(frame: CGRect) {
@@ -19,3 +20,4 @@ class RGBColorTestView: UIView {
       fatalError("init(coder:) has not been implemented")
    }
 }
+#endif

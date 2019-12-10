@@ -2,6 +2,7 @@ import QR_lib
 import QuartzCore
 import CoreGraphics
 import CoreImage
+import ResultSugar
 
 final class SingleHCCQRTest {}
 extension SingleHCCQRTest {

@@ -1,3 +1,4 @@
+#if os(iOS)
 import UIKit
 /**
  * Create
@@ -36,3 +37,4 @@ extension SimpleHCCQRView {
       }
    }
 }
+#endif

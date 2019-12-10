@@ -1,3 +1,4 @@
+#if os(iOS)
 import UIKit
 /**
  * Create
@@ -26,3 +27,5 @@ extension FakeHCCQRView {
       }
    }
 }
+
+#endif

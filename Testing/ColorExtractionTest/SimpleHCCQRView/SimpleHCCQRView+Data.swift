@@ -1,3 +1,4 @@
+#if os(iOS)
 import UIKit
 /**
  * Data
@@ -20,3 +21,5 @@ extension SimpleHCCQRView {
       ]
    }()
 }
+
+#endif
