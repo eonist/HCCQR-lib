@@ -6,6 +6,7 @@ import CoreImage
 final class QRTesting {
    /**
     * Test creating QR
+    * - Parameter data: HCCQR data
     */
    static func createQR(data: Data) {
       Swift.print("createQR 🎉")

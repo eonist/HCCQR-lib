@@ -6,18 +6,18 @@ import ResultSugar
 
 final class SingleHCCQRTest {}
 extension SingleHCCQRTest {
+   static var startTime: Date = .init()
    /**
-    * test HCCQRImage creation (creates a single HCCQR image, then reads it)
+    * Test HCCQRImage creation (creates a single HCCQR image, then read it
     */
    static func testCreatingHCCQRImage() {
-      let startTime: Date = .init()
-      let config: HCCQRConfig = (1, .byte, .l) // config
-      guard let randomString: String = try? HCCQRStringData.randomString(config: config) else { Swift.print("unable to create random string"); return }
-      guard let data: Data = randomString.data(using: .utf8) else { Swift.print("err"); return }
-      QRTesting.createQR(data: data)
+      startTime = .init()
+      let config: QRConfig = (.v1, .byte, .l) // Config
+      guard let randomData: Data = HCCQRStringData.randomData(config: config) else { Swift.print("err"); return }
+      QRTesting.createQR(data: randomData)
       let createHCCQRTime: Date = .init()
-      HCCQRWriter.image(data: data, multipliers: (moduleScale: 6, screenScale: 1), qrConfig: (config.version, config.ecLevel)) { result in // Create HCCQR from string
-         onHCCQRWriteComplete(hccqrImage: try? result.get(), error: result.error(), startTime: startTime, createHCCQRTime: createHCCQRTime, randomString: randomString)
+      HCCQRWriter.image(data: randomData, multipliers: (moduleScale: 6, screenScale: 1), qrConfig: (config.version, config.ecLevel)) { result in // Create HCCQR from string
+         onHCCQRWriteComplete(hccqrImage: try? result.get(), error: result.error(), createHCCQRTime: createHCCQRTime, randomData: randomData)
       }
    }
 }
@@ -28,7 +28,7 @@ extension SingleHCCQRTest {
    /**
     * Write complete (Created HCCQR image from string)
     */
-   private static func onHCCQRWriteComplete(hccqrImage: Image?, error: Error?, startTime: Date, createHCCQRTime: Date, randomString: String) {
+   private static func onHCCQRWriteComplete(hccqrImage: Image?, error: Error?, createHCCQRTime: Date, randomData: Data) {
       Swift.print("hccqrImageComplete")
       guard let hccqrImage: Image = hccqrImage else { Swift.print("unable to create hccqr image \(String(describing: error?.localizedDescription))"); return }
       DispatchQueue.main.async {
@@ -42,13 +42,13 @@ extension SingleHCCQRTest {
       }
       let splitTime: Date = .init()
       HCCQRReader.dataAndImages(image: hccqrImage) { result in // split the hccqrImg
-         self.onHCCQRReadComplete(dataAndImages: result.value(), error: result.error(), startTime: startTime, splitTime: splitTime, randomString: randomString)
+         self.onHCCQRReadComplete(dataAndImages: result.value(), error: result.error(), splitTime: splitTime, randomData: randomData)
       }
    }
    /**
     * Read complete (read data from HCCQRImage)
     */
-   private static func onHCCQRReadComplete(dataAndImages: HCCQRReader.DataAndImages?, error: Error?, startTime: Date, splitTime: Date, randomString: String) {
+   private static func onHCCQRReadComplete(dataAndImages: HCCQRReader.DataAndImages?, error: Error?, splitTime: Date, randomData: Data) {
       Swift.print("hccqrDataComplete")
       DispatchQueue.main.async {
          Swift.print("Seperation complete: \(abs(splitTime.timeIntervalSinceNow))")
@@ -64,7 +64,7 @@ extension SingleHCCQRTest {
          //Swift.print("RGBAImage.deInitiatedCount:  \(RGBAImage.deInitiatedCount)")
       }
       guard let payload: String = dataAndImages?.data?.stringUTF8 else { Swift.print("unable to get string from hccqr \(String(describing: error))"); return }
-      let isMatching: Bool = randomString == payload // Assert payload
+      let isMatching: Bool = randomData.stringUTF8 == payload // Assert payload
       Swift.print("isMatching:  \(isMatching ? "✅":"🚫")")
       // Ensure that img only has valid colors, aka no bluring
       //Swift.print("hasOnlyColorMap: \(ColorizeUtil.hasOnlyColorMap(uiImage:hccqrImage, colorMap: [.red,.green,.blue,.white]))")

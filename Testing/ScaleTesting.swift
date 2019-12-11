@@ -10,9 +10,9 @@ extension ScaleTesting {
     */
    static func testScalingRGBAImage() {
 //      let randomString: String = QRStringData.randomString(max: stringCount * 2, qrMode: .byte)
-      let config: HCCQRConfig = (version: 4, mode: .byte, ecLevel: .l)
+      let config: QRConfig = (version: .v4, mode: .byte, ecLevel: .l)
       _ = { // Test HCCQR scaling
-         guard let randomString: String = try? HCCQRStringData.randomString(config: config) else { Swift.print("Unable to crate ran string"); return }
+         let randomString: String = HCCQRStringData.randomString(config: config)// else { Swift.print("Unable to crate ran string"); return }
          guard let data: Data = randomString.data(using: .utf8) else { Swift.print("err"); return }
          let dataArr: [Data] = data.split(index: data.count / 2)/*Split the data in two*/
          guard let firstItem: Data = dataArr.last else { Swift.print("err data"); return }
@@ -26,7 +26,7 @@ extension ScaleTesting {
          _ = side
       }()
       _ = { // Test QR scaling
-         guard let stringCount: Int = QRVersion.maxChar(qrVersion: 4, qrMode: .byte, ecLevel: .l) else { Swift.print("⚠️️ Unable to get stringCount ⚠️️"); return }//533
+         let stringCount: Int = QRConfigUtil.dataCount(config: config)
          let randomStr: String = QRStringData.randomString(max: stringCount, qrMode: .byte)
          //      Swift.print("randomStr.count:  \(randomStr.count)")
          guard let dataItem: Data = randomStr.data(using: .utf8, allowLossyConversion: false) else { Swift.print("err"); return }

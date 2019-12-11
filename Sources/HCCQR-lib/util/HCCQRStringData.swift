@@ -3,13 +3,20 @@ import QR_lib
 
 public final class HCCQRStringData {
    /**
-    * Returns a max random string for HCCQRConfig and colorDepth
+    * Returns Random data based on config and color-depth
+    */
+   public static func randomData(config: QRConfig, colorDepth: Int = 2) -> Data? {
+      let ranStr: String = randomString(config: config, colorDepth: colorDepth)
+      return ranStr.data(using: .utf8)
+   }
+   /**
+    * Returns a max random string for QRConfig and colorDepth
     * - Parameters:
     *   - colorDepth: 2 color-depths equals 4 colors, 4 = 8 etc
     *   - config: ecLevel, mode, version
     */
-   public static func randomString(config: HCCQRConfig, colorDepth: Int = 2) throws -> String {
-      guard let stringCount: Int = QRVersion.maxChar(qrVersion: config.version, qrMode: config.mode, ecLevel: config.ecLevel) else { throw NSError(domain: "Unable to get stringCount", code: 0) } // 533
+   public static func randomString(config: QRConfig, colorDepth: Int = 2) -> String {
+      let stringCount: Int = QRConfigUtil.dataCount(config: config)
       let strCount: Int = stringCount * colorDepth // We want to multiply with colorDepth for HCCQR
       return QRStringData.randomString(max: strCount, qrMode: config.mode)
    }

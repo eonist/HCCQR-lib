@@ -12,7 +12,7 @@ public final class HCCQRWriter {
     * - Note: use `Swift.print(hccqrImage?.hasOnlyColorMap(colorMap: [.red, .green, .blue, .white]))`//ensure that img only has valid colors, akak no bluring
     * - Fixme: ⚠️️ Add support for more colors by adding colorDepth: Int in params
     * ## Example:
-    * let (qrVersion, qrMode, ecLevel): HCCQRConfig = (10, .byte, .l) // settings
+    * let (qrVersion, qrMode, ecLevel): QRConfig = (10, .byte, .l) // settings
     * guard let randomString: String = HCCQRStringData.randomString(qrVersion: qrVersion, qrMode: qrMode, ecLevel:ecLevel) else { Swift.print("unable to create random string"); return }
     * guard let data = randomString.data(using: .utf8) else { Swift.print("err data");return }
     * HCCQRImageUtil.getHCCQRImage(data: data, moduleMultiplier: 6, scale: 2, qrConfig: (qrVersion, ecLevel), onComplete: { img in Swift.print("img.size:  \(img?.size)") })
@@ -22,7 +22,7 @@ public final class HCCQRWriter {
     *   - multipliers: for retina you need 2x scale etc,  ModuleCount equals 1 pixel. ModuleMultiplier scales this
     *   - onComplete: callback when the image has been produced
     */
-   public static func image(data: Data, multipliers: Multipliers, qrConfig: QRConfig = (10, .l), onComplete: @escaping OnHCCQRImageCompleted) {
+   public static func image(data: Data, multipliers: Multipliers, qrConfig: QRConfig = (.v10, .l), onComplete: @escaping OnHCCQRImageCompleted) {
       let dataArr: [Data] = data.split(index: data.count / 2) // Split the data in two
       var qrImgs: [Image?] = [Image?](repeating: nil, count: dataArr.count) // Pre-filled array for the images
       dataArr.enumerated().forEach { (_ offset: Int, _ data: Data) in

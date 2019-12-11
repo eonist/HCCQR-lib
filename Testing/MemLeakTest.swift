@@ -11,10 +11,9 @@ extension MemLeakTest {
     */
    static func testFixingMemLeak() {
       (0..<40).forEach { _ in
-         let (qrVersion, qrMode, ecLevel): (Int, QRMode, ECLevel) = (10, .byte, .l)//settings
-         guard let randomString: String = try? HCCQRStringData.randomString(config: (qrVersion, qrMode, ecLevel)) else { Swift.print("unable to create random string"); return }
-         guard let data = randomString.data(using: .utf8) else { Swift.print("err data"); return }
-         HCCQRWriter.image(data: data, multipliers: (moduleScale: 6, screenScale: 1), qrConfig: (qrVersion, ecLevel)) { result in Swift.print("img.size:  \(String(describing: try? result.get().size))") }//
+         let config: QRConfig = (.v10, .byte, .l)//settings
+         guard let data = HCCQRStringData.randomData(config: config) else { Swift.print("err data"); return }
+         HCCQRWriter.image(data: data, multipliers: (moduleScale: 6, screenScale: 1), qrConfig: (config.version, config.ecLevel)) { result in Swift.print("img.size:  \(String(describing: try? result.get().size))") }//
          //      guard let uiImage:UIImage = UIImage.init(contentsOfFile: Bundle.main.resourcePath!+"/temp.bundle/HCCQR9.png") else {Swift.print("err getting img");return}
          //      guard let uiImage2:UIImage = UIImage.init(contentsOfFile: Bundle.main.resourcePath!+"/temp.bundle/HCCQR9.png") else {Swift.print("err getting img");return}
          //      guard let rgba:RGBAImage = RGBAImage.rgbaImage(image: uiImage) else {return }

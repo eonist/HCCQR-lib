@@ -4,7 +4,8 @@ import QR_lib
  * Type
  */
 extension HCCQRWriter {
-   public typealias QRConfig = (qrVersion: Int, ecLevel: ECLevel)
+   // -Fixme: ⚠️️ rename to Config ? since QRConfig is something else as well
+   public typealias QRConfig = (qrVersion: QRVer, ecLevel: ECLevel)
 }
 /**
  * Useful when you setup the callbacks in apps (Thats why they are in public scope)
