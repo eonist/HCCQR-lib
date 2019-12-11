@@ -3,6 +3,9 @@ import QR_lib
 /**
  * Bulk test
  */
+
+// 🏀 Continue here, move into hybrid-os test folder
+
 extension AppDelegate {
    /**
     * Tests the speed of creating hccqr images

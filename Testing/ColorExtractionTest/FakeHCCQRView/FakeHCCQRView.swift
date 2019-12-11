@@ -25,4 +25,3 @@ class FakeHCCQRView: UIView {
    }
 }
 #endif
-

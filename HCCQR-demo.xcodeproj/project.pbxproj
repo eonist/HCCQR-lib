@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		F10296B322221710001FA2DF /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10296B222221710001FA2DF /* String+Extension.swift */; };
-		F11DE8512208F19F007A8A7A /* VC+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11DE8502208F19F007A8A7A /* VC+Test.swift */; };
 		F11DE860220B6C53007A8A7A /* temp.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F11DE85F220B6C53007A8A7A /* temp.bundle */; };
 		F14FADE821F75EF100ACE5FF /* RGBColorTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14FADE721F75EF100ACE5FF /* RGBColorTestView.swift */; };
 		F14FADF021F761FD00ACE5FF /* FakeHCCQRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14FADEF21F761FD00ACE5FF /* FakeHCCQRView.swift */; };
@@ -62,6 +61,8 @@
 		F1B698E1239E6D410085B3C9 /* HCCQRVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B698DF239E6D410085B3C9 /* HCCQRVersion.swift */; };
 		F1B698E3239E70B60085B3C9 /* HCCQRConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B698E2239E70B60085B3C9 /* HCCQRConfig.swift */; };
 		F1B698E4239E70B60085B3C9 /* HCCQRConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B698E2239E70B60085B3C9 /* HCCQRConfig.swift */; };
+		F1BFEFD323A06899007F4261 /* PixelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BFEFD223A06899007F4261 /* PixelTest.swift */; };
+		F1BFEFD423A06899007F4261 /* PixelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BFEFD223A06899007F4261 /* PixelTest.swift */; };
 		F1E6459E239407BC008D2ABE /* QR-lib in Frameworks */ = {isa = PBXBuildFile; productRef = F1E6459D239407BC008D2ABE /* QR-lib */; };
 		F1E6459F23940AC9008D2ABE /* Hybrid+iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17A29FF22137BEA000B6C0A /* Hybrid+iOS.swift */; };
 		F1E645A023940AC9008D2ABE /* Hybrid+Mac.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17A2A17221384F2000B6C0A /* Hybrid+Mac.swift */; };
@@ -152,7 +153,6 @@
 		F10296B8222218D1001FA2DF /* RGBAImage+Getter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RGBAImage+Getter.swift"; sourceTree = "<group>"; };
 		F10296BA222218DC001FA2DF /* RGBAImage+Debug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RGBAImage+Debug.swift"; sourceTree = "<group>"; };
 		F10296C0222219EF001FA2DF /* Splitter+TypeAlias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Splitter+TypeAlias.swift"; sourceTree = "<group>"; };
-		F11DE8502208F19F007A8A7A /* VC+Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VC+Test.swift"; sourceTree = "<group>"; };
 		F11DE85F220B6C53007A8A7A /* temp.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = temp.bundle; sourceTree = "<group>"; };
 		F14FADE721F75EF100ACE5FF /* RGBColorTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBColorTestView.swift; sourceTree = "<group>"; };
 		F14FADEF21F761FD00ACE5FF /* FakeHCCQRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeHCCQRView.swift; sourceTree = "<group>"; };
@@ -223,6 +223,7 @@
 		F1B698DA239E65BD0085B3C9 /* AppDelegate+Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Test.swift"; sourceTree = "<group>"; };
 		F1B698DF239E6D410085B3C9 /* HCCQRVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HCCQRVersion.swift; sourceTree = "<group>"; };
 		F1B698E2239E70B60085B3C9 /* HCCQRConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HCCQRConfig.swift; sourceTree = "<group>"; };
+		F1BFEFD223A06899007F4261 /* PixelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixelTest.swift; sourceTree = "<group>"; };
 		F1F6F7BD22221E9B0075E7FD /* HCCQRWriter+TypeAlias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HCCQRWriter+TypeAlias.swift"; sourceTree = "<group>"; };
 		F1F6F7BF22221EA80075E7FD /* HCCQRReader+TypeAlias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HCCQRReader+TypeAlias.swift"; sourceTree = "<group>"; };
 		F1FDA61E2395BF810096EEBD /* SimpleHCCQRView+Create.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SimpleHCCQRView+Create.swift"; sourceTree = "<group>"; };
@@ -270,6 +271,7 @@
 				F165C25323A01044005D30EC /* QRTesting.swift */,
 				F165C26023A020E2005D30EC /* MemLeakTest.swift */,
 				F165C26323A05B36005D30EC /* ColorizerTest.swift */,
+				F1BFEFD123A06882007F4261 /* PixelTest */,
 				F14FADE621F75EAD00ACE5FF /* ColorExtractionTest */,
 				F165C25F23A020B6005D30EC /* hccqr */,
 			);
@@ -279,9 +281,9 @@
 		F165C25F23A020B6005D30EC /* hccqr */ = {
 			isa = PBXGroup;
 			children = (
-				F165C25623A010E7005D30EC /* BulkHCCQRTest.swift */,
-				F165C25923A01EF7005D30EC /* ReadingHCCQRTest.swift */,
 				F165C25C23A01FD0005D30EC /* SingleHCCQRTest.swift */,
+				F165C25923A01EF7005D30EC /* ReadingHCCQRTest.swift */,
+				F165C25623A010E7005D30EC /* BulkHCCQRTest.swift */,
 			);
 			path = hccqr;
 			sourceTree = "<group>";
@@ -524,9 +526,16 @@
 			isa = PBXGroup;
 			children = (
 				F18A52E021790F8A003F8C13 /* ViewController.swift */,
-				F11DE8502208F19F007A8A7A /* VC+Test.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		F1BFEFD123A06882007F4261 /* PixelTest */ = {
+			isa = PBXGroup;
+			children = (
+				F1BFEFD223A06899007F4261 /* PixelTest.swift */,
+			);
+			path = PixelTest;
 			sourceTree = "<group>";
 		};
 		F1E645F423942E9D008D2ABE /* Sources */ = {
@@ -758,6 +767,7 @@
 				F18A4D81239F11040065078A /* RGBAImageUtil.swift in Sources */,
 				F1E645E723940B3D008D2ABE /* PixelData+TypeAlias.swift in Sources */,
 				F1B698E4239E70B60085B3C9 /* HCCQRConfig.swift in Sources */,
+				F1BFEFD423A06899007F4261 /* PixelTest.swift in Sources */,
 				F1E645D823940B3D008D2ABE /* RGBAImage+Setter.swift in Sources */,
 				F1E645BB23940ACA008D2ABE /* Color+Asserter.swift in Sources */,
 				F1E645E823940B3D008D2ABE /* PixelData+Getter.swift in Sources */,
@@ -839,6 +849,7 @@
 				F165C26423A05B36005D30EC /* ColorizerTest.swift in Sources */,
 				F18A52E121790F8A003F8C13 /* ViewController.swift in Sources */,
 				F1E645A023940AC9008D2ABE /* Hybrid+Mac.swift in Sources */,
+				F1BFEFD323A06899007F4261 /* PixelTest.swift in Sources */,
 				F1E645CD23940B3C008D2ABE /* PixelData+Getter.swift in Sources */,
 				F1E645D023940B3C008D2ABE /* Colorizer+ColorMap.swift in Sources */,
 				F1E645C323940B3C008D2ABE /* Compositor.swift in Sources */,
@@ -874,7 +885,6 @@
 				F1E645C023940B3C008D2ABE /* RGBAImage+Getter.swift in Sources */,
 				F165C24D239FF501005D30EC /* PixelData+Const.swift in Sources */,
 				F162145421FC7138005297DE /* SimpleHCCQRView.swift in Sources */,
-				F11DE8512208F19F007A8A7A /* VC+Test.swift in Sources */,
 				F1E645D623940B3C008D2ABE /* HCCQRReader+TypeAlias.swift in Sources */,
 				F165C247239FF385005D30EC /* PixelDataDebugger.swift in Sources */,
 				F165C25723A010E7005D30EC /* BulkHCCQRTest.swift in Sources */,

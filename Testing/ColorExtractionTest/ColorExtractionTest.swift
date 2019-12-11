@@ -31,6 +31,9 @@ final class ColorExtractionTest {
       //      }
    }
 }
+/**
+ * Extension
+ */
 extension ColorExtractionTest {
    /**
     * tests FakeHCCQRView (tests splitting a hccqr like img)
