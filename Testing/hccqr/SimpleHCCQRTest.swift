@@ -58,13 +58,13 @@ extension SimpleHCCQRTest {
     */
    static func onHCCQRDataComplete(result: Result<HCCQRReader.DataAndImages, Error>, randomData: Data) {
       guard let payload: String = try? result.get().data?.stringUTF8 else { Swift.print("unable to get string from hccqr\(result.errorStr)"); return }
-      let isMatching: Bool = randomData.stringUTF8 == payload // 3. Assert payload
+      let isMatching: Bool = randomData.stringUTF8 == payload // Assert payload
       Swift.print("isMatching:  \(isMatching ? "✅":"🚫")")
       DispatchQueue.main.async {
          Swift.print("Seperation complete: \(abs(splitTime.timeIntervalSinceNow))")
          Swift.print("Read and write done: \(abs(startTime.timeIntervalSinceNow))")
       }
-      /*ensure that img only has valid colors, akak no bluring*/
-      //Swift.print("hasOnlyColorMap: \(ColorizeUtil.hasOnlyColorMap(uiImage:hccqrImage, colorMap: [.red,.green,.blue,.white]))")
+      /* Ensure that img only has valid colors, aka no bluring*/
+      // Swift.print("hasOnlyColorMap: \(ColorizeUtil.hasOnlyColorMap(uiImage:hccqrImage, colorMap: [.red,.green,.blue,.white]))")
    }
 }

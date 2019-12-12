@@ -7,9 +7,6 @@ open class View: NSView {
       super.init(frame: frame)
       Swift.print("hello world")
       self.wantsLayer = true // if true then view is layer backed
-      //      readingManyHCCQRImages()
-      //      creatingManyHCCQRImages(onComplete:{images in Swift.print("images.count:  \(images.count)")})
-      //      testFixingMemLeak()
    }
    /**
     * Boilerplate
