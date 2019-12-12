@@ -12,7 +12,7 @@ extension BulkHCCQRTest {
    static func onCreateHCCQRImageComplete(i: Int, hccqrImage: Image?, images: inout [Image?], onComplete:@escaping OnWriteImagesComplete) {
       guard let hccqrImage = hccqrImage else { fatalError("Unable to create hccqr image") }
       images[i] = hccqrImage
-      if images.first(where: { $0 == nil }) == nil { // Make sure all images finish
+      if images.first(where: { $0 == nil }) == nil { // Make sure all images were written
          let images: [Image] = images.compactMap { $0 }
          onComplete(images)
       }
@@ -23,7 +23,7 @@ extension BulkHCCQRTest {
    static func onReadHCCQRImageComplete(i: Int, result: Result<HCCQRReader.DataAndImages, Error>, payloads: inout [Data?], onComplete: OnReadImagesComplete) {
       guard  let payload: Data = result.value() else { return }
       payloads[i] = payload
-      if payloads.first(where: { $0 == nil }) == nil { // Makes sure all images finished
+      if payloads.first(where: { $0 == nil }) == nil { // Makes sure all images were read
          let payloads: [Data] = payloads.compactMap { $0 }
          onComplete(payloads)
       }
