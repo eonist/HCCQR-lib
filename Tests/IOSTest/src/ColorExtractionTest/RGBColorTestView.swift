@@ -1,5 +1,6 @@
 #if os(iOS)
 import UIKit
+@testable import HCCQR_lib
 /**
  * Creates a (red,green,blue) image
  * - Note: used to debug extracting RGBA channels

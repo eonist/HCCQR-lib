@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "F18A52DA21790F8A003F8C13"
-               BuildableName = "HCCQR-demo.app"
-               BlueprintName = "HCCQR-demo"
+               BuildableName = "HCCQR-lib.app"
+               BlueprintName = "HCCQR-lib"
                ReferencedContainer = "container:HCCQR-demo.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -31,12 +31,22 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F18A52DA21790F8A003F8C13"
-            BuildableName = "HCCQR-demo.app"
-            BlueprintName = "HCCQR-demo"
+            BuildableName = "HCCQR-lib.app"
+            BlueprintName = "HCCQR-lib"
             ReferencedContainer = "container:HCCQR-demo.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "F1E5710523A3EF3100E090BB"
+               BuildableName = "IOSTest.xctest"
+               BlueprintName = "IOSTest"
+               ReferencedContainer = "container:HCCQR-demo.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
@@ -54,8 +64,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F18A52DA21790F8A003F8C13"
-            BuildableName = "HCCQR-demo.app"
-            BlueprintName = "HCCQR-demo"
+            BuildableName = "HCCQR-lib.app"
+            BlueprintName = "HCCQR-lib"
             ReferencedContainer = "container:HCCQR-demo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -71,8 +81,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F18A52DA21790F8A003F8C13"
-            BuildableName = "HCCQR-demo.app"
-            BlueprintName = "HCCQR-demo"
+            BuildableName = "HCCQR-lib.app"
+            BlueprintName = "HCCQR-lib"
             ReferencedContainer = "container:HCCQR-demo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

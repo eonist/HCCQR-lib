@@ -1,4 +1,5 @@
 #if os(iOS)
+@testable import HCCQR_lib
 import UIKit
 
 final class ColorExtractionTest {

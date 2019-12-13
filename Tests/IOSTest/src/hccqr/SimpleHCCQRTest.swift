@@ -3,6 +3,7 @@ import QuartzCore
 import CoreGraphics
 import CoreImage
 import ResultSugar
+@testable import HCCQR_lib
 /**
  * - Fixme: ⚠️️ Maybe remove some of the threading closures, and rename some methods, add comments
  */

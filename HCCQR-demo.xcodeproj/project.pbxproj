@@ -9,9 +9,6 @@
 /* Begin PBXBuildFile section */
 		F10296B322221710001FA2DF /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10296B222221710001FA2DF /* String+Extension.swift */; };
 		F11DE860220B6C53007A8A7A /* temp.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F11DE85F220B6C53007A8A7A /* temp.bundle */; };
-		F14FADE821F75EF100ACE5FF /* RGBColorTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14FADE721F75EF100ACE5FF /* RGBColorTestView.swift */; };
-		F14FADF021F761FD00ACE5FF /* FakeHCCQRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14FADEF21F761FD00ACE5FF /* FakeHCCQRView.swift */; };
-		F162145421FC7138005297DE /* SimpleHCCQRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162145321FC7138005297DE /* SimpleHCCQRView.swift */; };
 		F165C208239F22A7005D30EC /* RangeUInt8.swift in Sources */ = {isa = PBXBuildFile; fileRef = F165C207239F22A7005D30EC /* RangeUInt8.swift */; };
 		F165C209239F22A7005D30EC /* RangeUInt8.swift in Sources */ = {isa = PBXBuildFile; fileRef = F165C207239F22A7005D30EC /* RangeUInt8.swift */; };
 		F165C243239FC8B9005D30EC /* ResultSugar in Frameworks */ = {isa = PBXBuildFile; productRef = F165C242239FC8B9005D30EC /* ResultSugar */; };
@@ -22,22 +19,6 @@
 		F165C24B239FF49C005D30EC /* PixelData.Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = F165C249239FF49C005D30EC /* PixelData.Color.swift */; };
 		F165C24D239FF501005D30EC /* PixelData+Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = F165C24C239FF501005D30EC /* PixelData+Const.swift */; };
 		F165C24E239FF501005D30EC /* PixelData+Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = F165C24C239FF501005D30EC /* PixelData+Const.swift */; };
-		F165C25123A00D35005D30EC /* ScaleTesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F165C25023A00D35005D30EC /* ScaleTesting.swift */; };
-		F165C25223A00D35005D30EC /* ScaleTesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F165C25023A00D35005D30EC /* ScaleTesting.swift */; };
-		F165C25423A01044005D30EC /* QRTesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F165C25323A01044005D30EC /* QRTesting.swift */; };
-		F165C25523A01044005D30EC /* QRTesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F165C25323A01044005D30EC /* QRTesting.swift */; };
-		F165C25723A010E7005D30EC /* BulkHCCQRTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F165C25623A010E7005D30EC /* BulkHCCQRTest.swift */; };
-		F165C25823A010E7005D30EC /* BulkHCCQRTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F165C25623A010E7005D30EC /* BulkHCCQRTest.swift */; };
-		F165C25A23A01EF7005D30EC /* ReadingHCCQRTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F165C25923A01EF7005D30EC /* ReadingHCCQRTest.swift */; };
-		F165C25B23A01EF7005D30EC /* ReadingHCCQRTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F165C25923A01EF7005D30EC /* ReadingHCCQRTest.swift */; };
-		F165C25D23A01FD0005D30EC /* SingleHCCQRTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F165C25C23A01FD0005D30EC /* SingleHCCQRTest.swift */; };
-		F165C25E23A01FD0005D30EC /* SingleHCCQRTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F165C25C23A01FD0005D30EC /* SingleHCCQRTest.swift */; };
-		F165C26123A020E2005D30EC /* MemLeakTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F165C26023A020E2005D30EC /* MemLeakTest.swift */; };
-		F165C26223A020E2005D30EC /* MemLeakTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F165C26023A020E2005D30EC /* MemLeakTest.swift */; };
-		F165C26423A05B36005D30EC /* ColorizerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F165C26323A05B36005D30EC /* ColorizerTest.swift */; };
-		F165C26523A05B37005D30EC /* ColorizerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F165C26323A05B36005D30EC /* ColorizerTest.swift */; };
-		F165C26723A06384005D30EC /* ColorExtractionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F165C26623A06384005D30EC /* ColorExtractionTest.swift */; };
-		F165C26823A06384005D30EC /* ColorExtractionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F165C26623A06384005D30EC /* ColorExtractionTest.swift */; };
 		F17F5B88221A267600383955 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17F5B87221A267600383955 /* AppDelegate.swift */; };
 		F17F5B8A221A267B00383955 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F17F5B89221A267B00383955 /* Assets.xcassets */; };
 		F17F5B8D221A267B00383955 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F17F5B8B221A267B00383955 /* MainMenu.xib */; };
@@ -59,16 +40,26 @@
 		F1B698E1239E6D410085B3C9 /* HCCQRVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B698DF239E6D410085B3C9 /* HCCQRVersion.swift */; };
 		F1B698E3239E70B60085B3C9 /* HCCQRConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B698E2239E70B60085B3C9 /* HCCQRConfig.swift */; };
 		F1B698E4239E70B60085B3C9 /* HCCQRConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B698E2239E70B60085B3C9 /* HCCQRConfig.swift */; };
-		F1BFEFD323A06899007F4261 /* PixelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BFEFD223A06899007F4261 /* PixelTest.swift */; };
-		F1BFEFD423A06899007F4261 /* PixelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BFEFD223A06899007F4261 /* PixelTest.swift */; };
-		F1BFEFD923A19A13007F4261 /* SimpleHCCQRTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BFEFD823A19A13007F4261 /* SimpleHCCQRTest.swift */; };
-		F1BFEFDA23A19A13007F4261 /* SimpleHCCQRTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BFEFD823A19A13007F4261 /* SimpleHCCQRTest.swift */; };
-		F1BFEFDC23A23814007F4261 /* BulkHCCQRTest+Handler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BFEFDB23A23814007F4261 /* BulkHCCQRTest+Handler.swift */; };
-		F1BFEFDD23A23814007F4261 /* BulkHCCQRTest+Handler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BFEFDB23A23814007F4261 /* BulkHCCQRTest+Handler.swift */; };
-		F1BFEFE023A23C1B007F4261 /* BulkHCCQRTest+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BFEFDF23A23C1B007F4261 /* BulkHCCQRTest+Core.swift */; };
-		F1BFEFE123A23C1B007F4261 /* BulkHCCQRTest+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BFEFDF23A23C1B007F4261 /* BulkHCCQRTest+Core.swift */; };
-		F1BFEFE323A23DDA007F4261 /* BulkHCCQRTest+TypeAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BFEFE223A23DDA007F4261 /* BulkHCCQRTest+TypeAlias.swift */; };
-		F1BFEFE423A23DDA007F4261 /* BulkHCCQRTest+TypeAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BFEFE223A23DDA007F4261 /* BulkHCCQRTest+TypeAlias.swift */; };
+		F1E5710923A3EF3100E090BB /* IOSTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E5710823A3EF3100E090BB /* IOSTest.swift */; };
+		F1E5711723A3F2C400E090BB /* ScaleTesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F165C25023A00D35005D30EC /* ScaleTesting.swift */; };
+		F1E5711823A3F2C400E090BB /* QRTesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F165C25323A01044005D30EC /* QRTesting.swift */; };
+		F1E5711923A3F2C400E090BB /* MemLeakTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F165C26023A020E2005D30EC /* MemLeakTest.swift */; };
+		F1E5711A23A3F2C400E090BB /* ColorizerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F165C26323A05B36005D30EC /* ColorizerTest.swift */; };
+		F1E5711B23A3F2C400E090BB /* PixelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BFEFD223A06899007F4261 /* PixelTest.swift */; };
+		F1E5711C23A3F2C400E090BB /* RGBColorTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14FADE721F75EF100ACE5FF /* RGBColorTestView.swift */; };
+		F1E5711D23A3F2C400E090BB /* FakeHCCQRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14FADEF21F761FD00ACE5FF /* FakeHCCQRView.swift */; };
+		F1E5711E23A3F2C400E090BB /* FakeHCCQRView+Create.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FDA6232395C0230096EEBD /* FakeHCCQRView+Create.swift */; };
+		F1E5711F23A3F2C400E090BB /* SimpleHCCQRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162145321FC7138005297DE /* SimpleHCCQRView.swift */; };
+		F1E5712023A3F2C400E090BB /* SimpleHCCQRView+Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FDA6202395BFBD0096EEBD /* SimpleHCCQRView+Data.swift */; };
+		F1E5712123A3F2C400E090BB /* SimpleHCCQRView+Create.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FDA61E2395BF810096EEBD /* SimpleHCCQRView+Create.swift */; };
+		F1E5712223A3F2C400E090BB /* ColorExtractionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F165C26623A06384005D30EC /* ColorExtractionTest.swift */; };
+		F1E5712323A3F2C400E090BB /* SingleHCCQRTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F165C25C23A01FD0005D30EC /* SingleHCCQRTest.swift */; };
+		F1E5712423A3F2C400E090BB /* SimpleHCCQRTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BFEFD823A19A13007F4261 /* SimpleHCCQRTest.swift */; };
+		F1E5712523A3F2C400E090BB /* ReadingHCCQRTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F165C25923A01EF7005D30EC /* ReadingHCCQRTest.swift */; };
+		F1E5712623A3F2C400E090BB /* BulkHCCQRTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F165C25623A010E7005D30EC /* BulkHCCQRTest.swift */; };
+		F1E5712723A3F2C400E090BB /* BulkHCCQRTest+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BFEFDF23A23C1B007F4261 /* BulkHCCQRTest+Core.swift */; };
+		F1E5712823A3F2C400E090BB /* BulkHCCQRTest+Handler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BFEFDB23A23814007F4261 /* BulkHCCQRTest+Handler.swift */; };
+		F1E5712923A3F2C400E090BB /* BulkHCCQRTest+TypeAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BFEFE223A23DDA007F4261 /* BulkHCCQRTest+TypeAlias.swift */; };
 		F1E6459E239407BC008D2ABE /* QR-lib in Frameworks */ = {isa = PBXBuildFile; productRef = F1E6459D239407BC008D2ABE /* QR-lib */; };
 		F1E6459F23940AC9008D2ABE /* Hybrid+iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17A29FF22137BEA000B6C0A /* Hybrid+iOS.swift */; };
 		F1E645A023940AC9008D2ABE /* Hybrid+Mac.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17A2A17221384F2000B6C0A /* Hybrid+Mac.swift */; };
@@ -148,10 +139,17 @@
 		F1E645F023940B3D008D2ABE /* HCCQRReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852AB221348F000C27EAA /* HCCQRReader.swift */; };
 		F1E645F123940B3D008D2ABE /* HCCQRReader+TypeAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F6F7BF22221EA80075E7FD /* HCCQRReader+TypeAlias.swift */; };
 		F1E645F3239429CA008D2ABE /* QR-lib in Frameworks */ = {isa = PBXBuildFile; productRef = F1E645F2239429CA008D2ABE /* QR-lib */; };
-		F1FDA61F2395BF810096EEBD /* SimpleHCCQRView+Create.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FDA61E2395BF810096EEBD /* SimpleHCCQRView+Create.swift */; };
-		F1FDA6212395BFBD0096EEBD /* SimpleHCCQRView+Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FDA6202395BFBD0096EEBD /* SimpleHCCQRView+Data.swift */; };
-		F1FDA6242395C0230096EEBD /* FakeHCCQRView+Create.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FDA6232395C0230096EEBD /* FakeHCCQRView+Create.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F1E5710B23A3EF3100E090BB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F18A52D321790F8A003F8C13 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F18A52DA21790F8A003F8C13;
+			remoteInfo = "HCCQR-lib";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		F10296B222221710001FA2DF /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
@@ -216,7 +214,7 @@
 		F18A4D7F239F11040065078A /* RGBAImageUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBAImageUtil.swift; sourceTree = "<group>"; };
 		F18A4D82239F11ED0065078A /* RGBAImageScaler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBAImageScaler.swift; sourceTree = "<group>"; };
 		F18A4D85239F170F0065078A /* HCCQRConfigUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HCCQRConfigUtil.swift; sourceTree = "<group>"; };
-		F18A52DB21790F8A003F8C13 /* HCCQR-demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HCCQR-demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F18A52DB21790F8A003F8C13 /* HCCQR-lib.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HCCQR-lib.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F18A52DE21790F8A003F8C13 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F18A52E021790F8A003F8C13 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		F18A52E321790F8A003F8C13 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -232,6 +230,9 @@
 		F1BFEFDB23A23814007F4261 /* BulkHCCQRTest+Handler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BulkHCCQRTest+Handler.swift"; sourceTree = "<group>"; };
 		F1BFEFDF23A23C1B007F4261 /* BulkHCCQRTest+Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BulkHCCQRTest+Core.swift"; sourceTree = "<group>"; };
 		F1BFEFE223A23DDA007F4261 /* BulkHCCQRTest+TypeAlias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BulkHCCQRTest+TypeAlias.swift"; sourceTree = "<group>"; };
+		F1E5710623A3EF3100E090BB /* IOSTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IOSTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F1E5710823A3EF3100E090BB /* IOSTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOSTest.swift; sourceTree = "<group>"; };
+		F1E5710A23A3EF3100E090BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F1F6F7BD22221E9B0075E7FD /* HCCQRWriter+TypeAlias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HCCQRWriter+TypeAlias.swift"; sourceTree = "<group>"; };
 		F1F6F7BF22221EA80075E7FD /* HCCQRReader+TypeAlias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HCCQRReader+TypeAlias.swift"; sourceTree = "<group>"; };
 		F1FDA61E2395BF810096EEBD /* SimpleHCCQRView+Create.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SimpleHCCQRView+Create.swift"; sourceTree = "<group>"; };
@@ -258,6 +259,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F1E5710323A3EF3100E090BB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -272,7 +280,7 @@
 			path = ColorExtractionTest;
 			sourceTree = "<group>";
 		};
-		F165C24F23A00D08005D30EC /* Testing */ = {
+		F165C24F23A00D08005D30EC /* src */ = {
 			isa = PBXGroup;
 			children = (
 				F165C25023A00D35005D30EC /* ScaleTesting.swift */,
@@ -283,7 +291,7 @@
 				F14FADE621F75EAD00ACE5FF /* ColorExtractionTest */,
 				F165C25F23A020B6005D30EC /* hccqr */,
 			);
-			path = Testing;
+			path = src;
 			sourceTree = "<group>";
 		};
 		F165C25F23A020B6005D30EC /* hccqr */ = {
@@ -489,8 +497,8 @@
 		F18A52D221790F8A003F8C13 = {
 			isa = PBXGroup;
 			children = (
+				F1E5711023A3EF5000E090BB /* Tests */,
 				F1E645F423942E9D008D2ABE /* Sources */,
-				F165C24F23A00D08005D30EC /* Testing */,
 				F18A52DD21790F8A003F8C13 /* HCCQR-demo */,
 				F17F5B86221A267600383955 /* HCCQR-demo-mac */,
 				F18A52DC21790F8A003F8C13 /* Products */,
@@ -502,8 +510,9 @@
 		F18A52DC21790F8A003F8C13 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F18A52DB21790F8A003F8C13 /* HCCQR-demo.app */,
+				F18A52DB21790F8A003F8C13 /* HCCQR-lib.app */,
 				F17F5B85221A267600383955 /* HCCQR-demo-mac.app */,
+				F1E5710623A3EF3100E090BB /* IOSTest.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -554,6 +563,24 @@
 				F1BFEFE223A23DDA007F4261 /* BulkHCCQRTest+TypeAlias.swift */,
 			);
 			path = BulkHCCQRTest;
+			sourceTree = "<group>";
+		};
+		F1E5710723A3EF3100E090BB /* IOSTest */ = {
+			isa = PBXGroup;
+			children = (
+				F165C24F23A00D08005D30EC /* src */,
+				F1E5710823A3EF3100E090BB /* IOSTest.swift */,
+				F1E5710A23A3EF3100E090BB /* Info.plist */,
+			);
+			path = IOSTest;
+			sourceTree = "<group>";
+		};
+		F1E5711023A3EF5000E090BB /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				F1E5710723A3EF3100E090BB /* IOSTest */,
+			);
+			path = Tests;
 			sourceTree = "<group>";
 		};
 		F1E645F423942E9D008D2ABE /* Sources */ = {
@@ -647,9 +674,9 @@
 			productReference = F17F5B85221A267600383955 /* HCCQR-demo-mac.app */;
 			productType = "com.apple.product-type.application";
 		};
-		F18A52DA21790F8A003F8C13 /* HCCQR-demo */ = {
+		F18A52DA21790F8A003F8C13 /* HCCQR-lib */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F18A52ED21790F8D003F8C13 /* Build configuration list for PBXNativeTarget "HCCQR-demo" */;
+			buildConfigurationList = F18A52ED21790F8D003F8C13 /* Build configuration list for PBXNativeTarget "HCCQR-lib" */;
 			buildPhases = (
 				F18A52D721790F8A003F8C13 /* Sources */,
 				F18A52D821790F8A003F8C13 /* Frameworks */,
@@ -660,14 +687,32 @@
 			);
 			dependencies = (
 			);
-			name = "HCCQR-demo";
+			name = "HCCQR-lib";
 			packageProductDependencies = (
 				F1E6459D239407BC008D2ABE /* QR-lib */,
 				F165C242239FC8B9005D30EC /* ResultSugar */,
 			);
 			productName = "HCCQR-demo";
-			productReference = F18A52DB21790F8A003F8C13 /* HCCQR-demo.app */;
+			productReference = F18A52DB21790F8A003F8C13 /* HCCQR-lib.app */;
 			productType = "com.apple.product-type.application";
+		};
+		F1E5710523A3EF3100E090BB /* IOSTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F1E5710D23A3EF3100E090BB /* Build configuration list for PBXNativeTarget "IOSTest" */;
+			buildPhases = (
+				F1E5710223A3EF3100E090BB /* Sources */,
+				F1E5710323A3EF3100E090BB /* Frameworks */,
+				F1E5710423A3EF3100E090BB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F1E5710C23A3EF3100E090BB /* PBXTargetDependency */,
+			);
+			name = IOSTest;
+			productName = IOSTest;
+			productReference = F1E5710623A3EF3100E090BB /* IOSTest.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -675,7 +720,7 @@
 		F18A52D321790F8A003F8C13 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1010;
+				LastSwiftUpdateCheck = 1120;
 				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = FutureLab;
 				TargetAttributes = {
@@ -684,6 +729,10 @@
 					};
 					F18A52DA21790F8A003F8C13 = {
 						CreatedOnToolsVersion = 10.0;
+					};
+					F1E5710523A3EF3100E090BB = {
+						CreatedOnToolsVersion = 11.2;
+						TestTargetID = F18A52DA21790F8A003F8C13;
 					};
 				};
 			};
@@ -704,8 +753,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F18A52DA21790F8A003F8C13 /* HCCQR-demo */,
+				F18A52DA21790F8A003F8C13 /* HCCQR-lib */,
 				F17F5B84221A267600383955 /* HCCQR-demo-mac */,
+				F1E5710523A3EF3100E090BB /* IOSTest */,
 			);
 		};
 /* End PBXProject section */
@@ -728,6 +778,13 @@
 				F11DE860220B6C53007A8A7A /* temp.bundle in Resources */,
 				F18A52E621790F8D003F8C13 /* Assets.xcassets in Resources */,
 				F18A52E421790F8A003F8C13 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F1E5710423A3EF3100E090BB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -784,47 +841,35 @@
 				F18A4D81239F11040065078A /* RGBAImageUtil.swift in Sources */,
 				F1E645E723940B3D008D2ABE /* PixelData+TypeAlias.swift in Sources */,
 				F1B698E4239E70B60085B3C9 /* HCCQRConfig.swift in Sources */,
-				F1BFEFD423A06899007F4261 /* PixelTest.swift in Sources */,
 				F1E645D823940B3D008D2ABE /* RGBAImage+Setter.swift in Sources */,
 				F1E645BB23940ACA008D2ABE /* Color+Asserter.swift in Sources */,
 				F1E645E823940B3D008D2ABE /* PixelData+Getter.swift in Sources */,
 				F17F5B88221A267600383955 /* AppDelegate.swift in Sources */,
 				F1E645DD23940B3D008D2ABE /* RGBAImage+Init.swift in Sources */,
 				F1E645EE23940B3D008D2ABE /* HCCQRWriter.swift in Sources */,
-				F165C26223A020E2005D30EC /* MemLeakTest.swift in Sources */,
 				F1B698D7239E64E70085B3C9 /* View.swift in Sources */,
-				F165C26823A06384005D30EC /* ColorExtractionTest.swift in Sources */,
 				F1E645B223940ACA008D2ABE /* String+Extension.swift in Sources */,
 				F18A4D87239F170F0065078A /* HCCQRConfigUtil.swift in Sources */,
-				F1BFEFDA23A19A13007F4261 /* SimpleHCCQRTest.swift in Sources */,
-				F1BFEFDD23A23814007F4261 /* BulkHCCQRTest+Handler.swift in Sources */,
 				F1E645DA23940B3D008D2ABE /* RGBAImage+TypeAlias.swift in Sources */,
 				F1E645E623940B3D008D2ABE /* PixelData+Assert.swift in Sources */,
 				F1E645AD23940ACA008D2ABE /* Hybrid+iOS.swift in Sources */,
 				F1E645E123940B3D008D2ABE /* Splitter+Channels.swift in Sources */,
 				F1E645EC23940B3D008D2ABE /* ColorMapAsserter.swift in Sources */,
 				F1E645F123940B3D008D2ABE /* HCCQRReader+TypeAlias.swift in Sources */,
-				F1BFEFE123A23C1B007F4261 /* BulkHCCQRTest+Core.swift in Sources */,
 				F1E645DC23940B3D008D2ABE /* RGBAImage+Debug.swift in Sources */,
 				F1E645EA23940B3D008D2ABE /* Colorizer+Core.swift in Sources */,
 				F1E645B323940ACA008D2ABE /* Image+Extension.swift in Sources */,
 				F1E645AE23940ACA008D2ABE /* Hybrid+Mac.swift in Sources */,
-				F165C25E23A01FD0005D30EC /* SingleHCCQRTest.swift in Sources */,
 				F1E645B823940ACA008D2ABE /* UInt8Parser.swift in Sources */,
-				F165C25523A01044005D30EC /* QRTesting.swift in Sources */,
 				F18A4D84239F11ED0065078A /* RGBAImageScaler.swift in Sources */,
 				F165C24E239FF501005D30EC /* PixelData+Const.swift in Sources */,
 				F1E645EB23940B3D008D2ABE /* Colorizer+ColorMap.swift in Sources */,
 				F1E645B123940ACA008D2ABE /* UIImage+Extension.swift in Sources */,
 				F1E645ED23940B3D008D2ABE /* HCCQRStringData.swift in Sources */,
 				F1E645E223940B3D008D2ABE /* PixelData.swift in Sources */,
-				F1BFEFE423A23DDA007F4261 /* BulkHCCQRTest+TypeAlias.swift in Sources */,
-				F165C26523A05B37005D30EC /* ColorizerTest.swift in Sources */,
-				F165C25823A010E7005D30EC /* BulkHCCQRTest.swift in Sources */,
 				F1E645E523940B3D008D2ABE /* PixelData+Setter.swift in Sources */,
 				F1E645E923940B3D008D2ABE /* Colorizer.swift in Sources */,
 				F1B698E1239E6D410085B3C9 /* HCCQRVersion.swift in Sources */,
-				F165C25B23A01EF7005D30EC /* ReadingHCCQRTest.swift in Sources */,
 				F1E645EF23940B3D008D2ABE /* HCCQRWriter+TypeAlias.swift in Sources */,
 				F1E645D723940B3D008D2ABE /* RGBAImage.swift in Sources */,
 				F1E645E423940B3D008D2ABE /* PixelData+Init.swift in Sources */,
@@ -834,7 +879,6 @@
 				F1E645DF23940B3D008D2ABE /* Splitter.swift in Sources */,
 				F1E645B623940ACA008D2ABE /* CGImage+Extension.swift in Sources */,
 				F1E645B523940ACA008D2ABE /* Data+Extension.swift in Sources */,
-				F165C25223A00D35005D30EC /* ScaleTesting.swift in Sources */,
 				F1E645E023940B3D008D2ABE /* Splitter+TypeAlias.swift in Sources */,
 				F1E645DB23940B3D008D2ABE /* RGBAImage+Getter.swift in Sources */,
 				F1E645B023940ACA008D2ABE /* UIView+Extension.swift in Sources */,
@@ -849,10 +893,6 @@
 				F1E645C123940B3C008D2ABE /* RGBAImage+Debug.swift in Sources */,
 				F1E645BD23940B3C008D2ABE /* RGBAImage+Setter.swift in Sources */,
 				F1E645CC23940B3C008D2ABE /* PixelData+TypeAlias.swift in Sources */,
-				F165C25123A00D35005D30EC /* ScaleTesting.swift in Sources */,
-				F165C25D23A01FD0005D30EC /* SingleHCCQRTest.swift in Sources */,
-				F1FDA61F2395BF810096EEBD /* SimpleHCCQRView+Create.swift in Sources */,
-				F1BFEFDC23A23814007F4261 /* BulkHCCQRTest+Handler.swift in Sources */,
 				F1E645CB23940B3C008D2ABE /* PixelData+Assert.swift in Sources */,
 				F1E645AB23940AC9008D2ABE /* Color+Parser.swift in Sources */,
 				F1E645C523940B3C008D2ABE /* Splitter+TypeAlias.swift in Sources */,
@@ -861,65 +901,85 @@
 				F1E645CF23940B3C008D2ABE /* Colorizer+Core.swift in Sources */,
 				F1E645C223940B3C008D2ABE /* RGBAImage+Init.swift in Sources */,
 				F1E645D523940B3C008D2ABE /* HCCQRReader.swift in Sources */,
-				F165C25423A01044005D30EC /* QRTesting.swift in Sources */,
 				F165C24A239FF49C005D30EC /* PixelData.Color.swift in Sources */,
 				F1E645D223940B3C008D2ABE /* HCCQRStringData.swift in Sources */,
 				F1E645C623940B3C008D2ABE /* Splitter+Channels.swift in Sources */,
 				F1E645C923940B3C008D2ABE /* PixelData+Init.swift in Sources */,
 				F1B698E3239E70B60085B3C9 /* HCCQRConfig.swift in Sources */,
-				F165C26423A05B36005D30EC /* ColorizerTest.swift in Sources */,
 				F18A52E121790F8A003F8C13 /* ViewController.swift in Sources */,
 				F1E645A023940AC9008D2ABE /* Hybrid+Mac.swift in Sources */,
-				F1BFEFD323A06899007F4261 /* PixelTest.swift in Sources */,
 				F1E645CD23940B3C008D2ABE /* PixelData+Getter.swift in Sources */,
 				F1E645D023940B3C008D2ABE /* Colorizer+ColorMap.swift in Sources */,
 				F1E645C323940B3C008D2ABE /* Compositor.swift in Sources */,
 				F1E645AC23940AC9008D2ABE /* Color+Asserter.swift in Sources */,
 				F1E645A823940AC9008D2ABE /* UInt8Asserter.swift in Sources */,
 				F1E645A723940AC9008D2ABE /* CGImage+Extension.swift in Sources */,
-				F14FADF021F761FD00ACE5FF /* FakeHCCQRView.swift in Sources */,
 				F1E645D123940B3C008D2ABE /* ColorMapAsserter.swift in Sources */,
 				F10296B322221710001FA2DF /* String+Extension.swift in Sources */,
 				F1E645C823940B3C008D2ABE /* PixelDataUtil.swift in Sources */,
 				F1E645CE23940B3C008D2ABE /* Colorizer.swift in Sources */,
 				F1E645D423940B3C008D2ABE /* HCCQRWriter+TypeAlias.swift in Sources */,
-				F165C25A23A01EF7005D30EC /* ReadingHCCQRTest.swift in Sources */,
 				F1E6459F23940AC9008D2ABE /* Hybrid+iOS.swift in Sources */,
-				F1BFEFD923A19A13007F4261 /* SimpleHCCQRTest.swift in Sources */,
 				F1E645D323940B3C008D2ABE /* HCCQRWriter.swift in Sources */,
 				F1E645BF23940B3C008D2ABE /* RGBAImage+TypeAlias.swift in Sources */,
-				F165C26123A020E2005D30EC /* MemLeakTest.swift in Sources */,
 				F1E645A123940AC9008D2ABE /* ImageUtil.swift in Sources */,
 				F165C208239F22A7005D30EC /* RangeUInt8.swift in Sources */,
 				F1E645C723940B3C008D2ABE /* PixelData.swift in Sources */,
 				F1E645BC23940B3C008D2ABE /* RGBAImage.swift in Sources */,
-				F1FDA6212395BFBD0096EEBD /* SimpleHCCQRView+Data.swift in Sources */,
 				F1B698E0239E6D410085B3C9 /* HCCQRVersion.swift in Sources */,
 				F18A4D83239F11ED0065078A /* RGBAImageScaler.swift in Sources */,
 				F1E645A423940AC9008D2ABE /* Image+Extension.swift in Sources */,
 				F18A52DF21790F8A003F8C13 /* AppDelegate.swift in Sources */,
 				F1E645A323940AC9008D2ABE /* UIImage+Extension.swift in Sources */,
-				F14FADE821F75EF100ACE5FF /* RGBColorTestView.swift in Sources */,
 				F1E645A623940AC9008D2ABE /* Data+Extension.swift in Sources */,
-				F165C26723A06384005D30EC /* ColorExtractionTest.swift in Sources */,
 				F1E645CA23940B3C008D2ABE /* PixelData+Setter.swift in Sources */,
-				F1BFEFE023A23C1B007F4261 /* BulkHCCQRTest+Core.swift in Sources */,
-				F1BFEFE323A23DDA007F4261 /* BulkHCCQRTest+TypeAlias.swift in Sources */,
 				F1E645A923940AC9008D2ABE /* UInt8Parser.swift in Sources */,
 				F1E645C023940B3C008D2ABE /* RGBAImage+Getter.swift in Sources */,
 				F165C24D239FF501005D30EC /* PixelData+Const.swift in Sources */,
-				F162145421FC7138005297DE /* SimpleHCCQRView.swift in Sources */,
 				F1E645D623940B3C008D2ABE /* HCCQRReader+TypeAlias.swift in Sources */,
 				F165C247239FF385005D30EC /* PixelDataDebugger.swift in Sources */,
-				F165C25723A010E7005D30EC /* BulkHCCQRTest.swift in Sources */,
 				F18A4D86239F170F0065078A /* HCCQRConfigUtil.swift in Sources */,
 				F18A4D80239F11040065078A /* RGBAImageUtil.swift in Sources */,
 				F1E645C423940B3C008D2ABE /* Splitter.swift in Sources */,
-				F1FDA6242395C0230096EEBD /* FakeHCCQRView+Create.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F1E5710223A3EF3100E090BB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F1E5711923A3F2C400E090BB /* MemLeakTest.swift in Sources */,
+				F1E5712323A3F2C400E090BB /* SingleHCCQRTest.swift in Sources */,
+				F1E5711D23A3F2C400E090BB /* FakeHCCQRView.swift in Sources */,
+				F1E5711F23A3F2C400E090BB /* SimpleHCCQRView.swift in Sources */,
+				F1E5710923A3EF3100E090BB /* IOSTest.swift in Sources */,
+				F1E5711823A3F2C400E090BB /* QRTesting.swift in Sources */,
+				F1E5711723A3F2C400E090BB /* ScaleTesting.swift in Sources */,
+				F1E5712823A3F2C400E090BB /* BulkHCCQRTest+Handler.swift in Sources */,
+				F1E5711C23A3F2C400E090BB /* RGBColorTestView.swift in Sources */,
+				F1E5711B23A3F2C400E090BB /* PixelTest.swift in Sources */,
+				F1E5712123A3F2C400E090BB /* SimpleHCCQRView+Create.swift in Sources */,
+				F1E5712623A3F2C400E090BB /* BulkHCCQRTest.swift in Sources */,
+				F1E5712023A3F2C400E090BB /* SimpleHCCQRView+Data.swift in Sources */,
+				F1E5712223A3F2C400E090BB /* ColorExtractionTest.swift in Sources */,
+				F1E5712523A3F2C400E090BB /* ReadingHCCQRTest.swift in Sources */,
+				F1E5712723A3F2C400E090BB /* BulkHCCQRTest+Core.swift in Sources */,
+				F1E5711A23A3F2C400E090BB /* ColorizerTest.swift in Sources */,
+				F1E5712423A3F2C400E090BB /* SimpleHCCQRTest.swift in Sources */,
+				F1E5712923A3F2C400E090BB /* BulkHCCQRTest+TypeAlias.swift in Sources */,
+				F1E5711E23A3F2C400E090BB /* FakeHCCQRView+Create.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F1E5710C23A3EF3100E090BB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F18A52DA21790F8A003F8C13 /* HCCQR-lib */;
+			targetProxy = F1E5710B23A3EF3100E090BB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		F17F5B8B221A267B00383955 /* MainMenu.xib */ = {
@@ -1151,6 +1211,46 @@
 			};
 			name = Release;
 		};
+		F1E5710E23A3EF3100E090BB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = Tests/IOSTest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.futurelab.IOSTest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HCCQR-lib.app/HCCQR-lib";
+			};
+			name = Debug;
+		};
+		F1E5710F23A3EF3100E090BB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = Tests/IOSTest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.futurelab.IOSTest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HCCQR-lib.app/HCCQR-lib";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1172,11 +1272,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F18A52ED21790F8D003F8C13 /* Build configuration list for PBXNativeTarget "HCCQR-demo" */ = {
+		F18A52ED21790F8D003F8C13 /* Build configuration list for PBXNativeTarget "HCCQR-lib" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F18A52EE21790F8D003F8C13 /* Debug */,
 				F18A52EF21790F8D003F8C13 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F1E5710D23A3EF3100E090BB /* Build configuration list for PBXNativeTarget "IOSTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F1E5710E23A3EF3100E090BB /* Debug */,
+				F1E5710F23A3EF3100E090BB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

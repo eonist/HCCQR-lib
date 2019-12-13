@@ -22,6 +22,9 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages which this package depends on.
         .target(
             name: "HCCQR-lib",
-            dependencies: ["QR-lib", "ResultSugar"])
+            dependencies: ["QR-lib", "ResultSugar"]),
+        .testTarget(
+            name: "IOSTest",
+            dependencies: ["HCCQR-lib", "QR-lib", "ResultSugar"])
     ]
 )

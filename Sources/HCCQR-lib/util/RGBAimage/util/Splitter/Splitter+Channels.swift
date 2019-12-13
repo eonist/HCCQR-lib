@@ -1,4 +1,5 @@
 import Foundation
+import ResultSugar
 /**
  * Utils
  * - Fixme: ⚠️️ Maybe rename to RGBAImageSplitter

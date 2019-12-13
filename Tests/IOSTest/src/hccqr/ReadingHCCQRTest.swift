@@ -2,6 +2,7 @@ import QR_lib
 import QuartzCore
 import CoreGraphics
 import CoreImage
+@testable import HCCQR_lib
 
 final class ReadingHCCQRTest {}
 extension ReadingHCCQRTest {

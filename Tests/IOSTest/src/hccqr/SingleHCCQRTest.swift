@@ -3,6 +3,7 @@ import QuartzCore
 import CoreGraphics
 import CoreImage
 import ResultSugar
+@testable import HCCQR_lib
 
 final class SingleHCCQRTest {}
 extension SingleHCCQRTest {

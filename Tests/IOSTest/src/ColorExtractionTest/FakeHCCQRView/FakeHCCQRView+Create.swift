@@ -1,5 +1,6 @@
 #if os(iOS)
 import UIKit
+@testable import HCCQR_lib
 /**
  * Create
  */
@@ -27,5 +28,4 @@ extension FakeHCCQRView {
       }
    }
 }
-
 #endif
