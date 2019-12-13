@@ -707,6 +707,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				F161E98723A403C100349E4D /* PBXTargetDependency */,
+				F161E98923A403C100349E4D /* PBXTargetDependency */,
 				F1E5710C23A3EF3100E090BB /* PBXTargetDependency */,
 			);
 			name = IOSTest;
@@ -974,6 +976,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		F161E98723A403C100349E4D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = F161E98623A403C100349E4D /* QR-lib */;
+		};
+		F161E98923A403C100349E4D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = F161E98823A403C100349E4D /* ResultSugar */;
+		};
 		F1E5710C23A3EF3100E090BB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = F18A52DA21790F8A003F8C13 /* HCCQR-lib */;
@@ -1312,6 +1322,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		F161E98623A403C100349E4D /* QR-lib */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F1E6459C239407BC008D2ABE /* XCRemoteSwiftPackageReference "QR-lib" */;
+			productName = "QR-lib";
+		};
+		F161E98823A403C100349E4D /* ResultSugar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F165C241239FC8B9005D30EC /* XCRemoteSwiftPackageReference "ResultSugar" */;
+			productName = ResultSugar;
+		};
 		F165C242239FC8B9005D30EC /* ResultSugar */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = F165C241239FC8B9005D30EC /* XCRemoteSwiftPackageReference "ResultSugar" */;

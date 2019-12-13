@@ -1,3 +1,4 @@
+#if os(iOS) // ⚠️️ add mac support later
 import QR_lib
 import QuartzCore
 import CoreGraphics
@@ -15,7 +16,7 @@ extension SingleHCCQRTest {
       startTime = .init()
       let config: QRConfig = (.v1, .byte, .l) // Config
       guard let randomData: Data = HCCQRStringData.randomData(config: config) else { Swift.print("err"); return }
-      QRTesting.createQR(data: randomData)
+//      QRTesting.createQR(data: randomData)
       let createHCCQRTime: Date = .init()
       HCCQRWriter.image(data: randomData, multipliers: (moduleScale: 6, screenScale: 1), qrConfig: (config.version, config.ecLevel)) { result in // Create HCCQR from string
          onHCCQRWriteComplete(hccqrImage: try? result.get(), error: result.error(), createHCCQRTime: createHCCQRTime, randomData: randomData)
@@ -54,7 +55,7 @@ extension SingleHCCQRTest {
       DispatchQueue.main.async {
          Swift.print("Seperation complete: \(abs(splitTime.timeIntervalSinceNow))")
          Swift.print("All done: \(abs(startTime.timeIntervalSinceNow))")
-         guard let qr1Img = dataAndImages?.qr1 else { Swift.print("err qr1"); return }
+         guard let qr1Img: CIImage = dataAndImages?.qr1 else { Swift.print("err qr1"); return }
          let img: Image = .init(ciImage: qr1Img)
          _ = img
          // ⚠️️ add ImageView to repo
@@ -71,3 +72,4 @@ extension SingleHCCQRTest {
       //Swift.print("hasOnlyColorMap: \(ColorizeUtil.hasOnlyColorMap(uiImage:hccqrImage, colorMap: [.red,.green,.blue,.white]))")
    }
 }
+#endif
