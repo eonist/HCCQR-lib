@@ -22,9 +22,10 @@ extension BulkHCCQRTest {
     * Called when a single hccqr image is read
     */
    static func onReadHCCQRImageComplete(i: Int, result: Result<HCCQRReader.DataAndImages, Error>, payloads: inout [Data?], onComplete: OnReadImagesComplete) {
-      Swift.print("onReadHCCQRImageComplete")
-      guard  let payload: Data = result.value() else { onComplete(.failure(NSError(domain: "Unable to read hccqr image", code: 0))); return }
+      Swift.print("onReadHCCQRImageComplete: \(try? result.get().data?.count)")
+      guard  let payload: Data = try? result.get().data else { onComplete(.failure(NSError(domain: "Unable to read hccqr image", code: 0))); return }
       payloads[i] = payload
+      Swift.print("payloads:  \(payloads)")
       if payloads.first(where: { $0 == nil }) == nil { // Makes sure all images were read
          let payloads: [Data] = payloads.compactMap { $0 }
          onComplete(.success(payloads))

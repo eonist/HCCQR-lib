@@ -26,6 +26,7 @@ public final class HCCQRReader {
    public static func dataAndImages(image: Image, onComplete:@escaping DataAndImageCompleted) {
 //      Swift.print("dataAndImages")
       let onSplitComplete: Splitter.SplitPayloadCompleted = { result in
+//         Swift.print("onSplitComplete")
          guard let payload: Splitter.SplitPayload = result.value() else { onComplete(.failure(NSError("q1, q2 err \(result.errorStr)"))); return }
          let ciImages: [CIImage] = [payload.qrImg1, payload.qrImg2]
          var dataAndFrames: [QRReader.DataAndQuad?] = [QRReader.DataAndQuad?](repeating: nil, count: ciImages.count)

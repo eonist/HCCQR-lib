@@ -25,7 +25,7 @@ extension BulkHCCQRTest {
          Swift.print("WriteTime:  \(abs(writeTime.timeIntervalSinceNow)) for images.count: \(images.count)")
          readTime = .init() // Start readTime measurment
          readHCCQRImages(images: images) { result in
-            guard let payloads: [String] = result.value() else { onComplete(false); return }
+            guard let payloads: [Data] = result.value() else { onComplete(false); return }
             Swift.print("ReadTime:  \(abs(readTime.timeIntervalSinceNow)) for payloads.count: \(payloads.count)")
             Swift.print("Total time: \(abs(totalTime.timeIntervalSinceNow)) for payloads.count: \(payloads.count)")
             onComplete(true)
@@ -33,3 +33,6 @@ extension BulkHCCQRTest {
       }
    }
 }
+
+// 🏀 cleanup
+   // works now
