@@ -1,7 +1,9 @@
 #if os(iOS)
 @testable import HCCQR_lib
 import UIKit
-
+/**
+ * - Fixme: ⚠️️These are mostly visual tests, find something to unit-test
+ */
 final class ColorExtractionTest {
    /**
     * testSimpleHCCQRView (creates a bunch of squares in B&W and then tries to make hccqr like image)
@@ -56,7 +58,7 @@ extension ColorExtractionTest {
       _ = r
       guard let g: RGBAImage = try? .rgbaImage(image: images.g) else { return }
       guard let b: RGBAImage = try? .rgbaImage(image: images.b) else { return }
-      guard let composite = try? Compositor.composite(rgbaImageList: [b, g/*,g*/], invert: false) else { return }
+      guard let composite: RGBAImage = try? Compositor.composite(rgbaImageList: [b, g/*,g*/], invert: false) else { return }
       _ = composite
       /**/
       Swift.print("⚠️️ the bellow may not work anymore, scale is new ⚠️️")
@@ -85,7 +87,7 @@ extension ColorExtractionTest {
       guard let composite = try? Compositor.composite(rgbaImageList: [r, g/*,b*/], invert: false) else { return }
       /**/
       Swift.print("⚠️️ the bellow may not work anymore, scale is new ⚠️️")
-      let img: UIImage? = try? RGBAImageUtil.image(rgbaImage: composite, scale: image.scale)
+      let img: Image? = try? RGBAImageUtil.image(rgbaImage: composite, scale: image.scale)
       let imgView: UIImageView = .init(image: img)
       view.addSubview(imgView)
       imgView.frame.origin.y = 200

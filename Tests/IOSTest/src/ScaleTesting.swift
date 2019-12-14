@@ -18,7 +18,7 @@ extension ScaleTesting {
          let randomStr: String = QRStringData.randomString(max: stringCount, qrMode: .byte)
          //      Swift.print("randomStr.count:  \(randomStr.count)")
          guard let dataItem: Data = randomStr.data(using: .utf8, allowLossyConversion: false) else { Swift.print("err"); return nil }
-         Swift.print("dataItem:  \(dataItem)")
+//         Swift.print("dataItem:  \(dataItem)")
          guard let qrImage: Image = try? QRWriter.image(data: dataItem, ecLevel: .l) else { Swift.print("unable to create UIImage");return nil }
          //add qr to rgba
          guard let rgbaImage: RGBAImage = try? .rgbaImage(image: qrImage) else { Swift.print("unable to get rgbaimage from img"); return nil }
@@ -30,10 +30,11 @@ extension ScaleTesting {
       }()
       guard let ciImg: CIImage = /*image?.ciImage ?? */image?.ciImage() else { Swift.print("err ciimg"); return nil }
       let symbolVersion: Int? = try? ciImg.symbolVersion()
-      Swift.print("symbolVersion:  \(String(describing: symbolVersion))")
-      let ecLevel = try? ciImg.ecLevel()
-      Swift.print("ecLevel:  \(ecLevel == CIQRCodeDescriptor.ErrorCorrectionLevel.levelL)")
-      return symbolVersion
+//      Swift.print("symbolVersion:  \(String(describing: symbolVersion))")
+       // Fixme: ⚠️️ add the ecLevel to the test
+//      let ecLevel = try? ciImg.ecLevel()
+//      Swift.print("ecLevel:  \(ecLevel == CIQRCodeDescriptor.ErrorCorrectionLevel.levelL)")
+      return symbolVersion //
    }
    /**
     *

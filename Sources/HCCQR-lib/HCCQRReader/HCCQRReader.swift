@@ -24,6 +24,7 @@ public final class HCCQRReader {
     * - Fixme: ⚠️️ When the first QRImage Quad is found, the subsequent QR-Rects will be in the same quadrant, clip the subsequent images
     */
    public static func dataAndImages(image: Image, onComplete:@escaping DataAndImageCompleted) {
+//      Swift.print("dataAndImages")
       let onSplitComplete: Splitter.SplitPayloadCompleted = { result in
          guard let payload: Splitter.SplitPayload = result.value() else { onComplete(.failure(NSError("q1, q2 err \(result.errorStr)"))); return }
          let ciImages: [CIImage] = [payload.qrImg1, payload.qrImg2]

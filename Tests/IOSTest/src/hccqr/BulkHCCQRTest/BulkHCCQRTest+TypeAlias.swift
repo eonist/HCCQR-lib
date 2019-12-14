@@ -3,7 +3,7 @@ import Foundation
 
 extension BulkHCCQRTest {
    // Write complete
-   typealias OnWriteImagesComplete = (_ images: [Image]) -> Void
+   typealias OnWriteImagesComplete = (Result<[Image], Error>) -> Void
    // read complete
-   typealias OnReadImagesComplete = (_ payloads: [Data]) -> Void
+   typealias OnReadImagesComplete = (Result<[Data], Error>) -> Void
 }

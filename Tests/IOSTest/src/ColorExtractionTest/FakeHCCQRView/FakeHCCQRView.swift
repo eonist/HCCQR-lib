@@ -11,6 +11,7 @@ import UIKit
  * - Note: you only need to invert layer items that are zero 👈
  * - Note: layer 1 needs green and blue (the other colors are blank)
  * - Note: layer 2 needs red and blue (the other colors are blank)
+ * - Fixme: ⚠️️ This needs something to test
  */
 class FakeHCCQRView: UIView {
    override init(frame: CGRect) {

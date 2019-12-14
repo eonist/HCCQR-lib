@@ -25,7 +25,7 @@ HCCQR is short for `High capacity color quick response code`
 ```swift
 let config: QRConfig = (.v10, .byte, .l)
 guard let data: Data = HCCQRStringData.randomData(config: config) else { return }
-HCCQRWriter.image(data: data, multiplier:(6,2) config: (config.version, config.ecLevel)) { result in
+HCCQRWriter.image(data: data, multiplier: (6, 2) config: (config.version, config.ecLevel)) { result in
   guard let img = try? result.get().image else { Swift.print("\(result.errorStr)"); return }
   let imgView = UIImageView(image: img)
   self.view.addSubview(imgView)

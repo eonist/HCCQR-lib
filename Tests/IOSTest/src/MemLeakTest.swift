@@ -9,12 +9,18 @@ class MemLeakTest {}
 extension MemLeakTest {
    /**
     * Debugging memory leak
+    * ## Examples
+    * MemLeakTest.testFixingMemLeak()
     */
    static func testFixingMemLeak() {
       (0..<40).forEach { _ in
-         let config: QRConfig = (.v10, .byte, .l)//settings
+         let config: QRConfig = (.v10, .byte, .l) // Settings
          guard let data = HCCQRStringData.randomData(config: config) else { Swift.print("err data"); return }
-         HCCQRWriter.image(data: data, multipliers: (moduleScale: 6, screenScale: 1), qrConfig: (config.version, config.ecLevel)) { result in Swift.print("img.size:  \(String(describing: try? result.get().size))") }//
+         HCCQRWriter.image(data: data, multipliers: (moduleScale: 6, screenScale: 1), qrConfig: (config.version, config.ecLevel)) { result in
+//            Swift.print("img.size:  \(String(describing: try? result.get().size))")
+            guard let img: Image = result.value() else { Swift.print("result.errorStr:  \(result.errorStr)"); fatalError("err") }
+            Swift.print("img:  \(img)")
+         }
          //      guard let uiImage:UIImage = UIImage.init(contentsOfFile: Bundle.main.resourcePath!+"/temp.bundle/HCCQR9.png") else {Swift.print("err getting img");return}
          //      guard let uiImage2:UIImage = UIImage.init(contentsOfFile: Bundle.main.resourcePath!+"/temp.bundle/HCCQR9.png") else {Swift.print("err getting img");return}
          //      guard let rgba:RGBAImage = RGBAImage.rgbaImage(image: uiImage) else {return }

@@ -4,6 +4,7 @@ import UIKit
 //@testable import HCCQR_lib_iOS
 /**
  * Creates a HCCQR pallet based on 2 layers of black and white grids
+ * - Fixme: ⚠️️ This needs something to test
  */
 class SimpleHCCQRView: UIView {
    lazy var view1: UIView = createView1()
