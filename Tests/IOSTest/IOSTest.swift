@@ -1,4 +1,5 @@
 import XCTest
+@testable import HCCQR_lib
 
 class IOSTest: XCTestCase {
    override func setUp() {
@@ -22,8 +23,6 @@ class IOSTest: XCTestCase {
 //         in Swift.print("success:  \(success)")
 //         XCTAssertTrue(success)
 //      }
-      
-      
       // 🏀 test 1 or 2 in bulk to debug, compare with simple test, something is wrong
 //      BulkHCCQRTest.initiateTest { success in
 //         Swift.print("BulkHCCQRTest: success:  \(success)")

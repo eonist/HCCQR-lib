@@ -1,9 +1,8 @@
-#if os(iOS) // ⚠️️ add mac support later
 import QR_lib
 import QuartzCore
 import CoreGraphics
 import CoreImage
-import ResultSugar
+//import ResultSugar
 @testable import HCCQR_lib
 
 final class SingleHCCQRTest {}
@@ -57,8 +56,9 @@ extension SingleHCCQRTest {
          Swift.print("Seperation complete: \(abs(splitTime.timeIntervalSinceNow))")
          Swift.print("All done: \(abs(startTime.timeIntervalSinceNow))")
          guard let qr1Img: CIImage = dataAndImages?.qr1 else { Swift.print("err qr1"); return }
-         let img: Image = .init(ciImage: qr1Img)
-         _ = img
+         _ = qr1Img
+//         let img: Image = .init(ciImage: qr1Img)
+//         _ = img
       }
       guard let payload: String = dataAndImages?.data?.stringUTF8 else { Swift.print("unable to get string from hccqr \(String(describing: error))"); onComplete(false); return }
       let isMatching: Bool = randomData.stringUTF8 == payload // Assert payload
@@ -68,7 +68,6 @@ extension SingleHCCQRTest {
       //Swift.print("hasOnlyColorMap: \(ColorizeUtil.hasOnlyColorMap(uiImage:hccqrImage, colorMap: [.red,.green,.blue,.white]))")
    }
 }
-#endif
 // ⚠️️ add ImageView to repo
 //      let imgView: UIImageView = .init(image: hccqrImage)
 //      self.view.addSubview(imgView) // Add image to view
