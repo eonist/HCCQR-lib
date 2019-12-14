@@ -11,12 +11,9 @@ class ViewController: UIViewController {
 //      SingleHCCQRTest.testCreatingHCCQRImage { isMatching in
 //         Swift.print("isMatching:  \(isMatching)")
 //      }
-      BulkHCCQRTest.initiateTest { success in
-         Swift.print("BulkHCCQRTest: success:  \(success)")
-      }
+//      BulkHCCQRTest.initiateTest { success in
+//         Swift.print("BulkHCCQRTest: success:  \(success)")
+//      }
    }
    override var prefersStatusBarHidden: Bool { return true } // hides statusbar
 }
-
-// continue here
-   // check read code, the handler is being called or something 🤷

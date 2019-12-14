@@ -33,6 +33,3 @@ extension BulkHCCQRTest {
       }
    }
 }
-
-// 🏀 cleanup
-   // works now
