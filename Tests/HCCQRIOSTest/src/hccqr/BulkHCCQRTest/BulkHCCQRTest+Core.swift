@@ -6,7 +6,7 @@ import CoreImage
 
 extension BulkHCCQRTest {
    /**
-    * Write many
+    * Write many HCCQR images
     *  ## Examples:
     * creatingManyHCCQRImages(onComplete: { images in Swift.print("images.count:  \(images.count)") } )
     */
@@ -29,9 +29,7 @@ extension BulkHCCQRTest {
       var payloads: [Data?] = [Data?](repeating: nil, count: images.count)
       images.enumerated().forEach { arg in
          DispatchQueue.global(qos: .userInitiated).async {
-//            Swift.print("arg.offset:  \(arg.offset)")
             HCCQRReader.dataAndImages(image: arg.element) { result in
-//               Swift.print("read")
                DispatchQueue.main.async { // we need to go on the mainthread to manipulate array
                   onReadHCCQRImageComplete(i: arg.offset, result: result, payloads: &payloads, onComplete: onComplete)
                }

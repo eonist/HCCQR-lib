@@ -6,7 +6,7 @@ import CoreImage
 
 final class BulkHCCQRTest {}
 /**
- * Read
+ * Read and write multiple HCCQR images
  */
 extension BulkHCCQRTest {
    typealias OnComplete = (Bool) -> Void

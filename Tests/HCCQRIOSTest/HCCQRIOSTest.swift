@@ -31,7 +31,7 @@ extension HCCQRIOSTest {
    private func testSingle() {
       let expectation = self.expectation(description: "single")
       SingleHCCQRTest.testCreatingHCCQRImage { isMatching in
-         Swift.print("isMatching:  \(isMatching)")
+         Swift.print("isMatching:  \(isMatching ? "✅" : "🚫")")
          expectation.fulfill()
          XCTAssertTrue(isMatching)
       }
@@ -39,23 +39,24 @@ extension HCCQRIOSTest {
    }
    /**
     * Bulk
+    * - Abstract: Read and write multiple HCCQR images
     */
    private func testBulk() {
       let expectation = self.expectation(description: "bulk")
       BulkHCCQRTest.initiateTest { success in
-         Swift.print("BulkHCCQRTest: success:  \(success)")
+         Swift.print("BulkHCCQRTest: success:  \(success ? "✅" : "🚫")")
          expectation.fulfill()
          XCTAssertTrue(success)
       }
       waitForExpectations(timeout: 20, handler: nil)
    }
    /**
-    * Reading
+    * Reading real photos
     */
    private func testReadingHCCQR() {
       let expectation = self.expectation(description: "reading")
       ReadingHCCQRTest.testReadingHCCQRPhoto { success
-         in Swift.print("success:  \(success)")
+         in Swift.print("success:  \(success ? "✅" : "🚫")")
          expectation.fulfill()
          XCTAssertTrue(success)
       }
