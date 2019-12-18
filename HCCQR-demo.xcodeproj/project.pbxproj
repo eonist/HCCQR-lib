@@ -40,7 +40,7 @@
 		F1B698E1239E6D410085B3C9 /* HCCQRVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B698DF239E6D410085B3C9 /* HCCQRVersion.swift */; };
 		F1B698E3239E70B60085B3C9 /* HCCQRConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B698E2239E70B60085B3C9 /* HCCQRConfig.swift */; };
 		F1B698E4239E70B60085B3C9 /* HCCQRConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B698E2239E70B60085B3C9 /* HCCQRConfig.swift */; };
-		F1E5710923A3EF3100E090BB /* IOSTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E5710823A3EF3100E090BB /* IOSTest.swift */; };
+		F1E5710923A3EF3100E090BB /* HCCQRIOSTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E5710823A3EF3100E090BB /* HCCQRIOSTest.swift */; };
 		F1E5711723A3F2C400E090BB /* ScaleTesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F165C25023A00D35005D30EC /* ScaleTesting.swift */; };
 		F1E5711823A3F2C400E090BB /* QRTesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F165C25323A01044005D30EC /* QRTesting.swift */; };
 		F1E5711923A3F2C400E090BB /* MemLeakTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F165C26023A020E2005D30EC /* MemLeakTest.swift */; };
@@ -230,8 +230,8 @@
 		F1BFEFDB23A23814007F4261 /* BulkHCCQRTest+Handler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BulkHCCQRTest+Handler.swift"; sourceTree = "<group>"; };
 		F1BFEFDF23A23C1B007F4261 /* BulkHCCQRTest+Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BulkHCCQRTest+Core.swift"; sourceTree = "<group>"; };
 		F1BFEFE223A23DDA007F4261 /* BulkHCCQRTest+TypeAlias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BulkHCCQRTest+TypeAlias.swift"; sourceTree = "<group>"; };
-		F1E5710623A3EF3100E090BB /* IOSTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IOSTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F1E5710823A3EF3100E090BB /* IOSTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOSTest.swift; sourceTree = "<group>"; };
+		F1E5710623A3EF3100E090BB /* HCCQRIOSTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HCCQRIOSTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F1E5710823A3EF3100E090BB /* HCCQRIOSTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HCCQRIOSTest.swift; sourceTree = "<group>"; };
 		F1E5710A23A3EF3100E090BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F1F6F7BD22221E9B0075E7FD /* HCCQRWriter+TypeAlias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HCCQRWriter+TypeAlias.swift"; sourceTree = "<group>"; };
 		F1F6F7BF22221EA80075E7FD /* HCCQRReader+TypeAlias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HCCQRReader+TypeAlias.swift"; sourceTree = "<group>"; };
@@ -512,7 +512,7 @@
 			children = (
 				F18A52DB21790F8A003F8C13 /* HCCQR-lib.app */,
 				F17F5B85221A267600383955 /* HCCQR-demo-mac.app */,
-				F1E5710623A3EF3100E090BB /* IOSTest.xctest */,
+				F1E5710623A3EF3100E090BB /* HCCQRIOSTest.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -565,20 +565,20 @@
 			path = BulkHCCQRTest;
 			sourceTree = "<group>";
 		};
-		F1E5710723A3EF3100E090BB /* IOSTest */ = {
+		F1E5710723A3EF3100E090BB /* HCCQRIOSTest */ = {
 			isa = PBXGroup;
 			children = (
 				F165C24F23A00D08005D30EC /* src */,
-				F1E5710823A3EF3100E090BB /* IOSTest.swift */,
+				F1E5710823A3EF3100E090BB /* HCCQRIOSTest.swift */,
 				F1E5710A23A3EF3100E090BB /* Info.plist */,
 			);
-			path = IOSTest;
+			path = HCCQRIOSTest;
 			sourceTree = "<group>";
 		};
 		F1E5711023A3EF5000E090BB /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				F1E5710723A3EF3100E090BB /* IOSTest */,
+				F1E5710723A3EF3100E090BB /* HCCQRIOSTest */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -696,9 +696,9 @@
 			productReference = F18A52DB21790F8A003F8C13 /* HCCQR-lib.app */;
 			productType = "com.apple.product-type.application";
 		};
-		F1E5710523A3EF3100E090BB /* IOSTest */ = {
+		F1E5710523A3EF3100E090BB /* HCCQRIOSTest */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F1E5710D23A3EF3100E090BB /* Build configuration list for PBXNativeTarget "IOSTest" */;
+			buildConfigurationList = F1E5710D23A3EF3100E090BB /* Build configuration list for PBXNativeTarget "HCCQRIOSTest" */;
 			buildPhases = (
 				F1E5710223A3EF3100E090BB /* Sources */,
 				F1E5710323A3EF3100E090BB /* Frameworks */,
@@ -711,9 +711,9 @@
 				F161E98923A403C100349E4D /* PBXTargetDependency */,
 				F1E5710C23A3EF3100E090BB /* PBXTargetDependency */,
 			);
-			name = IOSTest;
+			name = HCCQRIOSTest;
 			productName = IOSTest;
-			productReference = F1E5710623A3EF3100E090BB /* IOSTest.xctest */;
+			productReference = F1E5710623A3EF3100E090BB /* HCCQRIOSTest.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -757,7 +757,7 @@
 			targets = (
 				F18A52DA21790F8A003F8C13 /* HCCQR-lib */,
 				F17F5B84221A267600383955 /* HCCQR-demo-mac */,
-				F1E5710523A3EF3100E090BB /* IOSTest */,
+				F1E5710523A3EF3100E090BB /* HCCQRIOSTest */,
 			);
 		};
 /* End PBXProject section */
@@ -954,7 +954,7 @@
 				F1E5712323A3F2C400E090BB /* SingleHCCQRTest.swift in Sources */,
 				F1E5711D23A3F2C400E090BB /* FakeHCCQRView.swift in Sources */,
 				F1E5711F23A3F2C400E090BB /* SimpleHCCQRView.swift in Sources */,
-				F1E5710923A3EF3100E090BB /* IOSTest.swift in Sources */,
+				F1E5710923A3EF3100E090BB /* HCCQRIOSTest.swift in Sources */,
 				F1E5711823A3F2C400E090BB /* QRTesting.swift in Sources */,
 				F1E5711723A3F2C400E090BB /* ScaleTesting.swift in Sources */,
 				F1E5712823A3F2C400E090BB /* BulkHCCQRTest+Handler.swift in Sources */,
@@ -1226,7 +1226,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = Tests/IOSTest/Info.plist;
+				INFOPLIST_FILE = Tests/HCCQRIOSTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1246,7 +1246,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = Tests/IOSTest/Info.plist;
+				INFOPLIST_FILE = Tests/HCCQRIOSTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1291,7 +1291,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F1E5710D23A3EF3100E090BB /* Build configuration list for PBXNativeTarget "IOSTest" */ = {
+		F1E5710D23A3EF3100E090BB /* Build configuration list for PBXNativeTarget "HCCQRIOSTest" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F1E5710E23A3EF3100E090BB /* Debug */,

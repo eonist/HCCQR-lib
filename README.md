@@ -3,6 +3,7 @@
 [![codebeat badge](https://codebeat.co/badges/b1ae5c9a-1250-4f2c-80bf-fe1eda045d42)](https://codebeat.co/projects/github-com-light-stream-hccqr-lib-master)
 [![SwiftLint Sindre](https://img.shields.io/badge/SwiftLint-Sindre-hotpink.svg)](https://github.com/sindresorhus/swiftlint-sindre)
 [![Github actions badge](https://github.com/light-stream/HCCQR-lib/workflows/Tests/badge.svg)](https://github.com/light-stream/HCCQR-lib/actions)
+
 # HCCQR-lib
 
 <img width="138" alt="img" src="https://github.com/stylekit/img/blob/master/Screenshot 2019-04-05 at 11.01.21.png?raw=true">
@@ -21,6 +22,12 @@ HCCQR is short for `High capacity color quick response code`
 ### How to get it
 - SPM: `github "light-stream/HCCQR-lib"` branch: `"master"`
 
+### Dependencies:
+| Repo  | Description | Quality | Tests |
+| ------------- | ------------- | ------ | ---- |
+| [QR-lib](https://github.com/eonist/QR-lib) | Quick response | [![codebeat badge](https://codebeat.co/badges/7514c7a6-b59d-45bb-8c7f-90be3d0c7ad7)](https://codebeat.co/projects/github-com-light-stream-qr-lib-master) | [![Github actions badge](https://github.com/light-stream/QR-lib/workflows/Tests/badge.svg)](https://github.com/light-stream/QR-lib/actions) |
+| [ResultSugar](https://github.com/eonist/ResultSugar) | Sugar for result | [![codebeat badge](https://codebeat.co/badges/cb649e6d-a601-47c5-b2c4-179158d5f431)](https://codebeat.co/projects/github-com-eonist-resultsugar-master) | na |
+
 ### Creating HCCQR image
 ```swift
 let config: QRConfig = (.v10, .byte, .l)
@@ -31,6 +38,7 @@ HCCQRWriter.image(data: data, multiplier: (6, 2) config: (config.version, config
   self.view.addSubview(imgView)
 }
 ```
+
 ### Reading HCCQR image
 ```swift
 HCCQRReader.data(image: img) { result in

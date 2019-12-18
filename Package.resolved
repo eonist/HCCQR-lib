@@ -6,7 +6,7 @@
         "repositoryURL": "https://github.com/light-stream/QR-lib.git",
         "state": {
           "branch": "master",
-          "revision": "3a47ce7621811d535f24778f65b0e382a4b4c351",
+          "revision": "20c69aead355c8002534b809139a15dc9a3ddeb2",
           "version": null
         }
       },
@@ -15,7 +15,7 @@
         "repositoryURL": "https://github.com/eonist/ResultSugar.git",
         "state": {
           "branch": "master",
-          "revision": "f7666f7c6b2d582deb7e597dc679b79eddab978d",
+          "revision": "68e87ca6d713e4941150ce0dbdae7209f24fdaee",
           "version": null
         }
       }

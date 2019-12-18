@@ -42,8 +42,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "F1E5710523A3EF3100E090BB"
-               BuildableName = "IOSTest.xctest"
-               BlueprintName = "IOSTest"
+               BuildableName = "HCCQRIOSTest.xctest"
+               BlueprintName = "HCCQRIOSTest"
                ReferencedContainer = "container:HCCQR-demo.xcodeproj">
             </BuildableReference>
          </TestableReference>

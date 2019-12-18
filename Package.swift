@@ -24,7 +24,7 @@ let package = Package(
             name: "HCCQR-lib",
             dependencies: ["QR-lib", "ResultSugar"]),
         .testTarget(
-            name: "IOSTest",
+            name: "HCCQRIOSTest",
             dependencies: ["HCCQR-lib", "QR-lib", "ResultSugar"])
     ]
 )

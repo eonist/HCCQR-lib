@@ -1,29 +1,30 @@
 import XCTest
 @testable import HCCQR_lib
 
-class IOSTest: XCTestCase {
+class HCCQRIOSTest: XCTestCase {
    override func setUp() {
       super.setUp()
-      continueAfterFailure = true
    }
    override func tearDown() {
       super.tearDown()
    }
    func testExample() {
-      XCTAssertEqual("Hello, World!", "Hello, World!")
       XCTAssertEqual(QRTesting.createQR(), CGSize(width: 354.0, height: 354.0))
       XCTAssertEqual(ScaleTesting.testScalingRGBAImage(), 4)
       XCTAssertTrue(ColorizerTest.testColorizer())
       XCTAssertTrue(PixelTest.testColorAssertionWithinThresholdForPixel())
       testSingle()
-      testReadingHCCQR()
+//      testReadingHCCQR() // ⚠️️ only works in xcode-simulator
       testBulk()
    }
    func testPerformanceExample() {
       self.measure { }
    }
 }
-extension IOSTest {
+/**
+ * Tests (callback)
+ */
+extension HCCQRIOSTest {
    /**
     * Single
     */
@@ -40,7 +41,7 @@ extension IOSTest {
     * Bulk
     */
    private func testBulk() {
-      let expectation = self.expectation(description: "single")
+      let expectation = self.expectation(description: "bulk")
       BulkHCCQRTest.initiateTest { success in
          Swift.print("BulkHCCQRTest: success:  \(success)")
          expectation.fulfill()
@@ -58,6 +59,6 @@ extension IOSTest {
          expectation.fulfill()
          XCTAssertTrue(success)
       }
-      waitForExpectations(timeout: 5, handler: nil)
+      waitForExpectations(timeout: 20, handler: nil)
    }
 }
