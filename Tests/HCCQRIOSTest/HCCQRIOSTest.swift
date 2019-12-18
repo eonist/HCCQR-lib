@@ -9,12 +9,12 @@ class HCCQRIOSTest: XCTestCase {
       super.tearDown()
    }
    func testExample() {
-      XCTAssertEqual(QRTesting.createQR(), CGSize(width: 354.0, height: 354.0))
-      XCTAssertEqual(ScaleTesting.testScalingRGBAImage(), 4)
-      XCTAssertTrue(ColorizerTest.testColorizer())
-      XCTAssertTrue(PixelTest.testColorAssertionWithinThresholdForPixel())
-      testSingle()
-//      testReadingHCCQR() // ⚠️️ only works in xcode-simulator
+//      XCTAssertEqual(QRTesting.createQR(), CGSize(width: 354.0, height: 354.0))
+//      XCTAssertEqual(ScaleTesting.testScalingRGBAImage(), 4)
+//      XCTAssertTrue(ColorizerTest.testColorizer())
+//      XCTAssertTrue(PixelTest.testColorAssertionWithinThresholdForPixel())
+//      testSingle()
+      /*testReadingHCCQR()*/ // ⚠️️ only works in xcode-simulator
       testBulk()
    }
    func testPerformanceExample() {
@@ -30,8 +30,8 @@ extension HCCQRIOSTest {
     */
    private func testSingle() {
       let expectation = self.expectation(description: "single")
-      SingleHCCQRTest.testCreatingHCCQRImage { isMatching in
-         Swift.print("isMatching:  \(isMatching ? "✅" : "🚫")")
+      SingleHCCQRTest.testWritingHCCQRImage { isMatching in
+         Swift.print("testWritingHCCQRImage.isMatching:  \(isMatching ? "✅" : "🚫")")
          expectation.fulfill()
          XCTAssertTrue(isMatching)
       }
@@ -43,7 +43,8 @@ extension HCCQRIOSTest {
     */
    private func testBulk() {
       let expectation = self.expectation(description: "bulk")
-      BulkHCCQRTest.initiateTest { success in
+      BulkHCCQRTest.initiateTest { result in
+         guard let success: Bool = try? result.get() else { Swift.print("BulkHCCQRTest: \(result.errorStr)"); return }
          Swift.print("BulkHCCQRTest: success:  \(success ? "✅" : "🚫")")
          expectation.fulfill()
          XCTAssertTrue(success)

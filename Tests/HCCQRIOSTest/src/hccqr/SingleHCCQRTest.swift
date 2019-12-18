@@ -14,16 +14,18 @@ extension SingleHCCQRTest {
    typealias OnComplete = (Bool) -> Void
    static var startTime: Date = .init()
    static var readTime: Date = .init()
+   static var writeTime: Date = .init()
    /**
     * Test HCCQRImage creation (creates a single HCCQR image, then read it
     */
-   static func testCreatingHCCQRImage(onComplete: @escaping OnComplete) {
+   static func testWritingHCCQRImage(onComplete: @escaping OnComplete) {
 //      Swift.print("testCreatingHCCQRImage 👈")
       startTime = .init()
       let config: QRConfig = (.v1, .byte, .l) // Config
       guard let randomData: Data = HCCQRStringData.randomData(config: config) else { Swift.print("err"); onComplete(false); return }
       let createHCCQRTime: Date = .init()
-      HCCQRWriter.image(data: randomData, multipliers: (moduleScale: 6, screenScale: 1), qrConfig: (config.version, config.ecLevel)) { result in // Create HCCQR from string
+      writeTime = .init() // we start the write clock here (random data creation time isn't interesting)
+      HCCQRWriter.ciImage(data: randomData, multipliers: (moduleScale: 6, screenScale: 1), qrConfig: (config.version, config.ecLevel)) { result in // Create HCCQR from string
          onHCCQRWriteComplete(hccqrImage: try? result.get(), error: result.error(), createHCCQRTime: createHCCQRTime, randomData: randomData, onComplete: onComplete)
       }
    }
@@ -34,8 +36,10 @@ extension SingleHCCQRTest {
 extension SingleHCCQRTest {
    /**
     * Write complete (Created HCCQR image from string)
+    * 
     */
    private static func onHCCQRWriteComplete(hccqrImage: Image?, error: Error?, createHCCQRTime: Date, randomData: Data, onComplete: @escaping OnComplete) {
+      Swift.print("WriteTime:  \(abs(writeTime.timeIntervalSinceNow))")
 //      Swift.print("hccqrImageComplete hccqrImage: \(hccqrImage?.size)")
       guard let hccqrImage: Image = hccqrImage else { Swift.print("Unable to create hccqr image \(String(describing: error?.localizedDescription))"); onComplete(false); return }
       DispatchQueue.main.async {
@@ -63,7 +67,7 @@ extension SingleHCCQRTest {
       }
       guard let payload: String = dataAndImages?.data?.stringUTF8 else { Swift.print("unable to get string from hccqr \(String(describing: error))"); onComplete(false); return }
       let isMatching: Bool = randomData.stringUTF8 == payload // Assert payload
-      Swift.print("isMatching:  \(isMatching ? "✅":"🚫")")
+//      Swift.print("isMatching:  \(isMatching ? "✅":"🚫")")
       onComplete(isMatching)
       // Ensure that img only has valid colors, aka no bluring
       //Swift.print("hasOnlyColorMap: \(ColorizeUtil.hasOnlyColorMap(uiImage:hccqrImage, colorMap: [.red,.green,.blue,.white]))")

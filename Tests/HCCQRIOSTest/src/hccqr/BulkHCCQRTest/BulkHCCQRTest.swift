@@ -9,7 +9,7 @@ final class BulkHCCQRTest {}
  * Read and write multiple HCCQR images
  */
 extension BulkHCCQRTest {
-   typealias OnComplete = (Bool) -> Void
+   typealias OnComplete = (Result<Bool, Error>) -> Void
    static var totalTime: Date = .init()
    static var writeTime: Date = .init()
    static var readTime: Date = .init()
@@ -21,14 +21,14 @@ extension BulkHCCQRTest {
    static func initiateTest(onComplete: @escaping OnComplete) {
       totalTime = .init()
       writeHCCQRImages { result in // This closure is called when all images are created
-         guard let images: [Image] = result.value() else { onComplete(false); return }
+         guard let images: [Image] = result.value() else { onComplete(.failure(NSError(domain: "Can't write images", code: 0))); return }
          Swift.print("WriteTime:  \(abs(writeTime.timeIntervalSinceNow)) for images.count: \(images.count)")
          readTime = .init() // Start readTime measurment
          readHCCQRImages(images: images) { result in
-            guard let payloads: [Data] = result.value() else { onComplete(false); return }
+            guard let payloads: [Data] = result.value() else { onComplete(.failure(NSError(domain: "Can't read images", code: 0))); return }
             Swift.print("ReadTime:  \(abs(readTime.timeIntervalSinceNow)) for payloads.count: \(payloads.count)")
             Swift.print("Total time: \(abs(totalTime.timeIntervalSinceNow)) for payloads.count: \(payloads.count)")
-            onComplete(true)
+            onComplete(.success(true))
          }
       }
    }
