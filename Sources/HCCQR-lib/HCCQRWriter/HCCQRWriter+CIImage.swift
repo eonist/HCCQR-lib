@@ -15,7 +15,7 @@ extension HCCQRWriter {
       dataArr.enumerated().forEach { (_ offset: Int, _ data: Data) in
          DispatchQueue.global(qos: .userInitiated).async { // Do the operation on a background-thread
             let ciImg: CIImage? = try? QRWriter.ciImage(data: data, ecLevel: qrConfig.ecLevel) // Create B&W QR-image
-            Swift.print("ciImg \(ciImg?.extent.size)")
+//            Swift.print("ciImg \(ciImg?.extent.size)")
             DispatchQueue.main.async { // I guess main-thread is needed here because we access an array
                onCreateCIImgComplete(i: offset, ciImg: ciImg, ciImgs: &ciImgs, multipliers: multipliers, onComplete: onComplete)
             }

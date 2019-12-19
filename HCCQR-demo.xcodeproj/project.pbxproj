@@ -331,11 +331,11 @@
 			isa = PBXGroup;
 			children = (
 				F168526F2213443700C27EAA /* RGBAImage.swift */,
+				F16852702213443700C27EAA /* RGBAImage+Init.swift */,
 				F10296B4222217A7001FA2DF /* RGBAImage+TypeAlias.swift */,
 				F168525A2213443700C27EAA /* RGBAImage+Setter.swift */,
 				F10296B8222218D1001FA2DF /* RGBAImage+Getter.swift */,
 				F10296BA222218DC001FA2DF /* RGBAImage+Debug.swift */,
-				F16852702213443700C27EAA /* RGBAImage+Init.swift */,
 				F168525C2213443700C27EAA /* util */,
 			);
 			path = RGBAimage;

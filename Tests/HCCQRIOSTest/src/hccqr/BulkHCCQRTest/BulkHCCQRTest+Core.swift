@@ -16,6 +16,7 @@ extension BulkHCCQRTest {
       let randomData: [Data] = (0..<10).compactMap { _ in HCCQRStringData.randomData(config: config) } // Num of items to load
       var images: [CIImage?] = [CIImage?](repeating: nil, count: randomData.count)
       writeTime = .init() // we start the write clock here (random data creation time isn't interesting)
+      totalTime = .init()
       randomData.enumerated().forEach { arg in
          HCCQRWriter.ciImage(data: arg.element, multipliers: (moduleScale: 6, screenScale: 1), qrConfig: (config.version, config.ecLevel)) { result in
 //            Swift.print("ciimg done: \(try? result.get().size)")
@@ -29,7 +30,7 @@ extension BulkHCCQRTest {
    static func readHCCQRImages(images: [CIImage], onComplete:@escaping OnReadImagesComplete) {
 //      Swift.print("readHCCQRImages:  \(images.count)")
       var payloads: [Data?] = [Data?](repeating: nil, count: images.count)
-      images.enumerated().forEach { arg in
+      images.enumerated().forEach { arg in // the calles are async, and will finish randomly
          DispatchQueue.global(qos: .userInitiated).async {
             HCCQRReader.dataAndImages(ciImage: arg.element) { result in
                DispatchQueue.main.async { // We need to go on the mainthread to manipulate array

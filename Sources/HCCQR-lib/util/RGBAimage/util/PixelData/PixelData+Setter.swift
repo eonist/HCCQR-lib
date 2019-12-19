@@ -6,7 +6,7 @@ extension PixelData {
    /**
     * - Note: Used by the Compositor class
     */
-   mutating func setRGBA(first: PixelData, second: PixelData, alpha: UInt8) {
+   mutating func applyPixel(first: PixelData, second: PixelData, alpha: UInt8) {
       self.r = {
          let wrapAdd = first.r.addingReportingOverflow(second.r)
          return wrapAdd.overflow ? 255 : wrapAdd.partialValue

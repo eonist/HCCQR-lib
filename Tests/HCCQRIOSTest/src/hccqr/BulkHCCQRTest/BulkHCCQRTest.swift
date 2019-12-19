@@ -19,7 +19,6 @@ extension BulkHCCQRTest {
     * BulkHCCQRTest.initiateTest { success in Swift.print("success:  \(success)") }
     */
    static func initiateTest(onComplete: @escaping OnComplete) {
-      totalTime = .init()
       writeHCCQRImages { result in // This closure is called when all images are created
          guard let images: [CIImage] = result.value() else { onComplete(.failure(NSError(domain: "Can't write images", code: 0))); return }
          Swift.print("WriteTime:  \(abs(writeTime.timeIntervalSinceNow)) for images.count: \(images.count)")

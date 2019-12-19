@@ -63,13 +63,17 @@ extension Image {
  */
 extension Image {
    /**
+    * - Note: A CIContext can be CPU or GPU based. A CIContext is relatively expensive to initialize so you reuse it rather than create it over and over
+    */
+   static var ciContext: CIContext = .init(options: nil)
+   /**
     * someUIImage.cgImage doesn't work so we use this
     */
    #if os(iOS)
    func cgImage() -> CGImage? {
       guard let ciImage: CIImage = self.ciImage else { Swift.print("cgImage() - unable to get ciImage"); return nil }
-      let context: CIContext = .init(options: nil)
-      return context.createCGImage(ciImage, from: ciImage.extent)
+//      let context: CIContext = .init(options: nil)
+      return Image.ciContext.createCGImage(ciImage, from: ciImage.extent)
    }
    #endif
    #if os(macOS)
