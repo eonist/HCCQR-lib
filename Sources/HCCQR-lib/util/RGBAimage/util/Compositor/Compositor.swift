@@ -1,7 +1,7 @@
 import Foundation
 import CoreImage
 /**
- * Compositor
+ * Compositor (Takes 2 Channels and converts to a new QRImage)
  */
 final class Compositor {
    /**

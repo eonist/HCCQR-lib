@@ -57,8 +57,16 @@ extension RGBAImage {
    static func rgbaImage(pixel: PixelData, size: Size) -> RGBAImage {
       let capacity: Int = size.width * size.height
       let unsafePixels = UnsafeMutableBufferPointer<PixelData>.allocate(capacity: capacity)
+//      let batchCount: Int = 10
+//      let queue = DispatchQueue.global(qos: .utility)
+//      print("\ndispatch_apply QOS_CLASS_UTILITY queue completed")
+      // ⚠️️ attempt to optimize
       (0..<size.height).forEach { y in
-         (0..<size.width).forEach { x in
+         DispatchQueue.concurrentPerform(iterations: size.width) { x in
+//            print("\($0). concurrentPerform")
+//            print($0,  terminator: "  ")
+//         }
+//         (0..<size.width).forEach { x in
             let pixelIndex: Int = y * size.width + x
             unsafePixels[pixelIndex] = pixel
          }
