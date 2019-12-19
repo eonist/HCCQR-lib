@@ -20,9 +20,9 @@ extension RGBAImage {
     * CIImage -> RGBAImage
     */
    static func rgbaImage(ciImage: CIImage) throws -> RGBAImage {
-      Swift.print("ciImage.extent.size:  \(ciImage.extent.size)")
+//      Swift.print("ciImage.extent.size:  \(ciImage.extent.size)")
       guard let cgImg: CGImage = ciImage.cgImage ?? ciImage.cgImage() else { throw NSError(domain: "rgbaImage - Unable to get cgImage", code: 0) }
-      Swift.print("cgImg:  \(cgImg.width)")
+//      Swift.print("cgImg:  \(cgImg.width)")
       return try rgbaImage(cgImage: cgImg)
    }
    /**

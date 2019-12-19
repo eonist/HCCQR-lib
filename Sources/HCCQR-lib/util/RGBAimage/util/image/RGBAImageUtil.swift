@@ -12,9 +12,10 @@ public final class RGBAImageUtil {
       return ImageUtil.image(cgImage: cgImage, scale: scale) // Convert CGImage to UIImage
    }
    /**
-    * Convenience
+    * RGBAImage -> CIImage
+    * - Note: The composite method uses this method
     */
-   static func ciImage(rgbaImage: RGBAImage ) throws -> CIImage {
+   static func ciImage(rgbaImage: RGBAImage) throws -> CIImage {
       let cgImage: CGImage = try RGBAImageUtil.cgImage(rgbaImage: rgbaImage )
       return cgImage.ciImage()
    }
@@ -22,7 +23,7 @@ public final class RGBAImageUtil {
     * Converts rgbaImage to cgImage
     * - Note: alternative data -> img code, might be faster?: https://stackoverflow.com/questions/51372245/swift-covert-byte-array-into-ciimage
     */
-   static func cgImage(rgbaImage: RGBAImage ) throws -> CGImage {
+   static func cgImage(rgbaImage: RGBAImage) throws -> CGImage {
       let colorSpace: CGColorSpace = CGColorSpaceCreateDeviceRGB()
       var bitmapInfo: UInt32 = CGBitmapInfo.byteOrder32Big.rawValue
       let bytesPerRow: Int = rgbaImage.width * 4

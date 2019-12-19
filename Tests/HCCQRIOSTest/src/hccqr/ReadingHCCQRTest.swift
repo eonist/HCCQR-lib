@@ -7,8 +7,10 @@ import CoreImage
 final class ReadingHCCQRTest {}
 /**
  * - Fixme: ⚠️️ add hash if the data to compare
+ * - Fixme: ⚠️️ dl the photo from the web, so it can be tested in SPM+CI
+ * - Fixme: ⚠️️ Rename this class to ReadingHCCQRPhotoTest
  * ## Examples:
- * ReadingHCCQRTest.testReadingHCCQRPhoto { success in Swift.print("success:  \(success)")}
+ * ReadingHCCQRTest.testReadingHCCQRPhoto { success in Swift.print("success:  \(success)") }
  */
 extension ReadingHCCQRTest {
    typealias OnComplete = (Bool) -> Void
@@ -19,7 +21,7 @@ extension ReadingHCCQRTest {
    static func testReadingHCCQRPhoto(onComplete: @escaping OnComplete) {
       Swift.print("testReadingHCCQRImage")
       startTime = .init()
-      let path = Bundle.main.resourcePath!+"/temp.bundle/HCCQR17.jpg"//HCCQR12.png,HCCQR13.jpg
+      let path = Bundle.main.resourcePath!+"/temp.bundle/HCCQR17.jpg" // HCCQR12.png,HCCQR13.jpg
       guard let image = Image(contentsOfFile: path) else { Swift.print("err getting img"); return }
       Swift.print("uiImage.size:  \(image.size)")
       // - Fixme: ⚠️️ move the bellow into own method outside this local scope

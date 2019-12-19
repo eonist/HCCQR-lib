@@ -6,8 +6,6 @@ import CoreImage
 final class Splitter {
    /**
     * Returns two b&w qr imgs (by splittin an hccqr img)
-    * - Fixme: ⚠️️ move the onCompositeComplete method to a priv class scoped method
-    * - Fixme: ⚠️️ add result here
     */
    static func split(uiImage: Image, onComplete:@escaping SplitPayloadCompleted) {
       let onChannelsComplete: OnChannelsCompleted = { result in
@@ -31,10 +29,9 @@ final class Splitter {
  */
 extension Splitter {
    /**
-    * composite complete
-    * - Fixme: ⚠️️ Add result
+    * Composite complete
     */
-   static func onCompositeComplete(i: Int, qrImg: CIImage?, qrImgs: inout [CIImage?], channels: RGBAImages, onComplete: SplitPayloadCompleted) {
+   /*private */static func onCompositeComplete(i: Int, qrImg: CIImage?, qrImgs: inout [CIImage?], channels: RGBAImages, onComplete: SplitPayloadCompleted) {
       guard let qrImg: CIImage = qrImg else { [channels.r, channels.g, channels.b].forEach { $0.deinitiate() }; onComplete(.failure(NSError("no qrImg"))); return }
       qrImgs[i] = qrImg // It matters which order the qrImages came in when you stitch them back together
       if qrImgs.first(where: { $0 == nil }) == nil { // Makes sure all images finished
