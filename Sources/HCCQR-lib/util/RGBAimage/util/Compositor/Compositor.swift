@@ -8,6 +8,7 @@ final class Compositor {
     * Returns a qr image based on two rgb channels
     * - Note: layer 1: r, b -> qrImg1
     * - Note: layer 2: b, g -> qrImg2
+    * - Note: Used in the process to convert HCCQR to Data
     * - Fixme: ⚠️️ Make it throw
     * - posibly simplify method with defering deinit of composite
     */
@@ -20,10 +21,12 @@ final class Compositor {
    /**
     * Combines many images into one
     * - Note: we invert the image in this method, because doing it in post takes a long time
+    * - Note: Used in the process to convert HCCQR to Data
     * - Fixme: ⚠️️ Can the compositing be done simpler, more efficient?
     * - Parameter rgbaImageList: an array of RGBAImages to be composited together into 1 RGBAImage
+    * - Note: Should really be private, but some tests use it
     */
-   static func composite(rgbaImageList: [RGBAImage], invert: Bool) throws -> RGBAImage {
+   /*private */static func composite(rgbaImageList: [RGBAImage], invert: Bool) throws -> RGBAImage {
       guard let firstRGBAImg: RGBAImage = rgbaImageList.first else { throw NSError(domain: "unable to composite - composite() - no first RGBAImage", code: 0) }
       let size: RGBAImage.Size = (Int(firstRGBAImg.width), Int(firstRGBAImg.height))
       var blackRGBAImg: RGBAImage = .rgbaImage(pixel: PixelData.Colors.blackPixel, size: size)

@@ -6,6 +6,7 @@ import CoreImage
 final class Splitter {
    /**
     * Returns two b&w qr imgs (by splittin an hccqr img)
+    * - Note: Used in the process to convert HCCQR to Data
     */
    static func split(uiImage: Image, onComplete:@escaping SplitPayloadCompleted) {
       let onChannelsComplete: OnChannelsCompleted = { result in

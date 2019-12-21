@@ -8,7 +8,7 @@ class RGBAImageScaler {
     */
    static func scale(rgbaImage: RGBAImage, multiplier: Int) -> RGBAImage {
       let pixels: [PixelData] = Array(rgbaImage.pixels)
-      return RGBAImageScaler.scale(pixels: pixels, size: rgbaImage.size, multiplier: multiplier)
+      return RGBAImageScaler.scale(pixels: rgbaImage.pixels, size: rgbaImage.size, multiplier: multiplier)
    }
    /**
     * Scales img without becoming blurry (Sharp pixel multiplier)
@@ -16,8 +16,9 @@ class RGBAImageScaler {
     * - Fixme: ⚠️️ add the concurrent optimization for nested for loops
     * - Parameter multiplier: The amount to scale the pixel by
     */
-   static func scale(pixels: [PixelData], size: RGBAImage.Size, multiplier: Int) -> RGBAImage {
+   static func scale(pixels: UnsafeMutableBufferPointer<PixelData>, size: RGBAImage.Size, multiplier: Int) -> RGBAImage {
       Swift.print("multiplier:  \(multiplier)")
+      // - fixme: ⚠️️ Add a check if multiplier isnt needed
       let resultPixels: [PixelData] = (0..<size.height * multiplier).flatMap { y in // Arranges the pixel grid
          (0..<size.width * multiplier).map { x in
             let pixelIndex: Int = y / multiplier * size.height + x / multiplier

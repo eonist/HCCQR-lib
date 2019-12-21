@@ -29,6 +29,7 @@ extension HCCQRWriter {
 extension HCCQRWriter {
    /**
     * onCreateCIImgComplete (New)
+    * - Note: Used in the process of converting Data to HCCQR
     */
    private static func onCreateCIImgComplete(i: Int, ciImg: CIImage?, ciImgs:inout [CIImage?], multipliers: Multipliers, onComplete: OnHCCQRCIImageCompleted) {
       guard let ciImg: CIImage = ciImg else { onComplete(.failure(NSError(domain: "ciImg err ", code: 0))); return }

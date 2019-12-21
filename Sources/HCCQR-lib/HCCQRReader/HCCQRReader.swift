@@ -45,7 +45,7 @@ public final class HCCQRReader {
  */
 extension HCCQRReader {
    /**
-    * completion handler
+    * Completion handler
     * - Fixme: ⚠️️ group dataAndQuad and error into result
     */
    /*private */static func onQRCodeComplete(i: Int, dataAndQuad: QRReader.DataAndQuad?, error: Error?, dataAndFrames: inout [QRReader.DataAndQuad?], payload: Splitter.SplitPayload, onComplete: DataAndImageCompleted ) {

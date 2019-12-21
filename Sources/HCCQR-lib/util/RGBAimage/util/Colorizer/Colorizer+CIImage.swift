@@ -5,6 +5,7 @@ import CoreImage
 extension Colorizer {
    /**
     * ciImages -> CIImage
+    * - Note: Used in the process of converting Data to HCCQR
     */
    static func colorize(ciImages: [CIImage], colorMap: ColorMap, multipliers: Multipliers) throws -> CIImage {
       let rgbaImages: [RGBAImage] = ciImages.compactMap { try? RGBAImage.rgbaImage(ciImage: $0) }
