@@ -15,6 +15,7 @@ final class ColorMapAsserter {
     * - Abstract: ensure that img only has valid colors, aka no bluring
     * ## Example:
     * hasOnlyColorMap(these: [.red,.green,.blue,.white])
+    * - Note: this method is just for debugging, so no need to optimize it too much
     */
    static func hasOnlyColorMap(uiImage: Image, colorMap: [Color]) -> Bool {
       let condition: (Color) -> Bool = { color in
@@ -26,7 +27,7 @@ final class ColorMapAsserter {
          return firstmatch == nil
       }
       let pixelColors = uiImage.pixelColors // ⚠️️ this call is not performant
-      let first = pixelColors.first(where: condition)
+      let first = pixelColors.first(where: condition) // this is very inefficient, you should rather search in the array while its being populated
       return first == nil
    }
 }

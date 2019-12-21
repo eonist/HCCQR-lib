@@ -1,5 +1,9 @@
 import XCTest
+#if os(iOS)
 @testable import HCCQR_lib
+#elseif os(macOS)
+@testable import HCCQR_demo_mac
+#endif
 
 class HCCQRIOSTest: XCTestCase {
    override func setUp() {

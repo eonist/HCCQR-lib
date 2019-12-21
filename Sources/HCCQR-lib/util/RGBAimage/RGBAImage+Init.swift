@@ -30,7 +30,7 @@ extension RGBAImage {
     */
    static func rgbaImage(cgImage: CGImage) throws -> RGBAImage {
       let size: Size = (width: Int(cgImage.width), height: Int(cgImage.height))
-      let bytesPerRow: Int = size.width * 4
+      let bytesPerRow: Int = size.width * 4 // We multiply per 4 because of the 4 channels, RGBA
       let capacity: Int = size.width * size.height
       let imageData = UnsafeMutablePointer<PixelData>.allocate(capacity: capacity)
       let colorSpace: CGColorSpace = CGColorSpaceCreateDeviceRGB()
@@ -63,9 +63,6 @@ extension RGBAImage {
       // ⚠️️ attempt to optimize
       (0..<size.height).forEach { y in
          DispatchQueue.concurrentPerform(iterations: size.width) { x in
-//            print("\($0). concurrentPerform")
-//            print($0,  terminator: "  ")
-//         }
 //         (0..<size.width).forEach { x in
             let pixelIndex: Int = y * size.width + x
             unsafePixels[pixelIndex] = pixel
