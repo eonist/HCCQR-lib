@@ -23,7 +23,7 @@ extension ScaleTesting {
          //add qr to rgba
          guard let rgbaImage: RGBAImage = try? .rgbaImage(image: qrImage) else { Swift.print("unable to get rgbaimage from img"); return nil }
          //scale rgba
-         let scaledRGBAImage: RGBAImage = RGBAImageScaler.scale(rgbaImage: rgbaImage, multiplier: 6)
+         let scaledRGBAImage: RGBAImage = RGBAImageScaler.scale(pixels: rgbaImage.pixels, size: rgbaImage.size, multiplier: 6)
          //dispay image from rgba
          guard let img: Image = try? RGBAImageUtil.image(rgbaImage: scaledRGBAImage, scale: 1) else { Swift.print("unable to get img from rgbaimage"); return nil }
          return img
