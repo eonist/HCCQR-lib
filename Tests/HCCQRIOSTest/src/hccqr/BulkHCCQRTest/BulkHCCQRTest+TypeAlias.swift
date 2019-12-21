@@ -1,9 +1,5 @@
 import Foundation
-#if os(iOS)
 @testable import HCCQR_lib
-#elseif os(macOS)
-@testable import HCCQR_demo_mac
-#endif
 import CoreImage
 
 extension BulkHCCQRTest {

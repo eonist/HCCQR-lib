@@ -10,10 +10,7 @@ let package = Package(
         // Products define the executables and libraries produced by a package, and make them visible to other packages.
         .library(
             name: "HCCQR-lib",
-            targets: ["HCCQR-lib"]),
-        .library(
-            name: "HCCQR-demo-mac",
-            targets: ["HCCQR-demo-mac"])
+            targets: ["HCCQR-lib"])
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -26,13 +23,8 @@ let package = Package(
         .target(
             name: "HCCQR-lib",
             dependencies: ["QR-lib", "ResultSugar"]),
-        .target(
-            name: "HCCQR-demo-mac",
-            dependencies: ["QR-lib", "ResultSugar"],
-            path: "Sources/HCCQR-lib/"), //path for target to look for sources
-
         .testTarget(
             name: "HCCQRIOSTest",
-            dependencies: ["HCCQR-lib", "HCCQR-demo-mac", "QR-lib", "ResultSugar"])
+            dependencies: ["HCCQR-lib", "QR-lib", "ResultSugar"])
     ]
 )

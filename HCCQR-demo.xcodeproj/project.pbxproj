@@ -32,28 +32,6 @@
 		F17F5B88221A267600383955 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17F5B87221A267600383955 /* AppDelegate.swift */; };
 		F17F5B8A221A267B00383955 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F17F5B89221A267B00383955 /* Assets.xcassets */; };
 		F17F5B8D221A267B00383955 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F17F5B8B221A267B00383955 /* MainMenu.xib */; };
-		F188B35323AE55C7009A48D0 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F188B35223AE55C7009A48D0 /* Tests.swift */; };
-		F188B35423AE55C7009A48D0 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F188B35223AE55C7009A48D0 /* Tests.swift */; };
-		F188B35523AE5688009A48D0 /* HCCQRIOSTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E5710823A3EF3100E090BB /* HCCQRIOSTest.swift */; };
-		F188B35C23AE5CE5009A48D0 /* ScaleTesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F165C25023A00D35005D30EC /* ScaleTesting.swift */; };
-		F188B35D23AE5CE5009A48D0 /* QRTesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F165C25323A01044005D30EC /* QRTesting.swift */; };
-		F188B35E23AE5CE5009A48D0 /* MemLeakTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F165C26023A020E2005D30EC /* MemLeakTest.swift */; };
-		F188B35F23AE5CE5009A48D0 /* ColorizerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F165C26323A05B36005D30EC /* ColorizerTest.swift */; };
-		F188B36023AE5CE5009A48D0 /* PixelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BFEFD223A06899007F4261 /* PixelTest.swift */; };
-		F188B36123AE5CE5009A48D0 /* RGBColorTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14FADE721F75EF100ACE5FF /* RGBColorTestView.swift */; };
-		F188B36223AE5CE5009A48D0 /* FakeHCCQRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14FADEF21F761FD00ACE5FF /* FakeHCCQRView.swift */; };
-		F188B36323AE5CE5009A48D0 /* FakeHCCQRView+Create.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FDA6232395C0230096EEBD /* FakeHCCQRView+Create.swift */; };
-		F188B36423AE5CE5009A48D0 /* SimpleHCCQRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162145321FC7138005297DE /* SimpleHCCQRView.swift */; };
-		F188B36523AE5CE5009A48D0 /* SimpleHCCQRView+Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FDA6202395BFBD0096EEBD /* SimpleHCCQRView+Data.swift */; };
-		F188B36623AE5CE6009A48D0 /* SimpleHCCQRView+Create.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FDA61E2395BF810096EEBD /* SimpleHCCQRView+Create.swift */; };
-		F188B36723AE5CE6009A48D0 /* ColorExtractionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F165C26623A06384005D30EC /* ColorExtractionTest.swift */; };
-		F188B36823AE5CE6009A48D0 /* SingleHCCQRTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F165C25C23A01FD0005D30EC /* SingleHCCQRTest.swift */; };
-		F188B36923AE5CE6009A48D0 /* SimpleHCCQRTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BFEFD823A19A13007F4261 /* SimpleHCCQRTest.swift */; };
-		F188B36A23AE5CE6009A48D0 /* ReadingHCCQRTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F165C25923A01EF7005D30EC /* ReadingHCCQRTest.swift */; };
-		F188B36B23AE5CE6009A48D0 /* BulkHCCQRTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F165C25623A010E7005D30EC /* BulkHCCQRTest.swift */; };
-		F188B36C23AE5CE6009A48D0 /* BulkHCCQRTest+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BFEFDF23A23C1B007F4261 /* BulkHCCQRTest+Core.swift */; };
-		F188B36D23AE5CE6009A48D0 /* BulkHCCQRTest+Handler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BFEFDB23A23814007F4261 /* BulkHCCQRTest+Handler.swift */; };
-		F188B36E23AE5CE6009A48D0 /* BulkHCCQRTest+TypeAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BFEFE223A23DDA007F4261 /* BulkHCCQRTest+TypeAlias.swift */; };
 		F18A4D7C239F0F4B0065078A /* Colorizer+TypeAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18A4D7B239F0F4B0065078A /* Colorizer+TypeAlias.swift */; };
 		F18A4D7D239F0F4B0065078A /* Colorizer+TypeAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18A4D7B239F0F4B0065078A /* Colorizer+TypeAlias.swift */; };
 		F18A4D80239F11040065078A /* RGBAImageUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18A4D7F239F11040065078A /* RGBAImageUtil.swift */; };
@@ -174,26 +152,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		F1484AD223AE64B7001E5CE3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F18A52D321790F8A003F8C13 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F18A52DA21790F8A003F8C13;
-			remoteInfo = "HCCQR-lib";
-		};
 		F1484AD423AE6522001E5CE3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F18A52D321790F8A003F8C13 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = F18A52DA21790F8A003F8C13;
 			remoteInfo = "HCCQR-lib";
-		};
-		F188B34D23AE5580009A48D0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F18A52D321790F8A003F8C13 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F17F5B84221A267600383955;
-			remoteInfo = "HCCQR-demo-mac";
 		};
 		F1E5710B23A3EF3100E090BB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -211,6 +175,7 @@
 		F10296BA222218DC001FA2DF /* RGBAImage+Debug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RGBAImage+Debug.swift"; sourceTree = "<group>"; };
 		F10296C0222219EF001FA2DF /* Splitter+TypeAlias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Splitter+TypeAlias.swift"; sourceTree = "<group>"; };
 		F11DE85F220B6C53007A8A7A /* temp.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = temp.bundle; sourceTree = "<group>"; };
+		F1484AD623AE657F001E5CE3 /* HCCQR-lib.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "HCCQR-lib.entitlements"; sourceTree = "<group>"; };
 		F14FADE721F75EF100ACE5FF /* RGBColorTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBColorTestView.swift; sourceTree = "<group>"; };
 		F14FADEF21F761FD00ACE5FF /* FakeHCCQRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeHCCQRView.swift; sourceTree = "<group>"; };
 		F162145321FC7138005297DE /* SimpleHCCQRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleHCCQRView.swift; sourceTree = "<group>"; };
@@ -268,10 +233,6 @@
 		F17F5B8C221A267B00383955 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		F17F5B8E221A267B00383955 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F17F5B8F221A267B00383955 /* HCCQR_demo_mac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HCCQR_demo_mac.entitlements; sourceTree = "<group>"; };
-		F188B34823AE5580009A48D0 /* HCCQRMacOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HCCQRMacOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F188B34A23AE5580009A48D0 /* HCCQRMacOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HCCQRMacOSTests.swift; sourceTree = "<group>"; };
-		F188B34C23AE5580009A48D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F188B35223AE55C7009A48D0 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		F18A4D7B239F0F4B0065078A /* Colorizer+TypeAlias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Colorizer+TypeAlias.swift"; sourceTree = "<group>"; };
 		F18A4D7F239F11040065078A /* RGBAImageUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBAImageUtil.swift; sourceTree = "<group>"; };
 		F18A4D82239F11ED0065078A /* RGBAImageScaler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBAImageScaler.swift; sourceTree = "<group>"; };
@@ -309,13 +270,6 @@
 			files = (
 				F165C245239FC8C2005D30EC /* ResultSugar in Frameworks */,
 				F1E645F3239429CA008D2ABE /* QR-lib in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F188B34523AE5580009A48D0 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -547,15 +501,6 @@
 			path = "HCCQR-demo-mac";
 			sourceTree = "<group>";
 		};
-		F188B34923AE5580009A48D0 /* HCCQRMacOSTests */ = {
-			isa = PBXGroup;
-			children = (
-				F188B34A23AE5580009A48D0 /* HCCQRMacOSTests.swift */,
-				F188B34C23AE5580009A48D0 /* Info.plist */,
-			);
-			path = HCCQRMacOSTests;
-			sourceTree = "<group>";
-		};
 		F18A4D7E239F10F10065078A /* image */ = {
 			isa = PBXGroup;
 			children = (
@@ -577,7 +522,7 @@
 		F18A52D221790F8A003F8C13 = {
 			isa = PBXGroup;
 			children = (
-				F188B34923AE5580009A48D0 /* HCCQRMacOSTests */,
+				F1484AD623AE657F001E5CE3 /* HCCQR-lib.entitlements */,
 				F1E5711023A3EF5000E090BB /* Tests */,
 				F1E645F423942E9D008D2ABE /* Sources */,
 				F18A52DD21790F8A003F8C13 /* HCCQR-demo */,
@@ -594,7 +539,6 @@
 				F18A52DB21790F8A003F8C13 /* HCCQR-lib.app */,
 				F17F5B85221A267600383955 /* HCCQR-demo-mac.app */,
 				F1E5710623A3EF3100E090BB /* HCCQRIOSTest.xctest */,
-				F188B34823AE5580009A48D0 /* HCCQRMacOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -652,7 +596,6 @@
 			children = (
 				F165C24F23A00D08005D30EC /* src */,
 				F1E5710823A3EF3100E090BB /* HCCQRIOSTest.swift */,
-				F188B35223AE55C7009A48D0 /* Tests.swift */,
 				F1E5710A23A3EF3100E090BB /* Info.plist */,
 			);
 			path = HCCQRIOSTest;
@@ -750,6 +693,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				F1484AD823AE65CE001E5CE3 /* PBXTargetDependency */,
+				F1484ADA23AE65CE001E5CE3 /* PBXTargetDependency */,
 				F1484AD523AE6522001E5CE3 /* PBXTargetDependency */,
 			);
 			name = "HCCQR-demo-mac";
@@ -760,27 +705,6 @@
 			productName = "HCCQR-demo-mac";
 			productReference = F17F5B85221A267600383955 /* HCCQR-demo-mac.app */;
 			productType = "com.apple.product-type.application";
-		};
-		F188B34723AE5580009A48D0 /* HCCQRMacOSTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = F188B35123AE5580009A48D0 /* Build configuration list for PBXNativeTarget "HCCQRMacOSTests" */;
-			buildPhases = (
-				F188B34423AE5580009A48D0 /* Sources */,
-				F188B34523AE5580009A48D0 /* Frameworks */,
-				F188B34623AE5580009A48D0 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				F1484AD323AE64B7001E5CE3 /* PBXTargetDependency */,
-				F188B35923AE56DE009A48D0 /* PBXTargetDependency */,
-				F188B35B23AE56DE009A48D0 /* PBXTargetDependency */,
-				F188B34E23AE5580009A48D0 /* PBXTargetDependency */,
-			);
-			name = HCCQRMacOSTests;
-			productName = HCCQRMacOSTests;
-			productReference = F188B34823AE5580009A48D0 /* HCCQRMacOSTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		F18A52DA21790F8A003F8C13 /* HCCQR-lib */ = {
 			isa = PBXNativeTarget;
@@ -831,15 +755,11 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1120;
-				LastUpgradeCheck = 1000;
+				LastUpgradeCheck = 1120;
 				ORGANIZATIONNAME = FutureLab;
 				TargetAttributes = {
 					F17F5B84221A267600383955 = {
 						CreatedOnToolsVersion = 10.1;
-					};
-					F188B34723AE5580009A48D0 = {
-						CreatedOnToolsVersion = 11.2;
-						TestTargetID = F17F5B84221A267600383955;
 					};
 					F18A52DA21790F8A003F8C13 = {
 						CreatedOnToolsVersion = 10.0;
@@ -870,7 +790,6 @@
 				F18A52DA21790F8A003F8C13 /* HCCQR-lib */,
 				F17F5B84221A267600383955 /* HCCQR-demo-mac */,
 				F1E5710523A3EF3100E090BB /* HCCQRIOSTest */,
-				F188B34723AE5580009A48D0 /* HCCQRMacOSTests */,
 			);
 		};
 /* End PBXProject section */
@@ -882,13 +801,6 @@
 			files = (
 				F17F5B8A221A267B00383955 /* Assets.xcassets in Resources */,
 				F17F5B8D221A267B00383955 /* MainMenu.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F188B34623AE5580009A48D0 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1013,34 +925,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F188B34423AE5580009A48D0 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F188B35C23AE5CE5009A48D0 /* ScaleTesting.swift in Sources */,
-				F188B36323AE5CE5009A48D0 /* FakeHCCQRView+Create.swift in Sources */,
-				F188B36D23AE5CE6009A48D0 /* BulkHCCQRTest+Handler.swift in Sources */,
-				F188B36C23AE5CE6009A48D0 /* BulkHCCQRTest+Core.swift in Sources */,
-				F188B35423AE55C7009A48D0 /* Tests.swift in Sources */,
-				F188B36623AE5CE6009A48D0 /* SimpleHCCQRView+Create.swift in Sources */,
-				F188B36223AE5CE5009A48D0 /* FakeHCCQRView.swift in Sources */,
-				F188B36A23AE5CE6009A48D0 /* ReadingHCCQRTest.swift in Sources */,
-				F188B36823AE5CE6009A48D0 /* SingleHCCQRTest.swift in Sources */,
-				F188B36523AE5CE5009A48D0 /* SimpleHCCQRView+Data.swift in Sources */,
-				F188B36023AE5CE5009A48D0 /* PixelTest.swift in Sources */,
-				F188B35523AE5688009A48D0 /* HCCQRIOSTest.swift in Sources */,
-				F188B35F23AE5CE5009A48D0 /* ColorizerTest.swift in Sources */,
-				F188B35E23AE5CE5009A48D0 /* MemLeakTest.swift in Sources */,
-				F188B36923AE5CE6009A48D0 /* SimpleHCCQRTest.swift in Sources */,
-				F188B36B23AE5CE6009A48D0 /* BulkHCCQRTest.swift in Sources */,
-				F188B36E23AE5CE6009A48D0 /* BulkHCCQRTest+TypeAlias.swift in Sources */,
-				F188B36723AE5CE6009A48D0 /* ColorExtractionTest.swift in Sources */,
-				F188B36123AE5CE5009A48D0 /* RGBColorTestView.swift in Sources */,
-				F188B36423AE5CE5009A48D0 /* SimpleHCCQRView.swift in Sources */,
-				F188B35D23AE5CE5009A48D0 /* QRTesting.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		F18A52D721790F8A003F8C13 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1115,7 +999,6 @@
 				F1E5710923A3EF3100E090BB /* HCCQRIOSTest.swift in Sources */,
 				F1E5711823A3F2C400E090BB /* QRTesting.swift in Sources */,
 				F1E5711723A3F2C400E090BB /* ScaleTesting.swift in Sources */,
-				F188B35323AE55C7009A48D0 /* Tests.swift in Sources */,
 				F1E5712823A3F2C400E090BB /* BulkHCCQRTest+Handler.swift in Sources */,
 				F1E5711C23A3F2C400E090BB /* RGBColorTestView.swift in Sources */,
 				F1E5711B23A3F2C400E090BB /* PixelTest.swift in Sources */,
@@ -1135,15 +1018,18 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		F1484AD323AE64B7001E5CE3 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = F18A52DA21790F8A003F8C13 /* HCCQR-lib */;
-			targetProxy = F1484AD223AE64B7001E5CE3 /* PBXContainerItemProxy */;
-		};
 		F1484AD523AE6522001E5CE3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = F18A52DA21790F8A003F8C13 /* HCCQR-lib */;
 			targetProxy = F1484AD423AE6522001E5CE3 /* PBXContainerItemProxy */;
+		};
+		F1484AD823AE65CE001E5CE3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = F1484AD723AE65CE001E5CE3 /* QR-lib */;
+		};
+		F1484ADA23AE65CE001E5CE3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = F1484AD923AE65CE001E5CE3 /* ResultSugar */;
 		};
 		F161E98723A403C100349E4D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1152,19 +1038,6 @@
 		F161E98923A403C100349E4D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			productRef = F161E98823A403C100349E4D /* ResultSugar */;
-		};
-		F188B34E23AE5580009A48D0 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = F17F5B84221A267600383955 /* HCCQR-demo-mac */;
-			targetProxy = F188B34D23AE5580009A48D0 /* PBXContainerItemProxy */;
-		};
-		F188B35923AE56DE009A48D0 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			productRef = F188B35823AE56DE009A48D0 /* QR-lib */;
-		};
-		F188B35B23AE56DE009A48D0 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			productRef = F188B35A23AE56DE009A48D0 /* ResultSugar */;
 		};
 		F1E5710C23A3EF3100E090BB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1207,10 +1080,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "HCCQR-demo-mac/HCCQR_demo_mac.entitlements";
-				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = B5CC9TD7P7;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "HCCQR-demo-mac/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1230,10 +1104,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "HCCQR-demo-mac/HCCQR_demo_mac.entitlements";
-				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = B5CC9TD7P7;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "HCCQR-demo-mac/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1244,52 +1119,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
-			};
-			name = Release;
-		};
-		F188B34F23AE5580009A48D0 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = B5CC9TD7P7;
-				INFOPLIST_FILE = HCCQRMacOSTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				PRODUCT_BUNDLE_IDENTIFIER = io.github.futurelab.HCCQRMacOSTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HCCQR-demo-mac.app/Contents/MacOS/HCCQR-demo-mac";
-			};
-			name = Debug;
-		};
-		F188B35023AE5580009A48D0 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = B5CC9TD7P7;
-				INFOPLIST_FILE = HCCQRMacOSTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				PRODUCT_BUNDLE_IDENTIFIER = io.github.futurelab.HCCQRMacOSTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HCCQR-demo-mac.app/Contents/MacOS/HCCQR-demo-mac";
 			};
 			name = Release;
 		};
@@ -1416,8 +1245,11 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "HCCQR-lib.entitlements";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = B5CC9TD7P7;
+				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "HCCQR-demo/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1426,6 +1258,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "io.github.futurelab.HCCQR-demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1436,8 +1269,11 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "HCCQR-lib.entitlements";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = B5CC9TD7P7;
+				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "HCCQR-demo/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1446,6 +1282,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "io.github.futurelab.HCCQR-demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1455,6 +1292,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = Tests/HCCQRIOSTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
@@ -1475,6 +1313,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = Tests/HCCQRIOSTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
@@ -1499,15 +1338,6 @@
 			buildConfigurations = (
 				F17F5B91221A267B00383955 /* Debug */,
 				F17F5B92221A267B00383955 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		F188B35123AE5580009A48D0 /* Build configuration list for PBXNativeTarget "HCCQRMacOSTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				F188B34F23AE5580009A48D0 /* Debug */,
-				F188B35023AE5580009A48D0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1561,6 +1391,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		F1484AD723AE65CE001E5CE3 /* QR-lib */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F1E6459C239407BC008D2ABE /* XCRemoteSwiftPackageReference "QR-lib" */;
+			productName = "QR-lib";
+		};
+		F1484AD923AE65CE001E5CE3 /* ResultSugar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F165C241239FC8B9005D30EC /* XCRemoteSwiftPackageReference "ResultSugar" */;
+			productName = ResultSugar;
+		};
 		F161E98623A403C100349E4D /* QR-lib */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = F1E6459C239407BC008D2ABE /* XCRemoteSwiftPackageReference "QR-lib" */;
@@ -1577,16 +1417,6 @@
 			productName = ResultSugar;
 		};
 		F165C244239FC8C2005D30EC /* ResultSugar */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = F165C241239FC8B9005D30EC /* XCRemoteSwiftPackageReference "ResultSugar" */;
-			productName = ResultSugar;
-		};
-		F188B35823AE56DE009A48D0 /* QR-lib */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = F1E6459C239407BC008D2ABE /* XCRemoteSwiftPackageReference "QR-lib" */;
-			productName = "QR-lib";
-		};
-		F188B35A23AE56DE009A48D0 /* ResultSugar */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = F165C241239FC8B9005D30EC /* XCRemoteSwiftPackageReference "ResultSugar" */;
 			productName = ResultSugar;

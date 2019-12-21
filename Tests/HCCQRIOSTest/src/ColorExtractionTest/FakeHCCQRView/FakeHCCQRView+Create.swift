@@ -1,10 +1,6 @@
 #if os(iOS)
 import UIKit
-#if os(iOS)
 @testable import HCCQR_lib
-#elseif os(macOS)
-@testable import HCCQR_demo_mac
-#endif
 /**
  * Create
  */

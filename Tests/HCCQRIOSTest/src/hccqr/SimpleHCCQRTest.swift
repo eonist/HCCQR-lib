@@ -3,11 +3,7 @@ import QuartzCore
 import CoreGraphics
 import CoreImage
 import ResultSugar
-#if os(iOS)
 @testable import HCCQR_lib
-#elseif os(macOS)
-@testable import HCCQR_demo_mac
-#endif
 /**
  * - Fixme: ⚠️️ Maybe remove some of the threading closures, and rename some methods, add comments
  */
