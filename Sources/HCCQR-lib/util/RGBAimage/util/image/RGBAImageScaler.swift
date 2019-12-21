@@ -15,9 +15,8 @@ class RGBAImageScaler {
       let multipliedHeight = size.height * multiplier
       let capacity = multipliedWidth * multipliedHeight
       let resultPixels = UnsafeMutableBufferPointer<PixelData>.allocate(capacity: capacity)//[PixelData]()
-      // - Fixme: ⚠️️ try to do the concurrentPerform on the inner loop
-      DispatchQueue.concurrentPerform(iterations: multipliedHeight) { y in // optimization initiative, might be faster
-         (0..<size.width * multiplier).indices.forEach { x in
+      (0..<multipliedHeight).indices.forEach { y in
+         DispatchQueue.concurrentPerform(iterations: multipliedWidth) { x in // optimization initiative, might be faster
             let pixelIndex: Int = y / multiplier * size.height + x / multiplier
             let index: Int = y * multipliedWidth + x
             resultPixels[index] = pixels[pixelIndex]
