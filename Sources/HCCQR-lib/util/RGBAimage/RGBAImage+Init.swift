@@ -59,22 +59,6 @@ extension RGBAImage {
       let pixels: [PixelData] = .init(repeating: pixel, count: capacity)
       return .rgbaImage(pixels: pixels, size: size)
    }
-   /**
-    * Makes a new RGBA instance filled with the same pixel
-    * - Note: Used by compositor classes
-    * - Abstract: Used to create unified black RGBAImage etc
-    */
-//   static func rgbaImage(pixel: PixelData, size: Size) -> RGBAImage {
-//      let capacity: Int = size.width * size.height
-//      let unsafePixels = UnsafeMutableBufferPointer<PixelData>.allocate(capacity: capacity)
-//      (0..<size.height).forEach { y in
-//         DispatchQueue.concurrentPerform(iterations: size.width) { x in // ⚠️️ perfomance initiative
-//            let pixelIndex: Int = y * size.width + x
-//            unsafePixels[pixelIndex] = pixel
-//         }
-//      }
-//      return .init(pixels: unsafePixels, width: size.width, height: size.height)
-//   }
 }
 /**
  * Private static helper

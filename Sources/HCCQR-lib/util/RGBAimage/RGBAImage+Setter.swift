@@ -25,6 +25,7 @@ extension RGBAImage {
       (0..<self.height).forEach { y in
 //         (0..<self.width).forEach { x in
          DispatchQueue.concurrentPerform(iterations: self.width) { x in // ⚠️️ optimization initiative
+//            if x == 0 { Swift.print("Thread.current:  \(Thread.current)") }
             let index: Int = y * width + x
             let outPixel: PixelData = functor(index, pixels[index])
             pixels[index] = outPixel
