@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		F10296B322221710001FA2DF /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10296B222221710001FA2DF /* String+Extension.swift */; };
 		F11DE860220B6C53007A8A7A /* temp.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F11DE85F220B6C53007A8A7A /* temp.bundle */; };
+		F1484ADC23AE732D001E5CE3 /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1484ADB23AE732D001E5CE3 /* Array+Extension.swift */; };
+		F1484ADD23AE732D001E5CE3 /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1484ADB23AE732D001E5CE3 /* Array+Extension.swift */; };
 		F165C208239F22A7005D30EC /* RangeUInt8.swift in Sources */ = {isa = PBXBuildFile; fileRef = F165C207239F22A7005D30EC /* RangeUInt8.swift */; };
 		F165C209239F22A7005D30EC /* RangeUInt8.swift in Sources */ = {isa = PBXBuildFile; fileRef = F165C207239F22A7005D30EC /* RangeUInt8.swift */; };
 		F165C243239FC8B9005D30EC /* ResultSugar in Frameworks */ = {isa = PBXBuildFile; productRef = F165C242239FC8B9005D30EC /* ResultSugar */; };
@@ -176,6 +178,7 @@
 		F10296C0222219EF001FA2DF /* Splitter+TypeAlias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Splitter+TypeAlias.swift"; sourceTree = "<group>"; };
 		F11DE85F220B6C53007A8A7A /* temp.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = temp.bundle; sourceTree = "<group>"; };
 		F1484AD623AE657F001E5CE3 /* HCCQR-lib.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "HCCQR-lib.entitlements"; sourceTree = "<group>"; };
+		F1484ADB23AE732D001E5CE3 /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
 		F14FADE721F75EF100ACE5FF /* RGBColorTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBColorTestView.swift; sourceTree = "<group>"; };
 		F14FADEF21F761FD00ACE5FF /* FakeHCCQRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeHCCQRView.swift; sourceTree = "<group>"; };
 		F162145321FC7138005297DE /* SimpleHCCQRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleHCCQRView.swift; sourceTree = "<group>"; };
@@ -433,6 +436,7 @@
 			isa = PBXGroup;
 			children = (
 				F16852782213443700C27EAA /* UIView+Extension.swift */,
+				F1484ADB23AE732D001E5CE3 /* Array+Extension.swift */,
 				F10296B222221710001FA2DF /* String+Extension.swift */,
 				F168527B2213443700C27EAA /* Data+Extension.swift */,
 				F1FDA6262395C2EB0096EEBD /* image */,
@@ -896,6 +900,7 @@
 				F1E645F123940B3D008D2ABE /* HCCQRReader+TypeAlias.swift in Sources */,
 				F1E645DC23940B3D008D2ABE /* RGBAImage+Debug.swift in Sources */,
 				F1E645EA23940B3D008D2ABE /* Colorizer+Core.swift in Sources */,
+				F1484ADD23AE732D001E5CE3 /* Array+Extension.swift in Sources */,
 				F1E645B323940ACA008D2ABE /* Image+Extension.swift in Sources */,
 				F1E645AE23940ACA008D2ABE /* Hybrid+Mac.swift in Sources */,
 				F1E645B823940ACA008D2ABE /* UInt8Parser.swift in Sources */,
@@ -959,6 +964,7 @@
 				F1E645A723940AC9008D2ABE /* CGImage+Extension.swift in Sources */,
 				F1E645D123940B3C008D2ABE /* ColorMapAsserter.swift in Sources */,
 				F10296B322221710001FA2DF /* String+Extension.swift in Sources */,
+				F1484ADC23AE732D001E5CE3 /* Array+Extension.swift in Sources */,
 				F1E645C823940B3C008D2ABE /* PixelDataUtil.swift in Sources */,
 				F1E645CE23940B3C008D2ABE /* Colorizer.swift in Sources */,
 				F1E645D423940B3C008D2ABE /* HCCQRWriter+TypeAlias.swift in Sources */,
@@ -1179,7 +1185,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
