@@ -7,6 +7,7 @@ import CoreImage
 
 final class SingleHCCQRTest {}
 /**
+ * Test reading and writing
  * ## Examples:
  * SingleHCCQRTest.testCreatingHCCQRImage { isMatching in Swift.print("isMatching:  \(isMatching)") }
  */
@@ -19,12 +20,11 @@ extension SingleHCCQRTest {
     * Test HCCQRImage creation (creates a single HCCQR image, then read it
     */
    static func testWritingHCCQRImage(onComplete: @escaping OnComplete) {
-//      Swift.print("testCreatingHCCQRImage 👈")
       startTime = .init()
       let config: QRConfig = (.v1, .byte, .l) // Config
       guard let randomData: Data = HCCQRStringData.randomData(config: config) else { Swift.print("err"); onComplete(false); return }
       let createHCCQRTime: Date = .init()
-      writeTime = .init() // we start the write clock here (random data creation time isn't interesting)
+      writeTime = .init() // We start the write clock here (random data creation time isn't interesting)
       HCCQRWriter.ciImage(data: randomData, multipliers: (moduleScale: 6, screenScale: 1), qrConfig: (config.version, config.ecLevel)) { result in // Create HCCQR from string
          onHCCQRWriteComplete(hccqrImage: try? result.get(), error: result.error(), createHCCQRTime: createHCCQRTime, randomData: randomData, onComplete: onComplete)
       }

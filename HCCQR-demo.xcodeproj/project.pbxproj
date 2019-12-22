@@ -49,6 +49,8 @@
 		F18A52E921790F8D003F8C13 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F18A52E721790F8D003F8C13 /* LaunchScreen.storyboard */; };
 		F19E0A1123AFECC9000B8827 /* RGBKit in Frameworks */ = {isa = PBXBuildFile; productRef = F19E0A1023AFECC9000B8827 /* RGBKit */; };
 		F19E0A1323AFEDE7000B8827 /* RGBKitTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19E0A1223AFEDE7000B8827 /* RGBKitTest.swift */; };
+		F19E0A1523AFF13D000B8827 /* RGBImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19E0A1423AFF13D000B8827 /* RGBImage+Extension.swift */; };
+		F19E0A1623AFF13D000B8827 /* RGBImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19E0A1423AFF13D000B8827 /* RGBImage+Extension.swift */; };
 		F1B698D7239E64E70085B3C9 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B698D6239E64E70085B3C9 /* View.swift */; };
 		F1B698E0239E6D410085B3C9 /* HCCQRVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B698DF239E6D410085B3C9 /* HCCQRVersion.swift */; };
 		F1B698E1239E6D410085B3C9 /* HCCQRVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B698DF239E6D410085B3C9 /* HCCQRVersion.swift */; };
@@ -251,6 +253,7 @@
 		F18A52EA21790F8D003F8C13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F194BAA32224C304001C5DBB /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		F19E0A1223AFEDE7000B8827 /* RGBKitTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBKitTest.swift; sourceTree = "<group>"; };
+		F19E0A1423AFF13D000B8827 /* RGBImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RGBImage+Extension.swift"; sourceTree = "<group>"; };
 		F1B698D6239E64E70085B3C9 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		F1B698DF239E6D410085B3C9 /* HCCQRVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HCCQRVersion.swift; sourceTree = "<group>"; };
 		F1B698E2239E70B60085B3C9 /* HCCQRConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HCCQRConfig.swift; sourceTree = "<group>"; };
@@ -445,6 +448,7 @@
 				F10296B222221710001FA2DF /* String+Extension.swift */,
 				F168527B2213443700C27EAA /* Data+Extension.swift */,
 				F1FDA6262395C2EB0096EEBD /* image */,
+				F19E0A1423AFF13D000B8827 /* RGBImage+Extension.swift */,
 			);
 			path = extension;
 			sourceTree = "<group>";
@@ -902,6 +906,7 @@
 				F1E645E623940B3D008D2ABE /* PixelData+Assert.swift in Sources */,
 				F1E645AD23940ACA008D2ABE /* Hybrid+iOS.swift in Sources */,
 				F1E645E123940B3D008D2ABE /* Splitter+Channels.swift in Sources */,
+				F19E0A1623AFF13D000B8827 /* RGBImage+Extension.swift in Sources */,
 				F1E645EC23940B3D008D2ABE /* ColorMapAsserter.swift in Sources */,
 				F17CB70723ABA31A00C4BED8 /* Splitter+CIImage.swift in Sources */,
 				F1E645F123940B3D008D2ABE /* HCCQRReader+TypeAlias.swift in Sources */,
@@ -966,6 +971,7 @@
 				F1E645D023940B3C008D2ABE /* Colorizer+ColorMap.swift in Sources */,
 				F1E645C323940B3C008D2ABE /* Compositor.swift in Sources */,
 				F1E645AC23940AC9008D2ABE /* Color+Asserter.swift in Sources */,
+				F19E0A1523AFF13D000B8827 /* RGBImage+Extension.swift in Sources */,
 				F1E645A823940AC9008D2ABE /* UInt8Asserter.swift in Sources */,
 				F17CB70623ABA31A00C4BED8 /* Splitter+CIImage.swift in Sources */,
 				F1E645A723940AC9008D2ABE /* CGImage+Extension.swift in Sources */,
