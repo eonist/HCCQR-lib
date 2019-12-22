@@ -6,7 +6,7 @@
         "repositoryURL": "https://github.com/light-stream/QR-lib.git",
         "state": {
           "branch": "master",
-          "revision": "20c69aead355c8002534b809139a15dc9a3ddeb2",
+          "revision": "2a30713c7287e5a34e366495235333e6692b65b1",
           "version": null
         }
       },
@@ -16,6 +16,15 @@
         "state": {
           "branch": "master",
           "revision": "68e87ca6d713e4941150ce0dbdae7209f24fdaee",
+          "version": null
+        }
+      },
+      {
+        "package": "RGBKit",
+        "repositoryURL": "https://github.com/light-stream/RGBKit.git",
+        "state": {
+          "branch": "master",
+          "revision": "5b4bc057f14ba105baeea58472c0cc72b89678fc",
           "version": null
         }
       }

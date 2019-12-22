@@ -10,7 +10,7 @@ extension Array {
    func parallelMap<R>(striding n: Int, f: @escaping (Element) -> R, completion: @escaping ([R]) -> Void) {
       let N = self.count
       let res = UnsafeMutablePointer<R>.allocate(capacity: N)
-      DispatchQueue.concurrentPerform(iterations: N/n) { k in
+      DispatchQueue.concurrentPerform(iterations: N / n) { k in
          for i in (k * n)..<((k + 1) * n) {
             res[i] = f(self[i])
          }
@@ -18,7 +18,7 @@ extension Array {
       for i in (N - (N % n))..<N {
          res[i] = f(self[i])
       }
-      let finalResult = Array<R>(UnsafeBufferPointer(start: res, count: N))
+      let finalResult = [R](UnsafeBufferPointer(start: res, count: N))
       res.deallocate()
       DispatchQueue.main.async {
          completion(finalResult)

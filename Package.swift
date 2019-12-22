@@ -15,6 +15,7 @@ let package = Package(
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         .package(url: "https://github.com/light-stream/QR-lib.git", .branch("master")),
+        .package(url: "https://github.com/light-stream/RGBKit.git", .branch("master")),
         .package(url: "https://github.com/eonist/ResultSugar.git", .branch("master"))
     ],
     targets: [
@@ -22,9 +23,9 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages which this package depends on.
         .target(
             name: "HCCQR-lib",
-            dependencies: ["QR-lib", "ResultSugar"]),
+            dependencies: ["QR-lib", "RGBKit", "ResultSugar"]),
         .testTarget(
             name: "HCCQRIOSTest",
-            dependencies: ["HCCQR-lib", "QR-lib", "ResultSugar"])
+            dependencies: ["HCCQR-lib", "QR-lib", "RGBKit", "ResultSugar"])
     ]
 )

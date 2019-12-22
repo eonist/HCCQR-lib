@@ -14,7 +14,7 @@ extension Colorizer {
       let capacity: Int = size.width * size.height
       let pixels = UnsafeMutableBufferPointer<PixelData>.allocate(capacity: capacity)//[PixelData]()
 //      pixels.reserveCapacity(size.width * size.height)
-      DispatchQueue.concurrentPerform(iterations: size.height) { y in
+      DispatchQueue.concurrentPerform(iterations: size.height) { y in // - Fixme: ⚠️️ try move this to the X value
          (0..<size.width).indices.forEach { x in
             let pixis: [PixelData] = rgbaImages.map { $0.getPixel(x: x, y: y) } // Overlaying pixels
             if let colorizedPixel = try? colorize(pixels: pixis, colorMap: colorMap) {// else { throw NSError.init(domain: "Unable to make pixel", code: 0) }

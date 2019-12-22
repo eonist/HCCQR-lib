@@ -9,7 +9,6 @@ final class BulkHCCQRTest {}
  * Read and write multiple HCCQR images
  */
 extension BulkHCCQRTest {
-   typealias OnComplete = (Result<Bool, Error>) -> Void
    static var totalTime: Date = .init()
    static var writeTime: Date = .init()
    static var readTime: Date = .init()

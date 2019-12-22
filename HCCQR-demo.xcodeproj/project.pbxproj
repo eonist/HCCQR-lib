@@ -47,6 +47,8 @@
 		F18A52E421790F8A003F8C13 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F18A52E221790F8A003F8C13 /* Main.storyboard */; };
 		F18A52E621790F8D003F8C13 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F18A52E521790F8D003F8C13 /* Assets.xcassets */; };
 		F18A52E921790F8D003F8C13 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F18A52E721790F8D003F8C13 /* LaunchScreen.storyboard */; };
+		F19E0A1123AFECC9000B8827 /* RGBKit in Frameworks */ = {isa = PBXBuildFile; productRef = F19E0A1023AFECC9000B8827 /* RGBKit */; };
+		F19E0A1323AFEDE7000B8827 /* RGBKitTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19E0A1223AFEDE7000B8827 /* RGBKitTest.swift */; };
 		F1B698D7239E64E70085B3C9 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B698D6239E64E70085B3C9 /* View.swift */; };
 		F1B698E0239E6D410085B3C9 /* HCCQRVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B698DF239E6D410085B3C9 /* HCCQRVersion.swift */; };
 		F1B698E1239E6D410085B3C9 /* HCCQRVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B698DF239E6D410085B3C9 /* HCCQRVersion.swift */; };
@@ -248,6 +250,7 @@
 		F18A52E821790F8D003F8C13 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F18A52EA21790F8D003F8C13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F194BAA32224C304001C5DBB /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
+		F19E0A1223AFEDE7000B8827 /* RGBKitTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBKitTest.swift; sourceTree = "<group>"; };
 		F1B698D6239E64E70085B3C9 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		F1B698DF239E6D410085B3C9 /* HCCQRVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HCCQRVersion.swift; sourceTree = "<group>"; };
 		F1B698E2239E70B60085B3C9 /* HCCQRConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HCCQRConfig.swift; sourceTree = "<group>"; };
@@ -280,6 +283,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F19E0A1123AFECC9000B8827 /* RGBKit in Frameworks */,
 				F165C243239FC8B9005D30EC /* ResultSugar in Frameworks */,
 				F1E6459E239407BC008D2ABE /* QR-lib in Frameworks */,
 			);
@@ -324,6 +328,7 @@
 			isa = PBXGroup;
 			children = (
 				F165C25C23A01FD0005D30EC /* SingleHCCQRTest.swift */,
+				F19E0A1223AFEDE7000B8827 /* RGBKitTest.swift */,
 				F1BFEFD823A19A13007F4261 /* SimpleHCCQRTest.swift */,
 				F165C25923A01EF7005D30EC /* ReadingHCCQRTest.swift */,
 				F1BFEFDE23A2381D007F4261 /* BulkHCCQRTest */,
@@ -727,6 +732,7 @@
 			packageProductDependencies = (
 				F1E6459D239407BC008D2ABE /* QR-lib */,
 				F165C242239FC8B9005D30EC /* ResultSugar */,
+				F19E0A1023AFECC9000B8827 /* RGBKit */,
 			);
 			productName = "HCCQR-demo";
 			productReference = F18A52DB21790F8A003F8C13 /* HCCQR-lib.app */;
@@ -786,6 +792,7 @@
 			packageReferences = (
 				F1E6459C239407BC008D2ABE /* XCRemoteSwiftPackageReference "QR-lib" */,
 				F165C241239FC8B9005D30EC /* XCRemoteSwiftPackageReference "ResultSugar" */,
+				F19E0A0F23AFECC9000B8827 /* XCRemoteSwiftPackageReference "RGBKit" */,
 			);
 			productRefGroup = F18A52DC21790F8A003F8C13 /* Products */;
 			projectDirPath = "";
@@ -1011,6 +1018,7 @@
 				F1E5712123A3F2C400E090BB /* SimpleHCCQRView+Create.swift in Sources */,
 				F1E5712623A3F2C400E090BB /* BulkHCCQRTest.swift in Sources */,
 				F1E5712023A3F2C400E090BB /* SimpleHCCQRView+Data.swift in Sources */,
+				F19E0A1323AFEDE7000B8827 /* RGBKitTest.swift in Sources */,
 				F1E5712223A3F2C400E090BB /* ColorExtractionTest.swift in Sources */,
 				F1E5712523A3F2C400E090BB /* ReadingHCCQRTest.swift in Sources */,
 				F1E5712723A3F2C400E090BB /* BulkHCCQRTest+Core.swift in Sources */,
@@ -1386,6 +1394,14 @@
 				kind = branch;
 			};
 		};
+		F19E0A0F23AFECC9000B8827 /* XCRemoteSwiftPackageReference "RGBKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/light-stream/RGBKit.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		F1E6459C239407BC008D2ABE /* XCRemoteSwiftPackageReference "QR-lib" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/light-stream/QR-lib.git";
@@ -1426,6 +1442,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F165C241239FC8B9005D30EC /* XCRemoteSwiftPackageReference "ResultSugar" */;
 			productName = ResultSugar;
+		};
+		F19E0A1023AFECC9000B8827 /* RGBKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F19E0A0F23AFECC9000B8827 /* XCRemoteSwiftPackageReference "RGBKit" */;
+			productName = RGBKit;
 		};
 		F1E6459D239407BC008D2ABE /* QR-lib */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -18,6 +18,15 @@
           "revision": "f7666f7c6b2d582deb7e597dc679b79eddab978d",
           "version": null
         }
+      },
+      {
+        "package": "RGBKit",
+        "repositoryURL": "https://github.com/light-stream/RGBKit.git",
+        "state": {
+          "branch": "master",
+          "revision": "5b4bc057f14ba105baeea58472c0cc72b89678fc",
+          "version": null
+        }
       }
     ]
   },

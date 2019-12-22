@@ -7,4 +7,6 @@ extension BulkHCCQRTest {
    typealias OnWriteImagesComplete = (Result<[CIImage], Error>) -> Void
    // read complete
    typealias OnReadImagesComplete = (Result<[Data], Error>) -> Void
+   // everything complete
+   typealias OnComplete = (Result<Bool, Error>) -> Void
 }
