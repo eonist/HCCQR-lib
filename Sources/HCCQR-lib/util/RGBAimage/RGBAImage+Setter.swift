@@ -20,6 +20,7 @@ extension RGBAImage {
    /**
     * Applies pixels with a method (for index)
     * - Note: Used in the (composite) process to convert HCCQR to Data
+    * - Fixme: ⚠️️ We can prob stride to get better speed
     */
    mutating func process(functor: FunctorIndexCall) {
       (0..<self.height).forEach { y in

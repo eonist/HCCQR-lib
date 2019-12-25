@@ -56,6 +56,7 @@ extension RGBAImage {
     */
    static func rgbaImage(pixel: PixelData, size: Size) -> RGBAImage {
       let capacity: Int = size.width * size.height
+      // fixme: ⚠️️ prob create the unmanaged pointer directly for better speed
       let pixels: [PixelData] = .init(repeating: pixel, count: capacity)
       return .rgbaImage(pixels: pixels, size: size)
    }

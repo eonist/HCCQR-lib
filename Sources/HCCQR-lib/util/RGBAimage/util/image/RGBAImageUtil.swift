@@ -17,7 +17,8 @@ public final class RGBAImageUtil {
     */
    static func ciImage(rgbaImage: RGBAImage) throws -> CIImage {
       let cgImage: CGImage = try RGBAImageUtil.cgImage(rgbaImage: rgbaImage )
-      return cgImage.ciImage()
+      // Fixme: ⚠️️ we can prob create ciImage directly for better speed, see RGBKit and related research
+      return cgImage.ciImage() // we convert to CIImage here, because apples QRReader reades CIImage
    }
 }
 /**
@@ -30,6 +31,7 @@ extension RGBAImageUtil {
     */
    private static func cgImage(rgbaImage: RGBAImage) throws -> CGImage {
       let colorSpace: CGColorSpace = CGColorSpaceCreateDeviceRGB()
+      // Fixme: ⚠️️ convert to grayscale instead, its prob faster
       var bitmapInfo: UInt32 = CGBitmapInfo.byteOrder32Big.rawValue
       let bytesPerRow: Int = rgbaImage.width * 4
       bitmapInfo |= CGImageAlphaInfo.premultipliedLast.rawValue & CGBitmapInfo.alphaInfoMask.rawValue
