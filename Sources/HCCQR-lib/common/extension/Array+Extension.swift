@@ -8,6 +8,7 @@ extension Array {
     * Array(0..<10).parallelMap(striding: 4, f: { $0 }) { print("\n($0)\n") }
     */
    func parallelMap<R>(striding n: Int, f: @escaping (Element) -> R, completion: @escaping ([R]) -> Void) {
+      Swift.print("Doesn't work")
       let N = self.count
       let res = UnsafeMutablePointer<R>.allocate(capacity: N)
       DispatchQueue.concurrentPerform(iterations: N / n) { k in

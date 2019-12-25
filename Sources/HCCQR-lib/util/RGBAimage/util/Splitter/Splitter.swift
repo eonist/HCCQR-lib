@@ -5,13 +5,14 @@ import CoreImage
  */
 final class Splitter {
    /**
-    * Returns two b&w qr imgs (by splittin an hccqr img)
+    * Returns two b&w qr imgs (by splitting an hccqr imgage)
     * - Note: Used in the process to convert HCCQR to Data
+    * - Abstract: pair b&g = qr1, pair r$b = qr2
     */
-   static func split(uiImage: Image, onComplete:@escaping SplitPayloadCompleted) {
-      let onChannelsComplete: OnChannelsCompleted = { result in
+   static func split(image: Image, onComplete:@escaping SplitPayloadCompleted) {
+      let onChannelsComplete: OnChannelsCompleted = { result in // called when the (R,G,B) channels are split
          guard let channels: RGBAImages = result.value() else { onComplete(.failure(NSError("Unable to create rgbaImgs \(result.errorStr)"))); return } // (r,g,b)
-         let channelArr: [(first: RGBAImage, second: RGBAImage)] = [(channels.b, channels.g), (channels.r, channels.b)]
+         let channelArr: [(first: RGBAImage, second: RGBAImage)] = [(channels.b, channels.g), (channels.r, channels.b)] // pair b&g = qr1, pair r$b = qr2
          var qrImgs: [CIImage?] = [CIImage?](repeating: nil, count: channelArr.count)
          channelArr.enumerated().forEach { channel in
             DispatchQueue.global(qos: .userInitiated).async {
@@ -22,7 +23,7 @@ final class Splitter {
             }
          }
       }
-      channels(image: uiImage, onComplete: onChannelsComplete) // Get RGBAImages from UIImages
+      channels(image: image, onComplete: onChannelsComplete) // Get RGBAImages from UIImages
    }
 }
 /**

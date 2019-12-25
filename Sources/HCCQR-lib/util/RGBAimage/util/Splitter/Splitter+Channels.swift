@@ -6,7 +6,7 @@ import ResultSugar
  */
 extension Splitter {
    /**
-    * Returns channels (rgb for now)
+    * Returns channels (rgb for now) (3 channels, red, green, blue)
     */
    static func channels(image: Image, onComplete:@escaping OnChannelsCompleted) {
       guard let rgbaImg: RGBAImage = try? .rgbaImage(image: image) else { onComplete(.failure(NSError("Unable to create rgbaImg"))); return }
@@ -26,7 +26,7 @@ extension Splitter {
       let assertions: [(PixelData) -> Bool] = [ { $0.isRedish }, { $0.isGreenish }, { $0.isBlueish }]
       var rgbaImages: [RGBAImage?] = [RGBAImage?](repeating: nil, count: assertions.count)
       assertions.enumerated().forEach { item in
-         DispatchQueue.global(qos: .userInitiated).async {
+         DispatchQueue.global(qos: .userInitiated).async { // - Fixme ⚠️️ use the sync method instead here, assert improvment?
             let rgbaImage: RGBAImage = channel(rgbaImg: rgbaImg, assert: item.element)
             DispatchQueue.main.async { // I guess this is on main-thread because it writes into an array
                onChannelComplete(i: item.offset, rgbaImage: rgbaImage, rgbaImages: &rgbaImages, rgbaImg: rgbaImg, onComplete: onComplete)

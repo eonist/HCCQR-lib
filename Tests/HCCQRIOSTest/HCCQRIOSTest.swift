@@ -17,10 +17,8 @@ class HCCQRIOSTest: XCTestCase {
 //      XCTAssertTrue(PixelTest.testColorAssertionWithinThresholdForPixel())
 //      testSingle()
       /*testReadingHCCQR()*/ // ⚠️️ only works in xcode-simulator
-      testBulk()
-//      RGBKitTest.testRGBKit { success in
-//         Swift.print("success:  \(success ? "✅":"🚫")")
-//      }
+//      testBulk()
+      testRGBKit()
    }
    func testPerformanceExample() {
       self.measure { }
@@ -30,6 +28,18 @@ class HCCQRIOSTest: XCTestCase {
  * Tests (callback)
  */
 extension HCCQRIOSTest {
+   /**
+    * RGBKit test
+    */
+   private func testRGBKit() {
+      let expectation = self.expectation(description: "rgbKit")
+      RGBKitTest.testRGBKit { success in
+         Swift.print("testRGBKit - success:  \(success ? "✅":"🚫")")
+         expectation.fulfill()
+         XCTAssertTrue(success)
+      }
+      waitForExpectations(timeout: 10, handler: nil)
+   }
    /**
     * Single
     */

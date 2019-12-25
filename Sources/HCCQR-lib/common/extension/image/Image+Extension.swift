@@ -6,9 +6,9 @@ import CoreImage
  */
 extension Image {
    #if os(macOS)
-   convenience init(cgImage: CGImage) {
-      self.init(cgImage: cgImage, size: .init(width: cgImage.width, height: cgImage.height))
-   }
+//   convenience init(cgImage: CGImage) {
+//      self.init(cgImage: cgImage, size: .init(width: cgImage.width, height: cgImage.height))
+//   }
    #endif
 }
 /**
@@ -71,7 +71,7 @@ extension Image {
     */
    #if os(iOS)
    func cgImage() -> CGImage? {
-      guard let ciImage: CIImage = self.ciImage else { Swift.print("cgImage() - unable to get ciImage"); return nil }
+      guard let ciImage: CIImage = self.ciImage else { Swift.print("Image.cgImage() - unable to get ciImage"); return nil }
 //      let context: CIContext = .init(options: nil)
       return Image.ciContext.createCGImage(ciImage, from: ciImage.extent)
    }

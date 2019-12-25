@@ -37,7 +37,7 @@ public final class HCCQRReader {
             }
          }
       }
-      Splitter.split(uiImage: image, onComplete: onSplitComplete) // Start the splitting process
+      Splitter.split(image: image, onComplete: onSplitComplete) // Start the splitting process
    }
 }
 /**
