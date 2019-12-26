@@ -12,9 +12,8 @@ extension BulkHCCQRTest {
     */
    static func writeHCCQRImages(onComplete:@escaping OnWriteImagesComplete) {
       Swift.print("writeHCCQRImages")
-      let config: QRConfig = (.v10, .byte, .l) // Config
-      
-      let randomData: [Data] = (0..<40).compactMap { _ in HCCQRStringData.randomData(config: config) } // Num of items to load
+      let config: QRConfig = (.v6, .byte, .l) // Config
+      let randomData: [Data] = (0..<10).compactMap { _ in HCCQRStringData.randomData(config: config) } // Num of items to load
       var images: [CIImage?] = [CIImage?](repeating: nil, count: randomData.count)
       writeTime = .init() // we start the write clock here (random data creation time isn't interesting)
       totalTime = .init()

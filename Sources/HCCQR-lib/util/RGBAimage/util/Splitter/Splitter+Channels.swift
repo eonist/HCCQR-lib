@@ -15,13 +15,10 @@ extension Splitter {
    /*private */static func channels(rgbaImg: RGBAImage, channelMap: [PixelData.RGBColor] = channelMap, onComplete:@escaping OnChannelsCompleted) {
       let assertions: [(PixelData) -> Bool] = channelMap.map { rgbColor in { $0.isColorish(rgbColor) } }
       var rgbaImages: [RGBAImage?] = [RGBAImage?](repeating: nil, count: assertions.count)
-      assertions.enumerated().forEach { item in // finds the red-channel, blue-channel, green-channel
-         DispatchQueue.global(qos: .userInitiated).async { // - Fixme ⚠️️ use the sync method instead here, assert improvment?
-            let rgbaImage: RGBAImage = channel(rgbaImg: rgbaImg, assert: item.element)
-            DispatchQueue.main.async { // I guess this is on main-thread because it writes into an array
-               onChannelComplete(i: item.offset, rgbaImage: rgbaImage, rgbaImages: &rgbaImages, rgbaImg: rgbaImg, onComplete: onComplete)
-            }
-         }
+      DispatchQueue.concurrentPerform(iterations: assertions.count) { i in // ⚠️️ optimization initiative
+         let item = (element: assertions[i], offset: i)
+         let rgbaImage: RGBAImage = channel(rgbaImg: rgbaImg, assert: item.element) // finds the red-channel, blue-channel, green-channel
+         onChannelComplete(i: item.offset, rgbaImage: rgbaImage, rgbaImages: &rgbaImages, rgbaImg: rgbaImg, onComplete: onComplete)
       }
    }
 }
@@ -55,3 +52,6 @@ extension Splitter {
       }
    }
 }
+//DispatchQueue.main.async { // I guess this is on main-thread because it writes into an array
+//
+//}

@@ -1,6 +1,7 @@
 import Foundation
 /**
  * ColorMap
+ * - Abstract: Used in the creation process
  */
 extension Colorizer {
    /**

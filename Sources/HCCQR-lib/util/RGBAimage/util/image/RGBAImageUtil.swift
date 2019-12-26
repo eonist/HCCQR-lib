@@ -17,8 +17,9 @@ public final class RGBAImageUtil {
     */
    static func ciImage(rgbaImage: RGBAImage) throws -> CIImage {
       let cgImage: CGImage = try RGBAImageUtil.cgImage(rgbaImage: rgbaImage )
-      // Fixme: ⚠️️ we can prob create ciImage directly for better speed, see RGBKit and related research
       return cgImage.ciImage() // we convert to CIImage here, because apples QRReader reades CIImage
+      // Fixme: ⚠️️ we can prob create ciImage directly for better speed, see RGBKit and related research
+//      return ciImg(rgbaImage: rgbaImage)
    }
 }
 /**
@@ -38,6 +39,31 @@ extension RGBAImageUtil {
       guard let imageContext = CGContext(data: rgbaImage.pixels.baseAddress, width: rgbaImage.width, height: rgbaImage.height, bitsPerComponent: 8, bytesPerRow: bytesPerRow, space: colorSpace, bitmapInfo: bitmapInfo, releaseCallback: nil, releaseInfo: nil) else { throw NSError(domain: "Unable to create imageContext", code: 0) }
       guard let cgImage: CGImage = imageContext.makeImage() else { throw NSError(domain: "Unable to create cgImage", code: 0) }
       return cgImage
+   }
+   /**
+    * experimental
+    */
+   private static func ciImg(rgbaImage: RGBAImage) -> CIImage {
+      let colorSpace: CGColorSpace = CGColorSpaceCreateDeviceRGB()
+      // Fixme: ⚠️️ convert to grayscale instead, its prob faster
+      var bitmapInfo: UInt32 = CGBitmapInfo.byteOrder32Big.rawValue
+      bitmapInfo |= CGImageAlphaInfo.premultipliedLast.rawValue & CGBitmapInfo.alphaInfoMask.rawValue
+      let bytesPerRow: Int = rgbaImage.width * 4
+//      let ciContext: CIContext = .init()
+//      CIContext.
+      let data = Data(buffer: rgbaImage.pixels)
+      let size: CGSize = .init(width: rgbaImage.size.width, height: rgbaImage.size.height)
+      let ciImg: CIImage = CIImage(bitmapData: data, bytesPerRow: bytesPerRow, size: size, format: .BGRA8, colorSpace: colorSpace)
+      return ciImg
+//      guard let imageContext = CGContext(data: rgbaImage.pixels.baseAddress, width: rgbaImage.width, height: rgbaImage.height, bitsPerComponent: 8, bytesPerRow: bytesPerRow, space: colorSpace, bitmapInfo: bitmapInfo, releaseCallback: nil, releaseInfo: nil) else { throw NSError(domain: "Unable to create imageContext", code: 0) }
+//      guard let cgImage: CGImage = imageContext.makeImage() else { throw NSError(domain: "Unable to create cgImage", code: 0) }
+//      return cgImage
+//      CVPixelBufferRef pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
+//      CIImage *cameraImage = [[CIImage alloc] initWithCVPixelBuffer:pixelBuffer];
+//      CGColorSpaceRef cSpace = CGColorSpaceCreateDeviceRGB();
+//      cameraImage = [self.logoImage imageByCompositingOverImage:cameraImage];
+//      [self.context render:cameraImage toCVPixelBuffer:pixelBuffer bounds:cameraImage.extent colorSpace:cSpace];
+
    }
 }
 // Fixme: ⚠️️ you could try the bellow and see if its faster?

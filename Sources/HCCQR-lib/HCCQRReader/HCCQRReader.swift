@@ -36,6 +36,7 @@ public final class HCCQRReader {
 extension HCCQRReader {
    /**
     * onSplitComplete
+    * - Abstract: after splitting the HCCQRImage into color channels, we create QRImage layers of the coøor channels
     */
    static func onSplitComplete(result: Result<Splitter.SplitPayload, Error>, onComplete:@escaping DataAndImageCompleted) {
       // Swift.print("onSplitComplete")

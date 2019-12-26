@@ -58,7 +58,7 @@ extension ColorExtractionTest {
       _ = r
       guard let g: RGBAImage = try? .rgbaImage(image: images.g) else { return }
       guard let b: RGBAImage = try? .rgbaImage(image: images.b) else { return }
-      guard let composite: RGBAImage = try? Compositor.composite(rgbaImageList: [b, g/*,g*/], invert: false) else { return }
+      guard let composite: RGBAImage = try? Compositor.composite(rgbaImages: [b, g/*,g*/], invert: false) else { return }
       _ = composite
       /**/
       Swift.print("⚠️️ the bellow may not work anymore, scale is new ⚠️️")
@@ -84,7 +84,7 @@ extension ColorExtractionTest {
       guard let g: RGBAImage = try? .rgbaImage(image: images.g) else { return }
       guard let b: RGBAImage = try? .rgbaImage(image: images.b) else { return }
       _ = b
-      guard let composite = try? Compositor.composite(rgbaImageList: [r, g/*,b*/], invert: false) else { return }
+      guard let composite = try? Compositor.composite(rgbaImages: [r, g/*,b*/], invert: false) else { return }
       /**/
       Swift.print("⚠️️ the bellow may not work anymore, scale is new ⚠️️")
       let img: Image? = try? RGBAImageUtil.image(rgbaImage: composite, scale: image.scale)
