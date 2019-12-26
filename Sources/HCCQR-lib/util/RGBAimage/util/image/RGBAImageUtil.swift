@@ -53,7 +53,7 @@ extension RGBAImageUtil {
 //      CIContext.
       let data = Data(buffer: rgbaImage.pixels)
       let size: CGSize = .init(width: rgbaImage.size.width, height: rgbaImage.size.height)
-      let ciImg: CIImage = CIImage(bitmapData: data, bytesPerRow: bytesPerRow, size: size, format: .BGRA8, colorSpace: colorSpace)
+      let ciImg = CIImage(bitmapData: data, bytesPerRow: bytesPerRow, size: size, format: .BGRA8, colorSpace: colorSpace)
       return ciImg
 //      guard let imageContext = CGContext(data: rgbaImage.pixels.baseAddress, width: rgbaImage.width, height: rgbaImage.height, bitsPerComponent: 8, bytesPerRow: bytesPerRow, space: colorSpace, bitmapInfo: bitmapInfo, releaseCallback: nil, releaseInfo: nil) else { throw NSError(domain: "Unable to create imageContext", code: 0) }
 //      guard let cgImage: CGImage = imageContext.makeImage() else { throw NSError(domain: "Unable to create cgImage", code: 0) }

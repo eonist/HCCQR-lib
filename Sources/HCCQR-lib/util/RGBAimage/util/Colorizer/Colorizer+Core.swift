@@ -17,7 +17,7 @@ extension Colorizer {
       DispatchQueue.concurrentPerform(iterations: size.height) { y in // - Fixme: ⚠️️ try move this to the X value
          (0..<size.width).indices.forEach { x in
             let pixis: [PixelData] = rgbaImages.map { $0.getPixel(x: x, y: y) } // Overlaying pixels
-            if let colorizedPixel = try? colorize(pixels: pixis, colorMap: colorMap) {// else { throw NSError.init(domain: "Unable to make pixel", code: 0) }
+            if let colorizedPixel = try? colorize(pixels: pixis, colorMap: colorMap) { // else { throw NSError.init(domain: "Unable to make pixel", code: 0) }
                let index: Int = y * size.width + x
                pixels[index] = colorizedPixel
             }
@@ -35,7 +35,7 @@ extension Colorizer {
 extension Colorizer {
    /**
     * Converts a series of b&w pixels into one color pixel (on the basis of a colorMap rule set)
-    * - Fixme: ⚠️️ Try to make this method more readable
+    * - Fixme: ⚠️️ Try to make this method more readable, and faster?
     * ## Examples:
     * colorize(pixels: [blackPixel, whitePixel]) -> RedPixel
     * colorize(pixels: [whitePixel, whitePixel]) -> BluePixel
@@ -44,14 +44,16 @@ extension Colorizer {
       let findColor: (ColorMapItem) throws -> Bool = { colorMapItem in
          if colorMapItem.idx.count != pixels.count { throw NSError(domain: "Colorize.colorize - colorMap does not match pixel layer count", code: 0) }
          let condition: (_ i: Int, _ pixel: PixelData) -> Bool = { (i: Int, pixel: PixelData) in
-            let bothAreBlack: Bool = pixel.isBlack == (colorMapItem.idx[i] == false) // zero means black
-            let bothAreWhite: Bool = pixel.isWhite == (colorMapItem.idx[i] == true) // zero means white
+            let bothAreBlack: Bool = pixel.isBlack && !colorMapItem.idx[i] // false means black
+            let bothAreWhite: Bool = pixel.isWhite && colorMapItem.idx[i] // true means white
             if bothAreBlack == false && bothAreWhite == false { return false } // <- Sort of crazy looking, but it works
             else { return true }
          }
+         // - Fixme ⚠️️ could we use async_apply here, in the .first loop?
          return (pixels.enumerated().first(where: condition) == nil)
       }
-      guard let color: Color = try colorMap.first(where: findColor)?.color else { throw NSError(domain: "Unable to colorize", code: 0) }
-      return try .init(uiColor: color)
+      // - Fixme ⚠️️ could we use async_apply here, in the .first loop?
+      guard let color: PixelData.RGBColor = try colorMap.first(where: findColor)?.color else { throw NSError(domain: "Unable to colorize", code: 0) }
+      return PixelData(r: color.r, g: color.g, b: color.b, a: color.a) // (uiColor: color)
    }
 }

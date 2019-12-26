@@ -7,5 +7,7 @@ extension Colorizer {
    /**
     * - Parameter idx: The array represents the layers of QRImages (true equals black, false equals white)
     */
-   internal typealias ColorMapItem = (idx: [Bool], color: Color)
+   // 🏀
+   // Fixme: ⚠️️ Use RGBColor with UInt8 instead of color, lots of conversion is not needed
+   internal typealias ColorMapItem = (idx: [Bool], color: PixelData.RGBColor)
 }
