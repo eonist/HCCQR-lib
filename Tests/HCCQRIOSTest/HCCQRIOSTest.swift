@@ -17,8 +17,8 @@ class HCCQRIOSTest: XCTestCase {
 //      XCTAssertTrue(PixelTest.testColorAssertionWithinThresholdForPixel())
 //      testSingle()
       /*testReadingHCCQR()*/ // ⚠️️ only works in xcode-simulator
-//      testBulk()
-      testRGBKit()
+      testBulk() // Read and write multiple HCCQR images
+//      testRGBKit() // test the new rgbkit 
    }
    func testPerformanceExample() {
       self.measure { }

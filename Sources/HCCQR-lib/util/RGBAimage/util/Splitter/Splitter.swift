@@ -10,26 +10,31 @@ final class Splitter {
     * - Abstract: pair b&g = qr1, pair r$b = qr2
     */
    static func split(image: Image, onComplete:@escaping SplitPayloadCompleted) {
-      let onChannelsComplete: OnChannelsCompleted = { result in // called when the (R,G,B) channels are split
-         guard let channels: RGBAImages = result.value() else { onComplete(.failure(NSError("Unable to create rgbaImgs \(result.errorStr)"))); return } // (r,g,b)
-         let channelArr: [(first: RGBAImage, second: RGBAImage)] = [(channels.b, channels.g), (channels.r, channels.b)] // pair b&g = qr1, pair r$b = qr2
-         var qrImgs: [CIImage?] = [CIImage?](repeating: nil, count: channelArr.count)
-         channelArr.enumerated().forEach { channel in
-            DispatchQueue.global(qos: .userInitiated).async {
-               let qrImg: CIImage? = try? Compositor.composite(first: channel.element.first, second: channel.element.second)
-               DispatchQueue.main.async { // I guess mainthread is needed here because we access an array
-                  onCompositeComplete(i: channel.offset, qrImg: qrImg, qrImgs: &qrImgs, channels: channels, onComplete: onComplete)
-               }
-            }
-         }
+      channels(image: image) { result in // Get RGBAImages from UIImages
+         onChannelsComplete(result: result, onComplete: onComplete)
       }
-      channels(image: image, onComplete: onChannelsComplete) // Get RGBAImages from UIImages
    }
 }
 /**
- * Private static helper
+ * static handler
  */
 extension Splitter {
+   /**
+    * onChannelsComplete
+    */
+   static func onChannelsComplete(result: Result<RGBAImages, Error>, onComplete:@escaping SplitPayloadCompleted) { // called when the (R,G,B) channels are split
+      guard let channels: RGBAImages = result.value() else { onComplete(.failure(NSError("Unable to create rgbaImgs \(result.errorStr)"))); return } // (r,g,b)
+      let channelArr: [(first: RGBAImage, second: RGBAImage)] = [(channels.b, channels.g), (channels.r, channels.b)] // pair b&g = qr1, pair r$b = qr2
+      var qrImgs: [CIImage?] = [CIImage?](repeating: nil, count: channelArr.count)
+      channelArr.enumerated().forEach { channel in
+         DispatchQueue.global(qos: .userInitiated).async {
+            let qrImg: CIImage? = try? Compositor.composite(first: channel.element.first, second: channel.element.second)
+            DispatchQueue.main.async { // I guess mainthread is needed here because we access an array
+               onCompositeComplete(i: channel.offset, qrImg: qrImg, qrImgs: &qrImgs, channels: channels, onComplete: onComplete)
+            }
+         }
+      }
+   }
    /**
     * Composite complete
     */

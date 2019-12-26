@@ -33,10 +33,8 @@ extension RGBKitTest {
       Swift.print("hccqrImage.size:  \(hccqrImage.size)")
       Swift.print("hccqrImage.scale:  \(hccqrImage.scale)")
 //      Swift.print("hccqrImage.cgImage()?.width:  \(hccqrImage.cgImage?.width)")
-      // convert UIImage to RGBImage
       guard let rgbImage: RGBImage = try? RGBReader.rgbImage(image: hccqrImage) else { Swift.print("err getting rgbImage"); return }
-      // Convert RGBImage to RGBAImage
-      let rgbaImage: RGBAImage = rgbImage.rgbaImage
+      let rgbaImage: RGBAImage = rgbImage.rgbaImage // Convert RGBImage to RGBAImage
       guard let hccqrImg: Image = try? RGBAImageUtil.image(rgbaImage: rgbaImage, scale: 1) else { return }
       Swift.print("hccqrImg.size:  \(hccqrImg.size)")
       // Convert RGBBAImage to Data
