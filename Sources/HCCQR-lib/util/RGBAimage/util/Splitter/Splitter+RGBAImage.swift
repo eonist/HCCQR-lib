@@ -5,7 +5,7 @@ import CoreImage
  */
 extension Splitter {
    /**
-    * Returns two b&w qr imgs (by splittin an hccqr ciImage)
+    * Returns two b&w qr images in RGBAImage format (by splitting a single hccqr ciImage)
     * - Note: Used in the process to convert HCCQR to Data
     */
    static func split(rgbaImage: RGBAImage, onComplete:@escaping SplitPayloadCompleted) {
