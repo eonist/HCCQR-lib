@@ -5,14 +5,17 @@ import ResultSugar
  */
 extension Splitter {
    /**
-    * Split 3 RGBAImages into 3 singular r,g,b channels (white represents the channel color)
-    * - Fixme: ⚠️️ add rethrow here I guess, or result?
+    * For 4 color HCCQR,
+    * - Fixme: ⚠️️ See .pdf's for the colors to use for 8-colorHCCQR etc
     */
-   /*private */static func channels(rgbaImg: RGBAImage, onComplete:@escaping OnChannelsCompleted) {
-      // - Fixme: ⚠️️ can we move the bellow asserion in to a priv static method or var?
-      let assertions: [(PixelData) -> Bool] = [ { $0.isRedish }, { $0.isGreenish }, { $0.isBlueish }]
+   static let channelMap = [PixelData.red, PixelData.green, PixelData.blue]// { $0.isColorish() }, { $0.isColorish() }]
+   /**
+    * Split 3 RGBAImages into 3 singular r, g, b channels (white represents the channel color)
+    */
+   /*private */static func channels(rgbaImg: RGBAImage, channelMap: [PixelData.RGBColor] = channelMap, onComplete:@escaping OnChannelsCompleted) {
+      let assertions: [(PixelData) -> Bool] = channelMap.map { rgbColor in { $0.isColorish(rgbColor) } }
       var rgbaImages: [RGBAImage?] = [RGBAImage?](repeating: nil, count: assertions.count)
-      assertions.enumerated().forEach { item in // finds 
+      assertions.enumerated().forEach { item in // finds the red-channel, blue-channel, green-channel
          DispatchQueue.global(qos: .userInitiated).async { // - Fixme ⚠️️ use the sync method instead here, assert improvment?
             let rgbaImage: RGBAImage = channel(rgbaImg: rgbaImg, assert: item.element)
             DispatchQueue.main.async { // I guess this is on main-thread because it writes into an array
@@ -33,11 +36,11 @@ extension Splitter {
     */
    private static func channel(rgbaImg: RGBAImage, assert: (_ pixel: PixelData) -> Bool) -> RGBAImage {
       // - Fixme: ⚠️️ I think we can create a blank RGBImage, as its faster than copy probably
-      var outImage = rgbaImg.copy
-      outImage.process { pixel -> PixelData in
+//       let newImg =  RGBAImage.rgbaImage(pixel: PixelData.Colors.whitePixel, size: rgbaImg.size)//
+      let newImg = RGBAImage.rgbaImage(capacity: rgbaImg.size.width * rgbaImg.size.height, size: rgbaImg.size)
+      return rgbaImg.process(input: newImg) { pixel -> PixelData in
          assert(pixel) ? PixelData.Colors.whitePixel : PixelData.Colors.blackPixel
       }
-      return outImage
    }
    /**
     * Channel completion handler

@@ -8,13 +8,14 @@ extension RGBAImage {
     * - Note: Used in the (splitting) process to convert HCCQR to Data
     * - Fixme: ⚠️️ Using a pointer or striding might speed up this method
     */
-   mutating func process(functor: FunctorCall) {
+   func process(input: RGBAImage, functor: FunctorCall) -> RGBAImage {
       (0..<self.height).forEach { y in
          DispatchQueue.concurrentPerform(iterations: self.width) { x in // ⚠️️ optimization initiative
             let index: Int = y * width + x
-            pixels[index] = functor(pixels[index])
+            input.pixels[index] = functor(pixels[index])
          }
       }
+      return input
    }
    /**
     * Applies pixels with a method (for index)

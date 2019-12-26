@@ -5,24 +5,37 @@ import QuartzCore
  * - Fixme: ⚠️️ Move some of these into PixelDataAsserter class
  */
 extension PixelData {
+   typealias RGBColor = (r: UInt8, g: UInt8, b: UInt8, a: UInt8)
+   static let red: RGBColor = (r: 255, g: 0, b: 0, a: 255)
+   static let green: RGBColor = (r: 0, g: 255, b: 0, a: 255)
+   static let blue: RGBColor = (r: 0, g: 0, b: 255, a: 255)
+}
+extension PixelData {
    /**
-    * Asserts if a pixel is sort of red within a threshold
+    *  Asserts if a pixel is sort of a color within a threshold
     */
-   var isRedish: Bool {
-      return self.isColor(pixel: Colors.redPixel, halfThreshold: PixelData.halfThresholdUInt8)
+   func isColorish(_ color: RGBColor) -> Bool {
+      let pixel: PixelData = .init(r: color.r, g: color.g, b: color.b, a: 255)
+      return self.isColor(pixel: pixel, halfThreshold: PixelData.halfThresholdUInt8)
    }
-   /**
-    * Asserts if a pixel is sort of green within a threshold
-    */
-   var isGreenish: Bool {
-      return self.isColor(pixel: Colors.greenPixel, halfThreshold: PixelData.halfThresholdUInt8)
-   }
-   /**
-    * Asserts if a pixel is sort of blue within a threshold
-    */
-   var isBlueish: Bool {
-      return self.isColor(pixel: Colors.bluePixel, halfThreshold: PixelData.halfThresholdUInt8)
-   }
+//   /**
+//    * Asserts if a pixel is sort of red within a threshold
+//    */
+//   var isRedish: Bool {
+//      return self.isColor(pixel: Colors.redPixel, halfThreshold: PixelData.halfThresholdUInt8)
+//   }
+//   /**
+//    * Asserts if a pixel is sort of green within a threshold
+//    */
+//   var isGreenish: Bool {
+//      return self.isColor(pixel: Colors.greenPixel, halfThreshold: PixelData.halfThresholdUInt8)
+//   }
+//   /**
+//    * Asserts if a pixel is sort of blue within a threshold
+//    */
+//   var isBlueish: Bool {
+//      return self.isColor(pixel: Colors.bluePixel, halfThreshold: PixelData.halfThresholdUInt8)
+//   }
    /**
     * Measure if color is white (used in the colorize method)
     * - Note: looks funny, but it's that way to make it fast

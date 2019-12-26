@@ -26,7 +26,7 @@ extension RGBAImage {
     */
    var clone: RGBAImage {
       let bytesCopy = UnsafeBufferPointer<PixelData>(pixels)
-      //Creates a mutable typed buffer pointer referencing the same memory as the given immutable buffer pointer.
+      // Creates a mutable typed buffer pointer referencing the same memory as the given immutable buffer pointer.
       let copyOfPixels = UnsafeMutableBufferPointer<PixelData>(mutating: bytesCopy)
       return RGBAImage(pixels: copyOfPixels, width: width, height: height)
    }

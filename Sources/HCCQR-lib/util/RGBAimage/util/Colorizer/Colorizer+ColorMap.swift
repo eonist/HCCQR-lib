@@ -9,21 +9,21 @@ extension Colorizer {
     */
    internal static let colorMap: ColorMap = {
       [
-         (idx: [0, 1], Color.red), // black, white
-         (idx: [1, 0], Color.green), // white, black
-         (idx: [1, 1], Color.blue), // black, black
-         (idx: [0, 0], Color.white) // white, white
+         (idx: [false, true], Color.red), // red block 👉 (qr1: black, qr2: white)
+         (idx: [true, false], Color.green), // green block 👉 (qr1: white, qr2: black)
+         (idx: [true, true], Color.blue), // blue block 👉 (qr1: black, qr2: black)
+         (idx: [false, false], Color.white) // white block 👉 (qr1: white, qr2: white)
       ]
    }()
    /**
-    * blandColorMap (washed out colors for testing)
+    * blandColorMap (washed out colors used for testing)
     */
    internal static let blandColorMap: ColorMap = {
       [
-         (idx: [0, 1], Color(red: 0.8, green: 0.2, blue: 0.2, alpha: 1)), // black, white
-         (idx: [1, 0], Color(red: 0.2, green: 0.8, blue: 0.2, alpha: 1)), // white, black
-         (idx: [1, 1], Color(red: 0.2, green: 0.2, blue: 0.8, alpha: 1)), // black, black
-         (idx: [0, 0], Color(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)) // white, white
+         (idx: [false, true], Color(red: 0.8, green: 0.2, blue: 0.2, alpha: 1)), // black, white
+         (idx: [true, false], Color(red: 0.2, green: 0.8, blue: 0.2, alpha: 1)), // white, black
+         (idx: [true, true], Color(red: 0.2, green: 0.2, blue: 0.8, alpha: 1)), // black, black
+         (idx: [false, false], Color(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)) // white, white
       ]
    }()
 }

@@ -4,5 +4,8 @@ import Foundation
  */
 extension Colorizer {
    internal typealias ColorMap = [ColorMapItem]
-   internal typealias ColorMapItem = (idx: [Int], color: Color)
+   /**
+    * - Parameter idx: The array represents the layers of QRImages (true equals black, false equals white)
+    */
+   internal typealias ColorMapItem = (idx: [Bool], color: Color)
 }

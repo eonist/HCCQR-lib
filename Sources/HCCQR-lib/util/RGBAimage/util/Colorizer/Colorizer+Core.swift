@@ -44,8 +44,8 @@ extension Colorizer {
       let findColor: (ColorMapItem) throws -> Bool = { colorMapItem in
          if colorMapItem.idx.count != pixels.count { throw NSError(domain: "Colorize.colorize - colorMap does not match pixel layer count", code: 0) }
          let condition: (_ i: Int, _ pixel: PixelData) -> Bool = { (i: Int, pixel: PixelData) in
-            let bothAreBlack: Bool = pixel.isBlack == (colorMapItem.idx[i] == 0) // zero means black
-            let bothAreWhite: Bool = pixel.isWhite == (colorMapItem.idx[i] == 1) // zero means white
+            let bothAreBlack: Bool = pixel.isBlack == (colorMapItem.idx[i] == false) // zero means black
+            let bothAreWhite: Bool = pixel.isWhite == (colorMapItem.idx[i] == true) // zero means white
             if bothAreBlack == false && bothAreWhite == false { return false } // <- Sort of crazy looking, but it works
             else { return true }
          }
