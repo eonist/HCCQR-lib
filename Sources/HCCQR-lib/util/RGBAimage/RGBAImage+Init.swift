@@ -34,12 +34,13 @@ extension RGBAImage {
       let bytesPerRow: Int = size.width * 4 // We multiply per 4 because of the 4 channels, RGBA
       let capacity: Int = size.width * size.height
       let imageData = UnsafeMutablePointer<PixelData>.allocate(capacity: capacity)
+      Swift.print("cgImage.colorSpace:  \(String(describing: cgImage.colorSpace))")
       let colorSpace: CGColorSpace = CGColorSpaceCreateDeviceRGB()
-      guard let imageContext = CGContext(data: imageData, width: size.width, height: size.height, bitsPerComponent: 8, bytesPerRow: bytesPerRow, space: colorSpace, bitmapInfo: RGBAImage.bitmapInfo) else { throw NSError(domain: "rgbaImage - Unable to create rgbaImage", code: 0) }
+      let bitMapInfo = RGBAImage.bitmapInfo
+      guard let imageContext = CGContext(data: imageData, width: size.width, height: size.height, bitsPerComponent: 8, bytesPerRow: bytesPerRow, space: colorSpace, bitmapInfo: bitMapInfo) else { throw NSError(domain: "rgbaImage - Unable to create rgbaImage", code: 0) }
       imageContext.draw(cgImage, in: .init(origin: .zero, size: .init(width: cgImage.width, height: cgImage.height))) // draws the cgImage into the context
       let pixels = UnsafeMutableBufferPointer<PixelData>(start: imageData, count: capacity)
-      let rgbaImg: RGBAImage = .init(pixels: pixels, width: size.width, height: size.height)
-      return rgbaImg
+      return .init(pixels: pixels, width: size.width, height: size.height)
    }
    /**
     * Makes a new RGBA instance from pixels and size

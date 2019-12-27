@@ -56,9 +56,6 @@ extension RGBAImageUtil {
       var bitmapInfo: UInt32 = CGBitmapInfo.byteOrder32Big.rawValue
       bitmapInfo |= CGImageAlphaInfo.premultipliedLast.rawValue & CGBitmapInfo.alphaInfoMask.rawValue
       let bytesPerRow: Int = rgbaImage.width * 4 //((The number of bytes per row.
-      
-      
-      
 //      let ciContext: CIContext = .init()
 //      ciContext.
       let data = Data(buffer: rgbaImage.pixels) // The bitmap data to use for the image. The data you supply must be premultiplied.
@@ -77,22 +74,46 @@ extension RGBAImageUtil {
 //      cameraImage = [self.logoImage imageByCompositingOverImage:cameraImage];
 //      [self.context render:cameraImage toCVPixelBuffer:pixelBuffer bounds:cameraImage.extent colorSpace:cSpace];
    }
-   
    /**
     * new
     */
    static func ciImg2(rgbaImage: RGBAImage) -> CIImage? {
-      let colorSpace: CGColorSpace = CGColorSpaceCreateDeviceRGB() // The color space that the image is defined in. It must be a Quartz 2D color space (CGColorSpace). Pass nil for images that don’t contain color data (such as elevation maps, normal vector maps, and sampled function tables).
-      let data: Data = Data(buffer: rgbaImage.pixels)
+//      let colorSpace: CGColorSpace = CGColorSpaceCreateDeviceRGB()
+//      Swift.print("rgbaImage.pixels.count:  \(rgbaImage.pixels.count)")
+      let data: Data = .init(buffer: rgbaImage.pixels)
       let cfdata = NSData(data: data) as CFData
-      guard let provider: CGDataProvider = CGDataProvider(data: cfdata) else { print("CGDataProvider is not supposed to be nil"); return nil }
-      let format: CIFormat = .BGRA8 // A pixel format constant. See Pixel Formats.
-      let capacity: Int = rgbaImage.size.width * rgbaImage.size.height
+      guard let provider = CGDataProvider(data: cfdata) else { print("CGDataProvider is not supposed to be nil"); return nil }
+      let format: CIFormat = .RGBA8 //.BGRA8 // .RGBA8// .ARGB8//.ABGR8// // A pixel format constant. See Pixel Formats.
+//      let capacity: Int = rgbaImage.size.width * rgbaImage.size.height
+      let colorSpace: CGColorSpace = CGColorSpaceCreateDeviceRGB() // The color space that the image is defined in. It must be a Quartz 2D color space (CGColorSpace). Pass nil for images that don’t contain color data (such as elevation maps, normal vector maps, and sampled function tables).
+//      let bitMapInfo = RGBAImage.bitmapInfo
+      let bytesPerRow: Int = rgbaImage.size.width * 4
+//      Swift.print("capacity:  \(capacity)")
 //      (imageProvider: , size: rgbaImage.size, format: format, colorSpace: colorSpace, options: nil) // Initializes an image object with data provided by an image provider, using the specified options.
-      let ciImage = CIImage.init(imageProvider: provider, size: capacity, rgbaImage.size.height, format: format, colorSpace: colorSpace, options: nil)
-      return ciImage
+//
+        return .init(bitmapData: data, bytesPerRow: bytesPerRow, size: CGSize(width: CGFloat(rgbaImage.size.width), height: CGFloat(rgbaImage.size.height)), format: format, colorSpace: colorSpace)
+//      return .init(imageProvider: provider, size: rgbaImage.size.width, rgbaImage.size.height, format: format, colorSpace: colorSpace, options: nil)
    }
 }
+//      Parameters
+//      p
+//      A data provider that implements the CIImageProvider informal protocol. Core Image maintains a strong reference to this object until the image is deallocated.
+//
+//      width
+//      The width of the image data.
+//
+//      height
+//      The height of the image data.
+//
+//      f
+//      A pixel format constant. See Pixel Formats.
+//
+//      cs
+//      The color space of the image. If this value is nil, the image is not color matched. Pass nil for images that don’t contain color data (such as elevation maps, normal vector maps, and sampled function tables).
+//
+//      dict
+//      A dictionary that specifies image-creation options, either kCIImageProviderTileSize or kCIImageProviderUserInfo. See CIImageProvider for more information on these options.
+
 
 // things to try: ⚠️️
 
