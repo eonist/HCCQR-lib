@@ -11,13 +11,17 @@ extension Splitter {
    static let channelMap = [PixelData.red, PixelData.green, PixelData.blue]// { $0.isColorish() }, { $0.isColorish() }]
    /**
     * Split 3 RGBAImages into 3 singular r, g, b channels (white represents the channel color)
+    * - Parameters:
+    *   - rgbaImg: target to derive channels from
+    *   - channelMap: ruleset for the splitting process
+    *   - onComplete: notify when process has completed
     */
-   /*private */static func channels(rgbaImg: RGBAImage, channelMap: [PixelData.RGBColor] = channelMap, onComplete:@escaping OnChannelsCompleted) {
+   static func channels(rgbaImg: RGBAImage, channelMap: [PixelData.RGBColor] = channelMap, onComplete:@escaping OnChannelsCompleted) {
       let assertions: [(PixelData) -> Bool] = channelMap.map { rgbColor in { $0.isColorish(rgbColor) } }
-      var rgbaImages: [RGBAImage?] = [RGBAImage?](repeating: nil, count: assertions.count)
-      DispatchQueue.concurrentPerform(iterations: assertions.count) { i in // ⚠️️ optimization initiative
+      var rgbaImages: [RGBAImage?] = [RGBAImage?](repeating: nil, count: assertions.count) // Fixme: ⚠️️ we could use unmanaged pointer with capacity as well, might be faster
+      DispatchQueue.concurrentPerform(iterations: assertions.count) { i in // ⚠️️ Optimization initiative
          let item = (element: assertions[i], offset: i)
-         let rgbaImage: RGBAImage = channel(rgbaImg: rgbaImg, assert: item.element) // finds the red-channel, blue-channel, green-channel
+         let rgbaImage: RGBAImage = channel(rgbaImg: rgbaImg, assert: item.element) // Finds the red-channel, blue-channel, green-channel
          onChannelComplete(i: item.offset, rgbaImage: rgbaImage, rgbaImages: &rgbaImages, rgbaImg: rgbaImg, onComplete: onComplete)
       }
    }

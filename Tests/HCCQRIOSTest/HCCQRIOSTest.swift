@@ -24,6 +24,18 @@ class HCCQRIOSTest: XCTestCase {
       self.measure { }
    }
 }
+extension HCCQRIOSTest {
+   /**
+    *
+    */
+   private func testCIImage() {
+      // 🏀
+      // Create CIImage
+      // create RGBAImage
+      // create CIIMage
+      // assert that CIMage match first CIImage
+   }
+}
 /**
  * Tests (callback)
  */

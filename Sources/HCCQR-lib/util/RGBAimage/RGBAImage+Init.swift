@@ -27,6 +27,7 @@ extension RGBAImage {
    }
    /**
     * cgImage -> rgbaImage (new)
+    * - Fixme: ⚠️️ make similar method for CIImage
     */
    static func rgbaImage(cgImage: CGImage) throws -> RGBAImage {
       let size: Size = (width: Int(cgImage.width), height: Int(cgImage.height))

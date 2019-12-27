@@ -45,7 +45,7 @@ extension HCCQRReader {
       var dataAndFrames: [QRReader.DataAndQuad?] = [QRReader.DataAndQuad?](repeating: nil, count: ciImages.count)
       ciImages.enumerated().forEach { item in
          DispatchQueue.main.async { // Has to be done on main thread, or else Apples.qrreader behaves bad
-            guard let dataAndQuad: QRReader.DataAndQuad = try? QRReader.dataAndQuad(ciImage: item.element) else { onQRCodeComplete(i: item.offset, dataAndQuad: nil, error: NSError(domain: "unable to get DataAndQuad", code: 0), dataAndFrames: &dataAndFrames, payload: payload, onComplete: onComplete); return }// - Fixme: ⚠️️ why not just throw? }
+            guard let dataAndQuad: QRReader.DataAndQuad = try? QRReader.dataAndQuad(ciImage: item.element) else { onQRCodeComplete(i: item.offset, dataAndQuad: nil, error: NSError(domain: "Unable to get DataAndQuad from QRLib", code: 0), dataAndFrames: &dataAndFrames, payload: payload, onComplete: onComplete); return }// - Fixme: ⚠️️ why not just throw? }
             onQRCodeComplete(i: item.offset, dataAndQuad: dataAndQuad, error: nil, dataAndFrames: &dataAndFrames, payload: payload, onComplete: onComplete)
          }
       }
