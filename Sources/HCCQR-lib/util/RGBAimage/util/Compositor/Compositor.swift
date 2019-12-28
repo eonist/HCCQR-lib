@@ -14,7 +14,7 @@ final class Compositor {
    static func composite(first: RGBAImage, second: RGBAImage) throws -> CIImage {
       let rgbaImg: RGBAImage = try composite(rgbaImages: [first, second])
       // - Fixme: ⚠️️ here we could use black&white colormap, as it's only for reading bw qr code
-      guard let img: CIImage = try? RGBAImageUtil.ciImg2(rgbaImage: rgbaImg) else { rgbaImg.deinitiate(); throw NSError(domain: "Unable to create img", code: 0) }
+      guard let img: CIImage = try? RGBAImageUtil.ciImg2(rgbaImage: rgbaImg, useGrayscale: true) else { rgbaImg.deinitiate(); throw NSError(domain: "Unable to create img", code: 0) }
       rgbaImg.deinitiate() // We deinit the RGBImg after we have consumed it to avoid mem leak
       return img
    }

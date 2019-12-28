@@ -102,24 +102,30 @@ extension RGBAImageUtil {
     * - Fixme: ⚠️️ Make the grayscale work, see similar solution as convertToGrayscale use
     * - Note: The composite method uses this method
     */
-   static func ciImg2(rgbaImage: RGBAImage, useGrayscale: Bool = false) throws -> CIImage {
-//      let colorSpace: CGColorSpace = CGColorSpaceCreateDeviceRGB()
-//      Swift.print("rgbaImage.pixels.count:  \(rgbaImage.pixels.count)")
+   static func ciImg2(rgbaImage: RGBAImage, useGrayscale: Bool) throws -> CIImage {
+      Swift.print("ciImg2")
       let data: Data = .init(buffer: rgbaImage.pixels)
-//      let cfdata = NSData(data: data) as CFData
-//      guard let provider = CGDataProvider(data: cfdata) else { print("CGDataProvider is not supposed to be nil"); return nil }
       let format: CIFormat = .RGBA8 //.BGRA8 // .RGBA8// .ARGB8//.ABGR8// // A pixel format constant. See Pixel Formats.
-//      let capacity: Int = rgbaImage.size.width * rgbaImage.size.height
-      let colorSpace: CGColorSpace = CGColorSpaceCreateDeviceGray()//useGrayscale ? CGColorSpaceCreateDeviceGray() : CGColorSpaceCreateDeviceRGB()//CGColorSpaceCreateDeviceRGB() // The color space that the image is defined in. It must be a Quartz 2D color space (CGColorSpace). Pass nil for images that don’t contain color data (such as elevation maps, normal vector maps, and sampled function tables).
-//      let bitMapInfo = RGBAImage.bitmapInfo
+      let colorSpace: CGColorSpace = useGrayscale ? CGColorSpaceCreateDeviceGray() : CGColorSpaceCreateDeviceRGB()//CGColorSpaceCreateDeviceRGB() // The color space that the image is defined in. It must be a Quartz 2D color space (CGColorSpace). Pass nil for images that don’t contain color data (such as elevation maps, normal vector maps, and sampled function tables).
       let bytesPerRow: Int = rgbaImage.size.width * 4
-//      Swift.print("capacity:  \(capacity)")
-//      (imageProvider: , size: rgbaImage.size, format: format, colorSpace: colorSpace, options: nil) // Initializes an image object with data provided by an image provider, using the specified options.
       let ciImg: CIImage = .init(bitmapData: data, bytesPerRow: bytesPerRow, size: CGSize(width: CGFloat(rgbaImage.size.width), height: CGFloat(rgbaImage.size.height)), format: format, colorSpace: colorSpace)
       return ciImg
-//      return .init(imageProvider: provider, size: rgbaImage.size.width, rgbaImage.size.height, format: format, colorSpace: colorSpace, options: nil)
    }
-   // 🏀 continue hre
+   /**
+    *
+    */
+//   static func grayScaleCIImg(rgbaImage: RGBAImage, useGrayscale: Bool/*, opaque: Bool, scale: Int = 1*/ ) throws -> CIImage {
+//      Swift.print("grayScaleCIImg")
+//      let data: Data = .init(buffer: rgbaImage.pixels)
+//      let format: CIFormat = .RGBA8 //.BGRA8 // .RGBA8// .ARGB8//.ABGR8// // A pixel format constant. See Pixel Formats.
+//      let colorSpace: CGColorSpace = useGrayscale ? CGColorSpaceCreateDeviceGray() : CGColorSpaceCreateDeviceRGB()//CGColorSpaceCreateDeviceRGB() // The color space that the image is defined in. It must be a Quartz 2D color space (CGColorSpace). Pass nil for images that don’t contain color data (such as elevation maps, normal vector maps, and sampled function tables).
+//      let bytesPerPixel: Int = 4//opaque ? 1 : 2
+//      let bytesPerRow: Int = bytesPerPixel * rgbaImage.width /* scale*/// * imageRect.image.scale
+//      let ciImg: CIImage = .init(bitmapData: data, bytesPerRow: bytesPerRow, size: CGSize(width: CGFloat(rgbaImage.size.width), height: CGFloat(rgbaImage.size.height)), format: format, colorSpace: colorSpace)
+//      return ciImg
+//   }
+   // 🏀 Continue here
+   
 //   let imageRect: CGRect = .init(x: 0, y: 0, width: cgImage.width, height: cgImage.height) // Create image rectangle with current image width/height
 //   let colorSpace = CGColorSpaceCreateDeviceGray() // Grayscale color space
 //   let bitsPerComponent = 8
@@ -132,7 +138,8 @@ extension RGBAImageUtil {
 //   guard let cgImg = context.makeImage() else { throw NSError(domain: "unable to makeImage", code: 0) }// Create bitmap image info from pixel data in current context
 //   debugCGImage(cgImage: cgImg)
 //   return cgImg
-   /*
+   
+   /**
     * ref https://developer.apple.com/documentation/coreimage/cicontext/1437897-render
     * The idea with this method is to convert RGBAImage.pixels into CICOntext, and use apples QR reader directly with the CIContext, instead of cIimage
     */

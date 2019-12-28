@@ -13,7 +13,7 @@ extension Colorizer {
       guard ciImages.count == rgbaImages.count else { throw "Colorize.colorize() - some rgbaImages was not created" /*Swift.print();return nil*/ }
       guard let result: RGBAImage = try? colorize(rgbaImages: rgbaImages, colorMap: colorMap, multipliers: multipliers) else { throw "Colorize.colorize() - Unable to create colorized rgbaImage" }
       // ⚠️️ the bellow needs to not be grayscale
-      guard let ciImage: CIImage = try? RGBAImageUtil.ciImg2(rgbaImage: result/*, scale: CGFloat(multipliers.screenScale)*/) else { throw "Colorize.colorize() - Unable to convert to UIImage"/*Swift.print();return nil*/ }
+      guard let ciImage: CIImage = try? RGBAImageUtil.ciImg2(rgbaImage: result, useGrayscale: false/*, scale: CGFloat(multipliers.screenScale)*/) else { throw "Colorize.colorize() - Unable to convert to UIImage"/*Swift.print();return nil*/ }
       result.deinitiate() // ⚠️️⚠️️ We get a mem leak in iOS if we don't deallocate the pixels ⚠️️⚠️️
       return ciImage
    }

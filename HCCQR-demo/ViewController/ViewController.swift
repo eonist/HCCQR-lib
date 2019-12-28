@@ -14,7 +14,7 @@ class ViewController: UIViewController {
 //      BulkHCCQRTest.initiateTest { success in
 //         Swift.print("BulkHCCQRTest: success:  \(success)")
 //      }
-      test()
+//      test()
    }
    override var prefersStatusBarHidden: Bool { return true } // hides statusbar
 }
@@ -24,14 +24,15 @@ extension ViewController {
     *
     */
    func test() {
-      guard let image = UIImage.image(size: .init(width: 100, height: 100), color: .green) else { Swift.print("uiImage err"); return }
+      guard let image = UIImage.image(size: .init(width: 100, height: 100), color: .blue) else { Swift.print("uiImage err"); return }
       Swift.print("image.scale:  \(image.scale)")
       Swift.print("image.size:  \(image.size)")
       // create RGBAImage
       guard let ciImg = image.ciImage() else { Swift.print("err ciImg"); return }
       guard let rgbaImage = try? RGBAImage.rgbaImg(ciImg: ciImg) else { Swift.print("rbgaImg err"); return }
       // create CIIMage
-      guard let ciImage: CIImage = try? RGBAImageUtil.ciImg2(rgbaImage: rgbaImage) else { Swift.print("ciimg err"); return }
+//      guard let ciImage: CIImage = try? RGBAImageUtil.ciImg2(rgbaImage: rgbaImage) else { Swift.print("ciimg err"); return }
+      guard let ciImage: CIImage = try? RGBAImageUtil.ciImg2(rgbaImage: rgbaImage, useGrayscale: false/*, opaque: false*/ ) else { Swift.print("ciimg err"); return }
       // assert that CIMage match first CIImage
       Swift.print("ciImage.extent.width:  \(ciImage.extent.width)")
       Swift.print("ciImage.extent.height:  \(ciImage.extent.height)")

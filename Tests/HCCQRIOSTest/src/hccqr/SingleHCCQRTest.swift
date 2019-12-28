@@ -21,7 +21,7 @@ extension SingleHCCQRTest {
     */
    static func testWritingHCCQRImage(onComplete: @escaping OnComplete) {
       startTime = .init()
-      let config: QRConfig = (.v1, .byte, .l) // Config
+      let config: QRConfig = (.v4, .byte, .l) // Config
       guard let randomData: Data = HCCQRStringData.randomData(config: config) else { Swift.print("err"); onComplete(false); return }
       let createHCCQRTime: Date = .init()
       writeTime = .init() // We start the write clock here (random data creation time isn't interesting)
