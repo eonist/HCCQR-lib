@@ -1,7 +1,11 @@
 name: Tests
 
-on: [push]
-
+on: 
+  push:
+    branches:
+    - master
+  schedule:
+  - cron: "0 18 * * 0-6"
 jobs:
   build:
 
