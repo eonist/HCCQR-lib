@@ -7,15 +7,15 @@ import CoreImage
 extension HCCQRWriter {
    /**
     * Data -> CIImage (New)
+    * - Abstract: Create two QR images from the data, and combine them into RGBAImage, then convert that to CIImage
     */
    public static func ciImage(data: Data, multipliers: Multipliers, qrConfig: QRConfig = (.v10, .l), onComplete: @escaping OnHCCQRCIImageCompleted) {
-      Swift.print("ciImage")
+      Swift.print("HCCQRWriter.ciImage()")
       let dataArr: [Data] = data.split(index: data.count / 2) // Split the data in two
       var ciImgs: [CIImage?] = [CIImage?](repeating: nil, count: dataArr.count) // Pre-filled array for the images
       dataArr.enumerated().forEach { (_ offset: Int, _ data: Data) in
          DispatchQueue.global(qos: .userInitiated).async { // Do the operation on a background-thread
             let ciImg: CIImage? = try? QRWriter.ciImage(data: data, ecLevel: qrConfig.ecLevel) // Create B&W QR-image
-//            Swift.print("ciImg \(ciImg?.extent.size)")
             DispatchQueue.main.async { // I guess main-thread is needed here because we access an array
                onCreateCIImgComplete(i: offset, ciImg: ciImg, ciImgs: &ciImgs, multipliers: multipliers, onComplete: onComplete)
             }

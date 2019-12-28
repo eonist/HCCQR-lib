@@ -14,10 +14,10 @@ extension Splitter {
       }
    }
    /**
-    * CIImage -> RGBAImage
+    * CIImage -> RGBAImage -> (3x RGBAImages)
     */
    static func channels(ciImage: CIImage, onComplete:@escaping OnChannelsCompleted) {
-      guard let rgbaImg: RGBAImage = try? .rgbaImage(ciImage: ciImage) else { onComplete(.failure(NSError("Unable to create rgbaImg"))); return }
+      guard let rgbaImg: RGBAImage = try? .rgbaImg(ciImg: ciImage) else { onComplete(.failure(NSError("Unable to create rgbaImg"))); return }
       channels(rgbaImg: rgbaImg, onComplete: onComplete)
    }
 }

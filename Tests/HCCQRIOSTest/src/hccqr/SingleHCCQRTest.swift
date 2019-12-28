@@ -38,15 +38,15 @@ extension SingleHCCQRTest {
     * Write complete (Created HCCQR image from string)
     * 
     */
-   private static func onHCCQRWriteComplete(hccqrImage: CIImage?, error: Error?, createHCCQRTime: Date, randomData: Data, onComplete: @escaping OnComplete) {
+   private static func onHCCQRWriteComplete(hccqrImage ciImage: CIImage?, error: Error?, createHCCQRTime: Date, randomData: Data, onComplete: @escaping OnComplete) {
       Swift.print("WriteTime:  \(abs(writeTime.timeIntervalSinceNow))")
 //      Swift.print("hccqrImageComplete hccqrImage: \(hccqrImage?.size)")
-      guard let hccqrImage: CIImage = hccqrImage else { Swift.print("Unable to create hccqr image \(String(describing: error?.localizedDescription))"); onComplete(false); return }
+      guard let ciImage: CIImage = ciImage else { Swift.print("Unable to create hccqr image \(String(describing: error?.localizedDescription))"); onComplete(false); return }
       DispatchQueue.main.async {
 //         Swift.print("createHCCQRTime complete: \(abs(createHCCQRTime.timeIntervalSinceNow)) hccqrImage.scale:  \(hccqrImage.scale) hccqrImage.size:  \(hccqrImage.size)")
       }
       readTime = .init()
-      HCCQRReader.dataAndImages(ciImage: hccqrImage) { result in // split the hccqrImg
+      HCCQRReader.dataAndImages(ciImage: ciImage) { result in // split the hccqrImg
          self.onHCCQRReadComplete(dataAndImages: result.value(), error: result.error(), randomData: randomData, onComplete: onComplete)
       }
    }

@@ -10,7 +10,7 @@ extension Splitter {
     */
    static let channelMap = [PixelData.red, PixelData.green, PixelData.blue]// { $0.isColorish() }, { $0.isColorish() }]
    /**
-    * Split 3 RGBAImages into 3 singular r, g, b channels (white represents the channel color)
+    * Split 3 RGBAImages into 3 b&w RGBAImages consisting of singular r, g, b channels (⚠️️ white represents the channel color ⚠️️)
     * - Parameters:
     *   - rgbaImg: target to derive channels from
     *   - channelMap: ruleset for the splitting process
@@ -38,24 +38,27 @@ extension Splitter {
    private static func channel(rgbaImg: RGBAImage, assert: (_ pixel: PixelData) -> Bool) -> RGBAImage {
       // - Fixme: ⚠️️ I think we can create a blank RGBImage, as its faster than copy probably
 //       let newImg =  RGBAImage.rgbaImage(pixel: PixelData.Colors.whitePixel, size: rgbaImg.size)//
-      let newImg = RGBAImage.rgbaImage(capacity: rgbaImg.size.width * rgbaImg.size.height, size: rgbaImg.size)
-      return rgbaImg.process(input: newImg) { pixel -> PixelData in
+      let blankImg = RGBAImage.rgbaImage(capacity: rgbaImg.size.width * rgbaImg.size.height, size: rgbaImg.size)
+      return rgbaImg.process(input: blankImg) { pixel -> PixelData in
          assert(pixel) ? PixelData.Colors.whitePixel : PixelData.Colors.blackPixel
       }
    }
+}
+/**
+ * Handler
+ */
+extension Splitter {
    /**
     * Channel completion handler
     * - Fixme: ⚠️️ simplify the deinit, refactor etc
+    * - Fixme: ⚠️️ We could Return 3 GrayScaleImages instead of 3 RGBAImages, might be faster
     */
    private static func onChannelComplete(i: Int, rgbaImage: RGBAImage, rgbaImages: inout [RGBAImage?], rgbaImg: RGBAImage, onComplete: OnChannelsCompleted) {
       rgbaImages[i] = rgbaImage // it matters which order the qrImages came in when you stitch them back together
       if rgbaImages.first(where: { $0 == nil }) == nil { // makes sure all images finished (fastest way to check for nil)
          let rgbaImages: [RGBAImage] = rgbaImages.compactMap { $0 } // remove optionality
          onComplete(.success((rgbaImages[0], rgbaImages[1], rgbaImages[2])))
-         rgbaImg.deinitiate() // to avoid memleak
+         rgbaImg.deinitiate() // deinit rgbaImage after it has been consumed, to avoid memleak
       }
    }
 }
-//DispatchQueue.main.async { // I guess this is on main-thread because it writes into an array
-//
-//}

@@ -7,7 +7,7 @@ final class Splitter {
    /**
     * Returns two b&w qr imgs (by splitting an hccqr imgage)
     * - Note: Used in the process to convert HCCQR to Data
-    * - Abstract: pair b&g = qr1, pair r$b = qr2
+    * - Abstract: pair b&g = qr1, pair r$b = qr2 ()
     */
    static func split(image: Image, onComplete:@escaping SplitPayloadCompleted) {
       channels(image: image) { result in // Get RGBAImages from UIImages
@@ -24,7 +24,6 @@ extension Splitter {
     * - Abstract: Here we combine the color channels into QRImages
     */
    static func onChannelsComplete(result: Result<RGBAImages, Error>, onComplete:@escaping SplitPayloadCompleted) { // called when the (R,G,B) channels are split
-      // 🏀
       // try to code with boolImg you only need true, false to define a black / white pixel
       // then research how to make ciimage with [bool]
       // actually maybe grayscale is better for qr to read than monotone
@@ -35,14 +34,15 @@ extension Splitter {
          let channel = (element: channelArr[i], offset: i)
          let qrImg: CIImage? = try? Compositor.composite(first: channel.element.first, second: channel.element.second)
 //         DispatchQueue.main.async { // I guess mainthread is needed here because we access an array
-            onCompositeComplete(i: channel.offset, qrImg: qrImg, qrImgs: &qrImgs, channels: channels, onComplete: onComplete)
+         onCompositeComplete(i: channel.offset, qrImg: qrImg, qrImgs: &qrImgs, channels: channels, onComplete: onComplete)
 //         }
       }
    }
    /**
     * Composite complete
+    * - Note: Not private because many methods use this handler
     */
-   /*private */static func onCompositeComplete(i: Int, qrImg: CIImage?, qrImgs: inout [CIImage?], channels: RGBAImages, onComplete: SplitPayloadCompleted) {
+   static func onCompositeComplete(i: Int, qrImg: CIImage?, qrImgs: inout [CIImage?], channels: RGBAImages, onComplete: SplitPayloadCompleted) {
       guard let qrImg: CIImage = qrImg else { [channels.r, channels.g, channels.b].forEach { $0.deinitiate() }; onComplete(.failure(NSError("no qrImg"))); return }
       qrImgs[i] = qrImg // It matters which order the qrImages came in when you stitch them back together
       if qrImgs.first(where: { $0 == nil }) == nil { // Makes sure all images finished

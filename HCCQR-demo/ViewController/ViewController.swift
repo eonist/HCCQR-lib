@@ -7,7 +7,7 @@ class ViewController: UIViewController {
     */
    override func viewDidLoad() {
       super.viewDidLoad()
-      view.backgroundColor = .lightGray
+      view.backgroundColor = .orange
 //      SingleHCCQRTest.testCreatingHCCQRImage { isMatching in
 //         Swift.print("isMatching:  \(isMatching)")
 //      }
@@ -28,9 +28,10 @@ extension ViewController {
       Swift.print("image.scale:  \(image.scale)")
       Swift.print("image.size:  \(image.size)")
       // create RGBAImage
-      guard let rgbaImage = try? RGBAImage.rgbaImage(image: image) else { Swift.print("rbgaImg err"); return }
+      guard let ciImg = image.ciImage() else { Swift.print("err ciImg"); return }
+      guard let rgbaImage = try? RGBAImage.rgbaImg(ciImg: ciImg) else { Swift.print("rbgaImg err"); return }
       // create CIIMage
-      guard let ciImage: CIImage = RGBAImageUtil.ciImg2(rgbaImage: rgbaImage) else { Swift.print("ciimg err"); return }
+      guard let ciImage: CIImage = try? RGBAImageUtil.ciImg2(rgbaImage: rgbaImage) else { Swift.print("ciimg err"); return }
       // assert that CIMage match first CIImage
       Swift.print("ciImage.extent.width:  \(ciImage.extent.width)")
       Swift.print("ciImage.extent.height:  \(ciImage.extent.height)")
@@ -38,8 +39,8 @@ extension ViewController {
       let img: UIImage = .init(ciImage: ciImage)
       Swift.print("img.size:  \(img.size)")
       Swift.print("img.scale:  \(img.scale)")
-      //      img
-      Swift.print("\(image.isEqualToImage(image: img) ? "✅" : "🚫")")
+      // img
+      Swift.print("\(image.isEqualToImage(image: img) ? "✅" : "🚫")") // Doesn't work because colorspace is changed
       let imageView: UIImageView = .init(image: img)
       self.view.addSubview(imageView)
    }

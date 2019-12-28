@@ -4,8 +4,9 @@ import Foundation
  */
 extension Colorizer {
    /**
-    * Converts B&W RGBAImages into one color RGBAImage (on the basis of a colorMap rule-set)
+    * Converts B&W RGBAImages into one unified color RGBAImage (on the basis of a colorMap rule-set)
     * - Fixme: ⚠️️ Could be faster to just mutate the pixels diretly in an RGBAImage instead of creating an pixel array like it is now?
+    * - Fixme: ⚠️️ We should make MonotoneImage that has single Bit data, it will be faster
     * - Note: Used in the process of converting Data to HCCQR
     * - Parameter scale: for retina you need 2x scale etc
     */

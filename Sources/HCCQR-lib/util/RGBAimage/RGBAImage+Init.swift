@@ -18,6 +18,7 @@ extension RGBAImage {
    }
    /**
     * CIImage -> RGBAImage
+    * - Caution: ⚠️️ This doesn't work if the ciImage is created a special way, it works if input ciimage is created the old way
     */
    static func rgbaImage(ciImage: CIImage) throws -> RGBAImage {
 //      Swift.print("ciImage.extent.size:  \(ciImage.extent.size)")
@@ -26,15 +27,17 @@ extension RGBAImage {
       return try rgbaImage(cgImage: cgImg)
    }
    /**
+    * New (⭐ works ⭐)
     * - Note: ref https://www.geekspiff.com/unlinkedCrap/ciImageToBitmap.html
     */
-   func rgbaImg(ciImg: CIImage) throws -> RGBAImage {
+   static func rgbaImg(ciImg: CIImage) throws -> RGBAImage {
       let bitMapInfo = RGBAImage.bitmapInfo
       let colorSpace: CGColorSpace = CGColorSpaceCreateDeviceRGB()
+      let size: Size = (width: Int(ciImg.extent.width), height: Int(ciImg.extent.height))
       let capacity: Int = size.width * size.height
       let bytesPerRow: Int = size.width * 4 // We multiply per 4 because of the 4 channels, RGBA
-      let size: Size = (width: Int(ciImg.extent.width), height: Int(ciImg.extent.height))
       let imageData = UnsafeMutablePointer<PixelData>.allocate(capacity: capacity)
+      // Fixme: ⚠️️ Do we have to create the cgContext? can CIContext be created directly from pixeldata?
       guard let cgContext = CGContext(data: imageData, width: size.width, height: size.height, bitsPerComponent: 8, bytesPerRow: bytesPerRow, space: colorSpace, bitmapInfo: bitMapInfo) else { throw NSError(domain: "rgbaImage - Unable to create rgbaImage", code: 0) }
       let context: CIContext = .init(cgContext: cgContext, options: nil) // .init(options: nil)// = CIContext.init(cgContext: , options: )
       context.draw(ciImg, in: ciImg.extent, from: ciImg.extent)
@@ -42,20 +45,18 @@ extension RGBAImage {
       return .init(pixels: pixels, width: size.width, height: size.height)
    }
    //alt
-   func rgbaImg2(ciImg: CIImage) -> Void {
+   static func rgbaImg2(ciImg: CIImage) {
       _ = {
          let context = CIContext(options: [CIContextOption.workingColorSpace: NSNull()])
          let colorSpace = CGColorSpaceCreateDeviceRGB()
          let bounds = ciImg.extent
          let bytesPerPixel: UInt = 8
          let format = CIFormat.RGBAh
-         
          let rowBytes = Int(bytesPerPixel * UInt(bounds.size.width))
          let totalBytes = UInt(rowBytes * Int(bounds.size.height))
          guard let bitmap = calloc(Int(totalBytes), MemoryLayout<UInt8>.size) else { throw NSError("err") }
          context.render(ciImg, toBitmap: bitmap, rowBytes: rowBytes, bounds: bounds, format: format, colorSpace: colorSpace)
          //      let bytes = UnsafeBufferPointer<UInt8>(start: bitmap/*UnsafePointer<UInt8>()*/, count: Int(totalBytes))
-         
          //      for (var i = 0; i < Int(totalBytes); i += 2) {
          //         println("half float :: left: \(bytes[i]) / right: \(bytes[i + 1])")
          //         // prints all zeroes!

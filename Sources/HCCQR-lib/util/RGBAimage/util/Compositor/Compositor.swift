@@ -9,16 +9,18 @@ final class Compositor {
     * - Note: layer 1: r, b -> qrImg1
     * - Note: layer 2: b, g -> qrImg2
     * - Note: Used in the process to convert HCCQR to Data
-    * - posibly simplify method with defering deinit of composite
+    * - Fixme: ⚠️️ possibly simplify method with defering deinit of composite
     */
    static func composite(first: RGBAImage, second: RGBAImage) throws -> CIImage {
       let rgbaImg: RGBAImage = try composite(rgbaImages: [first, second])
-      guard let img: CIImage = try? RGBAImageUtil.ciImage(rgbaImage: rgbaImg) else { rgbaImg.deinitiate(); throw NSError(domain: "Unable to create img", code: 0) }
-      rgbaImg.deinitiate() // To avoid mem leak
+      // - Fixme: ⚠️️ here we could use black&white colormap, as it's only for reading bw qr code
+      guard let img: CIImage = try? RGBAImageUtil.ciImg2(rgbaImage: rgbaImg) else { rgbaImg.deinitiate(); throw NSError(domain: "Unable to create img", code: 0) }
+      rgbaImg.deinitiate() // We deinit the RGBImg after we have consumed it to avoid mem leak
       return img
    }
    /**
     * Combines many images into one
+    * - Abstract: we overlay two b&w to produce one b&w image
     * - Note: we invert the image in this method, because doing it in post takes a long time
     * - Note: Used in the process to convert HCCQR to Data
     * - Fixme: ⚠️️ Can the compositing be done simpler, more efficient?
