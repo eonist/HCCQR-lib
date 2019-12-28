@@ -43,9 +43,7 @@ extension SingleHCCQRTest {
 //      Swift.print("hccqrImageComplete hccqrImage: \(hccqrImage?.size)")
       guard let hccqrImage: CIImage = hccqrImage else { Swift.print("Unable to create hccqr image \(String(describing: error?.localizedDescription))"); onComplete(false); return }
       DispatchQueue.main.async {
-//         Swift.print("createHCCQRTime complete: \(abs(createHCCQRTime.timeIntervalSinceNow))")
-//         Swift.print("hccqrImage.scale:  \(hccqrImage.scale)")
-//         Swift.print("hccqrImage.size:  \(hccqrImage.size)")
+//         Swift.print("createHCCQRTime complete: \(abs(createHCCQRTime.timeIntervalSinceNow)) hccqrImage.scale:  \(hccqrImage.scale) hccqrImage.size:  \(hccqrImage.size)")
       }
       readTime = .init()
       HCCQRReader.dataAndImages(ciImage: hccqrImage) { result in // split the hccqrImg

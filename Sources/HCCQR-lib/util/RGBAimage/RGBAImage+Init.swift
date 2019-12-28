@@ -26,6 +26,43 @@ extension RGBAImage {
       return try rgbaImage(cgImage: cgImg)
    }
    /**
+    * - Note: ref https://www.geekspiff.com/unlinkedCrap/ciImageToBitmap.html
+    */
+   func rgbaImg(ciImg: CIImage) throws -> RGBAImage {
+      let bitMapInfo = RGBAImage.bitmapInfo
+      let colorSpace: CGColorSpace = CGColorSpaceCreateDeviceRGB()
+      let capacity: Int = size.width * size.height
+      let bytesPerRow: Int = size.width * 4 // We multiply per 4 because of the 4 channels, RGBA
+      let size: Size = (width: Int(ciImg.extent.width), height: Int(ciImg.extent.height))
+      let imageData = UnsafeMutablePointer<PixelData>.allocate(capacity: capacity)
+      guard let cgContext = CGContext(data: imageData, width: size.width, height: size.height, bitsPerComponent: 8, bytesPerRow: bytesPerRow, space: colorSpace, bitmapInfo: bitMapInfo) else { throw NSError(domain: "rgbaImage - Unable to create rgbaImage", code: 0) }
+      let context: CIContext = .init(cgContext: cgContext, options: nil) // .init(options: nil)// = CIContext.init(cgContext: , options: )
+      context.draw(ciImg, in: ciImg.extent, from: ciImg.extent)
+      let pixels = UnsafeMutableBufferPointer<PixelData>(start: imageData, count: capacity)
+      return .init(pixels: pixels, width: size.width, height: size.height)
+   }
+   //alt
+   func rgbaImg2(ciImg: CIImage) -> Void {
+      _ = {
+         let context = CIContext(options: [CIContextOption.workingColorSpace: NSNull()])
+         let colorSpace = CGColorSpaceCreateDeviceRGB()
+         let bounds = ciImg.extent
+         let bytesPerPixel: UInt = 8
+         let format = CIFormat.RGBAh
+         
+         let rowBytes = Int(bytesPerPixel * UInt(bounds.size.width))
+         let totalBytes = UInt(rowBytes * Int(bounds.size.height))
+         guard let bitmap = calloc(Int(totalBytes), MemoryLayout<UInt8>.size) else { throw NSError("err") }
+         context.render(ciImg, toBitmap: bitmap, rowBytes: rowBytes, bounds: bounds, format: format, colorSpace: colorSpace)
+         //      let bytes = UnsafeBufferPointer<UInt8>(start: bitmap/*UnsafePointer<UInt8>()*/, count: Int(totalBytes))
+         
+         //      for (var i = 0; i < Int(totalBytes); i += 2) {
+         //         println("half float :: left: \(bytes[i]) / right: \(bytes[i + 1])")
+         //         // prints all zeroes!
+         //      }
+      }
+   }
+   /**
     * cgImage -> rgbaImage (new)
     * - Fixme: ⚠️️ make similar method for CIImage
     */
@@ -34,11 +71,11 @@ extension RGBAImage {
       let bytesPerRow: Int = size.width * 4 // We multiply per 4 because of the 4 channels, RGBA
       let capacity: Int = size.width * size.height
       let imageData = UnsafeMutablePointer<PixelData>.allocate(capacity: capacity)
-      Swift.print("cgImage.colorSpace:  \(String(describing: cgImage.colorSpace))")
+//      Swift.print("cgImage.colorSpace:  \(String(describing: cgImage.colorSpace))")
       let colorSpace: CGColorSpace = CGColorSpaceCreateDeviceRGB()
       let bitMapInfo = RGBAImage.bitmapInfo
-      guard let imageContext = CGContext(data: imageData, width: size.width, height: size.height, bitsPerComponent: 8, bytesPerRow: bytesPerRow, space: colorSpace, bitmapInfo: bitMapInfo) else { throw NSError(domain: "rgbaImage - Unable to create rgbaImage", code: 0) }
-      imageContext.draw(cgImage, in: .init(origin: .zero, size: .init(width: cgImage.width, height: cgImage.height))) // draws the cgImage into the context
+      guard let cgContext = CGContext(data: imageData, width: size.width, height: size.height, bitsPerComponent: 8, bytesPerRow: bytesPerRow, space: colorSpace, bitmapInfo: bitMapInfo) else { throw NSError(domain: "rgbaImage - Unable to create rgbaImage", code: 0) }
+      cgContext.draw(cgImage, in: .init(origin: .zero, size: .init(width: cgImage.width, height: cgImage.height))) // draws the cgImage into the context
       let pixels = UnsafeMutableBufferPointer<PixelData>(start: imageData, count: capacity)
       return .init(pixels: pixels, width: size.width, height: size.height)
    }

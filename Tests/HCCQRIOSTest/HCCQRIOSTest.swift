@@ -15,11 +15,11 @@ class HCCQRIOSTest: XCTestCase {
 //      XCTAssertEqual(ScaleTesting.testScalingRGBAImage(), 4)
 //      XCTAssertTrue(ColorizerTest.testColorizer())
 //      XCTAssertTrue(PixelTest.testColorAssertionWithinThresholdForPixel())
-//      testSingle()
+      testSingle()
       /*testReadingHCCQR()*/ // ⚠️️ only works in xcode-simulator
 //      testBulk() // Read and write multiple HCCQR images
 //      testRGBKit() // test the new rgbkit
-      testCIImage()
+//      testCIImage()
    }
    func testPerformanceExample() {
       self.measure { }
@@ -32,8 +32,11 @@ extension HCCQRIOSTest {
    private func testCIImage() {
       // 🏀
          // now add the ciImg2 method to bulk test, and benchmark diff
-         // try the dataprovider solution for completness
-      
+            // basically swap out cgImage.ciimage in the hccqr bulk test and look for speed improv
+            // try with grayscale colorspace
+            // try the ciImg3 method
+            // try passing ciimage to qr-lib
+         // try the dataprovider solution for completness  
       guard let image = UIImage.image(size: .init(width: 100, height: 100), color: .green) else { Swift.print("uiImage err"); return }
       Swift.print("image.scale:  \(image.scale)")
       Swift.print("image.size:  \(image.size)")

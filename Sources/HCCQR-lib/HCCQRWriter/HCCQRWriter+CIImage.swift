@@ -6,7 +6,7 @@ import CoreImage
  */
 extension HCCQRWriter {
    /**
-    * ciImage (New)
+    * Data -> CIImage (New)
     */
    public static func ciImage(data: Data, multipliers: Multipliers, qrConfig: QRConfig = (.v10, .l), onComplete: @escaping OnHCCQRCIImageCompleted) {
       Swift.print("ciImage")
