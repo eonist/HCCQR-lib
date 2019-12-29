@@ -44,7 +44,9 @@ extension RGBAImage {
       let pixels = UnsafeMutableBufferPointer<PixelData>(start: imageData, count: capacity)
       return .init(pixels: pixels, width: size.width, height: size.height)
    }
-   //alt
+   /**
+    * alt
+    */
    static func rgbaImg2(ciImg: CIImage) {
       _ = {
          let context = CIContext(options: [CIContextOption.workingColorSpace: NSNull()])

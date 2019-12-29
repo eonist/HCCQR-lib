@@ -25,6 +25,7 @@ class HCCQRIOSTest: XCTestCase {
       self.measure { }
    }
 }
+#if os(iOS)
 extension HCCQRIOSTest {
    /**
     *
@@ -55,6 +56,7 @@ extension HCCQRIOSTest {
 //      Swift.print("\(image.isEqualToImage(image: img) ? "✅" : "🚫")")
    }
 }
+#endif
 /**
  * Tests (callback)
  */
