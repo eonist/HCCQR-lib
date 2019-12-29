@@ -10,7 +10,9 @@ extension HCCQRReader {
     * - Fixme: ⚠️️ When the first QRImage Quad is found, the subsequent QR-Rects will be in the same quadrant, clip the subsequent images
     */
    public static func dataAndImages(ciImage: CIImage, onComplete:@escaping DataAndImageCompleted) {
+      HCCQRReader.splitTime = .init()
       Splitter.split(ciImage: ciImage) { result in // Start the splitting process
+         Swift.print("👉 Splitting done: \(abs(HCCQRReader.splitTime.timeIntervalSinceNow))")
          onSplitComplete(result: result, onComplete: onComplete)
       }
    }

@@ -20,7 +20,7 @@ extension BulkHCCQRTest {
       randomData.enumerated().forEach { arg in
          HCCQRWriter.ciImage(data: arg.element, multipliers: (moduleScale: 6, screenScale: 1), qrConfig: (config.version, config.ecLevel)) { result in
 //            Swift.print("ciimg done: \(try? result.get().size)")
-            onCreateHCCQRImageComplete(i: arg.offset, hccqrImage: try? result.get(), images: &images, onComplete: onComplete)
+            onWriteComplete(i: arg.offset, hccqrImage: try? result.get(), images: &images, onComplete: onComplete)
          }
       }
    }
@@ -34,7 +34,7 @@ extension BulkHCCQRTest {
          DispatchQueue.global(qos: .userInitiated).async {
             HCCQRReader.dataAndImages(ciImage: arg.element) { result in  // split the hccqrImg
                DispatchQueue.main.async { // We need to go on the mainthread to manipulate array
-                  onReadHCCQRImageComplete(i: arg.offset, result: result, payloads: &payloads, onComplete: onComplete)
+                  onReadComplete(i: arg.offset, result: result, payloads: &payloads, onComplete: onComplete)
                }
             }
          }

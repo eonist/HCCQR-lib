@@ -15,9 +15,9 @@ class HCCQRIOSTest: XCTestCase {
 //      XCTAssertEqual(ScaleTesting.testScalingRGBAImage(), 4)
 //      XCTAssertTrue(ColorizerTest.testColorizer())
 //      XCTAssertTrue(PixelTest.testColorAssertionWithinThresholdForPixel())
-//      testSingle()
+      testSingle()
       /*testReadingHCCQR()*/ // ⚠️️ only works in xcode-simulator
-      testBulk() // Read and write multiple HCCQR images
+//      testBulk() // Read and write multiple HCCQR images
 //      testRGBKit() // test the new rgbkit
 //      testCIImage()
    }
@@ -83,7 +83,7 @@ extension HCCQRIOSTest {
          expectation.fulfill()
          XCTAssertTrue(isMatching)
       }
-      waitForExpectations(timeout: 10, handler: nil)
+      waitForExpectations(timeout: 20, handler: nil)
    }
    /**
     * Bulk

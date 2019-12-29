@@ -10,7 +10,7 @@ extension BulkHCCQRTest {
    /**
     * Create single HCCQR img complete
     */
-   static func onCreateHCCQRImageComplete(i: Int, hccqrImage: CIImage?, images: inout [CIImage?], onComplete:@escaping OnWriteImagesComplete) {
+   static func onWriteComplete(i: Int, hccqrImage: CIImage?, images: inout [CIImage?], onComplete:@escaping OnWriteImagesComplete) {
 //      Swift.print("onCreateHCCQRImageComplete")
       guard let hccqrImage = hccqrImage else { onComplete(.failure(NSError(domain: "Unable to create hccqr image", code: 0))); return }
       images[i] = hccqrImage
@@ -23,7 +23,7 @@ extension BulkHCCQRTest {
    /**
     * Called when a single hccqr image is read
     */
-   static func onReadHCCQRImageComplete(i: Int, result: Result<HCCQRReader.DataAndImages, Error>, payloads: inout [Data?], onComplete: OnReadImagesComplete) {
+   static func onReadComplete(i: Int, result: Result<HCCQRReader.DataAndImages, Error>, payloads: inout [Data?], onComplete: OnReadImagesComplete) {
 //      Swift.print("onReadHCCQRImageComplete: \(try? result.get().data?.count)")
       guard  let payload: Data = try? result.get().data else { onComplete(.failure(NSError(domain: "Unable to read hccqr image \(result.errorStr)", code: 0))); return }
       payloads[i] = payload

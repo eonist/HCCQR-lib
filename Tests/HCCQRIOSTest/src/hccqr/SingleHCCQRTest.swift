@@ -21,12 +21,12 @@ extension SingleHCCQRTest {
     */
    static func testWritingHCCQRImage(onComplete: @escaping OnComplete) {
       startTime = .init()
-      let config: QRConfig = (.v4, .byte, .l) // Config
+      let config: QRConfig = (.v14, .byte, .l) // Config
       guard let randomData: Data = HCCQRStringData.randomData(config: config) else { Swift.print("err"); onComplete(false); return }
       let createHCCQRTime: Date = .init()
       writeTime = .init() // We start the write clock here (random data creation time isn't interesting)
       HCCQRWriter.ciImage(data: randomData, multipliers: (moduleScale: 6, screenScale: 1), qrConfig: (config.version, config.ecLevel)) { result in // Create HCCQR from string
-         onHCCQRWriteComplete(hccqrImage: try? result.get(), error: result.error(), createHCCQRTime: createHCCQRTime, randomData: randomData, onComplete: onComplete)
+         onWriteComplete(hccqrImage: try? result.get(), error: result.error(), createHCCQRTime: createHCCQRTime, randomData: randomData, onComplete: onComplete)
       }
    }
 }
@@ -36,9 +36,8 @@ extension SingleHCCQRTest {
 extension SingleHCCQRTest {
    /**
     * Write complete (Created HCCQR image from string)
-    * 
     */
-   private static func onHCCQRWriteComplete(hccqrImage ciImage: CIImage?, error: Error?, createHCCQRTime: Date, randomData: Data, onComplete: @escaping OnComplete) {
+   private static func onWriteComplete(hccqrImage ciImage: CIImage?, error: Error?, createHCCQRTime: Date, randomData: Data, onComplete: @escaping OnComplete) {
       Swift.print("WriteTime:  \(abs(writeTime.timeIntervalSinceNow))")
 //      Swift.print("hccqrImageComplete hccqrImage: \(hccqrImage?.size)")
       guard let ciImage: CIImage = ciImage else { Swift.print("Unable to create hccqr image \(String(describing: error?.localizedDescription))"); onComplete(false); return }
@@ -47,38 +46,16 @@ extension SingleHCCQRTest {
       }
       readTime = .init()
       HCCQRReader.dataAndImages(ciImage: ciImage) { result in // split the hccqrImg
-         self.onHCCQRReadComplete(dataAndImages: result.value(), error: result.error(), randomData: randomData, onComplete: onComplete)
+         self.onReadComplete(dataAndImages: result.value(), error: result.error(), randomData: randomData, onComplete: onComplete)
       }
    }
    /**
     * Read complete (read data from HCCQRImage)
     */
-   private static func onHCCQRReadComplete(dataAndImages: HCCQRReader.DataAndImages?, error: Error?, randomData: Data, onComplete: OnComplete) {
-//      Swift.print("hccqrReadDataComplete")
-      DispatchQueue.main.async {
-         Swift.print("readTime complete: \(abs(readTime.timeIntervalSinceNow))")
-         Swift.print("All done: \(abs(startTime.timeIntervalSinceNow))")
-         guard let qr1Img: CIImage = dataAndImages?.qr1 else { Swift.print("err qr1"); return }
-         _ = qr1Img
-//         let img: Image = .init(ciImage: qr1Img)
-//         _ = img
-      }
-      guard let payload: String = dataAndImages?.data?.stringUTF8 else { Swift.print("unable to get string from hccqr \(String(describing: error))"); onComplete(false); return }
-      let isMatching: Bool = randomData.stringUTF8 == payload // Assert payload
-//      Swift.print("isMatching:  \(isMatching ? "✅":"🚫")")
+   private static func onReadComplete(dataAndImages: HCCQRReader.DataAndImages?, error: Error?, randomData: Data, onComplete: OnComplete) {
+      Swift.print("readTime complete: \(abs(readTime.timeIntervalSinceNow))")
+      Swift.print("All done: \(abs(startTime.timeIntervalSinceNow))")
+      let isMatching: Bool = randomData == dataAndImages?.data // Assert payload
       onComplete(isMatching)
-      // Ensure that img only has valid colors, aka no bluring
-      //Swift.print("hasOnlyColorMap: \(ColorizeUtil.hasOnlyColorMap(uiImage:hccqrImage, colorMap: [.red,.green,.blue,.white]))")
    }
 }
-// ⚠️️ add ImageView to repo
-//      let imgView: UIImageView = .init(image: hccqrImage)
-//      self.view.addSubview(imgView) // Add image to view
-//      imgView.frame.origin.y = 0
-
-// ⚠️️ add ImageView to repo
-//         let imgView: UIImageView = .init(image: img)
-//         self.view.addSubview(imgView)
-//         imgView.frame.origin.y = 220
-//Swift.print("RGBAImage.initiatedCount:  \(RGBAImage.initiatedCount)")
-//Swift.print("RGBAImage.deInitiatedCount:  \(RGBAImage.deInitiatedCount)")

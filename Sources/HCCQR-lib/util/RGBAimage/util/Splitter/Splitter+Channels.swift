@@ -19,10 +19,16 @@ extension Splitter {
    static func channels(rgbaImg: RGBAImage, channelMap: [PixelData.RGBColor] = channelMap, onComplete:@escaping OnChannelsCompleted) {
       let assertions: [(PixelData) -> Bool] = channelMap.map { rgbColor in { $0.isColorish(rgbColor) } }
       var rgbaImages: [RGBAImage?] = [RGBAImage?](repeating: nil, count: assertions.count) // Fixme: ⚠️️ we could use unmanaged pointer with capacity as well, might be faster
-      DispatchQueue.concurrentPerform(iterations: assertions.count) { i in // ⚠️️ Optimization initiative
-         let item = (element: assertions[i], offset: i)
-         let rgbaImage: RGBAImage = channel(rgbaImg: rgbaImg, assert: item.element) // Finds the red-channel, blue-channel, green-channel
-         onChannelComplete(i: item.offset, rgbaImage: rgbaImage, rgbaImages: &rgbaImages, rgbaImg: rgbaImg, onComplete: onComplete)
+      // Fixme: ⚠️️ maybe not use concurrent perform here, as process use it later
+      assertions.enumerated().forEach { item in
+//      DispatchQueue.concurrentPerform(iterations: assertions.count) { i in // ⚠️️ Optimization initiative
+//         let item = (element: assertions[i], offset: i)
+         DispatchQueue.global(qos: .userInitiated).async {
+            let rgbaImage: RGBAImage = channel(rgbaImg: rgbaImg, assert: item.element) // Finds the red-channel, blue-channel, green-channel
+            DispatchQueue.main.async { // We need to go on the mainthread to manipulate array
+               onChannelComplete(i: item.offset, rgbaImage: rgbaImage, rgbaImages: &rgbaImages, rgbaImg: rgbaImg, onComplete: onComplete)
+            }
+         }
       }
    }
 }

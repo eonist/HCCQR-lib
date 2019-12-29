@@ -30,12 +30,16 @@ extension Splitter {
       guard let channels: RGBAImages = result.value() else { onComplete(.failure(NSError("Unable to create rgbaImgs \(result.errorStr)"))); return } // (r,g,b)
       let channelArr: [(first: RGBAImage, second: RGBAImage)] = [(channels.b, channels.g), (channels.r, channels.b)] // pair b&g = qr1, pair r$b = qr2
       var qrImgs: [CIImage?] = [CIImage?](repeating: nil, count: channelArr.count)
-      DispatchQueue.concurrentPerform(iterations: channelArr.count) { i in
-         let channel = (element: channelArr[i], offset: i)
-         let qrImg: CIImage? = try? Compositor.composite(first: channel.element.first, second: channel.element.second)
-//         DispatchQueue.main.async { // I guess mainthread is needed here because we access an array
-         onCompositeComplete(i: channel.offset, qrImg: qrImg, qrImgs: &qrImgs, channels: channels, onComplete: onComplete)
-//         }
+      // Fixme: ⚠️️ this might cause problems, revert to bg.async
+      channelArr.enumerated().forEach { channel in
+//      DispatchQueue.concurrentPerform(iterations: channelArr.count) { i in
+//         let channel = (element: .ele, offset: i)
+         DispatchQueue.global(qos: .userInitiated).async {
+           let qrImg: CIImage? = try? Compositor.composite(first: channel.element.first, second: channel.element.second)
+            DispatchQueue.main.async { // We need to go on the mainthread to manipulate array
+               onCompositeComplete(i: channel.offset, qrImg: qrImg, qrImgs: &qrImgs, channels: channels, onComplete: onComplete)
+            }
+         }
       }
    }
    /**
