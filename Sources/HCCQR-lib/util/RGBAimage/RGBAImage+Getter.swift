@@ -7,6 +7,7 @@ extension RGBAImage {
     * Convenience
     */
    var size: Size { return (width: width, height: height) }
+   var capacity: Int { self.width * self.height }
    /**
     * Get pixel
     */
@@ -31,7 +32,7 @@ extension RGBAImage {
       return RGBAImage(pixels: copyOfPixels, width: width, height: height)
    }
    /**
-    * unsafePixels, new (might work, might not)
+    * unsafePixels, new (⚠️️ might work, might not ⚠️️)
     */
    var flatPixels: UnsafePointer<UInt8> {
       let arr: [UInt8] = pixels.flatMap { [$0.r, $0.g, $0.b, $0.a] }

@@ -8,13 +8,11 @@ class ViewController: UIViewController {
    override func viewDidLoad() {
       super.viewDidLoad()
       view.backgroundColor = .orange
-//      SingleHCCQRTest.testCreatingHCCQRImage { isMatching in
-//         Swift.print("isMatching:  \(isMatching)")
-//      }
-//      BulkHCCQRTest.initiateTest { success in
-//         Swift.print("BulkHCCQRTest: success:  \(success)")
-//      }
 //      test()
+      ViewController.testCreatingHCCQRImage { img in
+         let imageView: UIImageView = .init(image: img)
+         self.view.addSubview(imageView)
+      }
    }
    override var prefersStatusBarHidden: Bool { return true } // hides statusbar
 }
@@ -44,5 +42,27 @@ extension ViewController {
       Swift.print("\(image.isEqualToImage(image: img) ? "✅" : "🚫")") // Doesn't work because colorspace is changed
       let imageView: UIImageView = .init(image: img)
       self.view.addSubview(imageView)
+   }
+}
+extension ViewController {
+   typealias OnComplete = (Image) -> Void
+   /**
+    * Test HCCQRImage creation
+    * ## Examples:
+    * testCreatingHCCQRImage { img in
+    *    let imageView: NSImageView = .init(frame: .init(origin: .zero, size: img.size))
+    *    imageView.image = img
+    *    self.addSubview(imageView)
+    * }
+    */
+   static func testCreatingHCCQRImage(onComplete: @escaping OnComplete) {
+      let config: QRConfig = (.v6, .byte, .l) // Config
+      guard let data = HCCQRStringData.randomData(config: config) else { Swift.print("unable to create data"); return }
+      DispatchQueue.global(qos: .userInitiated).async {
+         HCCQRWriter.image(data: data, multipliers: (6, 2), qrConfig: (config.version, config.ecLevel)) { result in // Create HCCQR from string
+            guard let hccqrImage: Image = result.value() else { Swift.print("unable to create hccqr image \(result.errorStr)"); return }
+            onComplete(hccqrImage)
+         }
+      }
    }
 }

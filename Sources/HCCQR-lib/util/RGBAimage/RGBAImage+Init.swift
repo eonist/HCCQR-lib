@@ -103,8 +103,8 @@ extension RGBAImage {
       return .rgbaImage(pixels: pixels, size: size)
    }
    /**
-    * Makes a new RGBA instance with capacity (⚠️️ new ⚠️️)
-    * - Note: used to crate a new RGBAImage and to clone one
+    * Makes a new RGBA instance with capacity (should be fast) (⚠️️ new ⚠️️)
+    * - Note: used to crate a new RGBAImage
     */
    static func rgbaImage(capacity: Int, size: Size) -> RGBAImage {
       let unsafePixels = UnsafeMutableBufferPointer<PixelData>.allocate(capacity: capacity)

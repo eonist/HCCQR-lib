@@ -14,19 +14,19 @@ final class SingleHCCQRTest {}
 extension SingleHCCQRTest {
    typealias OnComplete = (Bool) -> Void
    static var startTime: Date = .init()
-   static var readTime: Date = .init()
+//   static var readTime: Date = .init()
    static var writeTime: Date = .init()
    /**
     * Test HCCQRImage creation (creates a single HCCQR image, then read it
     */
    static func testWritingHCCQRImage(onComplete: @escaping OnComplete) {
       startTime = .init()
-      let config: QRConfig = (.v14, .byte, .l) // Config
+      let config: QRConfig = (.v8, .byte, .l) // Config
       guard let randomData: Data = HCCQRStringData.randomData(config: config) else { Swift.print("err"); onComplete(false); return }
-      let createHCCQRTime: Date = .init()
       writeTime = .init() // We start the write clock here (random data creation time isn't interesting)
-      HCCQRWriter.ciImage(data: randomData, multipliers: (moduleScale: 6, screenScale: 1), qrConfig: (config.version, config.ecLevel)) { result in // Create HCCQR from string
-         onWriteComplete(hccqrImage: try? result.get(), error: result.error(), createHCCQRTime: createHCCQRTime, randomData: randomData, onComplete: onComplete)
+      HCCQRWriter.ciImage(data: randomData, multipliers: (moduleScale: 6, screenScale: 2), qrConfig: (config.version, config.ecLevel)) { result in // Create HCCQR from string
+         guard let ciImg = try? result.get() else { Swift.print("err: \(result.errorStr)"); return }
+         onWriteComplete(hccqrImage: ciImg, randomData: randomData, onComplete: onComplete)
       }
    }
 }
@@ -37,25 +37,25 @@ extension SingleHCCQRTest {
    /**
     * Write complete (Created HCCQR image from string)
     */
-   private static func onWriteComplete(hccqrImage ciImage: CIImage?, error: Error?, createHCCQRTime: Date, randomData: Data, onComplete: @escaping OnComplete) {
+   private static func onWriteComplete(hccqrImage ciImage: CIImage, randomData: Data, onComplete: @escaping OnComplete) {
       Swift.print("WriteTime:  \(abs(writeTime.timeIntervalSinceNow))")
-//      Swift.print("hccqrImageComplete hccqrImage: \(hccqrImage?.size)")
-      guard let ciImage: CIImage = ciImage else { Swift.print("Unable to create hccqr image \(String(describing: error?.localizedDescription))"); onComplete(false); return }
-      DispatchQueue.main.async {
-//         Swift.print("createHCCQRTime complete: \(abs(createHCCQRTime.timeIntervalSinceNow)) hccqrImage.scale:  \(hccqrImage.scale) hccqrImage.size:  \(hccqrImage.size)")
-      }
-      readTime = .init()
-      HCCQRReader.dataAndImages(ciImage: ciImage) { result in // split the hccqrImg
-         self.onReadComplete(dataAndImages: result.value(), error: result.error(), randomData: randomData, onComplete: onComplete)
+      Swift.print("ciImage.extent.size:  \(ciImage.extent.size)")
+      HCCQRReader.dataAndImages(ciImage: ciImage) { result in // Split the hccqrImg
+         guard let value: HCCQRReader.DataAndImages = result.value() else { Swift.print("🚫 err:  \(result.errorStr)"); return }
+         self.onReadComplete(dataAndImages: value, randomData: randomData, onComplete: onComplete)
       }
    }
    /**
     * Read complete (read data from HCCQRImage)
     */
-   private static func onReadComplete(dataAndImages: HCCQRReader.DataAndImages?, error: Error?, randomData: Data, onComplete: OnComplete) {
-      Swift.print("readTime complete: \(abs(readTime.timeIntervalSinceNow))")
+   private static func onReadComplete(dataAndImages: HCCQRReader.DataAndImages, randomData: Data, onComplete: OnComplete) {
+      Swift.print("👌 readTime complete: \(HCCQRReader.readTime))")
       Swift.print("All done: \(abs(startTime.timeIntervalSinceNow))")
-      let isMatching: Bool = randomData == dataAndImages?.data // Assert payload
+      let isMatching: Bool = randomData == dataAndImages.data // Assert payload
+      if !isMatching {
+         Swift.print("randomData.stringUTF8:  \(String(describing: randomData.stringUTF8))")
+         Swift.print("dataAndImages?.data.stringUTF8:  \(String(describing: dataAndImages.data?.stringUTF8))")
+      }
       onComplete(isMatching)
    }
 }

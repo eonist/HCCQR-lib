@@ -10,7 +10,7 @@ extension HCCQRWriter {
     * - Abstract: Create two QR images from the data, and combine them into RGBAImage, then convert that to CIImage
     */
    public static func ciImage(data: Data, multipliers: Multipliers, qrConfig: QRConfig = (.v10, .l), onComplete: @escaping OnHCCQRCIImageCompleted) {
-      Swift.print("HCCQRWriter.ciImage()")
+//      Swift.print("HCCQRWriter.ciImage()")
       let dataArr: [Data] = data.split(index: data.count / 2) // Split the data in two
       var ciImgs: [CIImage?] = [CIImage?](repeating: nil, count: dataArr.count) // Pre-filled array for the images
       dataArr.enumerated().forEach { (_ offset: Int, _ data: Data) in
@@ -36,8 +36,8 @@ extension HCCQRWriter {
       ciImgs[i] = ciImg // It matters which order the qrImages came in when you stitch them back together
       if ciImgs.first(where: { $0 == nil }) == nil { // Makes sure all images finished (aka no nil values)
          let ciImages: [CIImage] = ciImgs.compactMap { $0 } // Remove nils
-         // - fixme: ⚠️️ make colorize a result, so you can pass on the error msg
-         guard let hccqrImage: CIImage = try? Colorizer.colorize(ciImages: ciImages, colorMap: Colorizer.colorMap, multipliers: multipliers) else { onComplete(.failure(NSError(domain: "onCreateCIImgComplete() - Unable to create colorized image", code: 0))); return }
+         let result: Colorizer.ColorizedResult = Colorizer.colorize(ciImages: ciImages, colorMap: Colorizer.colorMap, multipliers: multipliers)
+         guard let hccqrImage: CIImage = try? result.get() else { onComplete(.failure(NSError(domain: "onCreateCIImgComplete() - Unable to create colorized image: \(result.errorStr)", code: 0))); return }
          onComplete(.success(hccqrImage))
       }
    }

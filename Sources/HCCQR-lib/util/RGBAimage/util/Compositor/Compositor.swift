@@ -27,10 +27,11 @@ final class Compositor {
     * - Parameter rgbaImages: an array of RGBAImages to be composited together into 1 RGBAImage
     * - Note: Should really be private, but some tests use it
     */
-   /*private */static func composite(rgbaImages: [RGBAImage]) throws -> RGBAImage {
+   static func composite(rgbaImages: [RGBAImage]) throws -> RGBAImage {
       guard let firstRGBAImg: RGBAImage = rgbaImages.first else { throw NSError(domain: "unable to composite - composite() - no first RGBAImage", code: 0) }
-      let size: RGBAImage.Size = (Int(firstRGBAImg.width), Int(firstRGBAImg.height))
-      var blackRGBAImg: RGBAImage = .rgbaImage(pixel: PixelData.Colors.blackPixel, size: size) // because black is r:0,b:0,g:0
+//      let size: RGBAImage.Size = (Int(firstRGBAImg.width), Int(firstRGBAImg.height))
+      var blackRGBAImg: RGBAImage = .rgbaImage(pixel: PixelData.Colors.blackPixel, size: firstRGBAImg.size) // because black is r: 0, b: 0, g: 0
+      // - Fixme: ⚠️️ use static method here , inout, output etc
       blackRGBAImg.process { (index: Int, pixel: PixelData) -> PixelData in // Loop things
          var pixel = pixel // Fixme: ⚠️️ maybe do reduce here?
          rgbaImages.forEach { (rgbaImage: RGBAImage) in // loop over every image in the list

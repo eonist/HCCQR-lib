@@ -6,12 +6,12 @@ import CoreImage
 extension HCCQRReader {
    /**
     * Creates data for HCCQQR image
-    * - Fixme: ⚠️️ Consider changing image to CGImage, as that is what is used in the end, could make thing faster
+    * - Caution: ⚠️️ conversion from ciimage to rgbaimage is slow, this method exists for testing purpouses
     * - Fixme: ⚠️️ When the first QRImage Quad is found, the subsequent QR-Rects will be in the same quadrant, clip the subsequent images
     */
    public static func dataAndImages(ciImage: CIImage, onComplete:@escaping DataAndImageCompleted) {
-      HCCQRReader.splitTime = .init()
       Splitter.split(ciImage: ciImage) { result in // Start the splitting process
+         readTime += abs(HCCQRReader.splitTime.timeIntervalSinceNow)
          Swift.print("👉 Splitting done: \(abs(HCCQRReader.splitTime.timeIntervalSinceNow))")
          onSplitComplete(result: result, onComplete: onComplete)
       }

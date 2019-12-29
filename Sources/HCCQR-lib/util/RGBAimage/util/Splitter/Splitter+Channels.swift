@@ -10,7 +10,7 @@ extension Splitter {
     */
    static let channelMap = [PixelData.red, PixelData.green, PixelData.blue]// { $0.isColorish() }, { $0.isColorish() }]
    /**
-    * Split 3 RGBAImages into 3 b&w RGBAImages consisting of singular r, g, b channels (⚠️️ white represents the channel color ⚠️️)
+    * Split 1 RGBAImage into 3 RGBAImages and then into 3 b&w RGBAImages consisting of singular r, g, b channels (⚠️️ white represents the channel color ⚠️️)
     * - Parameters:
     *   - rgbaImg: target to derive channels from
     *   - channelMap: ruleset for the splitting process
@@ -19,10 +19,7 @@ extension Splitter {
    static func channels(rgbaImg: RGBAImage, channelMap: [PixelData.RGBColor] = channelMap, onComplete:@escaping OnChannelsCompleted) {
       let assertions: [(PixelData) -> Bool] = channelMap.map { rgbColor in { $0.isColorish(rgbColor) } }
       var rgbaImages: [RGBAImage?] = [RGBAImage?](repeating: nil, count: assertions.count) // Fixme: ⚠️️ we could use unmanaged pointer with capacity as well, might be faster
-      // Fixme: ⚠️️ maybe not use concurrent perform here, as process use it later
-      assertions.enumerated().forEach { item in
-//      DispatchQueue.concurrentPerform(iterations: assertions.count) { i in // ⚠️️ Optimization initiative
-//         let item = (element: assertions[i], offset: i)
+      assertions.enumerated().forEach { item in // 3 assertions
          DispatchQueue.global(qos: .userInitiated).async {
             let rgbaImage: RGBAImage = channel(rgbaImg: rgbaImg, assert: item.element) // Finds the red-channel, blue-channel, green-channel
             DispatchQueue.main.async { // We need to go on the mainthread to manipulate array
@@ -36,26 +33,35 @@ extension Splitter {
  * Private static helper methods
  */
 extension Splitter {
+   typealias PixelDataAssertion = (_ pixel: PixelData) -> Bool
    /**
     * Gets r,g,b channels
     * - Note: Marks red colors as black, all else becomes white
     * - Note: there is no speed benefit of writing the new pixeldata into a new rgba image, this was tested
     */
-   private static func channel(rgbaImg: RGBAImage, assert: (_ pixel: PixelData) -> Bool) -> RGBAImage {
-      // - Fixme: ⚠️️ I think we can create a blank RGBImage, as its faster than copy probably
-//       let newImg =  RGBAImage.rgbaImage(pixel: PixelData.Colors.whitePixel, size: rgbaImg.size)//
-      let blankImg = RGBAImage.rgbaImage(capacity: rgbaImg.size.width * rgbaImg.size.height, size: rgbaImg.size)
+   private static func channel(rgbaImg: RGBAImage, assert: PixelDataAssertion) -> RGBAImage {
+      let blankImg = RGBAImage.rgbaImage(capacity: rgbaImg.capacity, size: rgbaImg.size) // We create a blank RGBImage, as it's faster than copy probably
       return rgbaImg.process(input: blankImg) { pixel -> PixelData in
          assert(pixel) ? PixelData.Colors.whitePixel : PixelData.Colors.blackPixel
       }
    }
+   /**
+    * New
+    */
+   private static func channel(rgbaImg: RGBAImage, assert: PixelDataAssertion) -> GrayscaleImage {
+      let blankImg = GrayscaleImage.grayscaleImage(capacity: rgbaImg.capacity, size: rgbaImg.size) // We create a blank RGBImage, as it's faster than copy probably
+      return GrayscaleImage.process(input: rgbaImg, output: blankImg) { pixel -> UInt8 in
+         assert(pixel) ? 255 : 0
+      }
+   }
 }
+
 /**
  * Handler
  */
 extension Splitter {
    /**
-    * Channel completion handler
+    * Channel completion handler (just makes sure everything completed)
     * - Fixme: ⚠️️ simplify the deinit, refactor etc
     * - Fixme: ⚠️️ We could Return 3 GrayScaleImages instead of 3 RGBAImages, might be faster
     */
