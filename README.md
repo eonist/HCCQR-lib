@@ -13,7 +13,7 @@ HCCQR is short for `High capacity color quick response code`
 ### What is it?
 - HCCQR-lib enables you to store more information in a QR image
 - 4 color map equals double capacity. (16 color map equals 4x capacity and so on)
-- HCCQR-lib is used by [macOS](https://github.com/magic-beam/Beam-macOS) and [iOS](https://github.com/magic-beam/Beam-iOS) apps for [Streams](https://github.com/light-stream/meta/blob/master/SQR-protocol.md).
+- HCCQR-lib is used by the lightstream app to send data
 
 ### How does it work
 - HCCQR uses the color spectrum and image analysis to transmit information”
