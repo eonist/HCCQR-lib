@@ -9,7 +9,7 @@ final class Compositor {
     * - Note: layer 1: r, b -> qrImg1
     * - Note: layer 2: b, g -> qrImg2
     * - Note: Used in the process to convert HCCQR to Data
-    * - Fixme: ⚠️️ possibly simplify method with defering deinit of composite
+    * - Fixme: ⚠️️ Possibly simplify method with defering deinit of composite
     */
    static func composite(first: RGBAImage, second: RGBAImage) throws -> CIImage {
       let rgbaImg: RGBAImage = try composite(rgbaImages: [first, second])
@@ -33,7 +33,7 @@ final class Compositor {
       var blackRGBAImg: RGBAImage = .rgbaImage(pixel: PixelData.Colors.blackPixel, size: firstRGBAImg.size) // because black is r: 0, b: 0, g: 0
       // - Fixme: ⚠️️ use static method here , inout, output etc
       blackRGBAImg.process { (index: Int, pixel: PixelData) -> PixelData in // Loop things
-         var pixel = pixel // Fixme: ⚠️️ maybe do reduce here?
+         var pixel = pixel // - Fixme: ⚠️️ maybe do reduce here?
          rgbaImages.forEach { (rgbaImage: RGBAImage) in // loop over every image in the list
             let rgbaPixelData: PixelData = rgbaImage.pixels[index]
             pixel.applyPixel(first: pixel, second: rgbaPixelData, alpha: 255)

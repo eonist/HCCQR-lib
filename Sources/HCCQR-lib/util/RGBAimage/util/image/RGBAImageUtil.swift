@@ -125,8 +125,6 @@ extension RGBAImageUtil {
 //      let ciImg: CIImage = .init(bitmapData: data, bytesPerRow: bytesPerRow, size: CGSize(width: CGFloat(rgbaImage.size.width), height: CGFloat(rgbaImage.size.height)), format: format, colorSpace: colorSpace)
 //      return ciImg
 //   }
-   // 🏀 Continue here
-   
 //   let imageRect: CGRect = .init(x: 0, y: 0, width: cgImage.width, height: cgImage.height) // Create image rectangle with current image width/height
 //   let colorSpace = CGColorSpaceCreateDeviceGray() // Grayscale color space
 //   let bitsPerComponent = 8
@@ -139,7 +137,6 @@ extension RGBAImageUtil {
 //   guard let cgImg = context.makeImage() else { throw NSError(domain: "unable to makeImage", code: 0) }// Create bitmap image info from pixel data in current context
 //   debugCGImage(cgImage: cgImg)
 //   return cgImg
-   
    /**
     * ref https://developer.apple.com/documentation/coreimage/cicontext/1437897-render
     * The idea with this method is to convert RGBAImage.pixels into CICOntext, and use apples QR reader directly with the CIContext, instead of cIimage

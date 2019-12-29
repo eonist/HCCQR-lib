@@ -13,6 +13,7 @@ extension Splitter {
 //   typealias OnOptionalChannelsComplete = (_ rgbaImages: RGBAImages?) -> Void
 //   typealias OnOptionalChannelsCompleted = (Result<RGBAImages, Error>) -> Void
 //   typealias OnChannelsComplete = (_ rgbaImages: RGBAImages) -> Void
-   typealias OnChannelsCompleted = (Result<RGBAImages, Error>) -> Void// OnOptionalChannelsCompleted
+   typealias ChannelsResult = Result<RGBAImages, Error>
+   typealias OnChannelsCompleted = (ChannelsResult) -> Void// OnOptionalChannelsCompleted
 //   typealias ChannelsComplete = (_ channels: RGBAImages?) -> Void
 }
