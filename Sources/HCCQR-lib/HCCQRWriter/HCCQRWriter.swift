@@ -12,7 +12,7 @@ public final class HCCQRWriter {
     * - Important: Remember to add the resulting img to view within main.thread
     * - Note: use `Swift.print(hccqrImage?.hasOnlyColorMap(colorMap: [.red, .green, .blue, .white]))`//ensure that img only has valid colors, akak no bluring
     * - Fixme: ⚠️️ Add support for more colors by adding colorDepth: Int in params
-    * - Fixme: ⚠️️ Threading shouldn't be done here I think. maybe use WorkItems, nsoperation, semphore etc, do more research
+    * - Fixme: ⚠️️ Threading shouldn't be done here I think. maybe use WorkItems, nsoperation, semphore etc, do more research, concurrent_apply?, Dispatchgroups?
     * ## Example:
     * let (qrVersion, qrMode, ecLevel): QRConfig = (10, .byte, .l) // settings
     * guard let randomString: String = HCCQRStringData.randomString(qrVersion: qrVersion, qrMode: qrMode, ecLevel:ecLevel) else { Swift.print("unable to create random string"); return }

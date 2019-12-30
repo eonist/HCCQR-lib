@@ -10,7 +10,7 @@ class RGBAImageScaler {
     * - Parameter multiplier: The amount to scale the pixel by
     */
    static func scale(pixels: UnsafeMutableBufferPointer<PixelData>, size: RGBAImage.Size, multiplier: Int) -> RGBAImage {
-      Swift.print("multiplier:  \(multiplier)")
+//      Swift.print("multiplier:  \(multiplier)")
       let multipliedWidth = size.width * multiplier
       let multipliedHeight = size.height * multiplier
       let capacity = multipliedWidth * multipliedHeight

@@ -27,7 +27,8 @@ extension RGBAImage {
       return try rgbaImage(cgImage: cgImg)
    }
    /**
-    * New (⭐ works ⭐)
+    * CIImage -> RGBAImage (⭐ new, works ⭐)
+    * - Note: Seems to be slightly faster than converting ciimage to cgimage etc
     * - Note: ref https://www.geekspiff.com/unlinkedCrap/ciImageToBitmap.html
     */
    static func rgbaImg(ciImg: CIImage) throws -> RGBAImage {

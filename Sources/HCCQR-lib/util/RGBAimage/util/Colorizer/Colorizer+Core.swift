@@ -5,15 +5,19 @@ import Foundation
 extension Colorizer {
    /**
     * Converts B&W RGBAImages into one unified color RGBAImage (on the basis of a colorMap rule-set)
+    * - Abstract: creates an HCCQR from two Qr images
     * - Fixme: ⚠️️ Could be faster to just mutate the pixels diretly in an RGBAImage instead of creating an pixel array like it is now?
     * - Fixme: ⚠️️ We should make MonotoneImage that has single Bit data, it will be faster
     * - Note: Used in the process of converting Data to HCCQR
-    * - Parameter scale: for retina you need 2x scale etc
+    * - Parameters:
+    *   - rgbaImages: rbgImages
+    *   - colorMap: rulset
+    *   - multipliers: scaling
     */
    static func colorize(rgbaImages: [RGBAImage], colorMap: ColorMap, multipliers: Multipliers) throws -> RGBAImage {
       guard let size: RGBAImage.Size = rgbaImages.first?.size else { throw NSError(domain: "Must contain at least one image", code: 0) } // The first image is used for getting size etc
       let capacity: Int = size.width * size.height
-      let pixels = UnsafeMutableBufferPointer<PixelData>.allocate(capacity: capacity)//[PixelData]()
+      let pixels = UnsafeMutableBufferPointer<PixelData>.allocate(capacity: capacity) // [PixelData]()
 //      pixels.reserveCapacity(size.width * size.height)
       DispatchQueue.concurrentPerform(iterations: size.height) { y in // - Fixme: ⚠️️ try move this to the X value
          (0..<size.width).indices.forEach { x in
@@ -36,7 +40,7 @@ extension Colorizer {
 extension Colorizer {
    /**
     * Converts a series of b&w pixels into one color pixel (on the basis of a colorMap rule set)
-    * - Fixme: ⚠️️ Try to make this method more readable, and faster?
+    * - Fixme: ⚠️️ Try to make this method more readable, and faster, can we use concurrent_apply ?
     * ## Examples:
     * colorize(pixels: [blackPixel, whitePixel]) -> RedPixel
     * colorize(pixels: [whitePixel, whitePixel]) -> BluePixel

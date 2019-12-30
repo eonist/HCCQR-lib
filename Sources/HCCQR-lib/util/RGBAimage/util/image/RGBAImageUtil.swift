@@ -32,7 +32,7 @@ public final class RGBAImageUtil {
  */
 extension RGBAImageUtil {
    /**
-    * Converts rgbaImage to cgImage
+    * Converts rgbaImage to cgImage (works I guess)
     * - Note: alternative data -> img code, might be faster?: https://stackoverflow.com/questions/51372245/swift-covert-byte-array-into-ciimage
     */
    private static func cgImage(rgbaImage: RGBAImage, useGrayscale: Bool = false) throws -> CGImage {
@@ -78,26 +78,6 @@ extension RGBAImageUtil {
 //      [self.context render:cameraImage toCVPixelBuffer:pixelBuffer bounds:cameraImage.extent colorSpace:cSpace];
    }
    /**
-    * Untested
-    * ref: https://stackoverflow.com/a/51380146/5389500 (also has pointer while loop)
-    */
-   func ciImg3(rgbaImage: RGBAImage) -> CIImage? {
-      // 4 bytes(rgba channels) for each pixel
-      let bytesPerPixel: Int = 4
-      // (8 bits per each channel)
-//      let bitsPerComponent: Int = 8
-//      let bitsPerPixel = bytesPerPixel * bitsPerComponent;
-      // channels in each row (width)
-      let (w, h): (Int, Int) = (rgbaImage.size.width, rgbaImage.size.height)
-//      let bytesPerRow: Int = w * bytesPerPixel;
-//      let data: Data = .init(buffer: rgbaImage.flatPixels)
-      let cfData = CFDataCreate(nil, rgbaImage.flatPixels, w * h * bytesPerPixel)
-      let cgDataProvider = CGDataProvider(data: cfData!)!
-      let format: CIFormat = .RGBA8 //.BGRA8 // .RGBA8// .ARGB8//.ABGR8// // A pixel format constant. See Pixel Formats.
-      let colorSpace: CGColorSpace = CGColorSpaceCreateDeviceRGB()//useGrayscale ? CGColorSpaceCreateDeviceGray() : CGColorSpaceCreateDeviceRGB()//CGColorSpaceCreateDeviceRGB() // The color space that the image is defined in. It must be a Quartz 2D color space (CGColorSpace). Pass nil for images that don’t contain color data (such as elevation maps, normal vector maps, and sampled function tables).
-      return .init(imageProvider: cgDataProvider, size: rgbaImage.size.width, rgbaImage.size.height, format: format, colorSpace: colorSpace, options: nil)
-   }
-   /**
     * RGBAImage -> CIImage (New)
     * - Fixme: ⚠️️ Make the grayscale work, see similar solution as convertToGrayscale use
     * - Note: The composite method uses this method
@@ -105,12 +85,32 @@ extension RGBAImageUtil {
     */
    static func ciImg2(rgbaImage: RGBAImage, useGrayscale: Bool) throws -> CIImage {
 //      Swift.print("ciImg2")
-      let data: Data = .init(buffer: rgbaImage.pixels)
       let format: CIFormat = .RGBA8 //.BGRA8 // .RGBA8// .ARGB8//.ABGR8// // A pixel format constant. See Pixel Formats.
       let colorSpace: CGColorSpace = useGrayscale ? CGColorSpaceCreateDeviceGray() : CGColorSpaceCreateDeviceRGB()//CGColorSpaceCreateDeviceRGB() // The color space that the image is defined in. It must be a Quartz 2D color space (CGColorSpace). Pass nil for images that don’t contain color data (such as elevation maps, normal vector maps, and sampled function tables).
       let bytesPerRow: Int = rgbaImage.size.width * 4
+      let data: Data = .init(buffer: rgbaImage.pixels)
       let ciImg: CIImage = .init(bitmapData: data, bytesPerRow: bytesPerRow, size: CGSize(width: CGFloat(rgbaImage.size.width), height: CGFloat(rgbaImage.size.height)), format: format, colorSpace: colorSpace)
       return ciImg
+   }
+   /**
+    * ⚠️️Untested ⚠️️
+    * ref: https://stackoverflow.com/a/51380146/5389500 (also has pointer while loop)
+    */
+   func ciImg3(rgbaImage: RGBAImage) -> CIImage? {
+      // 4 bytes(rgba channels) for each pixel
+      let bytesPerPixel: Int = 4
+      // (8 bits per each channel)
+      //      let bitsPerComponent: Int = 8
+      //      let bitsPerPixel = bytesPerPixel * bitsPerComponent;
+      // channels in each row (width)
+      let (w, h): (Int, Int) = (rgbaImage.size.width, rgbaImage.size.height)
+      //      let bytesPerRow: Int = w * bytesPerPixel;
+      //      let data: Data = .init(buffer: rgbaImage.flatPixels)
+      let cfData = CFDataCreate(nil, rgbaImage.flatPixels, w * h * bytesPerPixel)
+      let cgDataProvider = CGDataProvider(data: cfData!)!
+      let format: CIFormat = .RGBA8 //.BGRA8 // .RGBA8// .ARGB8//.ABGR8// // A pixel format constant. See Pixel Formats.
+      let colorSpace: CGColorSpace = CGColorSpaceCreateDeviceRGB()//useGrayscale ? CGColorSpaceCreateDeviceGray() : CGColorSpaceCreateDeviceRGB()//CGColorSpaceCreateDeviceRGB() // The color space that the image is defined in. It must be a Quartz 2D color space (CGColorSpace). Pass nil for images that don’t contain color data (such as elevation maps, normal vector maps, and sampled function tables).
+      return .init(imageProvider: cgDataProvider, size: rgbaImage.size.width, rgbaImage.size.height, format: format, colorSpace: colorSpace, options: nil)
    }
    /**
     *

@@ -7,6 +7,7 @@ import CoreImage
 final class Colorizer {
    /**
     * Converts multiple b&w images to color image based on the colorMap provided
+    * - Abstract: creates an HCCQR from two Qr images
     * - Fixme: ⚠️️ pass cgImages istead of uiimages, it might be faster, as it avoids additional conversion
     * - Parameters:
     *    - images: b&w QRImages
