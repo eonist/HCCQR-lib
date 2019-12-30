@@ -10,15 +10,16 @@ extension Splitter {
     */
    static func split(ciImage: CIImage, onComplete:@escaping SplitPayloadCompleted) {
       channels(ciImage: ciImage) { result in // Get RGBAImages from CIImage
-         onChannelsComplete(result: result, onComplete: onComplete)
+         onGrayChannelsComplete(result: result, onComplete: onComplete)
       }
    }
    /**
     * CIImage -> RGBAImage -> (3x RGBAImages)
+    * - Note: the conversion to rgbaImg here is cpu intensive, but in the camera session we get rgba data, so this is just for debugging etc
     */
-   static func channels(ciImage: CIImage, onComplete:@escaping Channel.OnChannelsCompleted) {
+   static func channels(ciImage: CIImage, onComplete:@escaping Channel.OnGrayChannelsComplete) {
       guard let rgbaImg: RGBAImage = try? RGBAImage.rgbaImg(ciImg: ciImage) else { onComplete(.failure(NSError("Unable to create rgbaImg"))); return }
-      HCCQRReader.splitTime = .init() // debugging performance
-      Channel.channels(rgbaImg: rgbaImg, onComplete: onComplete)
+      HCCQRReader.splitTime = .init() // Debugging performance
+      Channel.grayChannels(rgbaImg: rgbaImg, onComplete: onComplete) // Channel.channels(rgbaImg: rgbaImg, onComplete: onComplete)
    }
 }

@@ -24,7 +24,7 @@ extension SingleHCCQRTest {
       let config: QRConfig = (.v8, .byte, .l) // Config
       guard let randomData: Data = HCCQRStringData.randomData(config: config) else { Swift.print("err"); onComplete(false); return }
       writeTime = .init() // We start the write clock here (random data creation time isn't interesting)
-      HCCQRWriter.ciImage(data: randomData, multipliers: (moduleScale: 6, screenScale: 2), qrConfig: (config.version, config.ecLevel)) { result in // Create HCCQR from string
+      HCCQRWriter.ciImage(data: randomData, multipliers: (moduleScale: 6, screenScale: 2), qrConfig: (config.version, config.ecLevel)) { result in // write the HCCQR
          guard let ciImg = try? result.get() else { Swift.print("err: \(result.errorStr)"); return }
          onWriteComplete(hccqrImage: ciImg, randomData: randomData, onComplete: onComplete)
       }
@@ -40,7 +40,7 @@ extension SingleHCCQRTest {
    private static func onWriteComplete(hccqrImage ciImage: CIImage, randomData: Data, onComplete: @escaping OnComplete) {
       Swift.print("WriteTime:  \(abs(writeTime.timeIntervalSinceNow))")
       Swift.print("ciImage.extent.size:  \(ciImage.extent.size)")
-      HCCQRReader.dataAndImages(ciImage: ciImage) { result in // Split the hccqrImg
+      HCCQRReader.dataAndImages(ciImage: ciImage) { result in // start reading the hccqr
          guard let value: HCCQRReader.DataAndImages = result.value() else { Swift.print("🚫 err:  \(result.errorStr)"); return }
          self.onReadComplete(dataAndImages: value, randomData: randomData, onComplete: onComplete)
       }

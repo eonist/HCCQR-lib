@@ -16,7 +16,9 @@ extension Compositor {
       return img
    }
    /**
-    * Combine many grayscale images into one
+    * Combine 2 grayscale images into one
+    * - Note: we use array to support richer color pallets in the future
+    * - Note: the pixels are never overwritten
     */
    static func composite(grayscaleImages: [GrayscaleImage]) throws -> GrayscaleImage {
       guard let first: GrayscaleImage = grayscaleImages.first else { throw NSError(domain: "unable to composite - composite() - no first image available", code: 0) }

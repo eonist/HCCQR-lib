@@ -13,5 +13,5 @@ extension Channel {
 extension Channel {
    typealias GrayscaleImages = (r: GrayscaleImage, g: GrayscaleImage, b: GrayscaleImage)
    typealias GrayscaleChannelsResult = Result<GrayscaleImages, Error>
-   typealias OnChannelsComplete = (GrayscaleChannelsResult) -> Void
+   typealias OnGrayChannelsComplete = (GrayscaleChannelsResult) -> Void
 }

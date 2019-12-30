@@ -12,6 +12,7 @@ extension Splitter {
     * - Note: green means black in layer-1 only
     * - Note: red means black in layer-2 only
     * - Note: white means white in both layers
+    * - Fixme: ⚠️️ Use Dispatchgroup to make the completion more readable
     */
    static func onChannelsComplete(result: Channel.ChannelsResult, onComplete:@escaping SplitPayloadCompleted) { // called when the (R,G,B) channels are split
       // - Fixme: ⚠️️ Try to code with boolImg you only need true, false to define a black / white pixel, then research how to make ciimage with [bool]

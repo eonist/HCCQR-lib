@@ -9,10 +9,10 @@ class ViewController: UIViewController {
       super.viewDidLoad()
       view.backgroundColor = .orange
 //      test()
-      ViewController.testCreatingHCCQRImage { img in
-         let imageView: UIImageView = .init(image: img)
-         self.view.addSubview(imageView)
-      }
+//      ViewController.testCreatingHCCQRImage { img in
+//         let imageView: UIImageView = .init(image: img)
+//         self.view.addSubview(imageView)
+//      }
    }
    override var prefersStatusBarHidden: Bool { return true } // hides statusbar
 }
