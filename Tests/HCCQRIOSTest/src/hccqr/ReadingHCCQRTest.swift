@@ -25,7 +25,10 @@ extension ReadingHCCQRTest {
       guard let image = Image(contentsOfFile: path) else { Swift.print("err getting img"); return }
       Swift.print("uiImage.size:  \(image.size)")
       // - Fixme: ⚠️️ move the bellow into own method outside this local scope
-      HCCQRReader.dataAndImages(image: image) { result in onReadComplete(result: result, onComplete: onComplete) }
+//      HCCQRReader.dataAndImages(image: image) { result in onReadComplete(result: result, onComplete: onComplete) }
+      guard let ciImage: CIImage = image.ciImage() else { onComplete(false); return }
+      Swift.print("ciImage.debugDescription:  \(ciImage.debugDescription)")
+      HCCQRReader.dataAndImages(ciImage: ciImage) { result in onReadComplete(result: result, onComplete: onComplete) }
    }
 }
 /**

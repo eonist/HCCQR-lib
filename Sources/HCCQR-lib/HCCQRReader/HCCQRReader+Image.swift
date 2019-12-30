@@ -2,12 +2,15 @@ import Foundation
 import QR_lib
 import QuartzCore
 import CoreImage
+
+public final class HCCQRReader {}
 /**
  * Image -> String
  */
-public final class HCCQRReader {
+extension HCCQRReader {
    /**
     * Creates data for HCCQQR image, and frame (Has support for Quad)
+    * - Caution: ⚠️️ Seems like image doesnt work anymore, use .ciImage() instead
     */
    public static func dataAndQuad(image: Image, onComplete:@escaping OnGetDataAndQuadCompleted) {
       // - Fixme: ⚠️️ move this to handler method
