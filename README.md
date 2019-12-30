@@ -1,7 +1,7 @@
 ![Lang](https://img.shields.io/badge/Language-Swift-orange.svg)
 ![mit](https://img.shields.io/badge/License-MIT-brightgreen.svg)
-[![codebeat badge](https://codebeat.co/badges/b1ae5c9a-1250-4f2c-80bf-fe1eda045d42)](https://codebeat.co/projects/github-com-light-stream-hccqr-lib-master)
 [![SwiftLint Sindre](https://img.shields.io/badge/SwiftLint-Sindre-hotpink.svg)](https://github.com/sindresorhus/swiftlint-sindre)
+[![codebeat badge](https://codebeat.co/badges/b1ae5c9a-1250-4f2c-80bf-fe1eda045d42)](https://codebeat.co/projects/github-com-light-stream-hccqr-lib-master)
 [![Github actions badge](https://github.com/light-stream/HCCQR-lib/workflows/Tests/badge.svg)](https://github.com/light-stream/HCCQR-lib/actions)
 
 # HCCQR-lib
@@ -26,8 +26,8 @@ HCCQR is short for `High capacity color quick response code`
 | Repo  | Description | Quality | Tests |
 | ------------- | ------------- | ------ | ---- |
 | [QR-lib](https://github.com/eonist/QR-lib) | Quick response | [![CodeBeat badge](https://codebeat.co/badges/7514c7a6-b59d-45bb-8c7f-90be3d0c7ad7)](https://codebeat.co/projects/github-com-light-stream-qr-lib-master) | [![Github actions badge](https://github.com/light-stream/QR-lib/workflows/Tests/badge.svg)](https://github.com/light-stream/QR-lib/actions) |
-| [RGBKit](https://github.com/light-stream/RGBKit) | RGB Pixel buffer tool | na | [![Github actions badge](https://badgen.net/github/checks/light-stream/RGBKit?icon=github&label=Build%20Status)](https://github.com/light-stream/RGBKit/actions) |
-| [ResultSugar](https://github.com/eonist/ResultSugar) | Sugar for result | [![CodeBeat badge](https://codebeat.co/badges/cb649e6d-a601-47c5-b2c4-179158d5f431)](https://codebeat.co/projects/github-com-eonist-resultsugar-master) | na |
+| [RGBKit](https://github.com/light-stream/RGBKit) | RGB Pixel buffer tool | [![codebeat badge](https://codebeat.co/badges/da87ae6a-c436-4f95-b2e5-2fc824f8e4a8)](https://codebeat.co/projects/github-com-light-stream-rgbkit-master) | [![Github actions badge](https://badgen.net/github/checks/light-stream/RGBKit?icon=github&label=Build%20Status)](https://github.com/light-stream/RGBKit/actions) |
+| [ResultSugar](https://github.com/eonist/ResultSugar) | Sugar for result | [![CodeBeat badge](https://codebeat.co/badges/cb649e6d-a601-47c5-b2c4-179158d5f431)](https://codebeat.co/projects/github-com-eonist-resultsugar-master) | [![Github actions badge](https://badgen.net/github/checks/eonist/ResultSugar?icon=github&label=Build%20Status)](https://github.com/eonist/ResultSugar/actions) |
 
 ### Creating HCCQR image
 ```swift
