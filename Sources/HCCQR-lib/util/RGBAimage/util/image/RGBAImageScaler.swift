@@ -6,11 +6,11 @@ class RGBAImageScaler {
     * Scales img without becoming blurry (Sharp pixel multiplier)
     * - Note: This method is used when creating HCCQR images from data
     * - Note: assert if scaling is needed before callign this method
-    * - Fixme: ⚠️️ add the concurrent optimization for nested for loops
+    * - Fixme: ⚠️️ add the concurrent optimization for nested for loops, striding?
     * - Parameter multiplier: The amount to scale the pixel by
     */
-   static func scale(pixels: UnsafeMutableBufferPointer<PixelData>, size: RGBAImage.Size, multiplier: Int) -> RGBAImage {
-//      Swift.print("multiplier:  \(multiplier)")
+   static func scale(pixels: UnsafeMutableBufferPointer<PixelData>, size: RGBAImage.Size, multipliers: Multipliers) -> RGBAImage {
+      let multiplier: Int = multipliers.moduleScale * multipliers.screenScale // - Fixme: ⚠️️ move this into the scale method, Support for retina resolutions
       let multipliedWidth = size.width * multiplier
       let multipliedHeight = size.height * multiplier
       let capacity = multipliedWidth * multipliedHeight

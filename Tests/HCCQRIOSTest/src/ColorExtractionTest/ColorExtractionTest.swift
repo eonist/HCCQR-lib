@@ -76,16 +76,16 @@ extension ColorExtractionTest {
    static func testComposition(view: UIView) {
       let rgbColorTestView = RGBColorTestView(frame: .init(origin: .zero, size: .init(width: 300, height: 100)))
       view.addSubview(rgbColorTestView)
-      /**/
+      //
       guard let image: UIImage = rgbColorTestView.snapShot else { fatalError("err") }
-      /**/
+      //
       guard let images: Splitter.RGBUIImages = { Optional((UIImage(), UIImage(), UIImage())) }()/*RGBAImage.split(image: image)*/ else { fatalError("err") }
       guard let r: RGBAImage = try? .rgbaImage(image: images.r) else { return }
       guard let g: RGBAImage = try? .rgbaImage(image: images.g) else { return }
       guard let b: RGBAImage = try? .rgbaImage(image: images.b) else { return }
       _ = b
       guard let composite = try? Compositor.composite(rgbaImages: [r, g/*,b*/]/*, invert: false*/) else { return }
-      /**/
+      //
       Swift.print("⚠️️ the bellow may not work anymore, scale is new ⚠️️")
       let img: Image? = try? RGBAImageUtil.image(rgbaImage: composite, scale: image.scale)
       let imgView: UIImageView = .init(image: img)

@@ -46,7 +46,7 @@ extension RGBAImage {
       return .init(pixels: pixels, width: size.width, height: size.height)
    }
    /**
-    * alt
+    * Alternative, might be more optimized
     */
    static func rgbaImg2(ciImg: CIImage) {
       _ = {
@@ -110,18 +110,5 @@ extension RGBAImage {
    static func rgbaImage(capacity: Int, size: Size) -> RGBAImage {
       let unsafePixels = UnsafeMutableBufferPointer<PixelData>.allocate(capacity: capacity)
       return .init(pixels: unsafePixels, width: size.width, height: size.height)
-   }
-}
-/**
- * Private static helper
- */
-extension RGBAImage {
-   /**
-    * Creates the correct bitmapInfo
-    */
-   private static var bitmapInfo: UInt32 {
-      var bitmapInfo: UInt32 = CGBitmapInfo.byteOrder32Big.rawValue // BGRA
-      bitmapInfo = bitmapInfo | CGImageAlphaInfo.premultipliedLast.rawValue & CGBitmapInfo.alphaInfoMask.rawValue
-      return bitmapInfo
    }
 }

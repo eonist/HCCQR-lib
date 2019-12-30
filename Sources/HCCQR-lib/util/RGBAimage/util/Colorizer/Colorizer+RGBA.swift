@@ -1,0 +1,62 @@
+import Foundation
+/**
+ * Core
+ */
+extension Colorizer {
+   /**
+    * Converts B&W RGBAImages into one unified color RGBAImage (on the basis of a colorMap rule-set)
+    * - Abstract: creates an HCCQR from two Qr images
+    * - Fixme: ⚠️️ Could be faster to just mutate the pixels diretly in an RGBAImage instead of creating an pixel array like it is now?
+    * - Fixme: ⚠️️ We should make MonotoneImage that has single Bit data, it will be faster
+    * - Note: Used in the process of converting Data to HCCQR
+    * - Parameters:
+    *   - rgbaImages: rbgImages
+    *   - colorMap: color rulset
+    *   - multipliers: scaling
+    */
+   static func colorize(rgbaImages: [RGBAImage], colorMap: ColorMap, multipliers: Multipliers) throws -> RGBAImage {
+      guard let size: RGBAImage.Size = rgbaImages.first?.size, let capacity: Int = rgbaImages.first?.capacity else { throw NSError(domain: "Must contain at least one image", code: 0) } // The first image is used for getting size etc
+      let pixels = UnsafeMutableBufferPointer<PixelData>.allocate(capacity: capacity) // create a new array //      pixels.reserveCapacity(size.width * size.height)
+      DispatchQueue.concurrentPerform(iterations: size.height) { y in // - Fixme: ⚠️️ try move this to the X value
+         (0..<size.width).indices.forEach { x in
+            let arr: [PixelData] = rgbaImages.map { $0.getPixel(x: x, y: y) } // we get pixels from both RGBAImages
+            if let colorizedPixel: PixelData = try? colorize(pixels: arr, colorMap: colorMap) { // else { throw NSError.init(domain: "Unable to make pixel", code: 0) }
+               let index: Int = y * size.width + x
+               pixels[index] = colorizedPixel
+            }
+         }
+      }
+      rgbaImages.forEach { $0.deinitiate() } // Avoids mem leak // guard pixels.count == size.width * size.height else { throw NSError(domain: "missing some pixels", code: 0) } // Check if array has all the pixels
+      let rgbaImage: RGBAImage = RGBAImageScaler.scale(pixels: pixels, size: (size.width, size.height), multipliers: multipliers)
+      pixels.deallocate() // ⚠️️ New, so might not work, this deallocates the pixels once they are not needed anymore
+      return rgbaImage
+   }
+}
+/**
+ * Private static helper
+ */
+extension Colorizer {
+   /**
+    * Converts a series of b&w pixels into one color pixel (on the basis of a colorMap rule set)
+    * - Fixme: ⚠️️ Try to make this method more readable, and faster, can we use concurrent_apply ?
+    * ## Examples:
+    * colorize(pixels: [blackPixel, whitePixel]) -> RedPixel
+    * colorize(pixels: [whitePixel, whitePixel]) -> BluePixel
+    */
+   private static func colorize(pixels: [PixelData], colorMap: ColorMap) throws -> PixelData {
+      let findColor: (ColorMapItem) throws -> Bool = { colorMapItem in
+         if colorMapItem.idx.count != pixels.count { throw NSError(domain: "Colorize.colorize - colorMap does not match pixel layer count", code: 0) }
+         let condition: (_ i: Int, _ pixel: PixelData) -> Bool = { (i: Int, pixel: PixelData) in
+            let bothAreBlack: Bool = pixel.isBlack && !colorMapItem.idx[i] // false means black
+            let bothAreWhite: Bool = pixel.isWhite && colorMapItem.idx[i] // true means white
+            if bothAreBlack == false && bothAreWhite == false { return false } // <- Sort of crazy looking, but it works
+            else { return true }
+         }
+         // - Fixme ⚠️️ could we use async_apply here, in the .first loop?
+         return (pixels.enumerated().first(where: condition) == nil)
+      }
+      // - Fixme ⚠️️ could we use async_apply here, in the .first loop?
+      guard let color: PixelData.RGBColor = try colorMap.first(where: findColor)?.color else { throw NSError(domain: "Unable to colorize", code: 0) }
+      return PixelData(r: color.r, g: color.g, b: color.b, a: color.a) // (uiColor: color)
+   }
+}

@@ -4,7 +4,8 @@ import CoreImage
 /**
  * Converts b&w layers into color layers (Used in the HCCQR-creation-process)
  */
-final class Colorizer {
+final class Colorizer {}
+extension Colorizer {
    /**
     * Converts multiple b&w images to color image based on the colorMap provided
     * - Abstract: creates an HCCQR from two Qr images

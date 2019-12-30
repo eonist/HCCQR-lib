@@ -10,12 +10,12 @@ extension BulkHCCQRTest {
    /**
     * Create single HCCQR img complete
     */
-   static func onWriteComplete(i: Int, hccqrImage: CIImage?, images: inout [CIImage?], onComplete:@escaping OnWriteImagesComplete) {
+   static func onWriteComplete(i: Int, rgbaImage: RGBAImage?, images: inout [RGBAImage?], onComplete:@escaping OnWriteImagesComplete) {
 //      Swift.print("onCreateHCCQRImageComplete")
-      guard let hccqrImage = hccqrImage else { onComplete(.failure(NSError(domain: "Unable to create hccqr image", code: 0))); return }
-      images[i] = hccqrImage
+      guard let rgbaImage = rgbaImage else { onComplete(.failure(NSError(domain: "Unable to create hccqr image", code: 0))); return }
+      images[i] = rgbaImage
       if images.first(where: { $0 == nil }) == nil { // Make sure all images were written
-         let images: [CIImage] = images.compactMap { $0 }
+         let images: [RGBAImage] = images.compactMap { $0 }
          Swift.print("onCreateHCCQRImageComplete.all done")
          onComplete(.success(images))
       }

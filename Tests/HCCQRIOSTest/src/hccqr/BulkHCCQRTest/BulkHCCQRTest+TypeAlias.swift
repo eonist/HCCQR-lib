@@ -4,7 +4,7 @@ import CoreImage
 
 extension BulkHCCQRTest {
    // Write complete
-   typealias OnWriteImagesComplete = (Result<[CIImage], Error>) -> Void
+   typealias OnWriteImagesComplete = (Result<[RGBAImage], Error>) -> Void
    // read complete
    typealias OnReadImagesComplete = (Result<[Data], Error>) -> Void
    // everything complete
