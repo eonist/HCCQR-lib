@@ -1,14 +1,10 @@
 import Foundation
-import ResultSugar
+
+final class Channel {}
 /**
  * channels
  */
-extension Splitter {
-   /**
-    * For 4 color HCCQR,
-    * - Fixme: ⚠️️ See .pdf's for the colors to use for 8-colorHCCQR etc
-    */
-   static let channelMap = [PixelData.red, PixelData.green, PixelData.blue]// { $0.isColorish() }, { $0.isColorish() }]
+extension Channel {
    /**
     * Split 1 RGBAImage into 3 RGBAImages and then into 3 b&w RGBAImages consisting of singular r, g, b channels (⚠️️ white represents the channel color ⚠️️)
     * - Parameters:
@@ -16,7 +12,7 @@ extension Splitter {
     *   - channelMap: ruleset for the splitting process
     *   - onComplete: notify when process has completed
     */
-   static func channels(rgbaImg: RGBAImage, channelMap: [PixelData.RGBColor] = channelMap, onComplete:@escaping OnChannelsCompleted) {
+   static func channels(rgbaImg: RGBAImage, channelMap: ChannelMap = channelMap, onComplete:@escaping OnChannelsCompleted) {
       let assertions: [(PixelData) -> Bool] = channelMap.map { rgbColor in { $0.isColorish(rgbColor) } }
       var rgbaImages: [RGBAImage?] = [RGBAImage?](repeating: nil, count: assertions.count) // Fixme: ⚠️️ we could use unmanaged pointer with capacity as well, might be faster
       assertions.enumerated().forEach { item in // 3 assertions
@@ -32,8 +28,7 @@ extension Splitter {
 /**
  * Private static helper methods
  */
-extension Splitter {
-   typealias PixelDataAssertion = (_ pixel: PixelData) -> Bool
+extension Channel {
    /**
     * Gets r,g,b channels
     * - Note: Marks red colors as black, all else becomes white
@@ -45,25 +40,16 @@ extension Splitter {
          assert(pixel) ? PixelData.Colors.whitePixel : PixelData.Colors.blackPixel
       }
    }
-   /**
-    * New
-    */
-   private static func channel(rgbaImg: RGBAImage, assert: PixelDataAssertion) -> GrayscaleImage {
-      let blankImg = GrayscaleImage.grayscaleImage(capacity: rgbaImg.capacity, size: rgbaImg.size) // We create a blank RGBImage, as it's faster than copy probably
-      return GrayscaleImage.process(input: rgbaImg, output: blankImg) { pixel -> UInt8 in
-         assert(pixel) ? 255 : 0
-      }
-   }
 }
-
 /**
  * Handler
  */
-extension Splitter {
+extension Channel {
    /**
     * Channel completion handler (just makes sure everything completed)
-    * - Fixme: ⚠️️ simplify the deinit, refactor etc
+    * - Fixme: ⚠️️ simplify the deinit, refactor etc, rename params
     * - Fixme: ⚠️️ We could Return 3 GrayScaleImages instead of 3 RGBAImages, might be faster
+    * - Parameter rgbImg must be dealocated in the completion block because it is consumes 3 times
     */
    private static func onChannelComplete(i: Int, rgbaImage: RGBAImage, rgbaImages: inout [RGBAImage?], rgbaImg: RGBAImage, onComplete: OnChannelsCompleted) {
       rgbaImages[i] = rgbaImage // it matters which order the qrImages came in when you stitch them back together

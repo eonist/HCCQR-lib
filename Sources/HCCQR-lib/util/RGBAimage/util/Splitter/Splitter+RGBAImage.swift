@@ -9,7 +9,7 @@ extension Splitter {
     * - Note: Used in the process to convert HCCQR to Data
     */
    static func split(rgbaImage: RGBAImage, onComplete:@escaping SplitPayloadCompleted) {
-      channels(rgbaImg: rgbaImage) { result in  // Get RGBAImages from RGBAImage
+      Channel.channels(rgbaImg: rgbaImage) { result in  // Get RGBAImages from RGBAImage
          onChannelsComplete(result: result, onComplete: onComplete)
       }
    }

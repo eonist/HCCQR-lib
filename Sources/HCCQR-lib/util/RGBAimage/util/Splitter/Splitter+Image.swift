@@ -4,7 +4,8 @@ import ResultSugar
 /**
  * Splitter
  */
-final class Splitter {
+final class Splitter {}
+extension Splitter {
    /**
     * Returns two b&w qr imgs (by splitting an hccqr imgage)
     * - Note: Used in the process to convert HCCQR to Data
@@ -18,8 +19,8 @@ final class Splitter {
    /**
     * Returns channels (rgb for now) (3 channels, red, green, blue)
     */
-   static func channels(image: Image, onComplete:@escaping OnChannelsCompleted) {
+   static func channels(image: Image, onComplete:@escaping Channel.OnChannelsCompleted) {
       guard let rgbaImg: RGBAImage = try? .rgbaImage(image: image) else { onComplete(.failure(NSError("Unable to create rgbaImg"))); return }
-      channels(rgbaImg: rgbaImg, onComplete: onComplete)
+      Channel.channels(rgbaImg: rgbaImg, onComplete: onComplete)
    }
 }
