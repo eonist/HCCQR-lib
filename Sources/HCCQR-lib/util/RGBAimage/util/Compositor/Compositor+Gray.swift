@@ -29,7 +29,7 @@ extension Compositor {
             let pixelValue: UInt8 = grayscaleImage.pixels[index]
             pixel = {
                let result = pixel.subtractingReportingOverflow(pixelValue)
-               return result.overflow ? 0 : result.partialValue // - Fixme: ⚠️️ can be removed because this will basically never happen, because channels cant overlap
+               return result.overflow ? 0 : result.partialValue // - Fixme: ⚠️️ Can be removed because this will basically never happen, because channels cant overlap
             }()
          }
          return pixel

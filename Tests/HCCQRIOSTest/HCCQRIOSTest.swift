@@ -15,9 +15,9 @@ class HCCQRIOSTest: XCTestCase {
 //      XCTAssertEqual(ScaleTesting.testScalingRGBAImage(), 4)
 //      XCTAssertTrue(ColorizerTest.testColorizer())
 //      XCTAssertTrue(PixelTest.testColorAssertionWithinThresholdForPixel())
-      testSingle()
-      /*testReadingHCCQR()*/ // ⚠️️ only works in xcode-simulator
-//      testBulk() // Read and write multiple HCCQR images
+      /*testReadingHCCQR()*/ // ⚠️️ only works in xcode-simulator, because no assets in spm
+//      testSingle()
+      testBulk() // Read and write multiple HCCQR images
 //      testRGBKit() // test the new rgbkit
 //      testCIImage()
    }
@@ -31,13 +31,6 @@ extension HCCQRIOSTest {
     *
     */
    private func testCIImage() {
-      // 🏀
-         // now add the ciImg2 method to bulk test, and benchmark diff
-            // basically swap out cgImage.ciimage in the hccqr bulk test and look for speed improv
-            // try with grayscale colorspace
-            // try the ciImg3 method
-            // try passing ciimage to qr-lib
-         // try the dataprovider solution for completness  
       guard let image = UIImage.image(size: .init(width: 100, height: 100), color: .green) else { Swift.print("uiImage err"); return }
       Swift.print("image.scale:  \(image.scale)")
       Swift.print("image.size:  \(image.size)")
@@ -77,7 +70,7 @@ extension HCCQRIOSTest {
     * Single
     */
    private func testSingle() {
-      let expectation = self.expectation(description: "single")
+      let expectation = self.expectation(description: "single") // needed when we do callbacks in Unittesting
       SingleHCCQRTest.testWritingHCCQRImage { isMatching in
          Swift.print("testWritingHCCQRImage.isMatching:  \(isMatching ? "✅" : "🚫")")
          expectation.fulfill()
@@ -90,7 +83,7 @@ extension HCCQRIOSTest {
     * - Abstract: Read and write multiple HCCQR images
     */
    private func testBulk() {
-      let expectation = self.expectation(description: "bulk")
+      let expectation = self.expectation(description: "bulk") // needed when we do callbacks in Unittesting
       BulkHCCQRTest.initiateTest { result in
          guard let success: Bool = try? result.get() else { Swift.print("BulkHCCQRTest: \(result.errorStr)"); return }
          Swift.print("BulkHCCQRTest: success:  \(success ? "✅" : "🚫")")
@@ -103,7 +96,7 @@ extension HCCQRIOSTest {
     * Reading real photos
     */
    private func testReadingHCCQR() {
-      let expectation = self.expectation(description: "reading")
+      let expectation = self.expectation(description: "reading") // needed when we do callbacks in Unittesting
       ReadingHCCQRTest.testReadingHCCQRPhoto { success
          in Swift.print("success:  \(success ? "✅" : "🚫")")
          expectation.fulfill()

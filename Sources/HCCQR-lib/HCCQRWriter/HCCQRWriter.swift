@@ -38,7 +38,7 @@ public final class HCCQRWriter {
    }
 }
 /**
- * Private static helper
+ * Private static handler
  */
 extension HCCQRWriter {
    /**

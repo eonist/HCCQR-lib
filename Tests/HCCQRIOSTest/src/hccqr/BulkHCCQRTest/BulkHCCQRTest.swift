@@ -22,8 +22,9 @@ extension BulkHCCQRTest {
          guard let images: [CIImage] = result.value() else { onComplete(.failure(NSError(domain: "Can't write images", code: 0))); return }
          Swift.print("WriteTime:  \(abs(writeTime.timeIntervalSinceNow)) for images.count: \(images.count)")
          readTime = .init() // Start readTime measurment
-         readHCCQRImages(images: images) { result in
+         readHCCQRImages(ciImages: images) { result in
             guard let payloads: [Data] = result.value() else { onComplete(.failure(NSError(domain: "Can't read images \(result.errorStr)", code: 0))); return }
+            // - Fixme: ⚠️️ This is sort of wrong, as the conversion from ciimage takes a lot of time
             Swift.print("ReadTime:  \(abs(readTime.timeIntervalSinceNow)) for payloads.count: \(payloads.count)")
             Swift.print("Total time: \(abs(totalTime.timeIntervalSinceNow)) for payloads.count: \(payloads.count)")
             onComplete(.success(true))

@@ -7,7 +7,6 @@ final class GrayscaleImageUtil {
     * New (⚠️️ experimental, untested, prob needs more research ⚠️️)
     */
    static func ciImage(grayscaleImage: GrayscaleImage) throws -> CIImage {
-      //      Swift.print("ciImg2")
       let data: Data = .init(buffer: grayscaleImage.pixels)
       // - Fixme: ⚠️️ look for CIFormat for grayscale on google
       let format: CIFormat = .L8 //.BGRA8 // .RGBA8// .ARGB8//.ABGR8// // A pixel format constant. See Pixel Formats.

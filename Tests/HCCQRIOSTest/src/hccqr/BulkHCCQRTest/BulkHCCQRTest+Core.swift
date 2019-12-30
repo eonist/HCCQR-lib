@@ -27,10 +27,10 @@ extension BulkHCCQRTest {
    /**
     * Read many
     */
-   static func readHCCQRImages(images: [CIImage], onComplete:@escaping OnReadImagesComplete) {
+   static func readHCCQRImages(ciImages: [CIImage], onComplete:@escaping OnReadImagesComplete) {
 //      Swift.print("readHCCQRImages:  \(images.count)")
-      var payloads: [Data?] = [Data?](repeating: nil, count: images.count)
-      images.enumerated().forEach { arg in // the calles are async, and will finish randomly
+      var payloads: [Data?] = [Data?](repeating: nil, count: ciImages.count)
+      ciImages.enumerated().forEach { arg in // the calles are async, and will finish randomly
          DispatchQueue.global(qos: .userInitiated).async {
             HCCQRReader.dataAndImages(ciImage: arg.element) { result in  // split the hccqrImg
                DispatchQueue.main.async { // We need to go on the mainthread to manipulate array
