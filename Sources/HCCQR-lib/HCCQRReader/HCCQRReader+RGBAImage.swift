@@ -8,7 +8,7 @@ extension HCCQRReader {
    /**
     * ImageBuffer -> DataAndQuad
     */
-   public static func dataAndQuad(imageBuffer: CVImageBuffer, onComplete: @escaping OnDataAndMetaComplete) {
+   public static func dataAndMeta(imageBuffer: CVImageBuffer, onComplete: @escaping OnDataAndMetaComplete) {
       guard let rgbaImg: RGBAImage = try? CVImageBufferUtil.rgbaImage(imageBuffer: imageBuffer) else { onComplete(.failure("unable to get RGBAImage")); return }
       HCCQRReader.dataAndImages(rgbaImage: rgbaImg) { (result: HCCQRReader.DataAndImagesResult) in
          guard let dataAndImagesAndQuad: HCCQRReader.DataAndImages = try? result.get() else { onComplete(.failure("unable to get dataAndImages: \(result.errorStr)")); return }
