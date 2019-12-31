@@ -13,7 +13,7 @@ extension Splitter {
       let channelArr: [GrayChannelPair] = [(channels.b, channels.g), (channels.r, channels.b)] // pair b&g = qr1, pair r$b = qr2
       var qrImgs: [CIImage?] = [CIImage?](repeating: nil, count: channelArr.count)
       channelArr.enumerated().forEach { channel in
-         DispatchQueue.global(qos: .userInitiated).async {
+         DispatchQueue.global(qos: .userInitiated).async { // - Fixme: ⚠️️ This could be the cause of random error bug, maybe drop the async and just do it on current thread
             // - Fixme: ⚠️️ benchmark the composition process as well
             let qrImg: CIImage? = try? Compositor.composite(first: channel.element.first, second: channel.element.second)
             DispatchQueue.main.async { // We need to go on the mainthread to manipulate array

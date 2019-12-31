@@ -2,14 +2,15 @@ import Foundation
 import QuartzCore
 import CoreImage
 /**
- * Modifiers
+ * Asserter
  */
 extension Image {
-   #if os(macOS)
-//   convenience init(cgImage: CGImage) {
-//      self.init(cgImage: cgImage, size: .init(width: cgImage.width, height: cgImage.height))
-//   }
-   #endif
+   /**
+    * Compare images
+    */
+   public func isEqualToImage(image: Image) -> Bool {
+      return self.pngData() == image.pngData()
+   }
 }
 /**
  * Parsers

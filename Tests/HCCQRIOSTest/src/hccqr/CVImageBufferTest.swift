@@ -1,14 +1,13 @@
 import Foundation
-import RGBKit
 @testable import HCCQR_lib
 import QR_lib
 
-class RGBKitTest {
+class CVImageBufferTest {
    typealias OnComplete = (Bool) -> Void
    /**
     * HCCQR -> RGBImage
     */
-   static func testRGBKit(onComplete: @escaping OnComplete) {
+   static func test(onComplete: @escaping OnComplete) {
       Swift.print("testRGBKit")
       // create UIImage from Data
       let config: QRConfig = (.v1, .byte, .l) // Config
@@ -23,7 +22,7 @@ class RGBKitTest {
 /**
  * Handlers
  */
-extension RGBKitTest {
+extension CVImageBufferTest {
    /**
     * on hccqr image created
     */
@@ -33,8 +32,8 @@ extension RGBKitTest {
       Swift.print("hccqrImage.size:  \(hccqrImage.size)")
       Swift.print("hccqrImage.scale:  \(hccqrImage.scale)")
 //      Swift.print("hccqrImage.cgImage()?.width:  \(hccqrImage.cgImage?.width)")
-      guard let rgbImage: RGBImage = try? RGBReader.rgbImage(image: hccqrImage) else { Swift.print("err getting rgbImage"); return }
-      let rgbaImage: RGBAImage = rgbImage.rgbaImage // Convert RGBImage to RGBAImage
+      guard let rgbaImage: RGBAImage = try? CVImageBufferUtil.rgbaImage(image: hccqrImage) else { Swift.print("err getting rgbImage"); return }
+//      let rgbaImage: RGBAImage = rgbImage.rgbaImage // Convert RGBImage to RGBAImage
       guard let hccqrImg: Image = try? RGBAImageUtil.image(rgbaImage: rgbaImage, scale: 1) else { return }
       Swift.print("hccqrImg.size:  \(hccqrImg.size)")
       // Convert RGBBAImage to Data

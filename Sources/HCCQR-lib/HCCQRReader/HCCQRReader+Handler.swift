@@ -2,7 +2,6 @@ import Foundation
 import QR_lib
 import QuartzCore
 import CoreImage
-
 /**
  * Static handlers
  */
@@ -19,12 +18,21 @@ extension HCCQRReader {
       guard let payload: Splitter.SplitPayload = result.value() else { onComplete(.failure(NSError("q1, q2 err \(result.errorStr)"))); return }
       let ciImages: [CIImage] = [payload.qrImg1, payload.qrImg2]
       var dataAndFrames: [QRReader.DataAndQuad?] = [QRReader.DataAndQuad?](repeating: nil, count: ciImages.count)
-      HCCQRReader.readQrTime = .init()
+//      HCCQRReader.readQrTime = .init()
       ciImages.enumerated().forEach { item in
-         DispatchQueue.main.async { // Has to be done on main thread, or else Apples.qrreader behaves bad
-            guard let dataAndQuad: QRReader.DataAndQuad = try? QRReader.dataAndQuad(ciImage: item.element) else { onQRCodeComplete(i: item.offset, dataAndQuad: nil, error: NSError(domain: "Unable to get DataAndQuad from QRLib for index: \(item.offset) item.size: \(item.element.extent.size)", code: 0), dataAndFrames: &dataAndFrames, payload: payload, onComplete: onComplete); return }// - Fixme: ⚠️️ why not just throw? }
-            onQRCodeComplete(i: item.offset, dataAndQuad: dataAndQuad, error: nil, dataAndFrames: &dataAndFrames, payload: payload, onComplete: onComplete)
-         }
+//         DispatchQueue.global(qos: .background).async {
+            DispatchQueue.main.async { // Has to be done on main thread, or else Apples.qrreader behaves bad
+               var err: Error?
+               var dataAndQuad: QRReader.DataAndQuad?
+               do { dataAndQuad = try QRReader.dataAndQuad(ciImage: item.element) }// - Fixme: ⚠️️ why not just throw? }
+               catch {
+                  Swift.print("item.element.colorSpace:  \(String(describing: item.element.colorSpace))")
+                  Swift.print("item.element.debugDescription:  \(item.element.debugDescription)")
+                  err = error
+               }
+               onQRCodeComplete(i: item.offset, dataAndQuad: dataAndQuad, error: err, dataAndFrames: &dataAndFrames, payload: payload, onComplete: onComplete)
+            }
+//         }
       }
    }
    /**
@@ -37,8 +45,8 @@ extension HCCQRReader {
       dataAndFrames[i] = dataAndQuad
       if dataAndFrames.first(where: { $0 == nil }) == nil { // Makes sure all images finished
          let data: Data = dataAndFrames.compactMap { $0?.qrData }.reduce(Data(), +) // Merges the data
-         readTime += abs(HCCQRReader.readQrTime.timeIntervalSinceNow)
-         Swift.print("👉 Read QR complete: \(abs(HCCQRReader.readQrTime.timeIntervalSinceNow))")
+//         readTime += abs(HCCQRReader.readQrTime.timeIntervalSinceNow)
+//         Swift.print("👉 Read QR complete: \(abs(HCCQRReader.readQrTime.timeIntervalSinceNow))")
          onComplete(.success((data, payload.qrImg1, payload.qrImg2, dataAndFrame.quad))) // Return the result here
       }
    }

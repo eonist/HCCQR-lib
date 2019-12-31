@@ -16,7 +16,7 @@ extension BulkHCCQRTest {
       images[i] = rgbaImage
       if images.first(where: { $0 == nil }) == nil { // Make sure all images were written
          let images: [RGBAImage] = images.compactMap { $0 }
-         Swift.print("onCreateHCCQRImageComplete.all done")
+//         Swift.print("onCreateHCCQRImageComplete.all done")
          onComplete(.success(images))
       }
    }

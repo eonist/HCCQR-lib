@@ -11,11 +11,11 @@ extension BulkHCCQRTest {
     * creatingManyHCCQRImages(onComplete: { images in Swift.print("images.count:  \(images.count)") } )
     */
    static func writeMany(onComplete:@escaping OnWriteImagesComplete) {
-      Swift.print("writeHCCQRImages")
+//      Swift.print("writeHCCQRImages")
       let config: QRConfig = (.v6, .byte, .l) // Config (app uses 4 to 10)
-      let randomData: [Data] = (0..<10).compactMap { _ in HCCQRStringData.randomData(config: config) } // Num of items to load
+      let randomData: [Data] = (0..<200).compactMap { _ in HCCQRStringData.randomData(config: config) } // Num of items to load
       var images: [RGBAImage?] = [RGBAImage?](repeating: nil, count: randomData.count)//      var images: [CIImage?] = [CIImage?](repeating: nil, count: randomData.count)
-      writeTime = .init() // we start the write clock here (random data creation time isn't interesting)
+      writeTime = .init() // we start the write clock here (random data creation time isn't a part of the benchmark)
       totalTime = .init()
       randomData.enumerated().forEach { arg in
          HCCQRWriter.rgbaImage(data: arg.element, multipliers: (moduleScale: 6, screenScale: 2), qrConfig: (config.version, config.ecLevel)) { result in
@@ -28,16 +28,16 @@ extension BulkHCCQRTest {
     * Read many
     */
    static func readMany(rgbaImages: [RGBAImage], onComplete:@escaping OnReadImagesComplete) {
-      Swift.print("readHCCQRImages")
+//      Swift.print("readHCCQRImages")
       var payloads: [Data?] = [Data?](repeating: nil, count: rgbaImages.count)
       rgbaImages.enumerated().forEach { arg in // the calles are async, and will finish randomly
-         DispatchQueue.global(qos: .userInitiated).async {
+//         DispatchQueue.global(qos: .background).async { // seems to fail if this is put on a bg thread, it doesnt provide any speed benfit either
             HCCQRReader.dataAndImages(rgbaImage: arg.element) { result in  // split the hccqrImg
                DispatchQueue.main.async { // We need to go on the mainthread to manipulate array
                   onReadComplete(i: arg.offset, result: result, payloads: &payloads, onComplete: onComplete)
                }
             }
-         }
+//         }
       }
    }
 }

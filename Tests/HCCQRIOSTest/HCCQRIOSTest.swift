@@ -18,7 +18,7 @@ class HCCQRIOSTest: XCTestCase {
 //      testReadingHCCQR() // ⚠️️ only works in xcode-simulator, because no assets in spm
 //      testSingle() // ⭐
       testBulk() // ⭐ Read and write multiple HCCQR images
-//      testRGBKit() // test the new rgbkit
+//      testCVImageBuffer() // test the new rgbkit
 //      testCIImage()
    }
    func testPerformanceExample() {
@@ -57,9 +57,9 @@ extension HCCQRIOSTest {
    /**
     * RGBKit test
     */
-   private func testRGBKit() {
+   private func testCVImageBuffer() {
       let expectation = self.expectation(description: "rgbKit")
-      RGBKitTest.testRGBKit { success in
+      CVImageBufferTest.test { success in
          Swift.print("testRGBKit - success:  \(success ? "✅":"🚫")")
          expectation.fulfill()
          XCTAssertTrue(success)
@@ -90,7 +90,7 @@ extension HCCQRIOSTest {
          expectation.fulfill()
          XCTAssertTrue(success)
       }
-      waitForExpectations(timeout: 20, handler: nil)
+      waitForExpectations(timeout: 90, handler: nil)
    }
    /**
     * Reading real photos

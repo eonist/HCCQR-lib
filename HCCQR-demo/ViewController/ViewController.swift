@@ -19,7 +19,7 @@ class ViewController: UIViewController {
 
 extension ViewController {
    /**
-    *
+    * CIIMage -> RGBAImage -> CIImage
     */
    func test() {
       guard let image = UIImage.image(size: .init(width: 100, height: 100), color: .blue) else { Swift.print("uiImage err"); return }
@@ -44,6 +44,9 @@ extension ViewController {
       self.view.addSubview(imageView)
    }
 }
+/**
+ * HCCQR test
+ */
 extension ViewController {
    typealias OnComplete = (Image) -> Void
    /**
@@ -64,5 +67,23 @@ extension ViewController {
             onComplete(hccqrImage)
          }
       }
+   }
+}
+/**
+ * Buffer test
+ */
+extension ViewController {
+   /**
+    * 
+    * - Fixme: ⚠️️ figure out how to create scale: 1 img easy, maybe the context draw stuff needs retina support, check scaling in hccqr code etc
+    */
+   func bufferTest() {
+      let image = UIImage.image(size: .init(width: 100, height: 100), color: .red)!
+      guard let rgbaImage: RGBAImage = try? CVImageBufferUtil.rgbaImage(image: image) else { Swift.print("err rgbImage"); return }
+      guard let img: UIImage = try? RGBAImageUtil.image(rgbaImage: rgbaImage, scale: 1) else { Swift.print("err img"); return }
+      let imageView: UIImageView = .init(image: img)
+      view.addSubview(imageView)
+      let isEqual: Bool = image.isEqualToImage(image: img)
+      Swift.print("isEqual:  \(isEqual)")
    }
 }

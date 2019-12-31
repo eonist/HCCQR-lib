@@ -49,7 +49,7 @@ extension SingleHCCQRTest {
     * Read complete (read data from HCCQRImage)
     */
    private static func onReadComplete(dataAndImages: HCCQRReader.DataAndImages, randomData: Data, onComplete: OnComplete) {
-      Swift.print("👌 readTime complete: \(HCCQRReader.readTime))")
+//      Swift.print("👌 readTime complete: \(HCCQRReader.readTime))")
       Swift.print("All done: \(abs(startTime.timeIntervalSinceNow))")
       let isMatching: Bool = randomData == dataAndImages.data // Assert payload
       if !isMatching {
