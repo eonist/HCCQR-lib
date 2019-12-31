@@ -16,10 +16,11 @@ extension Colorizer {
     */
    static func colorize(grayscaleImages: [GrayscaleImage], colorMap: ColorMap, multipliers: Multipliers) throws -> RGBAImage {
       guard let size: RGBAImage.Size = grayscaleImages.first?.size, let capacity: Int = grayscaleImages.first?.capacity else { throw NSError(domain: "Must contain at least one image", code: 0) } // The first image is used for getting size etc
-      let pixels = UnsafeMutableBufferPointer<PixelData>.allocate(capacity: capacity) // create a new array //      pixels.reserveCapacity(size.width * size.height)
-      DispatchQueue.concurrentPerform(iterations: size.height) { y in // - Fixme: ⚠️️ try move this to the X value
-         (0..<size.width).indices.forEach { x in
-            let arr: [UInt8] = grayscaleImages.map { $0.getPixel(x: x, y: y) } // we get pixels from both RGBAImages
+      let pixels = UnsafeMutableBufferPointer<PixelData>.allocate(capacity: capacity) // Create a new array //      pixels.reserveCapacity(size.width * size.height)
+//      DispatchQueue.concurrentPerform(iterations: size.height) { y in // - Fixme: ⚠️️ Try move this to the X value
+      (0..<size.height).indices.forEach { y in
+         DispatchQueue.concurrentPerform(iterations: size.width) { x in
+            let arr: [UInt8] = grayscaleImages.map { $0.getPixel(x: x, y: y) } // We get pixels from both RGBAImages
             if let colorizedPixel: PixelData = try? colorize(pixels: arr, colorMap: colorMap) { // else { throw NSError.init(domain: "Unable to make pixel", code: 0) }
                let index: Int = y * size.width + x
                pixels[index] = colorizedPixel

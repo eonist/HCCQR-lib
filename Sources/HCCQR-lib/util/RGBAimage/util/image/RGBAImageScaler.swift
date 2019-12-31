@@ -12,18 +12,17 @@ class RGBAImageScaler {
     */
    static func scale(pixels: UnsafeMutableBufferPointer<PixelData>, size: RGBAImage.Size, multipliers: Multipliers) -> RGBAImage {
       let multiplier: Int = multipliers.moduleScale * multipliers.screenScale // - Fixme: ⚠️️ move this into the scale method, Support for retina resolutions
-      let multipliedWidth = size.width * multiplier
-      let multipliedHeight = size.height * multiplier
-      let capacity = multipliedWidth * multipliedHeight
+      let multipliedSize: (width: Int, height: Int) = (size.width * multiplier, size.height * multiplier)
+      let capacity = multipliedSize.width * multipliedSize.height
       let resultPixels = UnsafeMutableBufferPointer<PixelData>.allocate(capacity: capacity)//[PixelData]()
-      (0..<multipliedHeight).indices.forEach { y in
-         DispatchQueue.concurrentPerform(iterations: multipliedWidth) { x in // optimization initiative, might be faster
+      (0..<multipliedSize.height).indices.forEach { y in
+         DispatchQueue.concurrentPerform(iterations: multipliedSize.width) { x in // optimization initiative, might be faster
             let pixelIndex: Int = y / multiplier * size.height + x / multiplier
-            let index: Int = y * multipliedWidth + x
+            let index: Int = y * multipliedSize.width + x
             resultPixels[index] = pixels[pixelIndex]
          }
       }
-      return .init(pixels: resultPixels, width: multipliedWidth, height: multipliedHeight)
+      return .init(pixels: resultPixels, width: multipliedSize.width, height: multipliedSize.height)
    }
 }
 

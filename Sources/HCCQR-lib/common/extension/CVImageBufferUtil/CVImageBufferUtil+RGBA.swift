@@ -3,6 +3,18 @@ import QuartzCore
 import CoreImage
 
 extension CVImageBufferUtil {
+   public typealias OnDataAndQuadComplete = (HCCQRReader.DataAndQuadResult) -> Void
+   /**
+    * ImageBuffer -> DataAndQuad
+    */
+   public static func dataAndQuad(imageBuffer: CVImageBuffer, onComplete: @escaping OnDataAndQuadComplete) {
+      guard let rgbaImg: RGBAImage = try? rgbaImage(imageBuffer: imageBuffer) else { onComplete(.failure("unable to get RGBAImage")); return }
+      HCCQRReader.dataAndImages(rgbaImage: rgbaImg) { (result: HCCQRReader.DataAndImagesResult) in
+         guard let dataAndImagesAndQuad: HCCQRReader.DataAndImages = try? result.get() else { onComplete(.failure("unable to get dataAndImages: \(result.errorStr)")); return }
+         guard let data: Data = dataAndImagesAndQuad.data, let quad = dataAndImagesAndQuad.quad  else { onComplete(.failure("unable to get data or quad")); return }
+         onComplete(.success((data: data, quad: quad)))
+      }
+   }
    /**
     * Image -> RGBAImage (Not working)
     * - Fixme: ⚠️️ Add Image typealias in this repo
@@ -15,8 +27,8 @@ extension CVImageBufferUtil {
     * CVImageBuffer -> RGBImage (⭐ works ⭐)
     * - Note: CVPixelBuffer is a typalias for CVImageBuffer
     * - Fixme: ⚠️️ might have the solution for av buffer: https://stackoverflow.com/questions/29375471/how-to-convert-cvimagebuffer-to-uiimage
-    * - Fixme: using a pointer to iterate might be faster, see stackoverflow
-    * - Fixme: striding with 20 might be faster than nested for loop
+    * - Fixme: ⚠️️ using a pointer to iterate might be faster, see stackoverflow
+    * - Fixme: ⚠️️ striding with 20 might be faster than nested for loop
     * - add debug tool with: CVPixelBufferGetDataSize(imageBuffer), \(CVPixelBufferGetDataSize(imageBuffer)) type:  \(CVPixelBufferGetPixelFormatType(imageBuffer)), let info = RGBImage.bitmapInfo(buffer: imageBuffer)// if type != kCVPixelFormatType_DepthFloat32 { print("Wrong type \(type)"); throw NSError(domain: "Wrong type", code: 0) }, let type: OSType = CVPixelBufferGetPixelFormatType(imageBuffer) // Swift.print("type:  \(type)")
     */
    public static func rgbaImage(imageBuffer: CVImageBuffer) throws -> RGBAImage { /*, size: CGSize, scale: CGFloat */

@@ -17,15 +17,15 @@ extension Splitter {
    static func onChannelsComplete(result: Channel.ChannelsResult, onComplete:@escaping SplitPayloadCompleted) { // called when the (R,G,B) channels are split
       // - Fixme: ⚠️️ Try to code with boolImg you only need true, false to define a black / white pixel, then research how to make ciimage with [bool]
       // - Fixme: ⚠️️ Actually maybe grayscale is better for qr to read than monotone
-      guard let channels: Channel.RGBAImages = result.value() else { onComplete(.failure(NSError("Unable to create rgbaImgs \(result.errorStr)"))); return } // (r,g,b)
-      let channelArr: [(first: RGBAImage, second: RGBAImage)] = [(channels.b, channels.g), (channels.r, channels.b)] // pair b&g = qr1, pair r$b = qr2
+      guard let rbgaImages: Channel.RGBAImages = result.value() else { onComplete(.failure(NSError("Unable to create rgbaImgs \(result.errorStr)"))); return } // (r,g,b)
+      let channelArr: [(first: RGBAImage, second: RGBAImage)] = [(rbgaImages.b, rbgaImages.g), (rbgaImages.r, rbgaImages.b)] // pair b&g = qr1, pair r$b = qr2
       var qrImgs: [CIImage?] = [CIImage?](repeating: nil, count: channelArr.count)
       channelArr.enumerated().forEach { channel in
          DispatchQueue.global(qos: .userInitiated).async { // - Fixme: ⚠️️ This could be the cause of random error bug, maybe drop the async and just do it on current thread
             // - Fixme: ⚠️️ benchmark the composition process as well
             let qrImg: CIImage? = try? Compositor.composite(first: channel.element.first, second: channel.element.second)
             DispatchQueue.main.async { // We need to go on the mainthread to manipulate array
-               onCompositeComplete(i: channel.offset, qrImg: qrImg, qrImgs: &qrImgs, channels: channels, onComplete: onComplete)
+               onCompositeComplete(i: channel.offset, qrImg: qrImg, qrImgs: &qrImgs, channels: rbgaImages, onComplete: onComplete)
             }
          }
       }

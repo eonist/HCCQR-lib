@@ -12,7 +12,7 @@ extension Splitter {
     * - Abstract: pair b&g = qr1, pair r$b = qr2 ()
     */
    static func split(image: Image, onComplete:@escaping SplitPayloadCompleted) {
-      channels(image: image) { result in // Get RGBAImages from UIImages
+      channels(image: image) { (result: Channel.ChannelsResult) in // Get RGBAImages from UIImages
          onChannelsComplete(result: result, onComplete: onComplete)
       }
    }

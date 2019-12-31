@@ -44,11 +44,9 @@ extension Colorizer { // soon deprecated
 extension Colorizer {
    /**
     * CIImage's -> RGBAImage
-    * - Fixme: ⚠️️ Can we put the loop on bg-thread?
+    * - Fixme: ⚠️️ Can we put the loop on bg-thread, concurrent_apply?
     */
    static func grayscaleColorize(ciImages: [CIImage], colorMap: ColorMap, multipliers: Multipliers) throws -> RGBAImage {
-      // - Fixme: ⚠️️ Convert ciImage to Grayscale image
-//      Swift.print("grayscaleColorize")
       let grayscaleImages: [GrayscaleImage] = ciImages.compactMap { try? GrayscaleImage.monotoneImage(ciImg: $0) } // convert QR images to Pixel-data
       guard ciImages.count == grayscaleImages.count else { throw NSError("Colorize.colorize() - some rgbaImages was not created") }
       guard let result: RGBAImage = try? colorize(grayscaleImages: grayscaleImages, colorMap: colorMap, multipliers: multipliers) else { throw NSError("Colorize.colorize() - Unable to create colorized rgbaImage") } // overlay the qr-pixel-data
