@@ -5,6 +5,15 @@ import QR_lib
  * Type
  */
 extension HCCQRReader {
+   /**
+    * DataAndMeta
+    */
+   public typealias DataAndMeta = (data: Data, quad: QRReader.Quad, imageSize: CGSize)
+   public typealias DataAndMetaResult = Result<DataAndMeta, Error>
+   public typealias OnGetDataAndMetaCompleted = (DataAndMetaResult) -> Void
+   /**
+    * DataAndQuad
+    */
    public typealias DataAndQuad = (data: Data, quad: QRReader.Quad)
    public typealias DataAndQuadResult = Result<DataAndQuad, Error>
    public typealias OnGetDataAndQuadCompleted = (DataAndQuadResult) -> Void
