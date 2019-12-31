@@ -43,9 +43,3 @@ extension HCCQRReader {
       }
    }
 }
-/**
- * Creates data for HCCQR image
- */
-//   private static func data(image: Image, onComplete:@escaping OnHCCQRDataComplete) {
-//      dataAndImages(image: image) { result in onComplete(try? result.get().data, result.error()) }
-//   }
