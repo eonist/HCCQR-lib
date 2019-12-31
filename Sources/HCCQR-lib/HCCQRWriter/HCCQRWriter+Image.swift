@@ -6,7 +6,7 @@ import CoreImage
  */
 public final class HCCQRWriter {
    /**
-    * Returns an HCCQR UIImage for a string
+    * Data -> Image (⚠️️⚠️️⚠️️ DEPRECATE SOON ⚠️️⚠️️⚠️️)
     * - Note: For more in-depth example see repo readme
     * - Important: The caller must make sure the qrVersion can hold the amount of chars in string
     * - Important: Remember to add the resulting img to view within main.thread

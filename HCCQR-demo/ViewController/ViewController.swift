@@ -9,10 +9,10 @@ class ViewController: UIViewController {
       super.viewDidLoad()
       view.backgroundColor = .orange
 //      test()
-//      ViewController.testCreatingHCCQRImage { img in
-//         let imageView: UIImageView = .init(image: img)
-//         self.view.addSubview(imageView)
-//      }
+      ViewController.testCreatingHCCQRImage { img in
+         let imageView: UIImageView = .init(image: img)
+         self.view.addSubview(imageView)
+      }
    }
    override var prefersStatusBarHidden: Bool { return true } // hides statusbar
 }
@@ -62,7 +62,7 @@ extension ViewController {
       let config: QRConfig = (.v6, .byte, .l) // Config
       guard let data = HCCQRStringData.randomData(config: config) else { Swift.print("unable to create data"); return }
       DispatchQueue.global(qos: .userInitiated).async {
-         HCCQRWriter.image(data: data, multipliers: (6, 2), qrConfig: (config.version, config.ecLevel)) { result in // Create HCCQR from string
+         HCCQRWriter.img(data: data, multipliers: (6, 2), qrConfig: (config.version, config.ecLevel)) { result in // Create HCCQR from string
             guard let hccqrImage: Image = result.value() else { Swift.print("unable to create hccqr image \(result.errorStr)"); return }
             onComplete(hccqrImage)
          }

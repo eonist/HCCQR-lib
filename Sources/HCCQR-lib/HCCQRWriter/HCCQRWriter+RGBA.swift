@@ -6,6 +6,17 @@ import CoreImage
  */
 extension HCCQRWriter {
    /**
+    * Data -> Image (⚠️️ new ⚠️️)
+    * - Note: Supports The grayscaleImage optimization
+    */
+   public static func img(data: Data, multipliers: Multipliers, qrConfig: QRConfig = (.v10, .l), onComplete: @escaping OnHCCQRImageCompleted) {
+      HCCQRWriter.rgbaImage(data: data, multipliers: multipliers, qrConfig: qrConfig) { result in
+         guard let rgbaImg = try? result.get() else { onComplete(.failure(NSError("\(result.errorStr)"))); return }
+         guard let image: Image = try? RGBAImageUtil.image(rgbaImage: rgbaImg, scale: CGFloat(multipliers.screenScale)) else { onComplete(.failure(NSError("Colorize.colorize() - Unable to convert to UIImage"))); return }
+         onComplete(.success(image))
+      }
+   }
+   /**
     * Data -> CIImage (New)
     * - Abstract: Create two QR images from the data, and combine them into RGBAImage, then convert that to CIImage
     */
