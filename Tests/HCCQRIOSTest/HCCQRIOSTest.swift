@@ -90,7 +90,7 @@ extension HCCQRIOSTest {
          expectation.fulfill()
          XCTAssertTrue(success)
       }
-      waitForExpectations(timeout: 90, handler: nil)
+      waitForExpectations(timeout: 180, handler: nil)
    }
    /**
     * Reading real photos

@@ -5,6 +5,7 @@ import Foundation
 extension PixelData {
    /**
     * - Note: Used by the Compositor class
+    * - - Fixme: ⚠️️⚠️️⚠️️ May not be needed anymore, since pixels are not over-written
     */
    mutating func applyPixel(first: PixelData, second: PixelData, alpha: UInt8) {
       self.r = {

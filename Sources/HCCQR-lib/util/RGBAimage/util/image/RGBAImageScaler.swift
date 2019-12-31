@@ -7,6 +7,7 @@ class RGBAImageScaler {
     * - Note: This method is used when creating HCCQR images from data
     * - Note: assert if scaling is needed before callign this method
     * - Fixme: ⚠️️ add the concurrent optimization for nested for loops, striding?
+    * - Fixme: ⚠️️ can we bake this direcltly into the composition method, to avoid extra loops?
     * - Parameter multiplier: The amount to scale the pixel by
     */
    static func scale(pixels: UnsafeMutableBufferPointer<PixelData>, size: RGBAImage.Size, multipliers: Multipliers) -> RGBAImage {
