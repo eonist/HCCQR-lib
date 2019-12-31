@@ -26,8 +26,8 @@ extension HCCQRReader {
                var dataAndQuad: QRReader.DataAndQuad?
                do { dataAndQuad = try QRReader.dataAndQuad(ciImage: item.element) }// - Fixme: ⚠️️ why not just throw? }
                catch {
-                  Swift.print("item.element.colorSpace:  \(String(describing: item.element.colorSpace))")
-                  Swift.print("item.element.debugDescription:  \(item.element.debugDescription)")
+//                  Swift.print("item.element.colorSpace:  \(String(describing: item.element.colorSpace))")
+//                  Swift.print("item.element.debugDescription:  \(item.element.debugDescription)")
                   err = error
                }
                onQRCodeComplete(i: item.offset, dataAndQuad: dataAndQuad, error: err, dataAndFrames: &dataAndFrames, payload: payload, onComplete: onComplete)
