@@ -9,8 +9,10 @@ public final class RGBAImageUtil {
     * - Note: used by the colorize process
     */
    static func image(rgbaImage: RGBAImage, scale: CGFloat) throws -> Image {
-      let cgImage: CGImage = try RGBAImageUtil.cgImage(rgbaImage: rgbaImage)
-      return ImageUtil.image(cgImage: cgImage, scale: scale) // Convert CGImage to UIImage
+      return try autoreleasepool { // Ref: ⚠️️ https://stackoverflow.com/questions/25860942/is-it-necessary-to-use-autoreleasepool-in-a-swift-program
+         let cgImage: CGImage = try RGBAImageUtil.cgImage(rgbaImage: rgbaImage)
+         return ImageUtil.image(cgImage: cgImage, scale: scale) // Convert CGImage to UIImage
+      }
    }
    /**
     * RGBAImage -> CIImage
@@ -36,18 +38,23 @@ extension RGBAImageUtil {
     * - Note: alternative data -> img code, might be faster?: https://stackoverflow.com/questions/51372245/swift-covert-byte-array-into-ciimage
     */
    private static func cgImage(rgbaImage: RGBAImage, useGrayscale: Bool = false) throws -> CGImage {
-//      Swift.print("useGrayscale:  \(useGrayscale)")
-      let colorSpace: CGColorSpace = CGColorSpaceCreateDeviceRGB()//useGrayscale ? CGColorSpaceCreateDeviceGray() : CGColorSpaceCreateDeviceRGB()
-      // Fixme: ⚠️️ convert to grayscale instead, its prob faster
-      var bitmapInfo: UInt32 = CGBitmapInfo.byteOrder32Big.rawValue
-      let bytesPerRow: Int = rgbaImage.width * 4
-      bitmapInfo |= CGImageAlphaInfo.premultipliedLast.rawValue & CGBitmapInfo.alphaInfoMask.rawValue
-      guard let imageContext = CGContext(data: rgbaImage.pixels.baseAddress, width: rgbaImage.width, height: rgbaImage.height, bitsPerComponent: 8, bytesPerRow: bytesPerRow, space: colorSpace, bitmapInfo: bitmapInfo, releaseCallback: nil, releaseInfo: nil) else { throw NSError(domain: "Unable to create imageContext", code: 0) }
-//      Swift.print("imageContext")
-      guard let cgImage: CGImage = imageContext.makeImage() else { throw NSError(domain: "Unable to create cgImage", code: 0) }
-//      cgImage.ciImage()
-//      Swift.print("cgImage.width:  \(cgImage.width)")
-      return /*useGrayscale ? convertToGrayScale(cgImage: cgImage) : */cgImage
+      // We use autorelease Because CoreGraphics is not handled by ARC (like all other C libraries),
+      // you need to wrap your code with with an autorelease, even in Swift.
+      // Particularly if you are not on the main thread (which you should not be, if CoreGraphics is involved... .userInitiated or lower is appropriate).
+      return try autoreleasepool {  // ⚠️️ testing to get rid of mem leak ⚠️️ new
+   //      Swift.print("useGrayscale:  \(useGrayscale)")
+         let colorSpace: CGColorSpace = CGColorSpaceCreateDeviceRGB()//useGrayscale ? CGColorSpaceCreateDeviceGray() : CGColorSpaceCreateDeviceRGB()
+         // Fixme: ⚠️️ convert to grayscale instead, its prob faster
+         var bitmapInfo: UInt32 = CGBitmapInfo.byteOrder32Big.rawValue
+         let bytesPerRow: Int = rgbaImage.width * 4
+         bitmapInfo |= CGImageAlphaInfo.premultipliedLast.rawValue & CGBitmapInfo.alphaInfoMask.rawValue
+         guard let imageContext = CGContext(data: rgbaImage.pixels.baseAddress, width: rgbaImage.width, height: rgbaImage.height, bitsPerComponent: 8, bytesPerRow: bytesPerRow, space: colorSpace, bitmapInfo: bitmapInfo, releaseCallback: nil, releaseInfo: nil) else { throw NSError(domain: "Unable to create imageContext", code: 0) }
+   //      Swift.print("imageContext")
+         guard let cgImage: CGImage = imageContext.makeImage() else { throw NSError(domain: "Unable to create cgImage", code: 0) }
+   //      cgImage.ciImage()
+   //      Swift.print("cgImage.width:  \(cgImage.width)")
+         return cgImage/*useGrayscale ? convertToGrayScale(cgImage: cgImage) : */
+      }
    }
 
    /**

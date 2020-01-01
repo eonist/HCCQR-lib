@@ -4,23 +4,17 @@
 [![codebeat badge](https://codebeat.co/badges/b1ae5c9a-1250-4f2c-80bf-fe1eda045d42)](https://codebeat.co/projects/github-com-light-stream-hccqr-lib-master)
 [![Github actions badge](https://badgen.net/github/checks/light-stream/HCCQR-lib?icon=github&label=Tests)](https://github.com/light-stream/HCCQR-lib/actions)
 
-# HCCQR-lib
+# HCCQR
 
 <img width="138" alt="img" src="https://github.com/stylekit/img/blob/master/Screenshot 2019-04-05 at 11.01.21.png?raw=true">
 
-HCCQR is short for `High capacity color quick response code`
-
-### What is it?
-- HCCQR-lib enables you to store more information in a QR image
+### Features:
+- Enables you to store more information in a QR image
+- HCCQR uses the color spectrum and image analysis to transmit information
 - 4 color map equals double capacity. (16 color map equals 4x capacity and so on)
-- HCCQR-lib is used by the lightstream app to send data
 
-### How does it work
-- HCCQR uses the color spectrum and image analysis to transmit information”
-- In order to avoid code duplication between apps, we store the core code in this repo. Mostly related to how QR frames are created and parsed.
-
-### How to get it
-- SPM: `github "light-stream/HCCQR-lib"` branch: `"master"`
+### Installation:
+- SPM: `github "light-stream/HCCQR-lib.git"` branch: `"master"`
 
 ### Dependencies:
 | Repo  | Description | Quality | Tests |
