@@ -50,7 +50,7 @@ extension HCCQRWriter {
       if ciImgs.first(where: { $0 == nil }) == nil { // Makes sure all images finished (aka no nil values)
          let ciImages: [CIImage] = ciImgs.compactMap { $0 } // Remove nils
          let colorMap: Colorizer.ColorMap = Colorizer.colorMap(useDarkMode: useDarkMode)
-         guard let rgbaImage: RGBAImage = try? Colorizer.grayscaleColorize(ciImages: ciImages, colorMap: colorMap , multipliers: multipliers) else { onComplete(.failure(NSError(domain: "onCreateCIImgComplete() - Unable to create colorized image", code: 0))); return }
+         guard let rgbaImage: RGBAImage = try? Colorizer.grayscaleColorize(ciImages: ciImages, colorMap: colorMap, multipliers: multipliers) else { onComplete(.failure(NSError(domain: "onCreateCIImgComplete() - Unable to create colorized image", code: 0))); return }
          onComplete(.success(rgbaImage))
       }
    }

@@ -17,7 +17,7 @@ extension ColorizerTest {
 //      Swift.print("view1.image?.size:  \(img1.size)")
       guard let img2 = createRandomQRImg() else { Swift.print("err"); return false }
       let imgs: [Image] = [img1, img2].compactMap { $0 }
-      guard let resultImage: Image = try? Colorizer.colorize(images: imgs, colorMap: Colorizer.colorMap, multipliers: (moduleScale: 1, screenScale: 2)) else { Swift.print("unable to create colorized image"); return false }
+      guard let resultImage: Image = try? Colorizer.colorize(images: imgs, colorMap: Colorizer.colorMap(), multipliers: (moduleScale: 1, screenScale: 2)) else { Swift.print("unable to create colorized image"); return false }
 //      Swift.print("resultView.scale:  \(String(describing: resultImage.scale))")
 //      Swift.print("resultView.image?.size:  \(String(describing: resultImage.size))")
       let hasOnlyRGBColors: Bool = ColorMapAsserter.hasOnlyColorMap(uiImage: resultImage, colorMap: [.red, .green, .blue, .white])
