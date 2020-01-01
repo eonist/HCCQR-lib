@@ -26,8 +26,8 @@ extension Compositor {
       return GrayscaleImage.process(input: whiteImage) { (index: Int, pixel: UInt8) -> UInt8 in // Loop things
          var pixel: UInt8 = pixel // - Fixme: ⚠️️ maybe do reduce here?
          grayscaleImages.forEach { (grayscaleImage: GrayscaleImage) in // loop over every image in the list, this is inside here because the process method uses concurrent_apply
-            let pixelValue: UInt8 = grayscaleImage.pixels[index]
             pixel = {
+               let pixelValue: UInt8 = grayscaleImage.pixels[index]
                let result = pixel.subtractingReportingOverflow(pixelValue)
                return result.overflow ? 0 : result.partialValue // - Fixme: ⚠️️ Can be removed because this will basically never happen, because channels cant overlap
             }()

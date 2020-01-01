@@ -8,14 +8,14 @@ extension Colorizer {
     * ColorMap (standard 4 color ColorMap)
     * - Fixme: ⚠️️ since index is unique we can make this hashable 👌 (it will be faster probably), caseIteratable 👈
     */
-   internal static let colorMap: ColorMap = {
+   static func colorMap(useDarkMode: Bool = false) -> ColorMap {
       [
          (idx: [false, true], PixelData.red),   // red   block 👉 (qr1: black, qr2: white)
          (idx: [true, false], PixelData.green), // green block 👉 (qr1: white, qr2: black)
          (idx: [true, true], PixelData.blue),   // blue  block 👉 (qr1: black, qr2: black)
-         (idx: [false, false], PixelData.white) // white block 👉 (qr1: white, qr2: white)
+         (idx: [false, false], useDarkMode ? PixelData.black : PixelData.white) // white block 👉 (qr1: white, qr2: white)
       ]
-   }()
+   }
    /**
     * blandColorMap (washed out colors used for testing)
     */

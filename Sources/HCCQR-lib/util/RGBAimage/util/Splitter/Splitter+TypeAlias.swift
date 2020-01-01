@@ -8,6 +8,9 @@ extension Splitter {
    typealias SplitPayload = (qrImg1: CIImage, qrImg2: CIImage)
    typealias SplitResult = Result<SplitPayload, Error>
    typealias SplitPayloadCompleted = (SplitResult) -> Void
+   /**
+    * RGBAImage
+    */
    typealias RGBUIImages = (r: Image, g: Image, b: Image)
    typealias GrayChannelPair = (first: GrayscaleImage, second: GrayscaleImage)
 }

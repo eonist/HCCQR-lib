@@ -17,8 +17,8 @@ extension Colorizer {
    static func colorize(rgbaImages: [RGBAImage], colorMap: ColorMap, multipliers: Multipliers) throws -> RGBAImage {
       guard let size: RGBAImage.Size = rgbaImages.first?.size, let capacity: Int = rgbaImages.first?.capacity else { throw NSError(domain: "Must contain at least one image", code: 0) } // The first image is used for getting size etc
       let pixels = UnsafeMutableBufferPointer<PixelData>.allocate(capacity: capacity) // create a new array //      pixels.reserveCapacity(size.width * size.height)
-      DispatchQueue.concurrentPerform(iterations: size.height) { y in // - Fixme: ⚠️️ try move this to the X value
-         (0..<size.width).indices.forEach { x in
+      (0..<size.height).indices.forEach { y in
+         DispatchQueue.concurrentPerform(iterations: size.width) { x in
             let arr: [PixelData] = rgbaImages.map { $0.getPixel(x: x, y: y) } // we get pixels from both RGBAImages
             if let colorizedPixel: PixelData = try? colorize(pixels: arr, colorMap: colorMap) { // else { throw NSError.init(domain: "Unable to make pixel", code: 0) }
                let index: Int = y * size.width + x

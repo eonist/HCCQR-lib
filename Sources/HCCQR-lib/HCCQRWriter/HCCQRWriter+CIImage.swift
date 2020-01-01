@@ -36,7 +36,7 @@ extension HCCQRWriter {
       ciImgs[i] = ciImg // It matters which order the qrImages came in when you stitch them back together
       if ciImgs.first(where: { $0 == nil }) == nil { // Makes sure all images finished (aka no nil values)
          let ciImages: [CIImage] = ciImgs.compactMap { $0 } // Remove nils
-         let result: Colorizer.ColorizedResult = Colorizer.colorize(ciImages: ciImages, colorMap: Colorizer.colorMap, multipliers: multipliers)
+         let result: Colorizer.ColorizedResult = Colorizer.colorize(ciImages: ciImages, colorMap: Colorizer.colorMap(), multipliers: multipliers)
          guard let hccqrImage: CIImage = try? result.get() else { onComplete(.failure(NSError(domain: "onCreateCIImgComplete() - Unable to create colorized image: \(result.errorStr)", code: 0))); return }
          onComplete(.success(hccqrImage))
       }

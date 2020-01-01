@@ -15,8 +15,6 @@ extension Splitter {
     * - Fixme: ⚠️️ Use Dispatchgroup to make the completion more readable
     */
    static func onChannelsComplete(result: Channel.ChannelsResult, onComplete:@escaping SplitPayloadCompleted) { // called when the (R,G,B) channels are split
-      // - Fixme: ⚠️️ Try to code with boolImg you only need true, false to define a black / white pixel, then research how to make ciimage with [bool]
-      // - Fixme: ⚠️️ Actually maybe grayscale is better for qr to read than monotone
       guard let rbgaImages: Channel.RGBAImages = result.value() else { onComplete(.failure(NSError("Unable to create rgbaImgs \(result.errorStr)"))); return } // (r,g,b)
       let channelArr: [(first: RGBAImage, second: RGBAImage)] = [(rbgaImages.b, rbgaImages.g), (rbgaImages.r, rbgaImages.b)] // pair b&g = qr1, pair r$b = qr2
       var qrImgs: [CIImage?] = [CIImage?](repeating: nil, count: channelArr.count)
