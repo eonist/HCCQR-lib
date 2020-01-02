@@ -735,10 +735,10 @@
 		F1E645F523942E9D008D2ABE /* HCCQR-lib */ = {
 			isa = PBXGroup;
 			children = (
+				F16852762213443700C27EAA /* common */,
 				F1F6F7C122221EB00075E7FD /* HCCQRWriter */,
 				F1F6F7C222221EBC0075E7FD /* HCCQRReader */,
 				F16852B122134A3800C27EAA /* util */,
-				F16852762213443700C27EAA /* common */,
 			);
 			path = "HCCQR-lib";
 			sourceTree = "<group>";

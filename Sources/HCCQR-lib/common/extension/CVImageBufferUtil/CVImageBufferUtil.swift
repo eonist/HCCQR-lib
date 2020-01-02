@@ -13,11 +13,11 @@ public class CVImageBufferUtil {
     * - Note: Alternative https://gist.github.com/omarojo/b47ad0f0965ba8bf2e825ef571ef804c
     * - Fixme: use Metal: https://developer.apple.com/documentation/coreimage/cicontext/1437609-init
     * - Note: CGImage to Buffer https://github.com/brianadvent/UIImage-to-CVPixelBuffer/blob/master/ImageProcessor.swift
+    * - Note: ref https://stackoverflow.com/questions/3838696/convert-uiimage-to-cvpixelbufferref
+    * - Note: ref https://stackoverflow.com/questions/44462087/how-to-convert-a-uiimage-to-a-cvpixelbuffer
     */
    public static func imageBuffer(image: Image) throws -> CVImageBuffer {
-      //      Swift.print("image.size:  \(image.size)")
       guard let cgImage = image.cgImage() else { throw NSError(domain: "unable to get cgimage", code: 0) }
-      //      Swift.print("cgImage.width:  \(cgImage.width)")
       return try imageBuffer(cgImage: cgImage)
    }
    /**
@@ -38,17 +38,6 @@ public class CVImageBufferUtil {
       context.draw(image, in: CGRect(x: 0, y: 0, width: image.width, height: image.height))
       CVPixelBufferUnlockBaseAddress(buffer!, CVPixelBufferLockFlags(rawValue: 0))
       return buffer! // fixme ⚠️️ add aditional throw here
-   }
-   /**
-    * CMSampleBuffer -> CVImageBuffer
-    * - Abstract: the camera uses sampleBuffer, and we use this method to convert it to ImageBuffer
-    * - Note: There is also a captureOutput that is called when frames are dropped, this probably requires output.alwaysDiscardsLateVideoFrames set to false
-    * - Note: Use frame.extent.size to get output resolution
-    * - Note: Bellow solution derived from: https://github.com/StijnOomes/AccessCameraPixels/blob/master/AccessCameraPixels/ViewController.swift
-    */
-   public static func imageBuffer(sampleBuffer: CMSampleBuffer) throws -> CVImageBuffer {
-      guard let imageBuffer: CVImageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { throw NSError(domain: "Unable to get imageBuffer", code: 0) }
-      return imageBuffer
    }
 }
 

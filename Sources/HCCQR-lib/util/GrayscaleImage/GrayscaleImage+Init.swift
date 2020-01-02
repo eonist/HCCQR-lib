@@ -9,7 +9,7 @@ extension GrayscaleImage {
     */
    static func grayscaleImage(pixel: UInt8, size: Size) -> GrayscaleImage {
       let capacity: Int = size.width * size.height
-      // fixme: ⚠️️ prob create the unmanaged pointer directly for better speed
+      // fixme: ⚠️️ Prob create the unmanaged pointer directly for better speed
       let pixels: [UInt8] = .init(repeating: pixel, count: capacity)
       return .grayscaleImage(pixels: pixels, size: size)
    }
@@ -32,10 +32,10 @@ extension GrayscaleImage {
     * CIImage -> GrayscaleImage (⚠️️ new, untested ⚠️️)
     * - Note: Seems to be slightly faster than converting ciimage to cgimage etc
     * - Note: ref https://www.geekspiff.com/unlinkedCrap/ciImageToBitmap.html
-    * - Caution: ⚠️️ Only works if CIImage is pure black and white
+    * - Note: Use ciImg.debugDescription to fid more info about cgImage
+    * - Caution: ⚠️️ Only works if CIImage is pure black and white, which us the case for generated qr images
     */
    static func monotoneImage(ciImg: CIImage) throws -> GrayscaleImage {
-//      Swift.print("ciImg.debugDescription:  \(ciImg.debugDescription)")
       let bitMapInfo = RGBAImage.bitmapInfo
       let colorSpace: CGColorSpace = CGColorSpaceCreateDeviceRGB()
       let size: Size = (width: Int(ciImg.extent.width), height: Int(ciImg.extent.height))
@@ -79,7 +79,7 @@ extension GrayscaleImage {
 /**
  * deprecated
  */
-extension GrayscaleImage {
+//extension GrayscaleImage {
    /**
     * CIImage -> GrayscaleImage (⚠️️ new, untested ⚠️️)
     * - Note: Seems to be slightly faster than converting ciimage to cgimage etc
@@ -103,4 +103,4 @@ extension GrayscaleImage {
 //      Swift.print("grayscaleImage.end")
 //      return .init(pixels: pixels, width: size.width, height: size.height)
 //   }
-}
+//}
