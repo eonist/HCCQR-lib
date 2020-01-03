@@ -1,7 +1,5 @@
 import XCTest
-#if os(iOS)
 @testable import HCCQR_lib
-#endif
 
 class HCCQRIOSTest: XCTestCase {
    override func setUp() {
@@ -15,11 +13,28 @@ class HCCQRIOSTest: XCTestCase {
 //      XCTAssertEqual(ScaleTesting.testScalingRGBAImage(), 4)
 //      XCTAssertTrue(ColorizerTest.testColorizer())
 //      XCTAssertTrue(PixelTest.testColorAssertionWithinThresholdForPixel())
-      testReadingHCCQRPhoto() // ⚠️️ only works in xcode-simulator, because no assets in spm
-//      testSingle() // ⭐
+//      testReadingHCCQRPhoto() // ⚠️️ only works in xcode-simulator, because no assets in spm
+      testSingle() // ⭐
+      _ = {
+         let thisSourceFile = URL(fileURLWithPath: #file)
+         Swift.print("thisSourceFile:  \(thisSourceFile)")
+         let thisDirectory = thisSourceFile.deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent()
+         Swift.print("thisDirectory:  \(thisDirectory)")
+         let resourceURL = thisDirectory.appendingPathComponent("temp.bundle/HCCQR7.png")
+         Swift.print("resourceURL:  \(resourceURL)")
+         //      let bundles = Bundle.allBundles
+         //      let bundlePaths = bundles.compactMap { $0.resourceURL?.appendingPathComponent("temp", isDirectory: false).appendingPathExtension("bundle") }
+         //      Swift.print("bundlePaths:  \(bundlePaths)")
+         let path: String = resourceURL.path//Bundle.main.resourcePath!+"/temp.bundle/HCCQR7.png" // HCCQR12.png,HCCQR13.jpg
+         Swift.print("path:  \(path)")
+         guard let image = Image(contentsOfFile: path) else { Swift.print("err getting img"); return }
+         Swift.print("uiImage.size:  \(image.size)")
+         
+      }
 //      testBulk() // ⭐ Read and write multiple HCCQR images
 //      testCVImageBuffer() // test the new buffer -> RGBA
 //      testCIImage()
+//      testReadingManyPhotos() // Reading many photos
    }
    func testPerformanceExample() {
       self.measure { }
@@ -30,12 +45,24 @@ class HCCQRIOSTest: XCTestCase {
  */
 extension HCCQRIOSTest {
    /**
+    * Reading many photos
+    */
+   private func testReadingManyPhotos() {
+      let expectation = self.expectation(description: "cvBufferUtil")
+      BulkPhotoReadingTest.test { success in
+         Swift.print("BulkPhotoReadingTest - success:  \(success ? "✅":"🚫")")
+         expectation.fulfill()
+         XCTAssertTrue(success)
+      }
+      waitForExpectations(timeout: 20, handler: nil)
+   }
+   /**
     * HCCQR -> RGBAImage -> 
     */
    private func testCVImageBuffer() {
       let expectation = self.expectation(description: "cvBufferUtil")
       CVImageBufferTest.test { success in
-         Swift.print("testRGBKit - success:  \(success ? "✅":"🚫")")
+         Swift.print("CVImageBufferTest - success:  \(success ? "✅":"🚫")")
          expectation.fulfill()
          XCTAssertTrue(success)
       }
