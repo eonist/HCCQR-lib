@@ -72,14 +72,15 @@ extension Image {
     */
    #if os(iOS)
    func cgImage() -> CGImage? {
-      guard let ciImage: CIImage = self.ciImage else { Swift.print("Image.cgImage() - unable to get ciImage"); return nil }
-//      let context: CIContext = .init(options: nil)
-      return autoreleasepool { // ⚠️️ testing to get rid of mem leak ⚠️️ new
-         return Image.ciContext.createCGImage(ciImage, from: ciImage.extent)
-      }
+      return self.cgImage ?? { // quick fix
+         guard let ciImage: CIImage = self.ciImage else { Swift.print("cgImage() - unable to get ciImage"); return nil }
+         //      let context: CIContext = .init(options: nil)
+         return autoreleasepool { // ⚠️️ testing to get rid of mem leak ⚠️️ new
+            return Image.ciContext.createCGImage(ciImage, from: ciImage.extent)
+         }
+         }()
    }
-   #endif
-   #if os(macOS)
+   #elseif os(macOS)
    /**
     * Creates cgimage from nsimage
     * - Important: ⚠️️ we use autoreleasepool{} or else there will be memory leakage

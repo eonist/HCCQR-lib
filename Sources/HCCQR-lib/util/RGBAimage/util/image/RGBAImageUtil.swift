@@ -30,7 +30,7 @@ public final class RGBAImageUtil {
 //   }
 }
 /**
- * Privsate static helper method
+ * Private static helper method
  */
 extension RGBAImageUtil {
    /**

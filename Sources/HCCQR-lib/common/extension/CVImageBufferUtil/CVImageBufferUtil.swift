@@ -25,8 +25,8 @@ public class CVImageBufferUtil {
     * - Note: ref https://github.com/brianadvent/UIImage-to-CVPixelBuffer/blob/master/ImageProcessor.swift
     * - Fixme: ⚠️️ Make debug tool for cgImage: cgImage.bitsPerPixel, cgImage.bitsPerComponent, cgImage.colorSpace, cgImage.byteOrderInfo, cgImage.bitmapInfo, image.size, image.scale, image.cgImage?.bytesPerRow
     */
-   public static func imageBuffer(cgImage image: CGImage) throws -> CVImageBuffer {
-      let frameSize = CGSize(width: image.width, height: image.height)
+   public static func imageBuffer(cgImage: CGImage) throws -> CVImageBuffer {
+      let frameSize = CGSize(width: cgImage.width, height: cgImage.height)
       var buffer: CVPixelBuffer?
       let status = CVPixelBufferCreate(kCFAllocatorDefault, Int(frameSize.width), Int(frameSize.height), kCVPixelFormatType_32BGRA, nil, &buffer)
       if status != kCVReturnSuccess { throw NSError(domain: "status err", code: 0) }
@@ -35,7 +35,10 @@ public class CVImageBufferUtil {
       let rgbColorSpace = CGColorSpaceCreateDeviceRGB()
       let bitmapInfo = CGBitmapInfo(rawValue: CGBitmapInfo.byteOrder32Little.rawValue | CGImageAlphaInfo.premultipliedFirst.rawValue)
       guard let context = CGContext(data: data, width: Int(frameSize.width), height: Int(frameSize.height), bitsPerComponent: 8, bytesPerRow: CVPixelBufferGetBytesPerRow(buffer!), space: rgbColorSpace, bitmapInfo: bitmapInfo.rawValue) else { Swift.print("Unable to get context"); throw NSError(domain: "Unable to get context", code: 0) }
-      context.draw(image, in: CGRect(x: 0, y: 0, width: image.width, height: image.height))
+      context.draw(cgImage, in: CGRect(x: 0, y: 0, width: cgImage.width, height: cgImage.height))
+      // - Fixme: ⚠️️ Should we unlock buffer here, since we return it etc ?
+      let pixelFormatName: String = CVImageBufferUtil.pixelFormatName(pixelBuffer: buffer!) // kCVPixelFormatType_2Indexed
+      Swift.print("pixelFormatName:  \(pixelFormatName)")
       CVPixelBufferUnlockBaseAddress(buffer!, CVPixelBufferLockFlags(rawValue: 0))
       return buffer! // fixme ⚠️️ add aditional throw here
    }

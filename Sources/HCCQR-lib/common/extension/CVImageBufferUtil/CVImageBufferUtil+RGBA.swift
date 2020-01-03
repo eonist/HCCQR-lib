@@ -28,7 +28,7 @@ extension CVImageBufferUtil {
       guard let baseAddress: UnsafeMutableRawPointer = CVPixelBufferGetBaseAddress(imageBuffer) else { throw NSError(domain: "Unable to get baseAddress", code: 0) }
       //- Fixme: ⚠️️ this is prob a bug, you should only lock once
       //CVPixelBufferLockBaseAddress(imageBuffer, CVPixelBufferLockFlags(rawValue: 0))
-      let byteBuffer = baseAddress.assumingMemoryBound(to: UInt8.self)
+      let byteBuffer: UnsafeMutablePointer<UInt8> = baseAddress.assumingMemoryBound(to: UInt8.self)
       let capacity: Int = bufferSize.width * bufferSize.height
       let pixels = UnsafeMutableBufferPointer<PixelData>.allocate(capacity: capacity)
       let bytesPerPixel = bytesPerRow

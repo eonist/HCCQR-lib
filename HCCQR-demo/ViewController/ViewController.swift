@@ -16,7 +16,6 @@ class ViewController: UIViewController {
    }
    override var prefersStatusBarHidden: Bool { return true } // hides statusbar
 }
-
 extension ViewController {
    /**
     * CIIMage -> RGBAImage -> CIImage
@@ -74,7 +73,6 @@ extension ViewController {
  */
 extension ViewController {
    /**
-    * 
     * - Fixme: ⚠️️ figure out how to create scale: 1 img easy, maybe the context draw stuff needs retina support, check scaling in hccqr code etc
     */
    func bufferTest() {
