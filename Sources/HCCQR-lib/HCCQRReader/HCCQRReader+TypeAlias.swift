@@ -24,4 +24,6 @@ extension HCCQRReader {
    public typealias DataAndImagesResult = Result<DataAndImages, Error>
    public typealias DataAndImageCompleted = (DataAndImagesResult) -> Void
 }
+//- Fixme: ⚠️️ Move into HCCQRReader scope, you can do HCCQRWriter.OnHCCQRDataComplete
+// soon to be deprecated, we use result now
 public typealias OnHCCQRDataComplete = (_ data: Data?, _ error: Error?) -> Void

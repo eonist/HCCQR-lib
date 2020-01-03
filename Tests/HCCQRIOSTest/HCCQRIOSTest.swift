@@ -15,10 +15,10 @@ class HCCQRIOSTest: XCTestCase {
 //      XCTAssertEqual(ScaleTesting.testScalingRGBAImage(), 4)
 //      XCTAssertTrue(ColorizerTest.testColorizer())
 //      XCTAssertTrue(PixelTest.testColorAssertionWithinThresholdForPixel())
-//      testReadingHCCQR() // ⚠️️ only works in xcode-simulator, because no assets in spm
+      testReadingHCCQRPhoto() // ⚠️️ only works in xcode-simulator, because no assets in spm
 //      testSingle() // ⭐
 //      testBulk() // ⭐ Read and write multiple HCCQR images
-      testCVImageBuffer() // test the new buffer -> RGBA
+//      testCVImageBuffer() // test the new buffer -> RGBA
 //      testCIImage()
    }
    func testPerformanceExample() {
@@ -70,9 +70,9 @@ extension HCCQRIOSTest {
    /**
     * Reading real photos
     */
-   private func testReadingHCCQR() {
-      let expectation = self.expectation(description: "reading") // needed when we do callbacks in Unittesting
-      ReadingHCCQRTest.testReadingHCCQRPhoto { success
+   private func testReadingHCCQRPhoto() {
+      let expectation = self.expectation(description: "readingHCCQRPhoto") // needed when we do callbacks in Unittesting
+      ReadingHCCQRPhotoTest.testReadingHCCQRPhoto { success
          in Swift.print("success:  \(success ? "✅" : "🚫")")
          expectation.fulfill()
          XCTAssertTrue(success)

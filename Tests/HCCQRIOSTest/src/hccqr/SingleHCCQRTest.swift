@@ -20,10 +20,12 @@ extension SingleHCCQRTest {
     * Test HCCQRImage creation (creates a single HCCQR image, then read it
     */
    static func testWritingHCCQRImage(onComplete: @escaping OnComplete) {
-      startTime = .init()
       let config: QRConfig = (.v8, .byte, .l) // Config
       guard let randomData: Data = HCCQRStringData.randomData(config: config) else { Swift.print("err"); onComplete(false); return }
+      startTime = .init() // We start here beacause: Making random data is not apart of time measurment
       writeTime = .init() // We start the write clock here (random data creation time isn't interesting)
+      // - Fixme: ⚠️️ Use RGBA instead of ciimage ⚠️️
+      Swift.print("⚠️️ Use RGBA instead of ciimage ⚠️️")
       HCCQRWriter.ciImage(data: randomData, multipliers: (moduleScale: 6, screenScale: 2), qrConfig: (config.version, config.ecLevel)) { result in // write the HCCQR
          guard let ciImg = try? result.get() else { Swift.print("err: \(result.errorStr)"); return }
          onWriteComplete(hccqrImage: ciImg, randomData: randomData, onComplete: onComplete)

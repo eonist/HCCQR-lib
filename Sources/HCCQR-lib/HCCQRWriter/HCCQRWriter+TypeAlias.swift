@@ -11,9 +11,12 @@ extension HCCQRWriter {
    public typealias OnHCCQRCIImageCompleted = (Result<CIImage, Error>) -> Void
    public typealias OnRGBAImageComplete = (Result<RGBAImage, Error>) -> Void
 }
+public typealias HCCQRImageResult = Result<Image, Error>
 /**
  * Useful when you setup the callbacks in apps (Thats why they are in public scope)
+ * - Fixme: ⚠️️ Move into HCCQRWriter scope, you can do HCCQRWriter.OnHCCQRImageCompleted
+ * - Fixme: soon to be deprecated, we use result now
  */
-public typealias OnHCCQRImageCompleted = (Result<Image, Error>) -> Void
+public typealias OnHCCQRImageCompleted = (HCCQRImageResult) -> Void
 // - Fixme: ⚠️️ rename to Scale, and move to HCCQR+TypeAlias
 public typealias Multipliers = (moduleScale: Int, screenScale: Int)

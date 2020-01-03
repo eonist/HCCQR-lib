@@ -6,6 +6,7 @@ import ResultSugar
 @testable import HCCQR_lib
 /**
  * - Fixme: ⚠️️ Maybe remove some of the threading closures, and rename some methods, add comments
+ * - Fixme: ⚠️️ Maybe remove this, as it does the same as singletest
  */
 final class SimpleHCCQRTest {
    static var startTime: Date = .init()
@@ -21,14 +22,15 @@ final class SimpleHCCQRTest {
     *    self.addSubview(imageView)
     * }
     */
-   static func testCreatingHCCQRImage(onComplete: @escaping OnComplete) {
+   static func test(onComplete: @escaping OnComplete) {
       startTime = .init()
       let config: QRConfig = (.v1, .byte, .l) // Config
       guard let data = HCCQRStringData.randomData(config: config) else { Swift.print("unable to create data"); return }
       createHCCQRTime = .init()
       DispatchQueue.global(qos: .userInitiated).async {
+         Swift.print("⚠️️ Use RGBA instead of ciimage ⚠️️")
          HCCQRWriter.image(data: data, multipliers: (6, 2), qrConfig: (config.version, config.ecLevel)) { result in // Create HCCQR from string
-            onHCCQRImageComplete(result: result, data: data, onComplete: onComplete)
+            onWriteComplete(result: result, data: data, onComplete: onComplete)
          }
       }
    }
@@ -38,9 +40,9 @@ final class SimpleHCCQRTest {
  */
 extension SimpleHCCQRTest {
    /**
-    * on hccqr image created
+    * Write completion handler
     */
-   private static func onHCCQRImageComplete(result: Result<Image, Error>, data randomData: Data, onComplete: @escaping OnComplete) {
+   private static func onWriteComplete(result: HCCQRImageResult, data randomData: Data, onComplete: @escaping OnComplete) {
       guard let hccqrImage: Image = result.value() else { Swift.print("unable to create hccqr image \(result.errorStr)"); return }
       DispatchQueue.main.async {
          Swift.print("hccqrImage.size:  \(hccqrImage.size)")
@@ -50,14 +52,14 @@ extension SimpleHCCQRTest {
       splitTime = .init()
       DispatchQueue.global(qos: .userInitiated).async {
          HCCQRReader.dataAndImages(image: hccqrImage) { result in // try split the hccqrImg
-            onHCCQRDataComplete(result: result, randomData: randomData)
+            onReadComplete(result: result, randomData: randomData)
          }
       }
    }
    /**
-    * Completion handler
+    * Read Completion handler
     */
-   static func onHCCQRDataComplete(result: Result<HCCQRReader.DataAndImages, Error>, randomData: Data) {
+   static func onReadComplete(result: HCCQRReader.DataAndImagesResult, randomData: Data) {
       guard let payload: String = try? result.get().data?.stringUTF8 else { Swift.print("unable to get string from hccqr\(result.errorStr)"); return }
       let isMatching: Bool = randomData.stringUTF8 == payload // Assert payload
       Swift.print("isMatching:  \(isMatching ? "✅":"🚫")")
@@ -65,7 +67,7 @@ extension SimpleHCCQRTest {
          Swift.print("Seperation complete: \(abs(splitTime.timeIntervalSinceNow))")
          Swift.print("Read and write done: \(abs(startTime.timeIntervalSinceNow))")
       }
-      /* Ensure that img only has valid colors, aka no bluring*/
+      /* Ensure that img only has valid colors, aka no bluring */
       // Swift.print("hasOnlyColorMap: \(ColorizeUtil.hasOnlyColorMap(uiImage:hccqrImage, colorMap: [.red,.green,.blue,.white]))")
    }
 }

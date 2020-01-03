@@ -11,23 +11,19 @@ extension BulkHCCQRTest {
     * Create single HCCQR img complete
     */
    static func onWriteComplete(i: Int, rgbaImage: RGBAImage?, images: inout [RGBAImage?], onComplete:@escaping OnWriteImagesComplete) {
-//      Swift.print("onCreateHCCQRImageComplete")
       guard let rgbaImage = rgbaImage else { onComplete(.failure(NSError(domain: "Unable to create hccqr image", code: 0))); return }
       images[i] = rgbaImage
       if images.first(where: { $0 == nil }) == nil { // Make sure all images were written
          let images: [RGBAImage] = images.compactMap { $0 }
-//         Swift.print("onCreateHCCQRImageComplete.all done")
          onComplete(.success(images))
       }
    }
    /**
     * Called when a single hccqr image is read
     */
-   static func onReadComplete(i: Int, result: Result<HCCQRReader.DataAndImages, Error>, payloads: inout [Data?], onComplete: OnReadImagesComplete) {
-//      Swift.print("onReadHCCQRImageComplete: \(try? result.get().data?.count)")
+   static func onReadComplete(i: Int, result: HCCQRReader.DataAndImagesResult, payloads: inout [Data?], onComplete: OnReadImagesComplete) {
       guard  let payload: Data = try? result.get().data else { onComplete(.failure(NSError(domain: "Unable to read hccqr image \(result.errorStr)", code: 0))); return }
       payloads[i] = payload
-//      Swift.print("payloads:  \(payloads)")
       if payloads.first(where: { $0 == nil }) == nil { // Makes sure all images were read
          let payloads: [Data] = payloads.compactMap { $0 }
          onComplete(.success(payloads))
