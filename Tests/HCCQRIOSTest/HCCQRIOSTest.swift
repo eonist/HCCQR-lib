@@ -18,7 +18,7 @@ class HCCQRIOSTest: XCTestCase {
 //      testBulk() // ⭐ Read and write multiple HCCQR images
 //      testCVImageBuffer() // test the new buffer -> RGBA
 //      testCIImage()
-      testReadingManyPhotos() // Reading many photos
+      testReadingManyPhotos() // ⭐ Reading many photos
    }
    func testPerformanceExample() {
       self.measure { }
@@ -38,7 +38,7 @@ extension HCCQRIOSTest {
          expectation.fulfill()
          XCTAssertTrue(success)
       }
-      waitForExpectations(timeout: 20, handler: nil)
+      waitForExpectations(timeout: 120, handler: nil)
    }
    /**
     * HCCQR -> RGBAImage -> 

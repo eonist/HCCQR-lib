@@ -11,6 +11,15 @@
         }
       },
       {
+        "package": "ResourceHelper",
+        "repositoryURL": "https://github.com/eonist/ResourceHelper.git",
+        "state": {
+          "branch": "master",
+          "revision": "7da909958efa715860194d2a7820706bc5eebf23",
+          "version": null
+        }
+      },
+      {
         "package": "ResultSugar",
         "repositoryURL": "https://github.com/eonist/ResultSugar.git",
         "state": {

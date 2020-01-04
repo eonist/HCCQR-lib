@@ -6,7 +6,16 @@
         "repositoryURL": "https://github.com/light-stream/QR-lib.git",
         "state": {
           "branch": "master",
-          "revision": "e947e08d92ae3bac3988838053f9f627279f30e4",
+          "revision": "e728d8e53abb06f6ad7861037ad252719398168f",
+          "version": null
+        }
+      },
+      {
+        "package": "ResourceHelper",
+        "repositoryURL": "https://github.com/eonist/ResourceHelper.git",
+        "state": {
+          "branch": "master",
+          "revision": "b4b254ffac6a62855480ebbdac56647b070d9e55",
           "version": null
         }
       },
