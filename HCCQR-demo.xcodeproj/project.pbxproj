@@ -408,10 +408,10 @@
 			isa = PBXGroup;
 			children = (
 				F165C25C23A01FD0005D30EC /* SingleHCCQRTest.swift */,
-				F18C7B4623BFB034009D9B29 /* BulkPhotoReadingTest */,
 				F1BFEFD823A19A13007F4261 /* SimpleHCCQRTest.swift */,
 				F19E0A1223AFEDE7000B8827 /* CVImageBufferTest.swift */,
 				F165C25923A01EF7005D30EC /* ReadingHCCQRPhotoTest.swift */,
+				F18C7B4623BFB034009D9B29 /* BulkPhotoTest */,
 				F1BFEFDE23A2381D007F4261 /* BulkHCCQRTest */,
 			);
 			path = hccqr;
@@ -686,7 +686,7 @@
 			path = "HCCQR-demo";
 			sourceTree = "<group>";
 		};
-		F18C7B4623BFB034009D9B29 /* BulkPhotoReadingTest */ = {
+		F18C7B4623BFB034009D9B29 /* BulkPhotoTest */ = {
 			isa = PBXGroup;
 			children = (
 				F18C7B4723BFB06D009D9B29 /* BulkPhotoReadingTest.swift */,
@@ -694,7 +694,7 @@
 				F14DDE1423C0E26A00FA0022 /* BulkPhotoReadingTest+Handler.swift */,
 				F14DDE1823C0E30500FA0022 /* BulkPhotoReadingTest+Typealias.swift */,
 			);
-			path = BulkPhotoReadingTest;
+			path = BulkPhotoTest;
 			sourceTree = "<group>";
 		};
 		F1B698D5239E64D10085B3C9 /* view */ = {

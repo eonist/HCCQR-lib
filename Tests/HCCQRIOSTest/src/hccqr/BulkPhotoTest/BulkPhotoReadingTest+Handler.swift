@@ -14,7 +14,7 @@ extension BulkPhotoReadingTest {
       Swift.print("data.count: \(data.count)")
       //      DispatchQueue.main.sync {
       dataArray[i] = data
-      if dataArray.first(where: { $0 == nil }) == nil {
+      if !dataArray.contains(where: { $0 == nil }) {
          Swift.print("Array has zero nils ✅")
          onComplete()
       } // else { Swift.print("Array has nils 🚫") }

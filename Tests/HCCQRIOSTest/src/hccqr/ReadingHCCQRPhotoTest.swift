@@ -4,7 +4,7 @@ import CoreGraphics
 import CoreImage
 @testable import HCCQR_lib
 
-final class ReadingHCCQRPhotoTest {}
+final class ReadingHCCQRPhotoTest {} // rename to: BulkPhotoTest
 /**
  * - Fixme: ⚠️️ add hash if the data to compare, requires importing FileHasher module in the test etc
  * - Fixme: ⚠️️ dl the photo from the web, so it can be tested in SPM+CI
