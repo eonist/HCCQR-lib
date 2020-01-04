@@ -15,10 +15,10 @@ class HCCQRIOSTest: XCTestCase {
 //      XCTAssertTrue(PixelTest.testColorAssertionWithinThresholdForPixel())
 //      testReadingHCCQRPhoto() // ⚠️️ only works in xcode-simulator, because no assets in spm
 //      testSingle() // ⭐
-//      testBulk() // ⭐ Read and write multiple HCCQR images
+      testBulk() // ⭐ Read and write multiple HCCQR images
 //      testCVImageBuffer() // test the new buffer -> RGBA
 //      testCIImage()
-      testReadingManyPhotos() // ⭐ Reading many photos
+//      testReadingManyPhotos() // ⭐ Reading many photos
    }
    func testPerformanceExample() {
       self.measure { }
