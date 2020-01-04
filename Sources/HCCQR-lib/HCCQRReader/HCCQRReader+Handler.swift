@@ -9,30 +9,30 @@ extension HCCQRReader {
    /**
     * onSplitComplete
     * - Abstract: after splitting the HCCQRImage into color channels, we create QRImage layers of the coøor channels
+    * - Fixme: ⚠️️ Since the qr data is in the same spot across splitResult, Use the dataAndMeta and use the rect to crop the second ciImage, or buffer
     * - Parameters:
     *   - result: (qrImg1: CIImage, qrImg2: CIImage)
     *   - onComplete: (2 qrImages and Data)
     */
    static func onSplitComplete(result: Splitter.SplitResult, onComplete:@escaping DataAndImageCompleted) {
-//      Swift.print("onSplitComplete")
       guard let payload: Splitter.SplitPayload = result.value() else { onComplete(.failure(NSError("q1, q2 err \(result.errorStr)"))); return }
       let ciImages: [CIImage] = [payload.qrImg1, payload.qrImg2]
       var dataAndFrames: [QRReader.DataAndQuad?] = [QRReader.DataAndQuad?](repeating: nil, count: ciImages.count)
 //      HCCQRReader.readQrTime = .init()
-      ciImages.enumerated().forEach { item in
-//         DispatchQueue.global(qos: .background).async {
-            DispatchQueue.main.async { // Has to be done on main thread, or else Apples.qrreader behaves bad
-               var err: Error?
-               var dataAndQuad: QRReader.DataAndQuad?
-               do { dataAndQuad = try QRReader.dataAndQuad(ciImage: item.element, useAccurateDetector: true) }// - Fixme: ⚠️️ why not just throw? }
-               catch {
-//                  Swift.print("item.element.colorSpace:  \(String(describing: item.element.colorSpace))")
-//                  Swift.print("item.element.debugDescription:  \(item.element.debugDescription)")
-                  err = error
-               }
-               onQRCodeComplete(i: item.offset, dataAndQuad: dataAndQuad, error: err, dataAndFrames: &dataAndFrames, payload: payload, onComplete: onComplete)
+      DispatchQueue.main.async { // Has to be done on main thread, or else Apples.qrreader behaves bad
+         ciImages.enumerated().forEach { item in
+            //DispatchQueue.global(qos: .background).async {
+            var err: Error?
+            var dataAndQuad: QRReader.DataAndQuad?
+            do { dataAndQuad = try QRReader.dataAndQuad(ciImage: item.element, useAccurateDetector: true) }// - Fixme: ⚠️️ why not just throw? }
+            catch {
+               //Swift.print("item.element.colorSpace:  \(String(describing: item.element.colorSpace))")
+               //Swift.print("item.element.debugDescription:  \(item.element.debugDescription)")
+               err = error
             }
-//         }
+            onQRCodeComplete(i: item.offset, dataAndQuad: dataAndQuad, error: err, dataAndFrames: &dataAndFrames, payload: payload, onComplete: onComplete)
+         }
+         //         }
       }
    }
    /**

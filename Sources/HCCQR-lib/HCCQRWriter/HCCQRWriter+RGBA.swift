@@ -23,7 +23,7 @@ extension HCCQRWriter {
     * - Caution: ⚠️️ Remember to deinit the result once its consumed
     */
    public static func rgbaImage(data: Data, multipliers: Multipliers, qrConfig: QRConfig = (.v10, .l), useDarkMode: Bool = false, onComplete: @escaping OnRGBAImageComplete) {
-      //      Swift.print("HCCQRWriter.ciImage()")
+      // Swift.print("HCCQRWriter.ciImage()")
       let dataArr: [Data] = data.split(index: data.count / 2) // Split the data in two
       var ciImgs: [CIImage?] = [CIImage?](repeating: nil, count: dataArr.count) // Pre-filled array for the images
       dataArr.enumerated().forEach { (_ offset: Int, _ data: Data) in

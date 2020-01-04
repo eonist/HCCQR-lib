@@ -36,7 +36,7 @@ public class CVImageBufferUtil {
       let bitmapInfo = CGBitmapInfo(rawValue: CGBitmapInfo.byteOrder32Little.rawValue | CGImageAlphaInfo.premultipliedFirst.rawValue)
       guard let context = CGContext(data: data, width: Int(frameSize.width), height: Int(frameSize.height), bitsPerComponent: 8, bytesPerRow: CVPixelBufferGetBytesPerRow(buffer!), space: rgbColorSpace, bitmapInfo: bitmapInfo.rawValue) else { Swift.print("Unable to get context"); throw NSError(domain: "Unable to get context", code: 0) }
       context.draw(cgImage, in: CGRect(x: 0, y: 0, width: cgImage.width, height: cgImage.height))
-      // - Fixme: ⚠️️ Should we unlock buffer here, since we return it etc ?
+      // - Fixme: ⚠️️ Should we unlock buffer here, since we return it etc ?, other repos lock here and still forward buffer
       let pixelFormatName: String = CVImageBufferUtil.pixelFormatName(pixelBuffer: buffer!) // kCVPixelFormatType_2Indexed
       Swift.print("pixelFormatName:  \(pixelFormatName)")
       CVPixelBufferUnlockBaseAddress(buffer!, CVPixelBufferLockFlags(rawValue: 0))

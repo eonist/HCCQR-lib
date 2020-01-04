@@ -14,7 +14,7 @@
 		F1240F6B23B4E01400ECD116 /* Splitter+RGBAImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1240F6A23B4E01400ECD116 /* Splitter+RGBAImage.swift */; };
 		F1240F6C23B4E01400ECD116 /* Splitter+RGBAImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1240F6A23B4E01400ECD116 /* Splitter+RGBAImage.swift */; };
 		F14DDE0D23BFE64B00FA0022 /* BulkPhotoReadingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18C7B4723BFB06D009D9B29 /* BulkPhotoReadingTest.swift */; };
-		F14DDE1023BFFBA800FA0022 /* URL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14DDE0F23BFFBA800FA0022 /* URL+Extension.swift */; };
+		F14DDE1023BFFBA800FA0022 /* ResourceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14DDE0F23BFFBA800FA0022 /* ResourceHelper.swift */; };
 		F15C9F7A23BA558A00F9D524 /* Colorizer+Gray.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15C9F7923BA558A00F9D524 /* Colorizer+Gray.swift */; };
 		F15C9F7B23BA558A00F9D524 /* Colorizer+Gray.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15C9F7923BA558A00F9D524 /* Colorizer+Gray.swift */; };
 		F15C9F7D23BA6FD000F9D524 /* RGBAImage+Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15C9F7C23BA6FD000F9D524 /* RGBAImage+Const.swift */; };
@@ -231,7 +231,7 @@
 		F1240F6723B4DD3800ECD116 /* HCCQRReader+RGBAImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HCCQRReader+RGBAImage.swift"; sourceTree = "<group>"; };
 		F1240F6A23B4E01400ECD116 /* Splitter+RGBAImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Splitter+RGBAImage.swift"; sourceTree = "<group>"; };
 		F1484AD623AE657F001E5CE3 /* HCCQR-lib.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "HCCQR-lib.entitlements"; sourceTree = "<group>"; };
-		F14DDE0F23BFFBA800FA0022 /* URL+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extension.swift"; sourceTree = "<group>"; };
+		F14DDE0F23BFFBA800FA0022 /* ResourceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceHelper.swift; sourceTree = "<group>"; };
 		F14FADE721F75EF100ACE5FF /* RGBColorTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBColorTestView.swift; sourceTree = "<group>"; };
 		F14FADEF21F761FD00ACE5FF /* FakeHCCQRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeHCCQRView.swift; sourceTree = "<group>"; };
 		F15C9F7923BA558A00F9D524 /* Colorizer+Gray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Colorizer+Gray.swift"; sourceTree = "<group>"; };
@@ -376,7 +376,7 @@
 		F14DDE0E23BFFB8A00FA0022 /* common */ = {
 			isa = PBXGroup;
 			children = (
-				F14DDE0F23BFFBA800FA0022 /* URL+Extension.swift */,
+				F14DDE0F23BFFBA800FA0022 /* ResourceHelper.swift */,
 			);
 			path = common;
 			sourceTree = "<group>";
@@ -1202,7 +1202,7 @@
 				F1E5711923A3F2C400E090BB /* MemLeakTest.swift in Sources */,
 				F1E5712323A3F2C400E090BB /* SingleHCCQRTest.swift in Sources */,
 				F1E5711D23A3F2C400E090BB /* FakeHCCQRView.swift in Sources */,
-				F14DDE1023BFFBA800FA0022 /* URL+Extension.swift in Sources */,
+				F14DDE1023BFFBA800FA0022 /* ResourceHelper.swift in Sources */,
 				F1E5711F23A3F2C400E090BB /* SimpleHCCQRView.swift in Sources */,
 				F1E5710923A3EF3100E090BB /* HCCQRIOSTest.swift in Sources */,
 				F1E5711823A3F2C400E090BB /* QRTesting.swift in Sources */,
