@@ -2,7 +2,7 @@
 ![mit](https://img.shields.io/badge/License-MIT-brightgreen.svg)
 [![SwiftLint Sindre](https://img.shields.io/badge/SwiftLint-Sindre-hotpink.svg)](https://github.com/sindresorhus/swiftlint-sindre)
 [![codebeat badge](https://codebeat.co/badges/b1ae5c9a-1250-4f2c-80bf-fe1eda045d42)](https://codebeat.co/projects/github-com-light-stream-hccqr-lib-master)
-[![Github actions badge](https://badgen.net/github/checks/light-stream/HCCQR-lib?icon=github&label=Tests)](https://github.com/light-stream/HCCQR-lib/actions)
+[![Github actions badge](https://github.com/light-stream/Stream-lib/workflows/Builds/badge.svg)](https://github.com/light-stream/HCCQR-lib/actions)
 
 # HCCQR
 
