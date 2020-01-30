@@ -33,7 +33,7 @@ extension HCCQRIOSTest {
     */
    private func testReadingManyPhotos() {
       let expectation = self.expectation(description: "cvBufferUtil")
-      BulkPhotoReadingTest.test { success in
+      BulkPhotoTest.test { success in
          Swift.print("BulkPhotoReadingTest - success:  \(success ? "✅":"🚫")")
          expectation.fulfill()
          XCTAssertTrue(success)

@@ -5,7 +5,7 @@ import ResourceHelper
 /**
  * - Fixme: ⚠️️ try bigger numbers
  */
-extension BulkPhotoReadingTest {
+extension BulkPhotoTest {
    static var writeTime: Date = .init()
    static var readTime: Date = .init()
    /**
@@ -17,7 +17,7 @@ extension BulkPhotoReadingTest {
       Swift.print("path:  \(path)")
       //let path: String = Bundle.main.resourcePath!+"/temp.bundle/HCCQR10.png" // HCCQR12.png,HCCQR13.jpg
       let rgbaImages: [RGBAImage] = (0..<10).compactMap { _ in
-         guard let image = Image(contentsOfFile: path) else { Swift.print("err getting img"); return nil }
+         guard let image = Image(contentsOfFile: path) else { Swift.print("Err creating img at path: \(path)"); return nil }
          Swift.print("image.size:  \(image.size)")
          guard let rgbaImage: RGBAImage = try? CVImageBufferUtil.rgbaImage(image: image) else { Swift.print("err getting rgbImage"); return nil }
          return rgbaImage
@@ -29,10 +29,10 @@ extension BulkPhotoReadingTest {
     */
    static func readMany(rgbaImages: [RGBAImage], onComplete: @escaping OnReadManyComplete) {
       Swift.print("readMany()")
-      var dataArray: [Data?] = .init(repeating: nil, count: rgbaImages.count)
+      var dataArray: [Data?] = .init(repeating: nil, count: rgbaImages.count) // Stores the results in this array
       rgbaImages.enumerated().forEach { arg in
          //         DispatchQueue.main.async {
-         HCCQRReader.dataAndImages(rgbaImage: arg.element) { result in  // Split the hccqrImg
+         HCCQRReader.dataAndImages(rgbaImage: arg.element) { result in  // Process the hccqrImg
             onReadComplete(result: result, i: arg.offset, dataArray: &dataArray, onComplete: onComplete)
          }
          //         }

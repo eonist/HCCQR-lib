@@ -3,7 +3,7 @@ import Foundation
 import QR_lib
 import ResourceHelper
 
-extension BulkPhotoReadingTest {
+extension BulkPhotoTest {
    typealias OnComplete = (Bool) -> Void
    typealias OnWriteManyComplete = (_ rgbaImages: [RGBAImage]) -> Void
    typealias OnReadManyComplete = () -> Void

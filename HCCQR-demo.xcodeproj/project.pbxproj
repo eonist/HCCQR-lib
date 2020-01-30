@@ -13,11 +13,11 @@
 		F1240F6923B4DD3800ECD116 /* HCCQRReader+RGBAImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1240F6723B4DD3800ECD116 /* HCCQRReader+RGBAImage.swift */; };
 		F1240F6B23B4E01400ECD116 /* Splitter+RGBAImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1240F6A23B4E01400ECD116 /* Splitter+RGBAImage.swift */; };
 		F1240F6C23B4E01400ECD116 /* Splitter+RGBAImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1240F6A23B4E01400ECD116 /* Splitter+RGBAImage.swift */; };
-		F14DDE0D23BFE64B00FA0022 /* BulkPhotoReadingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18C7B4723BFB06D009D9B29 /* BulkPhotoReadingTest.swift */; };
+		F14DDE0D23BFE64B00FA0022 /* BulkPhotoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18C7B4723BFB06D009D9B29 /* BulkPhotoTest.swift */; };
 		F14DDE1323C0E1A800FA0022 /* ResourceHelper in Frameworks */ = {isa = PBXBuildFile; productRef = F14DDE1223C0E1A800FA0022 /* ResourceHelper */; };
-		F14DDE1523C0E26A00FA0022 /* BulkPhotoReadingTest+Handler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14DDE1423C0E26A00FA0022 /* BulkPhotoReadingTest+Handler.swift */; };
-		F14DDE1723C0E27800FA0022 /* BulkPhotoReadingTest+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14DDE1623C0E27800FA0022 /* BulkPhotoReadingTest+Core.swift */; };
-		F14DDE1923C0E30500FA0022 /* BulkPhotoReadingTest+Typealias.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14DDE1823C0E30500FA0022 /* BulkPhotoReadingTest+Typealias.swift */; };
+		F14DDE1523C0E26A00FA0022 /* BulkPhotoTest+Handler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14DDE1423C0E26A00FA0022 /* BulkPhotoTest+Handler.swift */; };
+		F14DDE1723C0E27800FA0022 /* BulkPhotoTest+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14DDE1623C0E27800FA0022 /* BulkPhotoTest+Core.swift */; };
+		F14DDE1923C0E30500FA0022 /* BulkPhotoTest+Typealias.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14DDE1823C0E30500FA0022 /* BulkPhotoTest+Typealias.swift */; };
 		F15C9F7A23BA558A00F9D524 /* Colorizer+Gray.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15C9F7923BA558A00F9D524 /* Colorizer+Gray.swift */; };
 		F15C9F7B23BA558A00F9D524 /* Colorizer+Gray.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15C9F7923BA558A00F9D524 /* Colorizer+Gray.swift */; };
 		F15C9F7D23BA6FD000F9D524 /* RGBAImage+Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15C9F7C23BA6FD000F9D524 /* RGBAImage+Const.swift */; };
@@ -238,9 +238,9 @@
 		F1240F6723B4DD3800ECD116 /* HCCQRReader+RGBAImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HCCQRReader+RGBAImage.swift"; sourceTree = "<group>"; };
 		F1240F6A23B4E01400ECD116 /* Splitter+RGBAImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Splitter+RGBAImage.swift"; sourceTree = "<group>"; };
 		F1484AD623AE657F001E5CE3 /* HCCQR-lib.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "HCCQR-lib.entitlements"; sourceTree = "<group>"; };
-		F14DDE1423C0E26A00FA0022 /* BulkPhotoReadingTest+Handler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BulkPhotoReadingTest+Handler.swift"; sourceTree = "<group>"; };
-		F14DDE1623C0E27800FA0022 /* BulkPhotoReadingTest+Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BulkPhotoReadingTest+Core.swift"; sourceTree = "<group>"; };
-		F14DDE1823C0E30500FA0022 /* BulkPhotoReadingTest+Typealias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BulkPhotoReadingTest+Typealias.swift"; sourceTree = "<group>"; };
+		F14DDE1423C0E26A00FA0022 /* BulkPhotoTest+Handler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BulkPhotoTest+Handler.swift"; sourceTree = "<group>"; };
+		F14DDE1623C0E27800FA0022 /* BulkPhotoTest+Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BulkPhotoTest+Core.swift"; sourceTree = "<group>"; };
+		F14DDE1823C0E30500FA0022 /* BulkPhotoTest+Typealias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BulkPhotoTest+Typealias.swift"; sourceTree = "<group>"; };
 		F14FADE721F75EF100ACE5FF /* RGBColorTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBColorTestView.swift; sourceTree = "<group>"; };
 		F14FADEF21F761FD00ACE5FF /* FakeHCCQRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeHCCQRView.swift; sourceTree = "<group>"; };
 		F15C9F7923BA558A00F9D524 /* Colorizer+Gray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Colorizer+Gray.swift"; sourceTree = "<group>"; };
@@ -326,7 +326,7 @@
 		F18A52E821790F8D003F8C13 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F18A52EA21790F8D003F8C13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F18C7B4323BF7EF9009D9B29 /* CVImageBufferUtil+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CVImageBufferUtil+Helper.swift"; sourceTree = "<group>"; };
-		F18C7B4723BFB06D009D9B29 /* BulkPhotoReadingTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulkPhotoReadingTest.swift; sourceTree = "<group>"; };
+		F18C7B4723BFB06D009D9B29 /* BulkPhotoTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulkPhotoTest.swift; sourceTree = "<group>"; };
 		F194BAA32224C304001C5DBB /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		F19E0A1223AFEDE7000B8827 /* CVImageBufferTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CVImageBufferTest.swift; sourceTree = "<group>"; };
 		F1AF9D3223E2CF460085DA0C /* HCCQRReader+CVImageBuffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HCCQRReader+CVImageBuffer.swift"; sourceTree = "<group>"; };
@@ -696,10 +696,10 @@
 		F18C7B4623BFB034009D9B29 /* BulkPhotoTest */ = {
 			isa = PBXGroup;
 			children = (
-				F18C7B4723BFB06D009D9B29 /* BulkPhotoReadingTest.swift */,
-				F14DDE1623C0E27800FA0022 /* BulkPhotoReadingTest+Core.swift */,
-				F14DDE1423C0E26A00FA0022 /* BulkPhotoReadingTest+Handler.swift */,
-				F14DDE1823C0E30500FA0022 /* BulkPhotoReadingTest+Typealias.swift */,
+				F18C7B4723BFB06D009D9B29 /* BulkPhotoTest.swift */,
+				F14DDE1623C0E27800FA0022 /* BulkPhotoTest+Core.swift */,
+				F14DDE1423C0E26A00FA0022 /* BulkPhotoTest+Handler.swift */,
+				F14DDE1823C0E30500FA0022 /* BulkPhotoTest+Typealias.swift */,
 			);
 			path = BulkPhotoTest;
 			sourceTree = "<group>";
@@ -1221,7 +1221,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F14DDE1723C0E27800FA0022 /* BulkPhotoReadingTest+Core.swift in Sources */,
+				F14DDE1723C0E27800FA0022 /* BulkPhotoTest+Core.swift in Sources */,
 				F1E5711923A3F2C400E090BB /* MemLeakTest.swift in Sources */,
 				F1E5712323A3F2C400E090BB /* SingleHCCQRTest.swift in Sources */,
 				F1E5711D23A3F2C400E090BB /* FakeHCCQRView.swift in Sources */,
@@ -1235,14 +1235,14 @@
 				F1E5712123A3F2C400E090BB /* SimpleHCCQRView+Create.swift in Sources */,
 				F1E5712623A3F2C400E090BB /* BulkHCCQRTest.swift in Sources */,
 				F1E5712023A3F2C400E090BB /* SimpleHCCQRView+Data.swift in Sources */,
-				F14DDE0D23BFE64B00FA0022 /* BulkPhotoReadingTest.swift in Sources */,
+				F14DDE0D23BFE64B00FA0022 /* BulkPhotoTest.swift in Sources */,
 				F19E0A1323AFEDE7000B8827 /* CVImageBufferTest.swift in Sources */,
 				F1E5712223A3F2C400E090BB /* ColorExtractionTest.swift in Sources */,
-				F14DDE1923C0E30500FA0022 /* BulkPhotoReadingTest+Typealias.swift in Sources */,
+				F14DDE1923C0E30500FA0022 /* BulkPhotoTest+Typealias.swift in Sources */,
 				F1E5712523A3F2C400E090BB /* ReadingHCCQRPhotoTest.swift in Sources */,
 				F1E5712723A3F2C400E090BB /* BulkHCCQRTest+Core.swift in Sources */,
 				F1E5711A23A3F2C400E090BB /* ColorizerTest.swift in Sources */,
-				F14DDE1523C0E26A00FA0022 /* BulkPhotoReadingTest+Handler.swift in Sources */,
+				F14DDE1523C0E26A00FA0022 /* BulkPhotoTest+Handler.swift in Sources */,
 				F1E5712423A3F2C400E090BB /* SimpleHCCQRTest.swift in Sources */,
 				F1E5712923A3F2C400E090BB /* BulkHCCQRTest+TypeAlias.swift in Sources */,
 				F1E5711E23A3F2C400E090BB /* FakeHCCQRView+Create.swift in Sources */,
