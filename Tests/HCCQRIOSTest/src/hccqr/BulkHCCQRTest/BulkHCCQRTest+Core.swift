@@ -7,7 +7,7 @@ import CoreImage
 extension BulkHCCQRTest {
    /**
     * Write many HCCQR images
-    *  ## Examples:
+    * ## Examples:
     * creatingManyHCCQRImages(onComplete: { images in Swift.print("images.count:  \(images.count)") } )
     */
    static func writeMany(onComplete:@escaping OnWriteImagesComplete) {

@@ -15,7 +15,7 @@ extension BulkPhotoReadingTest {
       Swift.print("writeMany()")
       let path: String = ResourceHelper.projectRootURL(projectRef: #file, fileName: "temp.bundle/HCCQR10.png").path
       Swift.print("path:  \(path)")
-      //      let path: String = Bundle.main.resourcePath!+"/temp.bundle/HCCQR10.png" // HCCQR12.png,HCCQR13.jpg
+      //let path: String = Bundle.main.resourcePath!+"/temp.bundle/HCCQR10.png" // HCCQR12.png,HCCQR13.jpg
       let rgbaImages: [RGBAImage] = (0..<10).compactMap { _ in
          guard let image = Image(contentsOfFile: path) else { Swift.print("err getting img"); return nil }
          Swift.print("image.size:  \(image.size)")

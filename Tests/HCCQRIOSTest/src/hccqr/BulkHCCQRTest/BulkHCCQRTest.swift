@@ -7,6 +7,8 @@ import CoreImage
 final class BulkHCCQRTest {}
 /**
  * Read and write multiple HCCQR images
+ * - Important: ⚠️️ This does not use the CVImageBuffer so tests may be irrelevant
+ * - Fixme: ⚠️️ Use The CVImageBuffer instead
  */
 extension BulkHCCQRTest {
    static var totalTime: Date = .init()

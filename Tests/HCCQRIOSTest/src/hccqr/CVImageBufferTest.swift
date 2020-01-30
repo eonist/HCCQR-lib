@@ -6,10 +6,15 @@ class CVImageBufferTest {
    typealias OnComplete = (Bool) -> Void
    /**
     * HCCQR -> RGBAImage
+    * 1. Creates random HCCQR-Data
+    * 2. Creates HCCQR-Image based on HCCQR-Data
+    * 3. Convert HCCQR-Image to RGBAImage data
+    * 4. Read data from RGBAImage
+    * 5. Verify that data is the same as original data
     */
    static func test(onComplete: @escaping OnComplete) {
 //      Swift.print("CVImageBuffer")
-      // create UIImage from Data
+      // Create UIImage from Data
       let config: QRConfig = (.v1, .byte, .l) // Config
       guard let data = HCCQRStringData.randomData(config: config) else { Swift.print("unable to create data"); return }
       DispatchQueue.global(qos: .userInitiated).async {
@@ -24,7 +29,7 @@ class CVImageBufferTest {
  */
 extension CVImageBufferTest {
    /**
-    * on hccqr image created
+    * on HCCQR image created
     */
    private static func onWriteComplete(result: Result<Image, Error>, data randomData: Data, onComplete: @escaping OnComplete) {
       Swift.print("onHCCQRImageComplete")
@@ -37,25 +42,25 @@ extension CVImageBufferTest {
       guard let hccqrImg: Image = try? RGBAImageUtil.image(rgbaImage: rgbaImage, scale: hccqrImage.scale) else { return }
       Swift.print("hccqrImg.size:  \(hccqrImg.size)")
       // Convert RGBBAImage to Data
-      HCCQRReader.dataAndImages(image: hccqrImg) { result in // try split the hccqrImg
+      HCCQRReader.dataAndImages(image: hccqrImg) { result in // try to split the HCCQRImg
          onReadComplete(result: result, randomData: randomData, onComplete: onComplete)
       }
-      // verify data
    }
    /**
     * Completion handler
+    * - Note: We just compare the data payload here, since FileHasher is not added as a dep, it could be added, since this is just test code
     */
    private static func onReadComplete(result: Result<HCCQRReader.DataAndImages, Error>, randomData: Data, onComplete: @escaping OnComplete) {
       Swift.print("onHCCQRDataComplete")
       guard let payload: String = try? result.get().data?.stringUTF8 else { Swift.print("unable to get string from hccqr\(result.errorStr)"); return }
       let isMatching: Bool = randomData.stringUTF8 == payload // Assert payload
       Swift.print("isMatching:  \(isMatching ? "✅":"🚫")")
-      //      DispatchQueue.main.async {
-      //         Swift.print("Seperation complete: \(abs(splitTime.timeIntervalSinceNow))")
-      //         Swift.print("Read and write done: \(abs(startTime.timeIntervalSinceNow))")
-      //      }
+      //DispatchQueue.main.async {
+      //   Swift.print("Seperation complete: \(abs(splitTime.timeIntervalSinceNow))")
+      //   Swift.print("Read and write done: \(abs(startTime.timeIntervalSinceNow))")
+      //}
       onComplete(isMatching)
-      /* Ensure that img only has valid colors, aka no bluring*/
+      /* Ensure that img only has valid colors, aka no bluring */
       // Swift.print("hasOnlyColorMap: \(ColorizeUtil.hasOnlyColorMap(uiImage:hccqrImage, colorMap: [.red,.green,.blue,.white]))")
    }
 }

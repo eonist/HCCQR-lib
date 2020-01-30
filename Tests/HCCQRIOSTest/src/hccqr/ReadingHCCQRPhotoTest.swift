@@ -7,7 +7,7 @@ import CoreImage
 final class ReadingHCCQRPhotoTest {} // rename to: BulkPhotoTest
 /**
  * - Fixme: ⚠️️ add hash if the data to compare, requires importing FileHasher module in the test etc
- * - Fixme: ⚠️️ dl the photo from the web, so it can be tested in SPM+CI
+ * - Fixme: ⚠️️ DL the photo from the web, so it can be tested in SPM+CI
  * ## Examples:
  * ReadingHCCQRTest.testReadingHCCQRPhoto { success in Swift.print("success:  \(success)") }
  */
@@ -21,9 +21,9 @@ extension ReadingHCCQRPhotoTest {
       Swift.print("testReadingHCCQRImage")
       let path: String = Bundle.main.resourcePath!+"/temp.bundle/HCCQR7.png" // HCCQR12.png,HCCQR13.jpg
       guard let image = Image(contentsOfFile: path) else { Swift.print("err getting img"); return }
-      Swift.print("uiImage.size:  \(image.size)")
+      Swift.print("UIImage.size:  \(image.size)")
       guard let rgbaImage: RGBAImage = try? CVImageBufferUtil.rgbaImage(image: image) else { Swift.print("err getting rgbImage"); return }
-      startTime = .init() // we only want to measure the bellow call
+      startTime = .init() // We only want to measure the bellow call
       HCCQRReader.dataAndImages(rgbaImage: rgbaImage) { result in  // split the hccqrImg
          onReadComplete(result: result, onComplete: onComplete)
       }

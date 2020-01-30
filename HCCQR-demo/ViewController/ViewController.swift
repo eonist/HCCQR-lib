@@ -74,6 +74,10 @@ extension ViewController {
 extension ViewController {
    /**
     * - Fixme: ⚠️️ figure out how to create scale: 1 img easy, maybe the context draw stuff needs retina support, check scaling in hccqr code etc
+    * 1. Creates a red image
+    * 2. Renders the red-image into RGBAImage
+    * 3. Asserts if the new image is the same as the original image
+    * 4. 
     */
    func bufferTest() {
       let image = UIImage.image(size: .init(width: 100, height: 100), color: .red)!

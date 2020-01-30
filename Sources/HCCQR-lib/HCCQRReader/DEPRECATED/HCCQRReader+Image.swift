@@ -2,8 +2,6 @@ import Foundation
 import QR_lib
 import QuartzCore
 import CoreImage
-
-public final class HCCQRReader {}
 /**
  * Image -> String
  */

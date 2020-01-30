@@ -9,7 +9,7 @@ extension Channel {
     * Split 1 RGBAImage into 3 RGBAImages and then into 3 b&w RGBAImages consisting of singular r, g, b channels (⚠️️ white represents the channel color ⚠️️)
     * - Parameters:
     *   - rgbaImg: target to derive channels from
-    *   - channelMap: ruleset for the splitting process
+    *   - channelMap: rule-set for the splitting process
     *   - onComplete: notify when process has completed
     */
    static func channels(rgbaImg: RGBAImage, channelMap: ChannelMap = channelMap, onComplete:@escaping OnChannelsCompleted) {

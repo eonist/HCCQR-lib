@@ -11,6 +11,7 @@ extension HCCQRReader {
    public typealias DataAndMeta = (data: Data, quad: QRReader.Quad, imageSize: CGSize)
    public typealias DataAndMetaResult = Result<DataAndMeta, Error>
    public typealias OnGetDataAndMetaCompleted = (DataAndMetaResult) -> Void
+   public typealias OnDataAndMetaComplete = (HCCQRReader.DataAndMetaResult) -> Void // new, for buffer etc
    /**
     * DataAndQuad
     */
@@ -19,6 +20,7 @@ extension HCCQRReader {
    public typealias OnGetDataAndQuadCompleted = (DataAndQuadResult) -> Void
    /**
     * The imags was returned for debuggin, can be useful for optimizing later
+    * - Fixme: ⚠️️ I don't think returning qrimage is useful anymore
     */
    public typealias DataAndImages = (data: Data?, qr1: CIImage, qr2: CIImage, quad: QRReader.Quad?)
    public typealias DataAndImagesResult = Result<DataAndImages, Error>
