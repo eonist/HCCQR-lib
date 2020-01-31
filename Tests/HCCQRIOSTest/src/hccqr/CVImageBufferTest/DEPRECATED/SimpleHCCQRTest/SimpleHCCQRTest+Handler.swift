@@ -5,37 +5,6 @@ import CoreImage
 import ResultSugar
 @testable import HCCQR_lib
 /**
- * - Fixme: ⚠️️ Maybe remove some of the threading closures, and rename some methods, add comments
- * - Fixme: ⚠️️ Maybe remove this, as it does the same as singletest
- */
-final class SimpleHCCQRTest {
-   static var startTime: Date = .init()
-   static var createHCCQRTime: Date = .init()
-   static var splitTime: Date = .init()
-   typealias OnComplete = (Image) -> Void
-   /**
-    * Test HCCQRImage creation
-    * ## Examples:
-    * testCreatingHCCQRImage { img in
-    *    let imageView: NSImageView = .init(frame: .init(origin: .zero, size: img.size))
-    *    imageView.image = img
-    *    self.addSubview(imageView)
-    * }
-    */
-   static func test(onComplete: @escaping OnComplete) {
-      startTime = .init()
-      let config: QRConfig = (.v1, .byte, .l) // Config
-      guard let data = HCCQRStringData.randomData(config: config) else { Swift.print("unable to create data"); return }
-      createHCCQRTime = .init()
-      DispatchQueue.global(qos: .userInitiated).async {
-         Swift.print("⚠️️ Use RGBA instead of ciimage ⚠️️")
-         HCCQRWriter.image(data: data, multipliers: (6, 2), qrConfig: (config.version, config.ecLevel)) { result in // Create HCCQR from string
-            onWriteComplete(result: result, data: data, onComplete: onComplete)
-         }
-      }
-   }
-}
-/**
  * Private static helper
  */
 extension SimpleHCCQRTest {

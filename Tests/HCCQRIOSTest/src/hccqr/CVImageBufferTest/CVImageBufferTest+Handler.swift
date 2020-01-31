@@ -1,44 +1,19 @@
 import Foundation
 @testable import HCCQR_lib
 import QR_lib
-
-class CVImageBufferTest {
-   typealias OnComplete = (Bool) -> Void
-   /**
-    * HCCQR -> RGBAImage
-    * 1. Creates random HCCQR-Data
-    * 2. Creates HCCQR-Image based on HCCQR-Data
-    * 3. Convert HCCQR-Image to RGBAImage data
-    * 4. Read data from RGBAImage
-    * 5. Verify that data is the same as original data
-    */
-   static func test(onComplete: @escaping OnComplete) {
-//      Swift.print("CVImageBuffer")
-      // Create UIImage from Data
-      let config: QRConfig = (.v1, .byte, .l) // Config
-      guard let data = HCCQRStringData.randomData(config: config) else { Swift.print("unable to create data"); return }
-      DispatchQueue.global(qos: .userInitiated).async {
-         HCCQRWriter.image(data: data, multipliers: (6, 2), qrConfig: (config.version, config.ecLevel)) { result in // Create HCCQR from string
-            self.onWriteComplete(result: result, data: data, onComplete: onComplete)
-         }
-      }
-   }
-}
 /**
  * Handlers
  */
 extension CVImageBufferTest {
    /**
-    * on HCCQR image created
+    * On HCCQR image created
     */
    private static func onWriteComplete(result: Result<Image, Error>, data randomData: Data, onComplete: @escaping OnComplete) {
       Swift.print("onHCCQRImageComplete")
-      guard let hccqrImage: Image = result.value() else { Swift.print("unable to create hccqr image \(result.errorStr)"); return }
-      Swift.print("hccqrImage.size:  \(hccqrImage.size)")
-      Swift.print("hccqrImage.scale:  \(hccqrImage.scale)")
-//      Swift.print("hccqrImage.cgImage()?.width:  \(hccqrImage.cgImage?.width)")
+      guard let hccqrImage: Image = result.value() else { Swift.print("Unable to create hccqr image \(result.errorStr)"); return }
+      Swift.print("hccqrImage.size:  \(hccqrImage.size) scale:  \(hccqrImage.scale)") //      Swift.print("hccqrImage.cgImage()?.width:  \(hccqrImage.cgImage?.width)")
       guard let rgbaImage: RGBAImage = try? CVImageBufferUtil.rgbaImage(image: hccqrImage) else { Swift.print("err getting rgbImage"); return }
-//      let rgbaImage: RGBAImage = rgbImage.rgbaImage // Convert RGBImage to RGBAImage
+      // let rgbaImage: RGBAImage = rgbImage.rgbaImage // Convert RGBImage to RGBAImage
       guard let hccqrImg: Image = try? RGBAImageUtil.image(rgbaImage: rgbaImage, scale: hccqrImage.scale) else { return }
       Swift.print("hccqrImg.size:  \(hccqrImg.size)")
       // Convert RGBBAImage to Data
@@ -60,7 +35,5 @@ extension CVImageBufferTest {
       //   Swift.print("Read and write done: \(abs(startTime.timeIntervalSinceNow))")
       //}
       onComplete(isMatching)
-      /* Ensure that img only has valid colors, aka no bluring */
-      // Swift.print("hasOnlyColorMap: \(ColorizeUtil.hasOnlyColorMap(uiImage:hccqrImage, colorMap: [.red,.green,.blue,.white]))")
    }
 }

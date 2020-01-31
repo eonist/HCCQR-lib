@@ -41,7 +41,7 @@ extension HCCQRIOSTest {
       waitForExpectations(timeout: 120, handler: nil)
    }
    /**
-    * HCCQR -> RGBAImage -> 
+    * Data -> RGBAImage -> Data
     */
    private func testCVImageBuffer() {
       let expectation = self.expectation(description: "cvBufferUtil")
@@ -83,7 +83,7 @@ extension HCCQRIOSTest {
     */
    private func testReadingHCCQRPhoto() {
       let expectation = self.expectation(description: "readingHCCQRPhoto") // needed when we do callbacks in Unittesting
-      ReadingHCCQRPhotoTest.testReadingHCCQRPhoto { success
+      HCCQRPhotoTest.testReadingHCCQRPhoto { success
          in Swift.print("success:  \(success ? "✅" : "🚫")")
          expectation.fulfill()
          XCTAssertTrue(success)

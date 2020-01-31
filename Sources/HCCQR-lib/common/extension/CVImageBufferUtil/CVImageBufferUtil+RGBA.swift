@@ -10,9 +10,10 @@ extension CVImageBufferUtil {
     * - Fixme: ⚠️️ might have the solution for av buffer: https://stackoverflow.com/questions/29375471/how-to-convert-cvimagebuffer-to-uiimage
     * - Fixme: ⚠️️ using a pointer to iterate might be faster, see stackoverflow
     * - Fixme: ⚠️️ striding with 20 might be faster than nested for loop
-    * - add debug tool with: CVPixelBufferGetDataSize(imageBuffer), \(CVPixelBufferGetDataSize(imageBuffer)) type:  \(CVPixelBufferGetPixelFormatType(imageBuffer)), let info = RGBImage.bitmapInfo(buffer: imageBuffer)// if type != kCVPixelFormatType_DepthFloat32 { print("Wrong type \(type)"); throw NSError(domain: "Wrong type", code: 0) }, let type: OSType = CVPixelBufferGetPixelFormatType(imageBuffer) // Swift.print("type:  \(type)")
-    * - Parameter crop: Makes processing the raw imagry faster since we don't have to process areas where the QR info is not etc.
-    * - Parameter imageBuffer: the buffer containing the raw pixel data and size
+    * - Fixme: ⚠️️ Add debug tool with: CVPixelBufferGetDataSize(imageBuffer), \(CVPixelBufferGetDataSize(imageBuffer)) type:  \(CVPixelBufferGetPixelFormatType(imageBuffer)), let info = RGBImage.bitmapInfo(buffer: imageBuffer)// if type != kCVPixelFormatType_DepthFloat32 { print("Wrong type \(type)"); throw NSError(domain: "Wrong type", code: 0) }, let type: OSType = CVPixelBufferGetPixelFormatType(imageBuffer) // Swift.print("type:  \(type)")
+    * - Parameters:
+    *   - crop: Makes processing the raw imagry faster since we don't have to process areas where the QR info is not etc.
+    *   - imageBuffer: the buffer containing the raw pixel data and size
     */
    public static func rgbaImage(imageBuffer: CVImageBuffer, crop bufferRect: BufferRect/*? = nil*/) throws -> RGBAImage { /*, size: CGSize, scale: CGFloat */
       CVPixelBufferLockBaseAddress(imageBuffer, CVPixelBufferLockFlags(rawValue: CVOptionFlags(0))) // lock access for cpu reading

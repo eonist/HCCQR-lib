@@ -6,12 +6,14 @@ import CoreImage
  * - Abstract: Converts image, to rgb and SambleBuffer to RGB
  * - Note: ref context for macos might need: https://stackoverflow.com/a/43893381/5389500
  */
-public class CVImageBufferUtil {
+public class CVImageBufferUtil {}
+
+extension CVImageBufferUtil {
    /**
     * UIImage -> CVPixelBuffer
     * - Note: Ref https://www.hackingwithswift.com/whats-new-in-ios-11 and https://stackoverflow.com/a/44475334/5389500
     * - Note: Alternative https://gist.github.com/omarojo/b47ad0f0965ba8bf2e825ef571ef804c
-    * - Fixme: use Metal: https://developer.apple.com/documentation/coreimage/cicontext/1437609-init
+    * - Fixme: ⚠️️ Use Metal: https://developer.apple.com/documentation/coreimage/cicontext/1437609-init
     * - Note: CGImage to Buffer https://github.com/brianadvent/UIImage-to-CVPixelBuffer/blob/master/ImageProcessor.swift
     * - Note: ref https://stackoverflow.com/questions/3838696/convert-uiimage-to-cvpixelbufferref
     * - Note: ref https://stackoverflow.com/questions/44462087/how-to-convert-a-uiimage-to-a-cvpixelbuffer
@@ -20,30 +22,7 @@ public class CVImageBufferUtil {
       guard let cgImage = image.cgImage() else { throw NSError(domain: "unable to get cgimage", code: 0) }
       return try imageBuffer(cgImage: cgImage)
    }
-   /**
-    * CGImage -> CVPixelBuffer (new, ⭐ works ⭐)
-    * - Note: ref https://github.com/brianadvent/UIImage-to-CVPixelBuffer/blob/master/ImageProcessor.swift
-    * - Fixme: ⚠️️ Make debug tool for cgImage: cgImage.bitsPerPixel, cgImage.bitsPerComponent, cgImage.colorSpace, cgImage.byteOrderInfo, cgImage.bitmapInfo, image.size, image.scale, image.cgImage?.bytesPerRow
-    */
-   public static func imageBuffer(cgImage: CGImage) throws -> CVImageBuffer {
-      let frameSize = CGSize(width: cgImage.width, height: cgImage.height)
-      var buffer: CVPixelBuffer?
-      let status = CVPixelBufferCreate(kCFAllocatorDefault, Int(frameSize.width), Int(frameSize.height), kCVPixelFormatType_32BGRA, nil, &buffer)
-      if status != kCVReturnSuccess { throw NSError(domain: "status err", code: 0) }
-      CVPixelBufferLockBaseAddress(buffer!, CVPixelBufferLockFlags(rawValue: 0))
-      let data = CVPixelBufferGetBaseAddress(buffer!)
-      let rgbColorSpace = CGColorSpaceCreateDeviceRGB()
-      let bitmapInfo = CGBitmapInfo(rawValue: CGBitmapInfo.byteOrder32Little.rawValue | CGImageAlphaInfo.premultipliedFirst.rawValue)
-      guard let context = CGContext(data: data, width: Int(frameSize.width), height: Int(frameSize.height), bitsPerComponent: 8, bytesPerRow: CVPixelBufferGetBytesPerRow(buffer!), space: rgbColorSpace, bitmapInfo: bitmapInfo.rawValue) else { Swift.print("Unable to get context"); throw NSError(domain: "Unable to get context", code: 0) }
-      context.draw(cgImage, in: CGRect(x: 0, y: 0, width: cgImage.width, height: cgImage.height))
-      // - Fixme: ⚠️️ Should we unlock buffer here, since we return it etc ?, other repos lock here and still forward buffer
-      let pixelFormatName: String = CVImageBufferUtil.pixelFormatName(pixelBuffer: buffer!) // kCVPixelFormatType_2Indexed
-      Swift.print("pixelFormatName:  \(pixelFormatName)")
-      CVPixelBufferUnlockBaseAddress(buffer!, CVPixelBufferLockFlags(rawValue: 0))
-      return buffer! // fixme ⚠️️ add aditional throw here
-   }
 }
-
 //public static func imageBuffer(image: Image) throws -> CVImageBuffer {
 //   let attrs = [kCVPixelBufferCGImageCompatibilityKey: kCFBooleanTrue, kCVPixelBufferCGBitmapContextCompatibilityKey: kCFBooleanTrue] as CFDictionary
 //   var imageBuffer: CVImageBuffer?

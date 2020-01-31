@@ -67,8 +67,8 @@
 		F181F11E23B932BC00145DEA /* GrayscaleImageUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F181F11C23B932BC00145DEA /* GrayscaleImageUtil.swift */; };
 		F181F12023B9357C00145DEA /* Splitter+Handler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F181F11F23B9357C00145DEA /* Splitter+Handler.swift */; };
 		F181F12123B9357C00145DEA /* Splitter+Handler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F181F11F23B9357C00145DEA /* Splitter+Handler.swift */; };
-		F18A25DD23BB7ED200EF8151 /* CVImageBufferUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18A25DC23BB7ED200EF8151 /* CVImageBufferUtil.swift */; };
-		F18A25DE23BB7ED200EF8151 /* CVImageBufferUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18A25DC23BB7ED200EF8151 /* CVImageBufferUtil.swift */; };
+		F18A25DD23BB7ED200EF8151 /* CVImageBufferUtil+Buffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18A25DC23BB7ED200EF8151 /* CVImageBufferUtil+Buffer.swift */; };
+		F18A25DE23BB7ED200EF8151 /* CVImageBufferUtil+Buffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18A25DC23BB7ED200EF8151 /* CVImageBufferUtil+Buffer.swift */; };
 		F18A25E123BB7F5F00EF8151 /* CVImageBufferUtil+RGBA.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18A25E023BB7F5F00EF8151 /* CVImageBufferUtil+RGBA.swift */; };
 		F18A25E223BB7F5F00EF8151 /* CVImageBufferUtil+RGBA.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18A25E023BB7F5F00EF8151 /* CVImageBufferUtil+RGBA.swift */; };
 		F18A25E423BB7F8600EF8151 /* CVImageBufferUtil+Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18A25E323BB7F8600EF8151 /* CVImageBufferUtil+Image.swift */; };
@@ -95,6 +95,12 @@
 		F1AF9D3423E2CF460085DA0C /* HCCQRReader+CVImageBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1AF9D3223E2CF460085DA0C /* HCCQRReader+CVImageBuffer.swift */; };
 		F1AF9D3623E2D7630085DA0C /* CVImageBufferUtil+TypeAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1AF9D3523E2D7630085DA0C /* CVImageBufferUtil+TypeAlias.swift */; };
 		F1AF9D3723E2D7630085DA0C /* CVImageBufferUtil+TypeAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1AF9D3523E2D7630085DA0C /* CVImageBufferUtil+TypeAlias.swift */; };
+		F1AF9D3923E37C1B0085DA0C /* CVImageBufferUtil+CGImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1AF9D3823E37C1B0085DA0C /* CVImageBufferUtil+CGImage.swift */; };
+		F1AF9D3A23E37C1B0085DA0C /* CVImageBufferUtil+CGImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1AF9D3823E37C1B0085DA0C /* CVImageBufferUtil+CGImage.swift */; };
+		F1AF9D3F23E37E5D0085DA0C /* CVImageBufferTest+Handler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1AF9D3C23E37E360085DA0C /* CVImageBufferTest+Handler.swift */; };
+		F1AF9D4223E37EBA0085DA0C /* SimpleHCCQRTest+Handler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1AF9D4123E37EBA0085DA0C /* SimpleHCCQRTest+Handler.swift */; };
+		F1AF9D4523E382550085DA0C /* SingleHCCQRTest+Handler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1AF9D4423E382550085DA0C /* SingleHCCQRTest+Handler.swift */; };
+		F1AF9D4923E387160085DA0C /* HCCQRPhotoTest+Handler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1AF9D4823E387160085DA0C /* HCCQRPhotoTest+Handler.swift */; };
 		F1B698D7239E64E70085B3C9 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B698D6239E64E70085B3C9 /* View.swift */; };
 		F1B698E0239E6D410085B3C9 /* HCCQRVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B698DF239E6D410085B3C9 /* HCCQRVersion.swift */; };
 		F1B698E1239E6D410085B3C9 /* HCCQRVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B698DF239E6D410085B3C9 /* HCCQRVersion.swift */; };
@@ -115,7 +121,7 @@
 		F1E5712223A3F2C400E090BB /* ColorExtractionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F165C26623A06384005D30EC /* ColorExtractionTest.swift */; };
 		F1E5712323A3F2C400E090BB /* SingleHCCQRTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F165C25C23A01FD0005D30EC /* SingleHCCQRTest.swift */; };
 		F1E5712423A3F2C400E090BB /* SimpleHCCQRTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BFEFD823A19A13007F4261 /* SimpleHCCQRTest.swift */; };
-		F1E5712523A3F2C400E090BB /* ReadingHCCQRPhotoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F165C25923A01EF7005D30EC /* ReadingHCCQRPhotoTest.swift */; };
+		F1E5712523A3F2C400E090BB /* HCCQRPhotoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F165C25923A01EF7005D30EC /* HCCQRPhotoTest.swift */; };
 		F1E5712623A3F2C400E090BB /* BulkHCCQRTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F165C25623A010E7005D30EC /* BulkHCCQRTest.swift */; };
 		F1E5712723A3F2C400E090BB /* BulkHCCQRTest+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BFEFDF23A23C1B007F4261 /* BulkHCCQRTest+Core.swift */; };
 		F1E5712823A3F2C400E090BB /* BulkHCCQRTest+Handler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BFEFDB23A23814007F4261 /* BulkHCCQRTest+Handler.swift */; };
@@ -254,7 +260,7 @@
 		F165C25023A00D35005D30EC /* ScaleTesting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaleTesting.swift; sourceTree = "<group>"; };
 		F165C25323A01044005D30EC /* QRTesting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRTesting.swift; sourceTree = "<group>"; };
 		F165C25623A010E7005D30EC /* BulkHCCQRTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulkHCCQRTest.swift; sourceTree = "<group>"; };
-		F165C25923A01EF7005D30EC /* ReadingHCCQRPhotoTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingHCCQRPhotoTest.swift; sourceTree = "<group>"; };
+		F165C25923A01EF7005D30EC /* HCCQRPhotoTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HCCQRPhotoTest.swift; sourceTree = "<group>"; };
 		F165C25C23A01FD0005D30EC /* SingleHCCQRTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleHCCQRTest.swift; sourceTree = "<group>"; };
 		F165C26023A020E2005D30EC /* MemLeakTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemLeakTest.swift; sourceTree = "<group>"; };
 		F165C26323A05B36005D30EC /* ColorizerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorizerTest.swift; sourceTree = "<group>"; };
@@ -310,7 +316,7 @@
 		F181F11823B931D300145DEA /* Compositor+Gray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Compositor+Gray.swift"; sourceTree = "<group>"; };
 		F181F11C23B932BC00145DEA /* GrayscaleImageUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrayscaleImageUtil.swift; sourceTree = "<group>"; };
 		F181F11F23B9357C00145DEA /* Splitter+Handler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Splitter+Handler.swift"; sourceTree = "<group>"; };
-		F18A25DC23BB7ED200EF8151 /* CVImageBufferUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CVImageBufferUtil.swift; sourceTree = "<group>"; };
+		F18A25DC23BB7ED200EF8151 /* CVImageBufferUtil+Buffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CVImageBufferUtil+Buffer.swift"; sourceTree = "<group>"; };
 		F18A25E023BB7F5F00EF8151 /* CVImageBufferUtil+RGBA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CVImageBufferUtil+RGBA.swift"; sourceTree = "<group>"; };
 		F18A25E323BB7F8600EF8151 /* CVImageBufferUtil+Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CVImageBufferUtil+Image.swift"; sourceTree = "<group>"; };
 		F18A25E623BB83E700EF8151 /* NSImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSImage+Extension.swift"; sourceTree = "<group>"; };
@@ -331,6 +337,11 @@
 		F19E0A1223AFEDE7000B8827 /* CVImageBufferTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CVImageBufferTest.swift; sourceTree = "<group>"; };
 		F1AF9D3223E2CF460085DA0C /* HCCQRReader+CVImageBuffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HCCQRReader+CVImageBuffer.swift"; sourceTree = "<group>"; };
 		F1AF9D3523E2D7630085DA0C /* CVImageBufferUtil+TypeAlias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CVImageBufferUtil+TypeAlias.swift"; sourceTree = "<group>"; };
+		F1AF9D3823E37C1B0085DA0C /* CVImageBufferUtil+CGImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CVImageBufferUtil+CGImage.swift"; sourceTree = "<group>"; };
+		F1AF9D3C23E37E360085DA0C /* CVImageBufferTest+Handler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CVImageBufferTest+Handler.swift"; sourceTree = "<group>"; };
+		F1AF9D4123E37EBA0085DA0C /* SimpleHCCQRTest+Handler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SimpleHCCQRTest+Handler.swift"; sourceTree = "<group>"; };
+		F1AF9D4423E382550085DA0C /* SingleHCCQRTest+Handler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SingleHCCQRTest+Handler.swift"; sourceTree = "<group>"; };
+		F1AF9D4823E387160085DA0C /* HCCQRPhotoTest+Handler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HCCQRPhotoTest+Handler.swift"; sourceTree = "<group>"; };
 		F1B698D6239E64E70085B3C9 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		F1B698DF239E6D410085B3C9 /* HCCQRVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HCCQRVersion.swift; sourceTree = "<group>"; };
 		F1B698E2239E70B60085B3C9 /* HCCQRConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HCCQRConfig.swift; sourceTree = "<group>"; };
@@ -399,12 +410,7 @@
 		F165C24F23A00D08005D30EC /* src */ = {
 			isa = PBXGroup;
 			children = (
-				F165C25023A00D35005D30EC /* ScaleTesting.swift */,
-				F165C25323A01044005D30EC /* QRTesting.swift */,
-				F165C26023A020E2005D30EC /* MemLeakTest.swift */,
-				F165C26323A05B36005D30EC /* ColorizerTest.swift */,
-				F1BFEFD123A06882007F4261 /* PixelTest */,
-				F14FADE621F75EAD00ACE5FF /* ColorExtractionTest */,
+				F1AF9D4A23E387920085DA0C /* misc */,
 				F165C25F23A020B6005D30EC /* hccqr */,
 			);
 			path = src;
@@ -413,10 +419,8 @@
 		F165C25F23A020B6005D30EC /* hccqr */ = {
 			isa = PBXGroup;
 			children = (
-				F165C25C23A01FD0005D30EC /* SingleHCCQRTest.swift */,
-				F1BFEFD823A19A13007F4261 /* SimpleHCCQRTest.swift */,
-				F19E0A1223AFEDE7000B8827 /* CVImageBufferTest.swift */,
-				F165C25923A01EF7005D30EC /* ReadingHCCQRPhotoTest.swift */,
+				F1AF9D3B23E37E080085DA0C /* CVImageBufferTest */,
+				F1AF9D4723E387030085DA0C /* HCCQRPhotoTest */,
 				F18C7B4623BFB034009D9B29 /* BulkPhotoTest */,
 				F1BFEFDE23A2381D007F4261 /* BulkHCCQRTest */,
 			);
@@ -629,7 +633,8 @@
 		F18A25DF23BB7F3900EF8151 /* CVImageBufferUtil */ = {
 			isa = PBXGroup;
 			children = (
-				F18A25DC23BB7ED200EF8151 /* CVImageBufferUtil.swift */,
+				F18A25DC23BB7ED200EF8151 /* CVImageBufferUtil+Buffer.swift */,
+				F1AF9D3823E37C1B0085DA0C /* CVImageBufferUtil+CGImage.swift */,
 				F18A25E323BB7F8600EF8151 /* CVImageBufferUtil+Image.swift */,
 				F18A25E023BB7F5F00EF8151 /* CVImageBufferUtil+RGBA.swift */,
 				F18C7B4323BF7EF9009D9B29 /* CVImageBufferUtil+Helper.swift */,
@@ -711,6 +716,65 @@
 				F17CB70223ABA14500C4BED8 /* HCCQRReader+CIImage.swift */,
 			);
 			path = DEPRECATED;
+			sourceTree = "<group>";
+		};
+		F1AF9D3B23E37E080085DA0C /* CVImageBufferTest */ = {
+			isa = PBXGroup;
+			children = (
+				F1AF9D4623E382CA0085DA0C /* DEPRECATED */,
+				F19E0A1223AFEDE7000B8827 /* CVImageBufferTest.swift */,
+				F1AF9D3C23E37E360085DA0C /* CVImageBufferTest+Handler.swift */,
+			);
+			path = CVImageBufferTest;
+			sourceTree = "<group>";
+		};
+		F1AF9D4023E37EA50085DA0C /* SimpleHCCQRTest */ = {
+			isa = PBXGroup;
+			children = (
+				F1BFEFD823A19A13007F4261 /* SimpleHCCQRTest.swift */,
+				F1AF9D4123E37EBA0085DA0C /* SimpleHCCQRTest+Handler.swift */,
+			);
+			path = SimpleHCCQRTest;
+			sourceTree = "<group>";
+		};
+		F1AF9D4323E382100085DA0C /* SingleHCCQRTest */ = {
+			isa = PBXGroup;
+			children = (
+				F165C25C23A01FD0005D30EC /* SingleHCCQRTest.swift */,
+				F1AF9D4423E382550085DA0C /* SingleHCCQRTest+Handler.swift */,
+			);
+			path = SingleHCCQRTest;
+			sourceTree = "<group>";
+		};
+		F1AF9D4623E382CA0085DA0C /* DEPRECATED */ = {
+			isa = PBXGroup;
+			children = (
+				F1AF9D4323E382100085DA0C /* SingleHCCQRTest */,
+				F1AF9D4023E37EA50085DA0C /* SimpleHCCQRTest */,
+			);
+			path = DEPRECATED;
+			sourceTree = "<group>";
+		};
+		F1AF9D4723E387030085DA0C /* HCCQRPhotoTest */ = {
+			isa = PBXGroup;
+			children = (
+				F165C25923A01EF7005D30EC /* HCCQRPhotoTest.swift */,
+				F1AF9D4823E387160085DA0C /* HCCQRPhotoTest+Handler.swift */,
+			);
+			path = HCCQRPhotoTest;
+			sourceTree = "<group>";
+		};
+		F1AF9D4A23E387920085DA0C /* misc */ = {
+			isa = PBXGroup;
+			children = (
+				F1BFEFD123A06882007F4261 /* PixelTest */,
+				F14FADE621F75EAD00ACE5FF /* ColorExtractionTest */,
+				F165C25023A00D35005D30EC /* ScaleTesting.swift */,
+				F165C25323A01044005D30EC /* QRTesting.swift */,
+				F165C26023A020E2005D30EC /* MemLeakTest.swift */,
+				F165C26323A05B36005D30EC /* ColorizerTest.swift */,
+			);
+			path = misc;
 			sourceTree = "<group>";
 		};
 		F1B698D5239E64D10085B3C9 /* view */ = {
@@ -1089,6 +1153,7 @@
 				F1E645EB23940B3D008D2ABE /* Colorizer+Const.swift in Sources */,
 				F1E645B123940ACA008D2ABE /* UIImage+Extension.swift in Sources */,
 				F1240F6C23B4E01400ECD116 /* Splitter+RGBAImage.swift in Sources */,
+				F1AF9D3A23E37C1B0085DA0C /* CVImageBufferUtil+CGImage.swift in Sources */,
 				F1E645ED23940B3D008D2ABE /* HCCQRStringData.swift in Sources */,
 				F1F3E04823BA1C8E00D367F1 /* Channel+RGBA.swift in Sources */,
 				F1E645E223940B3D008D2ABE /* PixelData.swift in Sources */,
@@ -1110,7 +1175,7 @@
 				F17CB70423ABA14500C4BED8 /* HCCQRReader+CIImage.swift in Sources */,
 				F1E645E323940B3D008D2ABE /* PixelDataUtil.swift in Sources */,
 				F181F11A23B931D300145DEA /* Compositor+Gray.swift in Sources */,
-				F18A25DE23BB7ED200EF8151 /* CVImageBufferUtil.swift in Sources */,
+				F18A25DE23BB7ED200EF8151 /* CVImageBufferUtil+Buffer.swift in Sources */,
 				F181F10E23B929C900145DEA /* GrayscaleImage+Setter.swift in Sources */,
 				F165C248239FF385005D30EC /* PixelDataDebugger.swift in Sources */,
 				F1AF9D3423E2CF460085DA0C /* HCCQRReader+CVImageBuffer.swift in Sources */,
@@ -1179,6 +1244,7 @@
 				F1E645BF23940B3C008D2ABE /* RGBAImage+TypeAlias.swift in Sources */,
 				F1E645A123940AC9008D2ABE /* ImageUtil.swift in Sources */,
 				F1240F6B23B4E01400ECD116 /* Splitter+RGBAImage.swift in Sources */,
+				F1AF9D3923E37C1B0085DA0C /* CVImageBufferUtil+CGImage.swift in Sources */,
 				F165C208239F22A7005D30EC /* RangeUInt8.swift in Sources */,
 				F1F3E04723BA1C8E00D367F1 /* Channel+RGBA.swift in Sources */,
 				F1E645C723940B3C008D2ABE /* PixelData.swift in Sources */,
@@ -1200,7 +1266,7 @@
 				F17CB70323ABA14500C4BED8 /* HCCQRReader+CIImage.swift in Sources */,
 				F1E645CA23940B3C008D2ABE /* PixelData+Setter.swift in Sources */,
 				F181F11923B931D300145DEA /* Compositor+Gray.swift in Sources */,
-				F18A25DD23BB7ED200EF8151 /* CVImageBufferUtil.swift in Sources */,
+				F18A25DD23BB7ED200EF8151 /* CVImageBufferUtil+Buffer.swift in Sources */,
 				F181F10D23B929C900145DEA /* GrayscaleImage+Setter.swift in Sources */,
 				F1E645A923940AC9008D2ABE /* UInt8Parser.swift in Sources */,
 				F1AF9D3323E2CF460085DA0C /* HCCQRReader+CVImageBuffer.swift in Sources */,
@@ -1221,8 +1287,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1AF9D4523E382550085DA0C /* SingleHCCQRTest+Handler.swift in Sources */,
 				F14DDE1723C0E27800FA0022 /* BulkPhotoTest+Core.swift in Sources */,
 				F1E5711923A3F2C400E090BB /* MemLeakTest.swift in Sources */,
+				F1AF9D4923E387160085DA0C /* HCCQRPhotoTest+Handler.swift in Sources */,
 				F1E5712323A3F2C400E090BB /* SingleHCCQRTest.swift in Sources */,
 				F1E5711D23A3F2C400E090BB /* FakeHCCQRView.swift in Sources */,
 				F1E5711F23A3F2C400E090BB /* SimpleHCCQRView.swift in Sources */,
@@ -1236,16 +1304,18 @@
 				F1E5712623A3F2C400E090BB /* BulkHCCQRTest.swift in Sources */,
 				F1E5712023A3F2C400E090BB /* SimpleHCCQRView+Data.swift in Sources */,
 				F14DDE0D23BFE64B00FA0022 /* BulkPhotoTest.swift in Sources */,
+				F1AF9D3F23E37E5D0085DA0C /* CVImageBufferTest+Handler.swift in Sources */,
 				F19E0A1323AFEDE7000B8827 /* CVImageBufferTest.swift in Sources */,
 				F1E5712223A3F2C400E090BB /* ColorExtractionTest.swift in Sources */,
 				F14DDE1923C0E30500FA0022 /* BulkPhotoTest+Typealias.swift in Sources */,
-				F1E5712523A3F2C400E090BB /* ReadingHCCQRPhotoTest.swift in Sources */,
+				F1E5712523A3F2C400E090BB /* HCCQRPhotoTest.swift in Sources */,
 				F1E5712723A3F2C400E090BB /* BulkHCCQRTest+Core.swift in Sources */,
 				F1E5711A23A3F2C400E090BB /* ColorizerTest.swift in Sources */,
 				F14DDE1523C0E26A00FA0022 /* BulkPhotoTest+Handler.swift in Sources */,
 				F1E5712423A3F2C400E090BB /* SimpleHCCQRTest.swift in Sources */,
 				F1E5712923A3F2C400E090BB /* BulkHCCQRTest+TypeAlias.swift in Sources */,
 				F1E5711E23A3F2C400E090BB /* FakeHCCQRView+Create.swift in Sources */,
+				F1AF9D4223E37EBA0085DA0C /* SimpleHCCQRTest+Handler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

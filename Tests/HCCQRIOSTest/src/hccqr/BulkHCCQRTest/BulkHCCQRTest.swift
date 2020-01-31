@@ -7,6 +7,7 @@ import CoreImage
 final class BulkHCCQRTest {}
 /**
  * Read and write multiple HCCQR images
+ * 1. 🏀 continue writing HCCQR description here
  * - Important: ⚠️️ This does not use the CVImageBuffer so tests may be irrelevant
  * - Fixme: ⚠️️ Use The CVImageBuffer instead
  */
