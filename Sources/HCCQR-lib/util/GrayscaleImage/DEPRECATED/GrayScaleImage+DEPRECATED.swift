@@ -1,5 +1,5 @@
 import Foundation
-
+import CoreImage
 /**
  * Private static helper
  */

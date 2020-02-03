@@ -13,7 +13,7 @@ extension Colorizer {
     * - Return: we return a color CIImage
     * - Parameters:
     *   - ciImages: qr code images (BGRA8, opaque)
-    *   - colorMap: ruleset
+    *   - colorMap: rule-set
     *   - multipliers: scaling
     */
    static func colorize(ciImages: [CIImage], colorMap: ColorMap, multipliers: Multipliers) -> ColorizedResult {

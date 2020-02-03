@@ -1,26 +1,18 @@
-//
-//  PixelDataDebugger.swift
-//  HCCQR-demo
-//
-//  Created by Eon on 10/12/2019.
-//  Copyright © 2019 FutureLab. All rights reserved.
-//
-
 import Foundation
 /**
  * Debugging
  */
 final class PixelDataDebugger {
    internal func isRed(pixelData: PixelData) -> Bool {
-      Swift.print("don't use this in prod")
+      Swift.print("Don't use this in prod")
       return pixelData.r == 255 && pixelData.g == 0 && pixelData.b == 0
    }
    internal func isBlue(pixelData: PixelData) -> Bool {
-      Swift.print("don't use this in prod")
+      Swift.print("Don't use this in prod")
       return pixelData.r == 0 && pixelData.g == 0 && pixelData.b == 255
    }
    internal func isGreen(pixelData: PixelData) -> Bool {
-      Swift.print("don't use this in prod")
+      Swift.print("Don't use this in prod")
       return pixelData.r == 0 && pixelData.g == 255 && pixelData.b == 0
    }
    /**

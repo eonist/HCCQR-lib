@@ -7,40 +7,26 @@ import QuartzCore
 extension PixelData {
    /**
     *  Asserts if a pixel is sort of a color within a threshold
+    *  ## Examples:
+    *  let rgbaColor: RGBAColor = (255, 0, 0, 255)
+    *  pixelData.isColorish(rgbaColor) // returns true if the the pixel is within the color
+    *  - Fixme: ⚠️️ Add Unit-test to isColorish method
     */
    func isColorish(_ color: RGBColor) -> Bool {
-      let pixel: PixelData = .init(r: color.r, g: color.g, b: color.b, a: 255)
-      return self.isColor(pixel: pixel, halfThreshold: PixelData.halfThresholdUInt8)
+      let pixelData: PixelData = .init(r: color.r, g: color.g, b: color.b, a: 255)
+      return PixelData.isColor(a: self, b: pixelData, halfThreshold: PixelData.halfThresholdUInt8)
    }
-//   /**
-//    * Asserts if a pixel is sort of red within a threshold
-//    */
-//   var isRedish: Bool {
-//      return self.isColor(pixel: Colors.redPixel, halfThreshold: PixelData.halfThresholdUInt8)
-//   }
-//   /**
-//    * Asserts if a pixel is sort of green within a threshold
-//    */
-//   var isGreenish: Bool {
-//      return self.isColor(pixel: Colors.greenPixel, halfThreshold: PixelData.halfThresholdUInt8)
-//   }
-//   /**
-//    * Asserts if a pixel is sort of blue within a threshold
-//    */
-//   var isBlueish: Bool {
-//      return self.isColor(pixel: Colors.bluePixel, halfThreshold: PixelData.halfThresholdUInt8)
-//   }
    /**
     * Measure if color is white (used in the colorize method)
     * - Note: looks funny, but it's that way to make it fast
     * - Note: Used by colorize method and inverted method
     */
    var isWhite: Bool {
-      return !(self.r != 255 || self.g != 255 || self.b != 255)
+      return !(self.r != .white || self.g != .white || self.b != .white)
    }
    /**
     * Measure if color is black (used in the colorize method)
-    * - Note: looks funny, but it's that way to make it fast
+    * - Note: Looks funny, but it's that way to make it fast
     * - Note: Used by colorize method
     */
    var isBlack: Bool {
@@ -64,10 +50,8 @@ extension PixelData {
     *   - pixel: Compare self to this pixel
     *   - halfThreshold: with threshold more or less (I.e: +25,-25 from a value)
     */
-   func isColor(pixel: PixelData, halfThreshold: UInt8) -> Bool {
-      let rgb1: RGB = self.rgb
-      let rgb2: RGB = pixel.rgb
-      return isColor(rgb1: rgb1, rgb2: rgb2, halfThreshold: halfThreshold)
+   private static func isColor(a: PixelData, b: PixelData, halfThreshold: UInt8) -> Bool {
+      return PixelData.isColor(rgb1: a.rgb, rgb2: b.rgb, halfThreshold: halfThreshold)
    }
 }
 /**
@@ -76,15 +60,16 @@ extension PixelData {
 extension PixelData {
    /**
     * Asserts if a color is near another color within a threshold
+    * - Fixme: ⚠️️ It might be the case that if a UInt8 value is near the bounds, the threshold should actually be increased to the distance to the bound, I guess do some exploring on this
     * - Parameters:
     *   - rgb1: first color
     *   - rgb2: second color
     *   - halfThreshold: with threshold more or less (I.e: +25,-25 from a value)
-    *   - limit: avoids going out of bound
+    *   - limit: used to avoid going out of bound
     */
-   private func isColor(rgb1: RGB, rgb2: RGB, halfThreshold: UInt8, limit: Limit = (0, 255)) -> Bool {
+   private static func isColor(rgb1: RGB, rgb2: RGB, halfThreshold: UInt8, limit: Limit = (0, 255)) -> Bool {
       let r: Bool = {
-         let range: RangeUInt8 = UInt8Parser.range(num: rgb2.r, halfThreshold: halfThreshold, min: limit.min, max: limit.max)//75,125
+         let range: RangeUInt8 = UInt8Parser.range(num: rgb2.r, halfThreshold: halfThreshold, min: limit.min, max: limit.max) // 75, 125
          return UInt8Asserter.within(num: rgb1.r, min: range.start, max: range.end)//(range.start...range.end).contains(rgb1.r)
       }()
       let g: Bool = {

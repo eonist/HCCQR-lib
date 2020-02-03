@@ -22,7 +22,7 @@ extension Compositor {
     */
    static func composite(grayscaleImages: [GrayscaleImage]) throws -> GrayscaleImage {
       guard let first: GrayscaleImage = grayscaleImages.first else { throw NSError(domain: "unable to composite - composite() - no first image available", code: 0) }
-      let whiteImage: GrayscaleImage = .grayscaleImage(pixel: 255, size: first.size) // because white is 255
+      let whiteImage: GrayscaleImage = .grayscaleImage(pixel: .white, size: first.size) // because white is 255
       return GrayscaleImage.process(input: whiteImage) { (index: Int, pixel: UInt8) -> UInt8 in // Loop things
          var pixel: UInt8 = pixel // - Fixme: ⚠️️ maybe do reduce here?
          grayscaleImages.forEach { (grayscaleImage: GrayscaleImage) in // loop over every image in the list, this is inside here because the process method uses concurrent_apply

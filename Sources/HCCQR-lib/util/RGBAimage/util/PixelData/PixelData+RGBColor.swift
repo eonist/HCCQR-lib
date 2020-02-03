@@ -7,6 +7,6 @@ extension PixelData {
    static let red: RGBColor = (r: 255, g: 0, b: 0, a: 255)
    static let green: RGBColor = (r: 0, g: 255, b: 0, a: 255)
    static let blue: RGBColor = (r: 0, g: 0, b: 255, a: 255)
-   static let white: RGBColor = (r: 255, g: 255, b: 255, a: 255)
-   static let black: RGBColor = (r: 0, g: 0, b: 0, a: 255)
+   static let white: RGBColor = (r: .white, g: .white, b: .white, a: 255)
+   static let black: RGBColor = (r: .black, g: .black, b: .black, a: 255)
 }

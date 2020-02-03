@@ -25,38 +25,3 @@ extension Channel {
       }
    }
 }
-/**
- * Private static helper methods
- */
-extension Channel {
-   /**
-    * Gets r,g,b channels
-    * - Note: Marks red colors as black, all else becomes white
-    * - Note: there is no speed benefit of writing the new pixeldata into a new rgba image, this was tested
-    */
-   private static func channel(rgbaImg: RGBAImage, assert: PixelDataAssertion) -> RGBAImage {
-      let blankImg = RGBAImage.rgbaImage(capacity: rgbaImg.capacity, size: rgbaImg.size) // We create a blank RGBImage, as it's faster than copy probably
-      return rgbaImg.process(input: blankImg) { pixel -> PixelData in
-         assert(pixel) ? PixelData.Colors.whitePixel : PixelData.Colors.blackPixel
-      }
-   }
-}
-/**
- * Handler
- */
-extension Channel {
-   /**
-    * Channel completion handler (just makes sure everything completed)
-    * - Fixme: ⚠️️ simplify the deinit, refactor etc, rename params
-    * - Fixme: ⚠️️ We could Return 3 GrayScaleImages instead of 3 RGBAImages, might be faster
-    * - Parameter rgbImg must be dealocated in the completion block because it is consumes 3 times
-    */
-   private static func onChannelComplete(i: Int, rgbaImage: RGBAImage, rgbaImages: inout [RGBAImage?], rgbaImg: RGBAImage, onComplete: OnChannelsCompleted) {
-      rgbaImages[i] = rgbaImage // it matters which order the qrImages came in when you stitch them back together
-      if rgbaImages.first(where: { $0 == nil }) == nil { // makes sure all images finished (fastest way to check for nil)
-         let rgbaImages: [RGBAImage] = rgbaImages.compactMap { $0 } // remove optionality
-         rgbaImg.deinitiate() // deinit rgbaImage after it has been consumed, to avoid memleak
-         onComplete(.success((rgbaImages[0], rgbaImages[1], rgbaImages[2])))
-      }
-   }
-}

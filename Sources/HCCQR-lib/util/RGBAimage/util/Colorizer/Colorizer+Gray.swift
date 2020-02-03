@@ -44,13 +44,16 @@ extension Colorizer {
     * ## Examples:
     * colorize(pixels: [blackPixel, whitePixel]) -> RedPixel
     * colorize(pixels: [whitePixel, whitePixel]) -> BluePixel
+    * - Parameters:
+    *   - pixels: layers of pixels (at 4 colors, you have 2 layers)
+    *   - colorMap: <#colorMap description#>
     */
    private static func colorize(pixels: [UInt8], colorMap: ColorMap) throws -> PixelData {
       let findColor: (ColorMapItem) throws -> Bool = { colorMapItem in
          if colorMapItem.idx.count != pixels.count { throw NSError(domain: "Colorize.colorize - colorMap does not match pixel layer count", code: 0) }
          let condition: (_ i: Int, _ pixel: UInt8) -> Bool = { (i: Int, pixel: UInt8) in
-            let bothAreBlack: Bool = pixel == 0 && !colorMapItem.idx[i] // false means black
-            let bothAreWhite: Bool = pixel == 255 && colorMapItem.idx[i] // true means white
+            let bothAreBlack: Bool = pixel == .black && !colorMapItem.idx[i] // false means black
+            let bothAreWhite: Bool = pixel == .white && colorMapItem.idx[i] // true means white
             if bothAreBlack == false && bothAreWhite == false { return false } // <- Sort of crazy looking, but it works
             else { return true }
          }

@@ -8,7 +8,7 @@ import Cocoa
  */
 final class PixelDataUtil {
    /**
-    * rgba for UInt8
+    * Color -> (r: UInt8, g: UInt8 ,b: UInt8, a: UInt8)
     * - Fixme: ⚠️️ You can also probably do (maybe faster?): UIColor.blue.colorComponents // (red: 0.0, green: 0.0, blue: 1.0, alpha: 1.0)
     */
    static func rgba(uiColor: Color) throws -> PixelData.RGBA {

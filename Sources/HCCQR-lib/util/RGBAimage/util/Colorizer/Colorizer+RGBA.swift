@@ -11,7 +11,7 @@ extension Colorizer {
     * - Note: Used in the process of converting Data to HCCQR
     * - Parameters:
     *   - rgbaImages: rbgImages
-    *   - colorMap: color rulset
+    *   - colorMap: color rule-set
     *   - multipliers: scaling
     */
    static func colorize(rgbaImages: [RGBAImage], colorMap: ColorMap, multipliers: Multipliers) throws -> RGBAImage {
@@ -19,7 +19,7 @@ extension Colorizer {
       let pixels = UnsafeMutableBufferPointer<PixelData>.allocate(capacity: capacity) // create a new array //      pixels.reserveCapacity(size.width * size.height)
       (0..<size.height).indices.forEach { y in
          DispatchQueue.concurrentPerform(iterations: size.width) { x in
-            let arr: [PixelData] = rgbaImages.map { $0.getPixel(x: x, y: y) } // we get pixels from both RGBAImages
+            let arr: [PixelData] = rgbaImages.map { $0.getPixel(x: x, y: y) } // We get pixels from both RGBAImages
             if let colorizedPixel: PixelData = try? colorize(pixels: arr, colorMap: colorMap) { // else { throw NSError.init(domain: "Unable to make pixel", code: 0) }
                let index: Int = y * size.width + x
                pixels[index] = colorizedPixel
