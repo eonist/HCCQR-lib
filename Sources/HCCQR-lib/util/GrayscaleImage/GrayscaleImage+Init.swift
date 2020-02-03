@@ -6,15 +6,21 @@ import CoreImage
 extension GrayscaleImage {
    /**
     * Filled image
+    * - Fixme: ⚠️️ Prob create the unmanaged pointer directly for better speed
+    * - Parameters:
+    *   - pixels: the pixels to populate the GrayscaleImage with
+    *   - size: the size you want to us ein the GrayScaleImage
     */
    static func grayscaleImage(pixel: UInt8, size: Size) -> GrayscaleImage {
       let capacity: Int = size.width * size.height
-      // fixme: ⚠️️ Prob create the unmanaged pointer directly for better speed
       let pixels: [UInt8] = .init(repeating: pixel, count: capacity)
       return .grayscaleImage(pixels: pixels, size: size)
    }
    /**
-    * From array
+    * Create GrayScaleImage From pixel-array
+    * - Parameters:
+    *   - pixels: the pixels to populate the GrayscaleImage with
+    *   - size: the size you want to us ein the GrayScaleImage
     */
    static func grayscaleImage(pixels: [UInt8], size: Size) -> GrayscaleImage {
       let unsafePixels = UnsafeMutableBufferPointer<UInt8>.allocate(capacity: pixels.count)
@@ -22,7 +28,10 @@ extension GrayscaleImage {
       return .init(pixels: unsafePixels, width: size.width, height: size.height)
    }
    /**
-    * Fresh image
+    * Returns empty grayScale-image
+    * - Parameters:
+    *   - capacity: the number of pixels you want to use
+    *   - size: the size of the returned GrayScaleImage
     */
    static func grayscaleImage(capacity: Int, size: Size) -> GrayscaleImage {
       let unsafePixels = UnsafeMutableBufferPointer<UInt8>.allocate(capacity: capacity)
@@ -30,10 +39,12 @@ extension GrayscaleImage {
    }
    /**
     * CIImage -> GrayscaleImage (⚠️️ new, untested ⚠️️)
-    * - Note: Seems to be slightly faster than converting ciimage to cgimage etc
-    * - Note: ref https://www.geekspiff.com/unlinkedCrap/ciImageToBitmap.html
+    * - Abstract: Takes a CIImage and converts it to a GrayScale pixel representation
+    * - Note: Seems to be slightly faster than converting ciimage to CGImage etc
+    * - Note: Ref https://www.geekspiff.com/unlinkedCrap/ciImageToBitmap.html
     * - Note: Use ciImg.debugDescription to fid more info about cgImage
-    * - Caution: ⚠️️ Only works if CIImage is pure black and white, which us the case for generated qr images
+    * - Caution: ⚠️️ Only works if CIImage is pure black and white, which is the case for generated qr images
+    * - Parameter ciImg: The CIImage to convert to grayscaleimage
     */
    static func monotoneImage(ciImg: CIImage) throws -> GrayscaleImage {
       let bitMapInfo = RGBAImage.bitmapInfo
@@ -42,7 +53,7 @@ extension GrayscaleImage {
       let capacity: Int = size.width * size.height
       let bytesPerRow: Int = size.width * 4 // We multiply per 4 because of the 4 channels, RGBA
       let imageData = UnsafeMutablePointer<PixelData>.allocate(capacity: capacity)
-      // Fixme: ⚠️️ Do we have to create the cgContext? can CIContext be created directly from pixeldata?
+      // - Fixme: ⚠️️ Do we have to create the cgContext? can CIContext be created directly from pixeldata?
       guard let cgContext = CGContext(data: imageData, width: size.width, height: size.height, bitsPerComponent: 8, bytesPerRow: bytesPerRow, space: colorSpace, bitmapInfo: bitMapInfo) else { throw NSError(domain: "rgbaImage - Unable to create rgbaImage", code: 0) }
       let context: CIContext = .init(cgContext: cgContext, options: nil) // .init(options: nil)// = CIContext.init(cgContext: , options: )
       context.draw(ciImg, in: ciImg.extent, from: ciImg.extent)
@@ -52,55 +63,3 @@ extension GrayscaleImage {
       return .init(pixels: monotonePixels, width: size.width, height: size.height)
    }
 }
-/**
- * DeInit
- */
-extension GrayscaleImage {
-   /**
-    * You can debug if its always deinited by counting init() calls
-    */
-   func deInit() {
-      pixels.deallocate()
-   }
-}
-/**
- * Private static helper
- */
-extension GrayscaleImage {
-   /**
-    * Creates the correct bitmapInfo
-    */
-   private static var bitmapInfo: UInt32 {
-      var bitmapInfo: UInt32 = CGBitmapInfo.byteOrder32Big.rawValue // BGRA
-      bitmapInfo = bitmapInfo | CGImageAlphaInfo.premultipliedLast.rawValue & CGBitmapInfo.alphaInfoMask.rawValue
-      return bitmapInfo
-   }
-}
-/**
- * deprecated
- */
-//extension GrayscaleImage {
-   /**
-    * CIImage -> GrayscaleImage (⚠️️ new, untested ⚠️️)
-    * - Note: Seems to be slightly faster than converting ciimage to cgimage etc
-    * - Note: ref https://www.geekspiff.com/unlinkedCrap/ciImageToBitmap.html
-    */
-//   private static func grayscaleImage(ciImg: CIImage) throws -> GrayscaleImage {
-//      Swift.print("grayscaleImage.start")
-//      Swift.print("ciImg.debugDescription:  \(ciImg.debugDescription)")
-//      let bitMapInfo = GrayscaleImage.bitmapInfo
-//      let colorSpace: CGColorSpace = CGColorSpaceCreateDeviceGray()
-//      let size: Size = (width: Int(ciImg.extent.width), height: Int(ciImg.extent.height))
-//      let capacity: Int = size.width * size.height
-//      let bytesPerRow: Int = size.width * 1 // We multiply per 1 because of the 1 channels, grayscale
-//      let imageData = UnsafeMutablePointer<UInt8>.allocate(capacity: capacity)
-//      // - Fixme: ⚠️️ Do we have to create the cgContext? can CIContext be created directly from pixeldata?
-//      let bitsPerComponent = 8 // - Fixme: ⚠️️ this could be 2, when its grayscale?
-//      guard let cgContext = CGContext(data: imageData, width: size.width, height: size.height, bitsPerComponent: bitsPerComponent, bytesPerRow: bytesPerRow, space: colorSpace, bitmapInfo: bitMapInfo) else { throw NSError(domain: "rgbaImage - Unable to create rgbaImage", code: 0) }
-//      let context: CIContext = .init(cgContext: cgContext, options: nil) // .init(options: nil)// = CIContext.init(cgContext: , options: )
-//      context.draw(ciImg, in: ciImg.extent, from: ciImg.extent)
-//      let pixels = UnsafeMutableBufferPointer<UInt8>(start: imageData, count: capacity)
-//      Swift.print("grayscaleImage.end")
-//      return .init(pixels: pixels, width: size.width, height: size.height)
-//   }
-//}

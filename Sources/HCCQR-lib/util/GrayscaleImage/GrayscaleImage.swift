@@ -9,6 +9,10 @@ struct GrayscaleImage {
    var height: Int
    /**
     * Creates a copy if you already have the pixels and width height
+    * - Parameters:
+    *   - pixels: The pixels to store
+    *   - width: width of the canvas
+    *   - height: height of the canvas
     */
    init(pixels: UnsafeMutableBufferPointer<UInt8>, width: Int, height: Int) {
       self.pixels = pixels
