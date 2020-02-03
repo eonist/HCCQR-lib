@@ -3,10 +3,16 @@ import Foundation
 import CoreImage
 
 extension BulkHCCQRTest {
-   // Write complete
+   /**
+    * Write complete
+    */
    typealias OnWriteImagesComplete = (Result<[RGBAImage], Error>) -> Void
-   // read complete
+   /**
+    * read complete
+    */
    typealias OnReadImagesComplete = (Result<[Data], Error>) -> Void
-   // everything complete
+   /**
+    * everything complete
+    */
    typealias OnComplete = (Result<Bool, Error>) -> Void
 }

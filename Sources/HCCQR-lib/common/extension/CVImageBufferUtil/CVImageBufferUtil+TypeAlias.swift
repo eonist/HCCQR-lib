@@ -10,6 +10,7 @@ import CoreImage
 public typealias BufferRect = (x: Int, y: Int, width: Int, height: Int)
 /**
  * Returns the Rect of the Buffer, so that it can work with the cropping functionality
+ * - Note this method is global, so that other class scopes can also use this functionality
  */
 func CVImageBufferGetDisplayRect(imageBuffer: CVImageBuffer) -> BufferRect {
    let size: CGSize = CVImageBufferGetDisplaySize(imageBuffer)

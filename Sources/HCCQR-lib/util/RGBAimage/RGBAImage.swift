@@ -1,7 +1,7 @@
 import Foundation
 /**
  * - Fixme: ⚠️️ You have to dealocate the memory at some point, see: https://stackoverflow.com/questions/34750166/how-to-use-unsafemutablebufferpointer
- * - Fixme: ⚠️️ this should really be called ARGBImage
+ * - Fixme: ⚠️️ This should really be called ARGBImage
  */
 public struct RGBAImage {
    var pixels: UnsafeMutableBufferPointer<PixelData>

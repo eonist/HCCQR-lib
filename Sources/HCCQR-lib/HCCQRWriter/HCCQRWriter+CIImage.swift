@@ -1,6 +1,8 @@
 import Foundation
 import QR_lib
 import CoreImage
+
+public final class HCCQRWriter {}
 /**
  * Creates HCCQR from Data
  */
@@ -8,9 +10,20 @@ extension HCCQRWriter {
    /**
     * Data -> CIImage (New)
     * - Abstract: Create two QR images from the data, and combine them into RGBAImage, then convert that to CIImage
+    * - Important: The caller must make sure the qrVersion can hold the amount of chars in string
+    * - Fixme: ⚠️️ Add support for more colors by adding colorDepth: Int in params
+    * - Fixme: ⚠️️ Threading shouldn't be done here I think. maybe use WorkItems, nsoperation, semphore etc, do more research, concurrent_apply?, Dispatchgroups?
+    * ## Example:
+    * let (qrVersion, qrMode, ecLevel): QRConfig = (10, .byte, .l) // settings
+    * guard let data: String = HCCQRStringData.randomData(qrVersion: qrVersion, qrMode: qrMode, ecLevel:ecLevel) else { Swift.print("unable to create random string"); return }
+    * HCCQRWriter.ciImage(data: data, multiplier: (moduleScale: 6, screenScale: 2), qrConfig: (qrVersion, ecLevel), onComplete: { ciImg in Swift.print("ciImg: \(ciImg)") })
+    * - Parameters:
+    *   - data: The data to be embedded into the HCCQR-image
+    *   - qrConfig: we supply version because it's more optimized than calculating moduleCount on the basis of data.count
+    *   - multipliers: for retina you need 2x scale etc,  ModuleCount equals 1 pixel. ModuleMultiplier scales this
+    *   - onComplete: callback when the image has been produced
     */
    public static func ciImage(data: Data, multipliers: Multipliers, qrConfig: QRConfig = (.v10, .l), onComplete: @escaping OnHCCQRCIImageCompleted) {
-//      Swift.print("HCCQRWriter.ciImage()")
       let dataArr: [Data] = data.split(index: data.count / 2) // Split the data in two
       var ciImgs: [CIImage?] = [CIImage?](repeating: nil, count: dataArr.count) // Pre-filled array for the images
       dataArr.enumerated().forEach { (_ offset: Int, _ data: Data) in

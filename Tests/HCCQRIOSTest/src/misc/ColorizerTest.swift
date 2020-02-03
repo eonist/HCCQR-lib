@@ -9,22 +9,23 @@ final class ColorizerTest {}
 extension ColorizerTest {
    /**
     * Tests colorizer method
+    * 1. Creates 2 qr images with random QR-Data
+    * 2. Combines the 2 images into 1 HCCQR image
+    * 3. Asserts that the HCCQR image has only colors from the ColorMap
     * - Fixme: ⚠️️ needs some refactoring and cleaning
     */
    static func testColorizer() -> Bool {
-      guard let img1 = createRandomQRImg() else { Swift.print("err"); return false }
-//      Swift.print("view1.image?.scale:  \(img1.scale)")
-//      Swift.print("view1.image?.size:  \(img1.size)")
-      guard let img2 = createRandomQRImg() else { Swift.print("err"); return false }
+      guard let img1: Image = createRandomQRImg() else { Swift.print("err"); return false }
+      guard let img2: Image = createRandomQRImg() else { Swift.print("err"); return false }
       let imgs: [Image] = [img1, img2].compactMap { $0 }
       guard let resultImage: Image = try? Colorizer.colorize(images: imgs, colorMap: Colorizer.colorMap(), multipliers: (moduleScale: 1, screenScale: 2)) else { Swift.print("unable to create colorized image"); return false }
-//      Swift.print("resultView.scale:  \(String(describing: resultImage.scale))")
-//      Swift.print("resultView.image?.size:  \(String(describing: resultImage.size))")
       let hasOnlyRGBColors: Bool = ColorMapAsserter.hasOnlyColorMap(uiImage: resultImage, colorMap: [.red, .green, .blue, .white])
-      Swift.print("hasOnlyRGBColors:  \(hasOnlyRGBColors)")
       return hasOnlyRGBColors
    }
 }
+/**
+ * Private static helpers
+ */
 extension ColorizerTest {
    /**
     * Returns qr img

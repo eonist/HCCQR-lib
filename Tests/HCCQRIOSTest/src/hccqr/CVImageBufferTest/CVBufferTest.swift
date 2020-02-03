@@ -2,8 +2,7 @@ import Foundation
 @testable import HCCQR_lib
 import QR_lib
 
-class CVImageBufferTest {
-   typealias OnComplete = (Bool) -> Void
+class CVBufferTest {
    /**
     * HCCQR -> RGBAImage
     * 1. Creates random HCCQR-Data
@@ -13,8 +12,6 @@ class CVImageBufferTest {
     * 5. Verify that data is the same as original data
     */
    static func test(onComplete: @escaping OnComplete) {
-//      Swift.print("CVImageBuffer")
-      // Create UIImage from Data
       let config: QRConfig = (.v1, .byte, .l) // Config
       guard let data = HCCQRStringData.randomData(config: config) else { Swift.print("unable to create data"); return }
       DispatchQueue.global(qos: .userInitiated).async {

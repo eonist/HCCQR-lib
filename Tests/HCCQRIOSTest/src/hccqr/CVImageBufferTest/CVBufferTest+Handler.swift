@@ -4,11 +4,11 @@ import QR_lib
 /**
  * Handlers
  */
-extension CVImageBufferTest {
+extension CVBufferTest {
    /**
     * On HCCQR image created
     */
-   private static func onWriteComplete(result: Result<Image, Error>, data randomData: Data, onComplete: @escaping OnComplete) {
+   static func onWriteComplete(result: Result<Image, Error>, data randomData: Data, onComplete: @escaping OnComplete) {
       Swift.print("onHCCQRImageComplete")
       guard let hccqrImage: Image = result.value() else { Swift.print("Unable to create hccqr image \(result.errorStr)"); return }
       Swift.print("hccqrImage.size:  \(hccqrImage.size) scale:  \(hccqrImage.scale)") //      Swift.print("hccqrImage.cgImage()?.width:  \(hccqrImage.cgImage?.width)")
@@ -21,6 +21,11 @@ extension CVImageBufferTest {
          onReadComplete(result: result, randomData: randomData, onComplete: onComplete)
       }
    }
+}
+/**
+ * Private static methods
+ */
+extension CVBufferTest {
    /**
     * Completion handler
     * - Note: We just compare the data payload here, since FileHasher is not added as a dep, it could be added, since this is just test code

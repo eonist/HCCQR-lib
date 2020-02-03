@@ -1,7 +1,7 @@
 import Foundation
 /**
- * - Fixme: ⚠️️ some of these methods are not in use. remove them
- * - Fimxe: ⚠️️ move to DataSugar framework
+ * - Fixme: ⚠️️ Some of these methods are not in use. remove them
+ * - Fimxe: ⚠️️ Move to DataSugar framework
  */
 extension Data {
    /**

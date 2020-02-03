@@ -4,9 +4,9 @@ import CoreImage
 /**
  * Creates HCCQR from Data
  */
-public final class HCCQRWriter {
+extension HCCQRWriter {
    /**
-    * Data -> Image (⚠️️⚠️️⚠️️ DEPRECATE SOON ⚠️️⚠️️⚠️️)
+    * Data -> Image (⚠️️⚠️️⚠️️ DEPRECATE SOON, because we use Data - CIImage now ⚠️️⚠️️⚠️️)
     * - Note: For more in-depth example see repo readme
     * - Important: The caller must make sure the qrVersion can hold the amount of chars in string
     * - Important: Remember to add the resulting img to view within main.thread

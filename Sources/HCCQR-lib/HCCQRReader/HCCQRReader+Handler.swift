@@ -8,6 +8,9 @@ import CoreImage
 extension HCCQRReader {
    /**
     * onSplitComplete
+    * 1. Get Data+Meta from 2. QR-Images
+    * 2. Merge both Data payloads into one Data
+    * 2. Call onComplete When both QR-Images are processed
     * - Abstract: after splitting the HCCQRImage into color channels, we create QRImage layers of the coøor channels
     * - Fixme: ⚠️️ Since the qr data is in the same spot across splitResult, Use the dataAndMeta and use the rect to crop the second ciImage, or buffer
     * - Parameters:
@@ -18,21 +21,16 @@ extension HCCQRReader {
       guard let payload: Splitter.SplitPayload = result.value() else { onComplete(.failure(NSError("q1, q2 err \(result.errorStr)"))); return }
       let ciImages: [CIImage] = [payload.qrImg1, payload.qrImg2]
       var dataAndFrames: [QRReader.DataAndQuad?] = [QRReader.DataAndQuad?](repeating: nil, count: ciImages.count)
-//      HCCQRReader.readQrTime = .init()
+      // HCCQRReader.readQrTime = .init()
       DispatchQueue.main.async { // Has to be done on main thread, or else Apples.qrreader behaves bad
          ciImages.enumerated().forEach { item in
-            //DispatchQueue.global(qos: .background).async {
+            // DispatchQueue.global(qos: .background).async {
             var err: Error?
             var dataAndQuad: QRReader.DataAndQuad?
-            do { dataAndQuad = try QRReader.dataAndQuad(ciImage: item.element, useAccurateDetector: true) }// - Fixme: ⚠️️ why not just throw? }
-            catch {
-               //Swift.print("item.element.colorSpace:  \(String(describing: item.element.colorSpace))")
-               //Swift.print("item.element.debugDescription:  \(item.element.debugDescription)")
-               err = error
-            }
+            do { dataAndQuad = try QRReader.dataAndQuad(ciImage: item.element, useAccurateDetector: true) } catch { err = error } // Swift.print("colorSpace:  \(String(describing: item.element.colorSpace)) debugDescription:  \(item.element.debugDescription)")
             onQRCodeComplete(i: item.offset, dataAndQuad: dataAndQuad, error: err, dataAndFrames: &dataAndFrames, payload: payload, onComplete: onComplete)
+             //}
          }
-         //         }
       }
    }
    /**
@@ -45,8 +43,7 @@ extension HCCQRReader {
       dataAndFrames[i] = dataAndQuad
       if dataAndFrames.first(where: { $0 == nil }) == nil { // Makes sure all images finished
          let data: Data = dataAndFrames.compactMap { $0?.qrData }.reduce(Data(), +) // Merges the data
-//         readTime += abs(HCCQRReader.readQrTime.timeIntervalSinceNow)
-//         Swift.print("👉 Read QR complete: \(abs(HCCQRReader.readQrTime.timeIntervalSinceNow))")
+         // readTime += abs(HCCQRReader.readQrTime.timeIntervalSinceNow); Swift.print("👉 Read QR complete: \(abs(HCCQRReader.readQrTime.timeIntervalSinceNow))")
          onComplete(.success((data, payload.qrImg1, payload.qrImg2, dataAndFrame.quad))) // Return the result here
       }
    }

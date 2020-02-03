@@ -2,7 +2,7 @@
 @testable import HCCQR_lib
 import UIKit
 /**
- * - Fixme: ⚠️️These are mostly visual tests, find something to unit-test
+ * - Fixme: ⚠️️ These are mostly visual tests, find something to unit-test
  */
 final class ColorExtractionTest {
    /**

@@ -6,7 +6,8 @@ import CoreImage
  */
 extension HCCQRWriter {
    /**
-    * Data -> Image (⚠️️ new ⚠️️)
+    * Data -> Image
+    * 🏀 Write down the process
     * - Note: Supports The grayscaleImage optimization
     */
    public static func img(data: Data, multipliers: Multipliers, qrConfig: QRConfig = (.v10, .l), useDarkMode: Bool = false, onComplete: @escaping OnHCCQRImageCompleted) {
@@ -18,9 +19,9 @@ extension HCCQRWriter {
       }
    }
    /**
-    * Data -> CIImage (New)
+    * Data -> CIImage
     * - Abstract: Create two QR images from the data, and combine them into RGBAImage, then convert that to CIImage
-    * - Caution: ⚠️️ Remember to deinit the result once its consumed
+    * - Caution: ⚠️️ Remember to deinit the result once it's consumed
     */
    public static func rgbaImage(data: Data, multipliers: Multipliers, qrConfig: QRConfig = (.v10, .l), useDarkMode: Bool = false, onComplete: @escaping OnRGBAImageComplete) {
       // Swift.print("HCCQRWriter.ciImage()")

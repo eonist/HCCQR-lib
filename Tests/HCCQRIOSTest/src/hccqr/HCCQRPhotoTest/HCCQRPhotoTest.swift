@@ -6,6 +6,7 @@ import CoreImage
 
 final class HCCQRPhotoTest {} // - Fixme: ⚠️️ Rename to: ReadPhotoTest ?
 /**
+ * Reads data from real photo of HCCQR
  * 1. Creates a Image from photo-file on disk
  * 2. Converts Image to HCCQR-Image
  * 3. Converts HCCQR-Image to RGBAImage via CVImageBuffer

@@ -5,7 +5,7 @@ import CoreImage
  */
 extension Splitter {
    /**
-    * New
+    * New ⚠️️
     * - Note: grayscale is better for qr to read than monotone
     */
    static func onGrayChannelsComplete(result: Channel.GrayscaleChannelsResult, onComplete:@escaping SplitPayloadCompleted) { // called when the (R,G,B) channels are split
@@ -22,6 +22,8 @@ extension Splitter {
          }
       }
    }
+}
+extension Splitter {
    /**
     * Composite complete
     */

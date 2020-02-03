@@ -8,6 +8,11 @@ import CoreImage
 extension HCCQRReader {
    /**
     * ImageBuffer -> DataAndQuad
+    * 1. Create RGBA representation of the CVImageBuffer
+    * 2. Split the RGBA into multople QR-Images
+    * 3. Extract the data from the QR-Images
+    * 4. Combine the multiple Data's into one Data
+    * 5. Return the data and the meta-data
     */
    public static func dataAndMeta(imageBuffer: CVImageBuffer, crop: BufferRect, onComplete: @escaping OnDataAndMetaComplete) {
       guard let rgbaImg: RGBAImage = try? CVImageBufferUtil.rgbaImage(imageBuffer: imageBuffer, crop: crop) else { onComplete(.failure("unable to get RGBAImage")); return }

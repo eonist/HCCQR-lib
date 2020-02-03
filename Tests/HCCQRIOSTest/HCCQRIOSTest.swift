@@ -45,7 +45,7 @@ extension HCCQRIOSTest {
     */
    private func testCVImageBuffer() {
       let expectation = self.expectation(description: "cvBufferUtil")
-      CVImageBufferTest.test { success in
+      CVBufferTest.test { success in
          Swift.print("CVImageBufferTest - success:  \(success ? "✅":"🚫")")
          expectation.fulfill()
          XCTAssertTrue(success)
