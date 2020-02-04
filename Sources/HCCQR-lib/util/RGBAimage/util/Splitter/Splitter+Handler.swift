@@ -13,6 +13,7 @@ extension Splitter {
     * - Note: red means black in layer-2 only
     * - Note: white means white in both layers
     * - Fixme: ⚠️️ Use Dispatchgroup to make the completion more readable
+    * - Fixme: ⚠️️⚠️️⚠️️ Possibly deprecate, since we use GrayScale version of this now
     */
    static func onChannelsComplete(result: Channel.ChannelsResult, onComplete:@escaping SplitPayloadCompleted) { // called when the (R,G,B) channels are split
       guard let rbgaImages: Channel.RGBAImages = result.value() else { onComplete(.failure(NSError("Unable to create rgbaImgs \(result.errorStr)"))); return } // (r,g,b)

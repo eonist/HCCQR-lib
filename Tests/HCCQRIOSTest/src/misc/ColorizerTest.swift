@@ -36,3 +36,20 @@ extension ColorizerTest {
       return try? QRWriter.image(data: data, ecLevel: config.ecLevel, moduleMultiplier: 6)
    }
 }
+extension ColorizerTest {
+   /**
+    * Test colorizing b&w pixels to color pixel with color-map
+    */
+   static func testColorizingPixel() -> Bool {
+      guard let pixelA: PixelData = try? Colorizer.colorize(pixels: [PixelData.Colors.blackPixel, PixelData.Colors.whitePixel], colorMap: Colorizer.colorMap(useDarkMode: false)) else { fatalError("err") }// -> RedPixel ⚠️️ complete this
+      let isPixelARed: Bool = PixelData.isMatching(a: pixelA, b: PixelData.Colors.redPixel)
+      Swift.print("isPixelARed:  \(isPixelARed)")
+      guard let pixelB: PixelData = try? Colorizer.colorize(pixels: [PixelData.Colors.whitePixel, PixelData.Colors.whitePixel], colorMap: Colorizer.colorMap(useDarkMode: false)) else { fatalError("err") }// -> BluePixel
+      Swift.print("pixelB:  \(pixelB)")
+      let isPixelBBlue: Bool = PixelData.isMatching(a: pixelB, b: PixelData.Colors.bluePixel)
+      Swift.print("isPixelBBlue:  \(isPixelBBlue)")
+      guard let pixelC: PixelData = try? Colorizer.colorize(pixels: [PixelData.Colors.whitePixel, PixelData.Colors.blackPixel], colorMap: Colorizer.colorMap(useDarkMode: false)) else { fatalError("err") }// -> BluePixel
+      let isPixelCGreen: Bool = PixelData.isMatching(a: pixelC, b: PixelData.Colors.greenPixel)
+      return isPixelARed && isPixelBBlue && isPixelCGreen
+   }
+}

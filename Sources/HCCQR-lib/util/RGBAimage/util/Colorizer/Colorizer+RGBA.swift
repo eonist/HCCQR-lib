@@ -25,7 +25,7 @@ extension Colorizer {
       (0..<size.height).indices.forEach { y in
          DispatchQueue.concurrentPerform(iterations: size.width) { x in
             let arr: [PixelData] = rgbaImages.map { $0.getPixel(x: x, y: y) } // We get pixels from both RGBAImages
-            if let colorizedPixel: PixelData = try? colorize(pixels: arr, colorMap: colorMap) { // THis cant throw, because its inside concurrent closure
+            if let colorizedPixel: PixelData = try? colorize(pixels: arr, colorMap: colorMap) { // This can't throw, because it's inside concurrent closure
                let index: Int = y * size.width + x
                pixels[index] = colorizedPixel
             }
@@ -35,38 +35,5 @@ extension Colorizer {
       let rgbaImage: RGBAImage = RGBAImageScaler.scale(pixels: pixels, size: (size.width, size.height), multipliers: multipliers)
       pixels.deallocate() // ⚠️️ New, so might not work, this deallocates the pixels once they are not needed anymore
       return rgbaImage
-   }
-}
-/**
- * Private static helper
- */
-extension Colorizer {
-   typealias MatchColor = (ColorMapItem) throws -> Bool
-   typealias MatchCondition = (_ i: Int, _ pixel: PixelData) -> Bool
-   /**
-    * Converts a series of b&w pixels into one color pixel (on the basis of a colorMap rule set)
-    * - Fixme: ⚠️️ Try to make this method more readable, and faster, can we use concurrent_apply ?
-    * ## Examples:
-    * colorize(pixels: [blackPixel, whitePixel]) -> RedPixel
-    * colorize(pixels: [whitePixel, whitePixel]) -> BluePixel
-    * - Parameters:
-    *   - pixels: the layers of pixels at a pixel-positions (2-layers for 4-colors)
-    *   - colorMap: the color-map to match against
-    */
-   private static func colorize(pixels: [PixelData], colorMap: ColorMap) throws -> PixelData {
-      let findColor: MatchColor = { colorMapItem in
-         if colorMapItem.idx.count != pixels.count { throw NSError(domain: "Colorize.colorize - colorMap does not match pixel layer count", code: 0) }
-         let condition: MatchCondition = { (i: Int, pixel: PixelData) in
-            let bothAreBlack: Bool = pixel.isBlack && !colorMapItem.idx[i] // false means black
-            let bothAreWhite: Bool = pixel.isWhite && colorMapItem.idx[i] // true means white
-            if bothAreBlack == false && bothAreWhite == false { return false } // <- Sort of crazy looking, but it works
-            else { return true }
-         }
-         // - Fixme ⚠️️ could we use async_apply here, in the .first loop?
-         return (pixels.enumerated().first(where: condition) == nil)
-      }
-      // - Fixme ⚠️️ could we use async_apply here, in the .first loop?
-      guard let color: PixelData.RGBColor = try colorMap.first(where: findColor)?.color else { throw NSError(domain: "Unable to colorize", code: 0) }
-      return PixelData(r: color.r, g: color.g, b: color.b, a: color.a) // (uiColor: color)
    }
 }

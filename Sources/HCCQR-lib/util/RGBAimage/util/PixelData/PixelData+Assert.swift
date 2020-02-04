@@ -26,11 +26,18 @@ extension PixelData {
    }
    /**
     * Measure if color is black (used in the colorize method)
-    * - Note: Looks funny, but it's that way to make it fast
+    * - Note: Looks funny, but it's that way to make it fast (bsaically exits early if something doesn't match)
     * - Note: Used by colorize method
     */
    var isBlack: Bool {
       return !(self.r != 0 || self.g != 0 || self.b != 0)
+   }
+   /**
+    * Match two pixels
+    * - Note: Looks funny, but it's that way to make it fast (bsaically exits early if something doesn't match)
+    */
+   static func isMatching(a: PixelData, b: PixelData) -> Bool {
+      return !(a.r != b.r || a.g != b.g || a.b != b.b/* || a.a != b.a*/)
    }
 }
 /**
@@ -39,6 +46,7 @@ extension PixelData {
 extension PixelData {
    /**
     * Assert color within threshold
+    * - Note: Used by PixelTest.testColorAssertionWithinThresholdForPixel
     * ## Examples:
     * let offset: UInt8 = UInt8(255 * 0.2)
     * let redishPixel: Pixel = .init(R: 255-offset, G: 0+offset, B: 0+offset, A: 255)
@@ -50,7 +58,7 @@ extension PixelData {
     *   - pixel: Compare self to this pixel
     *   - halfThreshold: with threshold more or less (I.e: +25,-25 from a value)
     */
-   private static func isColor(a: PixelData, b: PixelData, halfThreshold: UInt8) -> Bool {
+   static func isColor(a: PixelData, b: PixelData, halfThreshold: UInt8) -> Bool {
       return PixelData.isColor(rgb1: a.rgb, rgb2: b.rgb, halfThreshold: halfThreshold)
    }
 }
@@ -61,6 +69,7 @@ extension PixelData {
    /**
     * Asserts if a color is near another color within a threshold
     * - Fixme: ⚠️️ It might be the case that if a UInt8 value is near the bounds, the threshold should actually be increased to the distance to the bound, I guess do some exploring on this
+    * - Fixme: ⚠️️ rename rgb1 to a, and rgb2 to b
     * - Parameters:
     *   - rgb1: first color
     *   - rgb2: second color

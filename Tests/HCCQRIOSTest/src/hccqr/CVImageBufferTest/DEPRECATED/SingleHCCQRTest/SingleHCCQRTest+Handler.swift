@@ -11,7 +11,7 @@ extension SingleHCCQRTest {
    /**
     * Write complete (Created HCCQR image from string)
     */
-   private static func onWriteComplete(hccqrImage ciImage: CIImage, randomData: Data, onComplete: @escaping OnComplete) {
+   static func onWriteComplete(hccqrImage ciImage: CIImage, randomData: Data, onComplete: @escaping OnComplete) {
       Swift.print("WriteTime:  \(abs(writeTime.timeIntervalSinceNow))")
       Swift.print("ciImage.extent.size:  \(ciImage.extent.size)")
       HCCQRReader.dataAndImages(ciImage: ciImage) { result in // Start reading the hccqr

@@ -1,6 +1,8 @@
 import Foundation
 @testable import HCCQR_lib
-
+/**
+ * - Fixme: ⚠️️ Make tests that uses the bland colormap?
+ */
 final class PixelTest {
    /**
     * Color assertion
@@ -11,7 +13,7 @@ final class PixelTest {
       let redPixel: PixelData = .init(r: 255, g: 0, b: 0, a: 255)
       let threshold: UInt8 = .init(255 * 0.25)
       let halfThreshold: UInt8 = .init(threshold / 2)
-      let isColorRedish: Bool = redishPixel.isColor(pixel: redPixel, halfThreshold: halfThreshold)
+      let isColorRedish: Bool = PixelData.isColor(a: redishPixel, b: redPixel, halfThreshold: halfThreshold)
       Swift.print("isColorRedish:  \(isColorRedish)")
       return isColorRedish
    }

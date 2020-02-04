@@ -5,7 +5,7 @@ import CoreImage
  */
 extension Colorizer {
    /**
-    * 
+    * idx represent false = black, true = white, if you match the array correctly, then the color is used
     */
    typealias ColorMap = [ColorMapItem]
    /**

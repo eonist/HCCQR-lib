@@ -11,7 +11,7 @@ extension SimpleHCCQRTest {
    /**
     * Write completion handler
     */
-   private static func onWriteComplete(result: HCCQRImageResult, data randomData: Data, onComplete: @escaping OnComplete) {
+   static func onWriteComplete(result: HCCQRImageResult, data randomData: Data, onComplete: @escaping OnComplete) {
       guard let hccqrImage: Image = result.value() else { Swift.print("unable to create hccqr image \(result.errorStr)"); return }
       DispatchQueue.main.async {
          Swift.print("hccqrImage.size:  \(hccqrImage.size)")

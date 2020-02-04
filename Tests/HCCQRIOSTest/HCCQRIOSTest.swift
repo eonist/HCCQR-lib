@@ -9,6 +9,7 @@ class HCCQRIOSTest: XCTestCase {
       super.tearDown()
    }
    func testExample() {
+      XCTAssertTrue(ColorizerTest.testColorizingPixel())
 //      XCTAssertEqual(QRTesting.createQR(), CGSize(width: 354.0, height: 354.0))
 //      XCTAssertEqual(ScaleTesting.testScalingRGBAImage(), 4)
 //      XCTAssertTrue(ColorizerTest.testColorizer())
@@ -18,7 +19,7 @@ class HCCQRIOSTest: XCTestCase {
 //      testBulk() // ⭐ Read and write multiple HCCQR images
 //      testCVImageBuffer() // test the new buffer -> RGBA
 //      testCIImage()
-      testReadingManyPhotos() // ⭐ Reading many photos
+//      testReadingManyPhotos() // ⭐ Reading many photos
    }
    func testPerformanceExample() {
       self.measure { }

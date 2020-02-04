@@ -10,6 +10,7 @@ final class Compositor {
     * - Note: layer 2: b, g -> qrImg2
     * - Note: Used in the process to convert HCCQR to Data
     * - Fixme: ⚠️️ Possibly simplify method with defering deinit of composite
+    * - Fixme: ⚠️️⚠️️⚠️️ Possibly deprecate, since we use GrayScale version of this now
     */
    static func composite(first: RGBAImage, second: RGBAImage) throws -> CIImage {
       let rgbaImg: RGBAImage = try composite(rgbaImages: [first, second])
@@ -24,7 +25,7 @@ final class Compositor {
     * - Note: we invert the image in this method, because doing it in post takes a long time
     * - Note: Used in the process to convert HCCQR to Data
     * - Fixme: ⚠️️ Can the compositing be done simpler, more efficient?
-    * - FIxme: ⚠️️⚠️️⚠️️⚠️️ this is depricated, we yse GrayscaleImage to compute composition now
+    * - FIxme: ⚠️️⚠️️⚠️️⚠️️ this is depricated, we use GrayscaleImage to compute composition now
     * - Parameter rgbaImages: an array of RGBAImages to be composited together into 1 RGBAImage
     * - Note: Should really be private, but some tests use it
     */
