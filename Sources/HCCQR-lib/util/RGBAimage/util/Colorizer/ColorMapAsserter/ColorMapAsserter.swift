@@ -5,7 +5,7 @@ import Foundation
  */
 final class ColorMapAsserter {
    /**
-    * Asserts if an image has non black or white pixel. (aka a gray pixel)
+    * Asserts if an image has non black or white pixel.
     */
    static func hasOnlyBlackAndWhiteColorMap(uiImage: Image) -> Bool {
       return hasOnlyColorMap(uiImage: uiImage, colorMap: [.black, .white])
@@ -13,6 +13,7 @@ final class ColorMapAsserter {
    /**
     * Asserts if an image has only the colors specified in the colors array
     * - Abstract: ensure that img only has valid colors, aka no bluring
+    * - Note: This method is used for testing and debugging mostly
     * ## Example:
     * hasOnlyColorMap(these: [.red, .green, .blue, .white])
     * - Note: this method is just for debugging, so no need to optimize it too much
