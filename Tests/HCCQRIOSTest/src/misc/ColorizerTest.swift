@@ -39,6 +39,7 @@ extension ColorizerTest {
 extension ColorizerTest {
    /**
     * Test colorizing b&w pixels to color pixel with color-map
+    * - Note: basically makes sure any optimization applied to the colorizer will work
     */
    static func testColorizingPixel() -> Bool {
       guard let pixelA: PixelData = try? Colorizer.colorize(pixels: [PixelData.Colors.blackPixel, PixelData.Colors.whitePixel], colorMap: Colorizer.colorMap(useDarkMode: false)) else { fatalError("err") }// -> RedPixel ⚠️️ complete this

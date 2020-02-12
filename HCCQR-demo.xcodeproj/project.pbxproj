@@ -131,6 +131,8 @@
 		F1D8A68523E95BC100F17A81 /* Colorizer+Pixel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D8A68323E95BC100F17A81 /* Colorizer+Pixel.swift */; };
 		F1D8A68823E9626300F17A81 /* Colorizer+DEPRECATED.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D8A68723E9626300F17A81 /* Colorizer+DEPRECATED.swift */; };
 		F1D8A68923E9626300F17A81 /* Colorizer+DEPRECATED.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D8A68723E9626300F17A81 /* Colorizer+DEPRECATED.swift */; };
+		F1D8A68B23E9952200F17A81 /* Colorizer+Gray+Pixel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D8A68A23E9952200F17A81 /* Colorizer+Gray+Pixel.swift */; };
+		F1D8A68C23E9952200F17A81 /* Colorizer+Gray+Pixel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D8A68A23E9952200F17A81 /* Colorizer+Gray+Pixel.swift */; };
 		F1E5710923A3EF3100E090BB /* HCCQRIOSTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E5710823A3EF3100E090BB /* HCCQRIOSTest.swift */; };
 		F1E5711723A3F2C400E090BB /* ScaleTesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F165C25023A00D35005D30EC /* ScaleTesting.swift */; };
 		F1E5711823A3F2C400E090BB /* QRTesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F165C25323A01044005D30EC /* QRTesting.swift */; };
@@ -388,6 +390,7 @@
 		F1D8A68023E8494200F17A81 /* PixelData+DEPRECATED.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PixelData+DEPRECATED.swift"; sourceTree = "<group>"; };
 		F1D8A68323E95BC100F17A81 /* Colorizer+Pixel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Colorizer+Pixel.swift"; sourceTree = "<group>"; };
 		F1D8A68723E9626300F17A81 /* Colorizer+DEPRECATED.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Colorizer+DEPRECATED.swift"; sourceTree = "<group>"; };
+		F1D8A68A23E9952200F17A81 /* Colorizer+Gray+Pixel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Colorizer+Gray+Pixel.swift"; sourceTree = "<group>"; };
 		F1E5710623A3EF3100E090BB /* HCCQRIOSTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HCCQRIOSTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1E5710823A3EF3100E090BB /* HCCQRIOSTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HCCQRIOSTest.swift; sourceTree = "<group>"; };
 		F1E5710A23A3EF3100E090BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -553,8 +556,8 @@
 				F168526B2213443700C27EAA /* Colorizer+Image.swift */,
 				F17CB6FF23AB9DDB00C4BED8 /* Colorizer+CIImage.swift */,
 				F168526C2213443700C27EAA /* Colorizer+RGBA.swift */,
-				F1D8A68323E95BC100F17A81 /* Colorizer+Pixel.swift */,
 				F15C9F7923BA558A00F9D524 /* Colorizer+Gray.swift */,
+				F1D8A68A23E9952200F17A81 /* Colorizer+Gray+Pixel.swift */,
 				F168526E2213443700C27EAA /* Colorizer+Const.swift */,
 				F18A4D7B239F0F4B0065078A /* Colorizer+TypeAlias.swift */,
 				F16852BE221354BD00C27EAA /* ColorMapAsserter */,
@@ -917,6 +920,7 @@
 		F1D8A68623E9624300F17A81 /* DEPRECATED */ = {
 			isa = PBXGroup;
 			children = (
+				F1D8A68323E95BC100F17A81 /* Colorizer+Pixel.swift */,
 				F1D8A68723E9626300F17A81 /* Colorizer+DEPRECATED.swift */,
 			);
 			path = DEPRECATED;
@@ -1273,6 +1277,7 @@
 				F1E645ED23940B3D008D2ABE /* HCCQRStringData.swift in Sources */,
 				F1F3E04823BA1C8E00D367F1 /* Channel+RGBA.swift in Sources */,
 				F1E645E223940B3D008D2ABE /* PixelData.swift in Sources */,
+				F1D8A68C23E9952200F17A81 /* Colorizer+Gray+Pixel.swift in Sources */,
 				F181F12123B9357C00145DEA /* Splitter+Handler.swift in Sources */,
 				F1E645E523940B3D008D2ABE /* PixelData+Setter.swift in Sources */,
 				F181F10B23B9091400145DEA /* GrayscaleImage.swift in Sources */,
@@ -1376,6 +1381,7 @@
 				F165C208239F22A7005D30EC /* RangeUInt8.swift in Sources */,
 				F1F3E04723BA1C8E00D367F1 /* Channel+RGBA.swift in Sources */,
 				F1E645C723940B3C008D2ABE /* PixelData.swift in Sources */,
+				F1D8A68B23E9952200F17A81 /* Colorizer+Gray+Pixel.swift in Sources */,
 				F181F12023B9357C00145DEA /* Splitter+Handler.swift in Sources */,
 				F1E645BC23940B3C008D2ABE /* RGBAImage.swift in Sources */,
 				F181F10A23B9091400145DEA /* GrayscaleImage.swift in Sources */,

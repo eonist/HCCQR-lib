@@ -4,7 +4,7 @@ import Foundation
  */
 extension Colorizer {
    typealias MatchColor = (ColorMapItem) throws -> Bool
-   typealias MatchCondition = (_ i: Int, _ pixel: PixelData) -> Bool
+   typealias MatchCondition = (_ i: Int, _ pixel: PixelData) -> Bool /*⚠️️ Deprecated ⚠️️*/
    /**
     * Converts a series of b&w pixels into one color pixel (on the basis of a colorMap rule set)
     * 1. Asserts that layer.count match colorMap.count
@@ -15,6 +15,7 @@ extension Colorizer {
     * - Fixme: ⚠️️ Try to make this method more readable, and faster, can we use concurrent_apply ?
     * - Fixme: ⚠️️ Consider checking for white before black, if its more common in a qr code?
     * - Fixme: ⚠️️ Possibly try to move the asserters out of the method, to mak it more readable, see first with custom method in ArrayAsserter library
+    * - Fixme: ⚠️️ This method will probably be deprecated, because we use the grayscale version of it now
     * ## Examples:
     * colorize(pixels: [blackPixel, whitePixel], colorMap: Colorizer.colorMap(darkMode: false)) -> RedPixel ⚠️️ complete this
     * colorize(pixels: [whitePixel, whitePixel], colorMap: Colorizer.colorMap(darkMode: false)) -> BluePixel
@@ -28,7 +29,7 @@ extension Colorizer {
          let condition: MatchCondition = { (i: Int, pixel: PixelData) in
             let firstPairMatch = { pixel.isBlack && !colorMapItem.idx[i] } // false means black
             let secondPairMatch = { pixel.isWhite && colorMapItem.idx[i] } // true means white
-            return !(firstPairMatch() || secondPairMatch()) // looks a bit funny, but its more efficient than using &&
+            return !(firstPairMatch() || secondPairMatch()) // looks a bit funny, but it's more efficient than using &&
          }
          return (pixels.enumerated().contains(where: condition)) == false // - Fixme ⚠️️ Could we use async_apply here, in the .first loop?
       }
