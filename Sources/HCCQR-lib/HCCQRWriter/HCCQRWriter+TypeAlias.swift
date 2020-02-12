@@ -10,7 +10,9 @@ extension HCCQRWriter {
     * - Fixme: ⚠️️ Add colorDepth to this tuple, to support more colors than 4
     */
    public typealias QRConfig = (qrVersion: QRVer, ecLevel: ECLevel)
-   // rename bellow to OnCIImageComplete
+   /**
+    * - Fixme: ⚠️️ Rename bellow to OnCIImageComplete
+    */
    public typealias OnHCCQRCIImageCompleted = (Result<CIImage, Error>) -> Void
    public typealias OnRGBAImageComplete = (Result<RGBAImage, Error>) -> Void
 }

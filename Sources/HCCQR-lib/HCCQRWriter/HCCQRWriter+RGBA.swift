@@ -34,7 +34,7 @@ extension HCCQRWriter {
       let dataArr: [Data] = data.split(index: data.count / 2) // Split the data in two
       var ciImgs: [CIImage?] = [CIImage?](repeating: nil, count: dataArr.count) // Pre-filled array for the images
       dataArr.enumerated().forEach { (_ offset: Int, _ data: Data) in
-         DispatchQueue.global(qos: .userInitiated).async { // Adds the operationto a background-thread
+         DispatchQueue.global(qos: .userInitiated).async { // Adds the operation to a background-thread
             let ciImg: CIImage? = try? QRWriter.ciImage(data: data, ecLevel: qrConfig.ecLevel) // Create B&W QR-image
             DispatchQueue.main.async { // I guess main-thread is needed here because we access an array
                onCIImagesComplete(i: offset, ciImg: ciImg, ciImgs: &ciImgs, multipliers: multipliers, useDarkMode: useDarkMode, onComplete: onComplete)
@@ -50,13 +50,24 @@ extension HCCQRWriter {
    /**
     * onCreateCIImgComplete (New)
     * - Note: Used in the process of converting Data to HCCQR
-    * - Fixme: ⚠️️ add step doc 
+    * 1. CIImage's comes in
+    * 2. When the result array is full of CIImages the colorizing starts
+    * 3. Colorize grayscale CIImages
+    * 4. return RGBA image
+    * - Important: ⚠️️ We could get raw grayscale or even puter bool info, but for now we use apples qr-creation method, and that uses CIImage as output
+    * - Parameters:
+    *   - i: the index of the CIImage to be placed in the result-array
+    *   - ciImg: The image to be placed in the result-array
+    *   - ciImgs: The completion result array (initially populated with nils)
+    *   - multipliers: Screen and module scale
+    *   - useDarkMode: Toggle between dark and light mode (dark / white background)
+    *   - onComplete: Return the complete HCCQR image from grayscale qr represenations
     */
    private static func onCIImagesComplete(i: Int, ciImg: CIImage?, ciImgs:inout [CIImage?], multipliers: Multipliers, useDarkMode: Bool = false, onComplete: OnRGBAImageComplete) {
       guard let ciImg: CIImage = ciImg else { onComplete(.failure(NSError(domain: "ciImg err ", code: 0))); return }
-      ciImgs[i] = ciImg // It matters which order the qrImages came in when you stitch them back together
+      ciImgs[i] = ciImg // It matters which order the QRImage's came in when you stitch them back together
       if ciImgs.first(where: { $0 == nil }) == nil { // Makes sure all images finished (aka no nil values)
-         let ciImages: [CIImage] = ciImgs.compactMap { $0 } // Remove nils
+         let ciImages: [CIImage] = ciImgs.compactMap { $0 } // Removes nils
          let colorMap: Colorizer.ColorMap = Colorizer.colorMap(useDarkMode: useDarkMode)
          guard let rgbaImage: RGBAImage = try? Colorizer.grayscaleColorize(ciImages: ciImages, colorMap: colorMap, multipliers: multipliers) else { onComplete(.failure(NSError(domain: "onCreateCIImgComplete() - Unable to create colorized image", code: 0))); return }
          onComplete(.success(rgbaImage))

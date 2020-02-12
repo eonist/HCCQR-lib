@@ -7,6 +7,7 @@ import CoreImage
  */
 extension HCCQRReader {
    /**
+    * ⚠️️⚠️️⚠️️ DEPRECATED ⚠️️⚠️️⚠️️
     * Creates data for HCCQQR image, and frame (Has support for Quad)
     * - Caution: ⚠️️ Seems like image doesnt work anymore, use .ciImage() instead
     */
@@ -21,6 +22,7 @@ extension HCCQRReader {
       dataAndImages(image: image, onComplete: completion)
    }
    /**
+    * ⚠️️⚠️️⚠️️ DEPRECATED ⚠️️⚠️️⚠️️
     * Creates data for HCCQQR image
     * - Fixme: ⚠️️ Consider changing image to CGImage, as that is what is used in the end, could make thing faster
     * - Fixme: ⚠️️ When the first QRImage Quad is found, the subsequent QR-Rects will be in the same quadrant, clip the subsequent images

@@ -8,11 +8,12 @@ import CoreImage
 extension HCCQRReader {
    /**
     * onSplitComplete
-    * 1. Get Data+Meta from 2. QR-Images
+    * 1. Get Data+Meta from two QR-Images
     * 2. Merge both Data payloads into one Data
-    * 2. Call onComplete When both QR-Images are processed
-    * - Abstract: after splitting the HCCQRImage into color channels, we create QRImage layers of the coøor channels
-    * - Fixme: ⚠️️ Since the qr data is in the same spot across splitResult, Use the dataAndMeta and use the rect to crop the second ciImage, or buffer
+    * 3. Call onComplete When both QR-Images are processed
+    * - Important: ⚠️️ We split it into CIImages, because apples QRCode methods can only read ciimages
+    * - Abstract: After splitting the HCCQRImage into color channels, we create QRImage layers of the color channels
+    * - Fixme: ⚠️️ Since the QR-Data is in the same spot across splitResult, Use the dataAndMeta and use the rect to crop the second ciImage, or buffer
     * - Parameters:
     *   - result: (qrImg1: CIImage, qrImg2: CIImage)
     *   - onComplete: (2 qrImages and Data)
@@ -35,8 +36,17 @@ extension HCCQRReader {
    }
    /**
     * Completion handler (checks if all completions finished before calling complete on the whole process)
-    * - Fixme: ⚠️️ group dataAndQuad and error into result
+    * Write step documentation 🏀
+    * - Fixme: ⚠️️ Group dataAndQuad and error into result
+    * - Fixme: ⚠️️ Rename dataAndFrames to dataAndQuads
     * - Note: Can't be private, as other methods use it as well
+    * - Parameters:
+    *   - i: the index to store dataAndQuad
+    *   - dataAndQuad: the item to insert into the result array
+    *   - error: error from caller
+    *   - dataAndFrames: result array
+    *   - payload: 2 CIImages
+    *   - onComplete: completion block with DataAndImage
     */
    static func onQRCodeComplete(i: Int, dataAndQuad: QRReader.DataAndQuad?, error: Error?, dataAndFrames: inout [QRReader.DataAndQuad?], payload: Splitter.SplitPayload, onComplete: DataAndImageCompleted ) {
       guard let dataAndFrame: QRReader.DataAndQuad = dataAndQuad else { onComplete(.failure(NSError(domain: "HCCQRReader.onQRCodeComplete() - Unable to get dataAndFrame for QRIMG: \(i) error: \(String(describing: error?.localizedDescription))", code: 0))); return }

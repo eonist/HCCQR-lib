@@ -10,7 +10,7 @@ extension HCCQRWriter {
    /**
     * Converts HCCQR-Data -> HCCQR-CIImage
     * - Abstract: Create two QR images from the data, and combine them into RGBAImage, then convert that to CIImage
-    * - Important: The caller must make sure the qrVersion can hold the amount of chars in string
+    * - Important: The caller must make sure the QR-Version can hold the amount of chars in string
     * - Fixme: ⚠️️ Add support for more colors by adding colorDepth: Int in params
     * - Fixme: ⚠️️ Threading shouldn't be done here I think. maybe use WorkItems, nsoperation, semphore etc, do more research, concurrent_apply?, Dispatchgroups?
     * ## Example:
@@ -19,9 +19,9 @@ extension HCCQRWriter {
     * HCCQRWriter.ciImage(data: data, multiplier: (moduleScale: 6, screenScale: 2), qrConfig: (qrVersion, ecLevel), onComplete: { ciImg in Swift.print("ciImg: \(ciImg)") })
     * - Parameters:
     *   - data: The data to be embedded into the HCCQR-image
-    *   - qrConfig: we supply version because it's more optimized than calculating moduleCount on the basis of data.count
-    *   - multipliers: for retina you need 2x scale etc,  ModuleCount equals 1 pixel. ModuleMultiplier scales this
-    *   - onComplete: callback when the image has been produced
+    *   - qrConfig: We supply version because it's more optimized than calculating moduleCount on the basis of data.count
+    *   - multipliers: For retina you need 2x scale etc, ModuleCount equals 1 pixel. ModuleMultiplier scales this
+    *   - onComplete: Callback when the image has been produced
     */
    public static func ciImage(data: Data, multipliers: Multipliers, qrConfig: QRConfig = (.v10, .l), onComplete: @escaping OnHCCQRCIImageCompleted) {
       let dataArr: [Data] = data.split(index: data.count / 2) // Split the data in two
@@ -43,6 +43,12 @@ extension HCCQRWriter {
    /**
     * onCreateCIImgComplete (New)
     * - Note: Used in the process of converting Data to HCCQR
+    * - Parameters:
+    *   - i: the index to place the ciimage
+    *   - ciImg: the ciimage
+    *   - ciImgs: the array to be populated
+    *   - multipliers: the screen and module scale
+    *   - onComplete: completion block for returning CIImage
     */
    private static func onCreateCIImgComplete(i: Int, ciImg: CIImage?, ciImgs:inout [CIImage?], multipliers: Multipliers, onComplete: OnHCCQRCIImageCompleted) {
       guard let ciImg: CIImage = ciImg else { onComplete(.failure(NSError(domain: "ciImg err ", code: 0))); return }

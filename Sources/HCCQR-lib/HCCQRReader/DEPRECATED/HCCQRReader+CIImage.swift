@@ -5,6 +5,7 @@ import CoreImage
 
 extension HCCQRReader {
    /**
+    * ⚠️️⚠️️⚠️️ DEPRECATED ⚠️️⚠️️⚠️️
     * Creates data for HCCQQR image
     * - Caution: ⚠️️ conversion from ciimage to rgbaimage is slow, this method exists for testing purpouses
     * - Fixme: ⚠️️ When the first QRImage Quad is found, the subsequent QR-Rects will be in the same quadrant, clip the subsequent images
