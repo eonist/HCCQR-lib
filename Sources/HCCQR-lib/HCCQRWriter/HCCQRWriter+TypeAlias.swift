@@ -5,7 +5,10 @@ import CoreImage
  * Type
  */
 extension HCCQRWriter {
-   // -Fixme: ⚠️️ rename to Config ? since QRConfig is something else as well
+   /**
+    * - Fixme: ⚠️️ Rename to Config ? since QRConfig is something else as well
+    * - Fixme: ⚠️️ Add colorDepth to this tuple, to support more colors than 4
+    */
    public typealias QRConfig = (qrVersion: QRVer, ecLevel: ECLevel)
    // rename bellow to OnCIImageComplete
    public typealias OnHCCQRCIImageCompleted = (Result<CIImage, Error>) -> Void
@@ -18,5 +21,7 @@ public typealias HCCQRImageResult = Result<Image, Error>
  * - Fixme: soon to be deprecated, we use result now
  */
 public typealias OnHCCQRImageCompleted = (HCCQRImageResult) -> Void
-// - Fixme: ⚠️️ rename to Scale, and move to HCCQR+TypeAlias
+/**
+ * - Fixme: ⚠️️ Rename to Scale = (module, screen) and move to HCCQR+TypeAlias
+ */
 public typealias Multipliers = (moduleScale: Int, screenScale: Int)

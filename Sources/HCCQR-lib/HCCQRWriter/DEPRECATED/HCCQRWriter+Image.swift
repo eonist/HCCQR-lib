@@ -42,12 +42,13 @@ extension HCCQRWriter {
  */
 extension HCCQRWriter {
    /**
+    * (⚠️️⚠️️⚠️️ DEPRECATE SOON ⚠️️⚠️️⚠️️)
     * - Fixme: ⚠️️ try to get rid of the inout method
     * - Fixme: ⚠️️ Needs refactor, try using NSOperation or Semaphors
     */
    private static func onCreateQrImgComplete(i: Int, qrImg: Image?, qrImgs:inout [Image?], multipliers: Multipliers, onComplete: OnHCCQRImageCompleted) {
       guard let qrImg: Image = qrImg else { onComplete(.failure(NSError(domain: "qrImg err ", code: 0))); return }
-      qrImgs[i] = qrImg // It matters which order the qrImages came in when you stitch them back together
+      qrImgs[i] = qrImg // It matters which order the QRImages came in when you stitch them back together
       if qrImgs.first(where: { $0 == nil }) == nil { // Makes sure all images finished (aka no nil values)
          let qrImages: [Image] = qrImgs.compactMap { $0 } // Remove nils
          guard let hccqrImage: Image = try? Colorizer.colorize(images: qrImages, colorMap: Colorizer.colorMap(), multipliers: multipliers) else { onComplete(.failure(NSError(domain: "onCreateQrImgComplete() -Unable to create colorized image", code: 0))); return }

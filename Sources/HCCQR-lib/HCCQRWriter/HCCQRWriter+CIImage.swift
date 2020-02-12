@@ -8,7 +8,7 @@ public final class HCCQRWriter {}
  */
 extension HCCQRWriter {
    /**
-    * Data -> CIImage (New)
+    * Converts HCCQR-Data -> HCCQR-CIImage
     * - Abstract: Create two QR images from the data, and combine them into RGBAImage, then convert that to CIImage
     * - Important: The caller must make sure the qrVersion can hold the amount of chars in string
     * - Fixme: ⚠️️ Add support for more colors by adding colorDepth: Int in params
