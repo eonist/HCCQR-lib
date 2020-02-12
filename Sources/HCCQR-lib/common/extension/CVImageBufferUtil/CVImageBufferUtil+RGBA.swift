@@ -7,22 +7,22 @@ extension CVImageBufferUtil {
     * CVImageBuffer -> RGBImage (⭐ works ⭐)
     * - Note: CVPixelBuffer is a typalias for CVImageBuffer
     * - Note: CVPixelBufferRelease' is unavailable: Core Foundation objects are automatically memory managed
-    * - Fixme: ⚠️️ might have the solution for av buffer: https://stackoverflow.com/questions/29375471/how-to-convert-cvimagebuffer-to-uiimage
-    * - Fixme: ⚠️️ using a pointer to iterate might be faster, see stackoverflow
-    * - Fixme: ⚠️️ striding with 20 might be faster than nested for loop
+    * - Fixme: ⚠️️ Might have the solution for av buffer: https://stackoverflow.com/questions/29375471/how-to-convert-cvimagebuffer-to-uiimage
+    * - Fixme: ⚠️️ Using a pointer to iterate might be faster, see stackoverflow
+    * - Fixme: ⚠️️ Striding with 20 might be faster than nested for loop, experiment with this
     * - Fixme: ⚠️️ Add debug tool with: CVPixelBufferGetDataSize(imageBuffer), \(CVPixelBufferGetDataSize(imageBuffer)) type:  \(CVPixelBufferGetPixelFormatType(imageBuffer)), let info = RGBImage.bitmapInfo(buffer: imageBuffer)// if type != kCVPixelFormatType_DepthFloat32 { print("Wrong type \(type)"); throw NSError(domain: "Wrong type", code: 0) }, let type: OSType = CVPixelBufferGetPixelFormatType(imageBuffer) // Swift.print("type:  \(type)")
     * - Parameters:
-    *   - crop: Makes processing the raw imagry faster since we don't have to process areas where the QR info is not etc.
     *   - imageBuffer: the buffer containing the raw pixel data and size
+    *   - crop: Makes processing the raw imagery faster since we don't have to process areas where the QR info is not etc.
     */
-   public static func rgbaImage(imageBuffer: CVImageBuffer, crop bufferRect: BufferRect/*? = nil*/) throws -> RGBAImage { /*, size: CGSize, scale: CGFloat */
+   public static func rgbaImage(imageBuffer: CVImageBuffer, crop bufferRect: BufferRect) throws -> RGBAImage { /*, size: CGSize, scale: CGFloat */
       CVPixelBufferLockBaseAddress(imageBuffer, CVPixelBufferLockFlags(rawValue: CVOptionFlags(0))) // lock access for cpu reading
-//      let bufferSize: (width: Int, height: Int) = (Int(CVPixelBufferGetWidth(imageBuffer)), Int(CVPixelBufferGetHeight(imageBuffer))) //  let size: (width: Int, height: Int) = (Int(size.width * scale), Int(size.height * scale))
-      //Swift.print("bufferSize:  \(bufferSize)")
+      // let bufferSize: (width: Int, height: Int) = (Int(CVPixelBufferGetWidth(imageBuffer)), Int(CVPixelBufferGetHeight(imageBuffer))) //  let size: (width: Int, height: Int) = (Int(size.width * scale), Int(size.height * scale))
+      // Swift.print("bufferSize:  \(bufferSize)")
       let bytesPerRow = CVPixelBufferGetBytesPerRow(imageBuffer)
       guard let baseAddress: UnsafeMutableRawPointer = CVPixelBufferGetBaseAddress(imageBuffer) else { throw NSError(domain: "Unable to get baseAddress", code: 0) }
-      //- Fixme: ⚠️️ this is prob a bug, you should only lock once
-      //CVPixelBufferLockBaseAddress(imageBuffer, CVPixelBufferLockFlags(rawValue: 0))
+      // - Fixme: ⚠️️ This is prob a bug, you should only lock once
+      // CVPixelBufferLockBaseAddress(imageBuffer, CVPixelBufferLockFlags(rawValue: 0))
       let byteBuffer: UnsafeMutablePointer<UInt8> = baseAddress.assumingMemoryBound(to: UInt8.self)
       let capacity: Int = bufferRect.width * bufferRect.height
       let pixels = UnsafeMutableBufferPointer<PixelData>.allocate(capacity: capacity)
@@ -52,7 +52,8 @@ extension CVImageBufferUtil {
    /**
     * Image -> RGBAImage (Not working)
     * - Fixme: ⚠️️ Add Image typealias in this repo
-    * - Note: I think this method is for testing only etc
+    * - Important: ⚠️️ this method is for testing only because we derive RGBAImage directly from CVImageBuffer
+    * - Parameter image: Convert image to RGBAImage
     */
    public static func rgbaImage(image: Image) throws -> RGBAImage {
       let imgBuffer: CVImageBuffer = try imageBuffer(image: image)

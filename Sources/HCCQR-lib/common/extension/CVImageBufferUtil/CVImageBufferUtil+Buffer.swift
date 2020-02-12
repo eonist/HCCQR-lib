@@ -17,6 +17,7 @@ extension CVImageBufferUtil {
     * - Note: CGImage to Buffer https://github.com/brianadvent/UIImage-to-CVPixelBuffer/blob/master/ImageProcessor.swift
     * - Note: ref https://stackoverflow.com/questions/3838696/convert-uiimage-to-cvpixelbufferref
     * - Note: ref https://stackoverflow.com/questions/44462087/how-to-convert-a-uiimage-to-a-cvpixelbuffer
+    * - Parameter image: Convert this image to CVImageBuffer
     */
    public static func imageBuffer(image: Image) throws -> CVImageBuffer {
       guard let cgImage = image.cgImage() else { throw NSError(domain: "unable to get cgimage", code: 0) }

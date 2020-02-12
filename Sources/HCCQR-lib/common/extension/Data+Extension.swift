@@ -6,6 +6,10 @@ import Foundation
 extension Data {
    /**
     * Returns new Data with bytes from start to end (New)
+    * - Fixme: ⚠️️ Use UInt64 etc?
+    * - Parameters:
+    *   - start: integer to start from
+    *   - end: integer to end from
     */
    func range(start: Int, end: Int) -> Data {
       let array: [UInt8] = [UInt8](self)
@@ -14,6 +18,7 @@ extension Data {
    }
    /**
     * Splits data at index
+    * - Fixme: ⚠️️ Use UInt64 etc?
     */
    func split(index: Int) -> [Data] {
       let data: (Data, Data) = self.split(index: index)

@@ -4,9 +4,11 @@ import CoreImage
 
 extension CVImageBufferUtil {
    /**
-    * CGImage -> CVPixelBuffer (new, ⭐ works ⭐)
-    * - Note: ref https://github.com/brianadvent/UIImage-to-CVPixelBuffer/blob/master/ImageProcessor.swift
+    * CGImage -> CVPixelBuffer (⭐ works ⭐)
+    * - Note: Ref https://github.com/brianadvent/UIImage-to-CVPixelBuffer/blob/master/ImageProcessor.swift
+    * - Important: ⚠️️ This methd exists for testing purpouses, the real code derives the buffer directly
     * - Fixme: ⚠️️ Make debug tool for cgImage: cgImage.bitsPerPixel, cgImage.bitsPerComponent, cgImage.colorSpace, cgImage.byteOrderInfo, cgImage.bitmapInfo, image.size, image.scale, image.cgImage?.bytesPerRow
+    * - Parameter cgImage: The cgImage to be converted to CVImageBuffer
     */
    public static func imageBuffer(cgImage: CGImage) throws -> CVImageBuffer {
       let frameSize = CGSize(width: cgImage.width, height: cgImage.height)
@@ -23,6 +25,6 @@ extension CVImageBufferUtil {
       let pixelFormatName: String = CVImageBufferUtil.pixelFormatName(pixelBuffer: buffer!) // kCVPixelFormatType_2Indexed
       Swift.print("pixelFormatName:  \(pixelFormatName)")
       CVPixelBufferUnlockBaseAddress(buffer!, CVPixelBufferLockFlags(rawValue: 0))
-      return buffer! // - Fixme ⚠️️ add aditional throw here
+      return buffer! // - Fixme ⚠️️ add additional throw here
    }
 }
