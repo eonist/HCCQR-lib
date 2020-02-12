@@ -7,6 +7,7 @@ import CoreImage
 extension Image {
    /**
     * Compare images
+    * - Parameter image: the image to assert against
     */
    public func isEqualToImage(image: Image) -> Bool {
       return self.pngData() == image.pngData()
@@ -21,25 +22,15 @@ extension Image {
     * - Note: alternative: https://gist.github.com/giulio92/69e4f74217422154bb25d2a35d6710f8
     * - Fixme: ⚠️️ cgImage or cgImage doesn't always work, try to make this more consistent
     * - Fixme: ⚠️️ Make this throw
+    * - Parameter pos: The x/y position in the image to grab color from
     */
    private func getPixelColor(pos: CGPoint) -> Color? { // Fixme: ⚠️️ make this for cgImage, converting it over and over is not good
-      //⚠️️ The bellow fix could hurt performance
+      // ⚠️️ The bellow fix could hurt performance
       guard let cgImage = /*self.cgImage ?? */self.cgImage() else { Swift.print("getPixelColor() - unable to get cgImage"); return nil }
       guard let dataProvider = cgImage.dataProvider else { Swift.print("getPixelColor() - unable to get dataProvider"); return nil }
       guard let pixelData: CFData = dataProvider.data else { Swift.print("getPixelColor() - unable to get cfData"); return nil }
       let data: UnsafePointer<UInt8> = CFDataGetBytePtr(pixelData)
       return getPixelColor(pos: pos, data: data)
-   }
-   /**
-    * Internal helper
-    */
-   private func getPixelColor(pos: CGPoint, data: UnsafePointer<UInt8>) -> Color? {
-      let pixelInfo: Int = ((Int(self.size.width * self.scale) * Int(pos.y)) + Int(pos.x)) * 4
-      let r = CGFloat(data[pixelInfo]) / CGFloat(255.0)
-      let g = CGFloat(data[pixelInfo + 1]) / CGFloat(255.0)
-      let b = CGFloat(data[pixelInfo + 2]) / CGFloat(255.0)
-      let a = CGFloat(data[pixelInfo + 3]) / CGFloat(255.0)
-      return Color(red: r, green: g, blue: b, alpha: a)
    }
    /**
     * Returns color of every pixel in an image
@@ -60,6 +51,25 @@ extension Image {
    }
 }
 /**
+ * Internal helper method
+ */
+extension Image {
+   /**
+    * Internal helper
+    * - Parameters:
+    *   - pos: The x/y position in the image to grab color from
+    *   - data: all individual pixels from an image
+    */
+   private func getPixelColor(pos: CGPoint, data: UnsafePointer<UInt8>) -> Color? {
+      let pixelInfo: Int = ((Int(self.size.width * self.scale) * Int(pos.y)) + Int(pos.x)) * 4
+      let r = CGFloat(data[pixelInfo]) / CGFloat(255.0)
+      let g = CGFloat(data[pixelInfo + 1]) / CGFloat(255.0)
+      let b = CGFloat(data[pixelInfo + 2]) / CGFloat(255.0)
+      let a = CGFloat(data[pixelInfo + 3]) / CGFloat(255.0)
+      return Color(red: r, green: g, blue: b, alpha: a)
+   }
+}
+/**
  * Converters
  */
 extension Image {
@@ -74,9 +84,8 @@ extension Image {
    func cgImage() -> CGImage? {
       return self.cgImage ?? { // quick fix
          guard let ciImage: CIImage = self.ciImage else { Swift.print("cgImage() - unable to get ciImage"); return nil }
-         //      let context: CIContext = .init(options: nil)
          return autoreleasepool { // ⚠️️ testing to get rid of mem leak ⚠️️ new
-            return Image.ciContext.createCGImage(ciImage, from: ciImage.extent)
+            return Image.ciContext.createCGImage(ciImage, from: ciImage.extent) // let context: CIContext = .init(options: nil)
          }
          }()
    }

@@ -11,6 +11,10 @@ extension UIImage {
    }
    /**
     * Creates a colored Image
+    * - Parameters:
+    *   - size: Size of the image you want to create
+    *   - color: The color of the image
+    *   - scale: Set screen scale: retina 2x/3x or normal 1x
     */
    public static func image(size: CGSize, color: UIColor, scale: CGFloat = 1.0) -> UIImage? {
       let rect = CGRect(origin: .zero, size: size)
@@ -20,9 +24,6 @@ extension UIImage {
       let image = UIGraphicsGetImageFromCurrentImageContext()
       UIGraphicsEndImageContext()
       return image
-      //      let size = size.width
-      //      let image: UIImage = .createImage(size: .init(width: size, height: size), color: .purple)
-      //      let newImg: UIImage = UIImage.init(cgImage: image.cgImage!, scale: 1, orientation: .up)
    }
 }
 #endif

@@ -17,28 +17,30 @@ extension Data {
       return .init(partialArray)
    }
    /**
-    * Splits data at index
+    * Splits data at index and returns an Array of two data items
     * - Fixme: ⚠️️ Use UInt64 etc?
+    * - Parameter index: the index to split the data at
     */
    func split(index: Int) -> [Data] {
       let data: (Data, Data) = self.split(index: index)
       return [data.0, data.1]
    }
    /**
-    *  Splits data at index
+    *  Splits data at index and returns a tuple of two data items
+    *  - Fixme: ⚠️️ Use UInt64 etc?
+    *  - Parameter index: the index to split the data at
     */
    func split(index: Int) -> (Data, Data) {
       let arr: [UInt8] = [UInt8](self)
-      let a = arr[0..<index]
-      let b = arr[index..<self.count]
-      return (.init(a), .init(b))
+      let a: Data = .init(arr[..<index])
+      let b: Data = .init(arr[index...])
+      return (a, b)
    }
    /**
     * Returns string for Data (ascii)
     */
    var stringASCII: String? { // Convenience method
-      return String(data: self, encoding: .ascii)
-      // return NSString(data: self, encoding: String.Encoding.ascii.rawValue) as String?
+      return String(data: self, encoding: .ascii) // return NSString(data: self, encoding: String.Encoding.ascii.rawValue) as String?
    }
    /**
     * Returns string for Data (utf8)
