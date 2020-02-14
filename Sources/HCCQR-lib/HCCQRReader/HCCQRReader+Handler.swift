@@ -45,7 +45,7 @@ extension HCCQRReader {
     *   - dataAndQuad: the item to insert into the result array
     *   - error: error from caller
     *   - dataAndFrames: result array
-    *   - payload: 2 CIImages
+    *   - payload: 2 CIImage's
     *   - onComplete: completion block with DataAndImage
     */
    static func onQRCodeComplete(i: Int, dataAndQuad: QRReader.DataAndQuad?, error: Error?, dataAndFrames: inout [QRReader.DataAndQuad?], payload: Splitter.SplitPayload, onComplete: DataAndImageCompleted ) {
