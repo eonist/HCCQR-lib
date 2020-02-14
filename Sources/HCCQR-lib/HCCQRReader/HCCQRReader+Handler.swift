@@ -36,12 +36,9 @@ extension HCCQRReader {
    }
    /**
     * Completion handler (checks if all completions finished before calling complete on the whole process)
-    * 1. Data and Quad from each individual B&W QR comes in with index
-    * 2. When all the data items has populated the result-array, the onComplete is called
-    * 3. Individual QR-Data-Items is merged into one big Data instance
+    * Write step documentation 🏀
     * - Fixme: ⚠️️ Group dataAndQuad and error into result
     * - Fixme: ⚠️️ Rename dataAndFrames to dataAndQuads
-    * - Fixme: ⚠️️ Returning the individual QR images is not essential anymore, it was there because of debugging
     * - Note: Can't be private, as other methods use it as well
     * - Parameters:
     *   - i: the index to store dataAndQuad
