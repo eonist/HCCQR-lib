@@ -4,7 +4,7 @@ import Foundation
  */
 extension Channel {
    /**
-    * Split 1 RGBAImage into 3 GrayScaleImages consisting of singular r, g, b channels
+    * Split 1 RGBAImage into 3 GrayScaleImages consisting of singular (R,G,B) channels
     * 1. Setup
     * - Parameters:
     *   - rgbaImg: target to derive channels from

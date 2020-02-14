@@ -17,4 +17,14 @@ final class PixelTest {
       Swift.print("isColorRedish:  \(isColorRedish)")
       return isColorRedish
    }
+   typealias RGBAColor = (UInt8, UInt8, UInt8, UInt8) // use PixelData.RGBAColor instead
+   /**
+    * Test the colorish method
+    */
+   static func isColorishTest() -> Bool {
+      let assertRed: Bool = try! PixelData(uiColor: .red).isColorish((255, 0, 0, 255))
+      let assertGreen: Bool = try! PixelData(uiColor: .green).isColorish((0, 255, 0, 255))
+      let assertBlue: Bool = try! PixelData(uiColor: .blue).isColorish((0, 0, 255, 255))
+      return assertRed && assertGreen && assertBlue
+   }
 }

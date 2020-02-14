@@ -4,7 +4,9 @@ import Foundation
  */
 extension Channel {
    /**
-    * RGBAImage channel (r, g, b) -> GrayscaleImage
+    * RGBAImage channel (R, G, B) -> GrayscaleImage
+    * 1. Creates a blank grayscale image of a speccific size
+    * 2. asserts if the pixel is black or white
     * - Parameters:
     *   - rgbaImg: The RGBAImage to manipulate
     *   - assert: takes Pixeldata, returns Bool

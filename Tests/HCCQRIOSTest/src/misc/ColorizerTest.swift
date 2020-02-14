@@ -8,11 +8,11 @@ final class ColorizerTest {}
 
 extension ColorizerTest {
    /**
-    * Tests colorizer method
-    * 1. Creates 2 qr images with random QR-Data
+    * Tests colorizer method (Basically crates an HCCQR-image from 2 QR-images)
+    * 1. Creates 2 QR-images with random QR-Data
     * 2. Combines the 2 images into 1 HCCQR image
     * 3. Asserts that the HCCQR image has only colors from the ColorMap
-    * - Fixme: ⚠️️ needs some refactoring and cleaning
+    * - Fixme: ⚠️️ Needs some refactoring and cleaning
     */
    static func testColorizer() -> Bool {
       guard let img1: Image = createRandomQRImg() else { Swift.print("err"); return false }

@@ -29,6 +29,7 @@ extension GrayscaleImage {
    }
    /**
     * Returns empty grayScale-image
+    * - Fixme: ⚠️️ Seems counter productive to allocate and then populate the array, cant it be done in one go?
     * - Parameters:
     *   - capacity: the number of pixels you want to use
     *   - size: the size of the returned GrayScaleImage
@@ -38,11 +39,15 @@ extension GrayscaleImage {
       return .init(pixels: unsafePixels, width: size.width, height: size.height)
    }
    /**
-    * CIImage -> GrayscaleImage (⚠️️ new, untested ⚠️️)
+    * B&W-QR-CIImage -> GrayscaleImage (⚠️️ new, untested ⚠️️)
+    * 1. CIImage comes in
+    * 2. Meta data is extracted from the CIImage
+    * 3. Pixels are extracted from the CGContext
+    * 4. Pixels are added to GrayscaleImage and returned
     * - Abstract: Takes a CIImage and converts it to a GrayScale pixel representation
-    * - Note: Seems to be slightly faster than converting ciimage to CGImage etc
+    * - Note: Seems to be slightly faster than converting CIImage to CGImage etc
     * - Note: Ref https://www.geekspiff.com/unlinkedCrap/ciImageToBitmap.html
-    * - Note: Use ciImg.debugDescription to fid more info about cgImage
+    * - Note: Use ciImg.debugDescription to find more info about cgImage
     * - Caution: ⚠️️ Only works if CIImage is pure black and white, which is the case for generated qr images
     * - Parameter ciImg: The CIImage to convert to grayscaleimage
     */
@@ -59,7 +64,7 @@ extension GrayscaleImage {
       context.draw(ciImg, in: ciImg.extent, from: ciImg.extent)
       let pixels = UnsafeMutableBufferPointer<PixelData>(start: imageData, count: capacity)
       let monotonePixels = UnsafeMutableBufferPointer<UInt8>.allocate(capacity: capacity)
-      pixels.enumerated().forEach { monotonePixels[$0.offset] = $0.element.isBlack ? 0 : 255 }
+      pixels.enumerated().forEach { monotonePixels[$0.offset] = $0.element.isBlack ? .black : .white }
       return .init(pixels: monotonePixels, width: size.width, height: size.height)
    }
 }

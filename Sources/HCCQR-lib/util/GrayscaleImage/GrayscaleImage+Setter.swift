@@ -4,7 +4,9 @@ import Foundation
  */
 extension GrayscaleImage {
    /**
-    * Get grayscale UInt8 intensity for a R,G,B channel
+    * Populate GrayscaleImage with 0-255 values based on the grayscale equivilent (R,G,B) channel
+    * - Abstract: Get grayscale UInt8 intensity for a (R,G,B) channel
+    * - Fixme: ⚠️️ find a better name for this method?
     * - Parameters:
     *   - input: The RGBAImage to extract data from
     *   - output: The GrayScaleImage to populate pixels into
@@ -13,8 +15,8 @@ extension GrayscaleImage {
    static func process(input: RGBAImage, output: GrayscaleImage, functor: GrayScaleFunctorCall) -> GrayscaleImage {
       (0..<input.height).forEach { y in
          DispatchQueue.concurrentPerform(iterations: input.width) { x in // ⚠️️ Optimization initiative
-            let index: Int = y * input.width + x
-            output.pixels[index] = functor(input.pixels[index])
+            let index: Int = y * input.width + x // Pixel index
+            output.pixels[index] = functor(input.pixels[index]) // apply new pixel to old pixel
          }
       }
       return output

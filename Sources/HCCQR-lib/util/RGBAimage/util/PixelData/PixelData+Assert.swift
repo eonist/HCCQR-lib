@@ -9,6 +9,7 @@ extension PixelData {
     *  Asserts if a pixel is sort of a color within a threshold
     *  ## Examples:
     *  let rgbaColor: RGBAColor = (255, 0, 0, 255)
+    *  let pixelData: PixelData = .init(uiColor: .red)
     *  pixelData.isColorish(rgbaColor) // returns true if the the pixel is within the color
     *  - Fixme: ⚠️️ Add Unit-test to isColorish method
     */
@@ -46,17 +47,18 @@ extension PixelData {
 extension PixelData {
    /**
     * Assert color within threshold
-    * - Note: Used by PixelTest.testColorAssertionWithinThresholdForPixel
     * ## Examples:
     * let offset: UInt8 = UInt8(255 * 0.2)
-    * let redishPixel: Pixel = .init(R: 255-offset, G: 0+offset, B: 0+offset, A: 255)
+    * let redishPixel: Pixel = .init(R: 255 - offset, G: 0 + offset, B: 0 + offset, A: 255)
     * let redPixel: Pixel = .init(R: 255, G: 0, B: 0, A: 255)
     * let threshold: UInt8 = UInt8(255 * 0.25)
     * let isColorRedish: Bool = redishPixel.isColor(pixel: redPixel, threshold: threshold)
     * Swift.print("isColorRedish:  \(isColorRedish)") // true
+    * - Note: ⚠️️ PixelData.isColorish((255, 0, 0, 255)) uses this method
+    * - Note: ⚠️️ There is unit tests for this method: PixelTest.testColorAssertionWithinThresholdForPixel
     * - Parameters:
     *   - pixel: Compare self to this pixel
-    *   - halfThreshold: with threshold more or less (I.e: +25,-25 from a value)
+    *   - halfThreshold: with threshold more or less (I.e: +25, -25 from a value)
     */
    static func isColor(a: PixelData, b: PixelData, halfThreshold: UInt8) -> Bool {
       return PixelData.isColor(rgb1: a.rgb, rgb2: b.rgb, halfThreshold: halfThreshold)
