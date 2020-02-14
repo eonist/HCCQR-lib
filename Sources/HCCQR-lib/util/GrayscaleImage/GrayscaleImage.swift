@@ -1,7 +1,6 @@
 import Foundation
 /**
- * - Fixme: ⚠️️ You have to dealocate the memory at some point, see: https://stackoverflow.com/questions/34750166/how-to-use-unsafemutablebufferpointer
- * - Fixme: ⚠️️ this should really be called ARGBImage
+ * - Note: We dealocate the memory at some point see: https://stackoverflow.com/questions/34750166/how-to-use-unsafemutablebufferpointer
  */
 struct GrayscaleImage {
    var pixels: UnsafeMutableBufferPointer<UInt8>

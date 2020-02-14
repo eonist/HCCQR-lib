@@ -6,7 +6,7 @@ import CoreImage
 extension GrayscaleImage {
    /**
     * Filled image
-    * - Fixme: ⚠️️ Prob create the unmanaged pointer directly for better speed
+    * - Fixme: ⚠️️ Probably create the unmanaged pointer directly for better speed
     * - Parameters:
     *   - pixels: the pixels to populate the GrayscaleImage with
     *   - size: the size you want to us ein the GrayScaleImage
@@ -24,7 +24,7 @@ extension GrayscaleImage {
     */
    static func grayscaleImage(pixels: [UInt8], size: Size) -> GrayscaleImage {
       let unsafePixels = UnsafeMutableBufferPointer<UInt8>.allocate(capacity: pixels.count)
-      _ = unsafePixels.initialize(from: pixels)
+      _ = unsafePixels.initialize(from: pixels) // adds pizels to the unsafePixels array
       return .init(pixels: unsafePixels, width: size.width, height: size.height)
    }
    /**
@@ -59,7 +59,7 @@ extension GrayscaleImage {
       context.draw(ciImg, in: ciImg.extent, from: ciImg.extent)
       let pixels = UnsafeMutableBufferPointer<PixelData>(start: imageData, count: capacity)
       let monotonePixels = UnsafeMutableBufferPointer<UInt8>.allocate(capacity: capacity)
-      pixels.enumerated().forEach { monotonePixels[$0.offset] = $0.element.isBlack ? 0 : 255 }
+      pixels.enumerated().forEach { monotonePixels[$0.offset] = $0.element.isBlack ? .black : .white }
       return .init(pixels: monotonePixels, width: size.width, height: size.height)
    }
 }
