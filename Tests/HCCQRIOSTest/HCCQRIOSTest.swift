@@ -15,6 +15,7 @@ class HCCQRIOSTest: XCTestCase {
 //      XCTAssertTrue(ColorizerTest.testColorizer())
 //      XCTAssertTrue(PixelTest.testColorAssertionWithinThresholdForPixel())
       XCTAssertTrue(PixelTest.isColorishTest())
+      XCTAssertTrue(PixelTest.isWashedOutColorishTest())
 //      testReadingHCCQRPhoto() // ⚠️️ only works in xcode-simulator, because no assets in spm
 //      testSingle() // ⭐
 //      testBulk() // ⭐ Read and write multiple HCCQR images

@@ -27,4 +27,13 @@ final class PixelTest {
       let assertBlue: Bool = try! PixelData(uiColor: .blue).isColorish((0, 0, 255, 255))
       return assertRed && assertGreen && assertBlue
    }
+   /**
+    * Test the colorish method with imperfect values
+    */
+   static func isWashedOutColorishTest() -> Bool {
+      let assertRedish: Bool = try! PixelData(uiColor: .red).isColorish((225, 55, 30, 255))
+      let assertGreenish: Bool = try! PixelData(uiColor: .green).isColorish((20, 211, 10, 255))
+      let assertBlueish: Bool = try! PixelData(uiColor: .blue).isColorish((10, 40, 245, 255))
+      return assertRedish && assertGreenish && assertBlueish
+   }
 }

@@ -11,7 +11,6 @@ extension PixelData {
     *  let rgbaColor: RGBAColor = (255, 0, 0, 255)
     *  let pixelData: PixelData = .init(uiColor: .red)
     *  pixelData.isColorish(rgbaColor) // returns true if the the pixel is within the color
-    *  - Fixme: ⚠️️ Add Unit-test to isColorish method
     */
    func isColorish(_ color: RGBColor) -> Bool {
       let pixelData: PixelData = .init(r: color.r, g: color.g, b: color.b, a: 255)
@@ -58,7 +57,7 @@ extension PixelData {
     * - Note: ⚠️️ There is unit tests for this method: PixelTest.testColorAssertionWithinThresholdForPixel
     * - Parameters:
     *   - pixel: Compare self to this pixel
-    *   - halfThreshold: with threshold more or less (I.e: +25, -25 from a value)
+    *   - halfThreshold: with threshold more or less (I.e: +25, -25 from a value, provided that 25 is the threshold, usually 255*0.2 etc)
     */
    static func isColor(a: PixelData, b: PixelData, halfThreshold: UInt8) -> Bool {
       return PixelData.isColor(rgb1: a.rgb, rgb2: b.rgb, halfThreshold: halfThreshold)
@@ -70,27 +69,29 @@ extension PixelData {
 extension PixelData {
    /**
     * Asserts if a color is near another color within a threshold
-    * - Fixme: ⚠️️ It might be the case that if a UInt8 value is near the bounds, the threshold should actually be increased to the distance to the bound, I guess do some exploring on this
-    * - Fixme: ⚠️️ rename rgb1 to a, and rgb2 to b
+    * - Note: all channels must be within the halfTheshold
+    * - Fixme: ⚠️️ It might be the case that if we should also limit the combined values of difference. say if R,B combined are more than 50% off, then its not a match. etc. It might be valuable to make advance tests, of how to match colors
+    * - Fixme: ⚠️️ It might be the case that if a UInt8 value is near the bounds, the threshold should actually be increased to the distance to the bound, I guess do some exploring on this, I THINK that is already done right?
+    * - Fixme: ⚠️️ Rename RGB1 to a, and RGB2 to b
     * - Parameters:
     *   - rgb1: first color
     *   - rgb2: second color
-    *   - halfThreshold: with threshold more or less (I.e: +25,-25 from a value)
+    *   - halfThreshold: with threshold more or less (I.e: +25, -25 from a value)
     *   - limit: used to avoid going out of bound
     */
    private static func isColor(rgb1: RGB, rgb2: RGB, halfThreshold: UInt8, limit: Limit = (0, 255)) -> Bool {
-      let r: Bool = {
+      let r: () -> Bool = {
          let range: RangeUInt8 = UInt8Parser.range(num: rgb2.r, halfThreshold: halfThreshold, min: limit.min, max: limit.max) // 75, 125
-         return UInt8Asserter.within(num: rgb1.r, min: range.start, max: range.end)//(range.start...range.end).contains(rgb1.r)
-      }()
-      let g: Bool = {
+         return UInt8Asserter.within(num: rgb1.r, min: range.start, max: range.end) // (range.start...range.end).contains(rgb1.r)
+      }
+      let g: () -> Bool = {
          let range: RangeUInt8 = UInt8Parser.range(num: rgb2.g, halfThreshold: halfThreshold, min: limit.min, max: limit.max)
-         return UInt8Asserter.within(num: rgb1.g, min: range.start, max: range.end)//(range.start...range.end).contains(rgb1.g)
-      }()
-      let b: Bool = {
+         return UInt8Asserter.within(num: rgb1.g, min: range.start, max: range.end) // (range.start...range.end).contains(rgb1.g)
+      }
+      let b: () -> Bool = {
          let range: RangeUInt8 = UInt8Parser.range(num: rgb2.b, halfThreshold: halfThreshold, min: limit.min, max: limit.max)
-         return UInt8Asserter.within(num: rgb1.b, min: range.start, max: range.end)//(range.start...range.end).contains(rgb1.b)
-      }()
-      return r && g && b
+         return UInt8Asserter.within(num: rgb1.b, min: range.start, max: range.end) // (range.start...range.end).contains(rgb1.b)
+      }
+      return r() && g() && b() // this looks unclear, but its a more efficient way of saying r & b & b, because it drops out if either of the first colors is wrong etc
    }
 }
