@@ -149,6 +149,8 @@
 		F1E5712723A3F2C400E090BB /* BulkHCCQRTest+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BFEFDF23A23C1B007F4261 /* BulkHCCQRTest+Core.swift */; };
 		F1E5712823A3F2C400E090BB /* BulkHCCQRTest+Handler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BFEFDB23A23814007F4261 /* BulkHCCQRTest+Handler.swift */; };
 		F1E5712923A3F2C400E090BB /* BulkHCCQRTest+TypeAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BFEFE223A23DDA007F4261 /* BulkHCCQRTest+TypeAlias.swift */; };
+		F1E5DBFC23F7EFF900605775 /* Channel+Gray+Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E5DBFB23F7EFF900605775 /* Channel+Gray+Const.swift */; };
+		F1E5DBFD23F7EFF900605775 /* Channel+Gray+Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E5DBFB23F7EFF900605775 /* Channel+Gray+Const.swift */; };
 		F1E6459E239407BC008D2ABE /* QR-lib in Frameworks */ = {isa = PBXBuildFile; productRef = F1E6459D239407BC008D2ABE /* QR-lib */; };
 		F1E6459F23940AC9008D2ABE /* Hybrid+iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17A29FF22137BEA000B6C0A /* Hybrid+iOS.swift */; };
 		F1E645A023940AC9008D2ABE /* Hybrid+Mac.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17A2A17221384F2000B6C0A /* Hybrid+Mac.swift */; };
@@ -388,6 +390,7 @@
 		F1E5710623A3EF3100E090BB /* HCCQRIOSTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HCCQRIOSTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1E5710823A3EF3100E090BB /* HCCQRIOSTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HCCQRIOSTest.swift; sourceTree = "<group>"; };
 		F1E5710A23A3EF3100E090BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F1E5DBFB23F7EFF900605775 /* Channel+Gray+Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Channel+Gray+Const.swift"; sourceTree = "<group>"; };
 		F1F0FFFD23B558D900210208 /* PixelData+RGBColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PixelData+RGBColor.swift"; sourceTree = "<group>"; };
 		F1F3E04623BA1C8E00D367F1 /* Channel+RGBA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Channel+RGBA.swift"; sourceTree = "<group>"; };
 		F1F3E04923BA1CA200D367F1 /* Channel+Gray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Channel+Gray.swift"; sourceTree = "<group>"; };
@@ -898,6 +901,7 @@
 				F1D8A67323E846FC00F17A81 /* Channel+Gray+Handler.swift */,
 				F1D8A67623E8472700F17A81 /* Channel+Gray+Helper.swift */,
 				F1D8A66A23E83F0100F17A81 /* Channel+Gray+Type.swift */,
+				F1E5DBFB23F7EFF900605775 /* Channel+Gray+Const.swift */,
 			);
 			path = Gray;
 			sourceTree = "<group>";
@@ -1300,6 +1304,7 @@
 				F1E645E023940B3D008D2ABE /* Splitter+TypeAlias.swift in Sources */,
 				F1E645DB23940B3D008D2ABE /* RGBAImage+Getter.swift in Sources */,
 				F1E645B023940ACA008D2ABE /* UIView+Extension.swift in Sources */,
+				F1E5DBFD23F7EFF900605775 /* Channel+Gray+Const.swift in Sources */,
 				F1E645AF23940ACA008D2ABE /* ImageUtil.swift in Sources */,
 				F1D8A67B23E8476400F17A81 /* Channel+RGBA+Handler.swift in Sources */,
 				F181F10723B8FD7E00145DEA /* HCCQRReader+Handler.swift in Sources */,
@@ -1402,6 +1407,7 @@
 				F165C247239FF385005D30EC /* PixelDataDebugger.swift in Sources */,
 				F18A4D86239F170F0065078A /* HCCQRConfigUtil.swift in Sources */,
 				F18A4D80239F11040065078A /* RGBAImageUtil.swift in Sources */,
+				F1E5DBFC23F7EFF900605775 /* Channel+Gray+Const.swift in Sources */,
 				F1E645C423940B3C008D2ABE /* Splitter+Image.swift in Sources */,
 				F1D8A67A23E8476400F17A81 /* Channel+RGBA+Handler.swift in Sources */,
 				F181F10623B8FD7E00145DEA /* HCCQRReader+Handler.swift in Sources */,
