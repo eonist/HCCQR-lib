@@ -3,6 +3,9 @@ import Foundation
 extension PixelData {
    enum Colors {}
 }
+/**
+ * Colors
+ */
 extension PixelData.Colors {
    static let redPixel: PixelData = .init(r: 255, g: 0, b: 0, a: 255)
    static let greenPixel: PixelData = .init(r: 0, g: 255, b: 0, a: 255)

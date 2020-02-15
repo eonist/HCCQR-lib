@@ -6,6 +6,7 @@ import Foundation
 final class PixelTest {
    /**
     * Color assertion
+    * - ⚠️️ Make another test where you test impure colors
     */
    static func testColorAssertionWithinThresholdForPixel() -> Bool {
       let offset: UInt8 = .init(255 * 0.2)

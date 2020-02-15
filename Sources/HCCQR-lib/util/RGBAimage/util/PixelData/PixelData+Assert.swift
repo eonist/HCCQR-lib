@@ -60,7 +60,7 @@ extension PixelData {
     *   - halfThreshold: with threshold more or less (I.e: +25, -25 from a value, provided that 25 is the threshold, usually 255*0.2 etc)
     */
    static func isColor(a: PixelData, b: PixelData, halfThreshold: UInt8) -> Bool {
-      return PixelData.isColor(rgb1: a.rgb, rgb2: b.rgb, halfThreshold: halfThreshold)
+      return isColor(rgb1: a.rgb, rgb2: b.rgb, halfThreshold: halfThreshold)
    }
 }
 /**
@@ -69,6 +69,8 @@ extension PixelData {
 extension PixelData {
    /**
     * Asserts if a color is near another color within a threshold
+    * 1. Creates the r,g,b channel asserts
+    * 2. Calls these custom assert methods and check if they all pass
     * - Note: all channels must be within the halfTheshold
     * - Fixme: ⚠️️ It might be the case that if we should also limit the combined values of difference. say if R,B combined are more than 50% off, then its not a match. etc. It might be valuable to make advance tests, of how to match colors
     * - Fixme: ⚠️️ It might be the case that if a UInt8 value is near the bounds, the threshold should actually be increased to the distance to the bound, I guess do some exploring on this, I THINK that is already done right?
@@ -92,6 +94,6 @@ extension PixelData {
          let range: RangeUInt8 = UInt8Parser.range(num: rgb2.b, halfThreshold: halfThreshold, min: limit.min, max: limit.max)
          return UInt8Asserter.within(num: rgb1.b, min: range.start, max: range.end) // (range.start...range.end).contains(rgb1.b)
       }
-      return r() && g() && b() // this looks unclear, but its a more efficient way of saying r & b & b, because it drops out if either of the first colors is wrong etc
+      return r() && g() && b() // this looks unclear, but it's a more efficient way of saying r & b & b, because it drops out if either of the first colors is wrong etc
    }
 }
