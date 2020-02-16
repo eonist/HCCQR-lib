@@ -4,7 +4,7 @@ import QuartzCore
 import CoreImage
 /**
  * - Note: We can't use CGRect, as we need Int values
- * - Fixme: ⚠️️ Possibly use UInt32 etc in the future
+ * - Fixme: ⚠️️ Possibly use UInt32, UInt64 etc in the future
  */
 public typealias BufferRect = (x: Int, y: Int, width: Int, height: Int)
 /**

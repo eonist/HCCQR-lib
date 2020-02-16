@@ -9,7 +9,7 @@ import Cocoa
  */
 internal final class ImageUtil {
    /**
-    * CGImage -> Image (Universal for ios and mac)
+    * CGImage -> Image (Universal for iOS and mac)
     */
    internal static func image(cgImage: CGImage, scale: CGFloat = 1) -> Image {
       #if os(iOS)
@@ -21,7 +21,7 @@ internal final class ImageUtil {
       #endif
    }
    /**
-    * Image -> CGImage (Universal for ios and mac)
+    * Image -> CGImage (Universal for iOS and mac)
     * - Fixme: ⚠️️ Maybe add throws?
     */
    static func cgImage(image: Image) -> CGImage? {

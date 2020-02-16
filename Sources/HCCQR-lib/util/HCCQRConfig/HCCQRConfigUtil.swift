@@ -3,10 +3,10 @@ import Foundation
 
 public final class HCCQRConfigUtil {
    /**
-    * Returns dataCount for qrversion,qrmode,ecLevel
+    * Returns dataCount for (QRVersion, QRMode, ECLevel)
     * ## Examples:
     * HCCQRConfigUtil.dataCount(config: (.v10, .byte, .l), colorDepth: 2) // 542
-    * - Fixme: ⚠️️ use Result type
+    * - Fixme: ⚠️️ Use Result type
     * - Parameters:
     *   - config: ecLevel, mode, version
     *   - colorDepth: 2 color-depths equals 4 colors, 4 = 8 etc

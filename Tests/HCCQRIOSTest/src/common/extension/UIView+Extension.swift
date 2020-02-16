@@ -10,7 +10,7 @@ extension UIView {
     * - Fixme: ⚠️️ Add a throw error if frame is zero
     */
    var snapShot: UIImage? {
-      UIGraphicsBeginImageContextWithOptions(self.frame.size, false, 0/*<-scale*/)
+      UIGraphicsBeginImageContextWithOptions(self.frame.size, false, 0) /*<-scale*/
       self.drawHierarchy(in: self.frame, afterScreenUpdates: true)
       let image: UIImage? = UIGraphicsGetImageFromCurrentImageContext()
       UIGraphicsEndImageContext()

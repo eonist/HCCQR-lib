@@ -17,16 +17,6 @@ extension RGBAImage {
       return try rgbaImage(cgImage: cgImage)
    }
    /**
-    * CIImage -> RGBAImage
-    * - Caution: ⚠️️ This doesn't work if the ciImage is created a special way, it works if input ciimage is created the old way
-    */
-   static func rgbaImage(ciImage: CIImage) throws -> RGBAImage {
-//      Swift.print("ciImage.extent.size:  \(ciImage.extent.size)")
-      guard let cgImg: CGImage = ciImage.cgImage ?? ciImage.cgImage() else { throw NSError(domain: "rgbaImage - Unable to get cgImage", code: 0) }
-//      Swift.print("cgImg:  \(cgImg.width)")
-      return try rgbaImage(cgImage: cgImg)
-   }
-   /**
     * CIImage -> RGBAImage (⭐ new, works ⭐)
     * - Note: Seems to be slightly faster than converting ciimage to cgimage etc
     * - Note: ref https://www.geekspiff.com/unlinkedCrap/ciImageToBitmap.html

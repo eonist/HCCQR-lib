@@ -28,7 +28,7 @@ extension Colorizer {
          let condition: MatchCond = { (i: Int, pixel: Bool) in
             var bothAreBlack: Bool { return !pixel && !colorMapItem.idx[i] } // false means black
             var bothAreWhite: Bool { return pixel && colorMapItem.idx[i] } // true means white
-            if !bothAreBlack && !bothAreWhite  { return false } // <- Sort of crazy looking, but it works
+            if !bothAreBlack && !bothAreWhite { return false } // <- Sort of crazy looking, but it works
             else { return true }
          }
          // - Fixme ⚠️️ could we use async_apply here, in the .first loop?
