@@ -12,9 +12,10 @@ extension HCCQRWriter {
     * 3. Converts RGBAImage to Image
     * - Fixme: ⚠️️ Could setting CIImage or CGIMage directly to a Image in the UI be faster?
     * - Fixme: ⚠️️ Try a sync version of this method with semphors
+    * - Fixme: ⚠️️ Rename method name to image
     * - Note: Supports The grayscaleImage optimization
     */
-   public static func img(data: Data, multipliers: Multipliers, qrConfig: QRConfig = (.v10, .l), useDarkMode: Bool = false, onComplete: @escaping OnHCCQRImageCompleted) {
+   public static func img(data: Data, multipliers: Multipliers, qrConfig: QRConfig = defaultQRConfig, useDarkMode: Bool = false, onComplete: @escaping OnHCCQRImageCompleted) {
       rgbaImage(data: data, multipliers: multipliers, qrConfig: qrConfig, useDarkMode: useDarkMode) { result in
          guard let rgbaImg: RGBAImage = try? result.get() else { onComplete(.failure(NSError("\(result.errorStr)"))); return }
          guard let image: Image = try? RGBAImageUtil.image(rgbaImage: rgbaImg, scale: CGFloat(multipliers.screenScale)) else { onComplete(.failure(NSError("Colorize.colorize() - Unable to convert to UIImage"))); return }
@@ -23,14 +24,14 @@ extension HCCQRWriter {
       }
    }
    /**
-    * Data -> CIImage
+    * Converts Data -> CIImage's -> RGBAImage
     * 1. Data comes in with config and scale
     * 2. Splits the data into two
     * 3. Creates 2 CIImage's of these two data items
     * - Abstract: Create two QR images from the data, and combine them into RGBAImage, then convert that to CIImage
     * - Caution: ⚠️️ Remember to deinit the result once it's consumed
     */
-   public static func rgbaImage(data: Data, multipliers: Multipliers, qrConfig: QRConfig = (.v10, .l), useDarkMode: Bool = false, onComplete: @escaping OnRGBAImageComplete) {
+   static func rgbaImage(data: Data, multipliers: Multipliers, qrConfig: QRConfig = defaultQRConfig, useDarkMode: Bool = false, onComplete: @escaping OnRGBAImageComplete) {
       let dataArr: [Data] = data.split(index: data.count / 2) // Split the data in two
       var ciImgs: [CIImage?] = [CIImage?](repeating: nil, count: dataArr.count) // Pre-filled array for the images
       dataArr.enumerated().forEach { (_ offset: Int, _ data: Data) in

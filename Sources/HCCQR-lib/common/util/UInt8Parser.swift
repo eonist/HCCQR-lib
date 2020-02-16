@@ -11,6 +11,7 @@ final class UInt8Parser {
     * range(num: 230, halfThreshold: 25, min: 0, max: 255)) // 205, 255
     * range(num: 0, halfThreshold: 25, min: 0, max: 255)) // 0, 50
     * range(num: 255, halfThreshold: 25, min: 0, max: 255)) // 205, 255
+    * - Note: Used by PixelData.isColor method
     * - Parameters:
     *   - halfThreshold: the amount of padding from the midPoint
     *   - num: define the midPoint in the range

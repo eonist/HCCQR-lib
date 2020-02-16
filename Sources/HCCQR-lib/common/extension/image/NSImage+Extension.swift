@@ -1,6 +1,8 @@
 #if os(macOS)
 import Cocoa
-
+/**
+ * - Fixme: ⚠️️ Some of these may not be in use anymore, try to delte or move to test scope
+ */
 extension NSImage {
    /**
     * ⚠️️ Temp fix ⚠️️, might not work
@@ -26,7 +28,7 @@ extension NSImage {
       return Optional(NSImage(size: size, color: color, scale: scale))
    }
    /**
-    * - Note: Great to use un hybrid systems, as iOS has the same API
+    * - Note: Great to use in hybrid systems, as iOS has the same API
     */
    convenience init(ciImage: CIImage) {
       let rep: NSCIImageRep = .init(ciImage: ciImage)

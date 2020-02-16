@@ -42,7 +42,7 @@ extension HCCQRWriter {
  */
 extension HCCQRWriter {
    /**
-    * (⚠️️⚠️️⚠️️ DEPRECATE SOON ⚠️️⚠️️⚠️️)
+    * ⚠️️⚠️️⚠️️ DEPRECATE SOON ⚠️️⚠️️⚠️️
     * - Fixme: ⚠️️ try to get rid of the inout method
     * - Fixme: ⚠️️ Needs refactor, try using NSOperation or Semaphors
     */

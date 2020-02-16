@@ -1,4 +1,6 @@
 import Foundation
+import QuartzCore
+import CoreImage
 /**
  * Assert
  */
@@ -14,5 +16,19 @@ extension Color {
       var b: Bool { return rgba1.b == rgba2.b }
       var a: Bool { return rgba1.a == rgba2.a }
       return r && g && b && a
+   }
+}
+/**
+ * ⚠️️ SLOW ⚠️️
+ */
+extension Color {
+   /**
+    * Returns rgba (0-1)
+    * ## Examples:
+    * UIColor.red.rgba.r // 1
+    */
+   private var rgba: (r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat) {
+      let ciColor: CIColor = self.ciColor
+      return (ciColor.red, ciColor.green, ciColor.blue, ciColor.alpha)
    }
 }
