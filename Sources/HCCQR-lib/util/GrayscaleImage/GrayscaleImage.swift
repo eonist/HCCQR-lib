@@ -1,5 +1,6 @@
 import Foundation
 /**
+ * We split HCCQR-images into QR-Image grayscale representations
  * - Fixme: ⚠️️ You have to dealocate the memory at some point, see: https://stackoverflow.com/questions/34750166/how-to-use-unsafemutablebufferpointer
  * - Fixme: ⚠️️ this should really be called ARGBImage
  */

@@ -10,7 +10,7 @@ extension Colorizer {
     * 3. Scale the colorized array, since the colorized array is always just 1px block in size
     * - Abstract: creates an HCCQR from two Qr images
     * - Fixme: ⚠️️⚠️️ Could be faster to just mutate the pixels diretly in an RGBAImage instead of creating an pixel array like it is now?
-    * - Fixme: ⚠️️ We should make MonotoneImage that has single Bit data, it will be faster
+    * - Fixme: ⚠️️⚠️️⚠️️⚠️️ We should make MonotoneImage that has single Bit data, bool, it will be faster
     * - Fixme: ⚠️️ Add darkMode bool flag
     * - Fixme: ⚠️️⚠️️ Do the scaling inside the fuse-loop, figure out how to scale in the unscalled array first 👈, then apply the scaling directly to the colorized pixels, somehow, requires some whiteboard thinking
     * - Fixme: ⚠️️ Rename colorize to fuse?

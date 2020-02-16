@@ -48,3 +48,5 @@ extension Colorizer {
       return result
    }
 }
+
+// 🏀 Make the MonotoneImage struct

@@ -16,7 +16,7 @@ extension HCCQRReader {
 extension HCCQRReader {
    /**
     * The imags was returned for debuggin, can be useful for optimizing later
-    * - Fixme: ⚠️️ I don't think returning qrimage is useful anymore
+    * - Fixme: ⚠️️ I don't think returning qrimage is useful anymore, try to remove it
     */
    public typealias DataAndImages = (data: Data?, qr1: CIImage, qr2: CIImage, quad: QRReader.Quad?)
    public typealias DataAndImagesResult = Result<DataAndImages, Error>
@@ -30,6 +30,6 @@ extension HCCQRReader {
    public typealias DataAndQuadResult = Result<DataAndQuad, Error>
    public typealias OnGetDataAndQuadCompleted = (DataAndQuadResult) -> Void
 }
-//- Fixme: ⚠️️ Move into HCCQRReader scope, you can do HCCQRWriter.OnHCCQRDataComplete
+// - Fixme: ⚠️️ Move into HCCQRReader scope, you can do HCCQRWriter.OnHCCQRDataComplete
 // soon to be deprecated, we use result now
 public typealias OnHCCQRDataComplete = (_ data: Data?, _ error: Error?) -> Void

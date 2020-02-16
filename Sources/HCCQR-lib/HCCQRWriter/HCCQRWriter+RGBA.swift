@@ -55,14 +55,14 @@ extension HCCQRWriter {
     * 2. When the result array is full of CIImages the colorizing starts
     * 3. Colorize grayscale CIImages
     * 4. return RGBA image
-    * - Important: ⚠️️ We could get raw grayscale or even puter bool info, but for now we use apples qr-creation method, and that uses CIImage as output
+    * - Important: ⚠️️ We could get raw grayscale or even bool info, but for now we use apples qr-creation method, and that uses CIImage as output
     * - Parameters:
     *   - i: the index of the CIImage to be placed in the result-array
     *   - ciImg: The image to be placed in the result-array
     *   - ciImgs: The completion result array (initially populated with nils)
     *   - multipliers: Screen and module scale
     *   - useDarkMode: Toggle between dark and light mode (dark / white background)
-    *   - onComplete: Return the complete HCCQR image from grayscale qr represenations
+    *   - onComplete: Return the complete HCCQR image from grayscale QR represenations
     */
    private static func onCIImagesComplete(i: Int, ciImg: CIImage?, ciImgs:inout [CIImage?], multipliers: Multipliers, useDarkMode: Bool = false, onComplete: OnRGBAImageComplete) {
       guard let ciImg: CIImage = ciImg else { onComplete(.failure(NSError(domain: "ciImg err ", code: 0))); return }
