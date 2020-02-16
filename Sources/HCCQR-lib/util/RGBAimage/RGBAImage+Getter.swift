@@ -1,4 +1,5 @@
 import Foundation
+import QuartzCore
 /**
  * Getter
  */
@@ -7,6 +8,7 @@ extension RGBAImage {
     * Convenience
     */
    var size: Size { return (width: width, height: height) }
+   var cgSize: CGSize { return .init(width: CGFloat(self.width), height: CGFloat(self.height)) }
    var capacity: Int { self.width * self.height }
    /**
     * Get pixel

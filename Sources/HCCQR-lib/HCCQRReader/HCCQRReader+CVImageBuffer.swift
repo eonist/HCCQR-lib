@@ -23,9 +23,7 @@ extension HCCQRReader {
       dataAndImages(rgbaImage: rgbaImg) { (result: HCCQRReader.DataAndImagesResult) in
          guard let dataAndImagesAndQuad: HCCQRReader.DataAndImages = try? result.get() else { onComplete(.failure("unable to get dataAndImages: \(result.errorStr)")); return }
          guard let data: Data = dataAndImagesAndQuad.data, let quad = dataAndImagesAndQuad.quad  else { onComplete(.failure("unable to get data or quad")); return }
-         // 🏀 this size can be in the rgbaImg?
-         let size: CGSize = .init(width: CGFloat(rgbaImg.width), height: CGFloat(rgbaImg.height))
-         let dataAndMeta: DataAndMeta = (data: data, quad: quad, imageSize: size)
+         let dataAndMeta: DataAndMeta = (data: data, quad: quad, imageSize: rgbaImg.cgSize)
          onComplete(.success(dataAndMeta))
       }
    }
