@@ -156,6 +156,7 @@
 		F1E5DC1223F9A2DF00605775 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E5DC1123F9A2DF00605775 /* UIImage+Extension.swift */; };
 		F1E5DC1523F9A43A00605775 /* CGImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F168527C2213443700C27EAA /* CGImage+Extension.swift */; };
 		F1E5DC1823F9A5B700605775 /* Image+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E5DC1723F9A5B700605775 /* Image+Extension.swift */; };
+		F1E5DC1A23F9D37700605775 /* NSImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E5DC1923F9D37700605775 /* NSImage+Extension.swift */; };
 		F1E6459E239407BC008D2ABE /* QR-lib in Frameworks */ = {isa = PBXBuildFile; productRef = F1E6459D239407BC008D2ABE /* QR-lib */; };
 		F1E6459F23940AC9008D2ABE /* Hybrid+iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17A29FF22137BEA000B6C0A /* Hybrid+iOS.swift */; };
 		F1E645A023940AC9008D2ABE /* Hybrid+Mac.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17A2A17221384F2000B6C0A /* Hybrid+Mac.swift */; };
@@ -394,6 +395,7 @@
 		F1E5DC1123F9A2DF00605775 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		F1E5DC1423F9A3E900605775 /* RGBAImage+Init+DEPRECATED.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RGBAImage+Init+DEPRECATED.swift"; sourceTree = "<group>"; };
 		F1E5DC1723F9A5B700605775 /* Image+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Extension.swift"; sourceTree = "<group>"; };
+		F1E5DC1923F9D37700605775 /* NSImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSImage+Extension.swift"; sourceTree = "<group>"; };
 		F1F0FFFD23B558D900210208 /* PixelData+RGBColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PixelData+RGBColor.swift"; sourceTree = "<group>"; };
 		F1F3E04623BA1C8E00D367F1 /* Channel+RGBA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Channel+RGBA.swift"; sourceTree = "<group>"; };
 		F1F3E04923BA1CA200D367F1 /* Channel+Gray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Channel+Gray.swift"; sourceTree = "<group>"; };
@@ -986,6 +988,7 @@
 				F1E5DC1123F9A2DF00605775 /* UIImage+Extension.swift */,
 				F168527C2213443700C27EAA /* CGImage+Extension.swift */,
 				F1E5DC1723F9A5B700605775 /* Image+Extension.swift */,
+				F1E5DC1923F9D37700605775 /* NSImage+Extension.swift */,
 			);
 			path = image;
 			sourceTree = "<group>";
@@ -1463,6 +1466,7 @@
 				F1E5DC1023F9A1C300605775 /* RGBAImageTest.swift in Sources */,
 				F1E5711923A3F2C400E090BB /* MemLeakTest.swift in Sources */,
 				F1AF9D4923E387160085DA0C /* HCCQRPhotoTest+Handler.swift in Sources */,
+				F1E5DC1A23F9D37700605775 /* NSImage+Extension.swift in Sources */,
 				F1E5712323A3F2C400E090BB /* SingleHCCQRTest.swift in Sources */,
 				F1E5711D23A3F2C400E090BB /* FakeHCCQRView.swift in Sources */,
 				F1E5711F23A3F2C400E090BB /* SimpleHCCQRView.swift in Sources */,
