@@ -2,19 +2,26 @@ import Foundation
 import QuartzCore
 import CoreImage
 /**
+ * Converts b&w layers into color layers (Used in the HCCQR-creation-process)
+ */
+final class Colorizer {}
+/**
  * CIImage
  */
 extension Colorizer {
    /**
-    * CIImage's -> CIImage
+    * CIImage's -> CIImage (Converts multiple b&w images to color image based on the colorMap provided)
+    * 1. Two B&W-QR-CIImage's comes in
+    * 2. A HCCQR Color RGBAImage is created from the grayscale QR-Images
+    * 3. Converts the RGBA image to ciImage and returns it
     * - Abstract: creates an HCCQR from two Qr images
     * - Note: We get CIImages because thats what QR produces
     * - Note: Used in the process of converting Data to HCCQR (the QRImages are pure black and white)
     * - Return: we return a color CIImage
     * - Parameters:
-    *   - ciImages: qr code images (BGRA8, opaque)
-    *   - colorMap: rule-set
-    *   - multipliers: scaling
+    *   - ciImages: qr code images (BGRA8, opaque) (B&W QR-Images)
+    *   - colorMap: rule-set (The color depth you want the HCCQR image in. 4, 8, 16, 32 etc)
+    *   - multipliers: modulescale and screenScale, for retina you need 2x scale etc, This is the multiplier. ModuleCount equals 1 pixel. ModuleCount for QRVersion 10 is 57 not counting 2 for margins. So (57+2)*6 = 354, if you want 2xretina its 354 * 2 = 708
     */
    static func colorize(ciImages: [CIImage], colorMap: ColorMap, multipliers: Multipliers) -> ColorizedResult {
       guard let rgbaImage: RGBAImage = try? grayscaleColorize(ciImages: ciImages, colorMap: colorMap, multipliers: multipliers) else { return .failure(NSError("err creating RGBAImage from QR CIImages")) }
@@ -24,26 +31,12 @@ extension Colorizer {
    }
 }
 /**
- * RGBA
- */
-extension Colorizer { // soon deprecated
-   /**
-    * CIImage's -> RGBAImage
-    * - Fixme: ⚠️️ Can we put the loop on bg-thread?
-    */
-   static func colorize(ciImages: [CIImage], colorMap: ColorMap, multipliers: Multipliers) throws -> RGBAImage {
-      let rgbaImages: [RGBAImage] = ciImages.compactMap { try? RGBAImage.rgbaImg(ciImg: $0) } // convert QR images to Pixel-data
-      guard ciImages.count == rgbaImages.count else { throw NSError("Colorize.colorize() - some rgbaImages was not created") }
-      guard let result: RGBAImage = try? colorize(rgbaImages: rgbaImages, colorMap: colorMap, multipliers: multipliers) else { throw NSError("Colorize.colorize() - Unable to create colorized rgbaImage") } // overlay the qr-pixel-data
-      return result
-   }
-}
-/**
  * Grayscale
  */
 extension Colorizer {
    /**
-    * CIImage's -> RGBAImage
+    * CIImage's -> RGBAImage (Part of the HCCQR-creation process)
+    * // write step doc 🏀
     * - Fixme: ⚠️️ Can we put the loop on bg-thread, concurrent_apply?
     */
    static func grayscaleColorize(ciImages: [CIImage], colorMap: ColorMap, multipliers: Multipliers) throws -> RGBAImage {

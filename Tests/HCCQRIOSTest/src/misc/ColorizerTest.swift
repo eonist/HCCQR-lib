@@ -5,7 +5,9 @@ import CoreImage
 @testable import HCCQR_lib
 
 final class ColorizerTest {}
-
+/**
+ *
+ */
 extension ColorizerTest {
    /**
     * Tests colorizer method (Basically crates an HCCQR-image from 2 QR-images)
@@ -17,9 +19,10 @@ extension ColorizerTest {
    static func testColorizer() -> Bool {
       guard let img1: Image = createRandomQRImg() else { Swift.print("err"); return false }
       guard let img2: Image = createRandomQRImg() else { Swift.print("err"); return false }
-      let imgs: [Image] = [img1, img2].compactMap { $0 }
-      guard let resultImage: Image = try? Colorizer.colorize(images: imgs, colorMap: Colorizer.colorMap(), multipliers: (moduleScale: 1, screenScale: 2)) else { Swift.print("unable to create colorized image"); return false }
-      let hasOnlyRGBColors: Bool = ColorMapAsserter.hasOnlyColorMap(uiImage: resultImage, colorMap: [.red, .green, .blue, .white])
+      let ciImages: [CIImage] = [img1, img2].compactMap { $0.ciImage }
+      guard let resultCIImage: CIImage = try? Colorizer.colorize(ciImages: ciImages, colorMap: Colorizer.colorMap(), multipliers: (moduleScale: 1, screenScale: 2)).get() else { Swift.print("unable to create colorized image"); return false }
+      let image: Image = Image(ciImage: resultCIImage) // - Fixme: ⚠️️ this is new so might fail, maybe get hasOnlyColorMap to work with ciimage etc
+      let hasOnlyRGBColors: Bool = ColorMapAsserter.hasOnlyColorMap(uiImage: image, colorMap: [.red, .green, .blue, .white])
       return hasOnlyRGBColors
    }
 }

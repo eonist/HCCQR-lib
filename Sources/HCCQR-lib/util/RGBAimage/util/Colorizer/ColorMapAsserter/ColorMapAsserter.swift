@@ -14,6 +14,7 @@ final class ColorMapAsserter {
     * Asserts if an image has only the colors specified in the colors array
     * - Abstract: ensure that img only has valid colors, aka no bluring
     * - Note: ⚠️️ This method is used for testing and debugging mostly
+    * - Fixme: ⚠️️ change uiImage param to image param 
     * ## Example:
     * hasOnlyColorMap(these: [.red, .green, .blue, .white])
     * - Note: this method is just for debugging, so no need to optimize it too much
