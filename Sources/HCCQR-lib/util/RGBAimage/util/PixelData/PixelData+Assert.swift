@@ -82,18 +82,18 @@ extension PixelData {
     *   - limit: used to avoid going out of bound
     */
    private static func isColor(rgb1: RGB, rgb2: RGB, halfThreshold: UInt8, limit: Limit = (0, 255)) -> Bool {
-      let r: () -> Bool = {
+      var r: Bool {
          let range: RangeUInt8 = UInt8Parser.range(num: rgb2.r, halfThreshold: halfThreshold, min: limit.min, max: limit.max) // 75, 125
          return UInt8Asserter.within(num: rgb1.r, min: range.start, max: range.end) // (range.start...range.end).contains(rgb1.r)
       }
-      let g: () -> Bool = {
+      var g: Bool {
          let range: RangeUInt8 = UInt8Parser.range(num: rgb2.g, halfThreshold: halfThreshold, min: limit.min, max: limit.max)
          return UInt8Asserter.within(num: rgb1.g, min: range.start, max: range.end) // (range.start...range.end).contains(rgb1.g)
       }
-      let b: () -> Bool = {
+      var b: Bool {
          let range: RangeUInt8 = UInt8Parser.range(num: rgb2.b, halfThreshold: halfThreshold, min: limit.min, max: limit.max)
          return UInt8Asserter.within(num: rgb1.b, min: range.start, max: range.end) // (range.start...range.end).contains(rgb1.b)
       }
-      return r() && g() && b() // this looks unclear, but it's a more efficient way of saying r & b & b, because it drops out if either of the first colors is wrong etc
+      return r && g && b // this looks unclear, but it's a more efficient way of saying r & b & b, because it drops out if either of the first colors is wrong etc
    }
 }

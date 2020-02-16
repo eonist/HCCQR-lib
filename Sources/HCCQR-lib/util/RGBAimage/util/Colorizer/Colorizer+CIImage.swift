@@ -36,7 +36,9 @@ extension Colorizer {
 extension Colorizer {
    /**
     * CIImage's -> RGBAImage (Part of the HCCQR-creation process)
-    * // write step doc 🏀
+    * 1. Array of CIImages comes in
+    * 2. Convert the CIImage-array to GrayScale pixel representations
+    * 3. Colorize the GrayScaleImage array to an RGBAImage and return it
     * - Fixme: ⚠️️ Can we put the loop on bg-thread, concurrent_apply?
     */
    static func grayscaleColorize(ciImages: [CIImage], colorMap: ColorMap, multipliers: Multipliers) throws -> RGBAImage {
