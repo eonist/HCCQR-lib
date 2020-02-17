@@ -33,6 +33,7 @@ extension Splitter {
    /**
     * Composite complete
     * - Note: Not private because many methods use this handler
+    * - Fixme: ⚠️️⚠️️⚠️️ Possibly deprecate, since we use GrayScale version of this now
     */
    static func onCompositeComplete(i: Int, qrImg: CIImage?, qrImgs: inout [CIImage?], channels: Channel.RGBAImages, onComplete: SplitPayloadCompleted) {
       guard let qrImg: CIImage = qrImg else { [channels.r, channels.g, channels.b].forEach { $0.deinitiate() }; onComplete(.failure(NSError("no qrImg"))); return }

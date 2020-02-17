@@ -20,6 +20,7 @@ extension Splitter {
    static func channels(ciImage: CIImage, onComplete:@escaping Channel.OnGrayChannelsComplete) {
       guard let rgbaImg: RGBAImage = try? RGBAImage.rgbaImg(ciImg: ciImage) else { onComplete(.failure(NSError("Unable to create rgbaImg"))); return }
 //      HCCQRReader.splitTime = .init() // Debugging performance
+      // 🏀 do the bellow in Splitter+rgbaImage
       Channel.grayChannels(rgbaImg: rgbaImg, onComplete: onComplete) // Channel.channels(rgbaImg: rgbaImg, onComplete: onComplete)
    }
 }
