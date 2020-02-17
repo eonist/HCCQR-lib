@@ -485,6 +485,14 @@
 			path = DEPRECATED;
 			sourceTree = "<group>";
 		};
+		F143EC3923FAD23F0006743C /* DEPRECATED */ = {
+			isa = PBXGroup;
+			children = (
+				F1D8A66523E83E7300F17A81 /* RGBA */,
+			);
+			path = DEPRECATED;
+			sourceTree = "<group>";
+		};
 		F14FADE621F75EAD00ACE5FF /* ColorExtractionTest */ = {
 			isa = PBXGroup;
 			children = (
@@ -1062,7 +1070,7 @@
 		F1F3E04223BA1C4300D367F1 /* channel */ = {
 			isa = PBXGroup;
 			children = (
-				F1D8A66523E83E7300F17A81 /* RGBA */,
+				F143EC3923FAD23F0006743C /* DEPRECATED */,
 				F1D8A66623E83E7E00F17A81 /* Gray */,
 			);
 			path = channel;

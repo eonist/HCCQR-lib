@@ -1,5 +1,5 @@
 import Foundation
-
+// ⚠️️⚠️️⚠️️ DEPRECATED ⚠️️⚠️️⚠️️
 extension Channel {
    typealias ChannelMap = [PixelData.RGBColor]
    typealias RGBAImages = (r: RGBAImage, g: RGBAImage, b: RGBAImage)

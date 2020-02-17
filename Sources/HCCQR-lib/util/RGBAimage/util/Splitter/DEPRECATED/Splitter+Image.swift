@@ -6,8 +6,6 @@ import ResultSugar
  * - Abstract: HCCQR-Image -> QR-Image's -> Data
  * - Fixme: ⚠️️ write about what it does, then check if maybe using monotoneImage is better than grayscale image
  */
-final class Splitter {}
-
 extension Splitter {
    /**
     * Returns two b&w qr imgs (by splitting an hccqr imgage)

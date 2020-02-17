@@ -4,6 +4,7 @@ import Foundation
  */
 extension Channel {
    /**
+    * ⚠️️⚠️️⚠️️ DEPRECATED ⚠️️⚠️️⚠️️
     * Channel completion handler (just makes sure everything completed)
     * - Fixme: ⚠️️ simplify the deinit, refactor etc, rename params
     * - Fixme: ⚠️️ We could Return 3 GrayScaleImages instead of 3 RGBAImages, might be faster

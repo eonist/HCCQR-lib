@@ -1,5 +1,6 @@
 import Foundation
 import CoreImage
+import ResultSugar
 /**
  * Static handler
  */

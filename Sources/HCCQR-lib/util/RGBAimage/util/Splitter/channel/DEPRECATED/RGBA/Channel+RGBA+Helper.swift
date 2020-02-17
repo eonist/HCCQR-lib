@@ -4,6 +4,7 @@ import Foundation
  */
 extension Channel {
    /**
+    * ⚠️️⚠️️⚠️️ DEPRECATED ⚠️️⚠️️⚠️️
     * Gets r, g, b channels
     * - Note: Marks red colors as black, all else becomes white
     * - Note: there is no speed benefit of writing the new pixeldata into a new rgba image, this was tested

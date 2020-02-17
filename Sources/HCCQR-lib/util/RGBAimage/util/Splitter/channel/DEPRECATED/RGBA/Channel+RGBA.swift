@@ -2,17 +2,20 @@ import Foundation
 
 final class Channel {}
 /**
- * channels
+ * Channels
  */
 extension Channel {
    /**
+    * ⚠️️⚠️️⚠️️ DEPRECATED ⚠️️⚠️️⚠️️
     * Split 1 RGBAImage into 3 RGBAImages and then into 3 b&w RGBAImages consisting of singular r, g, b channels (⚠️️ white represents the channel color ⚠️️)
+    * - Returns: channels (RGB for now) (3 channels, red, green, blue)
     * - Parameters:
     *   - rgbaImg: target to derive channels from
     *   - channelMap: rule-set for the splitting process
     *   - onComplete: notify when process has completed
     */
    static func channels(rgbaImg: RGBAImage, channelMap: ChannelMap = channelMap, onComplete:@escaping OnChannelsCompleted) {
+      // - Fixme: ⚠️️ Move assertions into const let outside method
       let assertions: [(PixelData) -> Bool] = channelMap.map { rgbColor in { $0.isColorish(rgbColor) } }
       var rgbaImages: [RGBAImage?] = [RGBAImage?](repeating: nil, count: assertions.count) // Fixme: ⚠️️ we could use unmanaged pointer with capacity as well, might be faster
       assertions.enumerated().forEach { item in // 3 assertions
