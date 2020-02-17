@@ -49,4 +49,4 @@ extension Colorizer {
    }
 }
 
-// 🏀 Make the MonotoneImage struct
+// 🏀 Make the MonotoneImage struct, use that instead of GrayscaleImage
