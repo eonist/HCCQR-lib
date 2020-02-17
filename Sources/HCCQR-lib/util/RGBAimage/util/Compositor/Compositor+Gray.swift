@@ -31,19 +31,16 @@ extension Compositor {
     * - Note: The pixels are never overwritten
     * - Note: Should really be private, but some tests use it
     * - Fixme: ⚠️️ Can the compositing be done simpler, more efficient?
-    * - Parameter grayscaleImages: an array of RGBAImages to be composited together into 1 RGBAImage
+    * - Parameter grayscaleImages: An array of RGBAImages to be composited together into 1 RGBAImage
     */
    static func composite(grayscaleImages: [GrayscaleImage]) throws -> GrayscaleImage {
       guard let first: GrayscaleImage = grayscaleImages.first else { throw NSError(domain: "unable to composite - composite() - no first image available", code: 0) }
       let whiteImage: GrayscaleImage = .grayscaleImage(pixel: .white, size: first.size) // because white is 255
       return GrayscaleImage.process(input: whiteImage) { (index: Int, pixel: UInt8) -> UInt8 in // Loop things
-         var pixel: UInt8 = pixel // - Fixme: ⚠️️ maybe do reduce here?
+         var pixel: UInt8 = pixel // - Fixme: ⚠️️ Maybe do reduce here?, definitly do reduce here!
          grayscaleImages.forEach { (grayscaleImage: GrayscaleImage) in // loop over every image in the list, this is inside here because the process method uses concurrent_apply
-            pixel = {
-               let pixelValue: UInt8 = grayscaleImage.pixels[index]
-               let result = pixel.subtractingReportingOverflow(pixelValue)
-               return result.overflow ? 0 : result.partialValue // - Fixme: ⚠️️ Can be removed because this will basically never happen, because channels cant overlap
-            }()
+            let pixelValue: UInt8 = grayscaleImage.pixels[index]  // - Fixme: ⚠️️ Can be removed because this will basically never happen, because channels can't overlap
+            pixel.applyValue(value: pixelValue) // instead of adding, we substract and then we wouldn't have to invert the image at the end
          }
          return pixel
       }
