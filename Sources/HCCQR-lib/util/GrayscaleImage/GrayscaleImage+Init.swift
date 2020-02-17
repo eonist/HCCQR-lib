@@ -29,7 +29,7 @@ extension GrayscaleImage {
    }
    /**
     * Returns empty grayScale-image
-    * - Fixme: ⚠️️ Seems counter productive to allocate and then populate the array, cant it be done in one go?
+    * - Fixme: ⚠️️ Seems counter productive to allocate and then populate the array, can't it be done in one go?
     * - Parameters:
     *   - capacity: the number of pixels you want to use
     *   - size: the size of the returned GrayScaleImage

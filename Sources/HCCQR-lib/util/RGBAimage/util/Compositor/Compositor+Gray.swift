@@ -2,11 +2,18 @@ import Foundation
 import CoreImage
 /**
  * Compositor (Takes 2 Channels and converts to a new b&w QRImage)
+ * - Abstract: Used in the Reading of HCCQR
  */
+final class Compositor {}
+
 extension Compositor {
    /**
-    * New
-    * - Fixme: ⚠️️ defer deinit instead of having two deInit calles. research first
+    * Returns a QR-Image based on two (GrayscaleImage) channels (We use CIImage, because that is what apple prefers to read qr from)
+    * - Note: layer 1: r, b -> qrImg1
+    * - Note: layer 2: b, g -> qrImg2
+    * - Note: Used in the process to convert HCCQR to Data
+    * - Fixme: ⚠️️ Possibly simplify method with defering deinit of composite
+    * - Fixme: ⚠️️ defer deinit instead of having two deInit calls. research first
     */
    static func composite(first: GrayscaleImage, second: GrayscaleImage) throws -> CIImage {
       let grayscaleImage: GrayscaleImage = try composite(grayscaleImages: [first, second])
@@ -16,9 +23,15 @@ extension Compositor {
       return img
    }
    /**
-    * Combine 2 grayscale images into one
-    * - Note: we use array to support richer color pallets in the future
-    * - Note: the pixels are never overwritten
+    * Combines many grayscale images into one
+    * - Abstract: we overlay many b&w to produce one b&w image
+    * - Note: We invert the image in this method, because doing it in post takes a long time
+    * - Note: Used in the process to convert HCCQR to Data
+    * - Note: We use array to support richer color pallets in the future
+    * - Note: The pixels are never overwritten
+    * - Note: Should really be private, but some tests use it
+    * - Fixme: ⚠️️ Can the compositing be done simpler, more efficient?
+    * - Parameter grayscaleImages: an array of RGBAImages to be composited together into 1 RGBAImage
     */
    static func composite(grayscaleImages: [GrayscaleImage]) throws -> GrayscaleImage {
       guard let first: GrayscaleImage = grayscaleImages.first else { throw NSError(domain: "unable to composite - composite() - no first image available", code: 0) }

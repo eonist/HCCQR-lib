@@ -6,6 +6,7 @@ extension GrayscaleImage {
    /**
     * Populate GrayscaleImage with 0-255 values based on the grayscale equivilent (R,G,B) channel
     * - Abstract: Get grayscale UInt8 intensity for a (R,G,B) channel
+    * - Note: Used when reading HCCQR 
     * - Fixme: ⚠️️ find a better name for this method?
     * - Parameters:
     *   - input: The RGBAImage to extract data from

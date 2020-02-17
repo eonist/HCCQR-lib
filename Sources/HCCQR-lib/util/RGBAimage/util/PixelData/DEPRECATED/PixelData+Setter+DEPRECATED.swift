@@ -4,6 +4,7 @@ import Foundation
  */
 extension PixelData {
    /**
+    * ⚠️️⚠️️⚠️️ DEPRECATED ⚠️️⚠️️⚠️️
     * - Note: Used by the Compositor class
     * - - Fixme: ⚠️️⚠️️⚠️️ May not be needed anymore, since pixels are not over-written
     */
@@ -28,6 +29,7 @@ extension PixelData {
  */
 extension PixelData {
    /**
+    * ⚠️️⚠️️⚠️️ DEPRECATED ⚠️️⚠️️⚠️️
     * Inverted (only works for pure black or pure white pixels)
     * - Note: used in the composite method
     */
