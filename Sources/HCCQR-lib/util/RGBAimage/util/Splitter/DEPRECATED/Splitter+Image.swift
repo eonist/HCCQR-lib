@@ -2,9 +2,12 @@ import Foundation
 import CoreImage
 import ResultSugar
 /**
- * Splitter
+ * Splitter ⚠️️⚠️️⚠️️DEPRECATED⚠️️⚠️️⚠️️
+ * - Abstract: HCCQR-Image -> QR-Image's -> Data
+ * - Fixme: ⚠️️ write about what it does, then check if maybe using monotoneImage is better than grayscale image
  */
 final class Splitter {}
+
 extension Splitter {
    /**
     * Returns two b&w qr imgs (by splitting an hccqr imgage)
@@ -17,7 +20,7 @@ extension Splitter {
       }
    }
    /**
-    * Returns channels (rgb for now) (3 channels, red, green, blue)
+    * Returns channels (RGB for now) (3 channels, red, green, blue)
     */
    static func channels(image: Image, onComplete:@escaping Channel.OnChannelsCompleted) {
       guard let rgbaImg: RGBAImage = try? .rgbaImage(image: image) else { onComplete(.failure(NSError("Unable to create rgbaImg"))); return }

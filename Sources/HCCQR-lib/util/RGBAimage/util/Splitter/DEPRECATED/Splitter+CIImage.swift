@@ -1,7 +1,7 @@
 import Foundation
 import CoreImage
 /**
- * Splitter
+ * Splitter ⚠️️⚠️️⚠️️DEPRECATED⚠️️⚠️️⚠️️
  */
 extension Splitter {
    /**

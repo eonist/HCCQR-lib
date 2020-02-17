@@ -13,13 +13,13 @@ extension Compositor {
     * - Note: layer 2: b, g -> qrImg2
     * - Note: Used in the process to convert HCCQR to Data
     * - Fixme: ⚠️️ Possibly simplify method with defering deinit of composite
-    * - Fixme: ⚠️️ defer deinit instead of having two deInit calls. research first
+    * - Fixme: ⚠️️ Defer deinit instead of having two deInit calls. Research this first
     */
    static func composite(first: GrayscaleImage, second: GrayscaleImage) throws -> CIImage {
       let grayscaleImage: GrayscaleImage = try composite(grayscaleImages: [first, second])
-      // - Fixme: ⚠️️ here we could use black&white colormap, as it's only for reading bw qr code
+      // - Fixme: ⚠️️ here we could use black & white colormap, as it's only for reading bw qr code
       guard let img: CIImage = try? GrayscaleImageUtil.ciImage(grayscaleImage: grayscaleImage) else { grayscaleImage.deInit(); throw NSError(domain: "Unable to create img", code: 0) }
-      grayscaleImage.deInit() // We deinit the RGBImg after we have consumed it to avoid mem leak
+      grayscaleImage.deInit() // We deinit the Img after we have consumed it to avoid mem leak
       return img
    }
    /**

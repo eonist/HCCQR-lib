@@ -7,6 +7,7 @@ extension Splitter {
    /**
     * New ⚠️️
     * - Note: grayscale is better for qr to read than monotone
+    * - Fixme: ⚠️️ Rename to onGrayChannelSplittingComplete maybe ? 
     */
    static func onGrayChannelsComplete(result: Channel.GrayscaleChannelsResult, onComplete:@escaping SplitPayloadCompleted) { // called when the (R,G,B) channels are split
       guard let channels: Channel.GrayscaleImages = result.value() else { onComplete(.failure(NSError("Unable to create rgbaImgs \(result.errorStr)"))); return } // (r,g,b)

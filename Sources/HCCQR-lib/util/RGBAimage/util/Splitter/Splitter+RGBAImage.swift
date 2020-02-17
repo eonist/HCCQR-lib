@@ -2,6 +2,7 @@ import Foundation
 import CoreImage
 /**
  * Splitter
+ * - Abstract: HCCQR-RGBA-Image -> QRImage's -> Data
  */
 extension Splitter {
    /**

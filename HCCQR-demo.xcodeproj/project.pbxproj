@@ -476,6 +476,15 @@
 			path = DEPRECATED;
 			sourceTree = "<group>";
 		};
+		F143EC3823FACCEB0006743C /* DEPRECATED */ = {
+			isa = PBXGroup;
+			children = (
+				F16852B522134DBD00C27EAA /* Splitter+Image.swift */,
+				F17CB70523ABA31A00C4BED8 /* Splitter+CIImage.swift */,
+			);
+			path = DEPRECATED;
+			sourceTree = "<group>";
+		};
 		F14FADE621F75EAD00ACE5FF /* ColorExtractionTest */ = {
 			isa = PBXGroup;
 			children = (
@@ -552,8 +561,7 @@
 		F168525F2213443700C27EAA /* Splitter */ = {
 			isa = PBXGroup;
 			children = (
-				F16852B522134DBD00C27EAA /* Splitter+Image.swift */,
-				F17CB70523ABA31A00C4BED8 /* Splitter+CIImage.swift */,
+				F143EC3823FACCEB0006743C /* DEPRECATED */,
 				F1240F6A23B4E01400ECD116 /* Splitter+RGBAImage.swift */,
 				F181F11F23B9357C00145DEA /* Splitter+Handler.swift */,
 				F1F3E05223BA277600D367F1 /* Splitter+Grayscale.swift */,
