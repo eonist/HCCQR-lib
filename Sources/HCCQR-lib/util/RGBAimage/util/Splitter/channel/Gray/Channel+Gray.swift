@@ -17,12 +17,12 @@ extension Channel {
     */
    static func grayChannels(rgbaImg: RGBAImage, channelMap: ChannelMap = channelMap, onComplete:@escaping OnGrayChannelsComplete) {
       var grayscaleChannels: [GrayscaleImage?] = [GrayscaleImage?](repeating: nil, count: assertions.count) // Fixme: ⚠️️ we could use unmanaged pointer with capacity as well, might be faster
-      assertions.enumerated().forEach { item in // 3 assertions
+      similarities.enumerated().forEach { offset, similarity in // 3 assertions,
          DispatchQueue.global(qos: .userInitiated).async { // - Fixme: ⚠️️ This could be the cause of random error bug, maybe drop the async and just do it on current thread
-            // - Fixme: ⚠️️ This is the bug, the grayChannel returned is monotone, it should rather be grayscale
-            let grayscaleChannel: GrayscaleImage = grayChannel(rgbaImg: rgbaImg, assert: item.element) // Finds the red-channel, blue-channel, green-channel
+            // - Fixme: ⚠️️⚠️️⚠️️ This is the bug, the grayChannel returned is monotone, it should rather be grayscale
+            let grayscaleChannel: GrayscaleImage = grayChannel(rgbaImg: rgbaImg, asserter: similarity) // Finds the red-channel, blue-channel, green-channel
             DispatchQueue.main.async { // We need to go on the mainthread to manipulate array
-               onGrayChannelComplete(i: item.offset, grayscaleChannel: grayscaleChannel, grayscaleChannels: &grayscaleChannels, rgbaImg: rgbaImg, onComplete: onComplete)
+               onGrayChannelComplete(i: offset, grayscaleChannel: grayscaleChannel, grayscaleChannels: &grayscaleChannels, rgbaImg: rgbaImg, onComplete: onComplete)
             }
          }
       }

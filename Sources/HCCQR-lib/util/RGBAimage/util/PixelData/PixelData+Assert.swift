@@ -6,24 +6,36 @@ import QuartzCore
  */
 extension PixelData {
    /**
-    *  Asserts if a pixel is sort of a color within a threshold
-    *  ## Examples:
-    *  let rgbaColor: RGBAColor = (255, 0, 0, 255)
-    *  let pixelData: PixelData = .init(uiColor: .red)
-    *  pixelData.isColorish(rgbaColor) // returns true if the the pixel is within the color
+    * ⚠️️⚠️️⚠️️DEPRECATE SOON⚠️️⚠️️⚠️️
+    * Asserts if a pixel is sort of a color within a threshold
+    * ## Examples:
+    * let rgbaColor: RGBAColor = (255, 0, 0, 255)
+    * let pixelData: PixelData = .init(uiColor: .red)
+    * pixelData.isColorish(rgbaColor) // returns true if the the pixel is within the color
     */
    func isColorish(_ color: RGBColor) -> Bool {
       let pixelData: PixelData = .init(r: color.r, g: color.g, b: color.b, a: 255)
       return PixelData.isColor(a: self, b: pixelData, halfThreshold: PixelData.halfThresholdUInt8)
    }
-   // 🏀 Make a method that is called isColorish that returns Bool and the amount of that color in UInt8
+   /**
+    * Asserts if a pixel is sort of a color within a threshold (also returns the strength of the color)
+    * - Fixme: ⚠️️ How ish is a color, figure out 0-1 how strong a color is, remember channels can be fractional whe we start using other colors than R, B, G
+    * - Fixme: ⚠️️ Look for algorithms that can measure how strong a color is. 99% Cyan etc
+    * - Important: ⚠️️ For now we just measure for R,G,B
+    * - Returns: returns Bool and the amount of that color in UInt8
+    */
+   func isSimilar(_ color: RGBColor) -> Similarity { // - Fixme: ⚠️️ Might not need to return a tuple, the strength alone may be enough
+      let isColorish: Bool = self.isColorish(color)
+      let strength: UInt8 = isColorish ? PixelData.naiveStrength(color: color, pixel: self) : 0 // if color is not with threshold, then strength is zero
+      return (assert: true, strength: strength)
+   }
    /**
     * Measure if color is white (used in the colorize method)
     * - Note: looks funny, but it's that way to make it fast
     * - Note: Used by colorize method and inverted method
     */
    var isWhite: Bool {
-      return !(self.r != .white || self.g != .white || self.b != .white)
+      return self.r == .white && self.g == .white && self.b == .white
    }
    /**
     * Measure if color is black (used in the colorize method)
@@ -31,14 +43,14 @@ extension PixelData {
     * - Note: Used by colorize method
     */
    var isBlack: Bool {
-      return !(self.r != 0 || self.g != 0 || self.b != 0)
+      return self.r == .black && self.g == .black && self.b == .black
    }
    /**
     * Match two pixels
-    * - Note: Looks funny, but it's that way to make it fast (bsaically exits early if something doesn't match)
+    * - Note: Looks funny, but it's that way to make it fast (basically exits early if something doesn't match)
     */
    static func isMatching(a: PixelData, b: PixelData) -> Bool {
-      return !(a.r != b.r || a.g != b.g || a.b != b.b/* || a.a != b.a*/)
+      return a.r == b.r && a.g == b.g && a.b == b.b
    }
 }
 /**
@@ -95,6 +107,22 @@ extension PixelData {
          let range: RangeUInt8 = UInt8Parser.range(num: rgb2.b, halfThreshold: halfThreshold, min: limit.min, max: limit.max)
          return UInt8Asserter.within(num: rgb1.b, min: range.start, max: range.end) // (range.start...range.end).contains(rgb1.b)
       }
-      return r && g && b // this looks unclear, but it's a more efficient way of saying r & b & b, because it drops out if either of the first colors is wrong etc
+      return r && g && b
+   }
+   /**
+    * Get strength of a color
+    * - Note: This method is a temp solution and only works when we have 4 color maps etc
+    * - Fixme: ⚠️️ In the future we need to calc how similar a color is to another in percentage 99% cyan etc, should deviation in the other channels account for the same as deviation in the primary channel etc?
+    */
+   private static func naiveStrength(color: RGBColor, pixel: PixelData) -> UInt8 {
+      if PixelData.isRed(rgbColor: color) {
+         return pixel.r
+      } else if PixelData.isGreen(rgbColor: color) {
+         return pixel.g
+      } else if PixelData.isBlue(rgbColor: color) {
+         return pixel.b
+      } else {
+         fatalError("not supported")
+      }
    }
 }

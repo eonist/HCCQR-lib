@@ -11,11 +11,11 @@ extension Channel {
     *   - rgbaImg: The RGBAImage to manipulate
     *   - assert: takes Pixeldata, returns Bool
     */
-   static func grayChannel(rgbaImg: RGBAImage, assert: PixelDataAssertion) -> GrayscaleImage {
+   static func grayChannel(rgbaImg: RGBAImage, asserter: PixelDataSimilarity) -> GrayscaleImage {
       let blankImg: GrayscaleImage = .grayscaleImage(capacity: rgbaImg.capacity, size: rgbaImg.size) // We create a blank RGBImage, as it's faster than copy probably
       return GrayscaleImage.process(input: rgbaImg, output: blankImg) { pixel -> UInt8 in
          // fixme: ⚠️️ This is the bug, we should rather use the degree of gray
-         assert(pixel) ? .white : .black // Asserts if pixel matches the pixel-data-assert method, if it does return white
+         asserter(pixel).strength
       }
    }
 }
