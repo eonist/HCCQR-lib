@@ -10,8 +10,9 @@ extension Splitter {
    /**
     * Returns two b&w qr images in RGBAImage format (by splitting a single hccqr ciImage)
     * 1. RGBA-Image comes in
-    * 2. RGBA-Image is split into color channels
-    * 3. 🏀 Try to figure out this process, its currently hard to read
+    * 2. RGBA-Image is split into many different color channels as Grayscale-Represenations
+    * 3. Pass the color-channel-representations on to further processing
+    * 4. Return QR-Image-Layers as result
     * - Note: Used in the process to convert HCCQR to Data
     * - Abstract: pair b&g = qr1(), pair r&b = qr2()
     * - Note: RGBAImage -> (3x RGBAImages)

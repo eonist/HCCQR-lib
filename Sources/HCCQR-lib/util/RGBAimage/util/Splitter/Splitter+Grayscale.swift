@@ -9,7 +9,7 @@ extension Splitter {
     * 1. GrayScaleImage's representing R,G,B comes in
     * 2. Channels are grouped into pairs
     * 3. QR-Image Result array is created
-    * 4.
+    * 4. Combine the different ColorChannels to make the B&W-QR-Layers
     * - Abstract: Here we combine the channels into QR-Images
     * - Note: pair b&g = qr1, pair r$b = qr2
     * - Note: blue means black in both layers

@@ -16,6 +16,7 @@ extension PixelData {
       let pixelData: PixelData = .init(r: color.r, g: color.g, b: color.b, a: 255)
       return PixelData.isColor(a: self, b: pixelData, halfThreshold: PixelData.halfThresholdUInt8)
    }
+   // 🏀 Make a method that is called isColorish that returns Bool and the amount of that color in UInt8
    /**
     * Measure if color is white (used in the colorize method)
     * - Note: looks funny, but it's that way to make it fast
