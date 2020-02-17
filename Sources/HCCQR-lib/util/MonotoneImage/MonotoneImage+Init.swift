@@ -28,7 +28,8 @@ extension MonotoneImage {
       context.draw(ciImg, in: ciImg.extent, from: ciImg.extent)
       let pixels = UnsafeMutableBufferPointer<PixelData>(start: imageData, count: capacity)
       let monotonePixels = UnsafeMutableBufferPointer<Bool>.allocate(capacity: capacity)
-      pixels.enumerated().forEach { monotonePixels[$0.offset] = $0.element.isWhite }
+      pixels.enumerated().forEach { monotonePixels[$0.offset] = $0.element.isWhite } // white is true, black is false
+      pixels.deallocate() // dealloc this, as we have no more use for it
       return .init(pixels: monotonePixels, width: size.width, height: size.height)
    }
 }

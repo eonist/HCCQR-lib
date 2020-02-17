@@ -39,14 +39,12 @@ extension Colorizer {
     * 1. Array of CIImages comes in
     * 2. Convert the CIImage-array to GrayScale pixel representations
     * 3. Colorize the GrayScaleImage array to an RGBAImage and return it
-    * - Fixme: ⚠️️ Can we put the loop on bg-thread, concurrent_apply?
+    * - Fixme: ⚠️️ Can we put the loop on bg-thread, concurrent_apply, should we?
     */
    static func grayscaleColorize(ciImages: [CIImage], colorMap: ColorMap, multipliers: Multipliers) throws -> RGBAImage {
-      let grayscaleImages: [GrayscaleImage] = ciImages.compactMap { try? GrayscaleImage.monotoneImage(ciImg: $0) } // convert QR images to Pixel-data
-      guard ciImages.count == grayscaleImages.count else { throw NSError("Colorize.colorize() - some rgbaImages was not created") }
-      guard let result: RGBAImage = try? colorize(grayscaleImages: grayscaleImages, colorMap: colorMap, multipliers: multipliers) else { throw NSError("Colorize.colorize() - Unable to create colorized rgbaImage") } // overlay the qr-pixel-data
+      let monotoneImages: [MonotoneImage] = ciImages.compactMap { try? MonotoneImage.monotoneImage(ciImg: $0) } // convert QR images to Pixel-data
+      guard ciImages.count == monotoneImages.count else { throw NSError("Colorize.colorize() - some rgbaImages was not created") }
+      guard let result: RGBAImage = try? colorize(monotoneImages: monotoneImages, colorMap: colorMap, multipliers: multipliers) else { throw NSError("Colorize.colorize() - Unable to create colorized rgbaImage") } // overlay the qr-pixel-data
       return result
    }
 }
-
-// 🏀 Make the MonotoneImage struct, use that instead of GrayscaleImage

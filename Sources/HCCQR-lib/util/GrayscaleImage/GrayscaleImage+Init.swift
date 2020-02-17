@@ -23,7 +23,7 @@ extension GrayscaleImage {
     *   - size: the size you want to us ein the GrayScaleImage
     */
    static func grayscaleImage(pixels: [UInt8], size: Size) -> GrayscaleImage {
-      let unsafePixels = UnsafeMutableBufferPointer<UInt8>.allocate(capacity: pixels.count)
+      let unsafePixels: UnsafeMutableBufferPointer<UInt8> = .allocate(capacity: pixels.count)
       _ = unsafePixels.initialize(from: pixels)
       return .init(pixels: unsafePixels, width: size.width, height: size.height)
    }
@@ -35,7 +35,7 @@ extension GrayscaleImage {
     *   - size: the size of the returned GrayScaleImage
     */
    static func grayscaleImage(capacity: Int, size: Size) -> GrayscaleImage {
-      let unsafePixels = UnsafeMutableBufferPointer<UInt8>.allocate(capacity: capacity)
+      let unsafePixels: UnsafeMutableBufferPointer<UInt8> = .allocate(capacity: capacity)
       return .init(pixels: unsafePixels, width: size.width, height: size.height)
    }
 }
