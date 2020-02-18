@@ -6,8 +6,8 @@ import Foundation
 extension Colorizer {
    /**
     * ColorMap (standard 4 color ColorMap)
-    * - Fixme: ⚠️️ since index is unique we can make this hashable 👌 (it will be faster probably), caseIteratable 👈 ,maybe difficult now that we have to support darkmode
-    * - Parameter useDarkMode: Enables th HCCQR to be inverted and support darkmode
+    * - Fixme: ⚠️️ Since index is unique we can make this hashable 👌 (it will be faster probably), caseIteratable 👈 ,maybe difficult now that we have to support darkmode
+    * - Parameter useDarkMode: Enables the HCCQR to be inverted and support darkmode
     */
    static func colorMap(useDarkMode: Bool = false) -> ColorMap {
       [

@@ -25,4 +25,3 @@ extension Splitter {
       }
    }
 }
-// 🏀 Start here and work your way down the logic, do the multiple ColorMap support etc
