@@ -44,6 +44,7 @@ extension Compositor {
     * - Note: Should really be private, but some tests use it
     * - Fixme: ⚠️️ Can the compositing be done simpler, more efficient?
     * - Fixme: ⚠️️ Make a method that returns CIImage?
+    * - Fixme: ⚠️️ Should we get size from calling method?
     * - Parameter grayscaleImages: An array of RGBAImages to be composited together into 1 RGBAImage
     */
    private static func composite(grayscaleImages: [GrayscaleImage]) throws -> GrayscaleImage {

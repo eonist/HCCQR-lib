@@ -14,8 +14,8 @@ extension Channel {
    static func grayChannel(rgbaImg: RGBAImage, asserter: PixelDataSimilarity) -> GrayscaleImage {
       let blankImg: GrayscaleImage = .grayscaleImage(capacity: rgbaImg.capacity, size: rgbaImg.size) // We create a blank RGBImage, as it's faster than copy probably
       return GrayscaleImage.process(input: rgbaImg, output: blankImg) { pixel -> UInt8 in
-         // fixme: ⚠️️ This is the bug, we should rather use the degree of gray
-         asserter(pixel).strength
+         // fixme: ⚠️️ This is the bug, we should rather use the degree of gray, solved now
+         asserter(pixel).strength // more strength, more white
       }
    }
 }
