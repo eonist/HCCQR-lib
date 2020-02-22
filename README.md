@@ -43,3 +43,4 @@ HCCQRReader.data(image: img) { result in
 ```
 ### Todo:
 - Add smart cropping for for every qr-layer after the first
+- Test the new ColorSplitter library with hccqr photos
