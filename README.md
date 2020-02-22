@@ -41,3 +41,5 @@ HCCQRReader.data(image: img) { result in
    Swift.print("isMatching:  \(isMatching ? "Success": "Failure")")
 }
 ```
+### Todo:
+- Add smart cropping for for every qr-layer after the first
