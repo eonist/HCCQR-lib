@@ -8,6 +8,16 @@
 
 <img width="138" alt="img" src="https://github.com/stylekit/img/blob/master/Screenshot 2019-04-05 at 11.01.21.png?raw=true">
 
+### Problem:
+- Splitting "HCCQR-frame-colors" into layers black and white layers
+- Reading QR layers
+
+### Solution
+1. Split colors into layers (divide into quadrants, and distribute tasks to multiple cpu-cores)
+2. Read data from the first layer. Extra the meta-data and inform caller with meta-data (stop further reading of qr-layers if frame has already been read by StreamLib)
+3. Crop all successive layers after the "quad-meta-data" has been extracted from the first layer
+3. Return payload when all qr-layers has been read
+
 ### Features:
 - Enables you to store more information in a QR image
 - HCCQR uses the color spectrum and image analysis to transmit information
