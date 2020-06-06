@@ -29,7 +29,7 @@
 ### Dependencies:
 | Repo  | Description | Quality | Tests |
 | ------------- | ------------- | ------ | ---- |
-| [QR-lib](https://github.com/eonist/QR-lib) | Quick response | [![CodeBeat badge](https://codebeat.co/badges/7514c7a6-b59d-45bb-8c7f-90be3d0c7ad7)](https://codebeat.co/projects/github-com-light-stream-qr-lib-master) | [![Github actions badge](https://badgen.net/github/checks/light-stream/QR-lib?icon=github&label=Build%20Status)](https://github.com/light-stream/QR-lib/actions) |
+| [QR-lib](https://github.com/eonist/QR-lib) | Quick response | [![CodeBeat badge](https://codebeat.co/badges/7514c7a6-b59d-45bb-8c7f-90be3d0c7ad7)](https://codebeat.co/projects/github-com-light-stream-qr-lib-master) | ![Tests](https://github.com/light-stream/QR-lib/workflows/Tests/badge.svg) |
 | [ResultSugar](https://github.com/eonist/ResultSugar) | Sugar for result | [![CodeBeat badge](https://codebeat.co/badges/cb649e6d-a601-47c5-b2c4-179158d5f431)](https://codebeat.co/projects/github-com-eonist-resultsugar-master) | [![Github actions badge](https://badgen.net/github/checks/eonist/ResultSugar?icon=github&label=Build%20Status)](https://github.com/eonist/ResultSugar/actions) |
 
 ### Creating HCCQR image
