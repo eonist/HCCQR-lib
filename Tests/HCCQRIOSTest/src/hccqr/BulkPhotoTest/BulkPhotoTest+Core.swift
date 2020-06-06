@@ -29,8 +29,8 @@ extension BulkPhotoTest {
     */
    static func readMany(rgbaImages: [RGBAImage], onComplete: @escaping OnReadManyComplete) {
       Swift.print("readMany()")
-      var dataArray: [Data?] = .init(repeating: nil, count: rgbaImages.count) // Stores the results in this array
-      _ = dataArray
+//      let dataArray: [Data?] = .init(repeating: nil, count: rgbaImages.count) // Stores the results in this array
+//      _ = dataArray
       Swift.print("⚠️️ Deprecated ⚠️️")
 //      rgbaImages.enumerated().forEach { arg in
 //         //DispatchQueue.main.async {

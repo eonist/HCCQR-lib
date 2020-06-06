@@ -19,7 +19,7 @@ extension ColorizerTest {
    static func testColorizer() -> Bool {
       guard let img1: Image = createRandomQRImg() else { Swift.print("err"); return false }
       guard let img2: Image = createRandomQRImg() else { Swift.print("err"); return false }
-      let ciImages: [CIImage] = [img1, img2].compactMap { $0.ciImage }
+      let ciImages: [CIImage] = [img1, img2].compactMap { $0.ciImage() }
       guard let resultCIImage: CIImage = try? Colorizer.colorize(ciImages: ciImages, colorMap: Colorizer.colorMap(), multipliers: (moduleScale: 1, screenScale: 2)).get() else { Swift.print("unable to create colorized image"); return false }
       let image: Image = .init(ciImage: resultCIImage) // - Fixme: ⚠️️ this is new so might fail, maybe get hasOnlyColorMap to work with ciimage etc
       let hasOnlyRGBColors: Bool = ColorMapAsserter.hasOnlyColorMap(uiImage: image, colorMap: [.red, .green, .blue, .white])
