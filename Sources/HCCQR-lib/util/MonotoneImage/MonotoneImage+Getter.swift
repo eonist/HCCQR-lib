@@ -6,7 +6,7 @@ extension MonotoneImage {
    /**
     * Convenience
     */
-   var size: GrayscaleImage.Size { return (width: width, height: height) }
+   var size: GrayscaleImage.Size { (width: width, height: height) }
    var capacity: Int { self.width * self.height }
    /**
     * Get pixel

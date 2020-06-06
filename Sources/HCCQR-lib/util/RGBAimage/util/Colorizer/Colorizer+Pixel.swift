@@ -26,13 +26,13 @@ extension Colorizer {
       let findColor: (ColorMapItem) throws -> Bool = { colorMapItem in
          if colorMapItem.idx.count != pixels.count { throw NSError(domain: "Colorize.colorize - colorMap does not match pixel layer count", code: 0) }
          let condition: MatchCond = { (i: Int, pixel: Bool) in
-            var bothAreBlack: Bool { return !pixel && !colorMapItem.idx[i] } // false means black
-            var bothAreWhite: Bool { return pixel && colorMapItem.idx[i] } // true means white
+            var bothAreBlack: Bool { !pixel && !colorMapItem.idx[i] } // false means black
+            var bothAreWhite: Bool { pixel && colorMapItem.idx[i] } // true means white
             if !bothAreBlack && !bothAreWhite { return false } // <- Sort of crazy looking, but it works
             else { return true }
          }
          // - Fixme ⚠️️ could we use async_apply here, in the .first loop?
-         return (pixels.enumerated().first(where: condition) == nil)
+         return !pixels.enumerated().contains(where: condition)
       }
       // - Fixme ⚠️️ could we use async_apply here, in the .first loop?
       guard let color: PixelData.RGBColor = try colorMap.first(where: findColor)?.color else { throw NSError(domain: "Unable to colorize", code: 0) }

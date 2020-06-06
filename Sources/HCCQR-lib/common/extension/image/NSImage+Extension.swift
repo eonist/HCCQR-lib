@@ -25,7 +25,7 @@ extension NSImage {
     * Convenience
     */
    public static func image(size: CGSize, color: NSColor, scale: CGFloat = 1.0) -> NSImage? {
-      return Optional(NSImage(size: size, color: color, scale: scale))
+      Optional(NSImage(size: size, color: color, scale: scale))
    }
    /**
     * - Note: Great to use in hybrid systems, as iOS has the same API

@@ -20,10 +20,8 @@ extension Splitter {
     * - Fixme: ⚠️️ Rename to onGrayChannelSplittingComplete maybe ?
     * - Fixme: ⚠️️ Maybe do the result.value in the calling method and not in this method?
     * - Important: ⚠️️ grayscale is better for qr to read than monotone (probably)
+    *  - Fixme: ⚠️️  MonotoneImage with strength ?
     */
-   
-   // MonotoneImage with strength ?
-   
    static func onGrayChannelsComplete(result: Channel.GrayscaleChannelsResult, onComplete:@escaping SplitPayloadCompleted) { // called when the (R,G,B) channels are split
       guard let channels: Channel.GrayscaleImages = result.value() else { onComplete(.failure(NSError("Unable to create rgbaImgs \(result.errorStr)"))); return } // (r,g,b)
       let channelArr: [GrayChannelPair] = [(channels.b, channels.g), (channels.r, channels.b)] // pair b&g = qr1, pair r$b = qr2
@@ -49,7 +47,7 @@ extension Splitter {
    private static func onGrayCompositeComplete(i: Int, qrImg: CIImage?, qrImgs: inout [CIImage?], channels: Channel.GrayscaleImages, onComplete: SplitPayloadCompleted) {
       guard let qrImg: CIImage = qrImg else { [channels.r, channels.g, channels.b].forEach { $0.deInit() }; onComplete(.failure(NSError("no qrImg"))); return }
       qrImgs[i] = qrImg // It matters which order the qrImages came in when you stitch them back together
-      if qrImgs.first(where: { $0 == nil }) == nil { // Makes sure all images finished
+      if !qrImgs.contains(where: { $0 == nil }) { // Makes sure all images finished
          [channels.r, channels.g, channels.b].forEach { $0.deInit() } // Or else we get mem leak /*Swift.print("Splitter.split() - deallocate")*/
          let qrImages: [CIImage] = qrImgs.compactMap { $0 }
          onComplete(.success((qrImages[0], qrImages[1])))

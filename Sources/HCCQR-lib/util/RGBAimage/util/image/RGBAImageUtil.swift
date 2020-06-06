@@ -9,7 +9,7 @@ public final class RGBAImageUtil {
     * - Note: used by the colorize process
     */
    static func image(rgbaImage: RGBAImage, scale: CGFloat) throws -> Image {
-      return try autoreleasepool { // Ref: ⚠️️ https://stackoverflow.com/questions/25860942/is-it-necessary-to-use-autoreleasepool-in-a-swift-program
+      try autoreleasepool { // Ref: ⚠️️ https://stackoverflow.com/questions/25860942/is-it-necessary-to-use-autoreleasepool-in-a-swift-program
          let cgImage: CGImage = try RGBAImageUtil.cgImage(rgbaImage: rgbaImage)
          return ImageUtil.image(cgImage: cgImage, scale: scale) // Convert CGImage to UIImage
       }

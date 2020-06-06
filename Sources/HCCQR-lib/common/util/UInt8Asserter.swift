@@ -11,6 +11,6 @@ final class UInt8Asserter {
     *   - max: max int in a range
     */
    static func within(num: UInt8, min: UInt8, max: UInt8) -> Bool {
-     return num == min || num == max || (num > min && num < max)
+      num == min || num == max || (num > min && num < max)
    }
 }

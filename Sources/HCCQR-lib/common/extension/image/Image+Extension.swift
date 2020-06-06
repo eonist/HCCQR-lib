@@ -14,12 +14,12 @@ extension Image {
     */
    #if os(iOS)
    func cgImage() -> CGImage? {
-      return self.cgImage ?? { // quick fix
+      self.cgImage ?? { // quick fix
          guard let ciImage: CIImage = self.ciImage else { Swift.print("cgImage() - unable to get ciImage"); return nil }
          return autoreleasepool { // ⚠️️ testing to get rid of mem leak ⚠️️ new
             return Image.ciContext.createCGImage(ciImage, from: ciImage.extent) // let context: CIContext = .init(options: nil)
          }
-         }()
+      }()
    }
    #elseif os(macOS)
    /**
@@ -27,7 +27,7 @@ extension Image {
     * - Important: ⚠️️ we use autoreleasepool{} or else there will be memory leakage
     */
    func cgImage() -> CGImage? {
-      return autoreleasepool {
+      autoreleasepool {
          self.cgImage(forProposedRect: nil, context: nil, hints: nil)
       }
    }
@@ -38,6 +38,6 @@ extension Image {
  */
 extension Image {
    #if os(macOS)
-   var scale: CGFloat { return 1 } // - Fixme: ⚠️️ this should probably be dynamic or based on some internal value no?
+   var scale: CGFloat { 1 } // - Fixme: ⚠️️ this should probably be dynamic or based on some internal value no?
    #endif
 }

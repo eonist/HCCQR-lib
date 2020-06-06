@@ -9,7 +9,7 @@ final class ColorMapAsserter {
     * Asserts if an image has non black or white pixel.
     */
    static func hasOnlyBlackAndWhiteColorMap(uiImage: Image) -> Bool {
-      return hasOnlyColorMap(uiImage: uiImage, colorMap: [.black, .white])
+      hasOnlyColorMap(uiImage: uiImage, colorMap: [.black, .white])
    }
    /**
     * Asserts if an image has only the colors specified in the colors array

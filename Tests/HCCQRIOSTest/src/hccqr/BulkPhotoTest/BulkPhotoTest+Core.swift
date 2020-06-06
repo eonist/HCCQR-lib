@@ -30,12 +30,14 @@ extension BulkPhotoTest {
    static func readMany(rgbaImages: [RGBAImage], onComplete: @escaping OnReadManyComplete) {
       Swift.print("readMany()")
       var dataArray: [Data?] = .init(repeating: nil, count: rgbaImages.count) // Stores the results in this array
-      rgbaImages.enumerated().forEach { arg in
-         //DispatchQueue.main.async {
-         HCCQRReader.dataAndImages(rgbaImage: arg.element) { result in  // Process the hccqrImg
-            onReadComplete(result: result, i: arg.offset, dataArray: &dataArray, onComplete: onComplete)
-         }
-         //}
-      }
+      _ = dataArray
+      Swift.print("⚠️️ Deprecated ⚠️️")
+//      rgbaImages.enumerated().forEach { arg in
+//         //DispatchQueue.main.async {
+//         HCCQRReader.dataAndImages(rgbaImage: arg.element) { result in  // Process the hccqrImg
+//            onReadComplete(result: result, i: arg.offset, dataArray: &dataArray, onComplete: onComplete)
+//         }
+//         //}
+//      }
    }
 }

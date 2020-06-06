@@ -54,12 +54,14 @@ extension ColorExtractionTest {
       //      rImageView.frame.origin.y = 80*4
       Swift.print("images.r!.size:  \(images.r.size)")
       Swift.print("images.r!.scale:  \(images.r.scale)")
-      guard let r: RGBAImage = try? .rgbaImage(image: images.r) else { return }
-      _ = r
-      guard let g: RGBAImage = try? .rgbaImage(image: images.g) else { return }
-      guard let b: RGBAImage = try? .rgbaImage(image: images.b) else { return }
-      guard let composite: RGBAImage = try? Compositor.composite(rgbaImages: [b, g/*,g*/]/*, invert: false*/) else { return }
-      _ = composite
+//      guard let r: RGBAImage = try? .rgbaImage(image: images.r) else { return }
+//      _ = r
+//      guard let g: RGBAImage = try? .rgbaImage(image: images.g) else { return }
+//      _ = g
+//      guard let b: RGBAImage = try? .rgbaImage(image: images.b) else { return }
+//      _ = b
+//      guard let composite: RGBAImage = try? Compositor.composite(rgbaImages: [b, g/*,g*/]/*, invert: false*/) else { return }
+//      _ = composite
       /**/
       Swift.print("⚠️️ the bellow may not work anymore, scale is new ⚠️️")
       //      guard let img:UIImage = RGBAImage.uiImage(rgbaImage: composite, resultScale: rgbColorTestImage.scale)?.invertedImage() else {Swift.print("unabe to create img");return}
@@ -78,19 +80,22 @@ extension ColorExtractionTest {
       view.addSubview(rgbColorTestView)
       //
       guard let image: UIImage = rgbColorTestView.snapShot else { fatalError("err") }
+      _ = image
       //
       guard let images: Splitter.RGBUIImages = { Optional((UIImage(), UIImage(), UIImage())) }()/*RGBAImage.split(image: image)*/ else { fatalError("err") }
       guard let r: RGBAImage = try? .rgbaImage(image: images.r) else { return }
       guard let g: RGBAImage = try? .rgbaImage(image: images.g) else { return }
       guard let b: RGBAImage = try? .rgbaImage(image: images.b) else { return }
+      _ = r
+      _ = g
       _ = b
-      guard let composite = try? Compositor.composite(rgbaImages: [r, g/*,b*/]/*, invert: false*/) else { return }
+//      guard let composite = try? Compositor.composite(rgbaImages: [r, g/*,b*/]/*, invert: false*/) else { return }
       //
       Swift.print("⚠️️ the bellow may not work anymore, scale is new ⚠️️")
-      let img: Image? = try? RGBAImageUtil.image(rgbaImage: composite, scale: image.scale)
-      let imgView: UIImageView = .init(image: img)
-      view.addSubview(imgView)
-      imgView.frame.origin.y = 200
+//      let img: Image? = try? RGBAImageUtil.image(rgbaImage: composite, scale: image.scale)
+//      let imgView: UIImageView = .init(image: img)
+//      view.addSubview(imgView)
+//      imgView.frame.origin.y = 200
    }
    /**
     * First attempt at splitting colors into b&w layers

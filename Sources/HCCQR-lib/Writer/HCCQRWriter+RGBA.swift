@@ -3,7 +3,10 @@ import QR_lib
 import CoreImage
 /**
  * Creates HCCQR-Image from HCCQR-Data
+ * - Fixme: ⚠️️ Maybe Rename to Writer.swift?
  */
+public final class HCCQRWriter {}
+
 extension HCCQRWriter {
    /**
     * Converts Data -> Image (Async)
@@ -67,7 +70,7 @@ extension HCCQRWriter {
    private static func onCIImagesComplete(i: Int, ciImg: CIImage?, ciImgs:inout [CIImage?], multipliers: Multipliers, useDarkMode: Bool = false, onComplete: OnRGBAImageComplete) {
       guard let ciImg: CIImage = ciImg else { onComplete(.failure(NSError(domain: "ciImg err ", code: 0))); return }
       ciImgs[i] = ciImg // It matters which order the QRImage's came in when you stitch them back together
-      if ciImgs.first(where: { $0 == nil }) == nil { // Makes sure all images finished (aka no nil values)
+      if !ciImgs.contains(where: { $0 == nil }) { // Makes sure all images finished (aka no nil values)
          let ciImages: [CIImage] = ciImgs.compactMap { $0 } // Removes nils
          let colorMap: Colorizer.ColorMap = Colorizer.colorMap(useDarkMode: useDarkMode)
          guard let rgbaImage: RGBAImage = try? Colorizer.grayscaleColorize(ciImages: ciImages, colorMap: colorMap, multipliers: multipliers) else { onComplete(.failure(NSError(domain: "onCreateCIImgComplete() - Unable to create colorized image", code: 0))); return }

@@ -3,30 +3,34 @@ import Foundation
 #if os(iOS)
 import UIKit
 
+class RGBAImageTest {}
+
 extension RGBAImageTest {
    /**
     * CIIMage -> RGBAImage -> CIImage
     * - Fixme: ⚠️️ Hock this test up to the unit-test
     */
    func test() {
+      Swift.print("⚠️️ DEPRECATED ⚠️️")
       guard let image = UIImage.image(size: .init(width: 100, height: 100), color: .blue) else { Swift.print("uiImage err"); return }
       Swift.print("image.scale:  \(image.scale)")
       Swift.print("image.size:  \(image.size)")
       // create RGBAImage
       guard let ciImg = image.ciImage() else { Swift.print("err ciImg"); return }
-      guard let rgbaImage = try? RGBAImage.rgbaImg(ciImg: ciImg) else { Swift.print("rbgaImg err"); return }
+      _ = ciImg
+//      guard let rgbaImage = try? RGBAImage.rgbaImg(ciImg: ciImg) else { Swift.print("rbgaImg err"); return }
       // create CIIMage
       // guard let ciImage: CIImage = try? RGBAImageUtil.ciImg2(rgbaImage: rgbaImage) else { Swift.print("ciimg err"); return }
-      guard let ciImage: CIImage = try? RGBAImageUtil.ciImg2(rgbaImage: rgbaImage, useGrayscale: false/*, opaque: false*/ ) else { Swift.print("ciimg err"); return }
+//      guard let ciImage: CIImage = try? RGBAImageUtil.ciImg2(rgbaImage: rgbaImage, useGrayscale: false/*, opaque: false*/ ) else { Swift.print("ciimg err"); return }
       // assert that CIMage match first CIImage
-      Swift.print("ciImage.extent.width:  \(ciImage.extent.width)")
-      Swift.print("ciImage.extent.height:  \(ciImage.extent.height)")
-      Swift.print("ciImage.colorSpace:  \(String(describing: ciImage.colorSpace))")
-      let img: UIImage = .init(ciImage: ciImage)
-      Swift.print("img.size:  \(img.size)")
-      Swift.print("img.scale:  \(img.scale)")
+//      Swift.print("ciImage.extent.width:  \(ciImage.extent.width)")
+//      Swift.print("ciImage.extent.height:  \(ciImage.extent.height)")
+//      Swift.print("ciImage.colorSpace:  \(String(describing: ciImage.colorSpace))")
+//      let img: UIImage = .init(ciImage: ciImage)
+//      Swift.print("img.size:  \(img.size)")
+//      Swift.print("img.scale:  \(img.scale)")
       // img
-      Swift.print("\(image.isEqualToImage(image: img) ? "✅" : "🚫")") // Doesn't work because colorspace is changed
+//      Swift.print("\(image.isEqualToImage(image: img) ? "✅" : "🚫")") // Doesn't work because colorspace is changed
 //      let imageView: UIImageView = .init(image: img)
 //      self.view.addSubview(imageView)
    }

@@ -6,7 +6,7 @@ extension GrayscaleImage {
    /**
     * Convenience
     */
-   var size: Size { return (width: width, height: height) }
+   var size: Size { (width: width, height: height) }
    var capacity: Int { self.width * self.height }
    /**
     * Get pixel

@@ -34,6 +34,6 @@ extension PixelData {
     * - Note: used in the composite method
     */
    func inverted() -> PixelData {
-      return self.isWhite ? Colors.blackPixel : Colors.whitePixel
+      self.isWhite ? Colors.blackPixel : Colors.whitePixel
    }
 }

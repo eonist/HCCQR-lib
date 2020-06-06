@@ -4,7 +4,7 @@ import Foundation
  */
 extension String {
    var asciiData: Data? {
-      return self.data(using: .ascii, allowLossyConversion: true)
+      self.data(using: .ascii, allowLossyConversion: true)
    }
 }
 /**
@@ -15,13 +15,13 @@ extension Character {
     * Asserts if char is ascii or not
     */
    var isAscii: Bool {
-      return unicodeScalars.first?.isASCII == true
+      unicodeScalars.first?.isASCII == true
    }
    /**
     * Returns the ascii-code of a character
     */
    var ascii: UInt32? {
-      return isAscii ? unicodeScalars.first?.value : nil
+      isAscii ? unicodeScalars.first?.value : nil
    }
 }
 /**
@@ -33,13 +33,13 @@ extension StringProtocol {
     * - Fixme: ⚠️️ Write example
     */
    var ascii: [UInt32] {
-      return compactMap { $0.ascii }
+      compactMap { $0.ascii }
    }
    /**
     * Returns ascii-codes as a continouse string
     * - Fixme: ⚠️️ Write example
     */
    var asciiString: String {
-      return ascii.reduce("") { String($0) + String($1) }
+      ascii.reduce("") { String($0) + String($1) }
    }
 }

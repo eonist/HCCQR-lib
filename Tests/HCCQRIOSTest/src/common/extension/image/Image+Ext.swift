@@ -11,7 +11,7 @@ extension Image {
     * - Parameter image: the image to assert against
     */
    public func isEqualToImage(image: Image) -> Bool {
-      return self.pngData() == image.pngData()
+      self.pngData() == image.pngData()
    }
 }
 /**

@@ -23,16 +23,16 @@ extension PixelData {
  */
 extension PixelData {
    static func isRGBColor(a: RGBColor, b: RGBColor) -> Bool {
-      return a.r == b.r && a.g == b.g && a.b == b.b /* && a.a == b.a*/
+      a.r == b.r && a.g == b.g && a.b == b.b /* && a.a == b.a*/
    }
    static func isRed(rgbColor: RGBColor) -> Bool {
-      return isRGBColor(a: PixelData.red, b: rgbColor)
+      isRGBColor(a: PixelData.red, b: rgbColor)
    }
    static func isGreen(rgbColor: RGBColor) -> Bool {
-      return isRGBColor(a: PixelData.green, b: rgbColor)
+      isRGBColor(a: PixelData.green, b: rgbColor)
    }
    static func isBlue(rgbColor: RGBColor) -> Bool {
-      return isRGBColor(a: PixelData.blue, b: rgbColor)
+      isRGBColor(a: PixelData.blue, b: rgbColor)
    }
 }
 /**

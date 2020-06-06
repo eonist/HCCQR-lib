@@ -4,6 +4,7 @@ import QuartzCore
 import CoreImage
 /**
  * Adds support for CVImageBuffer
+ * - Fixme: ⚠️️ Maybe Rename to Writer.swift?
  */
 extension HCCQRReader {
    /**

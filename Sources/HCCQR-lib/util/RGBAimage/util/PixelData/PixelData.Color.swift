@@ -11,6 +11,6 @@ extension PixelData.Colors {
    static let greenPixel: PixelData = .init(r: 0, g: 255, b: 0, a: 255)
    static let bluePixel: PixelData = .init(r: 0, g: 0, b: 255, a: 255)
    // B&W
-   static var blackPixel: PixelData { return .init(r: .black, g: .black, b: .black, a: 255) }
-   static var whitePixel: PixelData { return .init(r: .white, g: .white, b: .white, a: 255) }
+   static var blackPixel: PixelData { .init(r: .black, g: .black, b: UInt8.black, a: 255) }
+   static var whitePixel: PixelData { .init(r: .white, g: .white, b: UInt8.white, a: 255) }
 }

@@ -14,7 +14,7 @@ class ViewController: UIViewController {
 //         self.view.addSubview(imageView)
 //      }
    }
-   override var prefersStatusBarHidden: Bool { return true } // hides statusbar
+   override var prefersStatusBarHidden: Bool { true } // hides statusbar
 }
 /**
  * HCCQR test

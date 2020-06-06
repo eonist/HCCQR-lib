@@ -2,7 +2,6 @@ import Foundation
 import QR_lib
 import CoreImage
 
-public final class HCCQRWriter {}
 /**
  * Creates HCCQR from Data
  */
@@ -54,7 +53,7 @@ extension HCCQRWriter {
    private static func onCreateCIImgComplete(i: Int, ciImg: CIImage?, ciImgs:inout [CIImage?], multipliers: Multipliers, onComplete: OnHCCQRCIImageCompleted) {
       guard let ciImg: CIImage = ciImg else { onComplete(.failure(NSError(domain: "ciImg err ", code: 0))); return }
       ciImgs[i] = ciImg // It matters which order the qrImages came in when you stitch them back together
-      if ciImgs.first(where: { $0 == nil }) == nil { // Makes sure all images finished (aka no nil values)
+      if !ciImgs.contains(where: { $0 == nil }) { // Makes sure all images finished (aka no nil values)
          let ciImages: [CIImage] = ciImgs.compactMap { $0 } // Remove nils
          let result: Colorizer.ColorizedResult = Colorizer.colorize(ciImages: ciImages, colorMap: Colorizer.colorMap(), multipliers: multipliers)
          guard let hccqrImage: CIImage = try? result.get() else { onComplete(.failure(NSError(domain: "onCreateCIImgComplete() - Unable to create colorized image: \(result.errorStr)", code: 0))); return }

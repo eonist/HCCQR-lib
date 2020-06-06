@@ -35,7 +35,7 @@ extension PixelData {
     * - Note: Used by colorize method and inverted method
     */
    var isWhite: Bool {
-      return self.r == .white && self.g == .white && self.b == .white
+      self.r == .white && self.g == .white && self.b == .white
    }
    /**
     * Measure if color is black (used in the colorize method)
@@ -43,14 +43,14 @@ extension PixelData {
     * - Note: Used by colorize method
     */
    var isBlack: Bool {
-      return self.r == .black && self.g == .black && self.b == .black
+      self.r == .black && self.g == .black && self.b == .black
    }
    /**
     * Match two pixels
     * - Note: Looks funny, but it's that way to make it fast (basically exits early if something doesn't match)
     */
    static func isMatching(a: PixelData, b: PixelData) -> Bool {
-      return a.r == b.r && a.g == b.g && a.b == b.b
+      a.r == b.r && a.g == b.g && a.b == b.b
    }
 }
 /**
@@ -73,7 +73,7 @@ extension PixelData {
     *   - halfThreshold: with threshold more or less (I.e: +25, -25 from a value, provided that 25 is the threshold, usually 255*0.2 etc)
     */
    static func isColor(a: PixelData, b: PixelData, halfThreshold: UInt8) -> Bool {
-      return isColor(rgb1: a.rgb, rgb2: b.rgb, halfThreshold: halfThreshold)
+      isColor(rgb1: a.rgb, rgb2: b.rgb, halfThreshold: halfThreshold)
    }
 }
 /**

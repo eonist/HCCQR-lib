@@ -16,7 +16,7 @@
 1. Split colors into layers (divide into quadrants, and distribute tasks to multiple cpu-cores)
 2. Read data from the first layer. Extra the meta-data and inform caller with meta-data (stop further reading of qr-layers if frame has already been read by StreamLib)
 3. Crop all successive layers after the "quad-meta-data" has been extracted from the first layer
-3. Return payload when all qr-layers has been read
+3. Return "binary-data-payload" when all QR-layers has been read
 
 ### Features:
 - Enables you to store more information in a QR image
@@ -52,6 +52,6 @@ HCCQRReader.data(image: img) { result in
 }
 ```
 ### Todo:
-- Add smart cropping for for every qr-layer after the first
+- Add smart cropping for for every qr-layer after the first (refine crop)
 - Test the new ColorSplitter library with hccqr photos
 - Simplify the CPU core optimizations, by just dividing the image into 2-6 parts. Depending on cpu core count. THen assign each part to each cpu core with concurrentPerform (🚫 maybe not, rather batch-read the frames)

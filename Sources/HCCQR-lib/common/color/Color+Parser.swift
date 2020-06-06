@@ -7,8 +7,8 @@ import CoreImage
  */
 extension Color {
    #if os(iOS)
-   var ciColor: CIColor { return CIColor(color: self) }
+   var ciColor: CIColor { CIColor(color: self) }
    #elseif os(macOS)
-   var ciColor: CIColor { return CIColor(color: self) ?? { fatalError("Color - Unable to convert NSColor to CIColor") }() }
+   var ciColor: CIColor { CIColor(color: self) ?? { fatalError("Color - Unable to convert NSColor to CIColor") }() }
    #endif
 }

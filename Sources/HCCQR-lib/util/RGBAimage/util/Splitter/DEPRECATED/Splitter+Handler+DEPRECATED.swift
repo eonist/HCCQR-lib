@@ -38,7 +38,7 @@ extension Splitter {
    static func onCompositeComplete(i: Int, qrImg: CIImage?, qrImgs: inout [CIImage?], channels: Channel.RGBAImages, onComplete: SplitPayloadCompleted) {
       guard let qrImg: CIImage = qrImg else { [channels.r, channels.g, channels.b].forEach { $0.deinitiate() }; onComplete(.failure(NSError("no qrImg"))); return }
       qrImgs[i] = qrImg // It matters which order the qrImages came in when you stitch them back together
-      if qrImgs.first(where: { $0 == nil }) == nil { // Makes sure all images finished
+      if qrImgs.contains(where: { $0 == nil }) { // Makes sure all images finished
          [channels.r, channels.g, channels.b].forEach { $0.deinitiate() } // Or else we get mem leak /*Swift.print("Splitter.split() - deallocate")*/
          let qrImages: [CIImage] = qrImgs.compactMap { $0 }
          onComplete(.success((qrImages[0], qrImages[1])))
