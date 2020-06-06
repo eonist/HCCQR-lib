@@ -3,10 +3,10 @@
     "pins": [
       {
         "package": "QR-lib",
-        "repositoryURL": "https://github.com/light-stream/QR-lib.git",
+        "repositoryURL": "https://eonist:2fa35e4ff44eac34e98f01f2c83a16f00e650e56@github.com/light-stream/QR-lib.git",
         "state": {
           "branch": "master",
-          "revision": "f04c5f526f37b336ae047ed18380d3ef11a8c943",
+          "revision": "53555ef06d82160282a8dbaa6c148a90266e4313",
           "version": null
         }
       },

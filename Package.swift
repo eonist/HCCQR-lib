@@ -14,7 +14,7 @@ let package = Package(
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
-        .package(url: "https://github.com/light-stream/QR-lib.git", .branch("master")),
+        .package(url: "https://eonist:2fa35e4ff44eac34e98f01f2c83a16f00e650e56@github.com/light-stream/QR-lib.git", .branch("master")),
         .package(url: "https://github.com/eonist/ResultSugar.git", .branch("master")),
         .package(url: "https://github.com/eonist/ResourceHelper.git", .branch("master"))
     ],
