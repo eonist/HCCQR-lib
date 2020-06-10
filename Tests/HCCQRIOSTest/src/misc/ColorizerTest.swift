@@ -41,8 +41,9 @@ extension ColorizerTest {
 }
 extension ColorizerTest {
    /**
-    * Test colorizing b&w pixels to color pixel with color-map
+    * Test colorizing b&w pixels to color pixel w/ color-map
     * - Note: basically makes sure any optimization applied to the colorizer will work
+    * - Note: [B,W] = red, [W,W] = blue, [W,B] ? green
     */
    static func testColorizingPixel() -> Bool {
       guard let pixelA: PixelData = try? Colorizer.colorize(pixels: [PixelData.Colors.blackPixel, PixelData.Colors.whitePixel], colorMap: Colorizer.colorMap(useDarkMode: false)) else { fatalError("err") }// -> RedPixel ⚠️️ complete this
@@ -54,6 +55,7 @@ extension ColorizerTest {
       Swift.print("isPixelBBlue:  \(isPixelBBlue)")
       guard let pixelC: PixelData = try? Colorizer.colorize(pixels: [PixelData.Colors.whitePixel, PixelData.Colors.blackPixel], colorMap: Colorizer.colorMap(useDarkMode: false)) else { fatalError("err") }// -> BluePixel
       let isPixelCGreen: Bool = PixelData.isMatching(a: pixelC, b: PixelData.Colors.greenPixel)
+      Swift.print("isPixelCGreen:  \(isPixelCGreen)")
       return isPixelARed && isPixelBBlue && isPixelCGreen
    }
 }

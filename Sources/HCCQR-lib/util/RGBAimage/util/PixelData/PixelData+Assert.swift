@@ -19,7 +19,7 @@ extension PixelData {
    }
    /**
     * Asserts if a pixel is sort of a color within a threshold (also returns the strength of the color)
-    * - Fixme: ⚠️️ How ish is a color, figure out 0-1 how strong a color is, remember channels can be fractional whe we start using other colors than R, B, G
+    * - Fixme: ⚠️️ How ish is a color, figure out 0-1 how strong a color is, remember channels can be fractional when we start using other colors than R, B, G
     * - Fixme: ⚠️️ Look for algorithms that can measure how strong a color is. 99% Cyan etc
     * - Important: ⚠️️ For now we just measure for R,G,B
     * - Returns: returns Bool and the amount of that color in UInt8
@@ -39,7 +39,7 @@ extension PixelData {
    }
    /**
     * Measure if color is black (used in the colorize method)
-    * - Note: Looks funny, but it's that way to make it fast (bsaically exits early if something doesn't match)
+    * - Note: Looks funny, but it's that way to make it fast (basically exits early if something doesn't match)
     * - Note: Used by colorize method
     */
    var isBlack: Bool {

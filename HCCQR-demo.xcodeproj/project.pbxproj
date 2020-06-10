@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F10296B322221710001FA2DF /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10296B222221710001FA2DF /* String+Extension.swift */; };
+		F114155C24915EB3003E1C9D /* ColorThresholdTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F114155A24915E5E003E1C9D /* ColorThresholdTest.swift */; };
 		F11DE860220B6C53007A8A7A /* temp.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F11DE85F220B6C53007A8A7A /* temp.bundle */; };
 		F1240F6823B4DD3800ECD116 /* HCCQRReader+RGBAImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1240F6723B4DD3800ECD116 /* HCCQRReader+RGBAImage.swift */; };
 		F1240F6923B4DD3800ECD116 /* HCCQRReader+RGBAImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1240F6723B4DD3800ECD116 /* HCCQRReader+RGBAImage.swift */; };
@@ -367,6 +368,7 @@
 		F10296B8222218D1001FA2DF /* RGBAImage+Getter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RGBAImage+Getter.swift"; sourceTree = "<group>"; };
 		F10296BA222218DC001FA2DF /* RGBAImage+DeInit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RGBAImage+DeInit.swift"; sourceTree = "<group>"; };
 		F10296C0222219EF001FA2DF /* Splitter+TypeAlias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Splitter+TypeAlias.swift"; sourceTree = "<group>"; };
+		F114155A24915E5E003E1C9D /* ColorThresholdTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorThresholdTest.swift; sourceTree = "<group>"; };
 		F11DE85F220B6C53007A8A7A /* temp.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = temp.bundle; sourceTree = "<group>"; };
 		F1240F6723B4DD3800ECD116 /* HCCQRReader+RGBAImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HCCQRReader+RGBAImage.swift"; sourceTree = "<group>"; };
 		F1240F6A23B4E01400ECD116 /* Splitter+RGBAImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Splitter+RGBAImage.swift"; sourceTree = "<group>"; };
@@ -953,6 +955,7 @@
 				F1BFEFD223A06899007F4261 /* PixelTest.swift */,
 				F165C26323A05B36005D30EC /* ColorizerTest.swift */,
 				F1E5DC0F23F9A1C300605775 /* RGBAImageTest.swift */,
+				F114155A24915E5E003E1C9D /* ColorThresholdTest.swift */,
 			);
 			path = misc;
 			sourceTree = "<group>";
@@ -1677,6 +1680,7 @@
 				F1472016248C085B008A01AD /* Colorizer+DEPRECATED.swift in Sources */,
 				F1472004248C0704008A01AD /* UInt8+Extension.swift in Sources */,
 				F14DDE0D23BFE64B00FA0022 /* BulkPhotoTest.swift in Sources */,
+				F114155C24915EB3003E1C9D /* ColorThresholdTest.swift in Sources */,
 				F1472017248C0867008A01AD /* PixelData+Setter+DEPRECATED.swift in Sources */,
 				F1471FD7248C03E7008A01AD /* Compositor+Gray.swift in Sources */,
 				F1472006248C070A008A01AD /* String+Extension.swift in Sources */,
