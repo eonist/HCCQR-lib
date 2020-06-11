@@ -6,10 +6,11 @@ import QuartzCore
  */
 extension PixelData {
    /**
-    * ⚠️️⚠️️⚠️️DEPRECATE SOON⚠️️⚠️️⚠️️
+    * ⚠️️⚠️️⚠️️DEPRECATE SOON⚠️️⚠️️⚠️️ (or will it?)
     * Asserts if a pixel is sort of a color within a threshold
+    * - Parameter color: the color to check if it is similar to self (a sort of red color for instance)
     * ## Examples:
-    * let rgbaColor: RGBAColor = (255, 0, 0, 255)
+    * let rgbaColor: RGBColor = (255, 0, 0, 255)
     * let pixelData: PixelData = .init(uiColor: .red)
     * pixelData.isColorish(rgbaColor) // returns true if the the pixel is within the color
     */
@@ -69,7 +70,8 @@ extension PixelData {
     * - Note: ⚠️️ PixelData.isColorish((255, 0, 0, 255)) uses this method
     * - Note: ⚠️️ There is unit tests for this method: PixelTest.testColorAssertionWithinThresholdForPixel
     * - Parameters:
-    *   - pixel: Compare self to this pixel
+    *   - a: the palet color (pure red for instance)
+    *   - b: the color to check if is similar to palet color (sort of red for instance)
     *   - halfThreshold: with threshold more or less (I.e: +25, -25 from a value, provided that 25 is the threshold, usually 255*0.2 etc)
     */
    static func isColor(a: PixelData, b: PixelData, halfThreshold: UInt8) -> Bool {
@@ -89,23 +91,26 @@ extension PixelData {
     * - Fixme: ⚠️️ It might be the case that if a UInt8 value is near the bounds, the threshold should actually be increased to the distance to the bound, I guess do some exploring on this, I THINK that is already done right?
     * - Fixme: ⚠️️ Rename RGB1 to a, and RGB2 to b
     * - Parameters:
-    *   - rgb1: first color
+    *   - rgb1: first color ()
     *   - rgb2: second color
     *   - halfThreshold: with threshold more or less (I.e: +25, -25 from a value)
     *   - limit: used to avoid going out of bound
     */
-   private static func isColor(rgb1: RGB, rgb2: RGB, halfThreshold: UInt8, limit: Limit = (0, 255)) -> Bool {
+   private static func isColor(rgb1: RGB, rgb2: RGB, halfThreshold: UInt8, limit: Limit = defaultLimit) -> Bool {
       var r: Bool {
-         let range: RangeUInt8 = UInt8Parser.range(num: rgb2.r, halfThreshold: halfThreshold, min: limit.min, max: limit.max) // 75, 125
-         return UInt8Asserter.within(num: rgb1.r, min: range.start, max: range.end) // (range.start...range.end).contains(rgb1.r)
+         let range: RangeUInt8 = UInt8Parser.range(num: rgb1.r, halfThreshold: halfThreshold, min: limit.min, max: limit.max) // 75, 125
+//         Swift.print("range:  \(range)")
+//         Swift.print("rgb1.r:  \(rgb1.r)")
+//         Swift.print("rgb2.r:  \(rgb2.r)")
+         return UInt8Asserter.within(num: rgb2.r, min: range.start, max: range.end) // (range.start...range.end).contains(rgb1.r)
       }
       var g: Bool {
-         let range: RangeUInt8 = UInt8Parser.range(num: rgb2.g, halfThreshold: halfThreshold, min: limit.min, max: limit.max)
-         return UInt8Asserter.within(num: rgb1.g, min: range.start, max: range.end) // (range.start...range.end).contains(rgb1.g)
+         let range: RangeUInt8 = UInt8Parser.range(num: rgb1.g, halfThreshold: halfThreshold, min: limit.min, max: limit.max)
+         return UInt8Asserter.within(num: rgb2.g, min: range.start, max: range.end) // (range.start...range.end).contains(rgb1.g)
       }
       var b: Bool {
-         let range: RangeUInt8 = UInt8Parser.range(num: rgb2.b, halfThreshold: halfThreshold, min: limit.min, max: limit.max)
-         return UInt8Asserter.within(num: rgb1.b, min: range.start, max: range.end) // (range.start...range.end).contains(rgb1.b)
+         let range: RangeUInt8 = UInt8Parser.range(num: rgb1.b, halfThreshold: halfThreshold, min: limit.min, max: limit.max)
+         return UInt8Asserter.within(num: rgb2.b, min: range.start, max: range.end) // (range.start...range.end).contains(rgb1.b)
       }
       return r && g && b
    }

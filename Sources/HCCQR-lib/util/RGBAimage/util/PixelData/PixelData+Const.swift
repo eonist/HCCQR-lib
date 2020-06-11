@@ -9,7 +9,8 @@ extension PixelData {
     * - Fixme: ⚠️️ 0.6 seems like alot, try less, trying .4 and .2 ?
     * - Note: it becomes half of threshold 
     */
-   private static let threshold: CGFloat = 0.4 //  Rename to defaultThreshold
+   private static let threshold: CGFloat = 0.3 //  Rename to defaultThreshold
    private static let halfThreshold: CGFloat = threshold / 2 // Rename to defaultHalfThreshold
    static let halfThresholdUInt8: UInt8 = .init(255 * halfThreshold) // Rename to defaultHalfThreshold
+   static let defaultLimit: (UInt8, UInt8) = (0, 255)
 }

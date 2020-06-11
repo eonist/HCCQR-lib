@@ -18,7 +18,6 @@ final class PixelTest {
       Swift.print("isColorRedish:  \(isColorRedish)")
       return isColorRedish
    }
-   typealias RGBAColor = (UInt8, UInt8, UInt8, UInt8) // use PixelData.RGBAColor instead
    /**
     * Test the colorish method
     */
@@ -34,15 +33,19 @@ final class PixelTest {
     * Test the colorish method with imperfect values
     */
    static func isWashedOutColorishTest() -> Bool {
-      let assertRedish: Bool = try! PixelData(uiColor: .red).isColorish((UInt8(255 * 0.88), UInt8(255 * 0.2), UInt8(255 * 0.15), 255))
+      Swift.print("PixelData.halfThresholdUInt8:  \(PixelData.halfThresholdUInt8)")
+      Swift.print("UInt8(255 * 0.81):  \(UInt8(255 * 0.81))")
+      let redish: PixelData.RGBColor = (UInt8(255 * 0.75), UInt8(255 * 0.2), UInt8(255 * 0.25), 255)
+      Swift.print("redish.r:  \(redish.r)")
+      let assertRedish: Bool = try! PixelData(uiColor: .red).isColorish(redish)
       Swift.print("assertRedish:  \(assertRedish)")
       let assertGreenish: Bool = try! PixelData(uiColor: .green).isColorish((UInt8(255 * 0.07), UInt8(255 * 0.87), UInt8(255 * 0.05), 255))
       Swift.print("assertGreenish:  \(assertGreenish)")
-      let assertBlueish: Bool = try! PixelData(uiColor: .blue).isColorish((UInt8(255 * 0.1), UInt8(255 * 0.15), UInt8(255 * 0.96), 255))
+      let assertBlueish: Bool = try! PixelData(uiColor: .blue).isColorish((UInt8(255 * 0.15), UInt8(255 * 0.15), UInt8(255 * 0.96), 255))
       Swift.print("assertBlueish:  \(assertBlueish)")
       let isWithin: Bool = assertRedish && assertGreenish && assertBlueish
       Swift.print(isWithin ? "✅": "🚫")
       Swift.print("PixelData.halfThresholdUInt8:  \(PixelData.halfThresholdUInt8)")
-      return isWithin
+      return isWithin // assertRedish //
    }
 }
