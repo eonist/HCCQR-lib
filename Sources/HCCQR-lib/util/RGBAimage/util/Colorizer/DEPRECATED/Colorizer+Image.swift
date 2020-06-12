@@ -32,7 +32,7 @@ extension Colorizer { // ⚠️️ ⚠️️ ⚠️️  soon deprecated, because
     * CIImage's -> RGBAImage
     * - Fixme: ⚠️️ Can we put the loop on bg-thread?
     */
-   static func colorize(ciImages: [CIImage], colorMap: ColorMap, multipliers: Multipliers) throws -> RGBAImage {
+   private static func colorize(ciImages: [CIImage], colorMap: ColorMap, multipliers: Multipliers) throws -> RGBAImage {
       Swift.print("⚠️️⚠️️⚠️️ DEPRECATED ⚠️️⚠️️⚠️️")
       let rgbaImages: [RGBAImage] = ciImages.compactMap { try? RGBAImage.rgbaImg(ciImg: $0) } // convert QR images to Pixel-data
       guard ciImages.count == rgbaImages.count else { throw NSError("Colorize.colorize() - some rgbaImages was not created") }

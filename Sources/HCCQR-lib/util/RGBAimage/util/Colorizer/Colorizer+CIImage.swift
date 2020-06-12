@@ -24,7 +24,7 @@ extension Colorizer {
     *   - multipliers: modulescale and screenScale, for retina you need 2x scale etc, This is the multiplier. ModuleCount equals 1 pixel. ModuleCount for QRVersion 10 is 57 not counting 2 for margins. So (57+2)*6 = 354, if you want 2xretina its 354 * 2 = 708
     */
    static func colorize(ciImages: [CIImage], colorMap: ColorMap, multipliers: Multipliers) -> ColorizedResult {
-      guard let rgbaImage: RGBAImage = try? grayscaleColorize(ciImages: ciImages, colorMap: colorMap, multipliers: multipliers) else { return .failure(NSError("err creating RGBAImage from QR CIImages")) }
+      guard let rgbaImage: RGBAImage = try? colorize(ciImages: ciImages, colorMap: colorMap, multipliers: multipliers) else { return .failure(NSError("err creating RGBAImage from QR CIImages")) }
       guard let ciImage: CIImage = try? RGBAImageUtil.ciImg2(rgbaImage: rgbaImage, useGrayscale: false/*, scale: CGFloat(multipliers.screenScale)*/) else { return .failure(NSError("Colorize.colorize() - Unable to convert to UIImage"))/*Swift.print();return nil*/ }
       rgbaImage.deinitiate() // ⚠️️⚠️️ We dealloc pixels after they are consumed, We get a mem leak in iOS if we don't deallocate the pixels ⚠️️⚠️️
       return .success(ciImage)
@@ -41,7 +41,7 @@ extension Colorizer {
     * 3. Colorize the GrayScaleImage array to an RGBAImage and return it
     * - Fixme: ⚠️️ Can we put the loop on bg-thread, concurrent_apply, should we?
     */
-   static func grayscaleColorize(ciImages: [CIImage], colorMap: ColorMap, multipliers: Multipliers) throws -> RGBAImage {
+   static func colorize(ciImages: [CIImage], colorMap: ColorMap, multipliers: Multipliers) throws -> RGBAImage {
       let monotoneImages: [MonotoneImage] = ciImages.compactMap { try? MonotoneImage.monotoneImage(ciImg: $0) } // convert QR images to Pixel-data
       guard ciImages.count == monotoneImages.count else { throw NSError("Colorize.colorize() - some rgbaImages was not created") }
       guard let result: RGBAImage = try? colorize(monotoneImages: monotoneImages, colorMap: colorMap, multipliers: multipliers) else { throw NSError("Colorize.colorize() - Unable to create colorized rgbaImage") } // overlay the qr-pixel-data

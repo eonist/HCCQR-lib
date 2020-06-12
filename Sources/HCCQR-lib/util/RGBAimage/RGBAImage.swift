@@ -1,5 +1,6 @@
 import Foundation
 /**
+ * RGBAImage is a struct that stores color pixels 
  * - Fixme: ⚠️️ You have to dealocate the memory at some point, see: https://stackoverflow.com/questions/34750166/how-to-use-unsafemutablebufferpointer
  * - Fixme: ⚠️️ This should really be called ARGBImage
  */
