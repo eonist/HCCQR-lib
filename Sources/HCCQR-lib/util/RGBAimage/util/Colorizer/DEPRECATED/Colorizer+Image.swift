@@ -15,6 +15,7 @@ extension Colorizer {
     *    - multipliers: modulescale and screenScale, for retina you need 2x scale etc, This is the multiplier. ModuleCount equals 1 pixel. ModuleCount for QRVersion 10 is 57 not counting 2 for margins. So (57+2)*6 = 354, if you want 2xretina its 354 * 2 = 708
     */
    static func colorize(images: [Image], colorMap: ColorMap, multipliers: Multipliers) throws -> Image {
+      Swift.print("⚠️️⚠️️⚠️️ DEPRECATED ⚠️️⚠️️⚠️️")
       let rgbaImages: [RGBAImage] = images.compactMap { try? RGBAImage.rgbaImage(image: $0) }
       guard images.count == rgbaImages.count else { throw "Colorize.colorize() - some rgbaImages was not created" /*Swift.print();return nil*/ }
       guard let result: RGBAImage = try? colorize(rgbaImages: rgbaImages, colorMap: colorMap, multipliers: multipliers) else { throw "Colorize.colorize() - Unable to create colorized rgbaImage" }
@@ -32,6 +33,7 @@ extension Colorizer { // ⚠️️ ⚠️️ ⚠️️  soon deprecated, because
     * - Fixme: ⚠️️ Can we put the loop on bg-thread?
     */
    static func colorize(ciImages: [CIImage], colorMap: ColorMap, multipliers: Multipliers) throws -> RGBAImage {
+      Swift.print("⚠️️⚠️️⚠️️ DEPRECATED ⚠️️⚠️️⚠️️")
       let rgbaImages: [RGBAImage] = ciImages.compactMap { try? RGBAImage.rgbaImg(ciImg: $0) } // convert QR images to Pixel-data
       guard ciImages.count == rgbaImages.count else { throw NSError("Colorize.colorize() - some rgbaImages was not created") }
       guard let result: RGBAImage = try? colorize(rgbaImages: rgbaImages, colorMap: colorMap, multipliers: multipliers) else { throw NSError("Colorize.colorize() - Unable to create colorized rgbaImage") } // overlay the qr-pixel-data
@@ -55,6 +57,7 @@ extension Colorizer { // ⚠️️ ⚠️️ ⚠️️  soon deprecated, because
     *   - multipliers: scaling
     */
    static func colorize(rgbaImages: [RGBAImage], colorMap: ColorMap, multipliers: Multipliers) throws -> RGBAImage {
+      Swift.print("⚠️️⚠️️⚠️️ DEPRECATED ⚠️️⚠️️⚠️️")
       guard let size: RGBAImage.Size = rgbaImages.first?.size, let capacity: Int = rgbaImages.first?.capacity else { throw NSError(domain: "Must contain at least one image", code: 0) } // The first image is used for getting size etc
       let pixels = UnsafeMutableBufferPointer<PixelData>.allocate(capacity: capacity)
       (0..<size.height).indices.forEach { y in

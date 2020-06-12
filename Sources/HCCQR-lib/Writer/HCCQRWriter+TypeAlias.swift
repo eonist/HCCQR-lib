@@ -29,5 +29,6 @@ public typealias HCCQRImageResult = Result<Image, Error>
 public typealias OnHCCQRImageCompleted = (HCCQRImageResult) -> Void
 /**
  * - Fixme: ⚠️️ Rename to Scale = (module, screen) and move to HCCQR+TypeAlias
+ * - Fixme: ⚠️️ Maybe make it a struct?
  */
 public typealias Multipliers = (moduleScale: Int, screenScale: Int)

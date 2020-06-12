@@ -28,7 +28,7 @@ extension Colorizer {
          let condition: MatchCond = { (i: Int, pixel: Bool) in
             var bothAreBlack: Bool { !pixel && !colorMapItem.idx[i] } // false means black
             var bothAreWhite: Bool { pixel && colorMapItem.idx[i] } // true means white
-            Swift.print("bothAreBlack:  \(bothAreBlack) bothAreWhite:  \(bothAreWhite)")
+//            Swift.print("bothAreBlack:  \(bothAreBlack) bothAreWhite:  \(bothAreWhite)")
             return !(bothAreBlack || bothAreWhite) // looks a bit funny, but it's more efficient than using &&
 //            if  { return false } // <- Sort of crazy looking, but it works
 //            else { return true }

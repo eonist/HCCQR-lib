@@ -10,7 +10,7 @@ final class Colorizer {}
  */
 extension Colorizer {
    /**
-    * CIImage's -> CIImage (Converts multiple b&w images to color image based on the colorMap provided)
+    * CIImage's -> CIImage (Converts multiple b&w images to color-image based on the defined colorMap)
     * 1. Two B&W-QR-CIImage's comes in
     * 2. A HCCQR Color RGBAImage is created from the grayscale QR-Images
     * 3. Converts the RGBA image to ciImage and returns it

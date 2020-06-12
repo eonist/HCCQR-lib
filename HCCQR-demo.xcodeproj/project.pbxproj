@@ -184,7 +184,6 @@
 		F18A4D87239F170F0065078A /* HCCQRConfigUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18A4D85239F170F0065078A /* HCCQRConfigUtil.swift */; };
 		F18A52DF21790F8A003F8C13 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18A52DE21790F8A003F8C13 /* AppDelegate.swift */; };
 		F18A52E121790F8A003F8C13 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18A52E021790F8A003F8C13 /* ViewController.swift */; };
-		F18A52E421790F8A003F8C13 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F18A52E221790F8A003F8C13 /* Main.storyboard */; };
 		F18A52E621790F8D003F8C13 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F18A52E521790F8D003F8C13 /* Assets.xcassets */; };
 		F18A52E921790F8D003F8C13 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F18A52E721790F8D003F8C13 /* LaunchScreen.storyboard */; };
 		F18C7B4423BF7EF9009D9B29 /* CVImageBufferUtil+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18C7B4323BF7EF9009D9B29 /* CVImageBufferUtil+Helper.swift */; };
@@ -201,6 +200,8 @@
 		F1B698D7239E64E70085B3C9 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B698D6239E64E70085B3C9 /* View.swift */; };
 		F1B698E0239E6D410085B3C9 /* HCCQRVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B698DF239E6D410085B3C9 /* HCCQRVersion.swift */; };
 		F1B698E1239E6D410085B3C9 /* HCCQRVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B698DF239E6D410085B3C9 /* HCCQRVersion.swift */; };
+		F1CF2D7A249380F8007ACC0E /* ViewController+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CF2D79249380F8007ACC0E /* ViewController+Test.swift */; };
+		F1CF2D7C24938254007ACC0E /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CF2D7B24938254007ACC0E /* View.swift */; };
 		F1D8A65B23E7E08800F17A81 /* CVBufferTest+TypeAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D8A65A23E7E08800F17A81 /* CVBufferTest+TypeAlias.swift */; };
 		F1D8A65D23E7E24B00F17A81 /* CVImageBufferUtil+DEPRECATED.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D8A65C23E7E24B00F17A81 /* CVImageBufferUtil+DEPRECATED.swift */; };
 		F1D8A65E23E7E24B00F17A81 /* CVImageBufferUtil+DEPRECATED.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D8A65C23E7E24B00F17A81 /* CVImageBufferUtil+DEPRECATED.swift */; };
@@ -456,7 +457,6 @@
 		F18A52DB21790F8A003F8C13 /* HCCQR-lib.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HCCQR-lib.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F18A52DE21790F8A003F8C13 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F18A52E021790F8A003F8C13 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		F18A52E321790F8A003F8C13 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F18A52E521790F8D003F8C13 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F18A52E821790F8D003F8C13 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F18A52EA21790F8D003F8C13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -477,6 +477,8 @@
 		F1BFEFDB23A23814007F4261 /* BulkHCCQRTest+Handler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BulkHCCQRTest+Handler.swift"; sourceTree = "<group>"; };
 		F1BFEFDF23A23C1B007F4261 /* BulkHCCQRTest+Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BulkHCCQRTest+Core.swift"; sourceTree = "<group>"; };
 		F1BFEFE223A23DDA007F4261 /* BulkHCCQRTest+TypeAlias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BulkHCCQRTest+TypeAlias.swift"; sourceTree = "<group>"; };
+		F1CF2D79249380F8007ACC0E /* ViewController+Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Test.swift"; sourceTree = "<group>"; };
+		F1CF2D7B24938254007ACC0E /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		F1D8A65A23E7E08800F17A81 /* CVBufferTest+TypeAlias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CVBufferTest+TypeAlias.swift"; sourceTree = "<group>"; };
 		F1D8A65C23E7E24B00F17A81 /* CVImageBufferUtil+DEPRECATED.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CVImageBufferUtil+DEPRECATED.swift"; sourceTree = "<group>"; };
 		F1D8A66223E83C4F00F17A81 /* GrayScaleImage+DEPRECATED.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GrayScaleImage+DEPRECATED.swift"; sourceTree = "<group>"; };
@@ -870,7 +872,6 @@
 			children = (
 				F18A52DE21790F8A003F8C13 /* AppDelegate.swift */,
 				F1B698DC239E666F0085B3C9 /* ViewController */,
-				F18A52E221790F8A003F8C13 /* Main.storyboard */,
 				F18A52E521790F8D003F8C13 /* Assets.xcassets */,
 				F18A52E721790F8D003F8C13 /* LaunchScreen.storyboard */,
 				F18A52EA21790F8D003F8C13 /* Info.plist */,
@@ -970,6 +971,8 @@
 			isa = PBXGroup;
 			children = (
 				F18A52E021790F8A003F8C13 /* ViewController.swift */,
+				F1CF2D79249380F8007ACC0E /* ViewController+Test.swift */,
+				F1CF2D7B24938254007ACC0E /* View.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1345,7 +1348,6 @@
 				F18A52E921790F8D003F8C13 /* LaunchScreen.storyboard in Resources */,
 				F11DE860220B6C53007A8A7A /* temp.bundle in Resources */,
 				F18A52E621790F8D003F8C13 /* Assets.xcassets in Resources */,
-				F18A52E421790F8A003F8C13 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1544,6 +1546,7 @@
 				F1F0FFFE23B558D900210208 /* PixelData+RGBColor.swift in Sources */,
 				F10296B322221710001FA2DF /* String+Extension.swift in Sources */,
 				F1240F6823B4DD3800ECD116 /* HCCQRReader+RGBAImage.swift in Sources */,
+				F1CF2D7A249380F8007ACC0E /* ViewController+Test.swift in Sources */,
 				F1E645C823940B3C008D2ABE /* PixelDataUtil.swift in Sources */,
 				F1D8A66E23E83F8900F17A81 /* GrayscaleImage+DeInit.swift in Sources */,
 				F1E645CE23940B3C008D2ABE /* Colorizer+Image.swift in Sources */,
@@ -1589,6 +1592,7 @@
 				F1E645A923940AC9008D2ABE /* UInt8Parser.swift in Sources */,
 				F1AF9D3323E2CF460085DA0C /* HCCQRReader+CVImageBuffer.swift in Sources */,
 				F1E645C023940B3C008D2ABE /* RGBAImage+Getter.swift in Sources */,
+				F1CF2D7C24938254007ACC0E /* View.swift in Sources */,
 				F165C24D239FF501005D30EC /* PixelData+Const.swift in Sources */,
 				F1E645D623940B3C008D2ABE /* HCCQRReader+TypeAlias.swift in Sources */,
 				F1F3E04A23BA1CA200D367F1 /* Channel+Gray.swift in Sources */,
@@ -1779,14 +1783,6 @@
 				F17F5B8C221A267B00383955 /* Base */,
 			);
 			name = MainMenu.xib;
-			sourceTree = "<group>";
-		};
-		F18A52E221790F8A003F8C13 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F18A52E321790F8A003F8C13 /* Base */,
-			);
-			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 		F18A52E721790F8D003F8C13 /* LaunchScreen.storyboard */ = {
