@@ -3,7 +3,8 @@ import XCTest
 
 class HCCQRIOSTest: XCTestCase {
    func testExample() {
-      XCTAssertTrue(ColorizerTest.testColorizingPixel()) // b&w-pixels to color-pixels
+      XCTAssertTrue(ColorizerTest.testColorizingMonoPixel()) // b&w-pixels (mono) to color-pixels
+//      XCTAssertTrue(ColorizerTest.testColorizingPixel()) // b&w-pixels to color-pixels
 //      XCTAssertEqual(QRTesting.createQR(), CGSize(width: 354.0, height: 354.0))
 //      XCTAssertEqual(ScaleTesting.testScalingRGBAImage(), 4)
 //      XCTAssertTrue(ColorizerTest.testColorizer())

@@ -6,7 +6,7 @@ extension Colorizer {
    typealias MatchCond = (_ i: Int, _ pixel: Bool) -> Bool
    /**
     * Multiple B&W Pixel -> Color-Pixel
-    * Abstract: Converts a layers of b&w pixels into one color pixel (on the basis of a colorMap rule set)
+    * - Abstract: Converts a layers of b&w pixels into one color pixel (on the basis of a colorMap rule set)
     * - Note: Since we get pure Black and White colors from apples QR-Creator, we can match against pure constant colors
     * 1. Get pixel-layers and ColorMap
     * 2. Loop through ColorMap colors to find the matching color to the matching pixel combination
@@ -24,12 +24,14 @@ extension Colorizer {
     */
    static func colorize(pixels: [Bool], colorMap: ColorMap) throws -> PixelData {
       let findColor: (ColorMapItem) throws -> Bool = { colorMapItem in
-         if colorMapItem.idx.count != pixels.count { throw NSError(domain: "Colorize.colorize - colorMap does not match pixel layer count", code: 0) }
+         if colorMapItem.idx.count != pixels.count { Swift.print("⚠️️ err"); throw NSError(domain: "Colorize.colorize - colorMap does not match pixel layer count", code: 0) }
          let condition: MatchCond = { (i: Int, pixel: Bool) in
             var bothAreBlack: Bool { !pixel && !colorMapItem.idx[i] } // false means black
             var bothAreWhite: Bool { pixel && colorMapItem.idx[i] } // true means white
-            if !bothAreBlack && !bothAreWhite { return false } // <- Sort of crazy looking, but it works
-            else { return true }
+            Swift.print("bothAreBlack:  \(bothAreBlack) bothAreWhite:  \(bothAreWhite)")
+            return !(bothAreBlack || bothAreWhite) // looks a bit funny, but it's more efficient than using &&
+//            if  { return false } // <- Sort of crazy looking, but it works
+//            else { return true }
          }
          // - Fixme ⚠️️ could we use async_apply here, in the .first loop?
          return !pixels.enumerated().contains(where: condition)
