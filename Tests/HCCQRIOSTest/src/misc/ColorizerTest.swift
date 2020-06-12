@@ -58,4 +58,10 @@ extension ColorizerTest {
       Swift.print("isPixelCGreen:  \(isPixelCGreen)")
       return isPixelARed && isPixelBBlue && isPixelCGreen
    }
+   /**
+    * Mono pixel colorization test
+    */
+   static func testColorizingMonoPixel() -> Bool {
+      return true // continue here
+   }
 }
