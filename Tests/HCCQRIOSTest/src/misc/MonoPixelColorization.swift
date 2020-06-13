@@ -2,7 +2,7 @@ import Foundation
 
 class MonoPixelColorization {
    /**
-    * Mono pixel colorization test
+    * Mono pixel colorization test (b&w-pixels 👉 color-pixels)
     * - Note: Test colorizing b&w pixels to color pixel w/ color-map
     * - Note: basically makes sure any optimization applied to the colorizer will work
     * - Note: [B,W] = red, [W,W] = blue, [W,B] ? green

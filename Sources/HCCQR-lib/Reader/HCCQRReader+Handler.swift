@@ -14,6 +14,7 @@ extension HCCQRReader {
     * - Important: ⚠️️ We split it into CIImages, because apples QRCode methods can only read ciimages
     * - Abstract: After splitting the HCCQRImage into color channels, we create QRImage layers of the color channels
     * - Fixme: ⚠️️⚠️️ Since the QR-Data is in the same spot across splitResult, Use the dataAndMeta and use the rect to crop the second ciImage, or buffer
+    * - Fixme: ⚠️️⚠️️ You need to be able to support more than 2 layers aka 4 color-pallet
     * - Note: This code is really sync, but n the future it might be async
     * - Parameters:
     *   - result: Two QR-CImages (qrImg1: CIImage, qrImg2: CIImage)
@@ -24,7 +25,7 @@ extension HCCQRReader {
       let ciImages: [CIImage] = [payload.qrImg1, payload.qrImg2]
       var dataAndFrames: [QRReader.DataAndQuad?] = [QRReader.DataAndQuad?](repeating: nil, count: ciImages.count)
       // HCCQRReader.readQrTime = .init()
-      // - Fixme: ⚠️️ This is where you add the crop code for the second QR image etc. Since it's on main, there is no speed loss etc
+      // - Fixme: ⚠️️⚠️️⚠️️ This is where you add the crop code for the second QR image etc. Since it's on main, there is no speed loss etc
       DispatchQueue.main.async { // Has to be done on main thread, or else Apples.qrreader behaves bad
          ciImages.enumerated().forEach { item in
             // DispatchQueue.global(qos: .background).async {

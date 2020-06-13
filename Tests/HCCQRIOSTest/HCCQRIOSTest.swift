@@ -3,14 +3,28 @@ import XCTest
 
 class HCCQRIOSTest: XCTestCase {
    func testExample() {
-//      XCTAssertTrue(ColorizerTest.testColorizingMonoPixel()) // b&w-pixels (mono) to color-pixels
-//      XCTAssertEqual(QRTesting.createQR(), CGSize(width: 354.0, height: 354.0))
-//      XCTAssertEqual(ScaleTesting.testScalingRGBAImage(), 4)
-      XCTAssertTrue(MonoPixelColorization.testColorizingMonoPixel()) // 
-//      XCTAssertTrue(PixelTest.testColorAssertionWithinThresholdForPixel())
-//      XCTAssertTrue(PixelTest.isColorishTest())
-//      XCTAssertTrue(PixelTest.isWashedOutColorishTest())
-//      testReadingHCCQRPhoto() // ⚠️️ only works in xcode-simulator, because no assets in spm
+      simpleTests()
+//      advanceTests()
+   }
+   /**
+    * Utility tests etc
+    */
+   func simpleTests() {
+      Swift.print("simpleTests")
+      XCTAssertEqual(QRTesting.createQR(), CGSize(width: 354.0, height: 354.0))
+      XCTAssertEqual(ScaleTesting.testScalingRGBAImage(), 4)
+      XCTAssertTrue(MonoPixelColorization.testColorizingMonoPixel()) // ✅ b&w-pixels (mono) to color-pixels
+      XCTAssertTrue(PixelTest.testColorAssertionWithinThresholdForPixel()) // ✅
+      XCTAssertTrue(PixelTest.isColorishTest()) // ✅
+      XCTAssertTrue(PixelTest.isWashedOutColorishTest()) // ✅
+   }
+   /**
+    * More elaborate tests
+    * - Fixme: ⚠️️ maybe use resource helper to add assets?
+    */
+   func advanceTests() {
+      Swift.print("advanceTests")
+      testReadingHCCQRPhoto() // ⚠️️ only works in xcode-simulator, because no assets in spm,
 //      testSingle() // ⭐
 //      testBulk() // ⭐ Read and write multiple HCCQR images
 //      testCVImageBuffer() // test the new buffer -> RGBA
@@ -76,9 +90,10 @@ extension HCCQRIOSTest {
     * Reading real photos
     */
    private func testReadingHCCQRPhoto() {
+      Swift.print("testReadingHCCQRPhoto 📸")
       let expectation = self.expectation(description: "readingHCCQRPhoto") // needed when we do callbacks in Unittesting
       HCCQRPhotoTest.testReadingHCCQRPhoto { success
-         in Swift.print("success:  \(success ? "✅" : "🚫")")
+         in Swift.print("testReadingHCCQRPhoto success:  \(success ? "✅" : "🚫")")
          expectation.fulfill()
          XCTAssertTrue(success)
       }

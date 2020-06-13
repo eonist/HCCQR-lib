@@ -10,7 +10,7 @@ extension Splitter {
     */
    static func split(ciImage: CIImage, onComplete:@escaping SplitPayloadCompleted) {
       channels(ciImage: ciImage) { result in // Get RGBAImages from CIImage
-         onGrayChannelsComplete(result: result, onComplete: onComplete)
+         onGrayChannelSplitComplete(result: result, onComplete: onComplete)
       }
    }
    /**

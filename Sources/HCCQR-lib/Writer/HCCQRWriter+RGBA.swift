@@ -38,8 +38,10 @@ extension HCCQRWriter {
     * 3. Creates 2 CIImage's of these two data items
     * - Abstract: Create two QR images from the data, and combine them into RGBAImage, then convert that to CIImage
     * - Caution: ⚠️️ Remember to deinit the result once it's consumed
+    * - Important: internal because: BulkHCCQRTest uses it for tests
+    * - Fixme: ⚠️️ Splitting the data in two allows 4 color map, in the future we will allow 8 color map (pallet etc)
     */
-   private static func rgbaImage(data: Data, multipliers: Multipliers, qrConfig: QRConfig = defaultQRConfig, useDarkMode: Bool = false, onComplete: @escaping OnRGBAImageComplete) {
+   internal static func rgbaImage(data: Data, multipliers: Multipliers, qrConfig: QRConfig = defaultQRConfig, useDarkMode: Bool = false, onComplete: @escaping OnRGBAImageComplete) {
       let dataArr: [Data] = data.split(index: data.count / 2) // Split the data in two ()
       var ciImgs: [CIImage?] = [CIImage?](repeating: nil, count: dataArr.count) // Pre-filled array for the images
       dataArr.enumerated().forEach { (_ offset: Int, _ data: Data) in

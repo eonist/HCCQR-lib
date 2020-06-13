@@ -6,16 +6,15 @@ import Foundation
 final class PixelTest {
    /**
     * Color assertion
-    * - ⚠️️ Make another test where you test impure colors
     */
    static func testColorAssertionWithinThresholdForPixel() -> Bool {
-      let offset: UInt8 = .init(255 * 0.2)
+      let offset: UInt8 = .init(255 * 0.2) // the deviation in percentage
       let redishPixel: PixelData = .init(r: 255 - offset, g: 0 + offset, b: 0 + offset, a: 255)
-      let redPixel: PixelData = .init(r: 255, g: 0, b: 0, a: 255)
-      let threshold: UInt8 = .init(255 * 0.25)
+      let redPixel = PixelData.Colors.redPixel // the color it should look like
+      let threshold: UInt8 = .init(255 * 0.25) // within this threshold
       let halfThreshold: UInt8 = .init(threshold / 2)
-      let isColorRedish: Bool = PixelData.isColor(a: redishPixel, b: redPixel, halfThreshold: halfThreshold)
-      Swift.print("isColorRedish:  \(isColorRedish)")
+      let isColorRedish: Bool = PixelData.isColor(a: redPixel, b: redishPixel, halfThreshold: halfThreshold)
+      Swift.print("isColorRedish:  \(isColorRedish ? "✅" : "🚫")")
       return isColorRedish
    }
    /**
@@ -31,6 +30,7 @@ final class PixelTest {
    }
    /**
     * Test the colorish method with imperfect values
+    * - Fixme: ⚠️️ make the deviations random range to make test more realistic
     */
    static func isWashedOutColorishTest() -> Bool {
       Swift.print("PixelData.halfThresholdUInt8:  \(PixelData.halfThresholdUInt8)")

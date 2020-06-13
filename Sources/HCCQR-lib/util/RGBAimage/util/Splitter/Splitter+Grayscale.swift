@@ -17,12 +17,11 @@ extension Splitter {
     * - Note: red means black in layer-2 only
     * - Note: white means white in both layers
     * - Fixme: ⚠️️ Use Dispatchgroup to make the completion more readable
-    * - Fixme: ⚠️️ Rename to onGrayChannelSplittingComplete maybe ?
     * - Fixme: ⚠️️ Maybe do the result.value in the calling method and not in this method?
     * - Important: ⚠️️ grayscale is better for qr to read than monotone (probably)
     *  - Fixme: ⚠️️  MonotoneImage with strength ?
     */
-   static func onGrayChannelsComplete(result: Channel.GrayscaleChannelsResult, onComplete:@escaping SplitPayloadCompleted) { // called when the (R,G,B) channels are split
+   static func onGrayChannelSplitComplete(result: Channel.GrayscaleChannelsResult, onComplete:@escaping SplitPayloadCompleted) { // called when the (R,G,B) channels are split
       guard let channels: Channel.GrayscaleImages = result.value() else { onComplete(.failure(NSError("Unable to create rgbaImgs \(result.errorStr)"))); return } // (r,g,b)
       let channelArr: [GrayChannelPair] = [(channels.b, channels.g), (channels.r, channels.b)] // pair b&g = qr1, pair r$b = qr2
       var qrImgs: [CIImage?] = [CIImage?](repeating: nil, count: channelArr.count) // Result array

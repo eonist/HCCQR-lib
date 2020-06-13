@@ -18,7 +18,7 @@ extension Colorizer {
       Swift.print("⚠️️⚠️️⚠️️ DEPRECATED ⚠️️⚠️️⚠️️")
       let rgbaImages: [RGBAImage] = images.compactMap { try? RGBAImage.rgbaImage(image: $0) }
       guard images.count == rgbaImages.count else { throw "Colorize.colorize() - some rgbaImages was not created" /*Swift.print();return nil*/ }
-      guard let result: RGBAImage = try? colorize(rgbaImages: rgbaImages, colorMap: colorMap, multipliers: multipliers) else { throw "Colorize.colorize() - Unable to create colorized rgbaImage" }
+      guard let result: RGBAImage = try? colorizeDEPRECATED(rgbaImages: rgbaImages, colorMap: colorMap, multipliers: multipliers) else { throw "Colorize.colorize() - Unable to create colorized rgbaImage" }
       guard let image: Image = try? RGBAImageUtil.image(rgbaImage: result, scale: CGFloat(multipliers.screenScale)) else { throw "Colorize.colorize() - Unable to convert to UIImage"/*Swift.print();return nil*/ }
       result.deinitiate() // ⚠️️⚠️️ We get a mem leak in iOS if we don't deallocate the pixels ⚠️️⚠️️
       return image
@@ -32,11 +32,11 @@ extension Colorizer { // ⚠️️ ⚠️️ ⚠️️  soon deprecated, because
     * CIImage's -> RGBAImage
     * - Fixme: ⚠️️ Can we put the loop on bg-thread?
     */
-   private static func colorize(ciImages: [CIImage], colorMap: ColorMap, multipliers: Multipliers) throws -> RGBAImage {
+   private static func colorizeDEPRECATED(ciImages: [CIImage], colorMap: ColorMap, multipliers: Multipliers) throws -> RGBAImage {
       Swift.print("⚠️️⚠️️⚠️️ DEPRECATED ⚠️️⚠️️⚠️️")
       let rgbaImages: [RGBAImage] = ciImages.compactMap { try? RGBAImage.rgbaImg(ciImg: $0) } // convert QR images to Pixel-data
       guard ciImages.count == rgbaImages.count else { throw NSError("Colorize.colorize() - some rgbaImages was not created") }
-      guard let result: RGBAImage = try? colorize(rgbaImages: rgbaImages, colorMap: colorMap, multipliers: multipliers) else { throw NSError("Colorize.colorize() - Unable to create colorized rgbaImage") } // overlay the qr-pixel-data
+      guard let result: RGBAImage = try? colorizeDEPRECATED(rgbaImages: rgbaImages, colorMap: colorMap, multipliers: multipliers) else { throw NSError("Colorize.colorize() - Unable to create colorized rgbaImage") } // overlay the qr-pixel-data
       return result
    }
    /**
@@ -56,7 +56,7 @@ extension Colorizer { // ⚠️️ ⚠️️ ⚠️️  soon deprecated, because
     *   - colorMap: color rule-set
     *   - multipliers: scaling
     */
-   static func colorize(rgbaImages: [RGBAImage], colorMap: ColorMap, multipliers: Multipliers) throws -> RGBAImage {
+   static func colorizeDEPRECATED(rgbaImages: [RGBAImage], colorMap: ColorMap, multipliers: Multipliers) throws -> RGBAImage {
       Swift.print("⚠️️⚠️️⚠️️ DEPRECATED ⚠️️⚠️️⚠️️")
       guard let size: RGBAImage.Size = rgbaImages.first?.size, let capacity: Int = rgbaImages.first?.capacity else { throw NSError(domain: "Must contain at least one image", code: 0) } // The first image is used for getting size etc
       let pixels = UnsafeMutableBufferPointer<PixelData>.allocate(capacity: capacity)
