@@ -100,12 +100,12 @@ extension HCCQRIOSTest {
       }
       waitForExpectations(timeout: 20, handler: nil)
    }
-   #if os(iOS)
    /**
     * UIImage -> RGBAImage -> CIImage
     * - Fixme: ⚠️️ Move into own class
     */
    private func testCIImage() {
+      #if os(iOS)
       guard let image = UIImage.image(size: .init(width: 100, height: 100), color: .green) else { Swift.print("uiImage err"); return }
       Swift.print("image.scale:  \(image.scale)")
       Swift.print("image.size:  \(image.size)")
@@ -122,6 +122,6 @@ extension HCCQRIOSTest {
       Swift.print("img.scale:  \(img.scale)")
       //      img
       Swift.print("\(image.isEqualToImage(image: img) ? "✅" : "🚫")")
+      #endif
    }
-   #endif
 }

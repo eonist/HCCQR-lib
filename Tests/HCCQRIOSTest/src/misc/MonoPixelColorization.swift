@@ -1,4 +1,5 @@
 import Foundation
+@testable import HCCQR_lib
 
 class MonoPixelColorization {
    /**
