@@ -17,6 +17,7 @@ class HCCQRIOSTest: XCTestCase {
       XCTAssertTrue(PixelTest.testColorAssertionWithinThresholdForPixel()) // ✅
       XCTAssertTrue(PixelTest.isColorishTest()) // ✅
       XCTAssertTrue(PixelTest.isWashedOutColorishTest()) // ✅
+      testCIImage() // ✅
    }
    /**
     * More elaborate tests
@@ -24,11 +25,10 @@ class HCCQRIOSTest: XCTestCase {
     */
    func advanceTests() {
       Swift.print("advanceTests")
-//      testReadingHCCQRPhoto() // ⚠️️ only works in xcode-simulator, because no assets in spm,
+//      testReadingHCCQRPhoto() // 🚫 ⚠️️ only works in xcode-simulator, because no assets in spm,
 //      testSingle() // ✅
-//      testBulk() // ⭐ Read and write multiple HCCQR images
-      testCVImageBuffer() // test the new buffer -> RGBA
-//      testCIImage()
+//      testCVImageBuffer() // ✅ test the new buffer -> RGBA
+      testBulk() // ⭐ Read and write multiple HCCQR images
 //      testReadingManyPhotos() // ⭐ Reading many photos
    }
 }
@@ -103,6 +103,7 @@ extension HCCQRIOSTest {
    #if os(iOS)
    /**
     * UIImage -> RGBAImage -> CIImage
+    * - Fixme: ⚠️️ Move into own class
     */
    private func testCIImage() {
       guard let image = UIImage.image(size: .init(width: 100, height: 100), color: .green) else { Swift.print("uiImage err"); return }
@@ -120,7 +121,7 @@ extension HCCQRIOSTest {
       Swift.print("img.size:  \(img.size)")
       Swift.print("img.scale:  \(img.scale)")
       //      img
-      //      Swift.print("\(image.isEqualToImage(image: img) ? "✅" : "🚫")")
+      Swift.print("\(image.isEqualToImage(image: img) ? "✅" : "🚫")")
    }
    #endif
 }

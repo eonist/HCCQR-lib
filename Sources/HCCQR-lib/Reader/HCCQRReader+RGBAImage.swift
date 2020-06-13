@@ -19,6 +19,7 @@ extension HCCQRReader {
     *   - onComplete: completion block
     */
    static func dataAndImages(rgbaImage: RGBAImage, onComplete:@escaping DataAndImageCompleted) {
+//      Swift.print("HCCQRReader.dataAndImages")
       Splitter.split(rgbaImage: rgbaImage) { result in // Start the splitting process
          onSplitComplete(result: result, onComplete: onComplete) // readTime += abs(HCCQRReader.splitTime.timeIntervalSinceNow); Swift.print("👉 Splitting rgbaImage done: \(abs(HCCQRReader.splitTime.timeIntervalSinceNow))")
       }

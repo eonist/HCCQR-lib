@@ -19,6 +19,8 @@ extension BulkRGBAHCCQRTest {
    static var readTime: Date = .init()
    /**
     * Test writing and reading many HCCQR images
+    * - Note: 100 hccqr imgs are created in 1.6 sec (.v6, .byte, .l)
+    * - Note: 100 hccqr imgs are read in 3.6 sec (.v6, .byte, .l)
     * ## Examples:
     * BulkHCCQRTest.initiateTest { success in Swift.print("success:  \(success)") }
     */
