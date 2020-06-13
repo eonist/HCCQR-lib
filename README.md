@@ -13,13 +13,13 @@
 - Reading QR layers
 
 ### Solution
-**Image -> Data**
+**Image -> Data** (grayscale)  
 1. Split colors into layers (divide into quadrants, and distribute tasks to multiple cpu-cores)
 2. Read data from the first layer. Extra the meta-data and inform caller with meta-data (stop further reading of qr-layers if frame has already been read by StreamLib)
 3. Crop all successive layers after the "quad-meta-data" has been extracted from the first layer
 4. Return "binary-data-payload" when all QR-layers has been read
 
-**Data -> Image**
+**Data -> Image** (monotone)  
 1. Create b&w QR images (1-img per core, use concurrent_async)
 2. Divide the Colorize process into 4 quadrants (or amount of cores)
 3. Convert RGBAImage to Image
