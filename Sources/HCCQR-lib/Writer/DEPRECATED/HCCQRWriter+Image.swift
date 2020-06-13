@@ -25,16 +25,17 @@ extension HCCQRWriter {
     *   - onComplete: callback when the image has been produced
     */
    public static func image(data: Data, multipliers: Multipliers, qrConfig: QRConfig = (.v10, .l), onComplete: @escaping OnHCCQRImageCompleted) {
-      let dataArr: [Data] = data.split(index: data.count / 2) // Split the data in two
-      var qrImgs: [Image?] = [Image?](repeating: nil, count: dataArr.count) // Pre-filled array for the images
-      dataArr.enumerated().forEach { (_ offset: Int, _ data: Data) in
-         DispatchQueue.global(qos: .userInitiated).async { // Do the operation on a background-thread
-            let qrImg: Image? = try? QRWriter.image(data: data, ecLevel: qrConfig.ecLevel) // Create B&W QR-image
-            DispatchQueue.main.async { // I guess main-thread is needed here because we access an array
-               onCreateQrImgComplete(i: offset, qrImg: qrImg, qrImgs: &qrImgs, multipliers: multipliers, onComplete: onComplete)
-            }
-         }
-      }
+      fatalError("⚠️️⚠️️⚠️️ DEPRECATD ⚠️️⚠️️⚠️️")
+//      let dataArr: [Data] = data.split(index: data.count / 2) // Split the data in two
+//      var qrImgs: [Image?] = [Image?](repeating: nil, count: dataArr.count) // Pre-filled array for the images
+//      dataArr.enumerated().forEach { (_ offset: Int, _ data: Data) in
+//         DispatchQueue.global(qos: .userInitiated).async { // Do the operation on a background-thread
+//            let qrImg: Image? = try? QRWriter.image(data: data, ecLevel: qrConfig.ecLevel) // Create B&W QR-image
+//            DispatchQueue.main.async { // I guess main-thread is needed here because we access an array
+//               onCreateQrImgComplete(i: offset, qrImg: qrImg, qrImgs: &qrImgs, multipliers: multipliers, onComplete: onComplete)
+//            }
+//         }
+//      }
    }
 }
 /**

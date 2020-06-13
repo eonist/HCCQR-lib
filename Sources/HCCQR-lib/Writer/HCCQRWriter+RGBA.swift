@@ -15,7 +15,7 @@ extension HCCQRWriter {
     * 3. Converts RGBAImage to Image
     * - Fixme: ⚠️️ Could setting CIImage or CGIMage directly to a Image in the UI be faster?
     * - Fixme: ⚠️️ Try a sync version of this method with semphors
-    * - Fixme: ⚠️️ Rename method name to image
+    * - Fixme: ⚠️️ Rename method name to image, deprecate the old image method
     * - Note: Supports The grayscaleImage optimization
     */
    public static func img(data: Data, multipliers: Multipliers, qrConfig: QRConfig = defaultQRConfig, useDarkMode: Bool = false, onComplete: @escaping OnHCCQRImageCompleted) {

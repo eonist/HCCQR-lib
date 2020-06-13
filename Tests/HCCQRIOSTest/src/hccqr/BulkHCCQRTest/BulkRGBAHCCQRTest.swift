@@ -4,7 +4,7 @@ import CoreGraphics
 import CoreImage
 @testable import HCCQR_lib
 
-final class BulkHCCQRTest {}
+final class BulkRGBAHCCQRTest {}
 /**
  * Read and write multiple HCCQR images
  * 1. Writes many HCCQR images
@@ -13,7 +13,7 @@ final class BulkHCCQRTest {}
  * - Important: ⚠️️ This does not use the CVImageBuffer so tests may be irrelevant
  * - Fixme: ⚠️️ Use The CVImageBuffer instead
  */
-extension BulkHCCQRTest {
+extension BulkRGBAHCCQRTest {
    static var totalTime: Date = .init()
    static var writeTime: Date = .init()
    static var readTime: Date = .init()
@@ -22,7 +22,7 @@ extension BulkHCCQRTest {
     * ## Examples:
     * BulkHCCQRTest.initiateTest { success in Swift.print("success:  \(success)") }
     */
-   static func initiateTest(onComplete: @escaping OnComplete) {
+   static func initiateTest(onComplete: @escaping BulkRGBAHCCQRTest.OnComplete) {
       writeMany { result in // This closure is called when all images are created
          guard let rgbaImages: [RGBAImage] = result.value() else { onComplete(.failure(NSError(domain: "Can't write images", code: 0))); return }
          Swift.print("🔸 WriteTime:  \(abs(writeTime.timeIntervalSinceNow)) for images.count: \(rgbaImages.count)")

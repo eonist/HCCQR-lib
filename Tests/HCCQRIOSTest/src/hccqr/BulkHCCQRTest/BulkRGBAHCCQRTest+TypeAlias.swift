@@ -2,7 +2,7 @@ import Foundation
 @testable import HCCQR_lib
 import CoreImage
 
-extension BulkHCCQRTest {
+extension BulkRGBAHCCQRTest {
    /**
     * Write complete
     */

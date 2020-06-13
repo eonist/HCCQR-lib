@@ -4,7 +4,7 @@ import CoreGraphics
 import CoreImage
 @testable import HCCQR_lib
 
-extension BulkHCCQRTest {
+extension BulkRGBAHCCQRTest {
    /**
     * Write many HCCQR images
     * ## Examples:

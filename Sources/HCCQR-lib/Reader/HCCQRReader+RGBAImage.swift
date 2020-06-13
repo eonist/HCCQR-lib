@@ -5,7 +5,7 @@ import CoreImage
 
 public final class HCCQRReader {}
 /**
- * Adds support for RGBAImage
+ * Adds support for RGBAImage (for testing images etc)
  */
 extension HCCQRReader {
    /**

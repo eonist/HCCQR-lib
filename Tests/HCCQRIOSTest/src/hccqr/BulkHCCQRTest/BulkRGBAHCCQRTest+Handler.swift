@@ -6,7 +6,7 @@ import CoreImage
 /**
  * Completion handler
  */
-extension BulkHCCQRTest {
+extension BulkRGBAHCCQRTest {
    /**
     * Create single HCCQR img complete
     */

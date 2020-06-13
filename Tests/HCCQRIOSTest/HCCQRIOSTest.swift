@@ -3,8 +3,8 @@ import XCTest
 
 class HCCQRIOSTest: XCTestCase {
    func testExample() {
-      simpleTests()
-//      advanceTests()
+//      simpleTests()
+      advanceTests()
    }
    /**
     * Utility tests etc
@@ -24,10 +24,10 @@ class HCCQRIOSTest: XCTestCase {
     */
    func advanceTests() {
       Swift.print("advanceTests")
-      testReadingHCCQRPhoto() // ⚠️️ only works in xcode-simulator, because no assets in spm,
-//      testSingle() // ⭐
+//      testReadingHCCQRPhoto() // ⚠️️ only works in xcode-simulator, because no assets in spm,
+//      testSingle() // ✅
 //      testBulk() // ⭐ Read and write multiple HCCQR images
-//      testCVImageBuffer() // test the new buffer -> RGBA
+      testCVImageBuffer() // test the new buffer -> RGBA
 //      testCIImage()
 //      testReadingManyPhotos() // ⭐ Reading many photos
    }
@@ -64,8 +64,9 @@ extension HCCQRIOSTest {
     * Single (Writes and reads HCCQR)
     */
    private func testSingle() {
+      Swift.print("testSingle")
       let expectation = self.expectation(description: "single") // needed when we do callbacks in Unittesting
-      SingleHCCQRTest.testWritingHCCQRImage { isMatching in
+      SingleWriteReadHCCQRTest.testWritingHCCQRImage { isMatching in
          Swift.print("testWritingHCCQRImage.isMatching:  \(isMatching ? "✅" : "🚫")")
          expectation.fulfill()
          XCTAssertTrue(isMatching)
@@ -78,7 +79,7 @@ extension HCCQRIOSTest {
     */
    private func testBulk() {
       let expectation = self.expectation(description: "bulk") // needed when we do callbacks in Unittesting
-      BulkHCCQRTest.initiateTest { result in
+      BulkRGBAHCCQRTest.initiateTest { result in
          guard let success: Bool = try? result.get() else { Swift.print("BulkHCCQRTest: \(result.errorStr)"); return }
          Swift.print("BulkHCCQRTest: success:  \(success ? "✅" : "🚫")")
          expectation.fulfill()

@@ -3,7 +3,7 @@ import QR_lib
 import QuartzCore
 import CoreImage
 /**
- * Adds support for CVImageBuffer
+ * Adds support for CVImageBuffer (For processing data from camera)
  * - Fixme: ⚠️️ Maybe Rename to Writer.swift?
  */
 extension HCCQRReader {

@@ -15,7 +15,7 @@ extension Colorizer {
     *    - multipliers: modulescale and screenScale, for retina you need 2x scale etc, This is the multiplier. ModuleCount equals 1 pixel. ModuleCount for QRVersion 10 is 57 not counting 2 for margins. So (57+2)*6 = 354, if you want 2xretina its 354 * 2 = 708
     */
    static func colorize(images: [Image], colorMap: ColorMap, multipliers: Multipliers) throws -> Image {
-      Swift.print("⚠️️⚠️️⚠️️ DEPRECATED ⚠️️⚠️️⚠️️")
+      Swift.print("⚠️️⚠️️⚠️️ colorize.DEPRECATED ⚠️️⚠️️⚠️️")
       let rgbaImages: [RGBAImage] = images.compactMap { try? RGBAImage.rgbaImage(image: $0) }
       guard images.count == rgbaImages.count else { throw "Colorize.colorize() - some rgbaImages was not created" /*Swift.print();return nil*/ }
       guard let result: RGBAImage = try? colorizeDEPRECATED(rgbaImages: rgbaImages, colorMap: colorMap, multipliers: multipliers) else { throw "Colorize.colorize() - Unable to create colorized rgbaImage" }
