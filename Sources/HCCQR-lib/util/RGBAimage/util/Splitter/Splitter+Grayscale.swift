@@ -28,6 +28,8 @@ extension Splitter {
       channelArr.enumerated().forEach { channel in
          DispatchQueue.global(qos: .userInitiated).async { // - Fixme: ⚠️️ This could be the cause of random error bug, maybe drop the async and just do it on current thread
             // - Fixme: ⚠️️ Benchmark the composition process as well
+            // - Fixme: ⚠️️ Figure out how to return qrImg even if data cant be read by it,
+            // - Fixme: ⚠️️ or look into tests, if they can help the split method etc
             let qrImg: CIImage? = try? Compositor.composite(first: channel.element.first, second: channel.element.second)
             DispatchQueue.main.async { // We need to go on the mainthread to manipulate array
                onGrayCompositeComplete(i: channel.offset, qrImg: qrImg, qrImgs: &qrImgs, channels: channels, onComplete: onComplete)

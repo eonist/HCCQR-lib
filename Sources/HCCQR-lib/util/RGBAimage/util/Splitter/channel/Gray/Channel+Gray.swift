@@ -16,7 +16,8 @@ extension Channel {
     *   - onComplete: notify when process has completed
     */
    static func grayChannels(rgbaImg: RGBAImage, channelMap: ChannelMap = channelMap, onComplete:@escaping OnGrayChannelsComplete) {
-      var grayscaleChannels: [GrayscaleImage?] = [GrayscaleImage?](repeating: nil, count: similarities.count) // Fixme: ⚠️️ we could use unmanaged pointer with capacity as well, might be faster
+      var grayscaleChannels: [GrayscaleImage?] = [GrayscaleImage?](repeating: nil, count: channelMap.count) // Fixme: ⚠️️ we could use unmanaged pointer with capacity as well, might be faster
+      let similarities: [PixelDataSimilarity] = Channel.similarities(channelMap: channelMap)
       similarities.enumerated().forEach { offset, similarity in // 3 assertions
          DispatchQueue.global(qos: .userInitiated).async { // - Fixme: ⚠️️ This could be the cause of random error bug, maybe drop the async and just do it on current thread
 //            Swift.print("⚠️️ There is a bug here, or is it fixed? ⚠️️")

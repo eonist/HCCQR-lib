@@ -4,13 +4,13 @@ import Foundation
  */
 extension GrayscaleImage {
    /**
-    * Populate GrayscaleImage with 0-255 values based on the grayscale equivilent (R,G,B) channel
-    * - Abstract: Get grayscale UInt8 intensity for a (R,G,B) channel
+    * Populate GrayscaleImage with 0 - 255 values based on the grayscale equivilent (R, G, B) channel
+    * - Abstract: Get grayscale UInt8 intensity for a (R, G, B) channel
     * - Note: Used when reading HCCQR 
     * - Fixme: ⚠️️ find a better name for this method?
     * - Parameters:
-    *   - input: The RGBAImage to extract data from
-    *   - output: The GrayScaleImage to populate pixels into
+    *   - input: The RGBAImage to extract data from (color photo etc)
+    *   - output: The GrayScaleImage to populate pixels into (we only need [UInt8])
     *   - functor: A function which manipulates each pixel
     */
    static func process(input: RGBAImage, output: GrayscaleImage, functor: GrayScaleFunctorCall) -> GrayscaleImage {

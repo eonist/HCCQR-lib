@@ -35,7 +35,7 @@ final class PixelTest {
    static func isWashedOutColorishTest() -> Bool {
       Swift.print("PixelData.halfThresholdUInt8:  \(PixelData.halfThresholdUInt8)")
       Swift.print("UInt8(255 * 0.81):  \(UInt8(255 * 0.81))")
-      let redish: PixelData.RGBColor = (UInt8(255 * 0.75), UInt8(255 * 0.2), UInt8(255 * 0.25), 255)
+      let redish: PixelData.RGBAColor = (UInt8(255 * 0.75), UInt8(255 * 0.2), UInt8(255 * 0.25), 255)
       Swift.print("redish.r:  \(redish.r)")
       let assertRedish: Bool = try! PixelData(uiColor: .red).isColorish(redish).isColorish
       Swift.print("assertRedish:  \(assertRedish)")

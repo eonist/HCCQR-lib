@@ -7,9 +7,10 @@ class PixelDataParser {
     * - Abstract: we calc how similar a color is to another in percentage 99% a color is 99% cyan, 88% magenta, 22% green etc,
     * - Abstract: we calc how similar a color is to another in percentage 99% a color is 99% cyan, 88% magenta, 22% green etc,
     * - Fixme: ⚠️️ figure out how to divide and substract with UInt8 etc, look at existing code
-    * - Fixme: ⚠️️ test red agains green etc
+    * - Fixme: ⚠️️ test red against green etc
     * - Fixme: ⚠️️ should deviation in the other channels account for the same as deviation in the dominant channel etc?
     * - Fixme: ⚠️️ It might be the case that if we should also limit the combined values of difference. say if R,B combined are more than 50% off, then its not a match. etc. It might be valuable to make advance tests, of how to match colors
+    * - Important: ⚠️️⚠️️⚠️️ has to be used in conjunction with the isColorish method, since this only returns the intensity of the output pixel, and is only valid if the isColorish method is within thresholds etc
     * ## Examples:
     * let red: RGBAColor = (r: 255, g: 0, b: 0, a: 255)
     * let redish: RGBAColor = (r: 215, g: 20, b: 10, a: 255)
@@ -19,21 +20,13 @@ class PixelDataParser {
     *   - b: static color (cyan, magenta, red etc)
     */
    static func similarity(a: PixelData.RGBAColor, b: PixelData.RGBAColor) -> UInt8 {
-      // r1, r2 dist ->
       let distR: Int = abs(Int(b.r) - Int(a.r))
-      //   Swift.print("distR:  \(distR)")
       let distG: Int = abs(Int(b.g) - Int(a.g))
-      //   Swift.print("distG:  \(distG)")
       let distB: Int = abs(Int(b.b) - Int(a.b))
-      //   Swift.print("distB:  \(distB)")
-      let scalarR: Int = (255 - distR)// / 255
-      //   Swift.print("scalarR:  \(scalarR)")
-      let scalarG: Int = (255 - distG)// / 255
-      //   Swift.print("scalarG:  \(scalarG)")
-      let scalarB: Int = (255 - distB)// / 255
-      //   Swift.print("scalarB:  \(scalarB)")
+      let scalarR: Int = (255 - distR) // / 255
+      let scalarG: Int = (255 - distG) // / 255
+      let scalarB: Int = (255 - distB) // / 255
       let combinedScalar = ((scalarR) + (scalarG) + (scalarB)) / 3
-      //   Swift.print("combinedScalar:  \(combinedScalar)")
       return UInt8(combinedScalar)
    }
 }

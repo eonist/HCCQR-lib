@@ -7,6 +7,7 @@ class PixelDataAsserter {
    typealias Colorish = (isColorish: Bool, rgb: (r: Bool, g: Bool, b: Bool))
    /**
     * Asserts if a color is near another color within a threshold
+    * - Abstract: Basically makes sure each channel is within the threshold defined
     * 1. Creates the r,g,b channel asserts
     * 2. Calls these custom assert methods and check if they all pass
     * - Note: ⚠️️ PixelData.isColorish((255, 0, 0, 255)) uses this method

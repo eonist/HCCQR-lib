@@ -12,12 +12,11 @@ extension Channel {
     *   - assert: takes Pixeldata, returns Bool
     */
    static func grayChannel(rgbaImg: RGBAImage, asserter: PixelDataSimilarity) -> GrayscaleImage {
-      let blankImg: GrayscaleImage = .grayscaleImage(capacity: rgbaImg.capacity, size: rgbaImg.size) // We create a blank RGBImage, as it's faster than copy probably
-      return GrayscaleImage.process(input: rgbaImg, output: blankImg) { pixel -> UInt8 in
+      let outputIMG: GrayscaleImage = .grayscaleImage(capacity: rgbaImg.capacity, size: rgbaImg.size) // We create a blank RGBImage, as it's faster than copy probably
+      return GrayscaleImage.process(input: rgbaImg, output: outputIMG) { pixel -> UInt8 in
 //         Swift.print("⚠️️ bug here? ⚠️️")
          // fixme: ⚠️️ This is the bug, we should rather use the degree of gray, solved now
          let intensity = asserter(pixel).strength // more strength, more white
-//         Swift.print("intensity:  \(intensity)")
          return intensity
       }
    }

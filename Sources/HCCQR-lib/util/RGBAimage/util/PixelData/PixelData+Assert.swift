@@ -7,9 +7,9 @@ import QuartzCore
 extension PixelData {
    /**
     * Asserts if a pixel is sort of a color within a threshold (also returns the strength of the color)
-    * - Fixme: ⚠️️ How ish is a color, figure out 0-1 how strong a color is, remember channels can be fractional when we start using other colors than R, B, G
+    * - Fixme: ⚠️️ How ish is a color, figure out 0 - 1 how strong a color is, remember channels can be fractional when we start using other colors than R, B, G
     * - Fixme: ⚠️️ Look for algorithms that can measure how strong a color is. 99% Cyan etc
-    * - Important: ⚠️️ For now we just measure for R,G,B
+    * - Important: ⚠️️ For now we just measure for R, G, B
     * - Returns: returns Bool and the amount of that color in UInt8
     * - Parameter color: a color (dynamic / impure color) to check against self (self is static / pure colors)
     */
@@ -17,18 +17,19 @@ extension PixelData {
       let colorish: PixelDataAsserter.Colorish = self.isColorish(color)
       // Continue here: use the colorish.r,g,b values to find intensity, think about amount of deviation etc
 //      let strength: UInt8 = colorish.isColorish ? PixelDataAsserter.naiveStrength(color: color, pixel: self) : 0 // if color is not with threshold, then strength is zero
-      let itensity = PixelDataParser.similarity(a: color, b: self.rgba) // the most intense channel etc
-      return (assert: colorish.isColorish, strength: itensity)
+      let intensity = colorish.isColorish ? PixelDataParser.similarity(a: color, b: self.rgba) : 0 // if not colorish, then return no intensity
+      return (assert: colorish.isColorish, strength: intensity)
    }
    /**
     * Asserts if a pixel is sort of a color within a threshold
+    * - Note: used by tests
     * - Parameter color: the color to check if it is similar to self (a sort of red color for instance)
     * ## Examples:
     * let rgbaColor: RGBColor = (255, 0, 0, 255)
     * let pixelData: PixelData = .init(uiColor: .red)
     * pixelData.isColorish(rgbaColor) // returns true if the the pixel is within the color
     */
-   func isColorish(_ color: RGBAColor) -> PixelDataAsserter.Colorish {
+   internal func isColorish(_ color: RGBAColor) -> PixelDataAsserter.Colorish {
       let pixelData: PixelData = .init(r: color.r, g: color.g, b: color.b, a: 255)
       return PixelDataAsserter.isColorish(a: self.rgb, b: pixelData.rgb, halfThreshold: PixelData.halfThresholdUInt8)
    }
@@ -36,7 +37,7 @@ extension PixelData {
     * Match two pixels
     * - Note: Looks funny, but it's that way to make it fast (basically exits early if something doesn't match)
     */
-   static func isMatching(a: PixelData, b: PixelData) -> Bool {
+   internal static func isMatching(a: PixelData, b: PixelData) -> Bool {
       a.r == b.r && a.g == b.g && a.b == b.b
    }
 }
