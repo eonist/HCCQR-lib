@@ -22,17 +22,31 @@ extension PixelData {
  * RGBColor asserter
  */
 extension PixelData {
+   /**
+    * - Parameters:
+    *   - a: first color (usuallu dynamic im-pure colors)
+    *   - b: second color (usualy static pure colors)
+    */
    static func isRGBColor(a: RGBColor, b: RGBColor) -> Bool {
       a.r == b.r && a.g == b.g && a.b == b.b /* && a.a == b.a*/
    }
+   /**
+    * Assert if rgbColor is red
+    */
    static func isRed(rgbColor: RGBColor) -> Bool {
-      isRGBColor(a: PixelData.red, b: rgbColor)
+      isRGBColor(a: rgbColor, b: PixelData.red)
    }
+   /**
+    * Assert if rgbColor is green
+    */
    static func isGreen(rgbColor: RGBColor) -> Bool {
-      isRGBColor(a: PixelData.green, b: rgbColor)
+      isRGBColor(a: rgbColor, b: PixelData.green)
    }
+   /**
+    * Assert if rgbColor is blue
+    */
    static func isBlue(rgbColor: RGBColor) -> Bool {
-      isRGBColor(a: PixelData.blue, b: rgbColor)
+      isRGBColor(a: rgbColor, b: PixelData.blue)
    }
 }
 /**
@@ -43,6 +57,7 @@ extension PixelData {
     * Get strength of a color against another
     * - Abstract: we calc how similar a color is to another in percentage 99% cyan etc,
     * - Fixme: ⚠️️ should deviation in the other channels account for the same as deviation in the dominant channel etc?
+    * - Fixme: ⚠️️ It might be the case that if we should also limit the combined values of difference. say if R,B combined are more than 50% off, then its not a match. etc. It might be valuable to make advance tests, of how to match colors
     * ## Examples:
     * PixelData.strength(a: PixelData.red, b: PixelData.red) // 255
     * PixelData.strength(a: PixelData.red, b: PixelData.blue) // 85 (because, green-channel is similar)

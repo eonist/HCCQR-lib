@@ -10,11 +10,7 @@ class ViewController: UIViewController {
       view = View()
       view.backgroundColor = .systemTeal
       createRGBAPhoto()
-      // test()
-//      ViewController.testCreatingHCCQRImage { img in
-//         let imageView: UIImageView = .init(image: img)
-//         self.view.addSubview(imageView)
-//      }
+//      ViewController.testCreatingHCCQRImage { self.view.addSubview(UIImageView(image: $0)) }
    }
    override var prefersStatusBarHidden: Bool { true }
 }

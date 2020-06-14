@@ -11,6 +11,8 @@ extension PixelData {
    typealias RGBA = (r: UInt8, b: UInt8, g: UInt8, a: UInt8)
    /**
     * Strength alone might be enough
+    * - parameter assert: isSimilar or not
+    * - parameter strength: 0 - 255
     */
    typealias Similarity = (assert: Bool, strength: UInt8)
 }

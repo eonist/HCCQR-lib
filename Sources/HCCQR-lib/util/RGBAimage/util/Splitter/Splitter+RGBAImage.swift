@@ -21,7 +21,7 @@ extension Splitter {
    static func split(rgbaImage: RGBAImage, onComplete:@escaping SplitPayloadCompleted) {
 //      Swift.print("Splitter.split")
       // HCCQRReader.splitTime = .init() // Debugging performance
-      Channel.grayChannels(rgbaImg: rgbaImage) { (result: Channel.GrayscaleChannelsResult) in // Channel.channels(rgbaImg: rgbaImg, onComplete: onComplete)
+      Channel.grayChannels(rgbaImg: rgbaImage) { (result: Channel.GrayscaleChannelsResult) in // 
          onGrayChannelSplitComplete(result: result, onComplete: onComplete)
       }
    }

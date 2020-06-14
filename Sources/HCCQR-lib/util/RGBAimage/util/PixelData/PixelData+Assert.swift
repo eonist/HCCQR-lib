@@ -6,7 +6,7 @@ import QuartzCore
  */
 extension PixelData {
    /**
-    * ⚠️️⚠️️⚠️️DEPRECATE SOON⚠️️⚠️️⚠️️ (or will it?)
+    * ⚠️️⚠️️⚠️️ DEPRECATE SOON ⚠️️⚠️️⚠️️ (or will it?)
     * Asserts if a pixel is sort of a color within a threshold
     * - Parameter color: the color to check if it is similar to self (a sort of red color for instance)
     * ## Examples:
@@ -24,12 +24,26 @@ extension PixelData {
     * - Fixme: ⚠️️ Look for algorithms that can measure how strong a color is. 99% Cyan etc
     * - Important: ⚠️️ For now we just measure for R,G,B
     * - Returns: returns Bool and the amount of that color in UInt8
+    * - Parameter color: a color to check against self (self is usually pure colors)
     */
    func isSimilar(_ color: RGBColor) -> Similarity { // - Fixme: ⚠️️ Might not need to return a tuple, the strength alone may be enough
       let isColorish: Bool = self.isColorish(color)
       let strength: UInt8 = isColorish ? PixelData.naiveStrength(color: color, pixel: self) : 0 // if color is not with threshold, then strength is zero
       return (assert: true, strength: strength)
    }
+   
+   /**
+    * Match two pixels
+    * - Note: Looks funny, but it's that way to make it fast (basically exits early if something doesn't match)
+    */
+   static func isMatching(a: PixelData, b: PixelData) -> Bool {
+      a.r == b.r && a.g == b.g && a.b == b.b
+   }
+}
+/**
+ * Color asserts
+ */
+extension PixelData {
    /**
     * Measure if color is white (used in the colorize method)
     * - Note: looks funny, but it's that way to make it fast
@@ -45,13 +59,6 @@ extension PixelData {
     */
    var isBlack: Bool {
       self.r == .black && self.g == .black && self.b == .black
-   }
-   /**
-    * Match two pixels
-    * - Note: Looks funny, but it's that way to make it fast (basically exits early if something doesn't match)
-    */
-   static func isMatching(a: PixelData, b: PixelData) -> Bool {
-      a.r == b.r && a.g == b.g && a.b == b.b
    }
 }
 /**
@@ -75,7 +82,7 @@ extension PixelData {
     *   - halfThreshold: with threshold more or less (I.e: +25, -25 from a value, provided that 25 is the threshold, usually 255*0.2 etc)
     */
    static func isColor(a: PixelData, b: PixelData, halfThreshold: UInt8) -> Bool {
-      isColor(rgb1: a.rgb, rgb2: b.rgb, halfThreshold: halfThreshold)
+      isColor(a: a.rgb, b: b.rgb, halfThreshold: halfThreshold)
    }
 }
 /**
@@ -87,39 +94,52 @@ extension PixelData {
     * 1. Creates the r,g,b channel asserts
     * 2. Calls these custom assert methods and check if they all pass
     * - Note: all channels must be within the halfTheshold
+    * - Note: if a UInt8 value is near the bounds, the threshold is actually increased to the distance to the bound
     * - Fixme: ⚠️️ It might be the case that if we should also limit the combined values of difference. say if R,B combined are more than 50% off, then its not a match. etc. It might be valuable to make advance tests, of how to match colors
-    * - Fixme: ⚠️️ It might be the case that if a UInt8 value is near the bounds, the threshold should actually be increased to the distance to the bound, I guess do some exploring on this, I THINK that is already done right?
-    * - Fixme: ⚠️️ Rename RGB1 to a, and RGB2 to b
     * - Parameters:
     *   - rgb1: first color ()
     *   - rgb2: second color
     *   - halfThreshold: with threshold more or less (I.e: +25, -25 from a value)
     *   - limit: used to avoid going out of bound
     */
-   private static func isColor(rgb1: RGB, rgb2: RGB, halfThreshold: UInt8, limit: Limit = defaultLimit) -> Bool {
+   private static func isColor(a: RGB, b: RGB, halfThreshold: UInt8, limit: Limit = defaultLimit) -> Bool {
+      // make isRed(halfThreshold etc), divy up this method
       var r: Bool {
-         let range: RangeUInt8 = UInt8Parser.range(num: rgb1.r, halfThreshold: halfThreshold, min: limit.min, max: limit.max) // 75, 125
+         let range: RangeUInt8 = UInt8Parser.range(num: a.r, halfThreshold: halfThreshold, min: limit.min, max: limit.max) // 75, 125
 //         Swift.print("range:  \(range)")
 //         Swift.print("rgb1.r:  \(rgb1.r)")
 //         Swift.print("rgb2.r:  \(rgb2.r)")
-         return UInt8Asserter.within(num: rgb2.r, min: range.start, max: range.end) // (range.start...range.end).contains(rgb1.r)
+         return UInt8Asserter.within(num: b.r, min: range.start, max: range.end) // (range.start...range.end).contains(rgb1.r)
       }
       var g: Bool {
-         let range: RangeUInt8 = UInt8Parser.range(num: rgb1.g, halfThreshold: halfThreshold, min: limit.min, max: limit.max)
-         return UInt8Asserter.within(num: rgb2.g, min: range.start, max: range.end) // (range.start...range.end).contains(rgb1.g)
+         let range: RangeUInt8 = UInt8Parser.range(num: a.g, halfThreshold: halfThreshold, min: limit.min, max: limit.max)
+         return UInt8Asserter.within(num: b.g, min: range.start, max: range.end) // (range.start...range.end).contains(rgb1.g)
       }
       var b: Bool {
-         let range: RangeUInt8 = UInt8Parser.range(num: rgb1.b, halfThreshold: halfThreshold, min: limit.min, max: limit.max)
-         return UInt8Asserter.within(num: rgb2.b, min: range.start, max: range.end) // (range.start...range.end).contains(rgb1.b)
+         let range: RangeUInt8 = UInt8Parser.range(num: a.b, halfThreshold: halfThreshold, min: limit.min, max: limit.max)
+         return UInt8Asserter.within(num: b.b, min: range.start, max: range.end) // (range.start...range.end).contains(rgb1.b)
       }
       return r && g && b
+   }
+   /**
+    *
+    * - Parameters:
+    *   - color: a color to check against pixel (pixel is usually pure colors)
+    *   - pixel: the pure color (Pure Red, Pure Green, Pure Blue etc)
+    */
+   private static func strength(color: RGBColor, pixel: PixelData) -> UInt8 {
+      return 0
    }
    /**
     * Get strength of a color
     * - Note: This method is a temp solution and only works when we have 4 color maps etc
     * - Fixme: ⚠️️ In the future we need to calc how similar a color is to another in percentage 99% cyan etc, should deviation in the other channels account for the same as deviation in the primary channel etc?
+    * - Parameters:
+    *   - color: a color to check against pixel (pixel is usually pure colors)
+    *   - pixel: the pure color (Pure Red, Pure Green, Pure Blue etc)
     */
    private static func naiveStrength(color: RGBColor, pixel: PixelData) -> UInt8 {
+      Swift.print("naiveStrength")
       if PixelData.isRed(rgbColor: color) {
          return pixel.r
       } else if PixelData.isGreen(rgbColor: color) {

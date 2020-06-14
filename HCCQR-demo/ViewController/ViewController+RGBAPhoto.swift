@@ -10,7 +10,7 @@ extension ViewController {
     * RGBAPhoto
     */
    func createRGBAPhoto() {
-      let path: String = Bundle.main.resourcePath! + "/temp.bundle/HCCQR.png" //HCCQR7.png, HCCQR12.png,HCCQR13.jpg
+      let path: String = Bundle.main.resourcePath! + "/temp.bundle/HCCQR18.png" //HCCQR7.png, HCCQR12.png,HCCQR13.jpg
       guard let image = Image(contentsOfFile: path) else { Swift.print("err getting img"); return }
       Swift.print("UIImage.size:  \(image.size)")
       guard let rgbaImage: RGBAImage = try? CVImageBufferUtil.rgbaImage(image: image) else { Swift.print("err getting rgbImage"); return }
@@ -37,7 +37,7 @@ extension ViewController {
          let img = UIImage(ciImage: value.qr1)
          let imgView: UIImageView = .init(image: img)
          self.view.addSubview(imgView)
-         // try with perfect HCCQR image 🏀
+         // try with perfect HCCQR image 
 //         Swift.print("data.count:  \(String(describing: data.count))")
          onComplete(true)
       }
