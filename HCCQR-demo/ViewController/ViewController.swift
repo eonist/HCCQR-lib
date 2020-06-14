@@ -8,12 +8,13 @@ class ViewController: UIViewController {
    override func viewDidLoad() {
       super.viewDidLoad()
       view = View()
-      view.backgroundColor = .white
+      view.backgroundColor = .systemTeal
+      createRGBAPhoto()
       // test()
-      ViewController.testCreatingHCCQRImage { img in
-         let imageView: UIImageView = .init(image: img)
-         self.view.addSubview(imageView)
-      }
+//      ViewController.testCreatingHCCQRImage { img in
+//         let imageView: UIImageView = .init(image: img)
+//         self.view.addSubview(imageView)
+//      }
    }
    override var prefersStatusBarHidden: Bool { true }
 }

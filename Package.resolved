@@ -6,7 +6,7 @@
         "repositoryURL": "https://eonist:2fa35e4ff44eac34e98f01f2c83a16f00e650e56@github.com/light-stream/QR-lib.git",
         "state": {
           "branch": "master",
-          "revision": "53555ef06d82160282a8dbaa6c148a90266e4313",
+          "revision": "6debe90c5b3d1f2cda91567dae4b5162a0205ffb",
           "version": null
         }
       },
@@ -15,7 +15,7 @@
         "repositoryURL": "https://github.com/eonist/ResourceHelper.git",
         "state": {
           "branch": "master",
-          "revision": "7da909958efa715860194d2a7820706bc5eebf23",
+          "revision": "bc6794574d982124bb440f48d1d6a6825e67290c",
           "version": null
         }
       },
@@ -24,7 +24,7 @@
         "repositoryURL": "https://github.com/eonist/ResultSugar.git",
         "state": {
           "branch": "master",
-          "revision": "f161b9b691dd3f285b507275dadb3f461795fa73",
+          "revision": "b83655ad206d99432b8f23add5facf0881afb708",
           "version": null
         }
       }

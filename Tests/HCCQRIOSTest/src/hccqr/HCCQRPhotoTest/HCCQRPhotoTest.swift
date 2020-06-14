@@ -24,7 +24,7 @@ extension HCCQRPhotoTest {
     */
    static func testReadingHCCQRPhoto(onComplete: @escaping OnComplete) {
       Swift.print("testReadingHCCQRImage")
-      let path: String = Bundle.main.resourcePath!+"/temp.bundle/HCCQR7.png" // HCCQR12.png,HCCQR13.jpg
+      let path: String = Bundle.main.resourcePath! + "/temp.bundle/HCCQR.png" //HCCQR7.png, HCCQR12.png,HCCQR13.jpg
       guard let image = Image(contentsOfFile: path) else { Swift.print("err getting img"); return }
       Swift.print("UIImage.size:  \(image.size)")
       guard let rgbaImage: RGBAImage = try? CVImageBufferUtil.rgbaImage(image: image) else { Swift.print("err getting rgbImage"); return }
