@@ -25,8 +25,8 @@ class HCCQRIOSTest: XCTestCase {
     */
    func advanceTests() {
       Swift.print("advanceTests")
-      testReadingHCCQRPhoto() // 🚫 ⚠️️ only works in xcode-simulator, because no assets in spm,
-//      testSingle() // ✅
+//      testReadingHCCQRPhoto() // 🚫 ⚠️️ only works in xcode-simulator, because no assets in spm,
+      testSingleWriteRead() // ✅
 //      testCVImageBuffer() // ✅ test the new buffer -> RGBA
 //      testBulk() // ✅ Read and write multiple HCCQR images
 //      testReadingManyPhotos() // ⭐ Reading many photos
@@ -63,7 +63,7 @@ extension HCCQRIOSTest {
    /**
     * Single (Writes and reads HCCQR)
     */
-   private func testSingle() {
+   private func testSingleWriteRead() {
       Swift.print("testSingle")
       let expectation = self.expectation(description: "single") // needed when we do callbacks in Unittesting
       SingleWriteReadHCCQRTest.testWritingHCCQRImage { isMatching in
@@ -121,7 +121,7 @@ extension HCCQRIOSTest {
       Swift.print("img.size:  \(img.size)")
       Swift.print("img.scale:  \(img.scale)")
       //      img
-      Swift.print("\(image.isEqualToImage(image: img) ? "✅" : "🚫")")
+      Swift.print("isEqualToImage: \(image.isEqualToImage(image: img) ? "✅" : "🚫")")
       #endif
    }
 }

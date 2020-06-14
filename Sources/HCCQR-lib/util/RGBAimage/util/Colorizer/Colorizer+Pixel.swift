@@ -37,7 +37,7 @@ extension Colorizer {
          return !pixels.enumerated().contains(where: condition)
       }
       // - Fixme ⚠️️ could we use async_apply here, in the .first loop?
-      guard let color: PixelData.RGBColor = try colorMap.first(where: findColor)?.color else { throw NSError(domain: "Unable to colorize", code: 0) }
+      guard let color: PixelData.RGBAColor = try colorMap.first(where: findColor)?.color else { throw NSError(domain: "Unable to colorize", code: 0) }
       return .init(r: color.r, g: color.g, b: color.b, a: color.a)
    }
 }

@@ -16,7 +16,9 @@ extension Channel {
       return GrayscaleImage.process(input: rgbaImg, output: blankImg) { pixel -> UInt8 in
 //         Swift.print("⚠️️ bug here? ⚠️️")
          // fixme: ⚠️️ This is the bug, we should rather use the degree of gray, solved now
-         asserter(pixel).strength // more strength, more white
+         let intensity = asserter(pixel).strength // more strength, more white
+//         Swift.print("intensity:  \(intensity)")
+         return intensity
       }
    }
 }

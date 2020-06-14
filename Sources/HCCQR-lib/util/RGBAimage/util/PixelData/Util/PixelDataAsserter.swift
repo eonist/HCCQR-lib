@@ -1,0 +1,66 @@
+import Foundation
+
+class PixelDataAsserter {
+   /**
+    * Used for isColorish
+    */
+   typealias Colorish = (isColorish: Bool, rgb: (r: Bool, g: Bool, b: Bool))
+   /**
+    * Asserts if a color is near another color within a threshold
+    * 1. Creates the r,g,b channel asserts
+    * 2. Calls these custom assert methods and check if they all pass
+    * - Note: ⚠️️ PixelData.isColorish((255, 0, 0, 255)) uses this method
+    * - Note: ⚠️️ There is unit tests for this method: PixelTest.testColorAssertionWithinThresholdForPixel
+    * - Note: all channels must be within the halfTheshold
+    * - Note: if a UInt8 value is near the bounds, the threshold is actually increased to the distance to the bound
+    * - Fixme: ⚠️️ It might be the case that if we should also limit the combined values of difference. say if R,B combined are more than 50% off, then its not a match. etc. It might be valuable to make advance tests, of how to match colors
+    * ## Examples:
+    * let offset: UInt8 = UInt8(255 * 0.2)
+    * let redishPixel: Pixel = .init(R: 255 - offset, G: 0 + offset, B: 0 + offset, A: 255)
+    * let redPixel: Pixel = .init(R: 255, G: 0, B: 0, A: 255)
+    * let threshold: UInt8 = UInt8(255 * 0.25)
+    * let isColorRedish: Bool = redishPixel.isColor(pixel: redPixel, threshold: threshold)
+    * Swift.print("isColorRedish:  \(isColorRedish)") // true
+    * - Parameters:
+    *   - a: first color (static color / pure color)
+    *   - b: second color (dynamic color / impure color)
+    *   - halfThreshold: with threshold more or less (I.e: +25, -25 from a value)
+    *   - limit: used to avoid going out of bound
+    */
+   static func isColorish(a: PixelData.RGB, b: PixelData.RGB, halfThreshold: UInt8, limit: PixelData.Limit = PixelData.defaultLimit) -> Colorish {
+      let r: Bool = isRedish(a: a, b: b, halfThreshold: halfThreshold, limit: limit)
+      let g: Bool = isGreenish(a: a, b: b, halfThreshold: halfThreshold, limit: limit)
+      let b: Bool = isBlueish(a: a, b: b, halfThreshold: halfThreshold, limit: limit)
+      let isColorish = r && g && b
+      return (isColorish, (r, g, b))
+   }
+}
+/**
+ * Private helper methods
+ */
+extension PixelDataAsserter {
+   /**
+    * isRed
+    */
+   private static func isRedish(a: PixelData.RGB, b: PixelData.RGB, halfThreshold: UInt8, limit: PixelData.Limit = PixelData.defaultLimit) -> Bool {
+      let range: RangeUInt8 = UInt8Parser.range(num: a.r, halfThreshold: halfThreshold, min: limit.min, max: limit.max) // 75, 125
+      //         Swift.print("range:  \(range)")
+      //         Swift.print("rgb1.r:  \(rgb1.r)")
+      //         Swift.print("rgb2.r:  \(rgb2.r)")
+      return UInt8Asserter.within(num: b.r, min: range.start, max: range.end) // (range.start...range.end).contains(rgb1.r)
+   }
+   /**
+    * isGreen
+    */
+   private static func isGreenish(a: PixelData.RGB, b: PixelData.RGB, halfThreshold: UInt8, limit: PixelData.Limit = PixelData.defaultLimit) -> Bool {
+      let range: RangeUInt8 = UInt8Parser.range(num: a.g, halfThreshold: halfThreshold, min: limit.min, max: limit.max)
+      return UInt8Asserter.within(num: b.g, min: range.start, max: range.end) // (range.start...range.end).contains(rgb1.g)
+   }
+   /**
+    * isBlue
+    */
+   private static func isBlueish(a: PixelData.RGB, b: PixelData.RGB, halfThreshold: UInt8, limit: PixelData.Limit = PixelData.defaultLimit) -> Bool {
+      let range: RangeUInt8 = UInt8Parser.range(num: a.b, halfThreshold: halfThreshold, min: limit.min, max: limit.max)
+      return UInt8Asserter.within(num: b.b, min: range.start, max: range.end) // (range.start...range.end).contains(rgb1.b)
+   }
+}
