@@ -7,6 +7,7 @@ extension PixelData {
     * ⚠️️⚠️️⚠️️ DEPRECATED ⚠️️⚠️️⚠️️
     * - Note: Used by the Compositor class
     * - - Fixme: ⚠️️⚠️️⚠️️ May not be needed anymore, since pixels are not over-written
+    * - Note: you also have subtractingReportingOverflow and for divide and multiply
     */
    mutating func applyPixel(first: PixelData, second: PixelData, alpha: UInt8) {
       self.r = {

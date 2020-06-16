@@ -21,7 +21,7 @@ extension Color {
    }
 }
 /**
- * ⚠️️ SLOW ⚠️️
+ * ⚠️️ Slow ⚠️️
  */
 extension Color {
    /**

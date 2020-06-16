@@ -18,7 +18,7 @@ extension ViewController {
 //      let imgView: UIImageView = .init(image: img)
 //      self.view.addSubview(imgView)
       HCCQRReader.dataAndImages(rgbaImage: rgbaImage) { result in // Split the hccqrImg
-         self.onReadComplete(result: result) { success in Swift.print("success: \(success)") }
+         self.onReadComplete(result: result) { success in Swift.print("dataAndImages success: \(success)") }
       }
    }
 }
@@ -32,8 +32,9 @@ extension ViewController {
     */
    func onReadComplete(result: HCCQRReader.DataAndImagesResult, onComplete: @escaping (Bool) -> Void) {
       Swift.print("onReadComplete")
-      guard let value = try? result.get() else { onComplete(false); return }
+      guard let value = try? result.get() else { Swift.print("unable to extract value"); onComplete(false); return }
       DispatchQueue.main.async { // jump back on the main thread
+         Swift.print("value.qr1:  \(value.qr1)")
          let img = UIImage(ciImage: value.qr1)
          let imgView: UIImageView = .init(image: img)
          self.view.addSubview(imgView)

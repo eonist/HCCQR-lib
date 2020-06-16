@@ -17,7 +17,7 @@ extension UIView {
       return image
    }
    /**
-    * Creates a calayer with a color
+    * Creates a CALayer with a color
     * - Parameters:
     *   - color: The color to fill the layer with
     *   - size: The size of the layer

@@ -32,7 +32,7 @@ extension HCCQRReader {
             var err: Error?
             var dataAndQuad: QRReader.DataAndQuad?
             do { dataAndQuad = try QRReader.dataAndQuad(ciImage: item.element, useAccurateDetector: true) } catch { err = error } // Swift.print("colorSpace:  \(String(describing: item.element.colorSpace)) debugDescription:  \(item.element.debugDescription)")
-            onQRCodeComplete(i: item.offset, dataAndQuad: dataAndQuad, error: err, dataAndQuads: &dataAndFrames, payload: payload, onComplete: onComplete)
+            onReadQRCodeComplete(i: item.offset, ciIMG: item.element, dataAndQuad: dataAndQuad, error: err, dataAndQuads: &dataAndFrames, payload: payload, onComplete: onComplete)
              // }
          }
       }
@@ -53,8 +53,8 @@ extension HCCQRReader {
     *   - payload: 2 CIImage's
     *   - onComplete: completion block with DataAndImage
     */
-   static func onQRCodeComplete(i: Int, dataAndQuad: QRReader.DataAndQuad?, error: Error?, dataAndQuads: inout [QRReader.DataAndQuad?], payload: Splitter.SplitPayload, onComplete: DataAndImageCompleted ) {
-      guard let dataAndFrame: QRReader.DataAndQuad = dataAndQuad else { onComplete(.failure(NSError(domain: "HCCQRReader.onQRCodeComplete() - Unable to get dataAndFrame for QRIMG: \(i) error: \(String(describing: error?.localizedDescription))", code: 0))); return }
+   static func onReadQRCodeComplete(i: Int, ciIMG: CIImage, dataAndQuad: QRReader.DataAndQuad?, error: Error?, dataAndQuads: inout [QRReader.DataAndQuad?], payload: Splitter.SplitPayload, onComplete: DataAndImageCompleted ) {
+      guard let dataAndFrame: QRReader.DataAndQuad = dataAndQuad else { onComplete(.failure(ReadError.unableToExtractQRData(msg: "QRIMG: \(i) error: \(String(describing: error?.localizedDescription))", ciImage: ciIMG))); return }
       dataAndQuads[i] = dataAndQuad
       if !dataAndQuads.contains (where: { $0 == nil }) { // Makes sure all images finished
          let data: Data = dataAndQuads.compactMap { $0?.qrData }.reduce(Data(), +) // Merges the data
