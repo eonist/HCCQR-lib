@@ -24,8 +24,8 @@ extension HCCQRWriter {
     *   - multipliers: for retina you need 2x scale etc,  ModuleCount equals 1 pixel. ModuleMultiplier scales this
     *   - onComplete: callback when the image has been produced
     */
-   public static func image(data: Data, multipliers: Multipliers, qrConfig: QRConfig = (.v10, .l), onComplete: @escaping OnHCCQRImageCompleted) {
-      fatalError("⚠️️⚠️️⚠️️ DEPRECATD ⚠️️⚠️️⚠️️")
+//   public static func image(data: Data, multipliers: Multipliers, qrConfig: QRConfig = (.v10, .l), onComplete: @escaping OnHCCQRImageCompleted) {
+//      fatalError("⚠️️⚠️️⚠️️ DEPRECATD ⚠️️⚠️️⚠️️")
 //      let dataArr: [Data] = data.split(index: data.count / 2) // Split the data in two
 //      var qrImgs: [Image?] = [Image?](repeating: nil, count: dataArr.count) // Pre-filled array for the images
 //      dataArr.enumerated().forEach { (_ offset: Int, _ data: Data) in
@@ -36,7 +36,7 @@ extension HCCQRWriter {
 //            }
 //         }
 //      }
-   }
+//   }
 }
 /**
  * Private static handler

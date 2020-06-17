@@ -11,8 +11,8 @@ extension HCCQRReader {
     * Creates data for HCCQQR image, and frame (Has support for Quad)
     * - Caution: ⚠️️ Seems like image doesnt work anymore, use .ciImage() instead
     */
-   public static func dataAndQuad(image: Image, onComplete:@escaping OnGetDataAndQuadCompleted) {
-      fatalError("⚠️️⚠️️⚠️️ DEPRECATED ⚠️️⚠️️⚠️️")
+//   public static func dataAndQuad(image: Image, onComplete:@escaping OnGetDataAndQuadCompleted) {
+//      fatalError("⚠️️⚠️️⚠️️ DEPRECATED ⚠️️⚠️️⚠️️")
       // - Fixme: ⚠️️ move this to handler method
 //      let completion: DataAndImageCompleted = { result in
 //         guard let dataAndImages: DataAndImages = result.value() else { onComplete(.failure(result.getError())); return }
@@ -21,7 +21,7 @@ extension HCCQRReader {
 //         onComplete(.success((data, quad)))
 //      }
 //      dataAndImages(image: image, onComplete: completion)
-   }
+//   }
    /**
     * ⚠️️⚠️️⚠️️ DEPRECATED ⚠️️⚠️️⚠️️
     * Creates data for HCCQQR image

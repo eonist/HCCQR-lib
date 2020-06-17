@@ -25,11 +25,11 @@ extension HCCQRReader {
 /**
  * DataAndQuad
  */
-extension HCCQRReader {
-   public typealias DataAndQuad = (data: Data, quad: QRReader.Quad)
-   public typealias DataAndQuadResult = Result<DataAndQuad, Error>
-   public typealias OnGetDataAndQuadCompleted = (DataAndQuadResult) -> Void
-}
+//extension HCCQRReader {
+//   public typealias DataAndQuad = (data: Data, quad: QRReader.Quad)
+//   public typealias DataAndQuadResult = Result<DataAndQuad, Error>
+//   public typealias OnGetDataAndQuadCompleted = (DataAndQuadResult) -> Void
+//}
 // - Fixme: ⚠️️ Move into HCCQRReader scope, you can do HCCQRWriter.OnHCCQRDataComplete
 // soon to be deprecated, we use result now
-public typealias OnHCCQRDataComplete = (_ data: Data?, _ error: Error?) -> Void
+//public typealias OnHCCQRDataComplete = (_ data: Data?, _ error: Error?) -> Void
