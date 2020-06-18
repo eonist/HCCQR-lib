@@ -28,7 +28,7 @@ class PixelDataAsserter {
     *   - halfThreshold: with threshold more or less (I.e: +25, -25 from a value)
     *   - limit: used to avoid going out of bound
     */
-   static func isColorish(a: PixelData.RGB, b: PixelData.RGB, halfThreshold: UInt8, limit: PixelData.Limit = PixelData.defaultLimit) -> Colorish {
+   static func isColorish(a: Pixel.RGB, b: Pixel.RGB, halfThreshold: UInt8, limit: Pixel.Limit = Pixel.defaultLimit) -> Colorish {
       let r: Bool = isRedish(a: a, b: b, halfThreshold: halfThreshold, limit: limit)
       let g: Bool = isGreenish(a: a, b: b, halfThreshold: halfThreshold, limit: limit)
       let b: Bool = isBlueish(a: a, b: b, halfThreshold: halfThreshold, limit: limit)
@@ -43,7 +43,7 @@ extension PixelDataAsserter {
    /**
     * isRed
     */
-   private static func isRedish(a: PixelData.RGB, b: PixelData.RGB, halfThreshold: UInt8, limit: PixelData.Limit = PixelData.defaultLimit) -> Bool {
+   private static func isRedish(a: Pixel.RGB, b: Pixel.RGB, halfThreshold: UInt8, limit: Pixel.Limit = Pixel.defaultLimit) -> Bool {
       let range: RangeUInt8 = UInt8Parser.range(num: a.r, halfThreshold: halfThreshold, min: limit.min, max: limit.max) // 75, 125
       //         Swift.print("range:  \(range)")
       //         Swift.print("rgb1.r:  \(rgb1.r)")
@@ -53,14 +53,14 @@ extension PixelDataAsserter {
    /**
     * isGreen
     */
-   private static func isGreenish(a: PixelData.RGB, b: PixelData.RGB, halfThreshold: UInt8, limit: PixelData.Limit = PixelData.defaultLimit) -> Bool {
+   private static func isGreenish(a: Pixel.RGB, b: Pixel.RGB, halfThreshold: UInt8, limit: Pixel.Limit = Pixel.defaultLimit) -> Bool {
       let range: RangeUInt8 = UInt8Parser.range(num: a.g, halfThreshold: halfThreshold, min: limit.min, max: limit.max)
       return UInt8Asserter.within(num: b.g, min: range.start, max: range.end) // (range.start...range.end).contains(rgb1.g)
    }
    /**
     * isBlue
     */
-   private static func isBlueish(a: PixelData.RGB, b: PixelData.RGB, halfThreshold: UInt8, limit: PixelData.Limit = PixelData.defaultLimit) -> Bool {
+   private static func isBlueish(a: Pixel.RGB, b: Pixel.RGB, halfThreshold: UInt8, limit: Pixel.Limit = Pixel.defaultLimit) -> Bool {
       let range: RangeUInt8 = UInt8Parser.range(num: a.b, halfThreshold: halfThreshold, min: limit.min, max: limit.max)
       return UInt8Asserter.within(num: b.b, min: range.start, max: range.end) // (range.start...range.end).contains(rgb1.b)
    }

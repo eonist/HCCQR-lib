@@ -5,13 +5,13 @@ import Foundation
  * - Fixme: ⚠️️ This should really be called ARGBImage
  */
 public struct RGBAImage {
-   var pixels: UnsafeMutableBufferPointer<PixelData>
+   var pixels: UnsafeMutableBufferPointer<Pixel>
    var width: Int
    var height: Int
    /**
     * Creates a copy if you already have the pixels and width height
     */
-   init(pixels: UnsafeMutableBufferPointer<PixelData>, width: Int, height: Int) {
+   init(pixels: UnsafeMutableBufferPointer<Pixel>, width: Int, height: Int) {
       self.pixels = pixels
       self.width = width
       self.height = height

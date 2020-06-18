@@ -10,11 +10,11 @@ final class Colorizer {}
  */
 extension Colorizer {
    /**
-    * CIImage's -> CIImage (Converts multiple b&w images to color-image based on the defined colorMap)
+    * CIImage's -> CIImage
+    * - Abstract: Converts multiple b&w images to color-image based on the defined colorMap
     * 1. Two B&W-QR-CIImage's comes in
     * 2. A HCCQR Color RGBAImage is created from the grayscale QR-Images
     * 3. Converts the RGBA image to ciImage and returns it
-    * - Abstract: creates an HCCQR from two Qr images
     * - Note: We get CIImages because thats what QR produces
     * - Note: Used in the process of converting Data to HCCQR (the QRImages are pure black and white)
     * - Return: we return a color CIImage
@@ -31,20 +31,21 @@ extension Colorizer {
    }
 }
 /**
- * Grayscale
+ * Monotone
  */
 extension Colorizer {
    /**
-    * CIImage's -> RGBAImage (Part of the HCCQR-creation process)
+    * QRImages -> RGBAImage
+    * - Abstract: Part of the HCCQR-creation process
     * 1. Array of CIImages comes in
-    * 2. Convert the CIImage-array to GrayScale pixel representations
-    * 3. Colorize the GrayScaleImage array to an RGBAImage and return it
-    * - Fixme: ⚠️️ Can we put the loop on bg-thread, concurrent_apply, should we?
+    * 2. Convert the CIImage-array to Monotone pixel representations
+    * 3. Colorize the Monotone array to an RGBAImage and return it
+    * - Fixme: ⚠️️ Use ConcurrentPerform in conjunction with image quadrants / cores, threads
     */
    static func colorize(ciImages: [CIImage], colorMap: ColorMap, multipliers: Multipliers) throws -> RGBAImage {
       let monotoneImages: [MonotoneImage] = ciImages.compactMap { try? MonotoneImage.monotoneImage(ciImg: $0) } // convert QR images to Pixel-data
-      guard ciImages.count == monotoneImages.count else { throw NSError("Colorize.colorize() - some rgbaImages was not created") }
-      guard let result: RGBAImage = try? colorize(monotoneImages: monotoneImages, colorMap: colorMap, multipliers: multipliers) else { throw NSError("Colorize.colorize() - Unable to create colorized rgbaImage") } // overlay the qr-pixel-data
+//      guard ciImages.count == monotoneImages.count else { throw NSError("Colorize.colorize() - some rgbaImages was not created") }
+      let result: RGBAImage = colorize(monotoneImages: monotoneImages, colorMap: colorMap, multipliers: multipliers)// else { throw NSError("Colorize.colorize() - Unable to create colorized rgbaImage") } // overlay the qr-pixel-data
       return result
    }
 }

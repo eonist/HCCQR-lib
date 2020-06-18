@@ -19,7 +19,7 @@ class PixelDataParser {
     *   - a: dynamic color (cyan-ish, meganta-ish, red-ish etc)
     *   - b: static color (cyan, magenta, red etc)
     */
-   static func similarity(a: PixelData.RGBAColor, b: PixelData.RGBAColor) -> UInt8 {
+   static func similarity(a: Pixel.RGBAColor, b: Pixel.RGBAColor) -> UInt8 {
       let distR: Int = abs(Int(b.r) - Int(a.r))
       let distG: Int = abs(Int(b.g) - Int(a.g))
       let distB: Int = abs(Int(b.b) - Int(a.b))

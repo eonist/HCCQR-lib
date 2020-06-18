@@ -32,12 +32,12 @@ extension CVImageBufferUtil {
       // CVPixelBufferLockBaseAddress(imageBuffer, CVPixelBufferLockFlags(rawValue: 0)) // - Fixme: ⚠️️ This is prob a bug, you should only lock once
       let byteBuffer: UnsafeMutablePointer<UInt8> = baseAddress.assumingMemoryBound(to: UInt8.self)
       let capacity: Int = bufferRect.width * bufferRect.height
-      let pixels = UnsafeMutableBufferPointer<PixelData>.allocate(capacity: capacity)
+      let pixels = UnsafeMutableBufferPointer<Pixel>.allocate(capacity: capacity)
       for y in bufferRect.y..<bufferRect.height {
          DispatchQueue.concurrentPerform(iterations: bufferRect.width) { x in // ⚠️️ Optimization initiative, might be faster, also try striding?
             let index: Int = (bufferRect.x + x) * 4 + y * bytesPerPixel // We add the crop to the x // (y * bytesPerPixel + x) * 4
             let (b, g, r) = (byteBuffer[index], byteBuffer[index + 1], byteBuffer[index + 2]) // let a = byteBuffer[index + 3]
-            let pixel: PixelData = .init(r: r, g: g, b: b, a: 255) // Swift.print("r:  \(r) g:  \(g) b:  \(b) a: \(a)")
+            let pixel: Pixel = .init(r: r, g: g, b: b, a: 255) // Swift.print("r:  \(r) g:  \(g) b:  \(b) a: \(a)")
             let i: Int = y * bufferRect.width + x
             pixels[i] = pixel
          }

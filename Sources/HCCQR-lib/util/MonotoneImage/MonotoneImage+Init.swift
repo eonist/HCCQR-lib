@@ -21,12 +21,12 @@ extension MonotoneImage {
       let size: GrayscaleImage.Size = (width: Int(ciImg.extent.width), height: Int(ciImg.extent.height))
       let capacity: Int = size.width * size.height
       let bytesPerRow: Int = size.width * 4 // We multiply per 4 because of the 4 channels, RGBA
-      let imageData = UnsafeMutablePointer<PixelData>.allocate(capacity: capacity)
+      let imageData = UnsafeMutablePointer<Pixel>.allocate(capacity: capacity)
       // - Fixme: ⚠️️ Do we have to create the cgContext? can CIContext be created directly from pixeldata?
       guard let cgContext = CGContext(data: imageData, width: size.width, height: size.height, bitsPerComponent: 8, bytesPerRow: bytesPerRow, space: colorSpace, bitmapInfo: bitMapInfo) else { throw NSError(domain: "rgbaImage - Unable to create rgbaImage", code: 0) }
       let context: CIContext = .init(cgContext: cgContext, options: nil) // .init(options: nil)// = CIContext.init(cgContext: , options: )
       context.draw(ciImg, in: ciImg.extent, from: ciImg.extent)
-      let pixels = UnsafeMutableBufferPointer<PixelData>(start: imageData, count: capacity)
+      let pixels = UnsafeMutableBufferPointer<Pixel>(start: imageData, count: capacity)
       let monotonePixels = UnsafeMutableBufferPointer<Bool>.allocate(capacity: capacity)
       pixels.enumerated().forEach { monotonePixels[$0.offset] = $0.element.isWhite } // white is true, black is false
       pixels.deallocate() // dealloc this, as we have no more use for it

@@ -11,10 +11,11 @@ extension Colorizer {
     */
    typealias ColorMap = [ColorMapItem]
    /**
-    * - Parameter idx: The array represents the layers of QRImages (true equals black, false equals white)
-    * - Parameter color: the color at the index
+    * - Parameters:
+    *   - idx: The array represents the layers of QRImages (true equals black, false equals white)
+    *   - color: the color at the index
     */
-   typealias ColorMapItem = (idx: [Bool], color: PixelData.RGBAColor)
+   typealias ColorMapItem = (idx: [Bool], color: Pixel.RGBAColor)
    /**
     * Used for colorizing CIImages
     */

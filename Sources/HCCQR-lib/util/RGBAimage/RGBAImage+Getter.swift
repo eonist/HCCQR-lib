@@ -13,7 +13,7 @@ extension RGBAImage {
    /**
     * Get pixel
     */
-   func getPixel(x: Int, y: Int) -> PixelData {
+   func getPixel(x: Int, y: Int) -> Pixel {
       let address = y * width + x
       return pixels[address]
    }
@@ -28,9 +28,9 @@ extension RGBAImage {
     * - Note: ref https://stackoverflow.com/questions/32441432/release-unsafemutablebufferpointeruint8-values
     */
    var clone: RGBAImage {
-      let bytesCopy = UnsafeBufferPointer<PixelData>(pixels)
+      let bytesCopy = UnsafeBufferPointer<Pixel>(pixels)
       // Creates a mutable typed buffer pointer referencing the same memory as the given immutable buffer pointer.
-      let copyOfPixels = UnsafeMutableBufferPointer<PixelData>(mutating: bytesCopy)
+      let copyOfPixels = UnsafeMutableBufferPointer<Pixel>(mutating: bytesCopy)
       return RGBAImage(pixels: copyOfPixels, width: width, height: height)
    }
    /**

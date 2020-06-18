@@ -2,7 +2,7 @@ import Foundation
 /**
  * RGBColor
  */
-extension PixelData {
+extension Pixel {
    /**
     * - Fixme: ⚠️️ this has the same as PixelData, can we remove it or just typealias PixelData?
     * - Fixme: ⚠️️ We are going to remove alpha, so rename to RGBColor again at some point
@@ -12,7 +12,7 @@ extension PixelData {
 /**
  * RGBColor's
  */
-extension PixelData {
+extension Pixel {
    static let red: RGBAColor = (r: 255, g: 0, b: 0, a: 255)
    static let green: RGBAColor = (r: 0, g: 255, b: 0, a: 255)
    static let blue: RGBAColor = (r: 0, g: 0, b: 255, a: 255)
@@ -22,7 +22,7 @@ extension PixelData {
 /**
  * RGBColor asserter
  */
-extension PixelData {
+extension Pixel {
    /**
     * - Parameters:
     *   - a: first color (usuallu dynamic im-pure colors)
@@ -35,25 +35,25 @@ extension PixelData {
     * Assert if rgbColor is red
     */
    static func isRed(rgbColor: RGBAColor) -> Bool {
-      isRGBColor(a: rgbColor, b: PixelData.red)
+      isRGBColor(a: rgbColor, b: Pixel.red)
    }
    /**
     * Assert if rgbColor is green
     */
    static func isGreen(rgbColor: RGBAColor) -> Bool {
-      isRGBColor(a: rgbColor, b: PixelData.green)
+      isRGBColor(a: rgbColor, b: Pixel.green)
    }
    /**
     * Assert if rgbColor is blue
     */
    static func isBlue(rgbColor: RGBAColor) -> Bool {
-      isRGBColor(a: rgbColor, b: PixelData.blue)
+      isRGBColor(a: rgbColor, b: Pixel.blue)
    }
 }
 /**
  * Parser
  */
-extension PixelData {
+extension Pixel {
    /**
     * Get strength of a color against another
     * - Abstract: we calc how similar a color is to another in percentage 99% a color is 99% cyan, 88% magenta, 22% green etc,

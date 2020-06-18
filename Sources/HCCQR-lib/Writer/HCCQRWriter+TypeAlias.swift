@@ -23,16 +23,16 @@ extension HCCQRWriter {
    /**
     * The result signature for HCCQRCompletion block
     */
-   public typealias HCCQRImageResult = Result<Image, WriteError>
+   public typealias ImageResult = Result<Image, WriteError>
    /**
     * Useful when you setup the callbacks in apps (That's why they are in public scope)
     * - Fixme: ⚠️️ soon to be deprecated, we use result now
     */
-   public typealias OnHCCQRImageCompleted = (HCCQRImageResult) -> Void
+   public typealias OnImageComplete = (ImageResult) -> Void
 }
 /**
  * 🏀
  * - Fixme: ⚠️️ Rename to Scale = (module, screen) and move to HCCQR+TypeAlias
  * - Fixme: ⚠️️ Maybe make it a struct?
  */
-public typealias Multipliers = (moduleScale: Int, screenScale: Int)
+public typealias Multipliers = (module: Int, screen: Int)

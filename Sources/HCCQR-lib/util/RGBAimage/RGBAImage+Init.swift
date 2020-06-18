@@ -27,12 +27,12 @@ extension RGBAImage {
       let size: Size = (width: Int(ciImg.extent.width), height: Int(ciImg.extent.height))
       let capacity: Int = size.width * size.height
       let bytesPerRow: Int = size.width * 4 // We multiply per 4 because of the 4 channels, RGBA
-      let imageData = UnsafeMutablePointer<PixelData>.allocate(capacity: capacity)
+      let imageData = UnsafeMutablePointer<Pixel>.allocate(capacity: capacity)
       // Fixme: ⚠️️ Do we have to create the cgContext? can CIContext be created directly from pixeldata?
       guard let cgContext = CGContext(data: imageData, width: size.width, height: size.height, bitsPerComponent: 8, bytesPerRow: bytesPerRow, space: colorSpace, bitmapInfo: bitMapInfo) else { throw NSError(domain: "rgbaImage - Unable to create rgbaImage", code: 0) }
       let context: CIContext = .init(cgContext: cgContext, options: nil) // .init(options: nil)// = CIContext.init(cgContext: , options: )
       context.draw(ciImg, in: ciImg.extent, from: ciImg.extent)
-      let pixels = UnsafeMutableBufferPointer<PixelData>(start: imageData, count: capacity)
+      let pixels = UnsafeMutableBufferPointer<Pixel>(start: imageData, count: capacity)
       return .init(pixels: pixels, width: size.width, height: size.height)
    }
    /**
@@ -64,21 +64,21 @@ extension RGBAImage {
       let size: Size = (width: Int(cgImage.width), height: Int(cgImage.height))
       let bytesPerRow: Int = size.width * 4 // We multiply per 4 because of the 4 channels, RGBA
       let capacity: Int = size.width * size.height
-      let imageData = UnsafeMutablePointer<PixelData>.allocate(capacity: capacity)
+      let imageData = UnsafeMutablePointer<Pixel>.allocate(capacity: capacity)
 //      Swift.print("cgImage.colorSpace:  \(String(describing: cgImage.colorSpace))")
       let colorSpace: CGColorSpace = CGColorSpaceCreateDeviceRGB()
       let bitMapInfo = RGBAImage.bitmapInfo
       guard let cgContext = CGContext(data: imageData, width: size.width, height: size.height, bitsPerComponent: 8, bytesPerRow: bytesPerRow, space: colorSpace, bitmapInfo: bitMapInfo) else { throw NSError(domain: "rgbaImage - Unable to create rgbaImage", code: 0) }
       cgContext.draw(cgImage, in: .init(origin: .zero, size: .init(width: cgImage.width, height: cgImage.height))) // draws the cgImage into the context
-      let pixels = UnsafeMutableBufferPointer<PixelData>(start: imageData, count: capacity)
+      let pixels = UnsafeMutableBufferPointer<Pixel>(start: imageData, count: capacity)
       return .init(pixels: pixels, width: size.width, height: size.height)
    }
    /**
     * Makes a new RGBA instance from pixels and size
     * - Note: used to crate a new RGBAImage and to clone one
     */
-   static func rgbaImage(pixels: [PixelData], size: Size) -> RGBAImage {
-      let unsafePixels = UnsafeMutableBufferPointer<PixelData>.allocate(capacity: pixels.count)
+   static func rgbaImage(pixels: [Pixel], size: Size) -> RGBAImage {
+      let unsafePixels = UnsafeMutableBufferPointer<Pixel>.allocate(capacity: pixels.count)
       _ = unsafePixels.initialize(from: pixels)
       return .init(pixels: unsafePixels, width: size.width, height: size.height)
    }
@@ -87,10 +87,10 @@ extension RGBAImage {
     * - Note: Used by compositor classes
     * - Abstract: Used to create unified black RGBAImage etc
     */
-   static func rgbaImage(pixel: PixelData, size: Size) -> RGBAImage {
+   static func rgbaImage(pixel: Pixel, size: Size) -> RGBAImage {
       let capacity: Int = size.width * size.height
       // fixme: ⚠️️ prob create the unmanaged pointer directly for better speed
-      let pixels: [PixelData] = .init(repeating: pixel, count: capacity)
+      let pixels: [Pixel] = .init(repeating: pixel, count: capacity)
       return .rgbaImage(pixels: pixels, size: size)
    }
    /**
@@ -98,7 +98,7 @@ extension RGBAImage {
     * - Note: used to crate a new RGBAImage
     */
    static func rgbaImage(capacity: Int, size: Size) -> RGBAImage {
-      let unsafePixels = UnsafeMutableBufferPointer<PixelData>.allocate(capacity: capacity)
+      let unsafePixels = UnsafeMutableBufferPointer<Pixel>.allocate(capacity: capacity)
       return .init(pixels: unsafePixels, width: size.width, height: size.height)
    }
 }

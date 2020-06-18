@@ -2,7 +2,7 @@ import Foundation
 /**
  * Type
  */
-extension PixelData {
+extension Pixel {
    /**
     * - Note: Used with threshold methods in assert extension
     */

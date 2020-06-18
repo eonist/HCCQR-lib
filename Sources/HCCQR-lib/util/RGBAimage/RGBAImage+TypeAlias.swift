@@ -3,8 +3,8 @@ import Foundation
  * - Fixme: ⚠️️ add doc
  */
 extension RGBAImage {
-   internal typealias FunctorCall = ((PixelData) -> PixelData)
-   internal typealias FunctorIndexCall = ((Int, PixelData) -> PixelData)
+   internal typealias FunctorCall = ((Pixel) -> Pixel)
+   internal typealias FunctorIndexCall = ((Int, Pixel) -> Pixel)
    /**
     * Convenient
     */

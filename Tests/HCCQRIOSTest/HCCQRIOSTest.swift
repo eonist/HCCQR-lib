@@ -117,11 +117,11 @@ extension HCCQRIOSTest {
       Swift.print("ciImage.extent.width:  \(ciImage.extent.width)")
       Swift.print("ciImage.extent.height:  \(ciImage.extent.height)")
       Swift.print("ciImage.colorSpace:  \(String(describing: ciImage.colorSpace))")
-      let img: UIImage = .init(ciImage: ciImage)
-      Swift.print("img.size:  \(img.size)")
-      Swift.print("img.scale:  \(img.scale)")
+      let image: UIImage = .init(ciImage: ciImage)
+      Swift.print("img.size:  \(image.size)")
+      Swift.print("img.scale:  \(image.scale)")
       //      img
-      Swift.print("isEqualToImage: \(image.isEqualToImage(image: img) ? "✅" : "🚫")")
+      Swift.print("isEqualToImage: \(image.isEqualToImage(image: image) ? "✅" : "🚫")")
       #endif
    }
 }

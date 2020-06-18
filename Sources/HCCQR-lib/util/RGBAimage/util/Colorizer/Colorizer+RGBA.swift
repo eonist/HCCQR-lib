@@ -4,31 +4,32 @@ import Foundation
  */
 extension Colorizer {
    /**
-    * Converts B&W RGBAImages into one unified color RGBAImage (on the basis of a colorMap rule-set)
+    * [Monotone images] 👉 RGBAImage
     * 1. Collect size and capacity
     * 2. Fuse pixels at different layers into one pixel
     * 3. Scale the colorized array, since the colorized array is always just 1px block in size
-    * - Abstract: creates an HCCQR from two Qr images
+    * - Abstract: Converts B&W RGBAImages into one unified color RGBAImage (on the basis of a colorMap rule-set)
+    * - Note: creates an HCCQR from two Qr images
+    * - Note: We use MonotoneImage that has single Bit data, bool, it will be faster
     * - Fixme: ⚠️️⚠️️ Could be faster to just mutate the pixels diretly in an RGBAImage instead of creating an pixel array like it is now?
-    * - Fixme: ⚠️️⚠️️⚠️️⚠️️ We should make MonotoneImage that has single Bit data, bool, it will be faster
-    * - Fixme: ⚠️️ Add darkMode bool flag
     * - Fixme: ⚠️️⚠️️ Do the scaling inside the fuse-loop, figure out how to scale in the unscalled array first 👈, then apply the scaling directly to the colorized pixels, somehow, requires some whiteboard thinking
-    * - Fixme: ⚠️️ Rename colorize to fuse?
+    * - Fixme: ⚠️️ The concurrentPerform should be done on the amount of cores / threads vs quadrants of the whole picture to be generated
     * - Note: Used in the process of converting Data to HCCQR
     * - Parameters:
-    *   - grayscaleImages: rbgImages
-    *   - colorMap: color rule-set
+    *   - monotoneImages: (black / white)-pixel-array
+    *   - colorMap: color rule-set (darkmode ability is possible epending on what colormap is used)
     *   - multipliers: scaling
     */
-   static func colorize(monotoneImages: [MonotoneImage], colorMap: ColorMap, multipliers: Multipliers) throws -> RGBAImage {
-      guard let size: RGBAImage.Size = monotoneImages.first?.size, let capacity: Int = monotoneImages.first?.capacity else { throw NSError(domain: "Must contain at least one image", code: 0) } // The first image is used for getting size etc
-      let pixels = UnsafeMutableBufferPointer<PixelData>.allocate(capacity: capacity) // Create a new array //      pixels.reserveCapacity(size.width * size.height)
-      (0..<size.height).indices.forEach { y in
+   static func colorize(monotoneImages: [MonotoneImage], colorMap: ColorMap, multipliers: Multipliers) -> RGBAImage {
+      let size: RGBAImage.Size = monotoneImages[0].size
+      let capacity: Int = monotoneImages[0].capacity
+      let pixels = UnsafeMutableBufferPointer<Pixel>.allocate(capacity: capacity) // Create a new array // pixels.reserveCapacity(size.width * size.height)
+      (0..<size.height).indices.forEach { y in // every y pixel
          DispatchQueue.concurrentPerform(iterations: size.width) { x in // Optimization initiatives
             // - Fixme: ⚠️️ We should just pass the ref to the array etc. instead of making new arrays?, might be faster
             let layerPixels: [Bool] = monotoneImages.map { $0.getPixel(x: x, y: y) } // We get pixels from both RGBAImages
-            if let colorizedPixel: PixelData = try? colorize(pixels: layerPixels, colorMap: colorMap) { // else { throw NSError.init(domain: "Unable to make pixel", code: 0) } //            let arr: [UInt8] = grayscaleImages.map { $0.getPixel(x: x, y: y) } // We get pixels from both RGBAImages
-               let index: Int = y * size.width + x
+            if let colorizedPixel: Pixel = try? colorize(pixels: layerPixels, colorMap: colorMap) { // else { throw NSError.init(domain: "Unable to make pixel", code: 0) } //            let arr: [UInt8] = grayscaleImages.map { $0.getPixel(x: x, y: y) } // We get pixels from both RGBAImages
+               let index: Int = y * size.width + x // every x pixel
                pixels[index] = colorizedPixel
             }
          }

@@ -2,14 +2,14 @@ import Foundation
 /**
  * Setter
  */
-extension PixelData {
+extension Pixel {
    /**
     * ⚠️️⚠️️⚠️️ DEPRECATED ⚠️️⚠️️⚠️️
     * - Note: Used by the Compositor class
     * - - Fixme: ⚠️️⚠️️⚠️️ May not be needed anymore, since pixels are not over-written
     * - Note: you also have subtractingReportingOverflow and for divide and multiply
     */
-   mutating func applyPixel(first: PixelData, second: PixelData, alpha: UInt8) {
+   mutating func applyPixel(first: Pixel, second: Pixel, alpha: UInt8) {
       self.r = {
          let wrapAdd = first.r.addingReportingOverflow(second.r)
          return wrapAdd.overflow ? 255 : wrapAdd.partialValue
@@ -28,13 +28,13 @@ extension PixelData {
 /**
  * Convenience
  */
-extension PixelData {
+extension Pixel {
    /**
     * ⚠️️⚠️️⚠️️ DEPRECATED ⚠️️⚠️️⚠️️
     * Inverted (only works for pure black or pure white pixels)
     * - Note: used in the composite method
     */
-   func inverted() -> PixelData {
+   func inverted() -> Pixel {
       self.isWhite ? Colors.blackPixel : Colors.whitePixel
    }
 }

@@ -4,7 +4,7 @@ import QuartzCore
  * Asserter
  * - Fixme: ⚠️️ Move some of these into PixelDataAsserter class
  */
-extension PixelData {
+extension Pixel {
    /**
     * Asserts if a pixel is sort of a color within a threshold (also returns the strength of the color)
     * - Fixme: ⚠️️ How ish is a color, figure out 0 - 1 how strong a color is, remember channels can be fractional when we start using other colors than R, B, G
@@ -30,21 +30,21 @@ extension PixelData {
     * pixelData.isColorish(rgbaColor) // returns true if the the pixel is within the color
     */
    internal func isColorish(_ color: RGBAColor) -> PixelDataAsserter.Colorish {
-      let pixelData: PixelData = .init(r: color.r, g: color.g, b: color.b, a: 255)
-      return PixelDataAsserter.isColorish(a: self.rgb, b: pixelData.rgb, halfThreshold: PixelData.halfThresholdUInt8)
+      let pixelData: Pixel = .init(r: color.r, g: color.g, b: color.b, a: 255)
+      return PixelDataAsserter.isColorish(a: self.rgb, b: pixelData.rgb, halfThreshold: Pixel.halfThresholdUInt8)
    }
    /**
     * Match two pixels
     * - Note: Looks funny, but it's that way to make it fast (basically exits early if something doesn't match)
     */
-   internal static func isMatching(a: PixelData, b: PixelData) -> Bool {
+   internal static func isMatching(a: Pixel, b: Pixel) -> Bool {
       a.r == b.r && a.g == b.g && a.b == b.b
    }
 }
 /**
  * Color asserts
  */
-extension PixelData {
+extension Pixel {
    /**
     * Measure if color is white (used in the colorize method)
     * - Note: looks funny, but it's that way to make it fast

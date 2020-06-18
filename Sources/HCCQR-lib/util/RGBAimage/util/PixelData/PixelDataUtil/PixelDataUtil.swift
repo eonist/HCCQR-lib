@@ -11,7 +11,7 @@ final class PixelDataUtil {
     * Color -> (r: UInt8, g: UInt8 ,b: UInt8, a: UInt8)
     * - Fixme: ⚠️️ You can also probably do (maybe faster?): UIColor.blue.colorComponents // (red: 0.0, green: 0.0, blue: 1.0, alpha: 1.0)
     */
-   static func rgba(uiColor: Color) throws -> PixelData.RGBA {
+   static func rgba(uiColor: Color) throws -> Pixel.RGBA {
       var (fRed, fGreen, fBlue, fAlpha): (CGFloat, CGFloat, CGFloat, CGFloat) = (0, 0, 0, 0)
       #if os(iOS)
       guard uiColor.getRed(&fRed, green: &fGreen, blue: &fBlue, alpha: &fAlpha) else { throw NSError(domain: "Could not extract RGBA components", code: 0) }
@@ -35,7 +35,7 @@ extension PixelDataUtil {
     * pixel.value -> R, G, B, A
     * setRGBA(argb: 4294967295) // 255, 255, 255, 255 aka UIColor.white
     */
-   func rgba(argb: Int) -> PixelData.RGBA {
+   func rgba(argb: Int) -> Pixel.RGBA {
       let r: UInt8 = .init((argb >> 16) & 0xFF)
       let g: UInt8 = .init((argb >> 8) & 0xFF)
       let b: UInt8 = .init(argb & 0xFF)

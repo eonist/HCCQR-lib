@@ -13,11 +13,11 @@ class RGBAImageScaler {
     * - Parameter size: size of the rgba-image
     * - Parameter multipliers: The amount to scale the pixel by (moduleScale, screenscale)
     */
-   static func scale(pixels: UnsafeMutableBufferPointer<PixelData>, size: RGBAImage.Size, multipliers: Multipliers) -> RGBAImage {
-      let multiplier: Int = multipliers.moduleScale * multipliers.screenScale
+   static func scale(pixels: UnsafeMutableBufferPointer<Pixel>, size: RGBAImage.Size, multipliers: Multipliers) -> RGBAImage {
+      let multiplier: Int = multipliers.module * multipliers.screen
       let multipliedSize: (width: Int, height: Int) = (size.width * multiplier, size.height * multiplier)
       let capacity: Int = multipliedSize.width * multipliedSize.height
-      let resultPixels = UnsafeMutableBufferPointer<PixelData>.allocate(capacity: capacity) // [PixelData]()
+      let resultPixels = UnsafeMutableBufferPointer<Pixel>.allocate(capacity: capacity) // [PixelData]()
       (0..<multipliedSize.height).indices.forEach { y in
          DispatchQueue.concurrentPerform(iterations: multipliedSize.width) { x in // Optimization initiative, might be faster
             let pixelIndex: Int = y / multiplier * size.height + x / multiplier

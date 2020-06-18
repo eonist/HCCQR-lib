@@ -4,6 +4,6 @@ extension Channel {
    typealias RGBAImages = (r: RGBAImage, g: RGBAImage, b: RGBAImage)
    typealias ChannelsResult = Result<RGBAImages, Error>
    typealias OnChannelsCompleted = (ChannelsResult) -> Void // OnOptionalChannelsCompleted
-   typealias PixelDataAssertion = (_ pixel: PixelData) -> Bool
-   typealias PixelDataSimilarity = (_ pixel: PixelData) -> PixelData.Similarity
+   typealias PixelDataAssertion = (_ pixel: Pixel) -> Bool
+   typealias PixelDataSimilarity = (_ pixel: Pixel) -> Pixel.Similarity
 }

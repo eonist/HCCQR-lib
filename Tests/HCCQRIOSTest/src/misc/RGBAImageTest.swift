@@ -20,7 +20,7 @@ extension RGBAImageTest {
       guard let img: UIImage = try? RGBAImageUtil.image(rgbaImage: rgbaImage, scale: 1) else { Swift.print("err img"); return }
 //      let imageView: UIImageView = .init(image: img)
 //      view.addSubview(imageView)
-      let isEqual: Bool = image.isEqualToImage(image: img)
+      let isEqual: Bool = image.isEqualToImage(image: image)
       Swift.print("isEqual:  \(isEqual)")
    }
 }

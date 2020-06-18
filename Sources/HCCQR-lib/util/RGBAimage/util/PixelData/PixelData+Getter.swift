@@ -2,11 +2,11 @@ import Foundation
 /**
  * Getter
  */
-extension PixelData {
+extension Pixel {
    /**
     * Returns rgb
     * - Note: Used in the Asser methods
     */
-   var rgb: PixelData.RGB { (r, g, b) }
-   var rgba: PixelData.RGBAColor { (r, g, b, a) }
+   var rgb: Pixel.RGB { (r, g, b) }
+   var rgba: Pixel.RGBAColor { (r, g, b, a) }
 }

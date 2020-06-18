@@ -11,10 +11,10 @@ extension Colorizer {
     */
    static func colorMap(useDarkMode: Bool = false) -> ColorMap {
       [
-         (idx: [false, true], PixelData.red),   // red   block 👉 (qr1: black, qr2: white)
-         (idx: [true, false], PixelData.green), // green block 👉 (qr1: white, qr2: black)
-         (idx: [true, true], PixelData.blue),   // blue  block 👉 (qr1: black, qr2: black)
-         (idx: [false, false], useDarkMode ? PixelData.black : PixelData.white) // white block 👉 (qr1: white, qr2: white)
+         (idx: [false, true], Pixel.red),   // red   block 👉 (qr1: black, qr2: white)
+         (idx: [true, false], Pixel.green), // green block 👉 (qr1: white, qr2: black)
+         (idx: [true, true], Pixel.blue),   // blue  block 👉 (qr1: black, qr2: black)
+         (idx: [false, false], useDarkMode ? Pixel.black : Pixel.white) // white block 👉 (qr1: white, qr2: white)
       ]
    }
 }

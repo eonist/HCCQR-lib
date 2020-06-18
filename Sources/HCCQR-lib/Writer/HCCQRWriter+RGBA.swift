@@ -9,19 +9,18 @@ public final class HCCQRWriter {}
 
 extension HCCQRWriter {
    /**
-    * Converts Data -> Image (Async)
+    * Converts Data -> RGBAImage -> Image (Async)
     * 1. Data comes in with config and scale
     * 2. Converts data to RGBAImage
     * 3. Converts RGBAImage to Image
     * - Fixme: ⚠️️ Could setting CIImage or CGIMage directly to a Image in the UI be faster?
     * - Fixme: ⚠️️ Try a sync version of this method with semphors
-    * - Fixme: ⚠️️ Rename method name to image, deprecate the old image method
     * - Note: Supports The grayscaleImage optimization
     */
-   public static func img(data: Data, multipliers: Multipliers, qrConfig: QRConfig = defaultQRConfig, useDarkMode: Bool = false, onComplete: @escaping OnHCCQRImageCompleted) {
+   public static func image(data: Data, multipliers: Multipliers, qrConfig: QRConfig = defaultQRConfig, useDarkMode: Bool = false, onComplete: @escaping OnImageComplete) {
       rgbaImage(data: data, multipliers: multipliers, qrConfig: qrConfig, useDarkMode: useDarkMode) { result in
          guard let rgbaImg: RGBAImage = try? result.get() else { onComplete(.failure(.unableToCreateRGBAImage(errMSG: result.errorStr))); return }
-         guard let image: Image = try? RGBAImageUtil.image(rgbaImage: rgbaImg, scale: CGFloat(multipliers.screenScale)) else { onComplete(.failure(.unableToConvertRGBAToImage)); return }
+         guard let image: Image = try? RGBAImageUtil.image(rgbaImage: rgbaImg, scale: CGFloat(multipliers.screen)) else { onComplete(.failure(.unableToConvertRGBAToImage)); return }
          rgbaImg.deinitiate() // De alloc rgbaImage when it servers no purpouse anymore
          onComplete(.success(image))
       }

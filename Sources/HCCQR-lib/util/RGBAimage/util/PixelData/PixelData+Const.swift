@@ -1,7 +1,7 @@
 import Foundation
 import QuartzCore
 
-extension PixelData {
+extension Pixel {
    /**
     * Percentage of color (0.2 means can be 20% of some color)
     * - Note:  with threshold more or less (I.e: +25,-25 from a value)
