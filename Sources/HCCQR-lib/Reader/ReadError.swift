@@ -1,8 +1,15 @@
 import Foundation
 import CoreImage
 
-enum ReadError: Error {
+public enum ReadError: Error {
+   /**
+    * - Parameters:
+    *   - msg: the error message from previous called method
+    *   - ciImage: the qrImage that the lib was unable to extract data from
+    */
    case unableToExtractQRData(msg: String, ciImage: CIImage) // unable to extract data from QRImages
    case unableToSplitRGBAImage // unable to split rgbaImage
    case unableToExtractRGBAImageFromCVBuffer // unable to extract RGBAImage from CVBuffer
+   case unableToGetDataOrQuad // cvimagebuffer error
+   case unableToGetDataAndImages(msg: String) // cvimagebuffer error
 }
