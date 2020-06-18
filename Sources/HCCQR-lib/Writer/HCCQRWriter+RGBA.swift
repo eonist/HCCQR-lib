@@ -20,8 +20,8 @@ extension HCCQRWriter {
     */
    public static func img(data: Data, multipliers: Multipliers, qrConfig: QRConfig = defaultQRConfig, useDarkMode: Bool = false, onComplete: @escaping OnHCCQRImageCompleted) {
       rgbaImage(data: data, multipliers: multipliers, qrConfig: qrConfig, useDarkMode: useDarkMode) { result in
-         guard let rgbaImg: RGBAImage = try? result.get() else { onComplete(.failure(NSError("\(result.errorStr)"))); return }
-         guard let image: Image = try? RGBAImageUtil.image(rgbaImage: rgbaImg, scale: CGFloat(multipliers.screenScale)) else { onComplete(.failure(NSError("Colorize.colorize() - Unable to convert to UIImage"))); return }
+         guard let rgbaImg: RGBAImage = try? result.get() else { onComplete(.failure(.unableToCreateRGBAImage(errMSG: result.errorStr))); return }
+         guard let image: Image = try? RGBAImageUtil.image(rgbaImage: rgbaImg, scale: CGFloat(multipliers.screenScale)) else { onComplete(.failure(.unableToConvertRGBAToImage)); return }
          rgbaImg.deinitiate() // De alloc rgbaImage when it servers no purpouse anymore
          onComplete(.success(image))
       }
@@ -32,7 +32,7 @@ extension HCCQRWriter {
  */
 extension HCCQRWriter {
    /**
-    * Converts Data -> CIImage's -> RGBAImage
+    * Converts Data -> [CIImage's] -> RGBAImage
     * 1. Data comes in with config and scale
     * 2. Splits the data into two
     * 3. Creates 2 CIImage's of these two data items
@@ -48,7 +48,7 @@ extension HCCQRWriter {
          DispatchQueue.global(qos: .userInitiated).async { // Adds the operation to a background-thread
             let ciImg: CIImage? = try? QRWriter.ciImage(data: data, ecLevel: qrConfig.ecLevel) // Create B&W QR-image
             DispatchQueue.main.async { // I guess main-thread is needed here because we access an array
-               onCIImagesComplete(i: offset, ciImg: ciImg, ciImgs: &ciImgs, multipliers: multipliers, useDarkMode: useDarkMode, onComplete: onComplete)
+               onQRImageComplete(i: offset, ciImg: ciImg, ciImgs: &ciImgs, multipliers: multipliers, useDarkMode: useDarkMode, onComplete: onComplete)
             }
          }
       }
@@ -69,13 +69,13 @@ extension HCCQRWriter {
     *   - useDarkMode: Toggle between dark and light mode (dark / white background)
     *   - onComplete: Return the complete HCCQR image from grayscale QR represenations
     */
-   private static func onCIImagesComplete(i: Int, ciImg: CIImage?, ciImgs:inout [CIImage?], multipliers: Multipliers, useDarkMode: Bool = false, onComplete: OnRGBAImageComplete) {
-      guard let ciImg: CIImage = ciImg else { onComplete(.failure(NSError(domain: "ciImg err ", code: 0))); return }
+   private static func onQRImageComplete(i: Int, ciImg: CIImage?, ciImgs:inout [CIImage?], multipliers: Multipliers, useDarkMode: Bool = false, onComplete: OnRGBAImageComplete) {
+      guard let ciImg: CIImage = ciImg else { onComplete(.failure(.unableToCreateCIImage)); return }
       ciImgs[i] = ciImg // It matters which order the QRImage's came in when you stitch them back together
       if !ciImgs.contains(where: { $0 == nil }) { // Makes sure all images finished (aka no nil values)
          let ciImages: [CIImage] = ciImgs.compactMap { $0 } // Removes nils
          let colorMap: Colorizer.ColorMap = Colorizer.colorMap(useDarkMode: useDarkMode)
-         guard let rgbaImage: RGBAImage = try? Colorizer.colorize(ciImages: ciImages, colorMap: colorMap, multipliers: multipliers) else { onComplete(.failure(NSError(domain: "onCreateCIImgComplete() - Unable to create colorized image", code: 0))); return }
+         guard let rgbaImage: RGBAImage = try? Colorizer.colorize(ciImages: ciImages, colorMap: colorMap, multipliers: multipliers) else { onComplete(.failure(.unableToCreateColorizedImage)); return }
          onComplete(.success(rgbaImage))
       }
    }

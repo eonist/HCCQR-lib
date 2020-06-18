@@ -2,7 +2,7 @@ import Foundation
 import QR_lib
 import CoreImage
 /**
- * Type
+ * Config
  */
 extension HCCQRWriter {
    /**
@@ -11,23 +11,27 @@ extension HCCQRWriter {
     */
    public typealias QRConfig = (qrVersion: QRVer, ecLevel: ECLevel)
    public static let defaultQRConfig: QRConfig = (.v10, .l)
+}
+/**
+ * Completion
+ */
+extension HCCQRWriter {
    /**
     * - Fixme: ⚠️️ Rename bellow to OnCIImageComplete
     */
-   public typealias OnHCCQRCIImageCompleted = (Result<CIImage, Error>) -> Void
-   public typealias OnRGBAImageComplete = (Result<RGBAImage, Error>) -> Void
+   public typealias OnRGBAImageComplete = (Result<RGBAImage, WriteError>) -> Void
+   /**
+    * The result signature for HCCQRCompletion block
+    */
+   public typealias HCCQRImageResult = Result<Image, WriteError>
+   /**
+    * Useful when you setup the callbacks in apps (That's why they are in public scope)
+    * - Fixme: ⚠️️ soon to be deprecated, we use result now
+    */
+   public typealias OnHCCQRImageCompleted = (HCCQRImageResult) -> Void
 }
 /**
- * The result signature for HCCQRCompletion block
- */
-public typealias HCCQRImageResult = Result<Image, Error>
-/**
- * Useful when you setup the callbacks in apps (Thats why they are in public scope)
- * - Fixme: ⚠️️ Move into HCCQRWriter scope, you can do HCCQRWriter.OnHCCQRImageCompleted
- * - Fixme: soon to be deprecated, we use result now
- */
-public typealias OnHCCQRImageCompleted = (HCCQRImageResult) -> Void
-/**
+ * 🏀
  * - Fixme: ⚠️️ Rename to Scale = (module, screen) and move to HCCQR+TypeAlias
  * - Fixme: ⚠️️ Maybe make it a struct?
  */
