@@ -10,7 +10,7 @@ final class Colorizer {}
  */
 extension Colorizer {
    /**
-    * CIImage's -> CIImage
+    * CIImage's -> RGBAImage -> CIImage
     * - Abstract: Converts multiple b&w images to color-image based on the defined colorMap
     * 1. Two B&W-QR-CIImage's comes in
     * 2. A HCCQR Color RGBAImage is created from the grayscale QR-Images
@@ -24,8 +24,8 @@ extension Colorizer {
     *   - multipliers: modulescale and screenScale, for retina you need 2x scale etc, This is the multiplier. ModuleCount equals 1 pixel. ModuleCount for QRVersion 10 is 57 not counting 2 for margins. So (57+2)*6 = 354, if you want 2xretina its 354 * 2 = 708
     */
    static func colorize(ciImages: [CIImage], colorMap: ColorMap, multipliers: Multipliers) -> ColorizedResult {
-      guard let rgbaImage: RGBAImage = try? colorize(ciImages: ciImages, colorMap: colorMap, multipliers: multipliers) else { return .failure(NSError("err creating RGBAImage from QR CIImages")) }
-      guard let ciImage: CIImage = try? RGBAImageUtil.ciImg2(rgbaImage: rgbaImage, useGrayscale: false/*, scale: CGFloat(multipliers.screenScale)*/) else { return .failure(NSError("Colorize.colorize() - Unable to convert to UIImage"))/*Swift.print();return nil*/ }
+      guard let rgbaImage: RGBAImage = try? colorize(ciImages: ciImages, colorMap: colorMap, multipliers: multipliers) else { return .failure(.unableToCreateRGBAImageFromQRImages) }
+      guard let ciImage: CIImage = try? RGBAImageUtil.ciImg2(rgbaImage: rgbaImage, useGrayscale: false/*, scale: CGFloat(multipliers.screenScale)*/) else { return .failure(.unableToConvertRGBAToImage)/*Swift.print();return nil*/ }
       rgbaImage.deinitiate() // ⚠️️⚠️️ We dealloc pixels after they are consumed, We get a mem leak in iOS if we don't deallocate the pixels ⚠️️⚠️️
       return .success(ciImage)
    }

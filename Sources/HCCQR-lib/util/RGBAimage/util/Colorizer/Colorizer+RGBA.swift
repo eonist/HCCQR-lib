@@ -4,7 +4,7 @@ import Foundation
  */
 extension Colorizer {
    /**
-    * [Monotone images] 👉 RGBAImage
+    * Monotone-images -> RGBAImage
     * 1. Collect size and capacity
     * 2. Fuse pixels at different layers into one pixel
     * 3. Scale the colorized array, since the colorized array is always just 1px block in size
