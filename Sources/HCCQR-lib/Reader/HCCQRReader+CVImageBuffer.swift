@@ -20,9 +20,9 @@ extension HCCQRReader {
     *   - onComplete: Return Data and Meta-data in this completion-block
     */
    public static func dataAndMeta(imageBuffer: CVImageBuffer, crop: BufferRect, onComplete: @escaping OnGetDataAndMetaCompleted) {
-      guard let rgbaImg: RGBAImage = try? CVImageBufferUtil.rgbaImage(imageBuffer: imageBuffer, crop: crop) else { onComplete(.failure(ReadError.unableToExtractRGBAImageFromCVBuffer)); return }
+      guard let rgbaImg: RGBAImage = try? CVImageBufferUtil.rgbaImage(imageBuffer: imageBuffer, crop: crop) else { onComplete(.failure(.unableToExtractRGBAImageFromCVBuffer)); return }
       dataAndImages(rgbaImage: rgbaImg) { (result: HCCQRReader.DataAndImagesResult) in
-         guard let dataAndImagesAndQuad: HCCQRReader.DataAndImages = try? result.get() else { onComplete(.failure(.unableToGetDataAndImages(msg: result.errorStr))); return }
+         guard let dataAndImagesAndQuad: DataAndImages = try? result.get() else { onComplete(.failure(.unableToGetDataAndImages(msg: result.errorStr))); return }
          guard let data: Data = dataAndImagesAndQuad.data, let quad = dataAndImagesAndQuad.quad  else { onComplete(.failure(.unableToGetDataOrQuad)); return }
          let dataAndMeta: DataAndMeta = (data: data, quad: quad, imageSize: rgbaImg.cgSize)
          onComplete(.success(dataAndMeta))
