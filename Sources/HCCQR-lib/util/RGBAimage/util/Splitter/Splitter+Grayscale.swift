@@ -19,7 +19,6 @@ extension Splitter {
     * - Fixme: ⚠️️ Use Dispatchgroup to make the completion more readable
     * - Fixme: ⚠️️ Maybe do the result.value in the calling method and not in this method?
     * - Important: ⚠️️ grayscale is better for qr to read than monotone (probably)
-    *  - Fixme: ⚠️️  MonotoneImage with strength ?
     */
    static func onGrayChannelSplitComplete(result: Channel.GrayscaleChannelsResult, onComplete:@escaping SplitPayloadCompleted) { // called when the (R,G,B) channels are split
       guard let channels: Channel.GrayscaleImages = result.value() else { onComplete(.failure(NSError("Unable to create rgbaImgs \(result.errorStr)"))); return } // (r,g,b)
@@ -30,7 +29,7 @@ extension Splitter {
             // - Fixme: ⚠️️ Benchmark the composition process as well
             // - Fixme: ⚠️️ Figure out how to return qrImg even if data cant be read by it,
             // - Fixme: ⚠️️ or look into tests, if they can help the split method etc
-            let qrImg: CIImage? = try? Compositor.composite(first: channel.element.first, second: channel.element.second)
+            let qrImg: CIImage? = try? Compositor.composite(grayscaleImages: [channel.element.first, channel.element.second]) // compositeDEPRECATD(first: channel.element.first, second: channel.element.second)
             DispatchQueue.main.async { // We need to go on the mainthread to manipulate array
                onGrayCompositeComplete(i: channel.offset, qrImg: qrImg, qrImgs: &qrImgs, channels: channels, onComplete: onComplete)
             }

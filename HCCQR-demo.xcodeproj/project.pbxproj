@@ -38,7 +38,6 @@
 		F1471FBE248C0007008A01AD /* Buffer+RGBA+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E5DC0423F9802300605775 /* Buffer+RGBA+Debug.swift */; };
 		F1471FBF248C0016008A01AD /* RGBAImageUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18A4D7F239F11040065078A /* RGBAImageUtil.swift */; };
 		F1471FC0248C001B008A01AD /* RGBAImageScaler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18A4D82239F11ED0065078A /* RGBAImageScaler.swift */; };
-		F1471FC1248C001F008A01AD /* Compositor+RGBA+DEPRECATED.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852BB2213522200C27EAA /* Compositor+RGBA+DEPRECATED.swift */; };
 		F1471FC2248C0040008A01AD /* RGBAImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F168526F2213443700C27EAA /* RGBAImage.swift */; };
 		F1471FC3248C0049008A01AD /* CVImageBufferUtil+RGBA.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18A25E023BB7F5F00EF8151 /* CVImageBufferUtil+RGBA.swift */; };
 		F1471FC4248C0055008A01AD /* Hybrid+iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17A29FF22137BEA000B6C0A /* Hybrid+iOS.swift */; };
@@ -60,7 +59,7 @@
 		F1471FD4248C00C0008A01AD /* Pixel+TypeAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852682213443700C27EAA /* Pixel+TypeAlias.swift */; };
 		F1471FD5248C00C4008A01AD /* PixelUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852642213443700C27EAA /* PixelUtil.swift */; };
 		F1471FD6248C00C4008A01AD /* PixelDebugger.swift in Sources */ = {isa = PBXBuildFile; fileRef = F165C246239FF385005D30EC /* PixelDebugger.swift */; };
-		F1471FD7248C03E7008A01AD /* Compositor+Gray.swift in Sources */ = {isa = PBXBuildFile; fileRef = F181F11823B931D300145DEA /* Compositor+Gray.swift */; };
+		F1471FD7248C03E7008A01AD /* Compositor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F181F11823B931D300145DEA /* Compositor.swift */; };
 		F1471FD8248C0415008A01AD /* GrayscaleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F181F10923B9091400145DEA /* GrayscaleImage.swift */; };
 		F1471FD9248C0419008A01AD /* GrayscaleImage+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = F181F11223B92A1700145DEA /* GrayscaleImage+Init.swift */; };
 		F1471FDA248C0419008A01AD /* GrayscaleImage+DeInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D8A66D23E83F8900F17A81 /* GrayscaleImage+DeInit.swift */; };
@@ -115,7 +114,6 @@
 		F1472012248C084A008A01AD /* Splitter+CIImage+DEPRECATED.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17CB70523ABA31A00C4BED8 /* Splitter+CIImage+DEPRECATED.swift */; };
 		F1472013248C084A008A01AD /* Splitter+Handler+DEPRECATED.swift in Sources */ = {isa = PBXBuildFile; fileRef = F181F11F23B9357C00145DEA /* Splitter+Handler+DEPRECATED.swift */; };
 		F1472017248C0867008A01AD /* PixelData+Setter+DEPRECATED.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852662213443700C27EAA /* PixelData+Setter+DEPRECATED.swift */; };
-		F1472018248C0867008A01AD /* PixelData+DEPRECATED.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D8A68023E8494200F17A81 /* PixelData+DEPRECATED.swift */; };
 		F1472019248C087D008A01AD /* Image+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852792213443700C27EAA /* Image+Extension.swift */; };
 		F147201A248C0880008A01AD /* NSImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18A25E623BB83E700EF8151 /* NSImage+Extension.swift */; };
 		F147201B248C0883008A01AD /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F194BAA32224C304001C5DBB /* UIImage+Extension.swift */; };
@@ -157,8 +155,8 @@
 		F181F11423B92A1700145DEA /* GrayscaleImage+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = F181F11223B92A1700145DEA /* GrayscaleImage+Init.swift */; };
 		F181F11623B92D0500145DEA /* GrayscaleImage+Getter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F181F11523B92D0500145DEA /* GrayscaleImage+Getter.swift */; };
 		F181F11723B92D0500145DEA /* GrayscaleImage+Getter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F181F11523B92D0500145DEA /* GrayscaleImage+Getter.swift */; };
-		F181F11923B931D300145DEA /* Compositor+Gray.swift in Sources */ = {isa = PBXBuildFile; fileRef = F181F11823B931D300145DEA /* Compositor+Gray.swift */; };
-		F181F11A23B931D300145DEA /* Compositor+Gray.swift in Sources */ = {isa = PBXBuildFile; fileRef = F181F11823B931D300145DEA /* Compositor+Gray.swift */; };
+		F181F11923B931D300145DEA /* Compositor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F181F11823B931D300145DEA /* Compositor.swift */; };
+		F181F11A23B931D300145DEA /* Compositor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F181F11823B931D300145DEA /* Compositor.swift */; };
 		F181F11D23B932BC00145DEA /* GrayscaleImageUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F181F11C23B932BC00145DEA /* GrayscaleImageUtil.swift */; };
 		F181F11E23B932BC00145DEA /* GrayscaleImageUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F181F11C23B932BC00145DEA /* GrayscaleImageUtil.swift */; };
 		F181F12023B9357C00145DEA /* Splitter+Handler+DEPRECATED.swift in Sources */ = {isa = PBXBuildFile; fileRef = F181F11F23B9357C00145DEA /* Splitter+Handler+DEPRECATED.swift */; };
@@ -217,8 +215,6 @@
 		F1D8A67B23E8476400F17A81 /* Channel+RGBA+Handler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D8A67923E8476400F17A81 /* Channel+RGBA+Handler.swift */; };
 		F1D8A67D23E8477000F17A81 /* Channel+RGBA+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D8A67C23E8477000F17A81 /* Channel+RGBA+Helper.swift */; };
 		F1D8A67E23E8477000F17A81 /* Channel+RGBA+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D8A67C23E8477000F17A81 /* Channel+RGBA+Helper.swift */; };
-		F1D8A68123E8494200F17A81 /* PixelData+DEPRECATED.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D8A68023E8494200F17A81 /* PixelData+DEPRECATED.swift */; };
-		F1D8A68223E8494200F17A81 /* PixelData+DEPRECATED.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D8A68023E8494200F17A81 /* PixelData+DEPRECATED.swift */; };
 		F1D8A68B23E9952200F17A81 /* Colorizer+Pixel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D8A68A23E9952200F17A81 /* Colorizer+Pixel.swift */; };
 		F1D8A68C23E9952200F17A81 /* Colorizer+Pixel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D8A68A23E9952200F17A81 /* Colorizer+Pixel.swift */; };
 		F1E205AB2495E60A00E3A82E /* ViewController+RGBAPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E205AA2495E60A00E3A82E /* ViewController+RGBAPhoto.swift */; };
@@ -286,7 +282,6 @@
 		F1E645C023940B3C008D2ABE /* RGBAImage+Getter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10296B8222218D1001FA2DF /* RGBAImage+Getter.swift */; };
 		F1E645C123940B3C008D2ABE /* RGBAImage+DeInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10296BA222218DC001FA2DF /* RGBAImage+DeInit.swift */; };
 		F1E645C223940B3C008D2ABE /* RGBAImage+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852702213443700C27EAA /* RGBAImage+Init.swift */; };
-		F1E645C323940B3C008D2ABE /* Compositor+RGBA+DEPRECATED.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852BB2213522200C27EAA /* Compositor+RGBA+DEPRECATED.swift */; };
 		F1E645C423940B3C008D2ABE /* Splitter+Image+DEPRECATED.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852B522134DBD00C27EAA /* Splitter+Image+DEPRECATED.swift */; };
 		F1E645C523940B3C008D2ABE /* Splitter+TypeAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10296C0222219EF001FA2DF /* Splitter+TypeAlias.swift */; };
 		F1E645C723940B3C008D2ABE /* Pixel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852622213443700C27EAA /* Pixel.swift */; };
@@ -307,7 +302,6 @@
 		F1E645DB23940B3D008D2ABE /* RGBAImage+Getter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10296B8222218D1001FA2DF /* RGBAImage+Getter.swift */; };
 		F1E645DC23940B3D008D2ABE /* RGBAImage+DeInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10296BA222218DC001FA2DF /* RGBAImage+DeInit.swift */; };
 		F1E645DD23940B3D008D2ABE /* RGBAImage+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852702213443700C27EAA /* RGBAImage+Init.swift */; };
-		F1E645DE23940B3D008D2ABE /* Compositor+RGBA+DEPRECATED.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852BB2213522200C27EAA /* Compositor+RGBA+DEPRECATED.swift */; };
 		F1E645DF23940B3D008D2ABE /* Splitter+Image+DEPRECATED.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852B522134DBD00C27EAA /* Splitter+Image+DEPRECATED.swift */; };
 		F1E645E023940B3D008D2ABE /* Splitter+TypeAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10296C0222219EF001FA2DF /* Splitter+TypeAlias.swift */; };
 		F1E645E223940B3D008D2ABE /* Pixel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852622213443700C27EAA /* Pixel.swift */; };
@@ -414,7 +408,6 @@
 		F16852832213443700C27EAA /* Color+Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+Parser.swift"; sourceTree = "<group>"; };
 		F16852842213443700C27EAA /* Color+Asserter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+Asserter.swift"; sourceTree = "<group>"; };
 		F16852B522134DBD00C27EAA /* Splitter+Image+DEPRECATED.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Splitter+Image+DEPRECATED.swift"; sourceTree = "<group>"; };
-		F16852BB2213522200C27EAA /* Compositor+RGBA+DEPRECATED.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Compositor+RGBA+DEPRECATED.swift"; sourceTree = "<group>"; };
 		F17A29FF22137BEA000B6C0A /* Hybrid+iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Hybrid+iOS.swift"; sourceTree = "<group>"; };
 		F17A2A17221384F2000B6C0A /* Hybrid+Mac.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Hybrid+Mac.swift"; sourceTree = "<group>"; };
 		F17A2A1F221388E2000B6C0A /* ImageUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUtil.swift; sourceTree = "<group>"; };
@@ -432,7 +425,7 @@
 		F181F10F23B929F800145DEA /* GrayscaleImage+Typealias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GrayscaleImage+Typealias.swift"; sourceTree = "<group>"; };
 		F181F11223B92A1700145DEA /* GrayscaleImage+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GrayscaleImage+Init.swift"; sourceTree = "<group>"; };
 		F181F11523B92D0500145DEA /* GrayscaleImage+Getter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GrayscaleImage+Getter.swift"; sourceTree = "<group>"; };
-		F181F11823B931D300145DEA /* Compositor+Gray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Compositor+Gray.swift"; sourceTree = "<group>"; };
+		F181F11823B931D300145DEA /* Compositor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compositor.swift; sourceTree = "<group>"; };
 		F181F11C23B932BC00145DEA /* GrayscaleImageUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrayscaleImageUtil.swift; sourceTree = "<group>"; };
 		F181F11F23B9357C00145DEA /* Splitter+Handler+DEPRECATED.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Splitter+Handler+DEPRECATED.swift"; sourceTree = "<group>"; };
 		F18A25DC23BB7ED200EF8151 /* Buffer+Image+Debug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Buffer+Image+Debug.swift"; sourceTree = "<group>"; };
@@ -476,7 +469,6 @@
 		F1D8A67623E8472700F17A81 /* Channel+Gray+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Channel+Gray+Helper.swift"; sourceTree = "<group>"; };
 		F1D8A67923E8476400F17A81 /* Channel+RGBA+Handler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Channel+RGBA+Handler.swift"; sourceTree = "<group>"; };
 		F1D8A67C23E8477000F17A81 /* Channel+RGBA+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Channel+RGBA+Helper.swift"; sourceTree = "<group>"; };
-		F1D8A68023E8494200F17A81 /* PixelData+DEPRECATED.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PixelData+DEPRECATED.swift"; sourceTree = "<group>"; };
 		F1D8A68A23E9952200F17A81 /* Colorizer+Pixel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Colorizer+Pixel.swift"; sourceTree = "<group>"; };
 		F1E205AA2495E60A00E3A82E /* ViewController+RGBAPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+RGBAPhoto.swift"; sourceTree = "<group>"; };
 		F1E205AD249628E500E3A82E /* PixelAsserter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixelAsserter.swift; sourceTree = "<group>"; };
@@ -547,14 +539,6 @@
 				F143EC3123FA9C7A0006743C /* MonotoneImage+TypeAlias.swift */,
 			);
 			path = MonotoneImage;
-			sourceTree = "<group>";
-		};
-		F143EC3423FAAAE10006743C /* DEPRECATED */ = {
-			isa = PBXGroup;
-			children = (
-				F16852BB2213522200C27EAA /* Compositor+RGBA+DEPRECATED.swift */,
-			);
-			path = DEPRECATED;
 			sourceTree = "<group>";
 		};
 		F143EC3823FACCEB0006743C /* DEPRECATED */ = {
@@ -644,8 +628,7 @@
 		F168525D2213443700C27EAA /* Compositor */ = {
 			isa = PBXGroup;
 			children = (
-				F143EC3423FAAAE10006743C /* DEPRECATED */,
-				F181F11823B931D300145DEA /* Compositor+Gray.swift */,
+				F181F11823B931D300145DEA /* Compositor.swift */,
 			);
 			path = Compositor;
 			sourceTree = "<group>";
@@ -1006,7 +989,6 @@
 			isa = PBXGroup;
 			children = (
 				F16852662213443700C27EAA /* PixelData+Setter+DEPRECATED.swift */,
-				F1D8A68023E8494200F17A81 /* PixelData+DEPRECATED.swift */,
 			);
 			path = DEPRECATED;
 			sourceTree = "<group>";
@@ -1359,7 +1341,6 @@
 				F12274D92498EA0A0045573B /* ReadError.swift in Sources */,
 				F1E645BA23940ACA008D2ABE /* Color+Parser.swift in Sources */,
 				F165C209239F22A7005D30EC /* RangeUInt8.swift in Sources */,
-				F1E645DE23940B3D008D2ABE /* Compositor+RGBA+DEPRECATED.swift in Sources */,
 				F18A4D7D239F0F4B0065078A /* Colorizer+TypeAlias.swift in Sources */,
 				F18A4D81239F11040065078A /* RGBAImageUtil.swift in Sources */,
 				F17CB70123AB9DDB00C4BED8 /* Colorizer+CIImage.swift in Sources */,
@@ -1378,7 +1359,6 @@
 				F1D8A66C23E83F0100F17A81 /* Channel+Gray+Type.swift in Sources */,
 				F1B698D7239E64E70085B3C9 /* View.swift in Sources */,
 				F1E5DC0923F9929300605775 /* Buffer+CGImage+Debug.swift in Sources */,
-				F1D8A68223E8494200F17A81 /* PixelData+DEPRECATED.swift in Sources */,
 				F1E645B223940ACA008D2ABE /* String+Extension.swift in Sources */,
 				F18A4D87239F170F0065078A /* HCCQRConfigUtil.swift in Sources */,
 				F1E645DA23940B3D008D2ABE /* RGBAImage+TypeAlias.swift in Sources */,
@@ -1433,7 +1413,7 @@
 				F1E645B723940ACA008D2ABE /* UInt8Asserter.swift in Sources */,
 				F1E645E323940B3D008D2ABE /* PixelUtil.swift in Sources */,
 				F1D8A67223E842B000F17A81 /* UInt8+Extension.swift in Sources */,
-				F181F11A23B931D300145DEA /* Compositor+Gray.swift in Sources */,
+				F181F11A23B931D300145DEA /* Compositor.swift in Sources */,
 				F18A25DE23BB7ED200EF8151 /* Buffer+Image+Debug.swift in Sources */,
 				F181F10E23B929C900145DEA /* GrayscaleImage+Setter.swift in Sources */,
 				F165C248239FF385005D30EC /* PixelDebugger.swift in Sources */,
@@ -1481,13 +1461,11 @@
 				F18A52E121790F8A003F8C13 /* ViewController.swift in Sources */,
 				F1E5DC0823F9929300605775 /* Buffer+CGImage+Debug.swift in Sources */,
 				F1E205B024964ACB00E3A82E /* PixelParser.swift in Sources */,
-				F1D8A68123E8494200F17A81 /* PixelData+DEPRECATED.swift in Sources */,
 				F1E205AE249628E500E3A82E /* PixelAsserter.swift in Sources */,
 				F1E645A023940AC9008D2ABE /* Hybrid+Mac.swift in Sources */,
 				F1E645CD23940B3C008D2ABE /* Pixel+Getter.swift in Sources */,
 				F1E645D023940B3C008D2ABE /* Colorizer+Const.swift in Sources */,
 				F1F3E05323BA277600D367F1 /* Splitter+Grayscale.swift in Sources */,
-				F1E645C323940B3C008D2ABE /* Compositor+RGBA+DEPRECATED.swift in Sources */,
 				F15C9F7D23BA6FD000F9D524 /* RGBAImage+Const.swift in Sources */,
 				F143EC3223FA9C7A0006743C /* MonotoneImage+TypeAlias.swift in Sources */,
 				F1E645A823940AC9008D2ABE /* UInt8Asserter.swift in Sources */,
@@ -1533,7 +1511,7 @@
 				F12274DC249B7C7B0045573B /* WriteError.swift in Sources */,
 				F1E645CA23940B3C008D2ABE /* PixelData+Setter+DEPRECATED.swift in Sources */,
 				F1D8A67123E842B000F17A81 /* UInt8+Extension.swift in Sources */,
-				F181F11923B931D300145DEA /* Compositor+Gray.swift in Sources */,
+				F181F11923B931D300145DEA /* Compositor.swift in Sources */,
 				F18A25DD23BB7ED200EF8151 /* Buffer+Image+Debug.swift in Sources */,
 				F181F10D23B929C900145DEA /* GrayscaleImage+Setter.swift in Sources */,
 				F1E645A923940AC9008D2ABE /* UInt8Parser.swift in Sources */,
@@ -1599,7 +1577,6 @@
 				F1E5711D23A3F2C400E090BB /* FakeHCCQRView.swift in Sources */,
 				F1E5711F23A3F2C400E090BB /* SimpleHCCQRView.swift in Sources */,
 				F1472005248C0704008A01AD /* RangeUInt8.swift in Sources */,
-				F1471FC1248C001F008A01AD /* Compositor+RGBA+DEPRECATED.swift in Sources */,
 				F12274DE249B7C7B0045573B /* WriteError.swift in Sources */,
 				F1471FD6248C00C4008A01AD /* PixelDebugger.swift in Sources */,
 				F1471FC2248C0040008A01AD /* RGBAImage.swift in Sources */,
@@ -1630,7 +1607,7 @@
 				F1E6F6872493B2DC00975607 /* MonoPixelColorization.swift in Sources */,
 				F14DDE0D23BFE64B00FA0022 /* BulkPhotoTest.swift in Sources */,
 				F1472017248C0867008A01AD /* PixelData+Setter+DEPRECATED.swift in Sources */,
-				F1471FD7248C03E7008A01AD /* Compositor+Gray.swift in Sources */,
+				F1471FD7248C03E7008A01AD /* Compositor.swift in Sources */,
 				F1472006248C070A008A01AD /* String+Extension.swift in Sources */,
 				F1E5DC0A23F9937C00605775 /* UIView+Ext.swift in Sources */,
 				F1471FC0248C001B008A01AD /* RGBAImageScaler.swift in Sources */,
@@ -1666,7 +1643,6 @@
 				F1471FCC248C0085008A01AD /* RGBAImage+DeInit.swift in Sources */,
 				F1471FCF248C00C0008A01AD /* Pixel+Getter.swift in Sources */,
 				F147201A248C0880008A01AD /* NSImage+Extension.swift in Sources */,
-				F1472018248C0867008A01AD /* PixelData+DEPRECATED.swift in Sources */,
 				F1E5712923A3F2C400E090BB /* BulkRGBAHCCQRTest+TypeAlias.swift in Sources */,
 				F1472001248C0704008A01AD /* UInt8Asserter.swift in Sources */,
 				F1471FDC248C0419008A01AD /* GrayscaleImage+Getter.swift in Sources */,

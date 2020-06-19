@@ -3,11 +3,13 @@ import CoreImage
 /**
  * Compositor (Takes many Channels and converts to a new b&w QRImage)
  * - Abstract: Used in the Reading of HCCQR
+ * - Fixme: ⚠️️ Will we ever have more than two channels?
  */
 final class Compositor {}
 
 extension Compositor {
    /**
+    * Photo -> Split into Channels -> Combine 2 channels into 1 QR-image (Combines many grayscale images into one)
     * Returns a QR-Image based on two (GrayscaleImage) channels (We use CIImage, because that is what apple prefers to read qr from)
     * 1. GrayScaleImage-layers comes in
     * 2. GrayscaleImage-layers are composited together
@@ -18,12 +20,11 @@ extension Compositor {
     * - Note: Used in the process to convert HCCQR to Data
     * - Fixme: ⚠️️ Possibly simplify method with defering deinit of composite
     * - Fixme: ⚠️️ Defer deinit instead of having two deInit calls. Research this first, could make this method cleaner
-    * - Fixme: ⚠️️ here we could use black & white colormap, as it's only for reading bw qr code, not sure if this comment is relevant anymore
     */
    static func composite(grayscaleImages: [GrayscaleImage]) throws -> CIImage {
       let grayscaleImage: GrayscaleImage = try composite(grayscaleImages: grayscaleImages)
       guard let img: CIImage = try? GrayscaleImageUtil.ciImage(grayscaleImage: grayscaleImage) else { grayscaleImage.deInit(); throw NSError(domain: "Unable to create img", code: 0) }
-      grayscaleImage.deInit() // We deInit the Img after we have consumed it to avoid mem leak
+      grayscaleImage.deInit() // We de-init the Img after we have consumed it to avoid mem leak
       return img
    }
 }
@@ -32,7 +33,7 @@ extension Compositor {
  */
 extension Compositor {
    /**
-    * Combines many grayscale images into one
+    * Photo -> Split into Channels -> Combine 2 channels into 1 QR-image (Combines many grayscale images into one)
     * - Abstract: we overlay many b&w to produce one b&w image (to be used as a QR-Image to be read from)
     * 1. GrayScale-images comes in
     * 2. First image is used as base
@@ -59,25 +60,5 @@ extension Compositor {
          }
          return pixel
       }
-   }
-}
-/**
- * ⚠️️⚠️️⚠️️ DEPRECATED, use the method that support many images ⚠️️⚠️️⚠️️
- */
-extension Compositor {
-   /**
-    * Returns a QR-Image based on two (GrayscaleImage) channels (We use CIImage, because that is what apple prefers to read qr from)
-    * - Note: layer 1: r, b -> qrImg1
-    * - Note: layer 2: b, g -> qrImg2
-    * - Note: Used in the process to convert HCCQR to Data
-    * - Fixme: ⚠️️ Possibly simplify method with defering deinit of composite
-    * - Fixme: ⚠️️ Defer deinit instead of having two deInit calls. Research this first
-    */
-   static func composite(first: GrayscaleImage, second: GrayscaleImage) throws -> CIImage {
-      let grayscaleImage: GrayscaleImage = try composite(grayscaleImages: [first, second])
-      // - Fixme: ⚠️️ here we could use black & white colormap, as it's only for reading bw qr code
-      guard let img: CIImage = try? GrayscaleImageUtil.ciImage(grayscaleImage: grayscaleImage) else { grayscaleImage.deInit(); throw NSError(domain: "Unable to create img", code: 0) }
-      grayscaleImage.deInit() // We deinit the Img after we have consumed it to avoid mem leak
-      return img
    }
 }
