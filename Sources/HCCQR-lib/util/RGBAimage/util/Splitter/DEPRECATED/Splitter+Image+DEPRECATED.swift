@@ -12,16 +12,16 @@ extension Splitter {
     * - Note: Used in the process to convert HCCQR to Data
     * - Abstract: pair b&g = qr1, pair r$b = qr2 ()
     */
-   static func split(image: Image, onComplete:@escaping SplitPayloadCompleted) {
-      channels(image: image) { (result: Channel.ChannelsResult) in // Get RGBAImages from UIImages
-         onChannelsComplete(result: result, onComplete: onComplete)
-      }
-   }
+//   static func splitDEPRECATED(image: Image, onComplete:@escaping SplitPayloadCompleted) {
+//      channels(image: image) { (result: Channel.ChannelsResult) in // Get RGBAImages from UIImages
+//         onChannelsCompleteDEPRECATED(result: result, onComplete: onComplete)
+//      }
+//   }
    /**
     * Returns channels (RGB for now) (3 channels, red, green, blue)
     */
-   static func channels(image: Image, onComplete:@escaping Channel.OnChannelsCompleted) {
-      guard let rgbaImg: RGBAImage = try? .rgbaImage(image: image) else { onComplete(.failure(NSError("Unable to create rgbaImg"))); return }
-      Channel.channels(rgbaImg: rgbaImg, onComplete: onComplete)
-   }
+//   static func channelsDEPRECATED(image: Image, onComplete:@escaping Channel.OnChannelsCompleted) {
+//      guard let rgbaImg: RGBAImage = try? .rgbaImage(image: image) else { onComplete(.failure(NSError("Unable to create rgbaImg"))); return }
+//      Channel.channels(rgbaImg: rgbaImg, onComplete: onComplete)
+//   }
 }

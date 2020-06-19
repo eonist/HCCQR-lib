@@ -55,7 +55,7 @@ extension Compositor {
       return GrayscaleImage.process(input: whiteImage) { (index: Int, pixel: UInt8) -> UInt8 in // Loop things
          var pixel: UInt8 = pixel // - Fixme: ⚠️️ Maybe do reduce here?, definitly do reduce here!
          grayscaleImages.forEach { (grayscaleImage: GrayscaleImage) in // loop over every image in the list, this is inside here because the process method uses concurrent_apply
-            let pixelValue: UInt8 = grayscaleImage.pixels[index]  // - Fixme: ⚠️️ Can be removed because this will basically never happen, because channels can't overlap
+            let pixelValue: UInt8 = grayscaleImage.pixels[index] // - Fixme: ⚠️️ Can be removed because this will basically never happen, because channels can't overlap
             pixel.applyValue(value: pixelValue) // instead of adding, we substract and then we wouldn't have to invert the image at the end
          }
          return pixel
