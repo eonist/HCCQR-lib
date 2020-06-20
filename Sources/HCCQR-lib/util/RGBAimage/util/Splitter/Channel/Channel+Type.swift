@@ -14,11 +14,3 @@ extension Channel {
 extension Channel {
    typealias PixelDataSimilarity = (_ pixel: Pixel) -> Pixel.Similarity
 }
-/**
- * RGBA
- */
-extension Channel {
-   typealias RGBAImagesDEPRECATED = (r: RGBAImage, g: RGBAImage, b: RGBAImage)
-   typealias ChannelsResultDEPRECATED = Result<RGBAImagesDEPRECATED, Error>
-   typealias OnChannelsCompletedDEPRECATED = (ChannelsResultDEPRECATED) -> Void // OnOptionalChannelsCompleted
-}

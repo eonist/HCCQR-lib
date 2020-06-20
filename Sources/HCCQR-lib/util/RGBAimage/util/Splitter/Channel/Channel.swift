@@ -12,6 +12,7 @@ extension Channel {
     * 3. Go through each item in the ChannelMap array and try to find the the 3 colors defined in the channelMap
     * 4. pass the grayScale-channel-representation of each color to the completion block
     * - Important: ⚠️️ I guess the reason why we don't use concurrentPerform on this array is that we use it on the pixel iteration in the grayChannel method, but maybe we should explore dong concurrent perform on this array as well?
+    * - Fixme: ⚠️️ rename to channels
     * - Parameters:
     *   - rgbaImg: target to derive channels from
     *   - channelMap: rule-set for the splitting process

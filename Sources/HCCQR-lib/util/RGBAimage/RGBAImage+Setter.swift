@@ -33,9 +33,3 @@ extension RGBAImage {
       }
    }
 }
-/**
- * Set pixel
- */
-//   mutating func setPixel(idx: Int, pixel: PixelData) {
-//       pixels[idx] = pixel
-//   }

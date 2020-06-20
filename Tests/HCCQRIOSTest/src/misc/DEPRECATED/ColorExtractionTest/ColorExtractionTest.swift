@@ -48,7 +48,7 @@ extension ColorExtractionTest {
       guard let rgbColorTestImage: UIImage = fakeHCCQRView.snapShot else { fatalError("err") }
       Swift.print("rgbColorTestImage.scale:  \(rgbColorTestImage.scale)")
       Swift.print("rgbColorTestImage.size:  \(rgbColorTestImage.size)")
-      guard let images: Splitter.RGBUIImages = { Optional((UIImage(), UIImage(), UIImage())) }()/*RGBAImage.split(image: rgbColorTestImage)*/ else { fatalError("err") }
+      guard let images: Splitter.RGBImages = { Optional((UIImage(), UIImage(), UIImage())) }()/*RGBAImage.split(image: rgbColorTestImage)*/ else { fatalError("err") }
       //      let rImageView:UIImageView = UIImageView.init(image: images.g)
       //      view.addSubview(rImageView)
       //      rImageView.frame.origin.y = 80*4
@@ -82,7 +82,7 @@ extension ColorExtractionTest {
       guard let image: UIImage = rgbColorTestView.snapShot else { fatalError("err") }
       _ = image
       //
-      guard let images: Splitter.RGBUIImages = { Optional((UIImage(), UIImage(), UIImage())) }()/*RGBAImage.split(image: image)*/ else { fatalError("err") }
+      guard let images: Splitter.RGBImages = { Optional((UIImage(), UIImage(), UIImage())) }()/*RGBAImage.split(image: image)*/ else { fatalError("err") }
       guard let r: RGBAImage = try? .rgbaImage(image: images.r) else { return }
       guard let g: RGBAImage = try? .rgbaImage(image: images.g) else { return }
       guard let b: RGBAImage = try? .rgbaImage(image: images.b) else { return }
@@ -106,7 +106,7 @@ extension ColorExtractionTest {
       guard let rgbColorTestImage: UIImage = rgbColorTestView.snapShot else { fatalError("err") }
       _ = rgbColorTestImage
       //let rgba3 = RGBAImage(image: UIImage(named: "monet")!)!
-      guard let images: Splitter.RGBUIImages = { Optional((UIImage(), UIImage(), UIImage())) }()/*RGBAImage.split(image: rgbColorTestImage)*/ else { fatalError("err") }
+      guard let images: Splitter.RGBImages = { Optional((UIImage(), UIImage(), UIImage())) }()/*RGBAImage.split(image: rgbColorTestImage)*/ else { fatalError("err") }
       //      //r
       //      guard let rgbaImage:RGBAImage = RGBAImage.init(image: rgbColorTestImage) else {fatalError("err")}
       //      let rgbaImage2:RGBAImage = rgbaImage.copy

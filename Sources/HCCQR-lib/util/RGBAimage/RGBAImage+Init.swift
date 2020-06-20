@@ -36,27 +36,6 @@ extension RGBAImage {
       return .init(pixels: pixels, width: size.width, height: size.height)
    }
    /**
-    * Alternative, might be more optimized
-    */
-   static func rgbaImg2(ciImg: CIImage) {
-      _ = {
-         let context = CIContext(options: [CIContextOption.workingColorSpace: NSNull()])
-         let colorSpace = CGColorSpaceCreateDeviceRGB()
-         let bounds = ciImg.extent
-         let bytesPerPixel: UInt = 8
-         let format = CIFormat.RGBAh
-         let rowBytes = Int(bytesPerPixel * UInt(bounds.size.width))
-         let totalBytes = UInt(rowBytes * Int(bounds.size.height))
-         guard let bitmap = calloc(Int(totalBytes), MemoryLayout<UInt8>.size) else { throw NSError("err") }
-         context.render(ciImg, toBitmap: bitmap, rowBytes: rowBytes, bounds: bounds, format: format, colorSpace: colorSpace)
-         //      let bytes = UnsafeBufferPointer<UInt8>(start: bitmap/*UnsafePointer<UInt8>()*/, count: Int(totalBytes))
-         //      for (var i = 0; i < Int(totalBytes); i += 2) {
-         //         println("half float :: left: \(bytes[i]) / right: \(bytes[i + 1])")
-         //         // prints all zeroes!
-         //      }
-      }
-   }
-   /**
     * cgImage -> rgbaImage (new)
     * - Fixme: ⚠️️ make similar method for CIImage
     */
@@ -100,5 +79,32 @@ extension RGBAImage {
    static func rgbaImage(capacity: Int, size: Size) -> RGBAImage {
       let unsafePixels = UnsafeMutableBufferPointer<Pixel>.allocate(capacity: capacity)
       return .init(pixels: unsafePixels, width: size.width, height: size.height)
+   }
+}
+/**
+ * Experimental
+ */
+extension RGBAImage {
+   /**
+    * Alternative, might be more optimized
+    * - Note: Not in use ⚠️️
+    */
+   static func rgbaImg2(ciImg: CIImage) {
+      _ = {
+         let context = CIContext(options: [CIContextOption.workingColorSpace: NSNull()])
+         let colorSpace = CGColorSpaceCreateDeviceRGB()
+         let bounds = ciImg.extent
+         let bytesPerPixel: UInt = 8
+         let format = CIFormat.RGBAh
+         let rowBytes = Int(bytesPerPixel * UInt(bounds.size.width))
+         let totalBytes = UInt(rowBytes * Int(bounds.size.height))
+         guard let bitmap = calloc(Int(totalBytes), MemoryLayout<UInt8>.size) else { throw NSError("err") }
+         context.render(ciImg, toBitmap: bitmap, rowBytes: rowBytes, bounds: bounds, format: format, colorSpace: colorSpace)
+         //      let bytes = UnsafeBufferPointer<UInt8>(start: bitmap/*UnsafePointer<UInt8>()*/, count: Int(totalBytes))
+         //      for (var i = 0; i < Int(totalBytes); i += 2) {
+         //         println("half float :: left: \(bytes[i]) / right: \(bytes[i + 1])")
+         //         // prints all zeroes!
+         //      }
+      }
    }
 }
