@@ -17,6 +17,7 @@ extension Splitter {
     * - Note: green means black in layer-1 only
     * - Note: red means black in layer-2 only
     * - Note: white means white in both layers
+    * - Fixme: ⚠️️ rename to onChannelSplitComplete?
     * - Fixme: ⚠️️ Use Dispatchgroup to make the completion more readable
     * - Fixme: ⚠️️ Maybe do the result.value in the calling method and not in this method?
     * - Important: ⚠️️ grayscale is better for qr to read than monotone (probably)

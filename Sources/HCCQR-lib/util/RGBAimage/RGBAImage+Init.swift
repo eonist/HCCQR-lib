@@ -17,6 +17,9 @@ extension RGBAImage {
       return try rgbaImage(cgImage: cgImage)
    }
 }
+/**
+ *Private helper methods
+ */
 extension RGBAImage {
    /**
     * cgImage -> rgbaImage (new)
