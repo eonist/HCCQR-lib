@@ -2,6 +2,8 @@ import Foundation
 /**
  * channels
  */
+final class Channel {}
+
 extension Channel {
    /**
     * Split 1 RGBAImage into 3 GrayScaleImages consisting of singular (R,G,B) channels
