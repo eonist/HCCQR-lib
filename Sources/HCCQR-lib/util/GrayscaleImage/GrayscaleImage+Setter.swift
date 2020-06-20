@@ -14,7 +14,7 @@ extension GrayscaleImage {
     *   - output: The GrayScaleImage to populate pixels into (we only need [UInt8])
     *   - functor: A function which manipulates each pixel
     */
-   static func process(input: RGBAImage, output: GrayscaleImage, functor: GrayScaleFunctorCall) -> GrayscaleImage {
+   static func process(input: RGBAImage, output: GrayscaleImage, functor: FunctorCall) -> GrayscaleImage {
       (0..<input.height).forEach { y in
          DispatchQueue.concurrentPerform(iterations: input.width) { x in // ⚠️️ Optimization initiative
             let index: Int = y * input.width + x // Pixel index
@@ -29,7 +29,7 @@ extension GrayscaleImage {
     * - Fixme: ⚠️️ We can prob stride to get better speed
     * - Fixme: ⚠️️ Using a pointer might speed up this method
     */
-   static func process(input: GrayscaleImage, functor: GrayScaleFunctorIndexCall) -> GrayscaleImage {
+   static func process(input: GrayscaleImage, functor: FunctorIndexCall) -> GrayscaleImage {
       (0..<input.height).forEach { y in
          DispatchQueue.concurrentPerform(iterations: input.width) { x in // ⚠️️ Optimization initiative
             let index: Int = y * input.width + x

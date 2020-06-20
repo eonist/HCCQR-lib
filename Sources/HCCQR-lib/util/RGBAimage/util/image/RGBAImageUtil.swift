@@ -58,7 +58,7 @@ extension RGBAImageUtil {
    }
 
    /**
-    * Experimental (⚠️️ Not working ⚠️️)
+    * Experimental (⚠️️ Not working, not used by anything ⚠️️)
     */
    private static func ciImg(rgbaImage: RGBAImage) -> CIImage {
       let colorSpace: CGColorSpace = CGColorSpaceCreateDeviceRGB() // The color space that the image is defined in. It must be a Quartz 2D color space (CGColorSpace). Pass nil for images that don’t contain color data (such as elevation maps, normal vector maps, and sampled function tables).

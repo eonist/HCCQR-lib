@@ -9,9 +9,10 @@ class RGBAImageScaler {
     * - Note: assert if scaling is needed before callign this method
     * - Fixme: ⚠️️ Add the concurrent optimization for nested for loops, striding?
     * - Fixme: ⚠️️ Can we bake this direcltly into the composition method, to avoid extra loops?
-    * - Parameter pixels: the pixels array
-    * - Parameter size: size of the rgba-image
-    * - Parameter multipliers: The amount to scale the pixel by (moduleScale, screenscale)
+    * - Parameters:
+    *   - pixels: the pixels array
+    *   - size: size of the rgba-image
+    *   - multipliers: The amount to scale the pixel by (moduleScale, screenscale)
     */
    static func scale(pixels: UnsafeMutableBufferPointer<Pixel>, size: RGBAImage.Size, multipliers: Multipliers) -> RGBAImage {
       let multiplier: Int = multipliers.module * multipliers.screen

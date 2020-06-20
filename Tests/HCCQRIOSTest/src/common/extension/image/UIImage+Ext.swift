@@ -16,9 +16,9 @@ extension UIImage {
     *   - color: The color of the image
     *   - scale: Set screen scale: retina 2x/3x or normal 1x
     */
-   internal static func img(sizeDEPRECATED: CGSize, color: UIColor, scale: CGFloat = 1.0) -> UIImage? {
-      let rect = CGRect(origin: .zero, sizeDEPRECATED: sizeDEPRECATED)
-      UIGraphicsBeginImageContextWithOptions(rect.sizeDEPRECATED, false, scale)
+   internal static func img(size: CGSize, color: UIColor, scale: CGFloat = 1.0) -> UIImage? {
+      let rect = CGRect(origin: .zero, size: size)
+      UIGraphicsBeginImageContextWithOptions(rect.size, false, scale)
       color.setFill()
       UIRectFill(rect)
       let image = UIGraphicsGetImageFromCurrentImageContext()

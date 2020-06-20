@@ -20,7 +20,7 @@ extension FakeHCCQRView {
       /*Place the grid of color rectangles*/
       grid.enumerated().forEach { row in
          row.element.enumerated().forEach { e, color in
-            let layer = self.createLayer(color: color, sizeDEPRECATED: .init(width: 80, height: 80))
+            let layer = self.createLayer(color: color, size: .init(width: 80, height: 80))
             layer.frame.origin.x = CGFloat(e * 80)
             layer.frame.origin.y = CGFloat(row.offset * 80)
             self.layer.addSublayer(layer)

@@ -8,10 +8,12 @@ extension RGBAImage {
     * Converts an Image to an rgbaImage
     * - Abstract: RGBAImage holds the individual pixels of an image in an array (also stores the size of an image)
     * - Fixme: ⚠️️ make this a init?
+    * - Fixme: ⚠️️ move to test scope since its only for testing
     * - Note: this init is fast. trying other ways to get pixel could have some usefulness, but shouldn't be prioritized
+    * - Important: ⚠️️ Used only for testing
     * - Parameter image: An UIImage or NSImage
     */
-   static func rgbaImage(image: Image) throws -> RGBAImage {
+   internal static func rgbaImage(image: Image) throws -> RGBAImage {
       //⚠️️ the bellow line is a temp fix, could hurt performance
       guard let cgImage: CGImage = ImageUtil.cgImage(image: image) else { throw NSError(domain: "rgbaImage - Unable to get cgImage", code: 0) }
       return try rgbaImage(cgImage: cgImage)
@@ -46,7 +48,7 @@ extension RGBAImage {
     * Alternative, might be more optimized
     * - Note: Not in use ⚠️️
     */
-   static func rgbaImg2(ciImg: CIImage) {
+   private static func rgbaImg2(ciImg: CIImage) {
       _ = {
          let context = CIContext(options: [CIContextOption.workingColorSpace: NSNull()])
          let colorSpace = CGColorSpaceCreateDeviceRGB()

@@ -23,7 +23,7 @@ extension Compositor {
     */
    static func composite(grayscaleImages: [GrayscaleImage]) throws -> CIImage {
       let grayscaleImage: GrayscaleImage = try composite(grayscaleImages: grayscaleImages)
-      guard let img: CIImage = try? GrayscaleImageUtil.ciImage(grayscaleImage: grayscaleImage) else { grayscaleImage.deInit(); throw NSError(domain: "Unable to create img", code: 0) }
+      guard let img: CIImage = try? Compositor.ciImage(grayscaleImage: grayscaleImage) else { grayscaleImage.deInit(); throw NSError(domain: "Unable to create img", code: 0) }
       grayscaleImage.deInit() // We de-init the Img after we have consumed it to avoid mem leak
       return img
    }
@@ -60,5 +60,17 @@ extension Compositor {
          }
          return pixel
       }
+   }
+   /**
+    * New (⚠️️ experimental, untested, prob needs more research ⚠️️)
+    */
+   private static func ciImage(grayscaleImage: GrayscaleImage) throws -> CIImage {
+      let data: Data = .init(buffer: grayscaleImage.pixels)
+      // - Fixme: ⚠️️ look for CIFormat for grayscale on google
+      let format: CIFormat = .L8 //.BGRA8 // .RGBA8// .ARGB8//.ABGR8// // A pixel format constant. See Pixel Formats.
+      let colorSpace: CGColorSpace = CGColorSpaceCreateDeviceGray()// : CGColorSpaceCreateDeviceRGB()//CGColorSpaceCreateDeviceRGB() // The color space that the image is defined in. It must be a Quartz 2D color space (CGColorSpace). Pass nil for images that don’t contain color data (such as elevation maps, normal vector maps, and sampled function tables).
+      let bytesPerRow: Int = grayscaleImage.size.width * 1
+      let ciImg: CIImage = .init(bitmapData: data, bytesPerRow: bytesPerRow, size: CGSize(width: CGFloat(grayscaleImage.size.width), height: CGFloat(grayscaleImage.size.height)), format: format, colorSpace: colorSpace)
+      return ciImg
    }
 }

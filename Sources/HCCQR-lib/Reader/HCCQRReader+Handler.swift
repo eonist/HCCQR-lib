@@ -21,7 +21,6 @@ extension HCCQRReader {
     *   - onComplete: (Data, two qrImages)
     */
    static func onSplitComplete(result: Splitter.SplitResult, onComplete:@escaping DataAndImageCompleted) {
-      // NSError("q1, q2 err \(result.errorStr)")
       guard let payload: Splitter.SplitPayload = result.value() else { onComplete(.failure(.unableToSplit(errMSG: "q1, q2 err \(result.errorStr)"))); return }
       let ciImages: [CIImage] = [payload.qrImg1, payload.qrImg2]
       var dataAndFrames: [QRReader.DataAndQuad?] = [QRReader.DataAndQuad?](repeating: nil, count: ciImages.count)

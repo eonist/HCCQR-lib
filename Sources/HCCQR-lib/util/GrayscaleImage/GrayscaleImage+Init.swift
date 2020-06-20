@@ -7,6 +7,7 @@ extension GrayscaleImage {
    /**
     * Filled image
     * - Fixme: ⚠️️ Prob create the unmanaged pointer directly for better speed
+    * - Fixme: ⚠️️ maybe make this an init
     * - Parameters:
     *   - pixels: the pixels to populate the GrayscaleImage with
     *   - size: the size you want to us ein the GrayScaleImage
