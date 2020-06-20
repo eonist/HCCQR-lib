@@ -9,7 +9,7 @@ final class ColorExtractionTest {
     * testSimpleHCCQRView (creates a bunch of squares in B&W and then tries to make hccqr like image)
     */
    static func testSimpleHCCQRView(view: UIView) {
-      let simpleHCCQRView = SimpleHCCQRView(frame: .init(origin: .zero, size: .init(width: 80 * 4, height: 80 * 4)))
+      let simpleHCCQRView = SimpleHCCQRView(frame: .init(origin: .zero, sizeDEPRECATED: .init(width: 80 * 4, height: 80 * 4)))
       view.addSubview(simpleHCCQRView)
       //make RGBA images of view1
       //make RGBA images of view2
@@ -43,16 +43,16 @@ extension ColorExtractionTest {
     * - Caution: ⚠️️ this has a bug in that the snapshot creates retina image, and this code doesnt support that yet
     */
    static func testFakeHCCQRView(view: UIView) {
-      let fakeHCCQRView = FakeHCCQRView(frame: .init(origin: .zero, size: .init(width: 80 * 4, height: 80 * 4)))
+      let fakeHCCQRView = FakeHCCQRView(frame: .init(origin: .zero, sizeDEPRECATED: .init(width: 80 * 4, height: 80 * 4)))
       view.addSubview(fakeHCCQRView)
       guard let rgbColorTestImage: UIImage = fakeHCCQRView.snapShot else { fatalError("err") }
       Swift.print("rgbColorTestImage.scale:  \(rgbColorTestImage.scale)")
-      Swift.print("rgbColorTestImage.size:  \(rgbColorTestImage.size)")
+      Swift.print("rgbColorTestImage.size:  \(rgbColorTestImage.sizeDEPRECATED)")
       guard let images: Splitter.RGBImages = { Optional((UIImage(), UIImage(), UIImage())) }()/*RGBAImage.split(image: rgbColorTestImage)*/ else { fatalError("err") }
       //      let rImageView:UIImageView = UIImageView.init(image: images.g)
       //      view.addSubview(rImageView)
       //      rImageView.frame.origin.y = 80*4
-      Swift.print("images.r!.size:  \(images.r.size)")
+      Swift.print("images.r!.size:  \(images.r.sizeDEPRECATED)")
       Swift.print("images.r!.scale:  \(images.r.scale)")
 //      guard let r: RGBAImage = try? .rgbaImage(image: images.r) else { return }
 //      _ = r
@@ -76,7 +76,7 @@ extension ColorExtractionTest {
     * Second attempt at splitting colors into b&w layers
     */
    static func testComposition(view: UIView) {
-      let rgbColorTestView = RGBColorTestView(frame: .init(origin: .zero, size: .init(width: 300, height: 100)))
+      let rgbColorTestView = RGBColorTestView(frame: .init(origin: .zero, sizeDEPRECATED: .init(width: 300, height: 100)))
       view.addSubview(rgbColorTestView)
       //
       guard let image: UIImage = rgbColorTestView.snapShot else { fatalError("err") }
@@ -101,7 +101,7 @@ extension ColorExtractionTest {
     * First attempt at splitting colors into b&w layers
     */
    static func testSeperation(view: UIView) {
-      let rgbColorTestView = RGBColorTestView(frame: .init(origin: .zero, size: .init(width: 300, height: 100)))
+      let rgbColorTestView = RGBColorTestView(frame: .init(origin: .zero, sizeDEPRECATED: .init(width: 300, height: 100)))
       view.addSubview(rgbColorTestView)
       guard let rgbColorTestImage: UIImage = rgbColorTestView.snapShot else { fatalError("err") }
       _ = rgbColorTestImage

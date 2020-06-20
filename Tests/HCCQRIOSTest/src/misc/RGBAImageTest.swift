@@ -15,7 +15,7 @@ extension RGBAImageTest {
     * 4. Asserts if the new image is the same as the original image
     */
    func bufferTest() {
-      let image = UIImage.image(size: .init(width: 100, height: 100), color: .red)!
+      let image = UIImage.image(sizeDEPRECATED: .init(width: 100, height: 100), color: .red)!
       guard let rgbaImage: RGBAImage = try? CVImageBufferUtil.rgbaImage(image: image) else { Swift.print("err rgbImage"); return }
       guard let img: UIImage = try? RGBAImageUtil.image(rgbaImage: rgbaImage, scale: 1) else { Swift.print("err img"); return }
 //      let imageView: UIImageView = .init(image: img)
@@ -34,9 +34,9 @@ extension RGBAImageTest {
     */
    func test() {
       Swift.print("⚠️️ DEPRECATED ⚠️️")
-      guard let image = UIImage.image(size: .init(width: 100, height: 100), color: .blue) else { Swift.print("uiImage err"); return }
+      guard let image = UIImage.image(sizeDEPRECATED: .init(width: 100, height: 100), color: .blue) else { Swift.print("uiImage err"); return }
       Swift.print("image.scale:  \(image.scale)")
-      Swift.print("image.size:  \(image.size)")
+      Swift.print("image.size:  \(image.sizeDEPRECATED)")
       // create RGBAImage
       guard let ciImg = image.ciImage() else { Swift.print("err ciImg"); return }
       _ = ciImg
