@@ -29,7 +29,7 @@ extension HCCQRPhotoTest {
       Swift.print("UIImage.size:  \(image.size)")
       guard let rgbaImage: RGBAImage = try? CVImageBufferUtil.rgbaImage(image: image) else { Swift.print("err getting rgbImage"); return }
       startTime = .init() // We only want to measure the bellow call
-      HCCQRReader.dataAndImages(rgbaImage: rgbaImage) { result in // Split the hccqrImg
+      Reader.dataAndImages(rgbaImage: rgbaImage) { result in // Split the hccqrImg
          onReadComplete(result: result, onComplete: onComplete)
       }
    }

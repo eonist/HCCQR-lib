@@ -17,7 +17,7 @@ extension ViewController {
 //      guard let img = try? RGBAImageUtil.image(rgbaImage: rgbaImage, scale: 1) else { Swift.print("err making img"); return }
 //      let imgView: UIImageView = .init(image: img)
 //      self.view.addSubview(imgView)
-      HCCQRReader.dataAndImages(rgbaImage: rgbaImage) { result in // Split the hccqrImg
+      Reader.dataAndImages(rgbaImage: rgbaImage) { result in // Split the hccqrImg
          self.onReadComplete(result: result) { success in Swift.print("dataAndImages success: \(success)") }
       }
    }
@@ -30,7 +30,7 @@ extension ViewController {
     * Called when a single hccqr image is read
     * - Fixme: ⚠️️ add hash if the data to compare, requires importing FileHasher etc
     */
-   func onReadComplete(result: HCCQRReader.DataAndImagesResult, onComplete: @escaping (Bool) -> Void) {
+   func onReadComplete(result: Reader.DataAndImagesResult, onComplete: @escaping (Bool) -> Void) {
       Swift.print("onReadComplete")
       guard let value = try? result.get() else { Swift.print("unable to extract value"); onComplete(false); return }
       DispatchQueue.main.async { // jump back on the main thread

@@ -18,7 +18,7 @@ extension Pixel {
       let colorish: PixelDataAsserter.Colorish = self.isColorish(color)
       // Continue here: 🏀 use the colorish.r,g,b values to find intensity, think about amount of deviation etc
 //      let strength: UInt8 = colorish.isColorish ? PixelDataAsserter.naiveStrength(color: color, pixel: self) : 0 // if color is not with threshold, then strength is zero
-      let intensity = colorish.isColorish ? PixelDataParser.similarity(a: color, b: self.rgba) : 0 // if not colorish, then return no intensity
+      let intensity = colorish.isColorish ? PixelParser.similarity(a: color, b: self.rgba) : 0 // if not colorish, then return no intensity
       return (assert: colorish.isColorish, strength: intensity)
    }
    /**

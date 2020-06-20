@@ -5,7 +5,7 @@ import CoreImage
 /**
  * Static handlers
  */
-extension HCCQRReader {
+extension Reader {
    /**
     * onSplitComplete
     * 1. Get Data + Meta from two QR-Images
@@ -37,6 +37,11 @@ extension HCCQRReader {
          }
       }
    }
+}
+/**
+ * private helper
+ */
+extension Reader {
    /**
     * Makes sure all QR-Codes were read successfully
     * - Abstract: Completion handler (checks if all completions finished before calling complete on the whole process)
@@ -53,7 +58,7 @@ extension HCCQRReader {
     *   - payload: 2 CIImage's
     *   - onComplete: completion block with DataAndImage
     */
-   static func onReadQRCodeComplete(i: Int, ciIMG: CIImage, dataAndQuad: QRReader.DataAndQuad?, error: Error?, dataAndQuads: inout [QRReader.DataAndQuad?], payload: Splitter.SplitPayload, onComplete: DataAndImageCompleted ) {
+   private static func onReadQRCodeComplete(i: Int, ciIMG: CIImage, dataAndQuad: QRReader.DataAndQuad?, error: Error?, dataAndQuads: inout [QRReader.DataAndQuad?], payload: Splitter.SplitPayload, onComplete: DataAndImageCompleted ) {
       guard let dataAndFrame: QRReader.DataAndQuad = dataAndQuad else { onComplete(.failure(.unableToExtractQRData(msg: "QRIMG: \(i) error: \(String(describing: error?.localizedDescription))", ciImage: ciIMG))); return }
       dataAndQuads[i] = dataAndQuad
       if !dataAndQuads.contains (where: { $0 == nil }) { // Makes sure all images finished

@@ -4,7 +4,7 @@ import QR_lib
 public final class HCCQRVersion {
    /**
     * Get QR version for HCCQR dataCount
-    * - Parameter colorDepth: number of color Layers (4 colors = 2 layers etc)
+    * - parameter colorDepth: number of color Layers (4 colors = 2 layers etc)
     * ## Examples:
     * let hccqrVersion = try? HCCQRVersion.version(dataCount: data.count, qrMode: .byte, ecLevel: .l)
     */

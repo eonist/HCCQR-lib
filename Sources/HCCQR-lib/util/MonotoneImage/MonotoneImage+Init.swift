@@ -13,7 +13,7 @@ extension MonotoneImage {
     * - Note: Ref https://www.geekspiff.com/unlinkedCrap/ciImageToBitmap.html
     * - Note: Use ciImg.debugDescription to find more info about cgImage
     * - Caution: ⚠️️ Only works if CIImage is pure black and white, which is the case for generated qr images
-    * - Parameter ciImg: The CIImage to convert to grayscaleimage
+    * - parameter ciImg: The CIImage to convert to grayscaleimage
     */
    static func monotoneImage(ciImg: CIImage) throws -> MonotoneImage {
       let bitMapInfo = RGBAImage.bitmapInfo

@@ -4,7 +4,7 @@ import QR_lib
 /**
  * DataAndMeta (CVImageBuffer)
  */
-extension HCCQRReader {
+extension Reader {
    public typealias DataAndMeta = (data: Data, quad: QRReader.Quad, imageSize: CGSize)
    public typealias DataAndMetaResult = Result<DataAndMeta, ReadError>
    public typealias OnGetDataAndMetaCompleted = (DataAndMetaResult) -> Void
@@ -12,7 +12,7 @@ extension HCCQRReader {
 /**
  * DataAndImages
  */
-extension HCCQRReader {
+extension Reader {
    /**
     * The imags was returned for debuggin, can be useful for optimizing later
     * - Fixme: ⚠️️ I don't think returning QRImage is useful anymore, try to remove it

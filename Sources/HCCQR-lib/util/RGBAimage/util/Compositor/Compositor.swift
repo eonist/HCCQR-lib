@@ -5,9 +5,7 @@ import CoreImage
  * - Abstract: Used in the Reading of HCCQR
  * - Fixme: ⚠️️ Will we ever have more than two channels?
  */
-final class Compositor {}
-
-extension Compositor {
+final class Compositor {
    /**
     * Photo -> Split into Channels -> Combine 2 channels into 1 QR-image (Combines many grayscale images into one)
     * Returns a QR-Image based on two (GrayscaleImage) channels (We use CIImage, because that is what apple prefers to read qr from)
