@@ -18,6 +18,7 @@ extension RGBAImageTest {
       let image = UIImage.image(size: .init(width: 100, height: 100), color: .red)!
       guard let rgbaImage: RGBAImage = try? CVImageBufferUtil.rgbaImage(image: image) else { Swift.print("err rgbImage"); return }
       guard let img: UIImage = try? RGBAImageParser.image(rgbaImage: rgbaImage, scale: 1) else { Swift.print("err img"); return }
+      _ = img
 //      let imageView: UIImageView = .init(image: img)
 //      view.addSubview(imageView)
       let isEqual: Bool = image.isEqualToImage(image: image)

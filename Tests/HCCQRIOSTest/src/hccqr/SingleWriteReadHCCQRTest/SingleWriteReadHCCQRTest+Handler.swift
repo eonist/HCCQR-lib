@@ -14,15 +14,15 @@ extension SingleWriteReadHCCQRTest {
    static func onWriteComplete(rgbaImage: RGBAImage, randomData: Data, onComplete: @escaping OnComplete) {
       Swift.print("👌 writeTime complete: \(abs(SingleWriteReadHCCQRTest.writeTime.timeIntervalSinceNow))")
       readTime = .init() // We start here beacause: Making random data is not apart of time measurment
-      HCCQRReader.dataAndImages(rgbaImage: rgbaImage) { result in // Start reading the hccqr
-         guard let value: HCCQRReader.DataAndImages = result.value() else { Swift.print("🚫 err:  \(result.errorStr)"); return }
+      Reader.dataAndImages(rgbaImage: rgbaImage) { result in // Start reading the hccqr
+         guard let value: Reader.DataAndImages = result.value() else { Swift.print("🚫 err:  \(result.errorStr)"); return }
          self.onReadComplete(dataAndImages: value, randomData: randomData, onComplete: onComplete)
       }
    }
    /**
     * Read complete (read data from HCCQRImage)
     */
-   private static func onReadComplete(dataAndImages: HCCQRReader.DataAndImages, randomData: Data, onComplete: OnComplete) {
+   private static func onReadComplete(dataAndImages: Reader.DataAndImages, randomData: Data, onComplete: OnComplete) {
       Swift.print("👌 readTime complete: \(abs(readTime.timeIntervalSinceNow)))")
       Swift.print("All done: \(abs(startTime.timeIntervalSinceNow))")
       let isMatching: Bool = randomData == dataAndImages.data // Assert payload

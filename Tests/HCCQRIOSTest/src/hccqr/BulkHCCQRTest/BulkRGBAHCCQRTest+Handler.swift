@@ -21,7 +21,7 @@ extension BulkRGBAHCCQRTest {
    /**
     * Called when a single hccqr image is read
     */
-   static func onReadComplete(i: Int, result: HCCQRReader.DataAndImagesResult, payloads: inout [Data?], onComplete: OnReadImagesComplete) {
+   static func onReadComplete(i: Int, result: Reader.DataAndImagesResult, payloads: inout [Data?], onComplete: OnReadImagesComplete) {
       guard  let payload: Data = try? result.get().data else { onComplete(.failure(NSError(domain: "Unable to read hccqr image \(result.errorStr)", code: 0))); return }
       payloads[i] = payload
       if !payloads.contains(where: { $0 == nil }) { // Makes sure all images were read

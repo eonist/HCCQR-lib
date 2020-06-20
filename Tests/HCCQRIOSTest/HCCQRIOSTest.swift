@@ -11,12 +11,12 @@ class HCCQRIOSTest: XCTestCase {
     */
    func simpleTests() {
       Swift.print("simpleTests")
-      XCTAssertEqual(QRTesting.createQR(), CGSize(width: 354.0, height: 354.0))
       XCTAssertEqual(ScaleTesting.testScalingRGBAImage(), 4)
       XCTAssertTrue(MonoPixelColorization.testColorizingMonoPixel()) // ✅ b&w-pixels (mono) to color-pixels
       XCTAssertTrue(PixelTest.testColorAssertionWithinThresholdForPixel()) // ✅
       XCTAssertTrue(PixelTest.isColorishTest()) // ✅
       XCTAssertTrue(PixelTest.isWashedOutColorishTest()) // ✅
+      XCTAssertTrue(QRTesting.testQRGeneration()) // ?
       testCIImage() // ✅
    }
    /**
@@ -117,11 +117,11 @@ extension HCCQRIOSTest {
       Swift.print("ciImage.extent.width:  \(ciImage.extent.width)")
       Swift.print("ciImage.extent.height:  \(ciImage.extent.height)")
       Swift.print("ciImage.colorSpace:  \(String(describing: ciImage.colorSpace))")
-      let image: UIImage = .init(ciImage: ciImage)
-      Swift.print("img.size:  \(image.size)")
-      Swift.print("img.scale:  \(image.scale)")
-      //      img
-      Swift.print("isEqualToImage: \(image.isEqualToImage(image: image) ? "✅" : "🚫")")
+      let img: UIImage = .init(ciImage: ciImage)
+      Swift.print("img.size:  \(img.size)")
+      Swift.print("img.scale:  \(img.scale)")
+      // img
+      Swift.print("isEqualToImage: \(image.isEqualToImage(image: img) ? "✅" : "🚫")")
       #endif
    }
 }

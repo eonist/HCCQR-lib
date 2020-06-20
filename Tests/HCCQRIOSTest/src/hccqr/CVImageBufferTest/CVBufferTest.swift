@@ -15,7 +15,7 @@ class CVBufferTest {
       let config: QRConfig = (.v1, .byte, .l) // Config
       guard let data = HCCQRStringData.randomData(config: config) else { Swift.print("unable to create data"); return }
       DispatchQueue.global(qos: .userInitiated).async {
-         HCCQRWriter.img(data: data, multipliers: (6, 2), qrConfig: (config.version, config.ecLevel)) { result in // Create HCCQR from string
+         Writer.image(data: data, multipliers: (6, 2), qrConfig: (config.version, config.ecLevel)) { result in // Create HCCQR from data
             self.onWriteComplete(result: result, data: data, onComplete: onComplete)
          }
       }

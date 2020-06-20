@@ -4,7 +4,7 @@ import CoreImage
 /**
  * Config
  */
-extension HCCQRWriter {
+extension Writer {
    /**
     * - Fixme: ⚠️️ Rename to Config ? since QRConfig is something else as well
     * - Fixme: ⚠️️ Add colorDepth to this tuple, to support more colors than 4
@@ -15,7 +15,7 @@ extension HCCQRWriter {
 /**
  * Completion
  */
-extension HCCQRWriter {
+extension Writer {
    /**
     * - Fixme: ⚠️️ Rename bellow to OnCIImageComplete
     */
@@ -31,8 +31,6 @@ extension HCCQRWriter {
    public typealias OnImageComplete = (ImageResult) -> Void
 }
 /**
- * 🏀
- * - Fixme: ⚠️️ Rename to Scale = (module, screen) and move to HCCQR+TypeAlias
  * - Fixme: ⚠️️ Maybe make it a struct?
  */
 public typealias Multipliers = (module: Int, screen: Int)
