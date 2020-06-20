@@ -10,6 +10,7 @@ extension Channel {
    static let channelMap: ChannelMap = [Pixel.red, Pixel.green, Pixel.blue] // { $0.isColorish() }, { $0.isColorish() }]
    /**
     * - Note: This is the new way to do it
+    * - Fixme: ⚠️️ write doc
     */
    static func similarities(channelMap: ChannelMap) -> [PixelDataSimilarity] {
       channelMap.map { channel in { $0.isSimilar(channel) } }

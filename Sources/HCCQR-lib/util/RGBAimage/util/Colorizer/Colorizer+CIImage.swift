@@ -25,7 +25,7 @@ extension Colorizer {
     */
    static func colorize(ciImages: [CIImage], colorMap: ColorMap, multipliers: Multipliers) -> ColorizedResult {
       guard let rgbaImage: RGBAImage = try? colorize(ciImages: ciImages, colorMap: colorMap, multipliers: multipliers) else { return .failure(.unableToCreateRGBAImageFromQRImages) }
-      guard let ciImage: CIImage = try? RGBAImageUtil.ciImg2(rgbaImage: rgbaImage, useGrayscale: false/*, scale: CGFloat(multipliers.screenScale)*/) else { return .failure(.unableToConvertRGBAToImage)/*Swift.print();return nil*/ }
+      guard let ciImage: CIImage = try? RGBAImageParser.ciImg2(rgbaImage: rgbaImage, useGrayscale: false/*, scale: CGFloat(multipliers.screenScale)*/) else { return .failure(.unableToConvertRGBAToImage)/*Swift.print();return nil*/ }
       rgbaImage.deinitiate() // ⚠️️⚠️️ We dealloc pixels after they are consumed, We get a mem leak in iOS if we don't deallocate the pixels ⚠️️⚠️️
       return .success(ciImage)
    }

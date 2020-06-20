@@ -10,9 +10,10 @@ extension Pixel {
    typealias RGB = (r: UInt8, b: UInt8, g: UInt8) // <- Prefer this
    typealias RGBA = (r: UInt8, b: UInt8, g: UInt8, a: UInt8)
    /**
-    * Strength alone might be enough
-    * - parameter assert: isSimilar or not
-    * - parameter strength: 0 - 255
+    * - Fixme: ⚠️️ Strength alone might be enough? actually no, there is a reason we have a bool as well
+    * - Parameters:
+    *   - assert: isSimilar or not
+    *   - strength: 0 - 255
     */
    typealias Similarity = (assert: Bool, strength: UInt8)
 }

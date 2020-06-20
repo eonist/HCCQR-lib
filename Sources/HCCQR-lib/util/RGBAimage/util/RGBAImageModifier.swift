@@ -1,7 +1,7 @@
 import Foundation
 import CoreImage
 
-class RGBAImageScaler {
+class RGBAImageModifier {
    /**
     * Scales img without becoming blurry (Sharp pixel multiplier)
     * 🏀 continue here: add dep documention

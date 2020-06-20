@@ -135,3 +135,13 @@ extension ColorExtractionTest {
    }
 }
 #endif
+/**
+ * for testing purpouses
+ */
+extension Splitter {
+   /**
+    * RGBAImage
+    * - Note: only used for tests
+    */
+   internal typealias RGBImages = (r: Image, g: Image, b: Image)
+}

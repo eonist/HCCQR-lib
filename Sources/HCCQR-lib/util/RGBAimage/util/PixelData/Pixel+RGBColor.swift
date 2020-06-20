@@ -20,37 +20,6 @@ extension Pixel {
    static let black: RGBAColor = (r: .black, g: .black, b: .black, a: 255)
 }
 /**
- * RGBColor asserter
- */
-extension Pixel {
-   /**
-    * - Parameters:
-    *   - a: first color (usuallu dynamic im-pure colors)
-    *   - b: second color (usualy static pure colors)
-    */
-   static func isRGBColor(a: RGBAColor, b: RGBAColor) -> Bool {
-      a.r == b.r && a.g == b.g && a.b == b.b /* && a.a == b.a*/
-   }
-   /**
-    * Assert if rgbColor is red
-    */
-   static func isRed(rgbColor: RGBAColor) -> Bool {
-      isRGBColor(a: rgbColor, b: Pixel.red)
-   }
-   /**
-    * Assert if rgbColor is green
-    */
-   static func isGreen(rgbColor: RGBAColor) -> Bool {
-      isRGBColor(a: rgbColor, b: Pixel.green)
-   }
-   /**
-    * Assert if rgbColor is blue
-    */
-   static func isBlue(rgbColor: RGBAColor) -> Bool {
-      isRGBColor(a: rgbColor, b: Pixel.blue)
-   }
-}
-/**
  * Parser
  */
 extension Pixel {

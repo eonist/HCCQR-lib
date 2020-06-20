@@ -6,6 +6,7 @@ import CoreImage
 extension RGBAImage {
    /**
     * Creates the correct bitmapInfo
+    * - Note: used by RGBA+Init method
     */
    static var bitmapInfo: UInt32 {
       var bitmapInfo: UInt32 = CGBitmapInfo.byteOrder32Big.rawValue // BGRA

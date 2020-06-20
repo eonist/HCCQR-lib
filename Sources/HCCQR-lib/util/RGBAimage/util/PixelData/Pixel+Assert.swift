@@ -43,7 +43,7 @@ extension Pixel {
    }
 }
 /**
- * Color asserts
+ * RGBColor asserter
  */
 extension Pixel {
    /**
@@ -61,5 +61,31 @@ extension Pixel {
     */
    var isBlack: Bool {
       Pixel.isMatching(a: self, b: Colors.blackPixel)
+   }
+   /**
+    * Assert if rgbColor is red
+    */
+   static func isRed(rgbColor: RGBAColor) -> Bool {
+      isRGBColor(a: rgbColor, b: Pixel.red)
+   }
+   /**
+    * Assert if rgbColor is green
+    */
+   static func isGreen(rgbColor: RGBAColor) -> Bool {
+      isRGBColor(a: rgbColor, b: Pixel.green)
+   }
+   /**
+    * Assert if rgbColor is blue
+    */
+   static func isBlue(rgbColor: RGBAColor) -> Bool {
+      isRGBColor(a: rgbColor, b: Pixel.blue)
+   }
+   /**
+    * - Parameters:
+    *   - a: first color (usuallu dynamic im-pure colors)
+    *   - b: second color (usualy static pure colors)
+    */
+   static func isRGBColor(a: RGBAColor, b: RGBAColor) -> Bool {
+      a.r == b.r && a.g == b.g && a.b == b.b /* && a.a == b.a*/
    }
 }

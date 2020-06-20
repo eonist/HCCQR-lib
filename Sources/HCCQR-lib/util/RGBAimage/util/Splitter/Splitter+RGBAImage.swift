@@ -19,10 +19,9 @@ extension Splitter {
     * - Note: the conversion to rgbaImg here is CPU intensive, but in the camera session we get RGBA data, so this is just for debugging etc
     */
    static func split(rgbaImage: RGBAImage, onComplete:@escaping SplitPayloadCompleted) {
-//      Swift.print("Splitter.split")
       // HCCQRReader.splitTime = .init() // Debugging performance
-      Channel.grayChannels(rgbaImg: rgbaImage) { (result: Channel.GrayscaleChannelsResult) in // 
-         onGrayChannelSplitComplete(result: result, onComplete: onComplete)
+      Channel.channels(rgbaImg: rgbaImage) { (result: Channel.ChannelsResult) in // 
+         onChannelSplitComplete(result: result, onComplete: onComplete)
       }
    }
 }

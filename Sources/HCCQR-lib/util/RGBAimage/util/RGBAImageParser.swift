@@ -1,8 +1,10 @@
 import Foundation
 import QuartzCore
 import CoreImage
-
-public final class RGBAImageUtil {
+/**
+ * - Fixme: ⚠️️ clean up some of these methods, or delete them etc
+ */
+public final class RGBAImageParser {
    /**
     * Converts rgbaImage to uiimage / nsimage
     * - Parameter scale: the amount to scale the image by (screenScale)
@@ -10,29 +12,15 @@ public final class RGBAImageUtil {
     */
    static func image(rgbaImage: RGBAImage, scale: CGFloat) throws -> Image {
       try autoreleasepool { // Ref: ⚠️️ https://stackoverflow.com/questions/25860942/is-it-necessary-to-use-autoreleasepool-in-a-swift-program
-         let cgImage: CGImage = try RGBAImageUtil.cgImage(rgbaImage: rgbaImage)
+         let cgImage: CGImage = try RGBAImageParser.cgImage(rgbaImage: rgbaImage)
          return ImageUtil.image(cgImage: cgImage, scale: scale) // Convert CGImage to UIImage
       }
    }
-   /**
-    * RGBAImage -> CIImage
-    * - Note: The composite method uses this method
-    */
-//   private func ciImage(rgbaImage: RGBAImage) throws -> CIImage {
-//      // - Fixme: ⚠️️ implement the grayscale
-//      guard let ciImage: CIImage = try? ciImg2(rgbaImage: rgbaImage) else { throw NSError(domain: "err getting ciimg", code: 0) }
-//      return ciImage
-////      let cgImage: CGImage = try RGBAImageUtil.cgImage(rgbaImage: rgbaImage, useGrayscale: true)
-////      return cgImage.ciImage() // we convert to CIImage here, because apples QRReader reades CIImage
-//      //      return CIImage(cgImage: cgImage, options: [CIImageOption.colorSpace: CGColorSpaceCreateDeviceGray()])
-//      // Fixme: ⚠️️ we can prob create ciImage directly for better speed, see RGBKit and related research
-////      return ciImg(rgbaImage: rgbaImage)
-//   }
 }
 /**
  * Private static helper method
  */
-extension RGBAImageUtil {
+extension RGBAImageParser {
    /**
     * Converts rgbaImage to cgImage (works I guess)
     * - Note: alternative data -> img code, might be faster?: https://stackoverflow.com/questions/51372245/swift-covert-byte-array-into-ciimage
@@ -56,7 +44,6 @@ extension RGBAImageUtil {
          return cgImage/*useGrayscale ? convertToGrayScale(cgImage: cgImage) : */
       }
    }
-
    /**
     * Experimental (⚠️️ Not working, not used by anything ⚠️️)
     */
@@ -250,3 +237,17 @@ extension RGBAImageUtil {
 //   }
 //   return UIImage(cgImage: cgimage)
 //}
+/**
+ * RGBAImage -> CIImage
+ * - Note: The composite method uses this method
+ */
+//   private func ciImage(rgbaImage: RGBAImage) throws -> CIImage {
+//      // - Fixme: ⚠️️ implement the grayscale
+//      guard let ciImage: CIImage = try? ciImg2(rgbaImage: rgbaImage) else { throw NSError(domain: "err getting ciimg", code: 0) }
+//      return ciImage
+////      let cgImage: CGImage = try RGBAImageUtil.cgImage(rgbaImage: rgbaImage, useGrayscale: true)
+////      return cgImage.ciImage() // we convert to CIImage here, because apples QRReader reades CIImage
+//      //      return CIImage(cgImage: cgImage, options: [CIImageOption.colorSpace: CGColorSpaceCreateDeviceGray()])
+//      // Fixme: ⚠️️ we can prob create ciImage directly for better speed, see RGBKit and related research
+////      return ciImg(rgbaImage: rgbaImage)
+//   }

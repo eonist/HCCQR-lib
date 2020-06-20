@@ -35,7 +35,7 @@ extension Colorizer {
          }
       }
       monotoneImages.forEach { $0.deInit() } // Avoids mem leak // guard pixels.count == size.width * size.height else { throw NSError(domain: "missing some pixels", code: 0) } // Check if array has all the pixels
-      let rgbaImage: RGBAImage = RGBAImageScaler.scale(pixels: pixels, size: (size.width, size.height), multipliers: multipliers)
+      let rgbaImage: RGBAImage = RGBAImageModifier.scale(pixels: pixels, size: (size.width, size.height), multipliers: multipliers)
       pixels.deallocate() // ⚠️️ New, so might not work, this deallocates the pixels once they are not needed anymore
       return rgbaImage
    }

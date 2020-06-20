@@ -9,12 +9,7 @@ extension Splitter {
    typealias SplitResult = Result<SplitPayload, Error>
    typealias SplitPayloadCompleted = (SplitResult) -> Void
    /**
-    * RGBAImage
-    * - Note: only used for tests
+    * - Fixme: ⚠️️ should prob use array etc?
     */
-   internal typealias RGBImages = (r: Image, g: Image, b: Image)
-   /**
-    * - Fixme: ⚠️️ Rename to ChannelPair or Pair
-    */
-   typealias GrayChannelPair = (first: GrayscaleImage, second: GrayscaleImage)
+   typealias ChannelPair = (first: GrayscaleImage, second: GrayscaleImage)
 }

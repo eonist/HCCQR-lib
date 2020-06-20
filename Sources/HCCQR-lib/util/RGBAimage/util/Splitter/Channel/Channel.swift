@@ -6,7 +6,7 @@ final class Channel {}
 
 extension Channel {
    /**
-    * Split 1 RGBAImage into 3 GrayScaleImages consisting of singular (R,G,B) channels
+    * Split an RGBAImage into 3 GrayScaleImages consisting of singular (R,G,B) channels
     * 1. RGBAImage comes in with a ChannelMap rule-set
     * 2. Create Result-array of empty GrayscaleImage
     * 3. Go through each item in the ChannelMap array and try to find the the 3 colors defined in the channelMap
@@ -18,18 +18,35 @@ extension Channel {
     *   - channelMap: rule-set for the splitting process
     *   - onComplete: notify when process has completed
     */
-   static func grayChannels(rgbaImg: RGBAImage, channelMap: ChannelMap = channelMap, onComplete:@escaping OnGrayChannelsComplete) {
+   static func channels(rgbaImg: RGBAImage, channelMap: ChannelMap = channelMap, onComplete:@escaping OnChannelsComplete) {
       var grayscaleChannels: [GrayscaleImage?] = [GrayscaleImage?](repeating: nil, count: channelMap.count) // Fixme: ⚠️️ we could use unmanaged pointer with capacity as well, might be faster
       let similarities: [PixelDataSimilarity] = Channel.similarities(channelMap: channelMap)
       similarities.enumerated().forEach { offset, similarity in // 3 assertions
          DispatchQueue.global(qos: .userInitiated).async { // - Fixme: ⚠️️ This could be the cause of random error bug, maybe drop the async and just do it on current thread
-//            Swift.print("⚠️️ There is a bug here, or is it fixed? ⚠️️")
-            // - Fixme: ⚠️️⚠️️⚠️️ This is the bug, the grayChannel returned is monotone, it should rather be grayscale
             let grayscaleChannel: GrayscaleImage = grayChannel(rgbaImg: rgbaImg, asserter: similarity) // Finds the red-channel, blue-channel, green-channel
             DispatchQueue.main.async { // We need to go on the mainthread to manipulate array
-               onGrayChannelComplete(i: offset, grayscaleChannel: grayscaleChannel, grayscaleChannels: &grayscaleChannels, rgbaImg: rgbaImg, onComplete: onComplete)
+               onChannelComplete(i: offset, channel: grayscaleChannel, channels: &grayscaleChannels, rgbaImg: rgbaImg, onComplete: onComplete)
             }
          }
+      }
+   }
+}
+/**
+ * Private helper
+ */
+extension Channel {
+   /**
+    * RGBAImage channel (R, G, B) -> GrayscaleImage
+    * 1. Creates a blank grayscale image of a specific size
+    * 2. Asserts if the pixel is sort of a color or not
+    * - Parameters:
+    *   - rgbaImg: The RGBAImage to manipulate
+    *   - assert: takes Pixeldata, returns Bool
+    */
+   private static func grayChannel(rgbaImg: RGBAImage, asserter: PixelDataSimilarity) -> GrayscaleImage {
+      let outputIMG: GrayscaleImage = .grayscaleImage(capacity: rgbaImg.capacity, size: rgbaImg.size) // We create a blank RGBImage, as it's faster than copy probably
+      return GrayscaleImage.process(input: rgbaImg, output: outputIMG) { pixel -> UInt8 in
+         asserter(pixel).strength // more strength, more white
       }
    }
 }
