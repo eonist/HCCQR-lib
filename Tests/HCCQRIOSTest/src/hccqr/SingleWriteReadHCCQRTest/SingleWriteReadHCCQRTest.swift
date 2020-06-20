@@ -4,9 +4,7 @@ import CoreGraphics
 import CoreImage
 //import ResultSugar
 @testable import HCCQR_lib
-/**
- * - Fixme: ⚠️️ rename to RGBAHCCQRTest
- */
+
 final class SingleWriteReadHCCQRTest {}
 /**
  * Test reading and writing

@@ -32,7 +32,21 @@ extension ViewController {
     */
    func onReadComplete(result: Reader.DataAndImagesResult, onComplete: @escaping (Bool) -> Void) {
       Swift.print("onReadComplete")
-      guard let value = try? result.get() else { Swift.print("unable to extract value"); onComplete(false); return }
+      guard let value = try? result.get() else {
+         let err: ReadError? = result.error()
+//         Swift.print("err:  \(err)");
+         switch err {
+         case let .unableToExtractQRData(msg, ciImage):
+            Swift.print("msg:  \(msg)")
+            let img = UIImage(ciImage: ciImage)
+            let imgView: UIImageView = .init(image: img)
+            self.view.addSubview(imgView)
+         default:
+            Swift.print("⚠️️ other err ⚠️️")
+         }
+         onComplete(false)
+         return
+      }
       DispatchQueue.main.async { // jump back on the main thread
          Swift.print("value.qr1:  \(value.qr1)")
          let img = UIImage(ciImage: value.qr1)

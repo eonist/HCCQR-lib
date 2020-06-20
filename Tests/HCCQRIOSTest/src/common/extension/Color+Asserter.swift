@@ -8,11 +8,10 @@ import CoreImage
 extension Color {
    /**
     * isEqualRGBA
-    * - Fixme: ⚠️️ rename param uiColor to color
     */
-   func isEqualRGBA(uiColor: Color) -> Bool {
+   func isEqualRGBA(color: Color) -> Bool {
       let rgba1 = self.rgba
-      let rgba2 = uiColor.rgba
+      let rgba2 = color.rgba
       var r: Bool { rgba1.r == rgba2.r }
       var g: Bool { rgba1.g == rgba2.g }
       var b: Bool { rgba1.b == rgba2.b }

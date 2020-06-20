@@ -6,18 +6,17 @@ import CoreImage
  */
 extension Writer {
    /**
-    * - Fixme: ⚠️️ Rename to Config ? since QRConfig is something else as well
     * - Fixme: ⚠️️ Add colorDepth to this tuple, to support more colors than 4
     */
-   public typealias QRConfig = (qrVersion: QRVer, ecLevel: ECLevel)
-   public static let defaultQRConfig: QRConfig = (.v10, .l)
+   public typealias HCCQRConfig = (qrVersion: QRVer, ecLevel: ECLevel)
+   public static let defaultQRConfig: HCCQRConfig = (.v10, .l)
 }
 /**
  * Completion
  */
 extension Writer {
    /**
-    * - Fixme: ⚠️️ Rename bellow to OnCIImageComplete
+    * When RGBAImage generation completes
     */
    public typealias OnRGBAImageComplete = (Result<RGBAImage, WriteError>) -> Void
    /**
@@ -26,7 +25,6 @@ extension Writer {
    public typealias ImageResult = Result<Image, WriteError>
    /**
     * Useful when you setup the callbacks in apps (That's why they are in public scope)
-    * - Fixme: ⚠️️ soon to be deprecated, we use result now
     */
    public typealias OnImageComplete = (ImageResult) -> Void
 }

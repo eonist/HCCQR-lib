@@ -4,7 +4,7 @@ import CoreGraphics
 import CoreImage
 @testable import HCCQR_lib
 
-final class HCCQRPhotoTest {} // - Fixme: ⚠️️ Rename to: ReadPhotoTest ?
+final class HCCQRPhotoTest {}
 /**
  * Reads data from real photo of HCCQR
  * 1. Creates a Image from photo-file on disk

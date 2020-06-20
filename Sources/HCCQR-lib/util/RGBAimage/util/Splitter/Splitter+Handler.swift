@@ -22,7 +22,7 @@ extension Splitter {
     * - Fixme: ⚠️️ Maybe do the result.value in the calling method and not in this method?
     * - Important: ⚠️️ grayscale is better for qr to read than monotone (probably)
     */
-   static func onChannelSplitComplete(result: Channel.ChannelsResult, onComplete:@escaping SplitPayloadCompleted) { // called when the (R,G,B) channels are split
+   static func onChannelSplitComplete(result: Channel.Payload, onComplete:@escaping SplitPayloadCompleted) { // called when the (R,G,B) channels are split
       guard let channels: Channel.GrayscaleImages = result.value() else { onComplete(.failure(NSError("Unable to create rgbaImgs \(result.errorStr)"))); return } // (r,g,b)
       let channelArr: [ChannelPair] = [(channels.b, channels.g), (channels.r, channels.b)] // pair b&g = qr1, pair r$b = qr2
       var qrImgs: [CIImage?] = [CIImage?](repeating: nil, count: channelArr.count) // Result array

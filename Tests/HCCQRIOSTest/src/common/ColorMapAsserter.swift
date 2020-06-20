@@ -28,7 +28,7 @@ final class ColorMapAsserter {
    static func hasOnlyColorMap(image: Image, colorMap: [Color]) -> Bool {
       let condition: (Color) -> Bool = { color in
          let matchCondition: (Color) -> Bool = {
-            $0.isEqualRGBA(uiColor: color)
+            $0.isEqualRGBA(color: color)
          }
          let retVal = !colorMap.contains(where: matchCondition)
          Swift.print("retVal:  \(retVal) color: \(color)")

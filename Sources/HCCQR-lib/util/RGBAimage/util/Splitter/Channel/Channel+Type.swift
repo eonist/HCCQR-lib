@@ -4,9 +4,12 @@ import Foundation
  */
 extension Channel {
    typealias ChannelMap = [Pixel.RGBAColor] // this seems to be still in use
+   /**
+    * - Fixme: ⚠️️ Rename to Images?
+    */
    typealias GrayscaleImages = (r: GrayscaleImage, g: GrayscaleImage, b: GrayscaleImage)
-   typealias ChannelsResult = Result<GrayscaleImages, Error>
-   typealias OnChannelsComplete = (ChannelsResult) -> Void
+   typealias Payload = Result<GrayscaleImages, Error>
+   typealias OnChannelsComplete = (Payload) -> Void
 }
 /**
  * Assert

@@ -17,7 +17,7 @@ extension Writer {
     * - Fixme: ⚠️️ Try a sync version of this method with semphors
     * - Note: Supports The grayscaleImage optimization
     */
-   public static func image(data: Data, multipliers: Multipliers, qrConfig: QRConfig = defaultQRConfig, useDarkMode: Bool = false, onComplete: @escaping OnImageComplete) {
+   public static func image(data: Data, multipliers: Multipliers, qrConfig: HCCQRConfig = defaultQRConfig, useDarkMode: Bool = false, onComplete: @escaping OnImageComplete) {
       rgbaImage(data: data, multipliers: multipliers, qrConfig: qrConfig, useDarkMode: useDarkMode) { result in
          guard let rgbaImg: RGBAImage = try? result.get() else { onComplete(.failure(.unableToCreateRGBAImage(errMSG: result.errorStr))); return }
          guard let image: Image = try? RGBAImageParser.image(rgbaImage: rgbaImg, scale: CGFloat(multipliers.screen)) else { onComplete(.failure(.unableToConvertRGBAToImage)); return }
@@ -40,7 +40,7 @@ extension Writer {
     * - Important: internal because: SingleWriteReadHCCQRTest and BulkHCCQRTest uses it for tests
     * - Fixme: ⚠️️ Splitting the data in two allows 4 color map, in the future we will allow 8 color map (pallet etc)
     */
-   internal static func rgbaImage(data: Data, multipliers: Multipliers, qrConfig: QRConfig = defaultQRConfig, useDarkMode: Bool = false, onComplete: @escaping OnRGBAImageComplete) {
+   internal static func rgbaImage(data: Data, multipliers: Multipliers, qrConfig: HCCQRConfig = defaultQRConfig, useDarkMode: Bool = false, onComplete: @escaping OnRGBAImageComplete) {
       let dataArr: [Data] = data.split(index: data.count / 2) // Split the data in two ()
       var ciImgs: [CIImage?] = [CIImage?](repeating: nil, count: dataArr.count) // Pre-filled array for the images
       dataArr.enumerated().forEach { (_ offset: Int, _ data: Data) in
