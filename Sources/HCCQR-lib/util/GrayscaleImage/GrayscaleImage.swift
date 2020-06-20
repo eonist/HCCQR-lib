@@ -1,8 +1,7 @@
 import Foundation
 /**
- * We split HCCQR-images into QR-Image grayscale representations when we read it
+ * We extrate data from HCCQR-images by splitting image into grayScale images, then we composite them into QR-Image representations, and then we get data from the qr images, and combine the qr data into one data item
  * - Fixme: ⚠️️ You have to dealocate the memory at some point, see: https://stackoverflow.com/questions/34750166/how-to-use-unsafemutablebufferpointer
- * - Fixme: ⚠️️ this should really be called ARGBImage
  */
 struct GrayscaleImage {
    var pixels: UnsafeMutableBufferPointer<UInt8>

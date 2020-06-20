@@ -18,12 +18,6 @@ extension RGBAImage {
       return pixels[address]
    }
    /**
-    * copy
-    */
-   var copy: RGBAImage {
-      .rgbaImage(pixels: .init(pixels), size: size)
-   }
-   /**
     * New and experimental (⚠️️ untested ⚠️️)
     * - Note: ref https://stackoverflow.com/questions/32441432/release-unsafemutablebufferpointeruint8-values
     */
@@ -46,3 +40,9 @@ extension RGBAImage {
 //      return UnsafePointer(arr)
    }
 }
+//   /**
+//    * copy
+//    */
+//   var copyDEPRECATED: RGBAImage {
+//      .rgbaImage(pixels: .init(pixels), size: size)
+//   }

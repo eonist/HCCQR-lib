@@ -8,6 +8,7 @@ extension GrayscaleImage {
     * - Abstract: Get grayscale UInt8 intensity for a (R, G, B) channel
     * - Note: Used when reading HCCQR 
     * - Fixme: ⚠️️ find a better name for this method?
+    * - Fixme: ⚠️️ This should ideally be done over num cores or thrads and be done in quadrants
     * - Parameters:
     *   - input: The RGBAImage to extract data from (color photo etc)
     *   - output: The GrayScaleImage to populate pixels into (we only need [UInt8])

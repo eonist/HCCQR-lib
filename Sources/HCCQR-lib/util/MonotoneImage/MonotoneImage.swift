@@ -1,6 +1,6 @@
 import Foundation
 /**
- * We make HCCQR-images from QR-Image monotone representations
+ * We create HCCQR-images from QR-Image monotone representations
  * - Fixme: ⚠️️ You have to dealocate the memory at some point, see: https://stackoverflow.com/questions/34750166/how-to-use-unsafemutablebufferpointer
  */
 struct MonotoneImage {
