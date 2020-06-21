@@ -18,7 +18,7 @@ extension Writer {
    /**
     * When RGBAImage generation completes
     */
-   public typealias OnRGBAImageComplete = (Result<RGBAImage, WriteError>) -> Void
+   public typealias OnRGBAImageComplete = (Result<RGBARep, WriteError>) -> Void
    /**
     * The result signature for HCCQRCompletion block
     */

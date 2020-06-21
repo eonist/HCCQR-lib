@@ -18,7 +18,7 @@ extension Channel {
     *   - channelMap: rule-set for the splitting process
     *   - onComplete: notify when process has completed
     */
-   static func channels(rgbaImg: RGBAImage, channelMap: ChannelMap = channelMap, onComplete:@escaping OnChannelsComplete) {
+   static func channels(rgbaImg: RGBARep, channelMap: ChannelMap = channelMap, onComplete:@escaping OnChannelsComplete) {
       var grayscaleChannels: [GrayscaleRep?] = [GrayscaleRep?](repeating: nil, count: channelMap.count) // Fixme: ⚠️️ we could use unmanaged pointer with capacity as well, might be faster
       let similarities: [PixelDataSimilarity] = Channel.similarities(channelMap: channelMap)
       similarities.enumerated().forEach { offset, similarity in // 3 assertions
@@ -43,7 +43,7 @@ extension Channel {
     *   - rgbaImg: The RGBAImage to manipulate
     *   - assert: takes Pixeldata, returns Bool
     */
-   private static func grayChannel(rgbaImg: RGBAImage, asserter: PixelDataSimilarity) -> GrayscaleRep {
+   private static func grayChannel(rgbaImg: RGBARep, asserter: PixelDataSimilarity) -> GrayscaleRep {
       let outputIMG: GrayscaleRep = .grayscaleRep(capacity: rgbaImg.capacity, size: rgbaImg.size) // We create a blank RGBImage, as it's faster than copy probably
       return GrayscaleRep.process(input: rgbaImg, output: outputIMG) { pixel -> UInt8 in
          asserter(pixel).strength // more strength, more white

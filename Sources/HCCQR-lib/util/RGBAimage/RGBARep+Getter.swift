@@ -3,7 +3,7 @@ import QuartzCore
 /**
  * Getter
  */
-extension RGBAImage {
+extension RGBARep {
    /**
     * Convenience
     */

@@ -21,7 +21,7 @@ extension Reader {
     *   - onComplete: Return Data and Meta-data in this completion-block
     */
    public static func dataAndMeta(imageBuffer: CVImageBuffer, crop: BufferRect, onComplete: @escaping OnGetDataAndMetaCompleted) {
-      guard let rgbaImg: RGBAImage = try? CVImageBufferUtil.rgbaImage(imageBuffer: imageBuffer, crop: crop) else { onComplete(.failure(.unableToExtractRGBAImageFromCVBuffer)); return }
+      guard let rgbaImg: RGBARep = try? CVImageBufferUtil.rgbaImage(imageBuffer: imageBuffer, crop: crop) else { onComplete(.failure(.unableToExtractRGBAImageFromCVBuffer)); return }
       dataAndImages(rgbaImage: rgbaImg) { (result: Reader.DataAndImagesResult) in
          guard let dataAndImagesAndQuad: DataAndImages = try? result.get() else { onComplete(.failure(.unableToGetDataAndImages(msg: result.errorStr))); return }
          guard let data: Data = dataAndImagesAndQuad.data, let quad = dataAndImagesAndQuad.quad  else { onComplete(.failure(.unableToGetDataOrQuad)); return }
@@ -44,7 +44,7 @@ extension Reader {
     *   - rgbaImage: raw pixels and size
     *   - onComplete: completion block
     */
-   static func dataAndImages(rgbaImage: RGBAImage, onComplete:@escaping DataAndImageCompleted) {
+   static func dataAndImages(rgbaImage: RGBARep, onComplete:@escaping DataAndImageCompleted) {
       Splitter.split(rgbaImage: rgbaImage) { result in // Start the splitting process
          onSplitComplete(result: result, onComplete: onComplete) // readTime += abs(HCCQRReader.splitTime.timeIntervalSinceNow); Swift.print("👉 Splitting rgbaImage done: \(abs(HCCQRReader.splitTime.timeIntervalSinceNow))")
       }

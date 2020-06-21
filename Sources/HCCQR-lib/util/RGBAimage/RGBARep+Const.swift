@@ -3,7 +3,7 @@ import CoreImage
 /**
  * Private static helper
  */
-extension RGBAImage {
+extension RGBARep {
    /**
     * Creates the correct bitmapInfo
     * - Note: used by RGBA+Init method

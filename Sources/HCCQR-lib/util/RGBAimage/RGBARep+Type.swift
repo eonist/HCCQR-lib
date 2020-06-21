@@ -2,7 +2,7 @@ import Foundation
 /**
  * - Fixme: ⚠️️ add doc
  */
-extension RGBAImage {
+extension RGBARep {
 //   internal typealias FunctorCall = ((Pixel) -> Pixel)
 //   internal typealias FunctorIndexCall = ((Int, Pixel) -> Pixel)
    /**

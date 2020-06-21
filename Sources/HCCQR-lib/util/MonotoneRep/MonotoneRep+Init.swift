@@ -16,7 +16,7 @@ extension MonotoneRep {
     * - parameter ciImg: The CIImage to convert to grayscaleimage
     */
    static func monotoneRep(ciImg: CIImage) throws -> MonotoneRep {
-      let bitMapInfo = RGBAImage.bitmapInfo
+      let bitMapInfo = RGBARep.bitmapInfo
       let colorSpace: CGColorSpace = CGColorSpaceCreateDeviceRGB()
       let size: GrayscaleRep.Size = (width: Int(ciImg.extent.width), height: Int(ciImg.extent.height))
       let capacity: Int = size.width * size.height

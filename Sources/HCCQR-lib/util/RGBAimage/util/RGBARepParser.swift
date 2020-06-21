@@ -4,15 +4,15 @@ import CoreImage
 /**
  * - Fixme: ⚠️️ clean up some of these methods, or delete them etc
  */
-public final class RGBAImageParser {
+public final class RGBARepParser {
    /**
     * Converts rgbaImage to uiimage / nsimage
     * - Parameter scale: the amount to scale the image by (screenScale)
     * - Note: used by the colorize process
     */
-   static func image(rgbaImage: RGBAImage, scale: CGFloat) throws -> Image {
+   static func image(rgbaImage: RGBARep, scale: CGFloat) throws -> Image {
       try autoreleasepool { // Ref: ⚠️️ https://stackoverflow.com/questions/25860942/is-it-necessary-to-use-autoreleasepool-in-a-swift-program
-         let cgImage: CGImage = try RGBAImageParser.cgImage(rgbaImage: rgbaImage)
+         let cgImage: CGImage = try RGBARepParser.cgImage(rgbaImage: rgbaImage)
          return ImageUtil.image(cgImage: cgImage, scale: scale) // Convert CGImage to UIImage
       }
    }
@@ -20,12 +20,12 @@ public final class RGBAImageParser {
 /**
  * Private static helper method
  */
-extension RGBAImageParser {
+extension RGBARepParser {
    /**
     * Converts rgbaImage to cgImage (works I guess)
     * - Note: alternative data -> img code, might be faster?: https://stackoverflow.com/questions/51372245/swift-covert-byte-array-into-ciimage
     */
-   private static func cgImage(rgbaImage: RGBAImage, useGrayscale: Bool = false) throws -> CGImage {
+   private static func cgImage(rgbaImage: RGBARep, useGrayscale: Bool = false) throws -> CGImage {
       // We use autorelease Because CoreGraphics is not handled by ARC (like all other C libraries),
       // you need to wrap your code with with an autorelease, even in Swift.
       // Particularly if you are not on the main thread (which you should not be, if CoreGraphics is involved... .userInitiated or lower is appropriate).
@@ -47,7 +47,7 @@ extension RGBAImageParser {
    /**
     * Experimental (⚠️️ Not working, not used by anything ⚠️️)
     */
-   private static func ciImg(rgbaImage: RGBAImage) -> CIImage {
+   private static func ciImg(rgbaImage: RGBARep) -> CIImage {
       let colorSpace: CGColorSpace = CGColorSpaceCreateDeviceRGB() // The color space that the image is defined in. It must be a Quartz 2D color space (CGColorSpace). Pass nil for images that don’t contain color data (such as elevation maps, normal vector maps, and sampled function tables).
       // Fixme: ⚠️️ convert to grayscale instead, its prob faster
       var bitmapInfo: UInt32 = CGBitmapInfo.byteOrder32Big.rawValue
@@ -77,7 +77,7 @@ extension RGBAImageParser {
     * - Note: The composite method uses this method
     * - Note: Basically monotone not grayscale
     */
-   static func ciImg2(rgbaImage: RGBAImage, useGrayscale: Bool) throws -> CIImage {
+   static func ciImg2(rgbaImage: RGBARep, useGrayscale: Bool) throws -> CIImage {
 //      Swift.print("ciImg2")
       let format: CIFormat = .RGBA8 //.BGRA8 // .RGBA8// .ARGB8//.ABGR8// // A pixel format constant. See Pixel Formats.
       let colorSpace: CGColorSpace = useGrayscale ? CGColorSpaceCreateDeviceGray() : CGColorSpaceCreateDeviceRGB()//CGColorSpaceCreateDeviceRGB() // The color space that the image is defined in. It must be a Quartz 2D color space (CGColorSpace). Pass nil for images that don’t contain color data (such as elevation maps, normal vector maps, and sampled function tables).
@@ -90,7 +90,7 @@ extension RGBAImageParser {
     * ⚠️️Untested ⚠️️
     * ref: https://stackoverflow.com/a/51380146/5389500 (also has pointer while loop)
     */
-   func ciImg3(rgbaImage: RGBAImage) -> CIImage? {
+   func ciImg3(rgbaImage: RGBARep) -> CIImage? {
       // 4 bytes(rgba channels) for each pixel
       let bytesPerPixel: Int = 4
       // (8 bits per each channel)
@@ -135,7 +135,7 @@ extension RGBAImageParser {
     * ref https://developer.apple.com/documentation/coreimage/cicontext/1437897-render
     * The idea with this method is to convert RGBAImage.pixels into CICOntext, and use apples QR reader directly with the CIContext, instead of cIimage
     */
-   static func ciContext(rgbaImage: RGBAImage) {
+   static func ciContext(rgbaImage: RGBARep) {
       //
 //      CIContext.render(_ image: CIImage,
 //             toBitmap data: UnsafeMutableRawPointer,

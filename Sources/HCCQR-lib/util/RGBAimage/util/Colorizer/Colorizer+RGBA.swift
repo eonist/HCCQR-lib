@@ -20,8 +20,8 @@ extension Colorizer {
     *   - colorMap: color rule-set (darkmode ability is possible epending on what colormap is used)
     *   - multipliers: scaling
     */
-   static func colorize(monotoneImages: [MonotoneRep], colorMap: ColorMap, multipliers: Multipliers) -> RGBAImage {
-      let size: RGBAImage.Size = monotoneImages[0].size
+   static func colorize(monotoneImages: [MonotoneRep], colorMap: ColorMap, multipliers: Multipliers) -> RGBARep {
+      let size: RGBARep.Size = monotoneImages[0].size
       let capacity: Int = monotoneImages[0].capacity
       let pixels = UnsafeMutableBufferPointer<Pixel>.allocate(capacity: capacity) // Create a new array // pixels.reserveCapacity(size.width * size.height)
       (0..<size.height).indices.forEach { y in // every y pixel
@@ -35,7 +35,7 @@ extension Colorizer {
          }
       }
       monotoneImages.forEach { $0.deInit() } // Avoids mem leak // guard pixels.count == size.width * size.height else { throw NSError(domain: "missing some pixels", code: 0) } // Check if array has all the pixels
-      let rgbaImage: RGBAImage = RGBAImageModifier.scale(pixels: pixels, size: (size.width, size.height), multipliers: multipliers)
+      let rgbaImage: RGBARep = RGBARepModifier.scale(pixels: pixels, size: (size.width, size.height), multipliers: multipliers)
       pixels.deallocate() // ⚠️️ New, so might not work, this deallocates the pixels once they are not needed anymore
       return rgbaImage
    }

@@ -3,7 +3,7 @@ import CoreImage
 /**
  * - Fixme: ⚠️️ Possibly make these .init, or add them to a RGBAUtil class?
  */
-extension RGBAImage {
+extension RGBARep {
    /**
     * Converts an Image to an rgbaImage
     * - Abstract: RGBAImage holds the individual pixels of an image in an array (also stores the size of an image)
@@ -13,7 +13,7 @@ extension RGBAImage {
     * - Important: ⚠️️ Used only for testing
     * - Parameter image: An UIImage or NSImage
     */
-   internal static func rgbaImage(image: Image) throws -> RGBAImage {
+   internal static func rgbaImage(image: Image) throws -> RGBARep {
       //⚠️️ the bellow line is a temp fix, could hurt performance
       guard let cgImage: CGImage = ImageUtil.cgImage(image: image) else { throw NSError(domain: "rgbaImage - Unable to get cgImage", code: 0) }
       return try rgbaImage(cgImage: cgImage)
@@ -22,18 +22,18 @@ extension RGBAImage {
 /**
  * Private helper methods
  */
-extension RGBAImage {
+extension RGBARep {
    /**
     * cgImage -> rgbaImage (new)
     */
-   private static func rgbaImage(cgImage: CGImage) throws -> RGBAImage {
+   private static func rgbaImage(cgImage: CGImage) throws -> RGBARep {
       let size: Size = (width: Int(cgImage.width), height: Int(cgImage.height))
       let bytesPerRow: Int = size.width * 4 // We multiply per 4 because of the 4 channels, RGBA
       let capacity: Int = size.width * size.height
       let imageData = UnsafeMutablePointer<Pixel>.allocate(capacity: capacity)
       //      Swift.print("cgImage.colorSpace:  \(String(describing: cgImage.colorSpace))")
       let colorSpace: CGColorSpace = CGColorSpaceCreateDeviceRGB()
-      let bitMapInfo = RGBAImage.bitmapInfo
+      let bitMapInfo = RGBARep.bitmapInfo
       guard let cgContext = CGContext(data: imageData, width: size.width, height: size.height, bitsPerComponent: 8, bytesPerRow: bytesPerRow, space: colorSpace, bitmapInfo: bitMapInfo) else { throw NSError(domain: "rgbaImage - Unable to create rgbaImage", code: 0) }
       cgContext.draw(cgImage, in: .init(origin: .zero, size: .init(width: cgImage.width, height: cgImage.height))) // draws the cgImage into the context
       let pixels = UnsafeMutableBufferPointer<Pixel>(start: imageData, count: capacity)
@@ -43,7 +43,7 @@ extension RGBAImage {
 /**
  * Experimental
  */
-extension RGBAImage {
+extension RGBARep {
    /**
     * Alternative, might be more optimized
     * - Note: Not in use ⚠️️

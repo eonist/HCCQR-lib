@@ -25,7 +25,7 @@ extension Writer {
       if !ciImgs.contains(where: { $0 == nil }) { // Makes sure all images finished (aka no nil values)
          let ciImages: [CIImage] = ciImgs.compactMap { $0 } // Removes nils
          let colorMap: Colorizer.ColorMap = Colorizer.colorMap(useDarkMode: useDarkMode)
-         guard let rgbaImage: RGBAImage = try? Colorizer.colorize(ciImages: ciImages, colorMap: colorMap, multipliers: multipliers) else { onComplete(.failure(.unableToCreateColorizedImage)); return }
+         guard let rgbaImage: RGBARep = try? Colorizer.colorize(ciImages: ciImages, colorMap: colorMap, multipliers: multipliers) else { onComplete(.failure(.unableToCreateColorizedImage)); return }
          onComplete(.success(rgbaImage))
       }
    }

@@ -83,9 +83,9 @@ extension ColorExtractionTest {
       _ = image
       //
       guard let images: Splitter.RGBImages = { Optional((UIImage(), UIImage(), UIImage())) }()/*RGBAImage.split(image: image)*/ else { fatalError("err") }
-      guard let r: RGBAImage = try? .rgbaImage(image: images.r) else { return }
-      guard let g: RGBAImage = try? .rgbaImage(image: images.g) else { return }
-      guard let b: RGBAImage = try? .rgbaImage(image: images.b) else { return }
+      guard let r: RGBARep = try? .rgbaImage(image: images.r) else { return }
+      guard let g: RGBARep = try? .rgbaImage(image: images.g) else { return }
+      guard let b: RGBARep = try? .rgbaImage(image: images.b) else { return }
       _ = r
       _ = g
       _ = b
