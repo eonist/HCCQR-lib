@@ -31,7 +31,7 @@ extension Splitter {
             // - Fixme: ⚠️️ Benchmark the composition process as well
             // - Fixme: ⚠️️ Figure out how to return qrImg even if data cant be read by it,
             // - Fixme: ⚠️️ or look into tests, if they can help the split method etc
-            let qrImg: CIImage? = try? Compositor.composite(grayscaleImages: [channel.element.first, channel.element.second]) // compositeDEPRECATD(first: channel.element.first, second: channel.element.second)
+            let qrImg: CIImage? = try? Compositor.composite(grayscaleRep: [channel.element.first, channel.element.second]) // compositeDEPRECATD(first: channel.element.first, second: channel.element.second)
             DispatchQueue.main.async { // We need to go on the mainthread to manipulate array
                onCompositeComplete(i: channel.offset, qrImg: qrImg, qrImgs: &qrImgs, channels: channels, onComplete: onComplete)
             }

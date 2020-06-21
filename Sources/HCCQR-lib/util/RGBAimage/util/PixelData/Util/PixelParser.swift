@@ -9,10 +9,8 @@ final class PixelParser {
     * Get strength of a color against another
     * - Note: 100% percentage = 255
     * - Abstract: we calc how similar a color is to another in percentage 99% a color is 99% cyan, 88% magenta, 22% green etc,
-    * - Abstract: we calc how similar a color is to another in percentage 99% a color is 99% cyan, 88% magenta, 22% green etc,
+    * - Discussion: the problem with this method is that one channel can be totally off and other can be exact same and it still return true, it should fail if one channel is totally off, but since we do the bool assert in conjunction with this method, then it works
     * - Fixme: ⚠️️ figure out how to divide and substract with UInt8 etc, look at existing code
-    * - Fixme: ⚠️️ test red against green etc
-    * - Fixme: ⚠️️ should deviation in the other channels account for the same as deviation in the dominant channel etc?
     * - Fixme: ⚠️️ It might be the case that if we should also limit the combined values of difference. say if R,B combined are more than 50% off, then its not a match. etc. It might be valuable to make advance tests, of how to match colors
     * - Fixme: ⚠️️ rename to commonality? use threasure.com to find better name?
     * - Important: ⚠️️⚠️️⚠️️ has to be used in conjunction with the isColorish method, since this only returns the intensity of the output pixel, and is only valid if the isColorish method is within thresholds etc
@@ -26,6 +24,7 @@ final class PixelParser {
     */
    static func similarity(a: Pixel, b: Pixel) -> UInt8 {
 //      - Fixme: ⚠️️ do the subtractingReportingOverflow etc here
+      //
       let distR: Int = abs(Int(a.r) - Int(b.r))
       let distG: Int = abs(Int(a.g) - Int(b.g))
       let distB: Int = abs(Int(a.b) - Int(b.b))

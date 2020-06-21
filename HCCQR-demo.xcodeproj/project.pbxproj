@@ -33,6 +33,7 @@
 		F143EC3323FA9C7A0006743C /* MonotoneRep+Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = F143EC3123FA9C7A0006743C /* MonotoneRep+Type.swift */; };
 		F143EC3623FAB8DE0006743C /* UInt8Modifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = F143EC3523FAB8DE0006743C /* UInt8Modifier.swift */; };
 		F143EC3723FAB8DE0006743C /* UInt8Modifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = F143EC3523FAB8DE0006743C /* UInt8Modifier.swift */; };
+		F1467654249F5FAC009D392A /* UInt8+Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1467653249F5FAC009D392A /* UInt8+Const.swift */; };
 		F1471FBE248C0007008A01AD /* Buffer+RGBA+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E5DC0423F9802300605775 /* Buffer+RGBA+Debug.swift */; };
 		F1471FBF248C0016008A01AD /* RGBARepParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18A4D7F239F11040065078A /* RGBARepParser.swift */; };
 		F1471FC0248C001B008A01AD /* RGBARepModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18A4D82239F11ED0065078A /* RGBARepModifier.swift */; };
@@ -319,6 +320,7 @@
 		F143EC2E23FA98390006743C /* MonotoneRep+Init.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MonotoneRep+Init.swift"; sourceTree = "<group>"; };
 		F143EC3123FA9C7A0006743C /* MonotoneRep+Type.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MonotoneRep+Type.swift"; sourceTree = "<group>"; };
 		F143EC3523FAB8DE0006743C /* UInt8Modifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UInt8Modifier.swift; sourceTree = "<group>"; };
+		F1467653249F5FAC009D392A /* UInt8+Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UInt8+Const.swift"; sourceTree = "<group>"; };
 		F1484AD623AE657F001E5CE3 /* HCCQR-lib.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "HCCQR-lib.entitlements"; sourceTree = "<group>"; };
 		F14DDE1423C0E26A00FA0022 /* BulkPhotoTest+Handler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BulkPhotoTest+Handler.swift"; sourceTree = "<group>"; };
 		F14DDE1623C0E27800FA0022 /* BulkPhotoTest+Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BulkPhotoTest+Core.swift"; sourceTree = "<group>"; };
@@ -620,6 +622,7 @@
 				F168527F2213443700C27EAA /* UInt8Parser.swift */,
 				F143EC3523FAB8DE0006743C /* UInt8Modifier.swift */,
 				F1D8A67023E842B000F17A81 /* UInt8+Extension.swift */,
+				F1467653249F5FAC009D392A /* UInt8+Const.swift */,
 				F165C207239F22A7005D30EC /* RangeUInt8.swift */,
 			);
 			path = util;
@@ -1304,6 +1307,7 @@
 				F181F10A23B9091400145DEA /* GrayscaleRep.swift in Sources */,
 				F1B698E0239E6D410085B3C9 /* HCCQRVersion.swift in Sources */,
 				F18A4D83239F11ED0065078A /* RGBARepModifier.swift in Sources */,
+				F1467654249F5FAC009D392A /* UInt8+Const.swift in Sources */,
 				F1E645A423940AC9008D2ABE /* Image+Extension.swift in Sources */,
 				F143EC2C23FA97B60006743C /* MonotoneRep+Getter.swift in Sources */,
 				F1AF9D3623E2D7630085DA0C /* CVImageBufferUtil+Type.swift in Sources */,

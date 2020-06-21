@@ -14,7 +14,7 @@ extension Pixel {
     * - Fixme: ⚠️️ so assert is cheaper than calculating strength again
     * - Parameters:
     *   - assert: isSimilar or not
-    *   - strength: 0 - 255
+    *   - strength: 0 - 255 (0-100%)
     */
    typealias Similarity = (assert: Bool, strength: UInt8)
 }

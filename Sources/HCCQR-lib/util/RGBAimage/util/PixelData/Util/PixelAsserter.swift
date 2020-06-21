@@ -28,7 +28,7 @@ class PixelAsserter {
     *   - halfThreshold: with threshold more or less (I.e: +25, -25 from a value)
     *   - limit: used to avoid going out of bound
     */
-   static func isColorish(a: Pixel.RGB, b: Pixel.RGB, halfThreshold: UInt8, limit: Pixel.Limit = Pixel.defaultLimit) -> Colorish {
+   internal static func isColorish(a: Pixel.RGB, b: Pixel.RGB, halfThreshold: UInt8, limit: Pixel.Limit = Pixel.defaultLimit) -> Colorish {
       let r: Bool = isRedish(a: a, b: b, halfThreshold: halfThreshold, limit: limit)
       let g: Bool = isGreenish(a: a, b: b, halfThreshold: halfThreshold, limit: limit)
       let b: Bool = isBlueish(a: a, b: b, halfThreshold: halfThreshold, limit: limit)

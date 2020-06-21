@@ -41,6 +41,32 @@ extension RGBARep {
    }
 }
 /**
+ * Helper methods
+ */
+//extension RGBARep {
+//   /**
+//    * Makes a new RGBA instance filled with the same pixel
+//    * - Note: Used by compositor classes
+//    * - Abstract: Used to create unified black RGBAImage etc
+//    */
+//   internal static func rgbaRep(pixel: Pixel, size: Size) -> RGBARep {
+//      let capacity: Int = size.width * size.height
+//      // fixme: ⚠️️ prob create the unmanaged pointer directly for better speed
+//      let pixels: [Pixel] = .init(repeating: pixel, count: capacity)
+//      return .rgbaRep(pixels: pixels, size: size)
+//   }
+//   /**
+//    * Makes a new RGBA instance from pixels and size
+//    * - Note: used to crate a new RGBAImage and to clone one
+//    * ## Examples: RGBARep.rgbaRep()
+//    */
+//   internal static func rgbaRep(pixels: [Pixel], size: Size) -> RGBARep {
+//      let unsafePixels = UnsafeMutableBufferPointer<Pixel>.allocate(capacity: pixels.count)
+//      _ = unsafePixels.initialize(from: pixels)
+//      return .init(pixels: unsafePixels, width: size.width, height: size.height)
+//   }
+//}
+/**
  * Experimental
  */
 extension RGBARep {
@@ -71,27 +97,8 @@ extension RGBARep {
  *
  */
 //extension RGBAImage {
-/**
- * Makes a new RGBA instance filled with the same pixel
- * - Note: Used by compositor classes
- * - Abstract: Used to create unified black RGBAImage etc
- */
-//   private static func rgbaImage(pixel: Pixel, size: Size) -> RGBAImage {
-//      let capacity: Int = size.width * size.height
-//      // fixme: ⚠️️ prob create the unmanaged pointer directly for better speed
-//      let pixels: [Pixel] = .init(repeating: pixel, count: capacity)
-//      return .rgbaImage(pixels: pixels, size: size)
-//   }
-//}
-/**
- * Makes a new RGBA instance from pixels and size
- * - Note: used to crate a new RGBAImage and to clone one
- */
-//static func rgbaImageDEPRECATED(pixels: [Pixel], size: Size) -> RGBAImage {
-//   let unsafePixels = UnsafeMutableBufferPointer<Pixel>.allocate(capacity: pixels.count)
-//   _ = unsafePixels.initialize(from: pixels)
-//   return .init(pixels: unsafePixels, width: size.width, height: size.height)
-//}
+
+
 
 /**
  * CIImage -> RGBAImage (⭐ new, works ⭐)

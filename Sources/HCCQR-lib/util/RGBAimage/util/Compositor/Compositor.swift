@@ -19,9 +19,10 @@ final class Compositor {
     * - Fixme: ⚠️️ Possibly simplify method with defering deinit of composite
     * - Fixme: ⚠️️ Defer deinit instead of having two deInit calls. Research this first, could make this method cleaner
     */
-   static func composite(grayscaleImages: [GrayscaleRep]) throws -> CIImage {
-      let grayscaleImage: GrayscaleRep = try composite(grayscaleImages: grayscaleImages)
-      guard let img: CIImage = try? Compositor.ciImage(grayscaleImage: grayscaleImage) else { grayscaleImage.deInit(); throw NSError(domain: "Unable to create img", code: 0) }
+   static func composite(grayscaleRep: [GrayscaleRep]) throws -> CIImage {
+      let grayscaleImage: GrayscaleRep = try composite(grayscaleImages: grayscaleRep) // smash two grayscaleReps together
+      // - Fixme: ⚠️️ this could be the problem
+      /*guard */ let img: CIImage = /*try? */ Compositor.ciImage(grayscaleImage: grayscaleImage) /* else { grayscaleImage.deInit(); throw NSError(domain: "Unable to create img", code: 0) }*/
       grayscaleImage.deInit() // We de-init the Img after we have consumed it to avoid mem leak
       return img
    }
@@ -48,7 +49,8 @@ extension Compositor {
     * - Parameter grayscaleImages: An array of RGBAImages to be composited together into 1 RGBAImage
     */
    private static func composite(grayscaleImages: [GrayscaleRep]) throws -> GrayscaleRep {
-      guard let first: GrayscaleRep = grayscaleImages.first else { throw NSError(domain: "Unable to composite - composite() - no first image available", code: 0) }
+      /*guard */let first: GrayscaleRep = grayscaleImages[0] // else { throw NSError(domain: "Unable to composite - composite() - no first image available", code: 0) }
+      // could be the problem that we use white, to avoid inverting, 
       let whiteImage: GrayscaleRep = .grayscaleRep(pixel: .white, size: first.size) // because white is 255
       return GrayscaleRep.process(input: whiteImage) { (index: Int, pixel: UInt8) -> UInt8 in // Loop things
          var pixel: UInt8 = pixel // - Fixme: ⚠️️ Maybe do reduce here?, definitly do reduce here!
@@ -62,7 +64,7 @@ extension Compositor {
    /**
     * New (⚠️️ experimental, untested, prob needs more research ⚠️️)
     */
-   private static func ciImage(grayscaleImage: GrayscaleRep) throws -> CIImage {
+   private static func ciImage(grayscaleImage: GrayscaleRep) /*throws*/ -> CIImage {
       let data: Data = .init(buffer: grayscaleImage.pixels)
       // - Fixme: ⚠️️ look for CIFormat for grayscale on google
       let format: CIFormat = .L8 //.BGRA8 // .RGBA8// .ARGB8//.ABGR8// // A pixel format constant. See Pixel Formats.

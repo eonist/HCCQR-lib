@@ -15,13 +15,15 @@ extension Pixel {
     * - Parameter ishColor: a color (dynamic / impure color) to check against self (self is static / pure colors)
     */
    func isSimilar(_ ishColor: Pixel) -> Similarity { // - Fixme: ⚠️️ Might not need to return a tuple, the strength alone may be enough
-      let colorish: PixelAsserter.Colorish = self.isColorish(ishColor)
+      let colorish: PixelAsserter.Colorish = self.isColorish(ishColor) // channels r,g,b are within the color
       // Continue here: 🏀
+         // Maybe we just store individual asserts for each channel? 👈
          // 👉 maybe try to figure out how similar some washed out colors are, percentage wise 👈
          // use the colorish.r,g,b values to find intensity,
          // think about amount of deviation etc
 //      let strength: UInt8 = colorish.isColorish ? PixelDataAsserter.naiveStrength(color: color, pixel: self) : 0 // if color is not with threshold, then strength is zero
-      let intensity = colorish.isColorish ? PixelParser.similarity(a: ishColor, b: self) : 0 // if not colorish, then return no intensity
+      // - Fixme: ⚠️️ Could be the problem, that we use .black instead of white, since we do an invert trick later, it could be wrong etc
+      let intensity = colorish.isColorish ? PixelParser.similarity(a: ishColor, b: self) : UInt8.black // if not colorish, then return no intensity
       return (assert: colorish.isColorish, strength: intensity)
    }
    /**
