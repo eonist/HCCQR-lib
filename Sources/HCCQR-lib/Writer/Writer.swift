@@ -19,9 +19,9 @@ extension Writer {
     */
    public static func image(data: Data, multipliers: Multipliers, qrConfig: HCCQRConfig = defaultQRConfig, useDarkMode: Bool = false, onComplete: @escaping OnImageComplete) {
       rgbaImage(data: data, multipliers: multipliers, qrConfig: qrConfig, useDarkMode: useDarkMode) { result in
-         guard let rgbaImg: RGBARep = try? result.get() else { onComplete(.failure(.unableToCreateRGBAImage(errMSG: result.errorStr))); return }
-         guard let image: Image = try? RGBARepParser.image(rgbaImage: rgbaImg, scale: CGFloat(multipliers.screen)) else { onComplete(.failure(.unableToConvertRGBAToImage)); return }
-         rgbaImg.deinitiate() // De alloc rgbaImage when it servers no purpouse anymore
+         guard let rgbaRep: RGBARep = try? result.get() else { onComplete(.failure(.unableToCreateRGBAImage(errMSG: result.errorStr))); return }
+         guard let image: Image = try? RGBARepParser.image(rgbaImage: rgbaRep, scale: CGFloat(multipliers.screen)) else { onComplete(.failure(.unableToConvertRGBAToImage)); return }
+         rgbaRep.deinitiate() // De alloc rgbaImage when it servers no purpouse anymore
          onComplete(.success(image))
       }
    }

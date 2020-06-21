@@ -110,9 +110,9 @@ extension HCCQRIOSTest {
       Swift.print("image.scale:  \(image.scale)")
       Swift.print("image.size:  \(image.size)")
       // create RGBAImage
-      guard let rgbaImage = try? RGBARep.rgbaImage(image: image) else { Swift.print("rbgaImg err"); return }
+      guard let rgbaRep = try? RGBARep.rgbaRep(image: image) else { Swift.print("rbgaImg err"); return }
       // create CIIMage
-      guard let ciImage: CIImage = try? RGBARepParser.ciImg2(rgbaImage: rgbaImage, useGrayscale: false) else { Swift.print("ciimg err"); return }
+      guard let ciImage: CIImage = try? RGBARepParser.ciImg2(rgbaRep: rgbaRep, useGrayscale: false) else { Swift.print("ciimg err"); return }
       // assert that CIMage match first CIImage
       Swift.print("ciImage.extent.width:  \(ciImage.extent.width)")
       Swift.print("ciImage.extent.height:  \(ciImage.extent.height)")

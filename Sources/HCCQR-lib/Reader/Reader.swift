@@ -21,7 +21,7 @@ extension Reader {
     *   - onComplete: Return Data and Meta-data in this completion-block
     */
    public static func dataAndMeta(imageBuffer: CVImageBuffer, crop: BufferRect, onComplete: @escaping OnGetDataAndMetaCompleted) {
-      guard let rgbaImg: RGBARep = try? CVImageBufferUtil.rgbaImage(imageBuffer: imageBuffer, crop: crop) else { onComplete(.failure(.unableToExtractRGBAImageFromCVBuffer)); return }
+      guard let rgbaImg: RGBARep = try? CVImageBufferUtil.rgbaRep(imageBuffer: imageBuffer, crop: crop) else { onComplete(.failure(.unableToExtractRGBAImageFromCVBuffer)); return }
       dataAndImages(rgbaImage: rgbaImg) { (result: Reader.DataAndImagesResult) in
          guard let dataAndImagesAndQuad: DataAndImages = try? result.get() else { onComplete(.failure(.unableToGetDataAndImages(msg: result.errorStr))); return }
          guard let data: Data = dataAndImagesAndQuad.data, let quad = dataAndImagesAndQuad.quad  else { onComplete(.failure(.unableToGetDataOrQuad)); return }

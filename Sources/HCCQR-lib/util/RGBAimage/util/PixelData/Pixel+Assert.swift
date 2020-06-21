@@ -29,6 +29,7 @@ extension Pixel {
    /**
     * Asserts if a pixel is sort of a color within a threshold
     * - Note: used by tests
+    * - Note: self is absolute color
     * - Parameter ishColor: the color to check if it is similar to self (a sort of red color for instance)
     * ## Examples:
     * let rgbaColor: RGBColor = (255, 0, 0, 255)

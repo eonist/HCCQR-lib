@@ -5,10 +5,13 @@ import Foundation
 extension Channel {
    typealias ChannelMap = [Pixel] // this seems to be still in use
    /**
-    * - Fixme: ⚠️️ Rename to Images?
+    * RGB
     */
-   typealias GrayscaleImages = (r: GrayscaleRep, g: GrayscaleRep, b: GrayscaleRep)
-   typealias Payload = Result<GrayscaleImages, Error>
+   typealias RGBRep = (r: GrayscaleRep, g: GrayscaleRep, b: GrayscaleRep)
+   /**
+    * - Fixme: ⚠️️ error is never used, figure out why etc
+    */
+   typealias Payload = Result<RGBRep, Error>
    typealias OnChannelsComplete = (Payload) -> Void
 }
 /**

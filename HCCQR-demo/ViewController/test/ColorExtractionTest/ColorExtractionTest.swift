@@ -1,5 +1,5 @@
 #if os(iOS)
-@testable import HCCQR_lib
+//@testable import HCCQR_lib
 import UIKit
 /**
  * - Fixme: ⚠️️ These are mostly visual tests, find something to unit-test
@@ -71,31 +71,6 @@ extension ColorExtractionTest {
       //      view.addSubview(imgView)
       //      imgView.frame.origin.y = 80*4
       //      guard let r:RGBAImage = RGBAImage.init(image: images.r!) else {return }
-   }
-   /**
-    * Second attempt at splitting colors into b&w layers
-    */
-   static func testComposition(view: UIView) {
-      let rgbColorTestView = RGBColorTestView(frame: .init(origin: .zero, size: .init(width: 300, height: 100)))
-      view.addSubview(rgbColorTestView)
-      //
-      guard let image: UIImage = rgbColorTestView.snapShot else { fatalError("err") }
-      _ = image
-      //
-      guard let images: Splitter.RGBImages = { Optional((UIImage(), UIImage(), UIImage())) }()/*RGBAImage.split(image: image)*/ else { fatalError("err") }
-      guard let r: RGBARep = try? .rgbaImage(image: images.r) else { return }
-      guard let g: RGBARep = try? .rgbaImage(image: images.g) else { return }
-      guard let b: RGBARep = try? .rgbaImage(image: images.b) else { return }
-      _ = r
-      _ = g
-      _ = b
-//      guard let composite = try? Compositor.composite(rgbaImages: [r, g/*,b*/]/*, invert: false*/) else { return }
-      //
-      Swift.print("⚠️️ the bellow may not work anymore, scale is new ⚠️️")
-//      let img: Image? = try? RGBAImageUtil.image(rgbaImage: composite, scale: image.scale)
-//      let imgView: UIImageView = .init(image: img)
-//      view.addSubview(imgView)
-//      imgView.frame.origin.y = 200
    }
    /**
     * First attempt at splitting colors into b&w layers

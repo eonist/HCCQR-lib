@@ -6,7 +6,7 @@ import UIKit
 extension UIView {
    /**
     * Creates UIImage from a view
-    * - Important: ⚠️️ if you get the "invalid context 0x0" error, make sure your View has a frame. view.bounds must not be .zerp
+    * - Important: ⚠️️ if you get the "invalid context 0x0" error, make sure your View has a frame. view.bounds must not be .zero
     * - Fixme: ⚠️️ Add a throw error if frame is zero
     */
    var snapShot: UIImage? {

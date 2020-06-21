@@ -9,14 +9,15 @@ extension RGBARep {
     * - Abstract: RGBAImage holds the individual pixels of an image in an array (also stores the size of an image)
     * - Fixme: ⚠️️ make this a init?
     * - Fixme: ⚠️️ move to test scope since its only for testing
+    * - Fixme: ⚠️️ move to RGBARepParser?
     * - Note: this init is fast. trying other ways to get pixel could have some usefulness, but shouldn't be prioritized
     * - Important: ⚠️️ Used only for testing
     * - Parameter image: An UIImage or NSImage
     */
-   internal static func rgbaImage(image: Image) throws -> RGBARep {
+   internal static func rgbaRep(image: Image) throws -> RGBARep {
       //⚠️️ the bellow line is a temp fix, could hurt performance
       guard let cgImage: CGImage = ImageUtil.cgImage(image: image) else { throw NSError(domain: "rgbaImage - Unable to get cgImage", code: 0) }
-      return try rgbaImage(cgImage: cgImage)
+      return try rgbaRep(cgImage: cgImage)
    }
 }
 /**
@@ -26,7 +27,7 @@ extension RGBARep {
    /**
     * cgImage -> rgbaImage (new)
     */
-   private static func rgbaImage(cgImage: CGImage) throws -> RGBARep {
+   private static func rgbaRep(cgImage: CGImage) throws -> RGBARep {
       let size: Size = (width: Int(cgImage.width), height: Int(cgImage.height))
       let bytesPerRow: Int = size.width * 4 // We multiply per 4 because of the 4 channels, RGBA
       let capacity: Int = size.width * size.height

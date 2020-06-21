@@ -1,5 +1,5 @@
 #if os(iOS)
-@testable import HCCQR_lib
+//@testable import HCCQR_lib
 import UIKit
 //@testable import HCCQR_lib_iOS
 /**

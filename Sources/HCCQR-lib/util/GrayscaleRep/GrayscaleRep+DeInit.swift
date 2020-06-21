@@ -10,3 +10,14 @@ extension GrayscaleRep {
       pixels.deallocate()
    }
 }
+/**
+ * For arrays
+ */
+extension Array where Element == GrayscaleRep {
+   /**
+    * deInit multiple reps
+    */
+   func deInit() {
+      self.forEach { $0.deInit() }
+   }
+}

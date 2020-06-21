@@ -13,7 +13,7 @@ extension ViewController {
       let path: String = Bundle.main.resourcePath! + "/temp.bundle/HCCQR.png" //HCCQR7.png, HCCQR12.png,HCCQR13.jpg
       guard let image = Image(contentsOfFile: path) else { Swift.print("err getting img"); return }
       Swift.print("UIImage.size:  \(image.size)")
-      guard let rgbaImage: RGBARep = try? CVImageBufferUtil.rgbaImage(image: image) else { Swift.print("err getting rgbImage"); return }
+      guard let rgbaImage: RGBARep = try? CVImageBufferUtil.rgbaRep(image: image) else { Swift.print("err getting rgbImage"); return }
 //      guard let img = try? RGBAImageUtil.image(rgbaImage: rgbaImage, scale: 1) else { Swift.print("err making img"); return }
 //      let imgView: UIImageView = .init(image: img)
 //      self.view.addSubview(imgView)

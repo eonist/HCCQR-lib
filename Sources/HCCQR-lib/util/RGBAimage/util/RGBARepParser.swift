@@ -7,8 +7,10 @@ import CoreImage
 public final class RGBARepParser {
    /**
     * Converts rgbaImage to uiimage / nsimage
-    * - Parameter scale: the amount to scale the image by (screenScale)
     * - Note: used by the colorize process
+    * - Parameters:
+    *   - scale: the amount to scale the image by (screenScale)
+    *   - rgbaImage: rgbaRep to convert to image
     */
    static func image(rgbaImage: RGBARep, scale: CGFloat) throws -> Image {
       try autoreleasepool { // Ref: ⚠️️ https://stackoverflow.com/questions/25860942/is-it-necessary-to-use-autoreleasepool-in-a-swift-program

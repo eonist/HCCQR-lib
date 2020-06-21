@@ -1,6 +1,6 @@
 #if os(iOS)
 import UIKit
-@testable import HCCQR_lib
+//@testable import HCCQR_lib
 /**
  * This class creates a grid of colors to simulate a HCCQR pallet (For testing reading HCCQR)
  * - Note: These are the channel filled,unfilled represenations: (black = 1, white = 0)
@@ -12,6 +12,9 @@ import UIKit
  * - Note: layer 1 needs green and blue (the other colors are blank)
  * - Note: layer 2 needs red and blue (the other colors are blank)
  * - Fixme: ⚠️️ This needs something to test
+ * ## Examples
+ * let demoView = FakeHCCQRView.init(.init(origin: .init(x: 0, y: 0), size: .init(width: 100, height: 100)))
+ * addSubview(demoView)
  */
 class FakeHCCQRView: UIView {
    override init(frame: CGRect) {
