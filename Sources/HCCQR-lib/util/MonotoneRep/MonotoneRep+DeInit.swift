@@ -2,7 +2,7 @@ import Foundation
 /**
  * DeInit
  */
-extension MonotoneImage {
+extension MonotoneRep {
    /**
     * You can debug if it's always deinited by counting init() calls
     */

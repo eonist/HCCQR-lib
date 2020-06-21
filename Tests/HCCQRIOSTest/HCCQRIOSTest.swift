@@ -3,21 +3,21 @@ import XCTest
 
 class HCCQRIOSTest: XCTestCase {
    func testExample() {
-//      simpleTests()
-      advanceTests()
+      simpleTests()
+//      advanceTests()
    }
    /**
     * Utility tests etc
     */
    func simpleTests() {
       Swift.print("simpleTests")
-      XCTAssertEqual(ScaleTesting.testScalingRGBAImage(), 4)
-      XCTAssertTrue(MonoPixelColorization.testColorizingMonoPixel()) // ✅ b&w-pixels (mono) to color-pixels
-      XCTAssertTrue(PixelTest.testColorAssertionWithinThresholdForPixel()) // ✅
-      XCTAssertTrue(PixelTest.isColorishTest()) // ✅
-      XCTAssertTrue(PixelTest.isWashedOutColorishTest()) // ✅
-      XCTAssertTrue(QRTesting.testQRGeneration()) // ?
-      testCIImage() // ✅
+//      XCTAssertEqual(ScaleTesting.testScalingRGBAImage(), 4)
+//      XCTAssertTrue(MonoPixelColorization.testColorizingMonoPixel()) // ✅ b&w-pixels (mono) to color-pixels
+//      XCTAssertTrue(ColorishTest.testThreshold()) // ✅
+//      XCTAssertTrue(ColorishTest.testColorish()) // ✅
+      XCTAssertTrue(ColorishTest.testWashedOutColor()) // ✅
+//      XCTAssertTrue(QRTesting.testQRGeneration()) // ?
+//      testCIImage() // ✅
    }
    /**
     * More elaborate tests

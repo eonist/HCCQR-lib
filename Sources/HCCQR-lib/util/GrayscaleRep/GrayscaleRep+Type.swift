@@ -2,7 +2,7 @@ import Foundation
 /**
  * New
  */
-extension GrayscaleImage {
+extension GrayscaleRep {
    internal typealias Size = (width: Int, height: Int)
    // - Fixme: ⚠️️ rename to Functorcall etc
    internal typealias FunctorCall = ((Pixel) -> UInt8)

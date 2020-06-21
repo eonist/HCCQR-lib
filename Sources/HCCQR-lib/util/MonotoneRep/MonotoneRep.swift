@@ -1,21 +1,20 @@
 import Foundation
 /**
- * We extrate data from HCCQR-images by splitting image into grayScale images, then we composite them into QR-Image representations, and then we get data from the qr images, and combine the qr data into one data item
+ * We create HCCQR-images from QR-Image monotone representations
  * - Fixme: ⚠️️ You have to dealocate the memory at some point, see: https://stackoverflow.com/questions/34750166/how-to-use-unsafemutablebufferpointer
- * - Fixme: ⚠️️ rename to GrayscaleRep?
  */
-struct GrayscaleImage {
-   var pixels: UnsafeMutableBufferPointer<UInt8>
+struct MonotoneRep {
+   var pixels: UnsafeMutableBufferPointer<Bool>
    var width: Int
    var height: Int
    /**
     * Creates a copy if you already have the pixels and width height
     * - Parameters:
-    *   - pixels: The pixels to store
+    *   - pixels: The pixels to store (black or white)
     *   - width: width of the canvas
     *   - height: height of the canvas
     */
-   init(pixels: UnsafeMutableBufferPointer<UInt8>, width: Int, height: Int) {
+   init(pixels: UnsafeMutableBufferPointer<Bool>, width: Int, height: Int) {
       self.pixels = pixels
       self.width = width
       self.height = height

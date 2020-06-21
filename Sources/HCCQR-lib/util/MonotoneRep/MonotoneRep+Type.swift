@@ -2,6 +2,6 @@ import Foundation
 /**
  * New
  */
-extension MonotoneImage {
+extension MonotoneRep {
    internal typealias Size = (width: Int, height: Int)
 }

@@ -3,7 +3,7 @@ import Foundation
 /**
  * - Fixme: ⚠️️ Make tests that uses the bland colormap?
  */
-final class PixelTest {
+final class ColorishTest {
    /**
     * Color assertion
     */

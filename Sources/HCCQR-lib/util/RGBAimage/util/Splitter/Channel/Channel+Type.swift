@@ -7,7 +7,7 @@ extension Channel {
    /**
     * - Fixme: ⚠️️ Rename to Images?
     */
-   typealias GrayscaleImages = (r: GrayscaleImage, g: GrayscaleImage, b: GrayscaleImage)
+   typealias GrayscaleImages = (r: GrayscaleRep, g: GrayscaleRep, b: GrayscaleRep)
    typealias Payload = Result<GrayscaleImages, Error>
    typealias OnChannelsComplete = (Payload) -> Void
 }

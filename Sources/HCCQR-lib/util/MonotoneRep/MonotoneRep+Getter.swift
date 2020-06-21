@@ -2,11 +2,11 @@ import Foundation
 /**
  * Getter
  */
-extension MonotoneImage {
+extension MonotoneRep {
    /**
     * Convenience
     */
-   var size: GrayscaleImage.Size { (width: width, height: height) }
+   var size: GrayscaleRep.Size { (width: width, height: height) }
    /**
     * Amount of pixels MonotoneImage can hold
     * - Note: used by Colorizer.colorize

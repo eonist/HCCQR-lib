@@ -2,7 +2,7 @@ import Foundation
 /**
  * Setter
  */
-extension GrayscaleImage {
+extension GrayscaleRep {
    /**
     * Populate GrayscaleImage with 0 - 255 values based on the grayscale equivilent (R, G, B) channel
     * - Abstract: Get grayscale UInt8 intensity for a (R, G, B) channel
@@ -14,7 +14,7 @@ extension GrayscaleImage {
     *   - output: The GrayScaleImage to populate pixels into (we only need [UInt8])
     *   - functor: A function which manipulates each pixel
     */
-   static func process(input: RGBAImage, output: GrayscaleImage, functor: FunctorCall) -> GrayscaleImage {
+   static func process(input: RGBAImage, output: GrayscaleRep, functor: FunctorCall) -> GrayscaleRep {
       (0..<input.height).forEach { y in
          DispatchQueue.concurrentPerform(iterations: input.width) { x in // ⚠️️ Optimization initiative
             let index: Int = y * input.width + x // Pixel index
@@ -29,7 +29,7 @@ extension GrayscaleImage {
     * - Fixme: ⚠️️ We can prob stride to get better speed
     * - Fixme: ⚠️️ Using a pointer might speed up this method
     */
-   static func process(input: GrayscaleImage, functor: FunctorIndexCall) -> GrayscaleImage {
+   static func process(input: GrayscaleRep, functor: FunctorIndexCall) -> GrayscaleRep {
       (0..<input.height).forEach { y in
          DispatchQueue.concurrentPerform(iterations: input.width) { x in // ⚠️️ Optimization initiative
             let index: Int = y * input.width + x

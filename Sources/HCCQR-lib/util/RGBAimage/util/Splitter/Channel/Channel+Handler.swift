@@ -10,10 +10,10 @@ extension Channel {
     * 3. Returns 3 grayscale channels for R,G,B
     * - Fixme: ⚠️️ simplify the deinit, refactor etc, how?
     */
-   static func onChannelComplete(i: Int, channel: GrayscaleImage, channels: inout [GrayscaleImage?], rgbaImg: RGBAImage, onComplete: OnChannelsComplete) {
+   static func onChannelComplete(i: Int, channel: GrayscaleRep, channels: inout [GrayscaleRep?], rgbaImg: RGBAImage, onComplete: OnChannelsComplete) {
       channels[i] = channel // it matters which order the qrImages came in when you stitch them back together
       if !channels.contains(where: { $0 == nil }) { // makes sure all images finished (fastest way to check for nil)
-         let arr: [GrayscaleImage] = channels.compactMap { $0 } // removes optionality
+         let arr: [GrayscaleRep] = channels.compactMap { $0 } // removes optionality
          onComplete(.success((arr[0], arr[1], arr[2])))
          rgbaImg.deinitiate() // deinit rgbaImage after it has been consumed, to avoid memleak
       }

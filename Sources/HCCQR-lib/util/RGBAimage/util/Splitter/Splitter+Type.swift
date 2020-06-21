@@ -11,5 +11,5 @@ extension Splitter {
    /**
     * - Fixme: ⚠️️ should prob use array etc?
     */
-   typealias ChannelPair = (first: GrayscaleImage, second: GrayscaleImage)
+   typealias ChannelPair = (first: GrayscaleRep, second: GrayscaleRep)
 }

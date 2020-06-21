@@ -2,7 +2,7 @@ import Foundation
 /**
  * Getter
  */
-extension GrayscaleImage {
+extension GrayscaleRep {
    /**
     * Convenience
     */

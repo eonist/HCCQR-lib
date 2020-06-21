@@ -1,7 +1,7 @@
 import Foundation
 import CoreImage
 
-extension MonotoneImage {
+extension MonotoneRep {
    /**
     * B&W-QR-CIImage -> GrayscaleImage (⚠️️ new, untested ⚠️️)
     * 1. CIImage comes in
@@ -15,10 +15,10 @@ extension MonotoneImage {
     * - Caution: ⚠️️ Only works if CIImage is pure black and white, which is the case for generated qr images
     * - parameter ciImg: The CIImage to convert to grayscaleimage
     */
-   static func monotoneImage(ciImg: CIImage) throws -> MonotoneImage {
+   static func monotoneRep(ciImg: CIImage) throws -> MonotoneRep {
       let bitMapInfo = RGBAImage.bitmapInfo
       let colorSpace: CGColorSpace = CGColorSpaceCreateDeviceRGB()
-      let size: GrayscaleImage.Size = (width: Int(ciImg.extent.width), height: Int(ciImg.extent.height))
+      let size: GrayscaleRep.Size = (width: Int(ciImg.extent.width), height: Int(ciImg.extent.height))
       let capacity: Int = size.width * size.height
       let bytesPerRow: Int = size.width * 4 // We multiply per 4 because of the 4 channels, RGBA
       let imageData = UnsafeMutablePointer<Pixel>.allocate(capacity: capacity)

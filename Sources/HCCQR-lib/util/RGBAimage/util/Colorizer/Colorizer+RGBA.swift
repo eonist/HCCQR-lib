@@ -20,7 +20,7 @@ extension Colorizer {
     *   - colorMap: color rule-set (darkmode ability is possible epending on what colormap is used)
     *   - multipliers: scaling
     */
-   static func colorize(monotoneImages: [MonotoneImage], colorMap: ColorMap, multipliers: Multipliers) -> RGBAImage {
+   static func colorize(monotoneImages: [MonotoneRep], colorMap: ColorMap, multipliers: Multipliers) -> RGBAImage {
       let size: RGBAImage.Size = monotoneImages[0].size
       let capacity: Int = monotoneImages[0].capacity
       let pixels = UnsafeMutableBufferPointer<Pixel>.allocate(capacity: capacity) // Create a new array // pixels.reserveCapacity(size.width * size.height)

@@ -19,11 +19,11 @@ extension Channel {
     *   - onComplete: notify when process has completed
     */
    static func channels(rgbaImg: RGBAImage, channelMap: ChannelMap = channelMap, onComplete:@escaping OnChannelsComplete) {
-      var grayscaleChannels: [GrayscaleImage?] = [GrayscaleImage?](repeating: nil, count: channelMap.count) // Fixme: ⚠️️ we could use unmanaged pointer with capacity as well, might be faster
+      var grayscaleChannels: [GrayscaleRep?] = [GrayscaleRep?](repeating: nil, count: channelMap.count) // Fixme: ⚠️️ we could use unmanaged pointer with capacity as well, might be faster
       let similarities: [PixelDataSimilarity] = Channel.similarities(channelMap: channelMap)
       similarities.enumerated().forEach { offset, similarity in // 3 assertions
          DispatchQueue.global(qos: .userInitiated).async { // - Fixme: ⚠️️ This could be the cause of random error bug, maybe drop the async and just do it on current thread
-            let grayscaleChannel: GrayscaleImage = grayChannel(rgbaImg: rgbaImg, asserter: similarity) // Finds the red-channel, blue-channel, green-channel
+            let grayscaleChannel: GrayscaleRep = grayChannel(rgbaImg: rgbaImg, asserter: similarity) // Finds the red-channel, blue-channel, green-channel
             DispatchQueue.main.async { // We need to go on the mainthread to manipulate array
                onChannelComplete(i: offset, channel: grayscaleChannel, channels: &grayscaleChannels, rgbaImg: rgbaImg, onComplete: onComplete)
             }
@@ -43,9 +43,9 @@ extension Channel {
     *   - rgbaImg: The RGBAImage to manipulate
     *   - assert: takes Pixeldata, returns Bool
     */
-   private static func grayChannel(rgbaImg: RGBAImage, asserter: PixelDataSimilarity) -> GrayscaleImage {
-      let outputIMG: GrayscaleImage = .grayscaleImage(capacity: rgbaImg.capacity, size: rgbaImg.size) // We create a blank RGBImage, as it's faster than copy probably
-      return GrayscaleImage.process(input: rgbaImg, output: outputIMG) { pixel -> UInt8 in
+   private static func grayChannel(rgbaImg: RGBAImage, asserter: PixelDataSimilarity) -> GrayscaleRep {
+      let outputIMG: GrayscaleRep = .grayscaleRep(capacity: rgbaImg.capacity, size: rgbaImg.size) // We create a blank RGBImage, as it's faster than copy probably
+      return GrayscaleRep.process(input: rgbaImg, output: outputIMG) { pixel -> UInt8 in
          asserter(pixel).strength // more strength, more white
       }
    }

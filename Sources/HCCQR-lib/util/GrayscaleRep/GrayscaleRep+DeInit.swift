@@ -2,7 +2,7 @@ import Foundation
 /**
  * DeInit
  */
-extension GrayscaleImage {
+extension GrayscaleRep {
    /**
     * You can debug if it's always deinited by counting init() calls
     */
