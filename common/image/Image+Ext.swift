@@ -1,7 +1,7 @@
 import Foundation
 import QuartzCore
 import CoreImage
-@testable import HCCQR_lib
+//@testable import HCCQR_lib
 /**
  * Asserter
  */

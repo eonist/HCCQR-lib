@@ -6,12 +6,13 @@ import CoreImage
 extension Splitter {
    /**
     * Contains two QR-images which is the result of 4-color split (R,G,B,(W/B))
+    * - Note: when added to an UIImage, you need to set scale to 2.0 and orientation to .up
     */
-   typealias CIImagePair = (qrImg1: CIImage, qrImg2: CIImage)
+   typealias CIIMGPair = (qrImg1: CIImage, qrImg2: CIImage)
    /**
     * CIImgPair and SplitError
     */
-   typealias Payload = Result<CIImagePair, SplitError>
+   typealias Payload = Result<CIIMGPair, SplitError>
    /**
     * Completion handler for the split method
     */

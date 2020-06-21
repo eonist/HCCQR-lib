@@ -15,6 +15,8 @@ extension UIImage {
     *   - size: Size of the image you want to create
     *   - color: The color of the image
     *   - scale: Set screen scale: retina 2x/3x or normal 1x
+    * ## Examples:
+    * let img = UIImage.img(size: .init(width: 100, height: 100), color: .green, scale: CGFloat = 2)
     */
    internal static func img(size: CGSize, color: UIColor, scale: CGFloat = 1.0) -> UIImage? {
       let rect = CGRect(origin: .zero, size: size)

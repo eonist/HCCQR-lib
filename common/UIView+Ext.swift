@@ -10,11 +10,35 @@ extension UIView {
     * - Fixme: ⚠️️ Add a throw error if frame is zero
     */
    var snapShot: UIImage? {
-      UIGraphicsBeginImageContextWithOptions(self.frame.size, false, 0) // <- scale
-      self.drawHierarchy(in: self.frame, afterScreenUpdates: true)
-      let image: UIImage? = UIGraphicsGetImageFromCurrentImageContext()
-      UIGraphicsEndImageContext()
-      return image
+      if #available(iOS 10, *) {
+         Swift.print("self.bounds:  \(self.bounds)")
+         let renderer = UIGraphicsImageRenderer(bounds: self.bounds)
+         return renderer.image { context in
+            self.layer.render(in: context.cgContext)
+         }
+      } else {
+         UIGraphicsBeginImageContextWithOptions(bounds.size, false, 0)
+         if let renderer = UIGraphicsGetCurrentContext() {
+            _ = renderer
+            drawHierarchy(in: bounds, afterScreenUpdates: true)
+            let screenshot = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            return screenshot
+         }
+         return nil
+      }
+//      if #available(iOS 10.0, *) {
+//         let renderer = UIGraphicsImageRenderer(size: frame.size)
+//         return renderer.image { _ in drawHierarchy(in: bounds, afterScreenUpdates: true) }
+//      } else {
+//         return layer.makeSnapshot()
+//      }
+//      Swift.print("self.bounds:  \(self.bounds)")
+//      UIGraphicsBeginImageContextWithOptions(self.frame.size, false, 0) // <- scale
+//      self.drawHierarchy(in: self.frame, afterScreenUpdates: true)
+//      let image: UIImage? = UIGraphicsGetImageFromCurrentImageContext()
+//      UIGraphicsEndImageContext()
+//      return image
    }
    /**
     * Creates a CALayer with a color
@@ -29,4 +53,18 @@ extension UIView {
       return layer
    }
 }
+//extension CALayer {
+//   /**
+//    *
+//    */
+//   func makeSnapshot() -> UIImage? {
+//      let scale = UIScreen.main.scale
+//      UIGraphicsBeginImageContextWithOptions(frame.size, false, scale)
+//      defer { UIGraphicsEndImageContext() }
+//      guard let context = UIGraphicsGetCurrentContext() else { return nil }
+//      render(in: context)
+//      let screenshot = UIGraphicsGetImageFromCurrentImageContext()
+//      return screenshot
+//   }
+//}
 #endif

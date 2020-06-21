@@ -11,6 +11,7 @@ extension RGBARep {
     * - Fixme: ⚠️️ move to test scope since its only for testing
     * - Fixme: ⚠️️ move to RGBARepParser?
     * - Note: this init is fast. trying other ways to get pixel could have some usefulness, but shouldn't be prioritized
+    * - Note: the CVImageBufferUtil.rgbaRep has similar functionality
     * - Important: ⚠️️ Used only for testing
     * - Parameter image: An UIImage or NSImage
     */

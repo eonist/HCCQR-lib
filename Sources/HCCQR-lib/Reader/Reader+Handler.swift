@@ -21,7 +21,10 @@ extension Reader {
     *   - onComplete: (Data, two qrImages)
     */
    static func onSplitComplete(result: Splitter.Payload, onComplete:@escaping DataAndImageCompleted) {
-      guard let payload: Splitter.CIImagePair = result.value() else { onComplete(.failure(.unableToSplit(errMSG: "q1, q2 err \(result.errorStr)"))); return }
+      guard let payload: Splitter.CIIMGPair = result.value() else {
+         onComplete(.failure(.unableToSplit(errMSG: "q1, q2 err \(result.errorStr)")))
+         return
+      }
       let ciImages: [CIImage] = [payload.qrImg1, payload.qrImg2]
       var dataAndFrames: [QRReader.DataAndQuad?] = [QRReader.DataAndQuad?](repeating: nil, count: ciImages.count)
       // HCCQRReader.readQrTime = .init()
@@ -58,7 +61,7 @@ extension Reader {
     *   - payload: 2 CIImage's
     *   - onComplete: completion block with DataAndImage
     */
-   private static func onReadQRCodeComplete(i: Int, ciIMG: CIImage, dataAndQuad: QRReader.DataAndQuad?, error: Error?, dataAndQuads: inout [QRReader.DataAndQuad?], payload: Splitter.CIImagePair, onComplete: DataAndImageCompleted ) {
+   private static func onReadQRCodeComplete(i: Int, ciIMG: CIImage, dataAndQuad: QRReader.DataAndQuad?, error: Error?, dataAndQuads: inout [QRReader.DataAndQuad?], payload: Splitter.CIIMGPair, onComplete: DataAndImageCompleted ) {
       guard let dataAndFrame: QRReader.DataAndQuad = dataAndQuad else { onComplete(.failure(.unableToExtractQRData(msg: "QRIMG: \(i) error: \(String(describing: error?.localizedDescription))", ciImage: ciIMG))); return }
       dataAndQuads[i] = dataAndQuad
       if !dataAndQuads.contains (where: { $0 == nil }) { // Makes sure all images finished

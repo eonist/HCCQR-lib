@@ -36,16 +36,17 @@ final class ColorishTest {
       Swift.print("PixelData.halfThresholdUInt8:  \(Pixel.halfThresholdUInt8)")
       Swift.print("UInt8(255 * 0.81):  \(UInt8(255 * 0.81))")
       let redish: Pixel = .init(UInt8(255 * 0.75), UInt8(255 * 0.2), UInt8(255 * 0.25), 255)
-      Swift.print("redish.r:  \(redish.r)")
-      let assertRedish: Bool = try! Pixel(uiColor: .red).isColorish(redish).isColorish
-      Swift.print("assertRedish:  \(assertRedish)")
-      let assertGreenish: Bool = try! Pixel(uiColor: .green).isColorish(.init(UInt8(255 * 0.07), UInt8(255 * 0.87), UInt8(255 * 0.05), 255)).isColorish
-      Swift.print("assertGreenish:  \(assertGreenish)")
-      let assertBlueish: Bool = try! Pixel(uiColor: .blue).isColorish(.init(UInt8(255 * 0.15), UInt8(255 * 0.15), UInt8(255 * 0.96), 255)).isColorish
-      Swift.print("assertBlueish:  \(assertBlueish)")
+      Swift.print("redish.r: \(redish.r)")
+      let assertRedish: Bool = try! Pixel(uiColor: .red).isColorish(Pixel.Colors.redish).isColorish
+      Swift.print("assertRedish: \(assertRedish)")
+      let assertGreenish: Bool = try! Pixel(uiColor: .green).isColorish(Pixel.Colors.greenish).isColorish
+      Swift.print("assertGreenish: \(assertGreenish)")
+      let assertBlueish: Bool = try! Pixel(uiColor: .blue).isColorish(Pixel.Colors.blueish).isColorish
+      Swift.print("assertBlueish: \(assertBlueish)")
       let isWithin: Bool = assertRedish && assertGreenish && assertBlueish
       Swift.print("washed out isWithin: \(isWithin ? "✅": "🚫")")
       Swift.print("PixelData.halfThresholdUInt8:  \(Pixel.halfThresholdUInt8)")
-      return isWithin // assertRedish //
+      return isWithin // assertRedish
    }
 }
+

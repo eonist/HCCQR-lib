@@ -45,7 +45,7 @@ extension Reader {
     *   - onComplete: completion block
     */
    static func dataAndImages(rgbaImage: RGBARep, onComplete:@escaping DataAndImageCompleted) {
-      Splitter.split(rgbaImage: rgbaImage) { result in // Start the splitting process
+      Splitter.split(rgbaImage: rgbaImage) { (result: Splitter.Payload) in // Start the splitting process
          onSplitComplete(result: result, onComplete: onComplete) // readTime += abs(HCCQRReader.splitTime.timeIntervalSinceNow); Swift.print("👉 Splitting rgbaImage done: \(abs(HCCQRReader.splitTime.timeIntervalSinceNow))")
       }
    }
