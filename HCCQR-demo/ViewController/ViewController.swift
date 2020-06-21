@@ -10,9 +10,9 @@ class ViewController: UIViewController {
    override func viewDidLoad() {
       super.viewDidLoad()
       view = View()
-      view.backgroundColor = .systemTeal
+      view.backgroundColor = .white // .systemTeal
 //      createRGBAPhoto()
-      testComposition()
+      testSplitting()
 //      ViewController.testCreatingHCCQRImage { self.view.addSubview(UIImageView(image: $0)) }
    }
    override var prefersStatusBarHidden: Bool { true }
@@ -27,14 +27,15 @@ extension ViewController {
     * - Caution: ⚠️️ this has a bug in that the snapshot creates retina image, and this code doesnt support that yet
     * - Note: (creates a bunch of squares in B&W and then tries to make hccqr like image)
     */
-   func testComposition() {
+   func testSplitting() {
 //      let colorGridView = FakeHCCQRView(frame: .init(origin: .zero, size: .init(width: (100 * 2) - 0, height: (100 * 2) - 0)))
 //      view.addSubview(colorGridView)
-      let colorGridView = RGBColorTestView(frame: .init(origin: .zero, size: .init(width: 100 * 3, height: 100)))
+      let colorGridView = SplitTestView(frame: .init(origin: .zero, size: .init(width: 100 * 3, height: 100)))
       view.addSubview(colorGridView)
       guard let snapShot: UIImage = colorGridView.snapShot else { fatalError("err") }
       guard let rgbaRep: RGBARep = try? .rgbaRep(image: snapShot) else { fatalError("err") }
       // 🏀 maybe try the alter RGBARep extractors?
+      // 🏀 try only greenish
       
 //      guard let img: Image = try? RGBARepParser.image(rgbaImage: rgbaRep, scale: 2) else { fatalError("err") }
 //      let uiImageView: UIImageView = .init(image: img)

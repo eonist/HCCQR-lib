@@ -47,7 +47,7 @@ extension Channel {
       let output: GrayscaleRep = .grayscaleRep(capacity: rgbaImg.capacity, size: rgbaImg.size) // We create a blank RGBImage, as it's faster than copy probably
       return GrayscaleRep.process(input: rgbaImg, output: output) { (pixel: Pixel) -> UInt8 in
 //         Swift.print("asserter(pixel).strength:  \(asserter(pixel).strength)")
-         asserter(pixel).strength // more strength, more white
+         return asserter(pixel).strength // more strength, more white
       }
    }
 }
