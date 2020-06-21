@@ -7,12 +7,11 @@ extension Channel {
     * - Fixme: ⚠️️ Possibly rename to defaultChannelMap
     * - Fixme: ⚠️️ See that alt QR and other .pdf's for the colors to use for 8-colorHCCQR etc
     */
-   static let channelMap: ChannelMap = [Pixel.red, Pixel.green, Pixel.blue] // { $0.isColorish() }, { $0.isColorish() }]
+   static let channelMap: ChannelMap = [Pixel.Colors.red, Pixel.Colors.green, Pixel.Colors.blue] // { $0.isColorish() }, { $0.isColorish() }]
    /**
-    * - Note: This is the new way to do it
-    * - Fixme: ⚠️️ write doc
+    * The purpouse of this method is to setup static calls, that compare channel and pixel color
     */
    static func similarities(channelMap: ChannelMap) -> [PixelDataSimilarity] {
-      channelMap.map { channel in { $0.isSimilar(channel) } }
+      channelMap.map { (channel: Pixel) in { (ishColor: Pixel) in channel.isSimilar(ishColor) } }
    }
 }

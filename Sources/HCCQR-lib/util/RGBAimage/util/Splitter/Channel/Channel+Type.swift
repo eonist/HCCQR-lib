@@ -3,7 +3,7 @@ import Foundation
  * Grayscale channel
  */
 extension Channel {
-   typealias ChannelMap = [Pixel.RGBAColor] // this seems to be still in use
+   typealias ChannelMap = [Pixel] // this seems to be still in use
    /**
     * - Fixme: ⚠️️ Rename to Images?
     */
@@ -15,5 +15,9 @@ extension Channel {
  * Assert
  */
 extension Channel {
+   /**
+    * Input pixel
+    * Output pixel similarity
+    */
    typealias PixelDataSimilarity = (_ pixel: Pixel) -> Pixel.Similarity
 }

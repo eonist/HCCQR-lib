@@ -11,5 +11,5 @@ extension Pixel {
    /**
     * - Note: Used by Pixel.isSimilar method
     */
-   var rgba: Pixel.RGBAColor { (r, g, b, a) }
+//   var rgba: Pixel.RGBAColor { .init(r: r, g: g, b: b, a: a) }
 }

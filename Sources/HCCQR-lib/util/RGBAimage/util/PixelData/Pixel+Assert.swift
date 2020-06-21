@@ -14,11 +14,14 @@ extension Pixel {
     * - Returns: returns Bool and the amount of that color in UInt8
     * - Parameter ishColor: a color (dynamic / impure color) to check against self (self is static / pure colors)
     */
-   func isSimilar(_ ishColor: RGBAColor) -> Similarity { // - Fixme: ⚠️️ Might not need to return a tuple, the strength alone may be enough
-      let colorish: PixelDataAsserter.Colorish = self.isColorish(ishColor)
-      // Continue here: 🏀 use the colorish.r,g,b values to find intensity, think about amount of deviation etc
+   func isSimilar(_ ishColor: Pixel) -> Similarity { // - Fixme: ⚠️️ Might not need to return a tuple, the strength alone may be enough
+      let colorish: PixelAsserter.Colorish = self.isColorish(ishColor)
+      // Continue here: 🏀
+         // 👉 maybe try to figure out how similar some washed out colors are, percentage wise 👈
+         // use the colorish.r,g,b values to find intensity,
+         // think about amount of deviation etc
 //      let strength: UInt8 = colorish.isColorish ? PixelDataAsserter.naiveStrength(color: color, pixel: self) : 0 // if color is not with threshold, then strength is zero
-      let intensity = colorish.isColorish ? PixelParser.similarity(a: ishColor, b: self.rgba) : 0 // if not colorish, then return no intensity
+      let intensity = colorish.isColorish ? PixelParser.similarity(a: ishColor, b: self) : 0 // if not colorish, then return no intensity
       return (assert: colorish.isColorish, strength: intensity)
    }
    /**
@@ -30,9 +33,8 @@ extension Pixel {
     * let pixelData: PixelData = .init(uiColor: .red)
     * pixelData.isColorish(rgbaColor) // returns true if the the pixel is within the color
     */
-   internal func isColorish(_ ishColor: RGBAColor) -> PixelDataAsserter.Colorish {
-      let pixelData: Pixel = .init(r: ishColor.r, g: ishColor.g, b: ishColor.b, a: 255)
-      return PixelDataAsserter.isColorish(a: self.rgb, b: pixelData.rgb, halfThreshold: Pixel.halfThresholdUInt8)
+   internal func isColorish(_ ishColor: Pixel) -> PixelAsserter.Colorish {
+      PixelAsserter.isColorish(a: self.rgb, b: ishColor.rgb, halfThreshold: Pixel.halfThresholdUInt8)
    }
    /**
     * Match two pixels
@@ -53,7 +55,7 @@ extension Pixel {
     * - Note: Used by colorize method and inverted method
     */
    var isWhite: Bool {
-      Pixel.isMatching(a: self, b: Colors.whitePixel)
+      Pixel.isMatching(a: self, b: Colors.white)
    }
    /**
     * Measure if color is black (used in the colorize method)
@@ -61,32 +63,32 @@ extension Pixel {
     * - Note: Used by colorize method
     */
    var isBlack: Bool {
-      Pixel.isMatching(a: self, b: Colors.blackPixel)
+      Pixel.isMatching(a: self, b: Colors.black)
    }
    /**
     * Assert if rgbColor is red
     */
-   static func isRed(rgbColor: RGBAColor) -> Bool {
-      isRGBColor(a: rgbColor, b: Pixel.red)
+   static func isRed(rgbColor: Pixel) -> Bool {
+      isRGBColor(a: rgbColor, b: Pixel.Colors.red)
    }
    /**
     * Assert if rgbColor is green
     */
-   static func isGreen(rgbColor: RGBAColor) -> Bool {
-      isRGBColor(a: rgbColor, b: Pixel.green)
+   static func isGreen(rgbColor: Pixel) -> Bool {
+      isRGBColor(a: rgbColor, b: Pixel.Colors.green)
    }
    /**
     * Assert if rgbColor is blue
     */
-   static func isBlue(rgbColor: RGBAColor) -> Bool {
-      isRGBColor(a: rgbColor, b: Pixel.blue)
+   static func isBlue(rgbColor: Pixel) -> Bool {
+      isRGBColor(a: rgbColor, b: Pixel.Colors.blue)
    }
    /**
     * - Parameters:
     *   - a: first color (usuallu dynamic im-pure colors)
     *   - b: second color (usualy static pure colors)
     */
-   static func isRGBColor(a: RGBAColor, b: RGBAColor) -> Bool {
+   static func isRGBColor(a: Pixel, b: Pixel) -> Bool {
       a.r == b.r && a.g == b.g && a.b == b.b /* && a.a == b.a*/
    }
 }

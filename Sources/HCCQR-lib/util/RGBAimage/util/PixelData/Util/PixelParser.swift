@@ -15,20 +15,20 @@ final class PixelParser {
     * - Fixme: ⚠️️ should deviation in the other channels account for the same as deviation in the dominant channel etc?
     * - Fixme: ⚠️️ It might be the case that if we should also limit the combined values of difference. say if R,B combined are more than 50% off, then its not a match. etc. It might be valuable to make advance tests, of how to match colors
     * - Fixme: ⚠️️ rename to commonality? use threasure.com to find better name?
-    * - Fixme: ⚠️️ move to asserter?
     * - Important: ⚠️️⚠️️⚠️️ has to be used in conjunction with the isColorish method, since this only returns the intensity of the output pixel, and is only valid if the isColorish method is within thresholds etc
     * ## Examples:
     * let red: RGBAColor = (r: 255, g: 0, b: 0, a: 255)
     * let redish: RGBAColor = (r: 215, g: 20, b: 10, a: 255)
     * let test1: UInt8 = similarity(a: redish, b: red) // 231
     * - Parameters:
-    *   - a: dynamic color (cyan-ish, meganta-ish, red-ish etc)
-    *   - b: static color (cyan, magenta, red etc)
+    *   - a: static color (cyan, magenta, red etc)
+    *   - b: dynamic color (cyan-ish, meganta-ish, red-ish etc)
     */
-   static func similarity(a: Pixel.RGBAColor, b: Pixel.RGBAColor) -> UInt8 {
-      let distR: Int = abs(Int(b.r) - Int(a.r))
-      let distG: Int = abs(Int(b.g) - Int(a.g))
-      let distB: Int = abs(Int(b.b) - Int(a.b))
+   static func similarity(a: Pixel, b: Pixel) -> UInt8 {
+//      - Fixme: ⚠️️ do the subtractingReportingOverflow etc here
+      let distR: Int = abs(Int(a.r) - Int(b.r))
+      let distG: Int = abs(Int(a.g) - Int(b.g))
+      let distB: Int = abs(Int(a.b) - Int(b.b))
       let scalarR: Int = (255 - distR) // / 255
       let scalarG: Int = (255 - distG) // / 255
       let scalarB: Int = (255 - distB) // / 255
@@ -44,7 +44,7 @@ extension PixelParser {
     * Color -> (r: UInt8, g: UInt8 ,b: UInt8, a: UInt8)
     * - Fixme: ⚠️️ You can also probably do (maybe faster?): UIColor.blue.colorComponents // (red: 0.0, green: 0.0, blue: 1.0, alpha: 1.0)
     */
-   static func rgba(uiColor: Color) throws -> Pixel.RGBA {
+   static func rgba(uiColor: Color) throws -> Pixel {
       // - Fixme: ⚠️️  use typealias on the bellow?
       var (fRed, fGreen, fBlue, fAlpha): (CGFloat, CGFloat, CGFloat, CGFloat) = (0, 0, 0, 0)
       #if os(iOS)
@@ -58,7 +58,7 @@ extension PixelParser {
       #else
       throw NSError(domain: "os not supported", code: 0)
       #endif
-      return (r: UInt8(fRed * 255.0), g: UInt8(fGreen * 255.0), b: UInt8(fBlue * 255.0), a: UInt8(fAlpha * 255.0))
+      return .init(r: UInt8(fRed * 255.0), g: UInt8(fGreen * 255.0), b: UInt8(fBlue * 255.0), a: UInt8(fAlpha * 255.0))
    }
 }
 /**
@@ -69,12 +69,12 @@ extension PixelParser {
     * pixel.value -> R, G, B, A
     * setRGBA(argb: 4294967295) // 255, 255, 255, 255 aka UIColor.white
     */
-   func rgba(argb: Int) -> Pixel.RGBA {
+   func rgba(argb: Int) -> Pixel {
       let r: UInt8 = .init((argb >> 16) & 0xFF)
       let g: UInt8 = .init((argb >> 8) & 0xFF)
       let b: UInt8 = .init(argb & 0xFF)
       let a: UInt8 = .init((argb >> 24) & 0xFF)
-      return (r, g, b, a)
+      return .init(r: r, g: g, b: b, a: a)
    }
 }
 /**

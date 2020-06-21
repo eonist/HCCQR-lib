@@ -9,7 +9,7 @@ public final class Reader {}
  */
 extension Reader {
    /**
-    * ImageBuffer -> DataAndQuad (CVImageBuffer)
+    * CVImageBuffer -> Data
     * 1. Create RGBA representation of the CVImageBuffer
     * 2. Split the RGBA into multiple QR-Images
     * 3. Extract the data from the QR-Images
@@ -31,7 +31,7 @@ extension Reader {
    }
 }
 /**
- * RGBAImage
+ * RGBARep -> data
  */
 extension Reader {
    /**
