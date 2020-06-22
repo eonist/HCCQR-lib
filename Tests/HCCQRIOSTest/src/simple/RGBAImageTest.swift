@@ -15,7 +15,7 @@ extension RGBAImageTest {
     * 4. Asserts if the new image is the same as the original image
     */
    func bufferTest() {
-      let image = UIImage.image(size: .init(width: 100, height: 100), color: .red)!
+      let image = UIImage.image(height: .init(width: 100, height: 100), color: .red)!
       guard let rgbaRep: RGBARep = try? CVImageBufferUtil.rgbaRep(image: image) else { Swift.print("err rgbImage"); return }
       guard let img: UIImage = try? RGBARepParser.image(rgbaImage: rgbaRep, scale: 1) else { Swift.print("err img"); return }
       _ = img

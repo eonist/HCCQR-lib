@@ -36,9 +36,9 @@ extension ViewController {
       guard let rgbaRep: RGBARep = try? .rgbaRep(image: snapShot) else { fatalError("err") }
       Splitter.split(rgbaImage: rgbaRep) { (result: Splitter.Payload) in // Start the splitting process
          guard let payload: Splitter.CIIMGPair = result.value() else { fatalError("err") }
-         let img: UIImage = .init(ciImage: payload.qrImg1, scale: 2, orientation: .up)
+         let img: UIImage = .init(ciImage: payload.qrImg2, scale: 2, orientation: .up)
          let uiImageView: UIImageView = .init(image: img)
-         uiImageView.frame.origin = .init(x: 0, y: SplitTestView.size)
+         uiImageView.frame.origin = .init(x: 0, y: SplitTestView.height)
          self.view.addSubview(uiImageView)
       }
    }
