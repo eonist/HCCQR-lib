@@ -14,8 +14,8 @@ extension ViewController {
     * - Note: (creates a bunch of squares in B&W and then tries to make hccqr like image)
     */
    func testSplitting() {
-      //      let colorGridView = FakeHCCQRView(frame: .init(origin: .zero, size: .init(width: (100 * 2) - 0, height: (100 * 2) - 0)))
-      //      view.addSubview(colorGridView)
+      // let colorGridView = FakeHCCQRView(frame: .init(origin: .zero, size: .init(width: (100 * 2) - 0, height: (100 * 2) - 0)))
+      // view.addSubview(colorGridView)
       let colorGridView = SplitTestView()
       view.addSubview(colorGridView)
       guard let snapShot: UIImage = colorGridView.snapShot else { fatalError("err") }

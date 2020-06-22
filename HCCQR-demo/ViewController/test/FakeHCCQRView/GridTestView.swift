@@ -17,10 +17,11 @@ import UIKit
  * let demoView = FakeHCCQRView.init(.init(origin: .init(x: 0, y: 0), size: .init(width: 100, height: 100)))
  * addSubview(demoView)
  */
-class FakeHCCQRView: UIView {
-   static let frame: CGRect = .init(origin: .init(x: 0, y: 0), size: .init(width: FakeHCCQRView.size.width * FakeHCCQRView.count , height: FakeHCCQRView.size.height * FakeHCCQRView.count))
-   static let count: CGFloat = 4
-   static let size: CGSize = .init(width: 40, height: 40)
+class GridTestView: UIView {
+   static let frame: CGRect = .init(origin: .init(x: 0, y: 0), size: .init(width: GridTestView.size.width * GridTestView.xCount, height: GridTestView.size.height * GridTestView.yCount))
+   static let xCount: CGFloat = 5
+   static let yCount: CGFloat = 5
+   static let size: CGSize = .init(width: 30, height: 30)
    override init(frame: CGRect) {
       super.init(frame: frame)
       createColorGrid()

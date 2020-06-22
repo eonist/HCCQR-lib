@@ -35,8 +35,8 @@
 		F143EC3723FAB8DE0006743C /* UInt8Modifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = F143EC3523FAB8DE0006743C /* UInt8Modifier.swift */; };
 		F1467654249F5FAC009D392A /* UInt8+Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1467653249F5FAC009D392A /* UInt8+Const.swift */; };
 		F1467655249F77DA009D392A /* SplitTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14FADE721F75EF100ACE5FF /* SplitTestView.swift */; };
-		F1467657249F77E6009D392A /* FakeHCCQRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14FADEF21F761FD00ACE5FF /* FakeHCCQRView.swift */; };
-		F1467658249F77E6009D392A /* FakeHCCQRView+Create.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FDA6232395C0230096EEBD /* FakeHCCQRView+Create.swift */; };
+		F1467657249F77E6009D392A /* GridTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14FADEF21F761FD00ACE5FF /* GridTestView.swift */; };
+		F1467658249F77E6009D392A /* GridTestView+Create.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FDA6232395C0230096EEBD /* GridTestView+Create.swift */; };
 		F1467659249F77EC009D392A /* SimpleHCCQRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162145321FC7138005297DE /* SimpleHCCQRView.swift */; };
 		F146765A249F77F0009D392A /* SimpleHCCQRView+Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FDA6202395BFBD0096EEBD /* SimpleHCCQRView+Data.swift */; };
 		F146765B249F77F3009D392A /* SimpleHCCQRView+Create.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FDA61E2395BF810096EEBD /* SimpleHCCQRView+Create.swift */; };
@@ -341,7 +341,7 @@
 		F14DDE1623C0E27800FA0022 /* BulkPhotoTest+Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BulkPhotoTest+Core.swift"; sourceTree = "<group>"; };
 		F14DDE1823C0E30500FA0022 /* BulkPhotoTest+Typealias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BulkPhotoTest+Typealias.swift"; sourceTree = "<group>"; };
 		F14FADE721F75EF100ACE5FF /* SplitTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitTestView.swift; sourceTree = "<group>"; };
-		F14FADEF21F761FD00ACE5FF /* FakeHCCQRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeHCCQRView.swift; sourceTree = "<group>"; };
+		F14FADEF21F761FD00ACE5FF /* GridTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridTestView.swift; sourceTree = "<group>"; };
 		F15C9F7C23BA6FD000F9D524 /* RGBARep+Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RGBARep+Const.swift"; sourceTree = "<group>"; };
 		F15C9F7F23BA747800F9D524 /* Writer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Writer.swift; sourceTree = "<group>"; };
 		F162145321FC7138005297DE /* SimpleHCCQRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleHCCQRView.swift; sourceTree = "<group>"; };
@@ -450,7 +450,7 @@
 		F1F6F7BF22221EA80075E7FD /* Reader+Type.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reader+Type.swift"; sourceTree = "<group>"; };
 		F1FDA61E2395BF810096EEBD /* SimpleHCCQRView+Create.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SimpleHCCQRView+Create.swift"; sourceTree = "<group>"; };
 		F1FDA6202395BFBD0096EEBD /* SimpleHCCQRView+Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SimpleHCCQRView+Data.swift"; sourceTree = "<group>"; };
-		F1FDA6232395C0230096EEBD /* FakeHCCQRView+Create.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FakeHCCQRView+Create.swift"; sourceTree = "<group>"; };
+		F1FDA6232395C0230096EEBD /* GridTestView+Create.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GridTestView+Create.swift"; sourceTree = "<group>"; };
 		F1FE7DFF24A0A7360094B1BD /* VC+Split.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VC+Split.swift"; sourceTree = "<group>"; };
 		F1FE7E0124A0A9AF0094B1BD /* VC+Grid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VC+Grid.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -994,8 +994,8 @@
 		F1FDA6252395C0450096EEBD /* FakeHCCQRView */ = {
 			isa = PBXGroup;
 			children = (
-				F14FADEF21F761FD00ACE5FF /* FakeHCCQRView.swift */,
-				F1FDA6232395C0230096EEBD /* FakeHCCQRView+Create.swift */,
+				F14FADEF21F761FD00ACE5FF /* GridTestView.swift */,
+				F1FDA6232395C0230096EEBD /* GridTestView+Create.swift */,
 			);
 			path = FakeHCCQRView;
 			sourceTree = "<group>";
@@ -1294,8 +1294,8 @@
 				F1E645CB23940B3C008D2ABE /* Pixel+Assert.swift in Sources */,
 				F1E645AB23940AC9008D2ABE /* Color+Parser.swift in Sources */,
 				F1E645C523940B3C008D2ABE /* Splitter+Type.swift in Sources */,
-				F1467657249F77E6009D392A /* FakeHCCQRView.swift in Sources */,
-				F1467658249F77E6009D392A /* FakeHCCQRView+Create.swift in Sources */,
+				F1467657249F77E6009D392A /* GridTestView.swift in Sources */,
+				F1467658249F77E6009D392A /* GridTestView+Create.swift in Sources */,
 				F17CB70023AB9DDB00C4BED8 /* Colorizer+CIImage.swift in Sources */,
 				F18A4D7C239F0F4B0065078A /* Colorizer+TypeAlias.swift in Sources */,
 				F146765C249F7912009D392A /* UIView+Ext.swift in Sources */,
