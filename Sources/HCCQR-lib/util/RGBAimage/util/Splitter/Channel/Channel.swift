@@ -20,7 +20,7 @@ extension Channel {
    static func channels(rgbaImg: RGBARep, channelMap: ChannelMap = channelMap, onComplete:@escaping OnChannelsComplete) {
 //      let blankRep: RGBARep = .rgbaRep(pixel: Pixel.Colors.black, size: rgbaImg.size)
       var channels: [GrayscaleRep?] = [GrayscaleRep?](repeating: nil, count: channelMap.count) // Fixme: ⚠️️ we could use unmanaged pointer with capacity as well, might be faster
-      let similarities: [PixelDataSimilarity] = Channel.similarities(channelMap: channelMap)
+      let similarities: [PixelSimilarity] = Channel.similarities(channelMap: channelMap)
       similarities.enumerated().forEach { offset, similarity in // 3 assertions
          DispatchQueue.global(qos: .userInitiated).async { // - Fixme: ⚠️️ This could be the cause of random error bug, maybe drop the async and just do it on current thread
             let channel: GrayscaleRep = self.channel(rgbaImg: rgbaImg, asserter: similarity) // Finds the red-channel, blue-channel, green-channel
@@ -43,11 +43,12 @@ extension Channel {
     *   - rgbaImg: The RGBAImage to extract data from
     *   - assert: takes Pixeldata, returns Bool
     */
-   private static func channel(rgbaImg: RGBARep, asserter: PixelDataSimilarity) -> GrayscaleRep {
+   private static func channel(rgbaImg: RGBARep, asserter: PixelSimilarity) -> GrayscaleRep {
       let output: GrayscaleRep = .grayscaleRep(capacity: rgbaImg.capacity, size: rgbaImg.size) // We create a blank RGBImage, as it's faster than copy probably
       return GrayscaleRep.process(input: rgbaImg, output: output) { (pixel: Pixel) -> UInt8 in
 //         Swift.print("asserter(pixel).strength:  \(asserter(pixel).strength)")
-         return asserter(pixel).strength // more strength, more white
+         let assertion = asserter(pixel)
+         return assertion.assert ? assertion.strength : 0 // more strength, more white
       }
    }
 }

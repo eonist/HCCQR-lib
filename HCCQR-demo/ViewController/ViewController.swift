@@ -34,7 +34,7 @@ extension ViewController {
       // continue here 🏀
          // trace the b,g channels, use 2x2 grid
       
-      let colorGridView = SplitTestView.init()
+      let colorGridView = SplitTestView()
       view.addSubview(colorGridView)
       guard let snapShot: UIImage = colorGridView.snapShot else { fatalError("err") }
       guard let rgbaRep: RGBARep = try? .rgbaRep(image: snapShot) else { fatalError("err") }
@@ -46,7 +46,7 @@ extension ViewController {
          guard let payload: Splitter.CIIMGPair = result.value() else { fatalError("err") }
          let img: UIImage = .init(ciImage: payload.qrImg2, scale: 2, orientation: .up)
          let uiImageView: UIImageView = .init(image: img)
-         uiImageView.frame.origin = .init(x: 0, y: 100)
+         uiImageView.frame.origin = .init(x: 0, y: SplitTestView.size)
          self.view.addSubview(uiImageView)
       }
       //

@@ -11,7 +11,7 @@ extension Channel {
    /**
     * The purpouse of this method is to setup static calls, that compare channel and pixel color
     */
-   static func similarities(channelMap: ChannelMap) -> [PixelDataSimilarity] {
+   static func similarities(channelMap: ChannelMap) -> [PixelSimilarity] {
       channelMap.map { (channel: Pixel) in { (ishColor: Pixel) in channel.isSimilar(ishColor) } }
    }
 }
