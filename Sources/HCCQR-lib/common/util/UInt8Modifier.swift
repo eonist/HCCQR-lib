@@ -5,18 +5,34 @@ final class UInt8Modifier {
    /**
     * - Note: Used by the Compositor class
     * ## Examples:
-    * applyValue(first: 255, second: 100) // 155
-    * applyValue(first: 100, second: 200) // 0
+    * subtraction(first: 255, second: 100) // 155
+    * subtraction(first: 100, second: 200) // 0
     */
-   static func applyValue(first: UInt8, second: UInt8) -> UInt8 {
-      let result: ReportingOverflow = first.subtractingReportingOverflow(second) // instead of adding, we substract and then we wouldn't have to invert the image at the end
+   static func subtraction(a: UInt8, b: UInt8) -> UInt8 {
+      let result: ReportingOverflow = a.subtractingReportingOverflow(b) // instead of adding, we substract and then we wouldn't have to invert the image at the end
       return result.overflow ? 0 : result.partialValue // - Fixme: ⚠️️ Can be removed because this will basically never happen, because channels cant overlap
    }
    /**
     * Addition (simpler to understand than subtraction)
     */
-   static func applyVal(a: UInt8, b: UInt8) -> UInt8 {
+   static func addition(a: UInt8, b: UInt8) -> UInt8 {
       let result: ReportingOverflow = a.addingReportingOverflow(b)
-      return result.overflow ? 0 : result.partialValue // -
+      return result.overflow ? 255 : result.partialValue // -
+   }
+   /**
+    * Division
+    */
+   static func division(a: UInt8, b: UInt8) -> UInt8 {
+      let result: ReportingOverflow = a.dividedReportingOverflow(by: b)
+      // - Fixme: ⚠️️ if above, then return 255, if bellow then return 0 etc?
+      return result.overflow ? 0 : result.partialValue
+   }
+   /**
+    * Multiplication
+    */
+   static func multiplication(a: UInt8, b: UInt8) -> UInt8 {
+      let result: ReportingOverflow = a.multipliedReportingOverflow(by: b)
+      // - Fixme: ⚠️️ if above, then return 255, if bellow then return 0 etc?
+      return result.overflow ? 255 : result.partialValue
    }
 }

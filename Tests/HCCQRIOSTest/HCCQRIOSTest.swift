@@ -106,7 +106,7 @@ extension HCCQRIOSTest {
     */
    private func testCIImage() {
       #if os(iOS)
-      guard let image = UIImage.image(height: .init(width: 100, height: 100), color: .green) else { Swift.print("uiImage err"); return }
+      guard let image = UIImage.image(size: .init(width: 100, height: 100), color: .green) else { Swift.print("uiImage err"); return }
       Swift.print("image.scale:  \(image.scale)")
       Swift.print("image.size:  \(image.height)")
       // create RGBAImage
@@ -118,7 +118,7 @@ extension HCCQRIOSTest {
       Swift.print("ciImage.extent.height:  \(ciImage.extent.height)")
       Swift.print("ciImage.colorSpace:  \(String(describing: ciImage.colorSpace))")
       let img: UIImage = .init(ciImage: ciImage)
-      Swift.print("img.size:  \(img.height)")
+      Swift.print("img.size:  \(img.size)")
       Swift.print("img.scale:  \(img.scale)")
       // img
       Swift.print("isEqualToImage: \(image.isEqualToImage(image: img) ? "✅" : "🚫")")

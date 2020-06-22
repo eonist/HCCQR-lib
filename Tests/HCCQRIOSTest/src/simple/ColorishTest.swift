@@ -49,4 +49,3 @@ final class ColorishTest {
       return isWithin // assertRedish
    }
 }
-
