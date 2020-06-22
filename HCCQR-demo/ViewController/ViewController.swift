@@ -14,8 +14,8 @@ class ViewController: UIViewController {
 //      createRGBAPhoto()
 //      testSplitting()
 //      ViewController.testCreatingHCCQRImage { self.view.addSubview(UIImageView(image: $0)) }
-//      testGrid()
-      testUInt8Aritmitic()
+      testGrid()
+//      testUInt8Aritmitic()
    }
    override var prefersStatusBarHidden: Bool { true }
 }

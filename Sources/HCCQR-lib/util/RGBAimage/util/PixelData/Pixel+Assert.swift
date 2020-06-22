@@ -16,9 +16,9 @@ extension Pixel {
     * - Parameter ishColor: a color (dynamic / impure color) to check against self (self is static / pure colors)
     */
    func isSimilar(_ ishColor: Pixel) -> Similarity { // - Fixme: ⚠️️ Might not need to return a tuple, the strength alone may be enough
-      let colorish: PixelAsserter.Colorish = self.isColorish(ishColor) // channels r,g,b are within the color
-      let strength = colorish.isColorish ? PixelParser.similarity(a: ishColor, b: self) : UInt8.black // if not colorish, then return no intensity, and thus avoid calculating strength 
-      return (assert: colorish.isColorish, strength: strength)
+      let isColorish: Bool = self.isColorish(ishColor) // channels r,g,b are within the color
+      let strength = /*colorish.*/isColorish ? PixelParser.similarity(a: ishColor, b: self) : UInt8.black // if not colorish, then return no intensity, and thus avoid calculating strength 
+      return (assert: /*colorish.*/isColorish, strength: strength)
    }
    /**
     * Asserts if a pixel is sort of a color within a threshold
@@ -31,7 +31,7 @@ extension Pixel {
     * let pixelData: PixelData = .init(uiColor: .red)
     * pixelData.isColorish(rgbaColor) // returns true if the the pixel is within the color
     */
-   internal func isColorish(_ ishColor: Pixel) -> PixelAsserter.Colorish {
+   internal func isColorish(_ ishColor: Pixel) -> Bool { // PixelAsserter.Colorish
       PixelAsserter.isColorish(a: self.rgb, b: ishColor.rgb, halfThreshold: Pixel.halfThresholdUInt8)
    }
 }

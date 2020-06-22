@@ -30,7 +30,7 @@ extension Splitter {
       channelPairs.enumerated().forEach { channelPair in
          DispatchQueue.global(qos: .userInitiated).async { // - Fixme: ⚠️️ This could be the cause of random error bug, maybe drop the async and just do it on current thread
             // - Fixme: ⚠️️ Benchmark the composition process as well
-            // - Fixme: ⚠️️ Figure out how to return qrImg even if data cant be read by it,
+            // - Fixme: ⚠️️ Figure out how to return qrImg even if data can't be read by it,
             // - Fixme: ⚠️️ or look into tests, if they can help the split method etc
 //            Swift.print("element.second.pixels.count:  \(channelPair.element.second.pixels.count)")
 //            if channelPair.offset == 0 {

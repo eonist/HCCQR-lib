@@ -4,7 +4,7 @@ class PixelAsserter {
    /**
     * Used for isColorish
     */
-   typealias Colorish = (isColorish: Bool, rgb: (r: Bool, g: Bool, b: Bool))
+//   typealias Colorish = (isColorish: Bool, rgb: (r: Bool, g: Bool, b: Bool))
    /**
     * Asserts if a color is near another color within a threshold
     * - Abstract: Basically makes sure each channel is within the threshold defined
@@ -28,12 +28,13 @@ class PixelAsserter {
     *   - halfThreshold: with threshold more or less (I.e: +25, -25 from a value)
     *   - limit: used to avoid going out of bound
     */
-   internal static func isColorish(a: Pixel.RGB, b: Pixel.RGB, halfThreshold: UInt8, limit: Pixel.Limit = Pixel.defaultLimit) -> Colorish {
+   internal static func isColorish(a: Pixel.RGB, b: Pixel.RGB, halfThreshold: UInt8, limit: Pixel.Limit = Pixel.defaultLimit) -> Bool {
       let r: Bool = isRedish(a: a, b: b, halfThreshold: halfThreshold, limit: limit)
       let g: Bool = isGreenish(a: a, b: b, halfThreshold: halfThreshold, limit: limit)
       let b: Bool = isBlueish(a: a, b: b, halfThreshold: halfThreshold, limit: limit)
-      let isColorish = r && g && b
-      return (isColorish, (r, g, b))
+//      let isColorish =
+      return r && g && b
+//      return (isColorish, (r, g, b))
    }
 }
 /**
