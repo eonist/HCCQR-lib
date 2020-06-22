@@ -21,7 +21,7 @@ class GridTestView: UIView {
    static let frame: CGRect = .init(origin: .init(x: 0, y: 0), size: .init(width: GridTestView.size.width * GridTestView.xCount, height: GridTestView.size.height * GridTestView.yCount))
    static let xCount: CGFloat = 5
    static let yCount: CGFloat = 5
-   static let size: CGSize = .init(width: 30, height: 30)
+   static let size: CGSize = .init(width: 50, height: 50)
    override init(frame: CGRect) {
       super.init(frame: frame)
       createColorGrid()

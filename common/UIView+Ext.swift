@@ -9,8 +9,8 @@ extension UIView {
     * - Important: ⚠️️ if you get the "invalid context 0x0" error, make sure your View has a frame. view.bounds must not be .zero
     * - Fixme: ⚠️️ Add a throw error if frame is zero
     */
-   var snapShot: UIImage? {
-      UIGraphicsBeginImageContextWithOptions(self.bounds.size, true, UIScreen.main.scale)
+   func snapShot(scale: CGFloat? = nil) -> UIImage? {
+      UIGraphicsBeginImageContextWithOptions(self.bounds.size, true, scale ?? 0 )
       self.layer.render(in: UIGraphicsGetCurrentContext()!)
       let img = UIGraphicsGetImageFromCurrentImageContext()
       UIGraphicsEndImageContext()
