@@ -22,5 +22,5 @@ extension Channel {
     * Input pixel
     * Output pixel similarity
     */
-   typealias PixelSimilarity = (_ pixel: Pixel) -> Pixel.Similarity
+   typealias PixelDataSimilarity = (_ pixel: Pixel) -> Pixel.Similarity
 }

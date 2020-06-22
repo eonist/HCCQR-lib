@@ -12,4 +12,11 @@ final class UInt8Modifier {
       let result: ReportingOverflow = first.subtractingReportingOverflow(second) // instead of adding, we substract and then we wouldn't have to invert the image at the end
       return result.overflow ? 0 : result.partialValue // - Fixme: ⚠️️ Can be removed because this will basically never happen, because channels cant overlap
    }
+   /**
+    * Addition (simpler to understand than subtraction)
+    */
+   static func applyVal(a: UInt8, b: UInt8) -> UInt8 {
+      let result: ReportingOverflow = a.addingReportingOverflow(b)
+      return result.overflow ? 0 : result.partialValue // -
+   }
 }

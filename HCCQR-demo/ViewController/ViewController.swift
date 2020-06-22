@@ -30,39 +30,16 @@ extension ViewController {
    func testSplitting() {
 //      let colorGridView = FakeHCCQRView(frame: .init(origin: .zero, size: .init(width: (100 * 2) - 0, height: (100 * 2) - 0)))
 //      view.addSubview(colorGridView)
-      
-      // continue here 🏀
-         // trace the b,g channels, use 2x2 grid
-      
       let colorGridView = SplitTestView()
       view.addSubview(colorGridView)
       guard let snapShot: UIImage = colorGridView.snapShot else { fatalError("err") }
       guard let rgbaRep: RGBARep = try? .rgbaRep(image: snapShot) else { fatalError("err") }
-//      guard let img: Image = try? RGBARepParser.image(rgbaImage: rgbaRep, scale: 2) else { fatalError("err") }
-//      let uiImageView: UIImageView = .init(image: img)
-//      uiImageView.frame.origin = .init(x: 0, y: 80 * 3)
-//      self.view.addSubview(uiImageView)
       Splitter.split(rgbaImage: rgbaRep) { (result: Splitter.Payload) in // Start the splitting process
          guard let payload: Splitter.CIIMGPair = result.value() else { fatalError("err") }
-         let img: UIImage = .init(ciImage: payload.qrImg2, scale: 2, orientation: .up)
+         let img: UIImage = .init(ciImage: payload.qrImg1, scale: 2, orientation: .up)
          let uiImageView: UIImageView = .init(image: img)
          uiImageView.frame.origin = .init(x: 0, y: SplitTestView.size)
          self.view.addSubview(uiImageView)
       }
-      //
-      //      guard let images: Splitter.RGBImages = { Optional((UIImage(), UIImage(), UIImage())) }()/*RGBAImage.split(image: image)*/ else { fatalError("err") }
-      //      guard let r: RGBARep = try? .rgbaImage(image: images.r) else { return }
-      //      guard let g: RGBARep = try? .rgbaImage(image: images.g) else { return }
-      //      guard let b: RGBARep = try? .rgbaImage(image: images.b) else { return }
-      //      _ = r
-      //      _ = g
-      //      _ = b
-      //      guard let composite = try? Compositor.composite(rgbaImages: [r, g/*,b*/]/*, invert: false*/) else { return }
-      //
-//      Swift.print("⚠️️ the bellow may not work anymore, scale is new ⚠️️")
-      //      let img: Image? = try? RGBAImageUtil.image(rgbaImage: composite, scale: image.scale)
-      //      let imgView: UIImageView = .init(image: img)
-      //      view.addSubview(imgView)
-      //      imgView.frame.origin.y = 200
    }
 }

@@ -25,16 +25,22 @@ extension Splitter {
    static func onChannelsSplitComplete(result: Channel.Payload, onComplete:@escaping Complete) { // called when the (R,G,B) channels are split
       guard let channels: Channel.RGBRep = result.value() else { onComplete(.failure(.unableToCreateRGBAImgs(msg: result.errorStr))); return } // (r,g,b)
       // - Fixme: ⚠️️ Somehow generate the pairs more dynamically
-      let channelArr: [ChannelPair] = [(channels.b, channels.g), (channels.r, channels.b)] // pair b&g = qr1, pair r$b = qr2
-      var qrImgs: [CIImage?] = [CIImage?](repeating: nil, count: channelArr.count) // Result array
-      channelArr.enumerated().forEach { channel in
+      let channelPairs: [ChannelPair] = [(channels.b, channels.g), (channels.r, channels.b)] // pair b&g = qr1, pair r$b = qr2
+      var qrImgs: [CIImage?] = [CIImage?](repeating: nil, count: channelPairs.count) // Result array
+      channelPairs.enumerated().forEach { channelPair in
          DispatchQueue.global(qos: .userInitiated).async { // - Fixme: ⚠️️ This could be the cause of random error bug, maybe drop the async and just do it on current thread
             // - Fixme: ⚠️️ Benchmark the composition process as well
             // - Fixme: ⚠️️ Figure out how to return qrImg even if data cant be read by it,
             // - Fixme: ⚠️️ or look into tests, if they can help the split method etc
-            let qrImg: CIImage = Compositor.composite(grayscaleReps: [channel.element.first, channel.element.second]) // compositeDEPRECATD(first: channel.element.first, second: channel.element.second)
+            Swift.print("element.second.pixels.count:  \(channelPair.element.second.pixels.count)")
+            if channelPair.offset == 0 {
+               channelPair.element.second.pixels.forEach {
+                  Swift.print("$0:  \($0)")
+               }
+            }
+            let qrImg: CIImage = Compositor.composite(grayscaleReps: [channelPair.element.first, channelPair.element.second]) // compositeDEPRECATD(first: channel.element.first, second: channel.element.second)
             DispatchQueue.main.async { // We need to go on the mainthread to manipulate array
-               onCompositeComplete(i: channel.offset, qrImg: qrImg, qrImgs: &qrImgs, channels: channels, onComplete: onComplete)
+               onCompositeComplete(i: channelPair.offset, qrImg: qrImg, qrImgs: &qrImgs, channels: channels, onComplete: onComplete)
             }
          }
       }

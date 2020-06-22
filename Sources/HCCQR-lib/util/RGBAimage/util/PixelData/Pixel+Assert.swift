@@ -23,8 +23,8 @@ extension Pixel {
          // think about amount of deviation etc
 //      let strength: UInt8 = colorish.isColorish ? PixelDataAsserter.naiveStrength(color: color, pixel: self) : 0 // if color is not with threshold, then strength is zero
       // - Fixme: ⚠️️ Could be the problem, that we use .black instead of white, since we do an invert trick later, it could be wrong etc
-      let intensity = colorish.isColorish ? PixelParser.similarity(a: ishColor, b: self) : UInt8.black // if not colorish, then return no intensity
-      return (assert: colorish.isColorish, strength: intensity)
+      let strength = colorish.isColorish ? PixelParser.similarity(a: ishColor, b: self) : UInt8.black // if not colorish, then return no intensity
+      return (assert: colorish.isColorish, strength: strength)
    }
    /**
     * Asserts if a pixel is sort of a color within a threshold

@@ -10,7 +10,7 @@ import UIKit
  * view.addSubview(splitView)
  */
 class SplitTestView: UIView {
-   static let size: CGFloat = 200
+   static let size: CGFloat = 100
    override init(frame: CGRect) {
       let frame: CGRect = .init(origin: .zero, size: .init(width: SplitTestView.size, height: SplitTestView.size))
       super.init(frame: frame)
@@ -32,8 +32,8 @@ extension SplitTestView {
     */
    func createColorGrid() {
       let pixelColors = [Pixel.Colors.greenish]//[Pixel.Colors.redish, Pixel.Colors.greenish, Pixel.Colors.blueish]
-      Swift.print("Pixel.Colors.greenish:  \(Pixel.Colors.greenish)")
-      Swift.print("Pixel.Colors.greenish.color:  \(Pixel.Colors.greenish.color)")
+//      Swift.print("Pixel.Colors.greenish:  \(Pixel.Colors.greenish)")
+//      Swift.print("Pixel.Colors.greenish.color:  \(Pixel.Colors.greenish.color)")
 //      Swift.print("Pixel.Colors.redish:  \(Pixel.Colors.redish)")
 //      Swift.print("Pixel.Colors.redish.color:  \(Pixel.Colors.redish.color)")
       let colors: [UIColor] = pixelColors.map { $0.color } // [UIColor.red, .green, .blue]

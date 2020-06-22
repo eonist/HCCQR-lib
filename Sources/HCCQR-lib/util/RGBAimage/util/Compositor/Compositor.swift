@@ -51,8 +51,8 @@ extension Compositor {
    private static func composite(grayscaleImages: [GrayscaleRep]) -> GrayscaleRep {
       let first: GrayscaleRep = grayscaleImages[0]
       // could be the problem that we use white, to avoid inverting, 
-      let whiteImage: GrayscaleRep = .grayscaleRep(pixel: .white, size: first.size) // because white is 255
-      return GrayscaleRep.process(input: whiteImage) { (index: Int, pixel: UInt8) -> UInt8 in // Loop things
+      let blankRep: GrayscaleRep = .grayscaleRep(pixel: .black, size: first.size) // because white is 255
+      return GrayscaleRep.process(input: blankRep) { (index: Int, pixel: UInt8) -> UInt8 in // Loop things
          var pixel: UInt8 = pixel // - Fixme: ⚠️️ Maybe do reduce here?, definitly do reduce here!
          grayscaleImages.forEach { (grayscaleImage: GrayscaleRep) in // loop over every image in the list, this is inside here because the process method uses concurrent_apply
             let pixelValue: UInt8 = grayscaleImage.pixels[index] // - Fixme: ⚠️️ Can be removed because this will basically never happen, because channels can't overlap

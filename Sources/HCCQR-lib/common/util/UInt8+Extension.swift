@@ -9,6 +9,6 @@ extension UInt8 {
     * Convenience method
     */
    mutating func applyValue(value: UInt8) {
-      self = UInt8Modifier.applyValue(first: self, second: value)
+      self = UInt8Modifier.applyVal(a: self, b: value)
    }
 }
