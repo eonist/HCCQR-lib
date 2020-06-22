@@ -10,6 +10,13 @@ extension UIView {
     * - Fixme: ⚠️️ Add a throw error if frame is zero
     */
    var snapShot: UIImage? {
+      UIGraphicsBeginImageContextWithOptions(self.bounds.size, true, UIScreen.main.scale)
+      self.layer.render(in: UIGraphicsGetCurrentContext()!)
+      let img = UIGraphicsGetImageFromCurrentImageContext()
+      UIGraphicsEndImageContext()
+      return img
+   }
+   var snapshot2: UIImage? {
       if #available(iOS 10, *) {
          Swift.print("self.bounds:  \(self.bounds)")
          let renderer = UIGraphicsImageRenderer(bounds: self.bounds)
@@ -27,19 +34,13 @@ extension UIView {
          }
          return nil
       }
-//      if #available(iOS 10.0, *) {
-//         let renderer = UIGraphicsImageRenderer(size: frame.size)
-//         return renderer.image { _ in drawHierarchy(in: bounds, afterScreenUpdates: true) }
-//      } else {
-//         return layer.makeSnapshot()
-//      }
-//      Swift.print("self.bounds:  \(self.bounds)")
-//      UIGraphicsBeginImageContextWithOptions(self.frame.size, false, 0) // <- scale
-//      self.drawHierarchy(in: self.frame, afterScreenUpdates: true)
-//      let image: UIImage? = UIGraphicsGetImageFromCurrentImageContext()
-//      UIGraphicsEndImageContext()
-//      return image
    }
+   // the old snapshot
+   //      UIGraphicsBeginImageContextWithOptions(self.frame.size, false, 0) // <- scale
+   //      self.drawHierarchy(in: self.frame, afterScreenUpdates: true)
+   //      let image: UIImage? = UIGraphicsGetImageFromCurrentImageContext()
+   //      UIGraphicsEndImageContext()
+   //      return image
    /**
     * Creates a CALayer with a color
     * - Parameters:

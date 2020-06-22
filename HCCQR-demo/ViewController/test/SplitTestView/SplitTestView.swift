@@ -2,7 +2,7 @@
 import UIKit
 //@testable import HCCQR_lib
 /**
- * Creates a (red,green,blue) image
+ * Creates a (red,green,blue) image (row)
  * - Note: used to debug extracting RGBA channels
  * - Fixme: ⚠️️ This needs something to test
  * ## Examples:
