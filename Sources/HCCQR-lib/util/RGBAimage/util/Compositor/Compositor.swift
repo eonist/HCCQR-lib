@@ -19,10 +19,10 @@ final class Compositor {
     * - Fixme: ⚠️️ Possibly simplify method with defering deinit of composite
     * - Fixme: ⚠️️ Defer deinit instead of having two deInit calls. Research this first, could make this method cleaner
     */
-   static func composite(grayscaleRep: [GrayscaleRep]) throws -> CIImage {
-      let grayscaleImage: GrayscaleRep = try composite(grayscaleImages: grayscaleRep) // smash two grayscaleReps together
+   static func composite(grayscaleReps: [GrayscaleRep]) -> CIImage {
+      let grayscaleImage: GrayscaleRep = composite(grayscaleImages: grayscaleReps) // smash two grayscaleReps together
       // - Fixme: ⚠️️ this could be the problem
-      /*guard */ let img: CIImage = /*try? */ Compositor.ciImage(grayscaleImage: grayscaleImage) /* else { grayscaleImage.deInit(); throw NSError(domain: "Unable to create img", code: 0) }*/
+      let img: CIImage = Compositor.ciImage(grayscaleImage: grayscaleImage) /* else { grayscaleImage.deInit(); throw NSError(domain: "Unable to create img", code: 0) }*/
       grayscaleImage.deInit() // We de-init the Img after we have consumed it to avoid mem leak
       return img
    }
@@ -48,8 +48,8 @@ extension Compositor {
     * - Fixme: ⚠️️⚠️️⚠️️ when a posetive is found stop, iterating
     * - Parameter grayscaleImages: An array of RGBAImages to be composited together into 1 RGBAImage
     */
-   private static func composite(grayscaleImages: [GrayscaleRep]) throws -> GrayscaleRep {
-      /*guard */let first: GrayscaleRep = grayscaleImages[0] // else { throw NSError(domain: "Unable to composite - composite() - no first image available", code: 0) }
+   private static func composite(grayscaleImages: [GrayscaleRep]) -> GrayscaleRep {
+      let first: GrayscaleRep = grayscaleImages[0]
       // could be the problem that we use white, to avoid inverting, 
       let whiteImage: GrayscaleRep = .grayscaleRep(pixel: .white, size: first.size) // because white is 255
       return GrayscaleRep.process(input: whiteImage) { (index: Int, pixel: UInt8) -> UInt8 in // Loop things

@@ -10,7 +10,7 @@ class ViewController: UIViewController {
    override func viewDidLoad() {
       super.viewDidLoad()
       view = View()
-      view.backgroundColor = .white // .systemTeal
+      view.backgroundColor = .lightGray // .systemTeal
 //      createRGBAPhoto()
       testSplitting()
 //      ViewController.testCreatingHCCQRImage { self.view.addSubview(UIImageView(image: $0)) }
@@ -30,13 +30,14 @@ extension ViewController {
    func testSplitting() {
 //      let colorGridView = FakeHCCQRView(frame: .init(origin: .zero, size: .init(width: (100 * 2) - 0, height: (100 * 2) - 0)))
 //      view.addSubview(colorGridView)
-      let colorGridView = SplitTestView(frame: .init(origin: .zero, size: .init(width: 100 * 3, height: 100)))
+      
+      // continue here 🏀
+         // trace the b,g channels, use 2x2 grid
+      
+      let colorGridView = SplitTestView.init()
       view.addSubview(colorGridView)
       guard let snapShot: UIImage = colorGridView.snapShot else { fatalError("err") }
       guard let rgbaRep: RGBARep = try? .rgbaRep(image: snapShot) else { fatalError("err") }
-      // 🏀 maybe try the alter RGBARep extractors?
-      // 🏀 try only greenish
-      
 //      guard let img: Image = try? RGBARepParser.image(rgbaImage: rgbaRep, scale: 2) else { fatalError("err") }
 //      let uiImageView: UIImageView = .init(image: img)
 //      uiImageView.frame.origin = .init(x: 0, y: 80 * 3)
@@ -45,7 +46,7 @@ extension ViewController {
          guard let payload: Splitter.CIIMGPair = result.value() else { fatalError("err") }
          let img: UIImage = .init(ciImage: payload.qrImg2, scale: 2, orientation: .up)
          let uiImageView: UIImageView = .init(image: img)
-         uiImageView.frame.origin = .init(x: 0, y: 80)
+         uiImageView.frame.origin = .init(x: 0, y: 100)
          self.view.addSubview(uiImageView)
       }
       //

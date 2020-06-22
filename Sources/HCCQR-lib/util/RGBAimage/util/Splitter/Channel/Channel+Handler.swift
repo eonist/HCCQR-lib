@@ -11,7 +11,7 @@ extension Channel {
     * - Fixme: ⚠️️ simplify the deinit, refactor etc, how?
     */
    static func onChannelComplete(i: Int, channel: GrayscaleRep, channels: inout [GrayscaleRep?], rgbaImg: RGBARep, onComplete: OnChannelsComplete) {
-      channels[i] = channel // it matters which order the qrImages came in when you stitch them back together
+      channels[i] = channel // it matters which order the grayscaleReps came in when you stitch them back together
       if !channels.contains(where: { $0 == nil }) { // makes sure all images finished (fastest way to check for nil)
          let arr: [GrayscaleRep] = channels.compactMap { $0 } // removes optionality
          onComplete(.success((arr[0], arr[1], arr[2])))

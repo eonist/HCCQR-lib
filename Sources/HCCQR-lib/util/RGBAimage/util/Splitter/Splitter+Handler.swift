@@ -7,7 +7,7 @@ import ResultSugar
 extension Splitter {
    /**
     * onComplete (New ⚠️️)
-    * 1. GrayScaleImage's representing R,G,B comes in
+    * 1. GrayScaleRepresentations representing the channels R,G,B comes in
     * 2. Channels are grouped into pairs
     * 3. QR-Image Result array is created
     * 4. Combine the different ColorChannels in the correct ways to unlock the B&W-QR-Layers
@@ -22,8 +22,9 @@ extension Splitter {
     * - Fixme: ⚠️️ Maybe do the result.value in the calling method and not in this method?
     * - Important: ⚠️️ grayscale is better for qr to read than monotone (probably)
     */
-   static func onChannelSplitComplete(result: Channel.Payload, onComplete:@escaping Complete) { // called when the (R,G,B) channels are split
+   static func onChannelsSplitComplete(result: Channel.Payload, onComplete:@escaping Complete) { // called when the (R,G,B) channels are split
       guard let channels: Channel.RGBRep = result.value() else { onComplete(.failure(.unableToCreateRGBAImgs(msg: result.errorStr))); return } // (r,g,b)
+      // - Fixme: ⚠️️ Somehow generate the pairs more dynamically
       let channelArr: [ChannelPair] = [(channels.b, channels.g), (channels.r, channels.b)] // pair b&g = qr1, pair r$b = qr2
       var qrImgs: [CIImage?] = [CIImage?](repeating: nil, count: channelArr.count) // Result array
       channelArr.enumerated().forEach { channel in
@@ -31,7 +32,7 @@ extension Splitter {
             // - Fixme: ⚠️️ Benchmark the composition process as well
             // - Fixme: ⚠️️ Figure out how to return qrImg even if data cant be read by it,
             // - Fixme: ⚠️️ or look into tests, if they can help the split method etc
-            let qrImg: CIImage? = try? Compositor.composite(grayscaleRep: [channel.element.first, channel.element.second]) // compositeDEPRECATD(first: channel.element.first, second: channel.element.second)
+            let qrImg: CIImage = Compositor.composite(grayscaleReps: [channel.element.first, channel.element.second]) // compositeDEPRECATD(first: channel.element.first, second: channel.element.second)
             DispatchQueue.main.async { // We need to go on the mainthread to manipulate array
                onCompositeComplete(i: channel.offset, qrImg: qrImg, qrImgs: &qrImgs, channels: channels, onComplete: onComplete)
             }
@@ -39,6 +40,10 @@ extension Splitter {
       }
    }
 }
+
+// r,g,b
+// 0,255,0
+
 /**
  * Private static helper methods
  */

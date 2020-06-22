@@ -40,7 +40,7 @@ extension Channel {
     * 1. Creates a blank grayscale image of a specific size
     * 2. Asserts if the pixel is sort of a color or not
     * - Parameters:
-    *   - rgbaImg: The RGBAImage to manipulate
+    *   - rgbaImg: The RGBAImage to extract data from
     *   - assert: takes Pixeldata, returns Bool
     */
    private static func channel(rgbaImg: RGBARep, asserter: PixelDataSimilarity) -> GrayscaleRep {
