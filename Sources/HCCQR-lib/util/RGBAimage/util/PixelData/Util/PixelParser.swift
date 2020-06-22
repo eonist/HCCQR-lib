@@ -24,7 +24,8 @@ final class PixelParser {
     */
    static func similarity(a: Pixel, b: Pixel) -> UInt8 {
 //      - Fixme: ⚠️️ do the subtractingReportingOverflow etc here
-      //
+      // 🏀
+         // make sure UInt8 subtraction works, make sure, division works, make sure addition works
       let distR: Int = abs(Int(a.r) - Int(b.r))
       let distG: Int = abs(Int(a.g) - Int(b.g))
       let distB: Int = abs(Int(a.b) - Int(b.b))

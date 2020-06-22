@@ -45,9 +45,6 @@ extension PixelAsserter {
     */
    private static func isRedish(a: Pixel.RGB, b: Pixel.RGB, halfThreshold: UInt8, limit: Pixel.Limit = Pixel.defaultLimit) -> Bool {
       let range: RangeUInt8 = UInt8Parser.range(num: a.r, halfThreshold: halfThreshold, min: limit.min, max: limit.max) // 75, 125
-      //         Swift.print("range:  \(range)")
-      //         Swift.print("rgb1.r:  \(rgb1.r)")
-      //         Swift.print("rgb2.r:  \(rgb2.r)")
       return UInt8Asserter.within(num: b.r, min: range.start, max: range.end) // (range.start...range.end).contains(rgb1.r)
    }
    /**

@@ -10,7 +10,7 @@ extension ViewController {
    /**
     * Row test
     * - Fixme: ⚠️️ A bug with split method, some sizes doesn't work etc
-    * - Caution: ⚠️️ this has a bug in that the snapshot creates retina image, and this code doesnt support that yet
+    * - Caution: ⚠️️ this has a bug in that the snapshot creates retina image, and this code doesn't support that yet
     * - Note: (creates a bunch of squares in B&W and then tries to make hccqr like image)
     */
    func testSplitting() {
