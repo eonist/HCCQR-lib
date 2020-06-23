@@ -13,9 +13,13 @@ class ViewController: UIViewController {
       view.backgroundColor = .lightGray // .systemTeal
 //      createRGBAPhoto()
 //      testSplitting()
-//      ViewController.testCreatingHCCQRImage { self.view.addSubview(UIImageView(image: $0)) }
-      testGrid()
-//      testUInt8Aritmitic()
+      ViewController.testCreatingHCCQRImage {
+         // 🏀 continue here
+            // return the qr1, qr2, maybe channels
+            // then do same for photo etc
+         self.view.addSubview(UIImageView(image: $0))
+      }
+//      testGrid()
    }
    override var prefersStatusBarHidden: Bool { true }
 }

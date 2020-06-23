@@ -6,7 +6,7 @@ import QR_lib
 extension ViewController {
    typealias OnComplete = (Image) -> Void
    /**
-    * Test HCCQRImage creation
+    * Test HCCQRImage creation (syntethic)
     * ## Examples:
     * testCreatingHCCQRImage { img in
     *    let imageView: NSImageView = .init(frame: .init(origin: .zero, size: img.size))
