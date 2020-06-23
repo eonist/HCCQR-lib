@@ -22,8 +22,8 @@ extension Reader {
     */
    public static func dataAndMeta(imageBuffer: CVImageBuffer, crop: BufferRect, onComplete: @escaping OnGetDataAndMetaCompleted) {
       guard let rgbaImg: RGBARep = try? CVImageBufferUtil.rgbaRep(imageBuffer: imageBuffer, crop: crop) else { onComplete(.failure(.unableToExtractRGBAImageFromCVBuffer)); return }
-      dataAndImages(rgbaImage: rgbaImg) { (result: Reader.DataAndImagesResult) in
-         guard let dataAndImagesAndQuad: DataAndImages = try? result.get() else { onComplete(.failure(.unableToGetDataAndImages(msg: result.errorStr))); return }
+      dataAndQR(rgbaImage: rgbaImg) { (result: Reader.DataAndPayloadResult) in
+         guard let dataAndImagesAndQuad: DataAndPayload = try? result.get() else { onComplete(.failure(.unableToGetDataAndImages(msg: result.errorStr))); return }
          guard let data: Data = dataAndImagesAndQuad.data, let quad = dataAndImagesAndQuad.quad  else { onComplete(.failure(.unableToGetDataOrQuad)); return }
          let dataAndMeta: DataAndMeta = (data: data, quad: quad, imageSize: rgbaImg.cgSize)
          onComplete(.success(dataAndMeta))
@@ -31,21 +31,21 @@ extension Reader {
    }
 }
 /**
- * RGBARep -> data
+ * RGBARep -> data & qr
  */
 extension Reader {
    /**
     * Creates data for HCCQQR image (RGBAImage)
     * - Abstract: Since we get pixel data from the camera, this will be faster than converting to image first
     * - Fixme: ⚠️️ When the first QRImage Quad is found, the subsequent QR-Rects will be in the same quadrant, clip the subsequent images
-    * - Fixme: ⚠️️ I don't think returning qrimage is useful anymore, it was used as a way to debug that the HCCQR ws split correctly
+    * - Note: returning qrimage is useful, it is used as a way to debug that the HCCQR ws split correctly
     * - Note: Isn't private because Reader+CVIUmageBuffer calls it
     * - Parameters:
     *   - rgbaImage: raw pixels and size
     *   - onComplete: completion block
     */
-   static func dataAndImages(rgbaImage: RGBARep, onComplete:@escaping DataAndImageCompleted) {
-      Splitter.split(rgbaImage: rgbaImage) { (result: Splitter.Payload) in // Start the splitting process
+   static func dataAndQR(rgbaImage: RGBARep, onComplete:@escaping DataAndPayloadCompleted) {
+      Splitter.split(rgbaImage: rgbaImage) { (result: Splitter.SplitResult) in // Start the splitting process
          onSplitComplete(result: result, onComplete: onComplete) // readTime += abs(HCCQRReader.splitTime.timeIntervalSinceNow); Swift.print("👉 Splitting rgbaImage done: \(abs(HCCQRReader.splitTime.timeIntervalSinceNow))")
       }
    }

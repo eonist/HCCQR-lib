@@ -20,22 +20,21 @@ extension Reader {
     *   - result: Two QR-CImages (qrImg1: CIImage, qrImg2: CIImage)
     *   - onComplete: (Data, two qrImages)
     */
-   static func onSplitComplete(result: Splitter.Payload, onComplete:@escaping DataAndImageCompleted) {
-      guard let payload: Splitter.CIIMGPair = result.value() else {
+   static func onSplitComplete(result: Splitter.SplitResult, onComplete:@escaping DataAndPayloadCompleted) {
+      guard let payload: Splitter.Payload = result.value() else {
          onComplete(.failure(.unableToSplit(errMSG: "q1, q2 err \(result.errorStr)")))
          return
       }
-      let ciImages: [CIImage] = [payload.qrImg1, payload.qrImg2]
-      var dataAndFrames: [QRReader.DataAndQuad?] = [QRReader.DataAndQuad?](repeating: nil, count: ciImages.count)
+      var dataAndFrames: [QRReader.DataAndQuad?] = [QRReader.DataAndQuad?](repeating: nil, count: payload.qrImgs.count)
       // HCCQRReader.readQrTime = .init()
       // - Fixme: ⚠️️⚠️️⚠️️ This is where you add the crop code for the second QR image etc. Since it's on main, there is no speed loss etc
       DispatchQueue.main.async { // Has to be done on main thread, or else Apples.qrreader behaves bad
-         ciImages.enumerated().forEach { item in
+         payload.qrImgs.enumerated().forEach { item in
             // DispatchQueue.global(qos: .background).async {
             var err: Error?
             var dataAndQuad: QRReader.DataAndQuad?
             do { dataAndQuad = try QRReader.dataAndQuad(ciImage: item.element, useAccurateDetector: true) } catch { err = error } // Swift.print("colorSpace:  \(String(describing: item.element.colorSpace)) debugDescription:  \(item.element.debugDescription)")
-            onReadQRCodeComplete(i: item.offset, ciIMG: item.element, dataAndQuad: dataAndQuad, error: err, dataAndQuads: &dataAndFrames, payload: payload, onComplete: onComplete)
+            onReadQRCodeComplete(i: item.offset, ciIMG: item.element, rgbChannels: payload.rgbChannels, dataAndQuad: dataAndQuad, error: err, dataAndQuads: &dataAndFrames, payload: payload, onComplete: onComplete)
              // }
          }
       }
@@ -61,13 +60,14 @@ extension Reader {
     *   - payload: 2 CIImage's
     *   - onComplete: completion block with DataAndImage
     */
-   private static func onReadQRCodeComplete(i: Int, ciIMG: CIImage, dataAndQuad: QRReader.DataAndQuad?, error: Error?, dataAndQuads: inout [QRReader.DataAndQuad?], payload: Splitter.CIIMGPair, onComplete: DataAndImageCompleted ) {
+   private static func onReadQRCodeComplete(i: Int, ciIMG: CIImage, rgbChannels: Channel.RGBChannels, dataAndQuad: QRReader.DataAndQuad?, error: Error?, dataAndQuads: inout [QRReader.DataAndQuad?], payload: Splitter.Payload, onComplete: DataAndPayloadCompleted ) {
       guard let dataAndFrame: QRReader.DataAndQuad = dataAndQuad else { onComplete(.failure(.unableToExtractQRData(msg: "QRIMG: \(i) error: \(String(describing: error?.localizedDescription))", ciImage: ciIMG))); return }
       dataAndQuads[i] = dataAndQuad
       if !dataAndQuads.contains (where: { $0 == nil }) { // Makes sure all images finished
+         // - Fixme: ⚠️️ move into allComplete handler?
          let data: Data = dataAndQuads.compactMap { $0?.qrData }.reduce(Data(), +) // Merges the data
          // readTime += abs(HCCQRReader.readQrTime.timeIntervalSinceNow); Swift.print("👉 Read QR complete: \(abs(HCCQRReader.readQrTime.timeIntervalSinceNow))")
-         onComplete(.success((data, payload.qrImg1, payload.qrImg2, dataAndFrame.quad))) // Return the result here
+         onComplete(.success((data, (payload.qrImgs, rgbChannels), dataAndFrame.quad))) // Return the result here
       }
    }
 }

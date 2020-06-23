@@ -4,7 +4,7 @@ import CoreImage
  * Splitter
  * - Abstract: HCCQR-RGBA-Image -> QRImage's -> Data
  */
-final class Splitter {}
+public final class Splitter {}
 
 extension Splitter {
    /**

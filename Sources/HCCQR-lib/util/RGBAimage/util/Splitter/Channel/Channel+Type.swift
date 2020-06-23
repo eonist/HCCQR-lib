@@ -6,12 +6,13 @@ extension Channel {
    typealias ChannelMap = [Pixel] // this seems to be still in use
    /**
     * RGB
+    * - Fixme: ⚠️️ Rename to RGBChannels
     */
-   typealias RGBRep = (r: GrayscaleRep, g: GrayscaleRep, b: GrayscaleRep)
+   public typealias RGBChannels = (r: GrayscaleRep, g: GrayscaleRep, b: GrayscaleRep)
    /**
     * - Fixme: ⚠️️ error is never used, figure out why etc
     */
-   typealias Payload = Result<RGBRep, Error>
+   typealias Payload = Result<RGBChannels, Error>
    typealias OnAllChannelsComplete = (Payload) -> Void
 }
 /**

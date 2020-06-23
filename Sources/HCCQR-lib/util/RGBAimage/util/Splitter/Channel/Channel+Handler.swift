@@ -24,7 +24,7 @@ extension Channel {
     * When all channels completed
     * - Fixme: ⚠️️ simplify the deinit
     */
-   static private func onAllChannelsComplete(channels: [GrayscaleRep?], rgbaImg: RGBARep, onComplete: OnAllChannelsComplete) {
+   private static func onAllChannelsComplete(channels: [GrayscaleRep?], rgbaImg: RGBARep, onComplete: OnAllChannelsComplete) {
       let arr: [GrayscaleRep] = channels.compactMap { $0 } // removes optionality
       onComplete(.success((arr[0], arr[1], arr[2])))
       // - Fixme: ⚠️️ should we call deinitiate before callback?

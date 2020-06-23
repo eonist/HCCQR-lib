@@ -14,13 +14,9 @@ extension Reader {
  */
 extension Reader {
    /**
-    * The imags was returned for debuggin, can be useful for optimizing later
-    * - Fixme: ⚠️️ I don't think returning QRImage is useful anymore, try to remove it
-    * - Fixme: ⚠️️ 👉 maybe add array of CIIMage? for more color support in the future? 👈
-    * - Fixme: ⚠️️ rename to DataAndQR?
-    * - Fixme: ⚠️️ group the qr1 and qr2
+    * - Note: The images was returned for debugging, can be useful for optimizing later
     */
-   public typealias DataAndImages = (data: Data?, qr1: CIImage, qr2: CIImage, quad: QRReader.Quad?)
-   public typealias DataAndImagesResult = Result<DataAndImages, ReadError>
-   public typealias DataAndImageCompleted = (DataAndImagesResult) -> Void
+   public typealias DataAndPayload = (data: Data?, payload: Splitter.Payload, quad: QRReader.Quad?)
+   public typealias DataAndPayloadResult = Result<DataAndPayload, ReadError>
+   public typealias DataAndPayloadCompleted = (DataAndPayloadResult) -> Void
 }

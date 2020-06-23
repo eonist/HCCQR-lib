@@ -2,7 +2,7 @@ import Foundation
 /**
  * channels
  */
-final class Channel {}
+public final class Channel {}
 
 extension Channel {
    /**
