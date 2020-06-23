@@ -10,10 +10,11 @@ extension ViewController {
     * RGBAPhoto
     */
    func createRGBAPhoto() {
-      let path: String = Bundle.main.resourcePath! + "/temp.bundle/HCCQR.png" //HCCQR7.png, HCCQR12.png,HCCQR13.jpg
+      let path: String = Bundle.main.resourcePath! + "/temp.bundle/HCCQR.png" // HCCQR7.png, HCCQR12.png,HCCQR13.jpg
       guard let image = Image(contentsOfFile: path) else { Swift.print("err getting img"); return }
       Swift.print("UIImage.size:  \(image.size)")
-      guard let rgbaImage: RGBARep = try? CVImageBufferUtil.rgbaRep(image: image) else { Swift.print("err getting rgbImage"); return }
+//      guard let rgbaImage: RGBARep = try? CVImageBufferUtil.rgbaRep(image: image) else { Swift.print("err getting rgbImage"); return }
+      guard let rgbaImage: RGBARep = try? RGBARep.rgbaRep(image: image) else { Swift.print("err getting rgbImage"); return }
 //      guard let img = try? RGBAImageUtil.image(rgbaImage: rgbaImage, scale: 1) else { Swift.print("err making img"); return }
 //      let imgView: UIImageView = .init(image: img)
 //      self.view.addSubview(imgView)
@@ -32,6 +33,7 @@ extension ViewController {
     */
    func onReadComplete(result: Reader.DataAndImagesResult, onComplete: @escaping (Bool) -> Void) {
       Swift.print("onReadComplete")
+      // if failure: 🚫
       guard let value = try? result.get() else {
          let err: ReadError? = result.error()
 //         Swift.print("err:  \(err)");
@@ -47,14 +49,14 @@ extension ViewController {
          onComplete(false)
          return
       }
-      DispatchQueue.main.async { // jump back on the main thread
-         Swift.print("value.qr1:  \(value.qr1)")
-         let img = UIImage(ciImage: value.qr1)
-         let imgView: UIImageView = .init(image: img)
-         self.view.addSubview(imgView)
-         // try with perfect HCCQR image 
+      // if success ✅
+
+      Swift.print("value.qr1:  \(value.qr1)")
+      let img = UIImage(ciImage: value.qr1)
+      let imgView: UIImageView = .init(image: img)
+      self.view.addSubview(imgView)
+      // try with perfect HCCQR image
 //         Swift.print("data.count:  \(String(describing: data.count))")
-         onComplete(true)
-      }
+      onComplete(true)
    }
 }

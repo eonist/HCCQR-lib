@@ -10,6 +10,7 @@ extension CVImageBufferUtil {
     * - Fixme: ⚠️️ Add Image typealias in this repo??
     * - Note: this method works when testing img -> RGBA img -> img in viewcontroll, to see if everything looks gd etc, or do img.hash = img.hash etc
     * - Note: this method is for testing only because we derive RGBAImage directly from CVImageBuffer
+    * - Note: RGBARep.rgbaRep(image:) has similar functionalir
     * - Parameter image: Convert image to RGBAImage
     */
    public static func rgbaRep(image: Image) throws -> RGBARep {

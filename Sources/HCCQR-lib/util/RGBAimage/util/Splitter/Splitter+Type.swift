@@ -9,6 +9,7 @@ extension Splitter {
     * - Note: when added to an UIImage, you need to set scale to 2.0 and orientation to .up
     */
    typealias CIIMGPair = (qrImg1: CIImage, qrImg2: CIImage)
+   // 🏀 add channel rep to QRPayload
    /**
     * CIImgPair and SplitError
     */

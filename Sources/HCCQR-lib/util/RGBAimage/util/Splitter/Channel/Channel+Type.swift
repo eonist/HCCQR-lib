@@ -12,7 +12,7 @@ extension Channel {
     * - Fixme: ⚠️️ error is never used, figure out why etc
     */
    typealias Payload = Result<RGBRep, Error>
-   typealias OnChannelsComplete = (Payload) -> Void
+   typealias OnAllChannelsComplete = (Payload) -> Void
 }
 /**
  * Assert

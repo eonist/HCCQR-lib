@@ -15,7 +15,7 @@ extension RGBARep {
     * - Important: ⚠️️ Used only for testing
     * - Parameter image: An UIImage or NSImage
     */
-   internal static func rgbaRep(image: Image) throws -> RGBARep {
+   /*internal*/ static func rgbaRep(image: Image) throws -> RGBARep {
       // ⚠️️ the bellow line is a temp fix, could hurt performance
       guard let cgImage: CGImage = ImageUtil.cgImage(image: image) else { throw NSError(domain: "rgbaImage - Unable to get cgImage", code: 0) }
       return try rgbaRep(cgImage: cgImage)

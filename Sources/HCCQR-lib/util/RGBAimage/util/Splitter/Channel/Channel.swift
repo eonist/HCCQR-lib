@@ -17,7 +17,7 @@ extension Channel {
     *   - channelMap: rule-set for the splitting process
     *   - onComplete: notify when process has completed
     */
-   static func channels(rgbaImg: RGBARep, channelMap: ChannelMap = defaultChannelMap, onComplete:@escaping OnChannelsComplete) {
+   static func channels(rgbaImg: RGBARep, channelMap: ChannelMap = defaultChannelMap, onComplete:@escaping OnAllChannelsComplete) {
 //      let blankRep: RGBARep = .rgbaRep(pixel: Pixel.Colors.black, size: rgbaImg.size)
       var channels: [GrayscaleRep?] = [GrayscaleRep?](repeating: nil, count: channelMap.count) // Fixme: ⚠️️ we could use unmanaged pointer with capacity as well, might be faster
       let similarities: [PixelDataSimilarity] = Channel.similarities(channelMap: channelMap)

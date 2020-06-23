@@ -6,7 +6,6 @@ import CoreImage
 class RGBARepModifier {
    /**
     * Scales img without becoming blurry (Sharp pixel multiplier)
-    * 🏀 continue here: add dep documention
     * - Note: This method is used when creating HCCQR images from data
     * - Note: assert if scaling is needed before callign this method
     * - Fixme: ⚠️️ Add the concurrent optimization for nested for loops, striding?

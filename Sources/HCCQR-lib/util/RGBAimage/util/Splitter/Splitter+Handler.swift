@@ -63,6 +63,7 @@ extension Splitter {
     *   - qrImgs: the result array
     *   - channels: we need to deInit the channels on completion
     *   - onComplete: final onCompletion handler
+    * - Fixme: ⚠️️ Store the channels in a struct and add deinit functionality to that struct
     */
    private static func onCompositeComplete(i: Int, qrImg: CIImage?, qrImgs: inout [CIImage?], channels: Channel.RGBRep, onComplete: Complete) {
       guard let qrImg: CIImage = qrImg else { [channels.r, channels.g, channels.b].deInit(); onComplete(.failure(.noQRImg(i: i))); return }

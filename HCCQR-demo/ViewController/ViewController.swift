@@ -11,15 +11,30 @@ class ViewController: UIViewController {
       super.viewDidLoad()
       view = View()
       view.backgroundColor = .lightGray // .systemTeal
-//      createRGBAPhoto()
+      createRGBAPhoto()
 //      testSplitting()
-      ViewController.testCreatingHCCQRImage {
-         // 🏀 continue here
-            // return the qr1, qr2, maybe channels
-            // then do same for photo etc
-         self.view.addSubview(UIImageView(image: $0))
-      }
+//      testHCCQR()
 //      testGrid()
    }
    override var prefersStatusBarHidden: Bool { true }
+}
+/**
+ *
+ */
+extension ViewController {
+   /**
+    * Syntetic write / read HCCQR
+    */
+   func testHCCQR() {
+      ViewController.testCreatingHCCQRImage { image in
+         //      self.view.addSubview(UIImageView(image: $0))
+         guard let rgbaImage: RGBARep = try? CVImageBufferUtil.rgbaRep(image: image) else { Swift.print("err getting rgbImage"); return }
+         //      guard let img = try? RGBAImageUtil.image(rgbaImage: rgbaImage, scale: 1) else { Swift.print("err making img"); return }
+         //      let imgView: UIImageView = .init(image: img)
+         //      self.view.addSubview(imgView)
+         Reader.dataAndImages(rgbaImage: rgbaImage) { result in // Split the hccqrImg
+            self.onReadComplete(result: result) { success in Swift.print("dataAndImages success: \(success)") }
+         }
+      }
+   }
 }
