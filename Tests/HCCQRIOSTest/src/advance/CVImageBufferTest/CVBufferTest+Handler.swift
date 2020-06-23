@@ -29,13 +29,15 @@ extension CVBufferTest {
     */
    private static func onReadComplete(result: Reader.DataAndImagesResult, randomData: Data, onComplete: @escaping OnComplete) {
       Swift.print("onHCCQRDataComplete")
-      guard let payload: String = try? result.get().data?.stringUTF8 else { Swift.print("unable to get string from hccqr\(result.errorStr)"); return }
-      let isMatching: Bool = randomData.stringUTF8 == payload // Assert payload
-      Swift.print("isMatching:  \(isMatching ? "✅":"🚫")")
+      guard let data: Data = try? result.get().data/*?.stringUTF8*/ else { Swift.print("unable to get data from hccqr\(result.errorStr)"); return }
+//      let isMatching: Bool = randomData.stringUTF8 == payload // Assert payload
+      let dataMatches: Bool = randomData == data
+      Swift.print("dataMatches: \(dataMatches ? "✅" : "🚫")")
+//      Swift.print("isMatching:  \(isMatching ? "✅":"🚫")")
       //DispatchQueue.main.async {
       //   Swift.print("Seperation complete: \(abs(splitTime.timeIntervalSinceNow))")
       //   Swift.print("Read and write done: \(abs(startTime.timeIntervalSinceNow))")
       //}
-      onComplete(isMatching)
+      onComplete(dataMatches)
    }
 }
