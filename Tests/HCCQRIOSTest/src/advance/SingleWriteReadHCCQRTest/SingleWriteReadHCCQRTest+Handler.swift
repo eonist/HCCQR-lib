@@ -11,7 +11,7 @@ extension SingleWriteReadHCCQRTest {
    /**
     * Write complete (Created RGBA-HCCQR-image from data)
     */
-   static func onWriteComplete(rgbaImage: RGBAImage, randomData: Data, onComplete: @escaping OnComplete) {
+   static func onWriteComplete(rgbaImage: RGBARep, randomData: Data, onComplete: @escaping OnComplete) {
       Swift.print("👌 writeTime complete: \(abs(SingleWriteReadHCCQRTest.writeTime.timeIntervalSinceNow))")
       readTime = .init() // We start here beacause: Making random data is not apart of time measurment
       Reader.dataAndImages(rgbaImage: rgbaImage) { result in // Start reading the hccqr

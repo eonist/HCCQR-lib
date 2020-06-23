@@ -10,11 +10,11 @@ extension BulkRGBAHCCQRTest {
    /**
     * Create single HCCQR img complete
     */
-   static func onWriteComplete(i: Int, rgbaImage: RGBAImage?, images: inout [RGBAImage?], onComplete:@escaping OnWriteImagesComplete) {
+   static func onWriteComplete(i: Int, rgbaImage: RGBARep?, images: inout [RGBARep?], onComplete:@escaping OnWriteImagesComplete) {
       guard let rgbaImage = rgbaImage else { onComplete(.failure(NSError(domain: "Unable to create hccqr image", code: 0))); return }
       images[i] = rgbaImage
       if !images.contains(where: { $0 == nil }) { // Make sure all images were written
-         let images: [RGBAImage] = images.compactMap { $0 }
+         let images: [RGBARep] = images.compactMap { $0 }
          onComplete(.success(images))
       }
    }

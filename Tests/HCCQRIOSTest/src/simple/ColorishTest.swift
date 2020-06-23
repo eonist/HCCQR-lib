@@ -1,7 +1,7 @@
 import Foundation
 @testable import HCCQR_lib
 /**
- * - Fixme: ⚠️️ Make tests that uses the bland colormap?
+ * tests color thresholds
  */
 final class ColorishTest {
    /**
@@ -13,7 +13,7 @@ final class ColorishTest {
       let redPixel = Pixel.Colors.red // the color it should look like
       let threshold: UInt8 = .init(255 * 0.25) // within this threshold
       let halfThreshold: UInt8 = .init(threshold / 2)
-      let isColorRedish: Bool = PixelAsserter.isColorish(a: redPixel.rgb, b: redishPixel.rgb, halfThreshold: halfThreshold).isColorish
+      let isColorRedish: Bool = PixelAsserter.isColorish(a: redPixel.rgb, b: redishPixel.rgb, halfThreshold: halfThreshold)
       Swift.print("isColorRedish:  \(isColorRedish ? "✅" : "🚫")")
       return isColorRedish
    }
@@ -21,9 +21,9 @@ final class ColorishTest {
     * Test the colorish method (Tests absolute colors)
     */
    static func testColorish() -> Bool {
-      let assertRed: Bool = try! Pixel(uiColor: .red).isColorish(Pixel.Colors.red).isColorish
-      let assertGreen: Bool = try! Pixel(uiColor: .green).isColorish(Pixel.Colors.green).isColorish
-      let assertBlue: Bool = try! Pixel(uiColor: .blue).isColorish(Pixel.Colors.blue).isColorish
+      let assertRed: Bool = try! Pixel(uiColor: .red).isColorish(Pixel.Colors.red)
+      let assertGreen: Bool = try! Pixel(uiColor: .green).isColorish(Pixel.Colors.green)
+      let assertBlue: Bool = try! Pixel(uiColor: .blue).isColorish(Pixel.Colors.blue)
       let isWithin: Bool = assertRed && assertGreen && assertBlue
       Swift.print("isWithin: \(isWithin ? "✅": "🚫")")
       return isWithin
@@ -37,15 +37,29 @@ final class ColorishTest {
       Swift.print("UInt8(255 * 0.81):  \(UInt8(255 * 0.81))")
       let redish: Pixel = .init(UInt8(255 * 0.75), UInt8(255 * 0.2), UInt8(255 * 0.25), 255)
       Swift.print("redish.r: \(redish.r)")
-      let assertRedish: Bool = try! Pixel(uiColor: .red).isColorish(Pixel.Colors.redish).isColorish
+      let assertRedish: Bool = try! Pixel(uiColor: .red).isColorish(Pixel.Colors.redish)
       Swift.print("assertRedish: \(assertRedish)")
-      let assertGreenish: Bool = try! Pixel(uiColor: .green).isColorish(Pixel.Colors.greenish).isColorish
+      let assertGreenish: Bool = try! Pixel(uiColor: .green).isColorish(Pixel.Colors.greenish)
       Swift.print("assertGreenish: \(assertGreenish)")
-      let assertBlueish: Bool = try! Pixel(uiColor: .blue).isColorish(Pixel.Colors.blueish).isColorish
+      let assertBlueish: Bool = try! Pixel(uiColor: .blue).isColorish(Pixel.Colors.blueish)
       Swift.print("assertBlueish: \(assertBlueish)")
       let isWithin: Bool = assertRedish && assertGreenish && assertBlueish
       Swift.print("washed out isWithin: \(isWithin ? "✅": "🚫")")
       Swift.print("PixelData.halfThresholdUInt8:  \(Pixel.halfThresholdUInt8)")
       return isWithin // assertRedish
+   }
+   /**
+    * - Fixme: ⚠️️ move to uint tests
+    */
+   static func testUInt8Aritmitic() -> Bool {
+      let a1 = UInt8Modifier.addition(a: 155, b: 200) == 255 //
+      let a2 = UInt8Modifier.addition(a: 25, b: 100) == 125 //
+      let s1 = UInt8Modifier.subtraction(a: 225, b: 80) == 145 //
+      let s2 = UInt8Modifier.subtraction(a: 100, b: 160) == 0
+      let d1 = UInt8Modifier.division(a: 80, b: 2) == 40 //
+      let d2 = UInt8Modifier.multiplication(a: 40, b: 2) == 80 //
+      let m1 = UInt8Modifier.multiplication(a: 40, b: 4) == 160 //
+      let m2 = UInt8Modifier.multiplication(a: 120, b: 2) == 240 //
+      return a1 && a2 && s1 && s2 && d1 && d2 && m1 && m2
    }
 }

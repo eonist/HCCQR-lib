@@ -16,10 +16,10 @@ extension BulkPhotoTest {
       let path: String = ResourceHelper.projectRootURL(projectRef: #file, fileName: "temp.bundle/HCCQR10.png").path
       Swift.print("path:  \(path)")
       //let path: String = Bundle.main.resourcePath!+"/temp.bundle/HCCQR10.png" // HCCQR12.png,HCCQR13.jpg
-      let rgbaImages: [RGBAImage] = (0..<10).compactMap { _ in
+      let rgbaImages: [RGBARep] = (0..<10).compactMap { _ in
          guard let image = Image(contentsOfFile: path) else { Swift.print("Err creating img at path: \(path)"); return nil }
          Swift.print("image.size:  \(image.size)")
-         guard let rgbaImage: RGBAImage = try? CVImageBufferUtil.rgbaImage(image: image) else { Swift.print("err getting rgbImage"); return nil }
+         guard let rgbaImage: RGBARep = try? CVImageBufferUtil.rgbaRep(image: image) else { Swift.print("err getting rgbImage"); return nil }
          return rgbaImage
       }
       onComplete(rgbaImages)
@@ -27,7 +27,7 @@ extension BulkPhotoTest {
    /**
     * readMany
     */
-   static func readMany(rgbaImages: [RGBAImage], onComplete: @escaping OnReadManyComplete) {
+   static func readMany(rgbaImages: [RGBARep], onComplete: @escaping OnReadManyComplete) {
       Swift.print("readMany()")
 //      let dataArray: [Data?] = .init(repeating: nil, count: rgbaImages.count) // Stores the results in this array
 //      _ = dataArray

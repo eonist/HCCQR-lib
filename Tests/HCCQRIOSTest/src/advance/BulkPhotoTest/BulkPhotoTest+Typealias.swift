@@ -5,6 +5,6 @@ import ResourceHelper
 
 extension BulkPhotoTest {
    typealias OnComplete = (Bool) -> Void
-   typealias OnWriteManyComplete = (_ rgbaImages: [RGBAImage]) -> Void
+   typealias OnWriteManyComplete = (_ rgbaImages: [RGBARep]) -> Void
    typealias OnReadManyComplete = () -> Void
 }

@@ -298,6 +298,7 @@
 		F1F3E05423BA277600D367F1 /* Splitter+Handler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F3E05223BA277600D367F1 /* Splitter+Handler.swift */; };
 		F1FE7E0024A0A7360094B1BD /* VC+Split.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FE7DFF24A0A7360094B1BD /* VC+Split.swift */; };
 		F1FE7E0224A0A9AF0094B1BD /* VC+Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FE7E0124A0A9AF0094B1BD /* VC+Grid.swift */; };
+		F1FE7E0424A1D5360094B1BD /* ImageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FE7E0324A1D5360094B1BD /* ImageTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -453,6 +454,7 @@
 		F1FDA6232395C0230096EEBD /* GridTestView+Create.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GridTestView+Create.swift"; sourceTree = "<group>"; };
 		F1FE7DFF24A0A7360094B1BD /* VC+Split.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VC+Split.swift"; sourceTree = "<group>"; };
 		F1FE7E0124A0A9AF0094B1BD /* VC+Grid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VC+Grid.swift"; sourceTree = "<group>"; };
+		F1FE7E0324A1D5360094B1BD /* ImageTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -825,6 +827,7 @@
 				F1BFEFD223A06899007F4261 /* ColorishTest.swift */,
 				F1E6F6862493B2DC00975607 /* MonoPixelColorization.swift */,
 				F1E5DC0F23F9A1C300605775 /* RGBAImageTest.swift */,
+				F1FE7E0324A1D5360094B1BD /* ImageTest.swift */,
 			);
 			path = simple;
 			sourceTree = "<group>";
@@ -1468,6 +1471,7 @@
 				F14DDE1923C0E30500FA0022 /* BulkPhotoTest+Typealias.swift in Sources */,
 				F1E5712523A3F2C400E090BB /* HCCQRPhotoTest.swift in Sources */,
 				F1471FC3248C0049008A01AD /* CVImageBufferUtil+RGBA.swift in Sources */,
+				F1FE7E0424A1D5360094B1BD /* ImageTest.swift in Sources */,
 				F1471FDA248C0419008A01AD /* GrayscaleRep+DeInit.swift in Sources */,
 				F1E5712723A3F2C400E090BB /* BulkRGBAHCCQRTest+Core.swift in Sources */,
 				F1471FF4248C0573008A01AD /* MonotoneRep.swift in Sources */,

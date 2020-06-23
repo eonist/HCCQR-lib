@@ -26,7 +26,7 @@ extension BulkRGBAHCCQRTest {
     */
    static func initiateTest(onComplete: @escaping BulkRGBAHCCQRTest.OnComplete) {
       writeMany { result in // This closure is called when all images are created
-         guard let rgbaImages: [RGBAImage] = result.value() else { onComplete(.failure(NSError(domain: "Can't write images", code: 0))); return }
+         guard let rgbaImages: [RGBARep] = result.value() else { onComplete(.failure(NSError(domain: "Can't write images", code: 0))); return }
          Swift.print("🔸 WriteTime:  \(abs(writeTime.timeIntervalSinceNow)) for images.count: \(rgbaImages.count)")
          readTime = .init() // Start readTime measurment
          readMany(rgbaImages: rgbaImages) { result in

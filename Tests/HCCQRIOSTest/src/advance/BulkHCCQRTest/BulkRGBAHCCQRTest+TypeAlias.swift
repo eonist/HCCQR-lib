@@ -6,7 +6,7 @@ extension BulkRGBAHCCQRTest {
    /**
     * Write complete
     */
-   typealias OnWriteImagesComplete = (Result<[RGBAImage], Error>) -> Void
+   typealias OnWriteImagesComplete = (Result<[RGBARep], Error>) -> Void
    /**
     * read complete
     */

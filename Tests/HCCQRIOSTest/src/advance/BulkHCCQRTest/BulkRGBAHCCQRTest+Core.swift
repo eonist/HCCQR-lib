@@ -13,7 +13,7 @@ extension BulkRGBAHCCQRTest {
    static func writeMany(onComplete:@escaping OnWriteImagesComplete) {
       let config: QRConfig = (.v6, .byte, .l) // Config (app uses 4 to 10)
       let randomData: [Data] = (0..<100).compactMap { _ in HCCQRStringData.randomData(config: config) } // Num of items to load
-      var images: [RGBAImage?] = [RGBAImage?](repeating: nil, count: randomData.count)//      var images: [CIImage?] = [CIImage?](repeating: nil, count: randomData.count)
+      var images: [RGBARep?] = [RGBARep?](repeating: nil, count: randomData.count)//      var images: [CIImage?] = [CIImage?](repeating: nil, count: randomData.count)
       writeTime = .init() // we start the write clock here (random data creation time isn't a part of the benchmark)
       totalTime = .init()
       randomData.enumerated().forEach { arg in
@@ -25,7 +25,7 @@ extension BulkRGBAHCCQRTest {
    /**
     * Read many
     */
-   static func readMany(rgbaImages: [RGBAImage], onComplete:@escaping OnReadImagesComplete) {
+   static func readMany(rgbaImages: [RGBARep], onComplete:@escaping OnReadImagesComplete) {
       var payloads: [Data?] = [Data?](repeating: nil, count: rgbaImages.count)
       rgbaImages.enumerated().forEach { arg in // the calles are async, and will finish randomly
 //         DispatchQueue.global(qos: .background).async { // ⚠️️ seems 🤔 to fail if this is put on a bg thread, it doesnt provide any speed benfit either

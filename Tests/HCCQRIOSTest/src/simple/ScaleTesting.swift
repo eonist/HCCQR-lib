@@ -22,9 +22,9 @@ extension ScaleTesting {
          let randomStr: String = QRStringData.randomString(max: stringCount, qrMode: .byte)
          guard let dataItem: Data = randomStr.data(using: .utf8, allowLossyConversion: false) else { Swift.print("err"); return nil }
          guard let qrImage: Image = try? QRWriter.image(data: dataItem, ecLevel: .l) else { Swift.print("unable to create UIImage");return nil }
-         guard let rgbaImage: RGBAImage = try? .rgbaImage(image: qrImage) else { Swift.print("unable to get rgbaimage from img"); return nil }
-         let scaledRGBAImage: RGBAImage = RGBAImageModifier.scale(pixels: rgbaImage.pixels, size: rgbaImage.size, multipliers: (6, 1))
-         guard let img: Image = try? RGBAImageParser.image(rgbaImage: scaledRGBAImage, scale: 1) else { Swift.print("unable to get img from rgbaimage"); return nil }
+         guard let rgbaImage: RGBARep = try? .rgbaRep(image: qrImage) else { Swift.print("unable to get rgbaimage from img"); return nil }
+         let scaledRGBAImage: RGBARep = RGBARepModifier.scale(pixels: rgbaImage.pixels, size: rgbaImage.size, multipliers: (6, 1))
+         guard let img: Image = try? RGBARepParser.image(rgbaImage: scaledRGBAImage, scale: 1) else { Swift.print("unable to get img from rgbaimage"); return nil }
          return img
       }()
       guard let ciImg: CIImage = image?.ciImage() else { Swift.print("err ciimg"); return nil }

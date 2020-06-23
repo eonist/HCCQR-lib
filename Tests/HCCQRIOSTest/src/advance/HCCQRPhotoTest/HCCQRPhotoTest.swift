@@ -27,7 +27,7 @@ extension HCCQRPhotoTest {
       let path: String = Bundle.main.resourcePath! + "/temp.bundle/HCCQR.png" //HCCQR7.png, HCCQR12.png,HCCQR13.jpg
       guard let image = Image(contentsOfFile: path) else { Swift.print("err getting img"); return }
       Swift.print("UIImage.size:  \(image.size)")
-      guard let rgbaImage: RGBAImage = try? CVImageBufferUtil.rgbaImage(image: image) else { Swift.print("err getting rgbImage"); return }
+      guard let rgbaImage: RGBARep = try? CVImageBufferUtil.rgbaRep(image: image) else { Swift.print("err getting rgbImage"); return }
       startTime = .init() // We only want to measure the bellow call
       Reader.dataAndImages(rgbaImage: rgbaImage) { result in // Split the hccqrImg
          onReadComplete(result: result, onComplete: onComplete)

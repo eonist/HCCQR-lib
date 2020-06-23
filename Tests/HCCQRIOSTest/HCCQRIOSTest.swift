@@ -11,13 +11,14 @@ class HCCQRIOSTest: XCTestCase {
     */
    func simpleTests() {
       Swift.print("simpleTests")
-//      XCTAssertEqual(ScaleTesting.testScalingRGBAImage(), 4)
-//      XCTAssertTrue(MonoPixelColorization.testColorizingMonoPixel()) // ✅ b&w-pixels (mono) to color-pixels
-//      XCTAssertTrue(ColorishTest.testThreshold()) // ✅
-//      XCTAssertTrue(ColorishTest.testColorish()) // ✅
+      XCTAssertEqual(ScaleTesting.testScalingRGBAImage(), 4)
+      XCTAssertTrue(MonoPixelColorization.testColorizingMonoPixel()) // ✅ b&w-pixels (mono) to color-pixels
+      XCTAssertTrue(ColorishTest.testThreshold()) // ✅
+      XCTAssertTrue(ColorishTest.testColorish()) // ✅
       XCTAssertTrue(ColorishTest.testWashedOutColor()) // ✅
-//      XCTAssertTrue(QRTesting.testQRGeneration()) // ?
-//      testCIImage() // ✅
+      XCTAssertTrue(QRTesting.testQRGeneration()) // ?
+      XCTAssertTrue(ColorishTest.testUInt8Aritmitic())
+//      XCTAssertTrue(ImageTest.testCIImage()) // 🚫
    }
    /**
     * More elaborate tests
@@ -99,29 +100,5 @@ extension HCCQRIOSTest {
          XCTAssertTrue(success)
       }
       waitForExpectations(timeout: 20, handler: nil)
-   }
-   /**
-    * UIImage -> RGBAImage -> CIImage
-    * - Fixme: ⚠️️ Move into own class
-    */
-   private func testCIImage() {
-      #if os(iOS)
-      guard let image = UIImage.image(size: .init(width: 100, height: 100), color: .green) else { Swift.print("uiImage err"); return }
-      Swift.print("image.scale:  \(image.scale)")
-      Swift.print("image.size:  \(image.height)")
-      // create RGBAImage
-      guard let rgbaRep = try? RGBARep.rgbaRep(image: image) else { Swift.print("rbgaImg err"); return }
-      // create CIIMage
-      guard let ciImage: CIImage = try? RGBARepParser.ciImg2(rgbaRep: rgbaRep, useGrayscale: false) else { Swift.print("ciimg err"); return }
-      // assert that CIMage match first CIImage
-      Swift.print("ciImage.extent.width:  \(ciImage.extent.width)")
-      Swift.print("ciImage.extent.height:  \(ciImage.extent.height)")
-      Swift.print("ciImage.colorSpace:  \(String(describing: ciImage.colorSpace))")
-      let img: UIImage = .init(ciImage: ciImage)
-      Swift.print("img.size:  \(img.size)")
-      Swift.print("img.scale:  \(img.scale)")
-      // img
-      Swift.print("isEqualToImage: \(image.isEqualToImage(image: img) ? "✅" : "🚫")")
-      #endif
    }
 }
