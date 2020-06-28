@@ -9,13 +9,13 @@ extension Colorizer {
     * - Note: idx represent false = black, true = white
     * - Note: if you match the array correctly, then the color is used
     */
-   typealias ColorMap = [ColorMapItem]
+   public typealias ColorMap = [ColorMapItem]
    /**
     * - Parameters:
     *   - idx: The array represents the layers of QRImages (true equals black, false equals white)
     *   - color: the color at the index
     */
-   typealias ColorMapItem = (idx: [Bool], color: Pixel)
+   public typealias ColorMapItem = (idx: [Bool], color: Pixel)
    /**
     * Used for colorizing CIImages
     */

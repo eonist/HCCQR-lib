@@ -4,7 +4,7 @@ import CoreImage
 /**
  * Converts b&w layers into color layers (Used in the HCCQR-creation-process)
  */
-final class Colorizer {}
+public final class Colorizer {}
 /**
  * CIImage
  */
