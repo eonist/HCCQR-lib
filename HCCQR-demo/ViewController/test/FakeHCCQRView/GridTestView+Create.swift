@@ -11,10 +11,10 @@ extension GridTestView {
    func createColorGrid() {
       let grid: [[UIColor]] = {
          [
-            [Pixel.Colors.greenish.color, Pixel.Colors.blueish.color, Pixel.Colors.redish.color, Pixel.Colors.blueish.color, Pixel.Colors.redish.color],
-            [Pixel.Colors.redish.color, Pixel.Colors.blueish.color, Pixel.Colors.blueish.color, Pixel.Colors.redish.color, Pixel.Colors.greenish.color],
-            [Pixel.Colors.blueish.color, Pixel.Colors.greenish.color, Pixel.Colors.redish.color, Pixel.Colors.greenish.color, Pixel.Colors.blueish.color],
-            [Pixel.Colors.greenish.color, Pixel.Colors.greenish.color, Pixel.Colors.greenish.color, Pixel.Colors.greenish.color, Pixel.Colors.redish.color],
+            [Pixel.Colors.greenish.color, Pixel.Colors.blackish.color, Pixel.Colors.whiteish.color, Pixel.Colors.blueish.color, Pixel.Colors.redish.color],
+            [Pixel.Colors.whiteish.color, Pixel.Colors.blueish.color, Pixel.Colors.blueish.color, Pixel.Colors.redish.color, Pixel.Colors.greenish.color],
+            [Pixel.Colors.blueish.color, Pixel.Colors.blackish.color, Pixel.Colors.redish.color, Pixel.Colors.greenish.color, Pixel.Colors.blueish.color],
+            [Pixel.Colors.whiteish.color, Pixel.Colors.greenish.color, Pixel.Colors.greenish.color, Pixel.Colors.greenish.color, Pixel.Colors.redish.color],
             [Pixel.Colors.redish.color, Pixel.Colors.blueish.color, Pixel.Colors.greenish.color, Pixel.Colors.redish.color, Pixel.Colors.greenish.color]
          ]
       }()

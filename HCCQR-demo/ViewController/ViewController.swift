@@ -11,10 +11,10 @@ class ViewController: UIViewController {
       super.viewDidLoad()
       view = View()
       view.backgroundColor = .white // .systemTeal
-//      createRGBAPhoto()
+      createRGBAPhoto()
 //      testSplitting()
 //      testHCCQR()
-      testGrid()
+//      testGrid()
    }
    override var prefersStatusBarHidden: Bool { true }
 }

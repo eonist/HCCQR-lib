@@ -7,6 +7,8 @@ import CoreImage
 extension ViewController {
    /**
     * Grid test
+    * - Note: the channels becomes bright towards white
+    * - Note: all other parts become black
     */
    func testGrid() {
       let demoView = GridTestView(frame: GridTestView.frame)
@@ -33,7 +35,6 @@ extension ViewController {
          let img = UIImage(ciImage: redChannelImg, scale: 2, orientation: .up)
          let imgView: UIImageView = .init(image: img)
          self.view.addSubview(imgView)
-         
 //         let img: UIImage = .init(ciImage: redChannelImg, scale: 1, orientation: .up)
 //         let uiImageView: UIImageView = .init(image: img)
          imgView.frame.origin = .init(x: 0, y: GridTestView.frame.height * 1)
