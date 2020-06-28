@@ -5,6 +5,7 @@ class GrayscaleRepParser {
    /**
     * New (⚠️️ experimental, untested, prob needs more research ⚠️️)
     * - Fixme: ⚠️️ rename param
+    * - Note: fast grayscale: https://developer.apple.com/documentation/accelerate/converting_color_images_to_grayscale
     */
    static func ciImage(grayscaleImage: GrayscaleRep) /*throws*/ -> CIImage {
       let data: Data = .init(buffer: grayscaleImage.pixels)
@@ -16,4 +17,14 @@ class GrayscaleRepParser {
       let ciImg: CIImage = .init(bitmapData: data, bytesPerRow: bytesPerRow, size: CGSize(width: CGFloat(grayscaleImage.size.width), height: CGFloat(grayscaleImage.size.height)), format: format, colorSpace: colorSpace)
       return ciImg
    }
+//   private static var monoFormat {
+//      guard let monoFormat = vImage_CGImageFormat(
+//         bitsPerComponent: 8,
+//         bitsPerPixel: 8,
+//         colorSpace: CGColorSpaceCreateDeviceGray(),
+//         bitmapInfo: CGBitmapInfo(rawValue: CGImageAlphaInfo.none.rawValue),
+//         renderingIntent: .defaultIntent) else {
+//            return
+//      }
+//   }
 }
