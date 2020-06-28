@@ -12,9 +12,9 @@ public final class RGBARepParser {
     *   - scale: the amount to scale the image by (screenScale)
     *   - rgbaImage: rgbaRep to convert to image
     */
-   static func image(rgbaImage: RGBARep, scale: CGFloat) throws -> Image {
+   static func image(rgbaRep: RGBARep, scale: CGFloat) throws -> Image {
       try autoreleasepool { // Ref: ⚠️️ https://stackoverflow.com/questions/25860942/is-it-necessary-to-use-autoreleasepool-in-a-swift-program
-         let cgImage: CGImage = try RGBARepParser.cgImage(rgbaImage: rgbaImage)
+         let cgImage: CGImage = try RGBARepParser.cgImage(rgbaRep: rgbaRep)
          return ImageUtil.image(cgImage: cgImage, scale: scale) // Convert CGImage to UIImage
       }
    }
@@ -27,7 +27,7 @@ extension RGBARepParser {
     * Converts rgbaImage to cgImage (works I guess)
     * - Note: alternative data -> img code, might be faster?: https://stackoverflow.com/questions/51372245/swift-covert-byte-array-into-ciimage
     */
-   private static func cgImage(rgbaImage: RGBARep, useGrayscale: Bool = false) throws -> CGImage {
+   private static func cgImage(rgbaRep: RGBARep, useGrayscale: Bool = false) throws -> CGImage {
       // We use autorelease Because CoreGraphics is not handled by ARC (like all other C libraries),
       // you need to wrap your code with with an autorelease, even in Swift.
       // Particularly if you are not on the main thread (which you should not be, if CoreGraphics is involved... .userInitiated or lower is appropriate).
@@ -36,9 +36,9 @@ extension RGBARepParser {
          let colorSpace: CGColorSpace = CGColorSpaceCreateDeviceRGB()//useGrayscale ? CGColorSpaceCreateDeviceGray() : CGColorSpaceCreateDeviceRGB()
          // Fixme: ⚠️️ convert to grayscale instead, its prob faster
          var bitmapInfo: UInt32 = CGBitmapInfo.byteOrder32Big.rawValue
-         let bytesPerRow: Int = rgbaImage.width * 4
+         let bytesPerRow: Int = rgbaRep.width * 4
          bitmapInfo |= CGImageAlphaInfo.premultipliedLast.rawValue & CGBitmapInfo.alphaInfoMask.rawValue
-         guard let imageContext = CGContext(data: rgbaImage.pixels.baseAddress, width: rgbaImage.width, height: rgbaImage.height, bitsPerComponent: 8, bytesPerRow: bytesPerRow, space: colorSpace, bitmapInfo: bitmapInfo, releaseCallback: nil, releaseInfo: nil) else { throw NSError(domain: "Unable to create imageContext", code: 0) }
+         guard let imageContext = CGContext(data: rgbaRep.pixels.baseAddress, width: rgbaRep.width, height: rgbaRep.height, bitsPerComponent: 8, bytesPerRow: bytesPerRow, space: colorSpace, bitmapInfo: bitmapInfo, releaseCallback: nil, releaseInfo: nil) else { throw NSError(domain: "Unable to create imageContext", code: 0) }
    //      Swift.print("imageContext")
          guard let cgImage: CGImage = imageContext.makeImage() else { throw NSError(domain: "Unable to create cgImage", code: 0) }
    //      cgImage.ciImage()
@@ -49,16 +49,16 @@ extension RGBARepParser {
    /**
     * Experimental (⚠️️ Not working, not used by anything ⚠️️)
     */
-   private static func ciImg(rgbaImage: RGBARep) -> CIImage {
+   private static func ciImg(rgbaRep: RGBARep) -> CIImage {
       let colorSpace: CGColorSpace = CGColorSpaceCreateDeviceRGB() // The color space that the image is defined in. It must be a Quartz 2D color space (CGColorSpace). Pass nil for images that don’t contain color data (such as elevation maps, normal vector maps, and sampled function tables).
       // Fixme: ⚠️️ convert to grayscale instead, its prob faster
       var bitmapInfo: UInt32 = CGBitmapInfo.byteOrder32Big.rawValue
       bitmapInfo |= CGImageAlphaInfo.premultipliedLast.rawValue & CGBitmapInfo.alphaInfoMask.rawValue
-      let bytesPerRow: Int = rgbaImage.width * 4 //((The number of bytes per row.
-//      let ciContext: CIContext = .init()
-//      ciContext.
-      let data = Data(buffer: rgbaImage.pixels) // The bitmap data to use for the image. The data you supply must be premultiplied.
-      let size: CGSize = .init(width: rgbaImage.size.width, height: rgbaImage.size.height)
+      let bytesPerRow: Int = rgbaRep.width * 4 //((The number of bytes per row.
+//    let ciContext: CIContext = .init()
+//    ciContext 
+      let data = Data(buffer: rgbaRep.pixels) // The bitmap data to use for the image. The data you supply must be premultiplied.
+      let size: CGSize = .init(width: rgbaRep.size.width, height: rgbaRep.size.height)
       let format: CIFormat = .BGRA8 // A pixel format constant. See Pixel Formats.
       // try setting colorSpace to nil
       let ciImg = CIImage(bitmapData: data, bytesPerRow: bytesPerRow, size: size, format: format, colorSpace: colorSpace)
@@ -79,34 +79,34 @@ extension RGBARepParser {
     * - Note: The composite method uses this method
     * - Note: Basically monotone not grayscale
     */
-   static func ciImg2(rgbaImage: RGBARep, useGrayscale: Bool) throws -> CIImage {
+   static func ciImg2(rgbaRep: RGBARep, useGrayscale: Bool) throws -> CIImage {
 //      Swift.print("ciImg2")
       let format: CIFormat = .RGBA8 //.BGRA8 // .RGBA8// .ARGB8//.ABGR8// // A pixel format constant. See Pixel Formats.
       let colorSpace: CGColorSpace = useGrayscale ? CGColorSpaceCreateDeviceGray() : CGColorSpaceCreateDeviceRGB()//CGColorSpaceCreateDeviceRGB() // The color space that the image is defined in. It must be a Quartz 2D color space (CGColorSpace). Pass nil for images that don’t contain color data (such as elevation maps, normal vector maps, and sampled function tables).
-      let bytesPerRow: Int = rgbaImage.size.width * 4
-      let data: Data = .init(buffer: rgbaImage.pixels)
-      let ciImg: CIImage = .init(bitmapData: data, bytesPerRow: bytesPerRow, size: CGSize(width: CGFloat(rgbaImage.size.width), height: CGFloat(rgbaImage.size.height)), format: format, colorSpace: colorSpace)
+      let bytesPerRow: Int = rgbaRep.size.width * 4
+      let data: Data = .init(buffer: rgbaRep.pixels)
+      let ciImg: CIImage = .init(bitmapData: data, bytesPerRow: bytesPerRow, size: CGSize(width: CGFloat(rgbaRep.size.width), height: CGFloat(rgbaRep.size.height)), format: format, colorSpace: colorSpace)
       return ciImg
    }
    /**
     * ⚠️️Untested ⚠️️
     * ref: https://stackoverflow.com/a/51380146/5389500 (also has pointer while loop)
     */
-   func ciImg3(rgbaImage: RGBARep) -> CIImage? {
+   func ciImg3(rgbaRep: RGBARep) -> CIImage? {
       // 4 bytes(rgba channels) for each pixel
       let bytesPerPixel: Int = 4
       // (8 bits per each channel)
       //      let bitsPerComponent: Int = 8
       //      let bitsPerPixel = bytesPerPixel * bitsPerComponent;
       // channels in each row (width)
-      let (w, h): (Int, Int) = (rgbaImage.size.width, rgbaImage.size.height)
+      let (w, h): (Int, Int) = (rgbaRep.size.width, rgbaRep.size.height)
       //      let bytesPerRow: Int = w * bytesPerPixel;
       //      let data: Data = .init(buffer: rgbaImage.flatPixels)
-      let cfData = CFDataCreate(nil, rgbaImage.flatPixels, w * h * bytesPerPixel)
+      let cfData = CFDataCreate(nil, rgbaRep.flatPixels, w * h * bytesPerPixel)
       let cgDataProvider = CGDataProvider(data: cfData!)!
       let format: CIFormat = .RGBA8 //.BGRA8 // .RGBA8// .ARGB8//.ABGR8// // A pixel format constant. See Pixel Formats.
       let colorSpace: CGColorSpace = CGColorSpaceCreateDeviceRGB()//useGrayscale ? CGColorSpaceCreateDeviceGray() : CGColorSpaceCreateDeviceRGB()//CGColorSpaceCreateDeviceRGB() // The color space that the image is defined in. It must be a Quartz 2D color space (CGColorSpace). Pass nil for images that don’t contain color data (such as elevation maps, normal vector maps, and sampled function tables).
-      return .init(imageProvider: cgDataProvider, size: rgbaImage.size.width, rgbaImage.size.height, format: format, colorSpace: colorSpace, options: nil)
+      return .init(imageProvider: cgDataProvider, size: rgbaRep.size.width, rgbaRep.size.height, format: format, colorSpace: colorSpace, options: nil)
    }
    /**
     *

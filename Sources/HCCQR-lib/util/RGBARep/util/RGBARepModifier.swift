@@ -15,7 +15,7 @@ class RGBARepModifier {
     *   - size: size of the rgba-rep
     *   - multipliers: The amount to scale the pixel by (moduleScale, screenscale)
     */
-   static func scale(pixels: UnsafeMutableBufferPointer<Pixel>, size: RGBARep.Size, multipliers: Multipliers) -> RGBARep {
+   static func scale(pixels: UnsafeMutableBufferPointer<Pixel>, size: RGBARep.Size, multipliers: Scale) -> RGBARep {
       let multiplier: Int = multipliers.module * multipliers.screen
       let multipliedSize: (width: Int, height: Int) = (size.width * multiplier, size.height * multiplier)
       let capacity: Int = multipliedSize.width * multipliedSize.height

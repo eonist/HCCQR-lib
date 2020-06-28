@@ -3,7 +3,7 @@ import UIKit
 
 class CIImageTest {
    /**
-    * UIImage -> RGBAImage -> CIImage
+    * UIImage -> RGBARep -> CIImage
     * - Fixme: ⚠️️ Move into own class
     */
    static func testCIImage() -> Bool {
@@ -13,7 +13,7 @@ class CIImageTest {
       // create RGBAImage
       guard let rgbaRep = try? RGBARep.rgbaRep(image: image) else { Swift.print("rbgaImg err"); return false }
       // create CIIMage
-      guard let ciImage: CIImage = try? RGBARepParser.ciImg2(rgbaImage: rgbaRep, useGrayscale: false) else { Swift.print("ciimg err"); return false }
+      guard let ciImage: CIImage = try? RGBARepParser.ciImg2(rgbaRep: rgbaRep, useGrayscale: false) else { Swift.print("ciimg err"); return false }
       // assert that CIMage match first CIImage
       Swift.print("ciImage.extent.width:  \(ciImage.extent.width)")
       Swift.print("ciImage.extent.height:  \(ciImage.extent.height)")
