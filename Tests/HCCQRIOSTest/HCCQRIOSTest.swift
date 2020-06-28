@@ -30,7 +30,7 @@ class HCCQRIOSTest: XCTestCase {
       testSingleWriteRead() // ✅ "syntethic-HCCQR-images"
       testCVImageBuffer() // ✅ Test the new buffer -> RGBA (syntethic)
       testBulk() // ✅ Read and write multiple "syntetic-HCCQR-images"
-//      testReadingManyPhotos() // ⭐ Reading many photos
+      testReadingManyPhotos() // ✅ Reading many photos
    }
 }
 /**

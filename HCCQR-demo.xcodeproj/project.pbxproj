@@ -113,7 +113,7 @@
 		F14DDE1323C0E1A800FA0022 /* ResourceHelper in Frameworks */ = {isa = PBXBuildFile; productRef = F14DDE1223C0E1A800FA0022 /* ResourceHelper */; };
 		F14DDE1523C0E26A00FA0022 /* BulkPhotoTest+Handler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14DDE1423C0E26A00FA0022 /* BulkPhotoTest+Handler.swift */; };
 		F14DDE1723C0E27800FA0022 /* BulkPhotoTest+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14DDE1623C0E27800FA0022 /* BulkPhotoTest+Core.swift */; };
-		F14DDE1923C0E30500FA0022 /* BulkPhotoTest+Typealias.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14DDE1823C0E30500FA0022 /* BulkPhotoTest+Typealias.swift */; };
+		F14DDE1923C0E30500FA0022 /* BulkPhotoTest+Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14DDE1823C0E30500FA0022 /* BulkPhotoTest+Type.swift */; };
 		F15C9F7D23BA6FD000F9D524 /* RGBARep+Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15C9F7C23BA6FD000F9D524 /* RGBARep+Const.swift */; };
 		F15C9F7E23BA6FD000F9D524 /* RGBARep+Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15C9F7C23BA6FD000F9D524 /* RGBARep+Const.swift */; };
 		F15C9F8023BA747800F9D524 /* Writer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15C9F7F23BA747800F9D524 /* Writer.swift */; };
@@ -217,7 +217,7 @@
 		F1E5712623A3F2C400E090BB /* BulkRGBAHCCQRTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F165C25623A010E7005D30EC /* BulkRGBAHCCQRTest.swift */; };
 		F1E5712723A3F2C400E090BB /* BulkRGBAHCCQRTest+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BFEFDF23A23C1B007F4261 /* BulkRGBAHCCQRTest+Core.swift */; };
 		F1E5712823A3F2C400E090BB /* BulkRGBAHCCQRTest+Handler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BFEFDB23A23814007F4261 /* BulkRGBAHCCQRTest+Handler.swift */; };
-		F1E5712923A3F2C400E090BB /* BulkRGBAHCCQRTest+TypeAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BFEFE223A23DDA007F4261 /* BulkRGBAHCCQRTest+TypeAlias.swift */; };
+		F1E5712923A3F2C400E090BB /* BulkRGBAHCCQRTest+Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BFEFE223A23DDA007F4261 /* BulkRGBAHCCQRTest+Type.swift */; };
 		F1E5DBFC23F7EFF900605775 /* Channel+Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E5DBFB23F7EFF900605775 /* Channel+Const.swift */; };
 		F1E5DBFD23F7EFF900605775 /* Channel+Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E5DBFB23F7EFF900605775 /* Channel+Const.swift */; };
 		F1E5DC0223F975AE00605775 /* ColorMapAsserter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E5DBFF23F9757D00605775 /* ColorMapAsserter.swift */; };
@@ -333,7 +333,7 @@
 		F1487F13249F84D400265A81 /* SplitError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitError.swift; sourceTree = "<group>"; };
 		F14DDE1423C0E26A00FA0022 /* BulkPhotoTest+Handler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BulkPhotoTest+Handler.swift"; sourceTree = "<group>"; };
 		F14DDE1623C0E27800FA0022 /* BulkPhotoTest+Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BulkPhotoTest+Core.swift"; sourceTree = "<group>"; };
-		F14DDE1823C0E30500FA0022 /* BulkPhotoTest+Typealias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BulkPhotoTest+Typealias.swift"; sourceTree = "<group>"; };
+		F14DDE1823C0E30500FA0022 /* BulkPhotoTest+Type.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BulkPhotoTest+Type.swift"; sourceTree = "<group>"; };
 		F14FADE721F75EF100ACE5FF /* SplitTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitTestView.swift; sourceTree = "<group>"; };
 		F14FADEF21F761FD00ACE5FF /* GridTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridTestView.swift; sourceTree = "<group>"; };
 		F15C9F7C23BA6FD000F9D524 /* RGBARep+Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RGBARep+Const.swift"; sourceTree = "<group>"; };
@@ -413,7 +413,7 @@
 		F1BFEFD223A06899007F4261 /* ColorishTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorishTest.swift; sourceTree = "<group>"; };
 		F1BFEFDB23A23814007F4261 /* BulkRGBAHCCQRTest+Handler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BulkRGBAHCCQRTest+Handler.swift"; sourceTree = "<group>"; };
 		F1BFEFDF23A23C1B007F4261 /* BulkRGBAHCCQRTest+Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BulkRGBAHCCQRTest+Core.swift"; sourceTree = "<group>"; };
-		F1BFEFE223A23DDA007F4261 /* BulkRGBAHCCQRTest+TypeAlias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BulkRGBAHCCQRTest+TypeAlias.swift"; sourceTree = "<group>"; };
+		F1BFEFE223A23DDA007F4261 /* BulkRGBAHCCQRTest+Type.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BulkRGBAHCCQRTest+Type.swift"; sourceTree = "<group>"; };
 		F1CF2D79249380F8007ACC0E /* VC+HCCQR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VC+HCCQR.swift"; sourceTree = "<group>"; };
 		F1CF2D7B24938254007ACC0E /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		F1D69D52249E37360036E89A /* PixelModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixelModifier.swift; sourceTree = "<group>"; };
@@ -769,7 +769,7 @@
 				F18C7B4723BFB06D009D9B29 /* BulkPhotoTest.swift */,
 				F14DDE1623C0E27800FA0022 /* BulkPhotoTest+Core.swift */,
 				F14DDE1423C0E26A00FA0022 /* BulkPhotoTest+Handler.swift */,
-				F14DDE1823C0E30500FA0022 /* BulkPhotoTest+Typealias.swift */,
+				F14DDE1823C0E30500FA0022 /* BulkPhotoTest+Type.swift */,
 			);
 			path = BulkPhotoTest;
 			sourceTree = "<group>";
@@ -862,7 +862,7 @@
 				F165C25623A010E7005D30EC /* BulkRGBAHCCQRTest.swift */,
 				F1BFEFDF23A23C1B007F4261 /* BulkRGBAHCCQRTest+Core.swift */,
 				F1BFEFDB23A23814007F4261 /* BulkRGBAHCCQRTest+Handler.swift */,
-				F1BFEFE223A23DDA007F4261 /* BulkRGBAHCCQRTest+TypeAlias.swift */,
+				F1BFEFE223A23DDA007F4261 /* BulkRGBAHCCQRTest+Type.swift */,
 			);
 			path = BulkHCCQRTest;
 			sourceTree = "<group>";
@@ -1463,7 +1463,7 @@
 				F147200A248C0714008A01AD /* CVImageBufferUtil+Helper.swift in Sources */,
 				F1471FC4248C0055008A01AD /* Hybrid+iOS.swift in Sources */,
 				F1472009248C0714008A01AD /* CVImageBufferUtil+Image.swift in Sources */,
-				F14DDE1923C0E30500FA0022 /* BulkPhotoTest+Typealias.swift in Sources */,
+				F14DDE1923C0E30500FA0022 /* BulkPhotoTest+Type.swift in Sources */,
 				F1E5712523A3F2C400E090BB /* HCCQRPhotoTest.swift in Sources */,
 				F1471FC3248C0049008A01AD /* CVImageBufferUtil+RGBA.swift in Sources */,
 				F1FE7E0424A1D5360094B1BD /* CIImageTest.swift in Sources */,
@@ -1478,7 +1478,7 @@
 				F1471FCC248C0085008A01AD /* RGBARep+DeInit.swift in Sources */,
 				F1471FCF248C00C0008A01AD /* Pixel+Getter.swift in Sources */,
 				F147201A248C0880008A01AD /* NSImage+Extension.swift in Sources */,
-				F1E5712923A3F2C400E090BB /* BulkRGBAHCCQRTest+TypeAlias.swift in Sources */,
+				F1E5712923A3F2C400E090BB /* BulkRGBAHCCQRTest+Type.swift in Sources */,
 				F19C1C7424A8837100E93F4D /* GrayscaleRepParser.swift in Sources */,
 				F1472001248C0704008A01AD /* UInt8Asserter.swift in Sources */,
 				F1471FDC248C0419008A01AD /* GrayscaleRep+Getter.swift in Sources */,
