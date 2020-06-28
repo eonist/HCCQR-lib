@@ -3,7 +3,7 @@ import QR_lib
 import CoreImage
 /**
  * Creates HCCQR-Image from HCCQR-Data
- * - Fixme: ⚠️️ Maybe Rename to Writer.swift? yepp
+ * - Fixme: ⚠️️ Rename to HCCQRWriter again
  */
 public final class Writer {}
 

@@ -1,3 +1,4 @@
+#if os(iOS)
 import Foundation
 @testable import HCCQR_lib
 /**
@@ -38,3 +39,4 @@ final class ColorMapAsserter {
       return !pixelColors.contains(where: condition) // this is very inefficient, you should rather search in the array while its being populated
    }
 }
+#endif

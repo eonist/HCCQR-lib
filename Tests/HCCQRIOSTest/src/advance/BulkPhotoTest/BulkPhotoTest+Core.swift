@@ -13,7 +13,7 @@ extension BulkPhotoTest {
     */
    static func writeMany(onComplete: OnWriteManyComplete) {
       Swift.print("writeMany()")
-      let path: String = ResourceHelper.projectRootURL(projectRef: #file, fileName: "temp.bundle/HCCQR10.png").path
+      let path: String = ResourceHelper.projectRootURL(projectRef: #file, fileName: "temp.bundle/HCCQR2.png").path
       Swift.print("path:  \(path)")
       //let path: String = Bundle.main.resourcePath!+"/temp.bundle/HCCQR10.png" // HCCQR12.png,HCCQR13.jpg
       let rgbaImages: [RGBARep] = (0..<10).compactMap { _ in

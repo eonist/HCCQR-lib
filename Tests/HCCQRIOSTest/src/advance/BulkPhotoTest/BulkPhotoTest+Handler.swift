@@ -9,7 +9,7 @@ extension BulkPhotoTest {
    /**
     * onReadComplete
     */
-   static func onReadComplete(result: Reader.DataAndImagesResult, i: Int, dataArray: inout [Data?], onComplete: @escaping OnReadManyComplete) {
+   static func onReadComplete(result: Reader.DataAndPayloadResult, i: Int, dataArray: inout [Data?], onComplete: @escaping OnReadManyComplete) {
       guard let data: Data = try? result.get().data else { Swift.print("unable to get data· \(result.errorStr)"); return }
       Swift.print("data.count: \(data.count)")
       // DispatchQueue.main.sync {

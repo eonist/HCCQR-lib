@@ -1,7 +1,8 @@
 import Foundation
 import QuartzCore
 import CoreImage
-//@testable import HCCQR_lib
+//import HCCQR_lib
+@testable import HCCQR_lib
 /**
  * Asserter
  */
@@ -12,6 +13,16 @@ extension Image {
     */
    public func isEqualToImage(image: Image) -> Bool {
       self.pngData() == image.pngData()
+   }
+   /**
+    * works better than ciImage() when dealing with qr based ciimages
+    */
+   public func ciImg() -> CIImage? {
+      #if os(macOS)
+      return ciImage()
+      #else
+      return ciImage
+      #endif
    }
 }
 /**

@@ -1,6 +1,5 @@
 #if os(iOS)
 import UIKit
-#endif
 
 class CIImageTest {
    /**
@@ -8,7 +7,6 @@ class CIImageTest {
     * - Fixme: ⚠️️ Move into own class
     */
    static func testCIImage() -> Bool {
-      #if os(iOS)
       guard let image = UIImage.image(size: .init(width: 100, height: 100), color: .green) else { Swift.print("uiImage err"); return false }
       Swift.print("image.scale:  \(image.scale)")
       Swift.print("image.size:  \(image.size)")
@@ -27,6 +25,6 @@ class CIImageTest {
       let equalsImage: Bool = image.isEqualToImage(image: img)
       Swift.print("isEqualToImage: \(equalsImage ? "✅" : "🚫")")
       return equalsImage
-      #endif
    }
 }
+#endif

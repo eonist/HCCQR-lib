@@ -3,6 +3,7 @@ import QuartzCore
 import CoreGraphics
 import CoreImage
 @testable import HCCQR_lib
+import ResourceHelper
 
 final class HCCQRPhotoTest {}
 /**
@@ -24,12 +25,14 @@ extension HCCQRPhotoTest {
     */
    static func testReadingHCCQRPhoto(onComplete: @escaping OnComplete) {
       Swift.print("testReadingHCCQRImage")
-      let path: String = Bundle.main.resourcePath! + "/temp.bundle/HCCQR.png" // HCCQR7.png, HCCQR12.png,HCCQR13.jpg
-      guard let image = Image(contentsOfFile: path) else { Swift.print("err getting img"); return }
+      let path: String = ResourceHelper.projectRootURL(projectRef: #file, fileName: "temp.bundle/HCCQR2.png").path
+      Swift.print("path:  \(path)")
+//      let path: String = Bundle.main.resourcePath! + "/temp.bundle/HCCQR2.png" // HCCQR7.png, HCCQR12.png,HCCQR13.jpg
+      guard let image = Image(contentsOfFile: path) else { Swift.print("err getting img: \(path)"); return }
       Swift.print("UIImage.size:  \(image.size)")
       guard let rgbaImage: RGBARep = try? CVImageBufferUtil.rgbaRep(image: image) else { Swift.print("err getting rgbImage"); return }
       startTime = .init() // We only want to measure the bellow call
-      Reader.dataAndImages(rgbaImage: rgbaImage) { result in // Split the hccqrImg
+      Reader.dataAndQR(rgbaImage: rgbaImage) { result in // Split the hccqrImg
          onReadComplete(result: result, onComplete: onComplete)
       }
    }

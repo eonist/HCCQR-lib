@@ -2,7 +2,9 @@ import Foundation
 import QR_lib
 import QuartzCore
 import CoreImage
-
+/**
+ * - Fixme: ⚠️️ Rename to HCCQRReader again
+ */
 public final class Reader {}
 /**
  * Adds support for CVImageBuffer (For processing data from camera)

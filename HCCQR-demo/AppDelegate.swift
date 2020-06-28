@@ -9,6 +9,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 extension AppDelegate {
    func createWindow() -> UIWindow {
+      Swift.print("createWindow")
       let win = UIWindow(frame: UIScreen.main.bounds)
       let vc = ViewController()
       win.rootViewController = vc

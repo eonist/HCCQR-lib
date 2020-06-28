@@ -10,6 +10,7 @@ extension ViewController {
     * RGBAPhoto
     */
    func createRGBAPhoto() {
+      Swift.print("createRGBAPhoto")
       let path: String = Bundle.main.resourcePath! + "/temp.bundle/HCCQR2.png" // HCCQR7.png, HCCQR12.png,HCCQR13.jpg
       guard let image = Image(contentsOfFile: path) else { Swift.print("err getting img"); return }
       Swift.print("UIImage.size:  \(image.size)")

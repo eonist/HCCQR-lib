@@ -20,6 +20,8 @@ class MonoPixelColorization {
       guard let pixelC: Pixel = try? Colorizer.colorize(pixels: [true, false], colorMap: Colorizer.colorMap()) else { fatalError("err") }// -> BluePixel
       let isPixelCGreen: Bool = Pixel.isMatching(a: pixelC, b: Pixel.Colors.green)
       Swift.print("isPixelCGreen:  \(isPixelCGreen)")
-      return isPixelARed && isPixelBBlue && isPixelCGreen
+      let isValid = isPixelARed && isPixelBBlue && isPixelCGreen
+      Swift.print("isValid:  \(isValid)")
+      return isValid
    }
 }

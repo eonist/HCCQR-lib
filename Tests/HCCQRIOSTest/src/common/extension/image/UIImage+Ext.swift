@@ -4,8 +4,11 @@ import UIKit
 extension UIImage {
    /**
     * Sometimes UIImage.ciImage just doesn't work
+    * - Note: Sometimes doesnt work for QR based CIImages
     */
    internal func ciImage() -> CIImage? {
+//      ciImage
+      // ⚠️️ the bellow didnt work sometimes
       guard let cgImage: CGImage = self.cgImage else { Swift.print("QRLib.UIImage.ciImage() - unable to create cgimage"); return nil }
       return CoreImage.CIImage(cgImage: cgImage)
    }

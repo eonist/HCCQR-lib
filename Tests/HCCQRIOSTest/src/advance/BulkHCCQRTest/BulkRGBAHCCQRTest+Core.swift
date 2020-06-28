@@ -29,11 +29,11 @@ extension BulkRGBAHCCQRTest {
       var payloads: [Data?] = [Data?](repeating: nil, count: rgbaImages.count)
       rgbaImages.enumerated().forEach { arg in // the calles are async, and will finish randomly
 //         DispatchQueue.global(qos: .background).async { // ⚠️️ seems 🤔 to fail if this is put on a bg thread, it doesnt provide any speed benfit either
-            Reader.dataAndImages(rgbaImage: arg.element) { result in  // split the hccqrImg
-               DispatchQueue.main.async { // We need to go on the mainthread to manipulate array
-                  onReadComplete(i: arg.offset, result: result, payloads: &payloads, onComplete: onComplete)
-               }
+         Reader.dataAndQR(rgbaImage: arg.element) { (result: Reader.DataAndPayloadResult) in  // split the hccqrImg
+            DispatchQueue.main.async { // We need to go on the mainthread to manipulate array
+               onReadComplete(i: arg.offset, result: result, payloads: &payloads, onComplete: onComplete)
             }
+         }
 //         }
       }
    }
