@@ -18,7 +18,7 @@ extension ViewController {
 //      guard let img = try? RGBAImageUtil.image(rgbaImage: rgbaImage, scale: 1) else { Swift.print("err making img"); return }
 //      let imgView: UIImageView = .init(image: img)
 //      self.view.addSubview(imgView)
-      Reader.dataAndQR(rgbaImage: rgbaImage) { result in // Split the hccqrImg
+      Reader.dataAndQR(rgbaImage: rgbaImage) { (result: Reader.DataAndPayloadResult) in // Split the hccqrImg
          self.onReadComplete(result: result) { success in Swift.print("dataAndImages success: \(success)") }
       }
    }
@@ -38,9 +38,17 @@ extension ViewController {
          let err: ReadError? = result.error()
 //         Swift.print("err:  \(err)");
          switch err {
-         case let .unableToExtractQRData(msg, ciImage):
+         case let .unableToExtractQRData(msg, ciImage, rgbChannels):
+            _ = ciImage
+            let redChannel: GrayscaleRep = rgbChannels.r
+            redChannel.pixels.enumerated().forEach {
+               if $0.element > 0 {
+                  Swift.print("$0.element:  \($0.element)")
+               }
+            }
+            let redChannelImg: CIImage = GrayscaleRepParser.ciImage(grayscaleImage: redChannel)
             Swift.print("msg:  \(msg)")
-            let img = UIImage(ciImage: ciImage)
+            let img = UIImage(ciImage: redChannelImg)
             let imgView: UIImageView = .init(image: img)
             self.view.addSubview(imgView)
          default:
@@ -51,8 +59,10 @@ extension ViewController {
       }
       // if success ✅
 
-      Swift.print("value.qr1:  \(value.payload.qrImgs[0])")
-      let img = UIImage(ciImage: value.payload.qrImgs[0])
+//      Swift.print("value.qr1:  \(value.payload.qrImgs[0])")
+      let redChannel: GrayscaleRep = value.payload.rgbChannels.b
+      let redChannelImg: CIImage = GrayscaleRepParser.ciImage(grayscaleImage: redChannel)
+      let img = UIImage(ciImage: redChannelImg) // value.payload.qrImgs[0]
       let imgView: UIImageView = .init(image: img)
       self.view.addSubview(imgView)
       // try with perfect HCCQR image

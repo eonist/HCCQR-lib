@@ -34,7 +34,7 @@ extension Reader {
             var err: Error?
             var dataAndQuad: QRReader.DataAndQuad?
             do { dataAndQuad = try QRReader.dataAndQuad(ciImage: item.element, useAccurateDetector: true) } catch { err = error } // Swift.print("colorSpace:  \(String(describing: item.element.colorSpace)) debugDescription:  \(item.element.debugDescription)")
-            onReadQRCodeComplete(i: item.offset, ciIMG: item.element, rgbChannels: payload.rgbChannels, dataAndQuad: dataAndQuad, error: err, dataAndQuads: &dataAndFrames, payload: payload, onComplete: onComplete)
+            onReadQRCodeComplete(i: item.offset, dataAndQuad: dataAndQuad, dataAndQuads: &dataAndFrames, payload: payload, error: err, onComplete: onComplete)
              // }
          }
       }
@@ -60,14 +60,19 @@ extension Reader {
     *   - payload: 2 CIImage's
     *   - onComplete: completion block with DataAndImage
     */
-   private static func onReadQRCodeComplete(i: Int, ciIMG: CIImage, rgbChannels: Channel.RGBChannels, dataAndQuad: QRReader.DataAndQuad?, error: Error?, dataAndQuads: inout [QRReader.DataAndQuad?], payload: Splitter.Payload, onComplete: DataAndPayloadCompleted ) {
-      guard let dataAndFrame: QRReader.DataAndQuad = dataAndQuad else { onComplete(.failure(.unableToExtractQRData(msg: "QRIMG: \(i) error: \(String(describing: error?.localizedDescription))", ciImage: ciIMG))); return }
+   private static func onReadQRCodeComplete(i: Int, dataAndQuad: QRReader.DataAndQuad?, dataAndQuads: inout [QRReader.DataAndQuad?], payload: Splitter.Payload, error: Error?, onComplete: DataAndPayloadCompleted ) {
+      guard let dataAndFrame: QRReader.DataAndQuad = dataAndQuad else { onComplete(.failure(.unableToExtractQRData(msg: "QRIMG: \(i) error: \(String(describing: error?.localizedDescription))", ciImage: payload.qrImgs[i], rgbChannels: payload.rgbChannels))); return }
       dataAndQuads[i] = dataAndQuad
       if !dataAndQuads.contains (where: { $0 == nil }) { // Makes sure all images finished
-         // - Fixme: ⚠️️ move into allComplete handler?
          let data: Data = dataAndQuads.compactMap { $0?.qrData }.reduce(Data(), +) // Merges the data
          // readTime += abs(HCCQRReader.readQrTime.timeIntervalSinceNow); Swift.print("👉 Read QR complete: \(abs(HCCQRReader.readQrTime.timeIntervalSinceNow))")
-         onComplete(.success((data, (payload.qrImgs, rgbChannels), dataAndFrame.quad))) // Return the result here
+         onAllReadComplete(data: data, quad: dataAndFrame.quad, payload: payload, onComplete: onComplete)
       }
+   }
+   /**
+    * allComplete handler
+    */
+   private static func onAllReadComplete(data: Data, quad: QRReader.Quad, payload: Splitter.Payload, onComplete: DataAndPayloadCompleted) {
+      onComplete(.success((data, payload, quad))) // Return the result here
    }
 }
