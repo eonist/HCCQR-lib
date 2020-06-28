@@ -28,7 +28,7 @@ extension SingleWriteReadHCCQRTest {
       startTime = .init()
       writeTime = .init() // We start the write clock here (random data creation time isn't interesting)
       DispatchQueue.global(qos: .userInitiated).async {
-         Writer.rgbaImage(data: randomData, multipliers: (module: 6, screen: 2), qrConfig: (config.version, config.ecLevel)) { result in // write the HCCQR
+         Writer.rgbaImage(data: randomData, scale: (module: 6, screen: 2), qrConfig: (config.version, config.ecLevel)) { result in // write the HCCQR
             guard let rgbaImage: RGBARep = try? result.get() else { Swift.print("err: \(result.errorStr)"); return }
             onWriteComplete(rgbaImage: rgbaImage, randomData: randomData, onComplete: onComplete)
          }

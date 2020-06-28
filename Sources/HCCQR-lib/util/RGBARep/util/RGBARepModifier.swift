@@ -13,20 +13,20 @@ class RGBARepModifier {
     * - Parameters:
     *   - pixels: the pixels array
     *   - size: size of the rgba-rep
-    *   - multipliers: The amount to scale the pixel by (moduleScale, screenscale)
+    *   - scale: The amount to scale the pixel by (module, screen)
     */
-   static func scale(pixels: UnsafeMutableBufferPointer<Pixel>, size: RGBARep.Size, multipliers: Scale) -> RGBARep {
-      let multiplier: Int = multipliers.module * multipliers.screen
-      let multipliedSize: (width: Int, height: Int) = (size.width * multiplier, size.height * multiplier)
-      let capacity: Int = multipliedSize.width * multipliedSize.height
+   static func scale(pixels: UnsafeMutableBufferPointer<Pixel>, size: RGBARep.Size, scale: Scale) -> RGBARep {
+      let scale: Int = scale.module * scale.screen
+      let scaledSize: (width: Int, height: Int) = (size.width * scale, size.height * scale)
+      let capacity: Int = scaledSize.width * scaledSize.height
       let resultPixels = UnsafeMutableBufferPointer<Pixel>.allocate(capacity: capacity) // [PixelData]()
-      (0..<multipliedSize.height).indices.forEach { y in
-         DispatchQueue.concurrentPerform(iterations: multipliedSize.width) { x in // Optimization initiative, might be faster
-            let pixelIndex: Int = y / multiplier * size.height + x / multiplier
-            let index: Int = y * multipliedSize.width + x
+      (0..<scaledSize.height).indices.forEach { y in
+         DispatchQueue.concurrentPerform(iterations: scaledSize.width) { x in // Optimization initiative, might be faster
+            let pixelIndex: Int = y / scale * size.height + x / scale
+            let index: Int = y * scaledSize.width + x
             resultPixels[index] = pixels[pixelIndex]
          }
       }
-      return .init(pixels: resultPixels, width: multipliedSize.width, height: multipliedSize.height)
+      return .init(pixels: resultPixels, width: scaledSize.width, height: scaledSize.height)
    }
 }

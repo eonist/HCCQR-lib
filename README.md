@@ -59,7 +59,9 @@ HCCQRReader.data(image: img) { result in
    Swift.print("isMatching:  \(isMatching ? "Success": "Failure")")
 }
 ```
+
 ### Todo:
 - Add smart cropping for for every qr-layer after the first (refine crop)
-- Test the new ColorSplitter library with hccqr photos
-- Simplify the CPU core optimizations, by just dividing the image into 2-6 parts. Depending on cpu core count. THen assign each part to each cpu core with concurrentPerform (🚫 maybe not, rather batch-read the frames)
+- Test the new ColorSplitter library with HCCQR photos ✅
+- Simplify the CPU core optimizations, by just dividing the image into 1-8 parts. Depending on cpu core/ thread count. Then assign each part to each cpu core with concurrentPerform (🚫 maybe not, rather batch-read the frames)
+- Remove alpha from the various conversion methods (alpha value is superfluous)

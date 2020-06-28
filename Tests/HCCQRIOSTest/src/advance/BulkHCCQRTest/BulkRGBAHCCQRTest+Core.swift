@@ -17,7 +17,7 @@ extension BulkRGBAHCCQRTest {
       writeTime = .init() // we start the write clock here (random data creation time isn't a part of the benchmark)
       totalTime = .init()
       randomData.enumerated().forEach { arg in
-         Writer.rgbaImage(data: arg.element, multipliers: (module: 6, screen: 2), qrConfig: (config.version, config.ecLevel)) { result in
+         Writer.rgbaImage(data: arg.element, scale: (module: 6, screen: 2), qrConfig: (config.version, config.ecLevel)) { result in
             onWriteComplete(i: arg.offset, rgbaImage: try? result.get(), images: &images, onComplete: onComplete)
          }
       }

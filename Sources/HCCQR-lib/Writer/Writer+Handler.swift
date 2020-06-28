@@ -15,17 +15,17 @@ extension Writer {
     *   - i: the index of the CIImage to be placed in the result-array
     *   - ciImg: The image to be placed in the result-array
     *   - ciImgs: The completion result array (initially populated with nils)
-    *   - multipliers: Screen and module scale
+    *   - scale: Screen and module scale
     *   - useDarkMode: Toggle between dark and light mode (dark / white background)
     *   - onComplete: Return the complete HCCQR image from grayscale QR represenations
     */
-   internal static func onQRImageComplete(i: Int, ciImg: CIImage?, ciImgs:inout [CIImage?], multipliers: Scale, useDarkMode: Bool = false, onComplete: OnRGBAImageComplete) {
+   internal static func onQRImageComplete(i: Int, ciImg: CIImage?, ciImgs:inout [CIImage?], scale: Scale, useDarkMode: Bool = false, onComplete: OnRGBAImageComplete) {
       guard let ciImg: CIImage = ciImg else { onComplete(.failure(.unableToCreateCIImage)); return }
       ciImgs[i] = ciImg // It matters which order the QRImage's came in when you stitch them back together
       if !ciImgs.contains(where: { $0 == nil }) { // Makes sure all images finished (aka no nil values)
          let ciImages: [CIImage] = ciImgs.compactMap { $0 } // Removes nils
          let colorMap: Colorizer.ColorMap = Colorizer.colorMap(useDarkMode: useDarkMode)
-         guard let rgbaImage: RGBARep = try? Colorizer.colorize(ciImages: ciImages, colorMap: colorMap, multipliers: multipliers) else { onComplete(.failure(.unableToCreateColorizedImage)); return }
+         guard let rgbaImage: RGBARep = try? Colorizer.colorize(ciImages: ciImages, colorMap: colorMap, scale: scale) else { onComplete(.failure(.unableToCreateColorizedImage)); return }
          onComplete(.success(rgbaImage))
       }
    }

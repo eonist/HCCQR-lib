@@ -5,7 +5,7 @@ import Foundation
 extension RGBARep {
    /**
     * Convenient
-    * - ⚠️️ Used only for testing, move to testing
+    * - Note: Used by RGBARepModifier.scale
     */
    internal typealias Size = (width: Int, height: Int)
 }
