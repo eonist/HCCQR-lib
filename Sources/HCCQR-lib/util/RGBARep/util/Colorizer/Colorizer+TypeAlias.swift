@@ -21,3 +21,11 @@ extension Colorizer {
     */
    typealias ColorizedResult = Result<CIImage, ColorizeError>
 }
+/**
+ * Helper
+ */
+extension Array where Element == Colorizer.ColorMapItem {
+   var layerCount: Int {
+      Int(Algebra.exponent(base: 2, value: CGFloat(self.count)))
+   }
+}

@@ -14,8 +14,8 @@ class CVBufferTest {
    static func test(onComplete: @escaping OnComplete) {
       let setup: HCCQRSetup = .init(qr: .init(qrVersion: .v4, ecLevel: .l), output: .init(scale: (6, 2)))
       // - Fixme: ⚠️️  upgrade randomData to support setup etc
-      let config: QRConfig = (setup.qrVersion, .byte, setup.ecLevel) // Config
-      guard let data = HCCQRStringData.randomData(config: config) else { Swift.print("unable to create data"); return }
+//      let config: QRConfig = (setup.qrVersion, .byte, setup.ecLevel) // Config
+      guard let data = HCCQRStringData.randomData(setup: setup) else { Swift.print("unable to create data"); return }
       DispatchQueue.global(qos: .userInitiated).async {
          Writer.image(data: data, config: setup) { result in // Create HCCQR from data
             self.onWriteComplete(result: result, data: data, onComplete: onComplete)

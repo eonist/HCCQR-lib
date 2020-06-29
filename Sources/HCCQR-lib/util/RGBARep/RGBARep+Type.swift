@@ -1,7 +1,5 @@
 import Foundation
-/**
- * - Fixme: ⚠️️ add doc
- */
+
 extension RGBARep {
    /**
     * Convenient

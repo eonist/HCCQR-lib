@@ -23,8 +23,8 @@ extension SingleWriteReadHCCQRTest {
    static func testWritingHCCQRImage(onComplete: @escaping OnComplete) {
       // get this to work again 👌
       let setup: HCCQRSetup = .init(qr: .init(qrVersion: .v8, ecLevel: .l), output: .init(scale: (6, 2)))
-      let config: QRConfig = (setup.qrVersion, .byte, setup.ecLevel) // Config
-      guard let randomData: Data = HCCQRStringData.randomData(config: config) else { Swift.print("err"); onComplete(false); return }
+//      let config: QRConfig = (setup.qrVersion, .byte, setup.ecLevel) // Config
+      guard let randomData: Data = HCCQRStringData.randomData(setup: setup) else { Swift.print("err"); onComplete(false); return }
       _ = randomData
       startTime = .init()
       writeTime = .init() // We start the write clock here (random data creation time isn't interesting)

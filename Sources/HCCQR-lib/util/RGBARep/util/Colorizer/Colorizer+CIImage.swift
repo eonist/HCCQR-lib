@@ -43,9 +43,9 @@ extension Colorizer {
     * - Fixme: ⚠️️ Use ConcurrentPerform in conjunction with image quadrants / cores, threads
     */
    static func colorize(ciImages: [CIImage], colorMap: ColorMap, scale: Scale) throws -> RGBARep {
-      let monotoneImages: [MonotoneRep] = ciImages.compactMap { try? MonotoneRep.monotoneRep(ciImg: $0) } // convert QR images to Pixel-data
+      let monotoneReps: [MonotoneRep] = ciImages.compactMap { try? MonotoneRep.monotoneRep(ciImg: $0) } // convert QR images to Pixel-data
 //      guard ciImages.count == monotoneImages.count else { throw NSError("Colorize.colorize() - some rgbaImages was not created") }
-      let result: RGBARep = colorize(monotoneImages: monotoneImages, colorMap: colorMap, scale: scale)// else { throw NSError("Colorize.colorize() - Unable to create colorized rgbaImage") } // overlay the qr-pixel-data
+      let result: RGBARep = colorize(monotoneReps: monotoneReps, colorMap: colorMap, scale: scale)// else { throw NSError("Colorize.colorize() - Unable to create colorized rgbaImage") } // overlay the qr-pixel-data
       return result
    }
 }

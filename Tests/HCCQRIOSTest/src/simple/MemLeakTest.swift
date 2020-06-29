@@ -15,9 +15,9 @@ extension MemLeakTest {
     */
    static func testFixingMemLeak() {
       let setup: HCCQRSetup = .init(qr: .init(qrVersion: .v10, ecLevel: .l), output: .init(scale: (6, 2)))
-      let config: QRConfig = (setup.qrVersion, .byte, setup.ecLevel) // Config
+//      let config: QRConfig = (setup.qrVersion, .byte, setup.ecLevel) // Config
       (0..<40).forEach { _ in
-         guard let data = HCCQRStringData.randomData(config: config) else { Swift.print("err data"); return }
+         guard let data = HCCQRStringData.randomData(setup: setup) else { Swift.print("err data"); return }
          Writer.image(data: data, config: setup) { result in
 //            Swift.print("img.size:  \(String(describing: try? result.get().size))")
             guard let img: Image = result.value() else { Swift.print("result.errorStr:  \(result.errorStr)"); fatalError("err") }

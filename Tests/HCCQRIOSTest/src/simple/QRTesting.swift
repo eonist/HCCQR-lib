@@ -12,11 +12,12 @@ final class QRTesting {
     * - Fixme: ⚠️️ ideally this should create first and second
     */
    static func testQRGeneration() -> Bool {
-      let config: QRConfig = (.v8, .byte, .l)
-      guard let hccqrData: Data = HCCQRStringData.randomData(config: config, colorDepth: 2) else { return false }
+//      let config: QRConfig = (.v8, .byte, .l)
+      let setup: HCCQRSetup = .init(qr: .init(qrVersion: .v8, ecLevel: .l), output: .init(scale: (6, 2)))
+      guard let hccqrData: Data = HCCQRStringData.randomData(setup: setup) else { return false }
       let dataArr: [Data] = hccqrData.split(index: hccqrData.count / 2) // Split the data in two
       guard let firstItem: Data = dataArr.first else { Swift.print("err data"); return false }
-      guard let qrImage: Image = try? QRWriter.image(data: firstItem, ecLevel: config.ecLevel, moduleMultiplier: 6), let ciImage = qrImage.ciImg() else { Swift.print("unable to create UIImage"); return false }
+      guard let qrImage: Image = try? QRWriter.image(data: firstItem, ecLevel: setup.ecLevel, moduleMultiplier: setup.scale.module), let ciImage = qrImage.ciImg() else { Swift.print("unable to create UIImage"); return false }
       guard let data: Data = try? QRReader.data(ciImage: ciImage) else { Swift.print("no data"); return false }
       Swift.print("firstItem:  \(firstItem) data.count:  \(data.count)")
       let dataMatches: Bool = firstItem == data
