@@ -20,10 +20,10 @@ final class Compositor {
     * - Fixme: ⚠️️ Defer deinit instead of having two deInit calls. Research this first, could make this method cleaner
     */
    static func composite(grayscaleReps: [GrayscaleRep]) -> CIImage {
-      let grayscaleRep: GrayscaleRep = composite(grayscaleImages: grayscaleReps) // smash two grayscaleReps together
+      let composition: GrayscaleRep = composite(grayscaleImages: grayscaleReps) // smash two grayscaleReps together
       // - Fixme: ⚠️️ this could be the problem
-      let img: CIImage = GrayscaleRepParser.ciImage(grayscaleImage: grayscaleRep) /* else { grayscaleImage.deInit(); throw NSError(domain: "Unable to create img", code: 0) }*/
-      grayscaleRep.deInit() // We de-init the Img after we have consumed it to avoid mem leak
+      let img: CIImage = GrayscaleRepParser.ciImage(grayscaleRep: composition) /* else { grayscaleImage.deInit(); throw NSError(domain: "Unable to create img", code: 0) }*/
+      composition.deInit() // We de-init the Img after we have consumed it to avoid mem leak
       return img
    }
 }

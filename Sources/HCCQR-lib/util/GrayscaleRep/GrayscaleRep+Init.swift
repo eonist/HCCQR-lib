@@ -5,7 +5,7 @@ import CoreImage
  */
 extension GrayscaleRep {
    /**
-    * Filled image
+    * Creates a Filled rep of the same pixel
     * - Fixme: ⚠️️ Prob create the unmanaged pointer directly for better speed
     * - Fixme: ⚠️️ maybe make this an init
     * - Parameters:
@@ -29,7 +29,7 @@ extension GrayscaleRep {
       return .init(pixels: unsafePixels, width: size.width, height: size.height)
    }
    /**
-    * Returns empty grayScale-image
+    * Returns empty grayScale-rep
     * - Fixme: ⚠️️ Seems counter productive to allocate and then populate the array, can't it be done in one go?
     * - Parameters:
     *   - capacity: the number of pixels you want to use
