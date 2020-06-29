@@ -90,6 +90,7 @@ extension Pixel {
     * Match two pixels
     * - Note: Looks funny, but it's that way to make it fast (basically exits early if something doesn't match)
     * - Important: ⚠️️ This is not private because it is accessed in the testColorizingMonoPixel test
+    * - Note: alpha is disregarded because we don't use alpha
     */
    internal static func isMatching(a: Pixel, b: Pixel) -> Bool {
       a.r == b.r && a.g == b.g && a.b == b.b

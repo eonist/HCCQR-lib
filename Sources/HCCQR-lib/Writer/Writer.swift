@@ -41,9 +41,9 @@ extension Writer {
     * - Fixme: ⚠️️ Splitting the data in two allows 4 color map, in the future we will allow 8 color map (pallet etc)
     */
    internal static func rgbaRep(data: Data, config: HCCQRSetup = .default, onComplete: @escaping OnRGBRepComplete) {
-      let dataArr: [Data] = data.split(index: data.count / 2) // Split the data in two ()
+      let dataArr: [Data] = data.split(index: data.count / config.map.layerCount) // Split the data in to the num of layers
       var ciImgs: [CIImage?] = [CIImage?](repeating: nil, count: dataArr.count) // Pre-filled array for the images
-      dataArr.enumerated().forEach { (_ offset: Int, _ data: Data) in
+      dataArr.enumerated().forEach { (offset: Int, data: Data) in
          DispatchQueue.global(qos: .userInitiated).async { // Adds the operation to a background-thread
             let ciImg: CIImage? = try? QRWriter.ciImage(data: data, ecLevel: config.ecLevel) // Create B&W QR-image
             DispatchQueue.main.async { // I guess main-thread is needed here because we access an array

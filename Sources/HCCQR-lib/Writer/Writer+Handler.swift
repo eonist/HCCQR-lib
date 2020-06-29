@@ -23,10 +23,21 @@ extension Writer {
       guard let ciImg: CIImage = ciImg else { onComplete(.failure(.unableToCreateCIImage)); return }
       ciImgs[i] = ciImg // It matters which order the QRImage's came in when you stitch them back together
       if !ciImgs.contains(where: { $0 == nil }) { // Makes sure all images finished (aka no nil values)
-         let ciImages: [CIImage] = ciImgs.compactMap { $0 } // Removes nils
-//         let colorMap: Colorizer.ColorMap = Colorizer.colorMap(useDarkMode: useDarkMode)
-         guard let rgbaImage: RGBARep = try? Colorizer.colorize(ciImages: ciImages, config: config.output) else { onComplete(.failure(.unableToCreateColorizedImage)); return }
-         onComplete(.success(rgbaImage))
+         onAllQrImageComplete(ciImgs: ciImgs, config: config, onComplete: onComplete)
       }
+   }
+}
+/**
+ * Private static helper handler
+ */
+extension Writer {
+   /**
+    * All complete
+    */
+   private static func onAllQrImageComplete(ciImgs: [CIImage?], config: HCCQRSetup, onComplete: OnRGBRepComplete) {
+      let ciImages: [CIImage] = ciImgs.compactMap { $0 } // Removes nils
+      //         let colorMap: Colorizer.ColorMap = Colorizer.colorMap(useDarkMode: useDarkMode)
+      guard let rgbaImage: RGBARep = try? Colorizer.colorize(ciImages: ciImages, config: config.output) else { onComplete(.failure(.unableToCreateColorizedImage)); return }
+      onComplete(.success(rgbaImage))
    }
 }
