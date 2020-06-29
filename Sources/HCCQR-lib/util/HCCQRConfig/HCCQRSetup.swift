@@ -8,7 +8,7 @@ public struct HCCQRSetup {
    let output: HCCQROutput
    static let `default`: HCCQRSetup = .init(qr: .default, output: .default)
    var scale: Scale { output.scale }
-   var map: Colorizer.ColorMap { output.map }
+   var map: ColorMap { output.map }
    var ecLevel: ECLevel { qr.ecLevel }
    var qrVersion: QRVer { qr.qrVersion }
 }
@@ -25,10 +25,10 @@ public struct QRSetup {
  */
 public struct HCCQROutput {
    let scale: Scale
-   let map: Colorizer.ColorMap
-   init(scale: Scale, map: Colorizer.ColorMap = Colorizer.colorMap()) {
+   let map: ColorMap
+   init(scale: Scale, map: ColorMap = ColorMap.colorMap()) {
       self.scale = scale
       self.map = map
    }
-   static let `default`: HCCQROutput = .init(scale: (6, 2), map: Colorizer.colorMap())
+   static let `default`: HCCQROutput = .init(scale: (6, 2), map: ColorMap.colorMap())
 }

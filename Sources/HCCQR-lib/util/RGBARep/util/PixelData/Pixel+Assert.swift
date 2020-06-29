@@ -17,8 +17,8 @@ extension Pixel {
     */
    func isSimilar(_ ishColor: Pixel) -> Similarity { // - Fixme: ⚠️️ Might not need to return a tuple, the strength alone may be enough
       let isColorish: Bool = self.isColorish(ishColor) // channels r,g,b are within the color
-      let strength = /*colorish.*/isColorish ? PixelParser.similarity(a: ishColor, b: self) : UInt8.black // if not colorish, then return no intensity, and thus avoid calculating strength 
-      return (assert: /*colorish.*/isColorish, strength: strength)
+      let strength = isColorish ? PixelParser.similarity(a: ishColor, b: self) : UInt8.black // if not colorish, then return no intensity, and thus avoid calculating strength
+      return (assert: isColorish, strength: strength)
    }
    /**
     * Asserts if a pixel is sort of a color within a threshold

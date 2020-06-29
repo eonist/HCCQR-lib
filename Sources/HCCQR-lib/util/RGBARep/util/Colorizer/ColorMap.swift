@@ -1,15 +1,32 @@
 import Foundation
+import CoreImage
 /**
  * ColorMap
  * - Abstract: Used in the creation process
+ * The idea is that ColorMap array can hold 4-colors, 8-colors, 16-colors etc
+ * - Note: idx represent false = black, true = white
+ * - Note: if you match the array correctly, then the color is used
  */
-extension Colorizer {
+public typealias ColorMap = [ColorMapItem]
+/**
+ * - Parameters:
+ *   - idx: The array represents the layers of QRImages (true equals black, false equals white)
+ *   - color: the color at the index
+ */
+public typealias ColorMapItem = (idx: [Bool], color: Pixel)
+/**
+ * Helper
+ */
+extension Array where Element == ColorMapItem {
+   public var layerCount: Int {
+      Int(Algebra.exponent(base: 2, value: CGFloat(self.count)))
+   }
    /**
     * ColorMap (standard 4 color ColorMap)
     * - Fixme: ⚠️️ Since index is unique we can make this hashable 👌 (it will be faster probably), caseIteratable 👈 ,maybe difficult now that we have to support darkmode
     * - Parameter useDarkMode: Enables the HCCQR to be inverted and support darkmode
     */
-   static func colorMap(useDarkMode: Bool = false) -> ColorMap {
+   public static func colorMap(useDarkMode: Bool = false) -> ColorMap {
       [
          (idx: [false, true], Pixel.Colors.red), // red   block 👉 (qr1: black, qr2: white)
          (idx: [true, false], Pixel.Colors.green), // green block 👉 (qr1: white, qr2: black)

@@ -17,10 +17,9 @@ extension Colorizer {
     * - Note: Used in the process of converting Data to HCCQR
     * - Parameters:
     *   - monotoneReps: (black / white)-pixel-array
-    *   - colorMap: color rule-set (darkmode ability is possible epending on what colormap is used)
-    *   - multipliers: scaling
+    *   - config: scaling and color rule-set (darkmode ability is possible epending on what colormap is used)
     */
-   static func colorize(monotoneReps: [MonotoneRep], colorMap: ColorMap, scale: Scale) -> RGBARep {
+   static func colorize(monotoneReps: [MonotoneRep], config: HCCQROutput) -> RGBARep {
       let size: GrayscaleRep.Size = monotoneReps[0].size
       let capacity: Int = monotoneReps[0].capacity
       let pixels = UnsafeMutableBufferPointer<Pixel>.allocate(capacity: capacity) // Create a new array // pixels.reserveCapacity(size.width * size.height)
@@ -28,14 +27,14 @@ extension Colorizer {
          DispatchQueue.concurrentPerform(iterations: size.width) { x in // Optimization initiatives
             // - Fixme: ⚠️️ We should just pass the ref to the array etc. instead of making new arrays?, might be faster
             let layerPixels: [Bool] = monotoneReps.map { $0.getPixel(x: x, y: y) } // We get pixels from both RGBAImages
-            if let colorizedPixel: Pixel = try? colorize(pixels: layerPixels, colorMap: colorMap) { // else { throw NSError.init(domain: "Unable to make pixel", code: 0) } //            let arr: [UInt8] = grayscaleImages.map { $0.getPixel(x: x, y: y) } // We get pixels from both RGBAImages
+            if let colorizedPixel: Pixel = try? colorize(pixels: layerPixels, colorMap: config.map) { // else { throw NSError.init(domain: "Unable to make pixel", code: 0) } //            let arr: [UInt8] = grayscaleImages.map { $0.getPixel(x: x, y: y) } // We get pixels from both RGBAImages
                let index: Int = y * size.width + x // every x pixel
                pixels[index] = colorizedPixel
             }
          }
       }
       monotoneReps.forEach { $0.deInit() } // Avoids mem leak // guard pixels.count == size.width * size.height else { throw NSError(domain: "missing some pixels", code: 0) } // Check if array has all the pixels
-      let rgbaImage: RGBARep = RGBARepModifier.scale(pixels: pixels, size: (size.width, size.height), scale: scale)
+      let rgbaImage: RGBARep = RGBARepModifier.scale(pixels: pixels, size: (size.width, size.height), scale: config.scale)
       pixels.deallocate() // ⚠️️ New, so might not work, this deallocates the pixels once they are not needed anymore
       return rgbaImage
    }
