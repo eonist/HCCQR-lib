@@ -40,13 +40,17 @@ extension ViewController {
 //         Swift.print("err:  \(err)");
          switch err {
          case let .unableToExtractQRData(msg, ciImage, rgbChannels):
+            Swift.print("⚠️️ unableToExtractQRData ⚠️️")
             _ = msg
             _ = ciImage
-            let redChannel: GrayscaleRep = rgbChannels.r
-            let redChannelImg: CIImage = GrayscaleRepParser.ciImage(grayscaleRep: redChannel)
-            let img = UIImage(ciImage: redChannelImg, scale: 2, orientation: .up)
-            let imgView: UIImageView = .init(image: img)
-            self.view.addSubview(imgView)
+            _ = rgbChannels
+            _ = {
+               let redChannel: GrayscaleRep = rgbChannels.r
+               let redChannelImg: CIImage = GrayscaleRepParser.ciImage(grayscaleRep: redChannel)
+               let img = UIImage(ciImage: redChannelImg, scale: 2, orientation: .up)
+               let imgView: UIImageView = .init(image: img)
+               self.view.addSubview(imgView)
+            }
             //         let img: UIImage = .init(ciImage: redChannelImg, scale: 1, orientation: .up)
             //         let uiImageView: UIImageView = .init(image: img)
 //            imgView.frame.origin = .init(x: 0, y: GridTestView.frame.height * 1)
@@ -70,11 +74,13 @@ extension ViewController {
       // if success ✅
 
 //      Swift.print("value.qr1:  \(value.payload.qrImgs[0])")
-      let redChannel: GrayscaleRep = value.payload.rgbChannels.b
-      let redChannelImg: CIImage = GrayscaleRepParser.ciImage(grayscaleRep: redChannel)
-      let img = UIImage(ciImage: redChannelImg, scale: 2, orientation: .up) // value.payload.qrImgs[0]
-      let imgView: UIImageView = .init(image: img)
-      self.view.addSubview(imgView)
+      _ = {
+         let redChannel: GrayscaleRep = value.payload.rgbChannels.b
+         let redChannelImg: CIImage = GrayscaleRepParser.ciImage(grayscaleRep: redChannel)
+         let img = UIImage(ciImage: redChannelImg, scale: 2, orientation: .up) // value.payload.qrImgs[0]
+         let imgView: UIImageView = .init(image: img)
+         self.view.addSubview(imgView)
+      }
       // try with perfect HCCQR image
 //         Swift.print("data.count:  \(String(describing: data.count))")
       onComplete(true)

@@ -8,6 +8,10 @@ extension Channel {
     */
    static let defaultChannelMap: ChannelMap = [Pixel.Colors.red, Pixel.Colors.green, Pixel.Colors.blue] // { $0.isColorish() }, { $0.isColorish() }]
    /**
+    * For 4 color cmy + (white || black)
+    */
+   static let cmyChannelMap: ChannelMap = [Pixel.Colors.cyan, Pixel.Colors.yellow, Pixel.Colors.magenta] // { $0.isColorish() }, { $0.isColorish() }]
+   /**
     * The purpouse of this method is to setup static calls, that compare channel and pixel color
     * - Important: ⚠️️ For some reason this method has to be on the same line or else the linter complains
     * - Fixme: ⚠️️ Avoid regenerating these everytime, store as static let?

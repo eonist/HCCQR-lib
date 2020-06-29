@@ -19,9 +19,9 @@ extension Splitter {
     * - Note: the conversion to rgbaImg here is CPU intensive, but in the camera session we get RGBA data, so this is just for debugging etc
     * - Fixme: ⚠️️ rename to rgbaRep
     */
-   static func split(rgbaImage: RGBARep, onComplete:@escaping SplitComplete) {
+   static func split(rgbaImage: RGBARep, channelMap: Channel.ChannelMap = Channel.defaultChannelMap, onComplete:@escaping SplitComplete) {
       // HCCQRReader.splitTime = .init() // Debugging performance
-      Channel.channels(rgbaImg: rgbaImage) { (result: Channel.Payload) in
+      Channel.channels(rgbaImg: rgbaImage, channelMap: channelMap ) { (result: Channel.ChannelPayload) in
          onSplitComplete(result: result, onComplete: onComplete)
       }
    }
