@@ -20,7 +20,6 @@ extension ViewController {
       }
    }
 }
-
 /**
  * HCCQR test
  */
@@ -36,10 +35,12 @@ extension ViewController {
     * }
     */
    static func testCreatingHCCQRImage(onComplete: @escaping OnComplete) {
-      let config: QRConfig = (.v1, .byte, .l) // Config
+      let setup: HCCQRSetup = .init(qr: .init(qrVersion: .v1, ecLevel: .l), output: .init(scale: (6, 2)))
+      // - Fixme: ⚠️️  upgrade randomData to support setup etc
+      let config: QRConfig = (setup.qrVersion, .byte, setup.ecLevel) // Config
       guard let data = HCCQRStringData.randomData(config: config) else { Swift.print("unable to create data"); return }
       DispatchQueue.global(qos: .userInitiated).async {
-         Writer.image(data: data, scale: (6, 2), qrConfig: (config.version, config.ecLevel)) { result in // Create HCCQR from string
+         Writer.image(data: data, config: setup) { result in // Create HCCQR from string
             guard let hccqrImage: Image = result.value() else { Swift.print("unable to create hccqr image \(result.errorStr)"); return }
             onComplete(hccqrImage)
          }

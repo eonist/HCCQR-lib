@@ -19,13 +19,13 @@ extension Writer {
     *   - useDarkMode: Toggle between dark and light mode (dark / white background)
     *   - onComplete: Return the complete HCCQR image from grayscale QR represenations
     */
-   internal static func onQRImageComplete(i: Int, ciImg: CIImage?, ciImgs:inout [CIImage?], scale: Scale, useDarkMode: Bool = false, onComplete: OnRGBAImageComplete) {
+   internal static func onQRImageComplete(i: Int, ciImg: CIImage?, ciImgs:inout [CIImage?], config: HCCQRSetup, onComplete: OnRGBAImageComplete) {
       guard let ciImg: CIImage = ciImg else { onComplete(.failure(.unableToCreateCIImage)); return }
       ciImgs[i] = ciImg // It matters which order the QRImage's came in when you stitch them back together
       if !ciImgs.contains(where: { $0 == nil }) { // Makes sure all images finished (aka no nil values)
          let ciImages: [CIImage] = ciImgs.compactMap { $0 } // Removes nils
-         let colorMap: Colorizer.ColorMap = Colorizer.colorMap(useDarkMode: useDarkMode)
-         guard let rgbaImage: RGBARep = try? Colorizer.colorize(ciImages: ciImages, colorMap: colorMap, scale: scale) else { onComplete(.failure(.unableToCreateColorizedImage)); return }
+//         let colorMap: Colorizer.ColorMap = Colorizer.colorMap(useDarkMode: useDarkMode)
+         guard let rgbaImage: RGBARep = try? Colorizer.colorize(ciImages: ciImages, colorMap: config.map, scale: config.scale) else { onComplete(.failure(.unableToCreateColorizedImage)); return }
          onComplete(.success(rgbaImage))
       }
    }

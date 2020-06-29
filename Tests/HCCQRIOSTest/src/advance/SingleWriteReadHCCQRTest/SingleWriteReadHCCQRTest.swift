@@ -22,13 +22,14 @@ extension SingleWriteReadHCCQRTest {
     */
    static func testWritingHCCQRImage(onComplete: @escaping OnComplete) {
       // get this to work again 👌
-      let config: QRConfig = (.v8, .byte, .l) // Config
+      let setup: HCCQRSetup = .init(qr: .init(qrVersion: .v8, ecLevel: .l), output: .init(scale: (6, 2)))
+      let config: QRConfig = (setup.qrVersion, .byte, setup.ecLevel) // Config
       guard let randomData: Data = HCCQRStringData.randomData(config: config) else { Swift.print("err"); onComplete(false); return }
       _ = randomData
       startTime = .init()
       writeTime = .init() // We start the write clock here (random data creation time isn't interesting)
       DispatchQueue.global(qos: .userInitiated).async {
-         Writer.rgbaImage(data: randomData, scale: (module: 6, screen: 2), qrConfig: (config.version, config.ecLevel)) { result in // write the HCCQR
+         Writer.rgbaImage(data: randomData, config: setup) { result in // write the HCCQR
             guard let rgbaImage: RGBARep = try? result.get() else { Swift.print("err: \(result.errorStr)"); return }
             onWriteComplete(rgbaImage: rgbaImage, randomData: randomData, onComplete: onComplete)
          }

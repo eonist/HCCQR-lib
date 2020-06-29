@@ -11,13 +11,15 @@ extension BulkRGBAHCCQRTest {
     * creatingManyHCCQRImages(onComplete: { images in Swift.print("images.count:  \(images.count)") } )
     */
    static func writeMany(onComplete:@escaping OnWriteImagesComplete) {
-      let config: QRConfig = (.v6, .byte, .l) // Config (app uses 4 to 10)
+//      let config: QRConfig = (.v6, .byte, .l) // Config (app uses 4 to 10)
+      let setup: HCCQRSetup = .init(qr: .init(qrVersion: .v6, ecLevel: .l), output: .init(scale: (6, 2)))
+      let config: QRConfig = (setup.qrVersion, .byte, setup.ecLevel) // Config
       let randomData: [Data] = (0..<100).compactMap { _ in HCCQRStringData.randomData(config: config) } // Num of items to load
       var images: [RGBARep?] = [RGBARep?](repeating: nil, count: randomData.count)//      var images: [CIImage?] = [CIImage?](repeating: nil, count: randomData.count)
       writeTime = .init() // we start the write clock here (random data creation time isn't a part of the benchmark)
       totalTime = .init()
       randomData.enumerated().forEach { arg in
-         Writer.rgbaImage(data: arg.element, scale: (module: 6, screen: 2), qrConfig: (config.version, config.ecLevel)) { result in
+         Writer.rgbaImage(data: arg.element, config: setup) { result in
             onWriteComplete(i: arg.offset, rgbaImage: try? result.get(), images: &images, onComplete: onComplete)
          }
       }

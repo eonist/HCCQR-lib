@@ -17,10 +17,10 @@ extension Writer {
     * - Fixme: ⚠️️ Try a sync version of this method with semphors
     * - Note: Supports The grayscaleImage optimization
     */
-   public static func image(data: Data, scale: Scale, qrConfig: HCCQRConfig = defaultQRConfig, useDarkMode: Bool = false, onComplete: @escaping OnImageComplete) {
-      rgbaImage(data: data, scale: scale, qrConfig: qrConfig, useDarkMode: useDarkMode) { result in
+   public static func image(data: Data, config: HCCQRSetup, onComplete: @escaping OnImageComplete) {
+      rgbaImage(data: data, config: config) { result in
          guard let rgbaRep: RGBARep = try? result.get() else { onComplete(.failure(.unableToCreateRGBAImage(errMSG: result.errorStr))); return }
-         guard let image: Image = try? RGBARepParser.image(rgbaRep: rgbaRep, scale: CGFloat(scale.screen)) else { onComplete(.failure(.unableToConvertRGBAToImage)); return }
+         guard let image: Image = try? RGBARepParser.image(rgbaRep: rgbaRep, scale: CGFloat(config.scale.screen)) else { onComplete(.failure(.unableToConvertRGBAToImage)); return }
          rgbaRep.deinitiate() // De alloc rgbaImage when it servers no purpouse anymore
          onComplete(.success(image))
       }
@@ -40,14 +40,14 @@ extension Writer {
     * - Important: internal because: SingleWriteReadHCCQRTest and BulkHCCQRTest uses it for tests
     * - Fixme: ⚠️️ Splitting the data in two allows 4 color map, in the future we will allow 8 color map (pallet etc)
     */
-   internal static func rgbaImage(data: Data, scale: Scale, qrConfig: HCCQRConfig = defaultQRConfig, useDarkMode: Bool = false, onComplete: @escaping OnRGBAImageComplete) {
+   internal static func rgbaImage(data: Data, config: HCCQRSetup = .default, onComplete: @escaping OnRGBAImageComplete) {
       let dataArr: [Data] = data.split(index: data.count / 2) // Split the data in two ()
       var ciImgs: [CIImage?] = [CIImage?](repeating: nil, count: dataArr.count) // Pre-filled array for the images
       dataArr.enumerated().forEach { (_ offset: Int, _ data: Data) in
          DispatchQueue.global(qos: .userInitiated).async { // Adds the operation to a background-thread
-            let ciImg: CIImage? = try? QRWriter.ciImage(data: data, ecLevel: qrConfig.ecLevel) // Create B&W QR-image
+            let ciImg: CIImage? = try? QRWriter.ciImage(data: data, ecLevel: config.ecLevel) // Create B&W QR-image
             DispatchQueue.main.async { // I guess main-thread is needed here because we access an array
-               onQRImageComplete(i: offset, ciImg: ciImg, ciImgs: &ciImgs, scale: scale, useDarkMode: useDarkMode, onComplete: onComplete)
+               onQRImageComplete(i: offset, ciImg: ciImg, ciImgs: &ciImgs, config: config, onComplete: onComplete)
             }
          }
       }

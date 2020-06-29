@@ -5,6 +5,17 @@ import QR_lib
  */
 public final class HCCQRStringData {
    /**
+    * New
+    * - Fixme: ⚠️️ the formula for finding colorDepth is: (y / 2 ^ x) = 1
+    * - 4  / 2^x = 1 (x = 2)
+    * - 8  / 2^x = 1 (x = 3)
+    * - 16 / 2^x = 1 (x = 4)
+    */
+//   public static func randomData(config: HCCQRSetup) -> Data? {
+//      let ranStr: String = randomString(config: config, colorDepth: config.output.map)
+//      return ranStr.data(using: .utf8) // converts the string to data
+//   }
+   /**
     * Returns Random data based on config and color-depth
     * - Parameters:
     *   - config: ecLevel, mode, version

@@ -14,6 +14,7 @@ extension Colorizer {
     * - Fixme: ⚠️️⚠️️ Could be faster to just mutate the pixels diretly in an RGBAImage instead of creating an pixel array like it is now?
     * - Fixme: ⚠️️⚠️️ Do the scaling inside the fuse-loop, figure out how to scale in the unscalled array first 👈, then apply the scaling directly to the colorized pixels, somehow, requires some whiteboard thinking
     * - Fixme: ⚠️️ The concurrentPerform should be done on the amount of cores / threads vs quadrants of the whole picture to be generated
+    *  - Fixme: ⚠️️ rename params
     * - Note: Used in the process of converting Data to HCCQR
     * - Parameters:
     *   - monotoneImages: (black / white)-pixel-array
