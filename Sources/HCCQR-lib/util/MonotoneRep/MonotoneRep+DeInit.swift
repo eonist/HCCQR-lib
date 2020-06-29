@@ -10,3 +10,15 @@ extension MonotoneRep {
       pixels.deallocate()
    }
 }
+/**
+ * For [MonotoneRep]
+ */
+extension Array where Element == MonotoneRep {
+   /**
+    * Bulk deInit
+    * - Abstract: deInit multiple reps
+    */
+   func deInit() {
+      self.forEach { $0.deInit() }
+   }
+}

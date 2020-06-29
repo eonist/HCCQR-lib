@@ -24,7 +24,7 @@ extension Reader {
     */
    public static func dataAndMeta(imageBuffer: CVImageBuffer, crop: BufferRect, onComplete: @escaping OnGetDataAndMetaCompleted) {
       guard let rgbaImg: RGBARep = try? CVImageBufferUtil.rgbaRep(imageBuffer: imageBuffer, crop: crop) else { onComplete(.failure(.unableToExtractRGBAImageFromCVBuffer)); return }
-      dataAndQR(rgbaImage: rgbaImg) { (result: Reader.DataAndPayloadResult) in
+      dataAndQR(rgbaRep: rgbaImg) { (result: Reader.DataAndPayloadResult) in
          guard let dataAndImagesAndQuad: DataAndPayload = try? result.get() else { onComplete(.failure(.unableToGetDataAndImages(msg: result.errorStr))); return }
          guard let data: Data = dataAndImagesAndQuad.data, let quad = dataAndImagesAndQuad.quad  else { onComplete(.failure(.unableToGetDataOrQuad)); return }
          let dataAndMeta: DataAndMeta = (data: data, quad: quad, imageSize: rgbaImg.cgSize)
@@ -43,11 +43,11 @@ extension Reader {
     * - Note: returning qrimage is useful, it is used as a way to debug that the HCCQR ws split correctly
     * - Note: Isn't private because Reader+CVIUmageBuffer calls it
     * - Parameters:
-    *   - rgbaImage: raw pixels and size
+    *   - rgbaRep: raw pixels and size
     *   - onComplete: completion block
     */
-   static func dataAndQR(rgbaImage: RGBARep, onComplete:@escaping DataAndPayloadCompleted) {
-      Splitter.split(rgbaImage: rgbaImage) { (result: Splitter.SplitResult) in // Start the splitting process
+   static func dataAndQR(rgbaRep: RGBARep, onComplete:@escaping DataAndPayloadCompleted) {
+      Splitter.split(rgbaImage: rgbaRep) { (result: Splitter.SplitResult) in // Start the splitting process
          onSplitComplete(result: result, onComplete: onComplete) // readTime += abs(HCCQRReader.splitTime.timeIntervalSinceNow); Swift.print("👉 Splitting rgbaImage done: \(abs(HCCQRReader.splitTime.timeIntervalSinceNow))")
       }
    }

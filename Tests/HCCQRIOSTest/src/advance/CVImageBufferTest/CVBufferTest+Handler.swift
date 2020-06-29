@@ -14,7 +14,7 @@ extension CVBufferTest {
       Swift.print("hccqrImage.size:  \(image.size) scale:  \(image.scale)") //      Swift.print("hccqrImage.cgImage()?.width:  \(hccqrImage.cgImage?.width)")
       guard let rgbaImage: RGBARep = try? CVImageBufferUtil.rgbaRep(image: image) else { Swift.print("err getting rgbImage"); return }
       // Convert RGBAImage to Data
-      Reader.dataAndQR(rgbaImage: rgbaImage) { result in // try to split the HCCQRImg
+      Reader.dataAndQR(rgbaRep: rgbaImage) { result in // try to split the HCCQRImg
          onReadComplete(result: result, randomData: randomData, onComplete: onComplete)
       }
    }

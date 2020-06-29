@@ -19,7 +19,7 @@ extension ViewController {
 //      guard let img = try? RGBAImageUtil.image(rgbaImage: rgbaImage, scale: 1) else { Swift.print("err making img"); return }
 //      let imgView: UIImageView = .init(image: img)
 //      self.view.addSubview(imgView)
-      Reader.dataAndQR(rgbaImage: rgbaRep) { (result: Reader.DataAndPayloadResult) in // Split the hccqrImg
+      Reader.dataAndQR(rgbaRep: rgbaRep) { (result: Reader.DataAndPayloadResult) in // Split the hccqrImg
          self.onReadComplete(result: result) { success in Swift.print("dataAndImages success: \(success ? "✅" : "🚫"  )") }
       }
    }

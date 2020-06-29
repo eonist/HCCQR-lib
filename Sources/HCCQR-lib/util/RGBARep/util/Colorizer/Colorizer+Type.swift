@@ -7,5 +7,5 @@ extension Colorizer {
    /**
     * Used for colorizing CIImages
     */
-   typealias ColorizedResult = Result<CIImage, ColorizeError>
+   typealias ColorizerResult = Result<CIImage, ColorizeError>
 }

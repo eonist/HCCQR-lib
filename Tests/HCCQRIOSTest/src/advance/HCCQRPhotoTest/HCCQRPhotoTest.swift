@@ -30,9 +30,9 @@ extension HCCQRPhotoTest {
 //      let path: String = Bundle.main.resourcePath! + "/temp.bundle/HCCQR2.png" // HCCQR7.png, HCCQR12.png,HCCQR13.jpg
       guard let image = Image(contentsOfFile: path) else { Swift.print("err getting img: \(path)"); return }
       Swift.print("UIImage.size:  \(image.size)")
-      guard let rgbaImage: RGBARep = try? CVImageBufferUtil.rgbaRep(image: image) else { Swift.print("err getting rgbImage"); return }
+      guard let rgbaRep: RGBARep = try? CVImageBufferUtil.rgbaRep(image: image) else { Swift.print("err getting rgbImage"); return }
       startTime = .init() // We only want to measure the bellow call
-      Reader.dataAndQR(rgbaImage: rgbaImage) { result in // Split the hccqrImg
+      Reader.dataAndQR(rgbaRep: rgbaRep) { result in // Split the hccqrImg
          onReadComplete(result: result, onComplete: onComplete)
       }
    }

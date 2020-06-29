@@ -11,7 +11,7 @@ extension GrayscaleRep {
    }
 }
 /**
- * For arrays
+ * For [GrayscaleRep]
  */
 extension Array where Element == GrayscaleRep {
    /**

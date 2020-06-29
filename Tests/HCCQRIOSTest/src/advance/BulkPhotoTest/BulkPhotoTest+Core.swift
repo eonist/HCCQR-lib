@@ -35,7 +35,7 @@ extension BulkPhotoTest {
 //      Swift.print("⚠️️ Deprecated ⚠️️")
       rgbaImages.enumerated().forEach { arg in
          //DispatchQueue.main.async {
-         Reader.dataAndQR(rgbaImage: arg.element) { result in  // Process the hccqrImg
+         Reader.dataAndQR(rgbaRep: arg.element) { result in  // Process the hccqrImg
             onReadComplete(result: result, i: arg.offset, dataArray: &dataArray, onComplete: onComplete)
          }
          //}
