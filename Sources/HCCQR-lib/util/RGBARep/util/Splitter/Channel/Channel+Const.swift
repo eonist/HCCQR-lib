@@ -9,6 +9,7 @@ extension Channel {
    static let defaultChannelMap: ChannelMap = [Pixel.Colors.red, Pixel.Colors.green, Pixel.Colors.blue] // { $0.isColorish() }, { $0.isColorish() }]
    /**
     * The purpouse of this method is to setup static calls, that compare channel and pixel color
+    * - Important: ⚠️️ For some reason this method has to be on the same line or else the linter complains
     */
    static func similarities(channelMap: ChannelMap) -> [PixelDataSimilarity] {
       channelMap.map { (channel: Pixel) in { (ishColor: Pixel) in channel.isSimilar(ishColor) } }

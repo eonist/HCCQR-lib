@@ -10,9 +10,10 @@ final class PixelParser {
     * - Note: 100% percentage = 255
     * - Abstract: we calc how similar a color is to another in percentage 99% a color is 99% cyan, 88% magenta, 22% green etc,
     * - Discussion: the problem with this method is that one channel can be totally off and other can be exact same and it still return true, it should fail if one channel is totally off, but since we do the bool assert in conjunction with this method, then it works
+    * - Discussion: so the red channel is always dominating, green is weakest etc. Look into this phenomenome, some grayscale conversion algos account for this etc
     * - Fixme: ⚠️️ figure out how to divide a value that is bigger than UINT8.max etc and then divide it etc
     * - Fixme: ⚠️️ It might be the case that if we should also limit the combined values of difference. say if R,B combined are more than 50% off, then its not a match. etc. It might be valuable to make advance tests, of how to match colors
-    * - Fixme: ⚠️️ rename to commonality? use threasure.com to find better name?
+    * - Fixme: ⚠️️ rename to commonality, correlation? use threasure.com to find better name?
     * - Important: ⚠️️⚠️️⚠️️ has to be used in conjunction with the isColorish method, since this only returns the intensity of the output pixel, and is only valid if the isColorish method is within thresholds etc
     * ## Examples:
     * let red: RGBAColor = (r: 255, g: 0, b: 0, a: 255)
@@ -26,9 +27,9 @@ final class PixelParser {
       let distR: Int = abs(Int(a.r) - Int(b.r))
       let distG: Int = abs(Int(a.g) - Int(b.g))
       let distB: Int = abs(Int(a.b) - Int(b.b))
-      let scalarR: Int = (255 - distR) // / 255
-      let scalarG: Int = (255 - distG) // / 255
-      let scalarB: Int = (255 - distB) // / 255
+      let scalarR: Int = (255 - distR) // 255
+      let scalarG: Int = (255 - distG) // 255
+      let scalarB: Int = (255 - distB) // 255
       let combinedScalar = ((scalarR) + (scalarG) + (scalarB)) / 3
       return UInt8(combinedScalar)
    }
@@ -37,15 +38,15 @@ final class PixelParser {
  * Util for PixelData
  */
 extension PixelParser {
+   private typealias RGBAColor = (CGFloat, CGFloat, CGFloat, CGFloat)
    /**
     * Color -> (r: UInt8, g: UInt8 ,b: UInt8, a: UInt8)
     * - Fixme: ⚠️️ You can also probably do (maybe faster?): UIColor.blue.colorComponents // (red: 0.0, green: 0.0, blue: 1.0, alpha: 1.0)
     */
    static func rgba(uiColor: Color) throws -> Pixel {
-      // - Fixme: ⚠️️  use typealias on the bellow?
-      var (fRed, fGreen, fBlue, fAlpha): (CGFloat, CGFloat, CGFloat, CGFloat) = (0, 0, 0, 0)
+      var (r, g, b, a): RGBAColor = (0, 0, 0, 0)
       #if os(iOS)
-      guard uiColor.getRed(&fRed, green: &fGreen, blue: &fBlue, alpha: &fAlpha) else { throw NSError(domain: "Could not extract RGBA components", code: 0) }
+      guard uiColor.getRed(&r, green: &g, blue: &b, alpha: &a) else { throw NSError(domain: "Could not extract RGBA components", code: 0) }
       #elseif os(macOS)
       guard let ciColor = CIColor(color: uiColor) else { throw NSError(domain: "PixelDataUtil.rgba() - Could not convert nsColor to CIColor", code: 0) }
       fRed = ciColor.red // 1.0
@@ -55,7 +56,7 @@ extension PixelParser {
       #else
       throw NSError(domain: "os not supported", code: 0)
       #endif
-      return .init(r: UInt8(fRed * 255.0), g: UInt8(fGreen * 255.0), b: UInt8(fBlue * 255.0), a: UInt8(fAlpha * 255.0))
+      return .init(r: UInt8(r * 255.0), g: UInt8(g * 255.0), b: UInt8(b * 255.0), a: UInt8(a * 255.0))
    }
 }
 /**

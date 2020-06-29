@@ -3,7 +3,6 @@ import QuartzCore
 import CoreImage
 /**
  * ciColor
- * - Fixme: ⚠️️ I'm Not sure if these are still used, if not remove them
  */
 extension Color {
    #if os(iOS)

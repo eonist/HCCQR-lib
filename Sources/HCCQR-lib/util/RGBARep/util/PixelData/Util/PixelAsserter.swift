@@ -36,21 +36,21 @@ class PixelAsserter {
  */
 extension PixelAsserter {
    /**
-    * isRed
+    * isRedish
     */
    private static func isRedish(a: Pixel.RGB, b: Pixel.RGB, halfThreshold: UInt8, limit: Pixel.Limit = Pixel.defaultLimit) -> Bool {
       let range: RangeUInt8 = UInt8Parser.range(num: a.r, halfThreshold: halfThreshold, min: limit.min, max: limit.max) // 75, 125
       return UInt8Asserter.within(num: b.r, min: range.start, max: range.end) // (range.start...range.end).contains(rgb1.r)
    }
    /**
-    * isGreen
+    * isGreenish
     */
    private static func isGreenish(a: Pixel.RGB, b: Pixel.RGB, halfThreshold: UInt8, limit: Pixel.Limit = Pixel.defaultLimit) -> Bool {
       let range: RangeUInt8 = UInt8Parser.range(num: a.g, halfThreshold: halfThreshold, min: limit.min, max: limit.max)
       return UInt8Asserter.within(num: b.g, min: range.start, max: range.end) // (range.start...range.end).contains(rgb1.g)
    }
    /**
-    * isBlue
+    * isBlueish
     */
    private static func isBlueish(a: Pixel.RGB, b: Pixel.RGB, halfThreshold: UInt8, limit: Pixel.Limit = Pixel.defaultLimit) -> Bool {
       let range: RangeUInt8 = UInt8Parser.range(num: a.b, halfThreshold: halfThreshold, min: limit.min, max: limit.max)

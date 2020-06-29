@@ -7,8 +7,8 @@ extension GrayscaleRep {
     * Populate GrayscaleImage with 0 - 255 values based on the grayscale equivilent (R, G, B) channel
     * - Abstract: Get grayscale UInt8 intensity for a (R, G, B) channel
     * - Note: Used when reading HCCQR 
-    * - Fixme: ⚠️️ find a better name for this method?
-    * - Fixme: ⚠️️ This should ideally be done over num cores or thrads and be done in quadrants
+    * - Fixme: ⚠️️ find a better name for this method? apply?
+    * - Fixme: ⚠️️ This should ideally be done over "num cores" or "thrads" and be done in quadrants
     * - Parameters:
     *   - input: The RGBAImage to extract data from (color photo etc)
     *   - output: The GrayScaleImage to populate pixels into (we only need [UInt8])

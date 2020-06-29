@@ -6,7 +6,6 @@ extension Channel {
    typealias ChannelMap = [Pixel] // this seems to be still in use
    /**
     * RGB
-    * - Fixme: ⚠️️ Rename to RGBChannels
     */
    public typealias RGBChannels = (r: GrayscaleRep, g: GrayscaleRep, b: GrayscaleRep)
    /**
