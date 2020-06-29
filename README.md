@@ -25,7 +25,6 @@
 3. Convert RGBAImage to Image
 4. return Image
 
-
 ### Features:
 - Enables you to store more information in a QR image
 - HCCQR uses the color spectrum and image analysis to transmit information
@@ -59,6 +58,14 @@ HCCQRReader.data(image: img) { result in
    Swift.print("isMatching:  \(isMatching ? "Success": "Failure")")
 }
 ```
+
+### Roadmap:
+- Metal / GPU / Accelerate optimisations
+- Port to android
+- Support custom colormaps
+- Implement project FT
+- Utilise custom QR libs (faster read / write)
+- Build own custom QR architecture
 
 ### Todo:
 - Add smart cropping for for every qr-layer after the first (refine crop)
