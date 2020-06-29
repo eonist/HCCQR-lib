@@ -13,4 +13,5 @@ extension Pixel {
    private static let halfThreshold: CGFloat = threshold / 2 // Rename to defaultHalfThreshold
    static let halfThresholdUInt8: UInt8 = .init(255 * halfThreshold) // Rename to defaultHalfThreshold
    static let defaultLimit: (UInt8, UInt8) = (0, 255)
+   static let empty: Pixel = .init(r: 0, g: 0, b: 0, a: 0)
 }

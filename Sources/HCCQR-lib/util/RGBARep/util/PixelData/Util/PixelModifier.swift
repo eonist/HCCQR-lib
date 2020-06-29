@@ -3,11 +3,16 @@ import Foundation
 class PixelModifier {
    /**
     * - Note: Used by the Compositor class
-    * - - Note: ⚠️️ This is kept around because we need to use similar code when doing more advance similarity testing etc
+    * - Note: ⚠️️ This is kept around because we need to use similar code when doing more advance similarity testing etc
     * - Note: you also have subtractingReportingOverflow and for divide and multiply
+    * - Fixme: ⚠️️ Deprecate soon, its not in use
+    * - Parameters:
+    *   - first: the old pixel
+    *   - second: the new pixel to apply to the old
+    *   - alpha: ?
     */
-   static func applyPixel(first: Pixel, second: Pixel, alpha: UInt8) {
-      var newPixel: Pixel = .init(r: 0, g: 0, b: 0, a: 0)
+   private static func applyPixel(first: Pixel, second: Pixel, alpha: UInt8) {
+      var newPixel: Pixel = .empty
       newPixel.r = {
          let wrapAdd = first.r.addingReportingOverflow(second.r)
          return wrapAdd.overflow ? 255 : wrapAdd.partialValue
