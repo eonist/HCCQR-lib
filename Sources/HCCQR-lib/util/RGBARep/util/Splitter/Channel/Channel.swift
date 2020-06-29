@@ -6,7 +6,7 @@ public final class Channel {}
 
 extension Channel {
    /**
-    * Split an RGBAImage into 3 GrayScaleImages consisting of singular (R,G,B) channels
+    * Split an RGBAImage into 3 GrayScaleRep's consisting of singular (R,G,B) channels
     * 1. RGBAImage comes in with a ChannelMap rule-set
     * 2. Create Result-array of empty GrayscaleImage
     * 3. Go through each item in the ChannelMap array and try to find the the 3 colors defined in the channelMap

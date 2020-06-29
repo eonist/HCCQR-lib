@@ -21,7 +21,7 @@ extension Reader {
     *   - onComplete: (Data, two qrImages)
     */
    static func onSplitComplete(result: Splitter.SplitResult, onComplete:@escaping DataAndPayloadCompleted) {
-      guard let payload: Splitter.Payload = result.value() else {
+      guard let payload: Splitter.SplitPayload = result.value() else {
          onComplete(.failure(.unableToSplit(errMSG: "q1, q2 err \(result.errorStr)")))
          return
       }
@@ -60,7 +60,7 @@ extension Reader {
     *   - payload: 2 CIImage's
     *   - onComplete: completion block with DataAndImage
     */
-   private static func onReadQRCodeComplete(i: Int, dataAndQuad: QRReader.DataAndQuad?, dataAndQuads: inout [QRReader.DataAndQuad?], payload: Splitter.Payload, error: Error?, onComplete: DataAndPayloadCompleted ) {
+   private static func onReadQRCodeComplete(i: Int, dataAndQuad: QRReader.DataAndQuad?, dataAndQuads: inout [QRReader.DataAndQuad?], payload: Splitter.SplitPayload, error: Error?, onComplete: DataAndPayloadCompleted ) {
       guard let dataAndFrame: QRReader.DataAndQuad = dataAndQuad else { onComplete(.failure(.unableToExtractQRData(msg: "QRIMG: \(i) error: \(String(describing: error?.localizedDescription))", ciImage: payload.qrImgs[i], rgbChannels: payload.rgbChannels))); return }
       dataAndQuads[i] = dataAndQuad
       if !dataAndQuads.contains (where: { $0 == nil }) { // Makes sure all images finished
@@ -72,7 +72,7 @@ extension Reader {
    /**
     * allComplete handler
     */
-   private static func onAllReadComplete(data: Data, quad: QRReader.Quad, payload: Splitter.Payload, onComplete: DataAndPayloadCompleted) {
+   private static func onAllReadComplete(data: Data, quad: QRReader.Quad, payload: Splitter.SplitPayload, onComplete: DataAndPayloadCompleted) {
       onComplete(.success((data, payload, quad))) // Return the result here
    }
 }

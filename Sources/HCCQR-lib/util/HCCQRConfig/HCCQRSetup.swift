@@ -2,6 +2,7 @@ import Foundation
 import QR_lib
 /**
  * QR and Output setup
+ * - Fixme: ⚠️️ rename to HCCQRConfig or keep as is?
  */
 public struct HCCQRSetup {
    let qr: QRSetup

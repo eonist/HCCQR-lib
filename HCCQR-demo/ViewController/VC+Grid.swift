@@ -24,7 +24,7 @@ extension ViewController {
 //      uiImageView.frame.origin = .init(x: 0, y: GridTestView.frame.height)
 //      self.view.addSubview(uiImageView)
       Splitter.split(rgbaImage: rgbaRep) { (result: Splitter.SplitResult) in // Start the splitting process
-         guard let payload: Splitter.Payload = result.value() else { fatalError("err") }
+         guard let payload: Splitter.SplitPayload = result.value() else { fatalError("err") }
          let redChannel: GrayscaleRep = payload.rgbChannels.r
 //         redChannel.pixels.enumerated().forEach {
 //            if $0.element > 0 {

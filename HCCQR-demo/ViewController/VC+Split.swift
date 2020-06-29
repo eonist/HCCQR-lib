@@ -21,7 +21,7 @@ extension ViewController {
       guard let snapShot: UIImage = colorGridView.snapShot() else { fatalError("err") }
       guard let rgbaRep: RGBARep = try? .rgbaRep(image: snapShot) else { fatalError("err") }
       Splitter.split(rgbaImage: rgbaRep) { (result: Splitter.SplitResult) in // Start the splitting process
-         guard let payload: Splitter.Payload = result.value() else { fatalError("err") }
+         guard let payload: Splitter.SplitPayload = result.value() else { fatalError("err") }
          let img: UIImage = .init(ciImage: payload.qrImgs[0], scale: 2, orientation: .up)
          let uiImageView: UIImageView = .init(image: img)
          uiImageView.frame.origin = .init(x: 0, y: SplitTestView.height)

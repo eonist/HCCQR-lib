@@ -2,7 +2,7 @@ import Foundation
 import CoreImage
 /**
  * Splitter
- * - Abstract: HCCQR-RGBA-Image -> QRImage's -> Data
+ * - Abstract: ImageData 👉 HCCQR-RGBA-Image 👉 QRImage's 👉 Data
  */
 public final class Splitter {}
 
@@ -19,10 +19,10 @@ extension Splitter {
     * - Note: the conversion to rgbaImg here is CPU intensive, but in the camera session we get RGBA data, so this is just for debugging etc
     * - Fixme: ⚠️️ rename to rgbaRep
     */
-   static func split(rgbaImage: RGBARep, onComplete:@escaping Complete) {
+   static func split(rgbaImage: RGBARep, onComplete:@escaping SplitComplete) {
       // HCCQRReader.splitTime = .init() // Debugging performance
       Channel.channels(rgbaImg: rgbaImage) { (result: Channel.Payload) in
-         onChannelsSplitComplete(result: result, onComplete: onComplete)
+         onSplitComplete(result: result, onComplete: onComplete)
       }
    }
 }

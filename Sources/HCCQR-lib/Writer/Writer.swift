@@ -9,16 +9,16 @@ public final class Writer {}
 
 extension Writer {
    /**
-    * Converts Data -> RGBAImage -> Image (Async)
+    * Data 👉 RGBAImage 👉 Image (Async)
     * 1. Data comes in with config and scale
-    * 2. Converts data to RGBAImage
-    * 3. Converts RGBAImage to Image
+    * 2. Converts data to RGBARep
+    * 3. Converts RGBARep to Image
     * - Fixme: ⚠️️ Could setting CIImage or CGIMage directly to a Image in the UI be faster?
     * - Fixme: ⚠️️ Try a sync version of this method with semphors
     * - Note: Supports The grayscaleImage optimization
     */
    public static func image(data: Data, config: HCCQRSetup, onComplete: @escaping OnImageComplete) {
-      rgbaImage(data: data, config: config) { result in
+      rgbaRep(data: data, config: config) { result in
          guard let rgbaRep: RGBARep = try? result.get() else { onComplete(.failure(.unableToCreateRGBAImage(errMSG: result.errorStr))); return }
          guard let image: Image = try? RGBARepParser.image(rgbaRep: rgbaRep, scale: CGFloat(config.scale.screen)) else { onComplete(.failure(.unableToConvertRGBAToImage)); return }
          rgbaRep.deinitiate() // De alloc rgbaImage when it servers no purpouse anymore
@@ -31,7 +31,7 @@ extension Writer {
  */
 extension Writer {
    /**
-    * Converts Data -> [CIImage's] -> RGBAImage
+    * Data 👉 [CIImage's] 👉 RGBARep
     * 1. Data comes in with config and scale
     * 2. Splits the data into two
     * 3. Creates 2 CIImage's of these two data items
@@ -40,7 +40,7 @@ extension Writer {
     * - Important: internal because: SingleWriteReadHCCQRTest and BulkHCCQRTest uses it for tests
     * - Fixme: ⚠️️ Splitting the data in two allows 4 color map, in the future we will allow 8 color map (pallet etc)
     */
-   internal static func rgbaImage(data: Data, config: HCCQRSetup = .default, onComplete: @escaping OnRGBAImageComplete) {
+   internal static func rgbaRep(data: Data, config: HCCQRSetup = .default, onComplete: @escaping OnRGBRepComplete) {
       let dataArr: [Data] = data.split(index: data.count / 2) // Split the data in two ()
       var ciImgs: [CIImage?] = [CIImage?](repeating: nil, count: dataArr.count) // Pre-filled array for the images
       dataArr.enumerated().forEach { (_ offset: Int, _ data: Data) in

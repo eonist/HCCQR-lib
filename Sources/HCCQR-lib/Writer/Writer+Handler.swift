@@ -19,7 +19,7 @@ extension Writer {
     *   - useDarkMode: Toggle between dark and light mode (dark / white background)
     *   - onComplete: Return the complete HCCQR image from grayscale QR represenations
     */
-   internal static func onQRImageComplete(i: Int, ciImg: CIImage?, ciImgs:inout [CIImage?], config: HCCQRSetup, onComplete: OnRGBAImageComplete) {
+   internal static func onQRImageComplete(i: Int, ciImg: CIImage?, ciImgs:inout [CIImage?], config: HCCQRSetup, onComplete: OnRGBRepComplete) {
       guard let ciImg: CIImage = ciImg else { onComplete(.failure(.unableToCreateCIImage)); return }
       ciImgs[i] = ciImg // It matters which order the QRImage's came in when you stitch them back together
       if !ciImgs.contains(where: { $0 == nil }) { // Makes sure all images finished (aka no nil values)

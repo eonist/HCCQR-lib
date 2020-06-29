@@ -13,7 +13,7 @@ final class PixelParser {
     * - Discussion: so the red channel is always dominating, green is weakest etc. Look into this phenomenome, some grayscale conversion algos account for this etc
     * - Fixme: ⚠️️ figure out how to divide a value that is bigger than UINT8.max etc and then divide it etc
     * - Fixme: ⚠️️ It might be the case that if we should also limit the combined values of difference. say if R,B combined are more than 50% off, then its not a match. etc. It might be valuable to make advance tests, of how to match colors
-    * - Fixme: ⚠️️ rename to commonality, correlation? use threasure.com to find better name?
+    * - Fixme: ⚠️️ rename to commonality, correlation, parity? 
     * - Important: ⚠️️⚠️️⚠️️ has to be used in conjunction with the isColorish method, since this only returns the intensity of the output pixel, and is only valid if the isColorish method is within thresholds etc
     * ## Examples:
     * let red: RGBAColor = (r: 255, g: 0, b: 0, a: 255)

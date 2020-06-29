@@ -15,7 +15,8 @@ extension GrayscaleRep {
  */
 extension Array where Element == GrayscaleRep {
    /**
-    * deInit multiple reps
+    * Bulk deInit
+    * - Abstract: deInit multiple reps
     */
    func deInit() {
       self.forEach { $0.deInit() }
