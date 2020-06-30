@@ -36,7 +36,7 @@ extension Writer {
     */
    private static func onAllQrImageComplete(ciImgs: [CIImage?], config: HCCQRSetup, onComplete: OnRGBRepComplete) {
       let ciImages: [CIImage] = ciImgs.compactMap { $0 } // Removes nils
-      //         let colorMap: Colorizer.ColorMap = Colorizer.colorMap(useDarkMode: useDarkMode)
+      // let colorMap: Colorizer.ColorMap = Colorizer.colorMap(useDarkMode: useDarkMode)
       guard let rgbaImage: RGBARep = try? Colorizer.colorize(ciImages: ciImages, config: config.output) else { onComplete(.failure(.unableToCreateColorizedImage)); return }
       onComplete(.success(rgbaImage))
    }

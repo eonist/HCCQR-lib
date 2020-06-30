@@ -7,17 +7,17 @@ extension MonotoneRep {
     * 1. CIImage comes in
     * 2. Meta data is extracted from the CIImage
     * 3. Pixels are extracted from the CGContext
-    * 4. Pixels are added to GrayscaleImage and returned
+    * 4. Pixels are added to MonotoneRep and returned
     * - Abstract: Takes a CIImage and converts it to a GrayScale pixel representation
     * - Note: Seems to be slightly faster than converting CIImage to CGImage etc
     * - Note: Ref https://www.geekspiff.com/unlinkedCrap/ciImageToBitmap.html
     * - Note: Use ciImg.debugDescription to find more info about cgImage
     * - Caution: ⚠️️ Only works if CIImage is pure black and white, which is the case for generated qr images
-    * - parameter ciImg: The CIImage to convert to grayscaleimage
+    * - parameter ciImg: The CIImage to convert to monotone representative
     */
    static func monotoneRep(ciImg: CIImage) throws -> MonotoneRep {
       let colorSpace: CGColorSpace = CGColorSpaceCreateDeviceRGB()
-      let size: MonotoneRep.Size = (width: Int(ciImg.extent.width), height: Int(ciImg.extent.height))
+      let size: Size = (width: Int(ciImg.extent.width), height: Int(ciImg.extent.height))
       let capacity: Int = size.width * size.height
       let bytesPerRow: Int = size.width * 4 // We multiply per 4 because of the 4 channels, RGBA
       let imageData = UnsafeMutablePointer<Pixel>.allocate(capacity: capacity)

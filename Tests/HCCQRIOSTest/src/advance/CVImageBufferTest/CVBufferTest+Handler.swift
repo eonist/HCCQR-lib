@@ -12,7 +12,7 @@ extension CVBufferTest {
       Swift.print("CVBufferTest.onHCCQRImageComplete")
       guard let image: Image = result.value() else { Swift.print("Unable to create hccqr image \(result.errorStr)"); return }
       Swift.print("hccqrImage.size:  \(image.size) scale:  \(image.scale)") //      Swift.print("hccqrImage.cgImage()?.width:  \(hccqrImage.cgImage?.width)")
-      guard let rgbaImage: RGBARep = try? CVImageBufferUtil.rgbaRep(image: image) else { Swift.print("err getting rgbImage"); return }
+      guard let rgbaImage: RGBARep = try? BufferUtil.rgbaRep(image: image) else { Swift.print("err getting rgbImage"); return }
       // Convert RGBAImage to Data
       Reader.dataAndQR(rgbaRep: rgbaImage) { result in // try to split the HCCQRImg
          onReadComplete(result: result, randomData: randomData, onComplete: onComplete)

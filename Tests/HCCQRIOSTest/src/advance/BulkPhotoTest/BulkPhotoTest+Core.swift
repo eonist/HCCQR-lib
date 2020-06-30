@@ -20,7 +20,7 @@ extension BulkPhotoTest {
       let rgbaImages: [RGBARep] = (0..<10).compactMap { _ in
          guard let image = Image(contentsOfFile: path) else { Swift.print("Err creating img at path: \(path)"); return nil }
 //         Swift.print("image.size:  \(image.size)")
-         guard let rgbaImage: RGBARep = try? CVImageBufferUtil.rgbaRep(image: image) else { Swift.print("err getting rgbImage"); return nil }
+         guard let rgbaImage: RGBARep = try? BufferUtil.rgbaRep(image: image) else { Swift.print("err getting rgbImage"); return nil }
          return rgbaImage
       }
       onComplete(rgbaImages)
@@ -31,8 +31,6 @@ extension BulkPhotoTest {
    static func readMany(rgbaImages: [RGBARep], onComplete: @escaping OnReadManyComplete) {
       Swift.print("readMany()")
       var dataArray: [Data?] = .init(repeating: nil, count: rgbaImages.count) // Stores the results in this array
-      _ = dataArray
-//      Swift.print("⚠️️ Deprecated ⚠️️")
       rgbaImages.enumerated().forEach { arg in
          //DispatchQueue.main.async {
          Reader.dataAndQR(rgbaRep: arg.element) { result in  // Process the hccqrImg

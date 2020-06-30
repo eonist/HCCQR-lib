@@ -4,11 +4,11 @@ import CoreImage
 /**
  * Reads camera output / image output
  * - Abstract: Converts image, to rgb and SambleBuffer to RGB
- * - Note: ref context for macos might need: https://stackoverflow.com/a/43893381/5389500
+ * - Note: Ref context for macos might need: https://stackoverflow.com/a/43893381/5389500
  */
-public final class CVImageBufferUtil {}
+public final class BufferUtil {}
 
-extension CVImageBufferUtil {
+extension BufferUtil {
    /**
     * CVImageBuffer -> RGBImage (⭐ works ⭐)
     * 1. CVImageBuffer comes in with areaOfIntrest crop

@@ -4,7 +4,7 @@ import CoreImage
 /**
  * For testing only (May be deprecated soon)
  */
-extension CVImageBufferUtil {
+extension BufferUtil {
    /**
     * Image -> RGBAImage (Not working)
     * - Fixme: ⚠️️ Add Image typealias in this repo??

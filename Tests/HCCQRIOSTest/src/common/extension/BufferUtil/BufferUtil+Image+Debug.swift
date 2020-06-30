@@ -2,7 +2,7 @@ import AVFoundation
 import QuartzCore
 import CoreImage
 
-extension CVImageBufferUtil {
+extension BufferUtil {
    /**
     * UIImage -> CVPixelBuffer
     * - Fixme: ⚠️️ add step doc 

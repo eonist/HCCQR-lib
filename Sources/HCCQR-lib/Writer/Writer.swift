@@ -38,7 +38,7 @@ extension Writer {
     * - Abstract: Create two QR images from the data, and combine them into RGBAImage, then convert that to CIImage
     * - Caution: ⚠️️ Remember to deinit the result once it's consumed
     * - Important: internal because: SingleWriteReadHCCQRTest and BulkHCCQRTest uses it for tests
-    * - Fixme: ⚠️️ Splitting the data in two allows 4 color map, in the future we will allow 8 color map (pallet etc)
+    * - Fixme: ⚠️️ Splitting the data in two allows 4 color map, in the future we will allow 8 color map etc (pallet etc)
     */
    internal static func rgbaRep(data: Data, config: HCCQRSetup = .default, onComplete: @escaping OnRGBRepComplete) {
       let dataArr: [Data] = data.split(index: data.count / config.map.layerCount) // Split the data in to the num of layers

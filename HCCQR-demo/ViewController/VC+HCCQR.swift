@@ -10,7 +10,7 @@ extension ViewController {
    func testHCCQR() {
       ViewController.makeHCCQRImage { (image: Image) in
          // self.view.addSubview(UIImageView(image: $0))
-         guard let rgbaRep: RGBARep = try? CVImageBufferUtil.rgbaRep(image: image) else { Swift.print("err getting rgbImage"); return }
+         guard let rgbaRep: RGBARep = try? RGBARepUtil.rgbaRep(image: image) else { Swift.print("err getting rgbImage"); return } // CVImageBufferUtil.rgbaRep(image: image)
          _ = { // add output to view
             guard let img = try? RGBARepParser.image(rgbaRep: rgbaRep, scale: 1) else { Swift.print("err making img"); return }
             let imgView: UIImageView = .init(image: img)

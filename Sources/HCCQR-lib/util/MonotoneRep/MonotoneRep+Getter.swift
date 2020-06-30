@@ -6,7 +6,7 @@ extension MonotoneRep {
    /**
     * Convenience
     */
-   var size: GrayscaleRep.Size { (width: width, height: height) }
+   var size: Size { (width: width, height: height) }
    /**
     * Amount of pixels MonotoneImage can hold
     * - Note: used by Colorizer.colorize

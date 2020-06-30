@@ -8,10 +8,10 @@ import CoreImage
 final class Compositor {
    /**
     * Photo -> Split into Channels -> Combine 2 channels into 1 QR-image (Combines many grayscale images into one)
-    * Returns a QR-Image based on two (GrayscaleImage) channels (We use CIImage, because that is what apple prefers to read qr from)
-    * 1. GrayScaleImage-layers comes in
-    * 2. GrayscaleImage-layers are composited together
-    * 3. A CIImage is created from the GrayscaleImage
+    * Returns a QR-Image based on two (GrayscaleRep) channels (We use CIImage, because that is what apple prefers to read qr from)
+    * 1. GrayScaleRep-layers comes in
+    * 2. GrayscaleRep-layers are composited together
+    * 3. A CIImage is created from the GrayscaleRep
     * - Returns: CIImage (Since apples-QR-api only reads CIImage)
     * - Note: layer 1: r, b -> qrImg1 (⚠️️ I'm not sure this is correct, think R -> Black, White B -> Black, Black, G-> WHite,Black, white -> white,white)
     * - Note: layer 2: b, g -> qrImg2 (⚠️️ I'm not sure this is correct, think R -> Black, White B -> Black, Black, G-> WHite,Black, white -> white,white)

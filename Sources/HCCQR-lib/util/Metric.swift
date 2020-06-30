@@ -8,3 +8,4 @@ import Foundation
  * - Fixme: ⚠️️ Rename to Scale?
  */
 public typealias Scale = (module: Int, screen: Int)
+public typealias Size = (width: Int, height: Int)

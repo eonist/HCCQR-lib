@@ -8,7 +8,7 @@ extension Channel {
    /**
     * Split an RGBAImage into 3 GrayScaleRep's consisting of singular (R,G,B) channels
     * 1. RGBAImage comes in with a ChannelMap rule-set
-    * 2. Create Result-array of empty GrayscaleImage
+    * 2. Create Result-array of empty GrayscaleRep
     * 3. Go through each item in the ChannelMap array and try to find the the 3 colors defined in the channelMap
     * 4. pass the grayScale-channel-representation of each color to the completion block
     * - Important: ⚠️️ I guess the reason why we don't use concurrentPerform on this array is that we use it on the pixel iteration in the grayChannel method, but maybe we should explore dong concurrent perform on this array as well?
@@ -36,7 +36,7 @@ extension Channel {
  */
 extension Channel {
    /**
-    * RGBAImage channel (R, G, B) -> GrayscaleImage
+    * RGBAImage channel (R, G, B) -> GrayscaleRep
     * 1. Creates a blank grayscale image of a specific size
     * 2. Asserts if the pixel is sort of a color or not
     * - Parameters:

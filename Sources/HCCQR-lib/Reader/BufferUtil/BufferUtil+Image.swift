@@ -4,10 +4,10 @@ import CoreImage
 /**
  * Image
  */
-extension CVImageBufferUtil {
+extension BufferUtil {
    /**
     * CVImageBuffer -> UIImage
-    * - Important: ⚠️️ This methd exists for testing purpouses, the real code derives the buffer directly
+    * - Important: ⚠️️ This methd exists for testing/debugging purpouses, the real code derives the buffer directly
     * - Parameter imageBuffer: Convert buffer to image
     */
    public static func image(imageBuffer: CVImageBuffer) -> Image {

@@ -1,7 +1,7 @@
 import Foundation
 import AVFoundation
 
-extension CVImageBufferUtil {
+extension BufferUtil {
    /**
     * Returns pixelFormatName
     * ## Examples:

@@ -11,7 +11,7 @@ class CIImageTest {
       Swift.print("image.scale:  \(image.scale)")
       Swift.print("image.size:  \(image.size)")
       // create RGBAImage
-      guard let rgbaRep = try? RGBARep.rgbaRep(image: image) else { Swift.print("rbgaImg err"); return false }
+      guard let rgbaRep = try? RGBARepUtil.rgbaRep(image: image) else { Swift.print("rbgaImg err"); return false }
       // create CIIMage
       guard let ciImage: CIImage = try? RGBARepParser.ciImg2(rgbaRep: rgbaRep, useGrayscale: false) else { Swift.print("ciimg err"); return false }
       // assert that CIMage match first CIImage

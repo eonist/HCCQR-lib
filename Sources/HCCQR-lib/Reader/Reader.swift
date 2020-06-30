@@ -12,6 +12,7 @@ public final class Reader {}
 extension Reader {
    /**
     * CVImageBuffer -> Data
+    * - Fixme: ⚠️️ Rename to just data
     * 1. Create RGBA representation of the CVImageBuffer
     * 2. Split the RGBA into multiple QR-Images
     * 3. Extract the data from the QR-Images
@@ -23,7 +24,7 @@ extension Reader {
     *   - onComplete: Return Data and Meta-data in this completion-block
     */
    public static func dataAndMeta(imageBuffer: CVImageBuffer, crop: BufferRect, onComplete: @escaping OnGetDataAndMetaCompleted) {
-      guard let rgbaImg: RGBARep = try? CVImageBufferUtil.rgbaRep(imageBuffer: imageBuffer, crop: crop) else { onComplete(.failure(.unableToExtractRGBAImageFromCVBuffer)); return }
+      guard let rgbaImg: RGBARep = try? BufferUtil.rgbaRep(imageBuffer: imageBuffer, crop: crop) else { onComplete(.failure(.unableToExtractRGBAImageFromCVBuffer)); return }
       dataAndQR(rgbaRep: rgbaImg) { (result: Reader.DataAndPayloadResult) in
          guard let dataAndImagesAndQuad: DataAndPayload = try? result.get() else { onComplete(.failure(.unableToGetDataAndImages(msg: result.errorStr))); return }
          guard let data: Data = dataAndImagesAndQuad.data, let quad = dataAndImagesAndQuad.quad  else { onComplete(.failure(.unableToGetDataOrQuad)); return }
@@ -38,6 +39,7 @@ extension Reader {
 extension Reader {
    /**
     * Creates data for HCCQQR image (RGBAImage)
+    * - Fixme: ⚠️️ Rename to just data
     * - Abstract: Since we get pixel data from the camera, this will be faster than converting to image first
     * - Fixme: ⚠️️ When the first QRImage Quad is found, the subsequent QR-Rects will be in the same quadrant, clip the subsequent images
     * - Note: returning qrimage is useful, it is used as a way to debug that the HCCQR ws split correctly

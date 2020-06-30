@@ -25,7 +25,7 @@ extension Reader {
          onComplete(.failure(.unableToSplit(errMSG: "q1, q2 err \(result.errorStr)")))
          return
       }
-      var dataAndFrames: [QRReader.DataAndQuad?] = [QRReader.DataAndQuad?](repeating: nil, count: payload.qrImgs.count)
+      var dataAndFrames: [QRReader.DataAndQuad?] = .init(repeating: nil, count: payload.qrImgs.count)
       // HCCQRReader.readQrTime = .init()
       // - Fixme: ⚠️️⚠️️⚠️️ This is where you add the crop code for the second QR image etc. Since it's on main, there is no speed loss etc
       DispatchQueue.main.async { // Has to be done on main thread, or else Apples.qrreader behaves bad

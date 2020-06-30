@@ -5,7 +5,7 @@ import Foundation
 extension Channel {
    /**
     * Channel completion handler (just makes sure everything completed)
-    * 1. GrayscaleImage comes in (white represents strength of the color)
+    * 1. GrayscaleRep comes in (white represents strength of the color)
     * 2. Asserts that all grayscale channels has completed
     * 3. Returns 3 grayscale channels for R,G,B
     */

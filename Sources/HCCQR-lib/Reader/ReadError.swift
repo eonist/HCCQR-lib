@@ -3,6 +3,7 @@ import CoreImage
 
 public enum ReadError: Error {
    /**
+    * Simplifies debugging
     * - Parameters:
     *   - msg: the error message from previous called method
     *   - ciImage: the qrImage that the lib was unable to extract data from

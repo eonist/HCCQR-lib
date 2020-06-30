@@ -11,7 +11,7 @@ extension MonotoneRep {
    }
 }
 /**
- * For [MonotoneRep]
+ * For [MonotoneRep] (very convenient)
  */
 extension Array where Element == MonotoneRep {
    /**

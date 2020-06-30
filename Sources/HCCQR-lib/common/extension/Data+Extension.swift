@@ -1,7 +1,6 @@
 import Foundation
 /**
- * - Fixme: ⚠️️ Some of these methods are not in use. remove them
- * - Fimxe: ⚠️️ Move to DataSugar framework
+ * Data sugar
  */
 extension Data {
    /**
@@ -10,7 +9,7 @@ extension Data {
     * - Parameter index: the index to split the data at
     */
    func split(index: Int) -> [Data] {
-      let data: (Data, Data) = self.split(index: index)
+      let data: (Data, Data) = split(index: index)
       return [data.0, data.1]
    }
 }
