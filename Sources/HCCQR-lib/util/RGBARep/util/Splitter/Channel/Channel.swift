@@ -6,7 +6,7 @@ public final class Channel {}
 
 extension Channel {
    /**
-    * Split an RGBAImage into 3 GrayScaleRep's consisting of singular (R,G,B) channels
+    * Split an RGBAImage 👉 3 GrayScaleRep's consisting of singular (R,G,B) channels
     * 1. RGBAImage comes in with a ChannelMap rule-set
     * 2. Create Result-array of empty GrayscaleRep
     * 3. Go through each item in the ChannelMap array and try to find the the 3 colors defined in the channelMap
@@ -19,6 +19,8 @@ extension Channel {
     */
    static func channels(rgbaImg: RGBARep, channelMap: ChannelMap = defaultChannelMap, onComplete:@escaping OnAllChannelsComplete) {
 //      let blankRep: RGBARep = .rgbaRep(pixel: Pixel.Colors.black, size: rgbaImg.size)
+      // continue here: 🏀
+         // find an error to throw or remove the result mechanism in the oncomplete
       var channels: [GrayscaleRep?] = [GrayscaleRep?](repeating: nil, count: channelMap.count) // Fixme: ⚠️️ we could use unmanaged pointer with capacity as well, might be faster
       let similarities: [PixelDataSimilarity] = Channel.similarities(channelMap: channelMap)
       similarities.enumerated().forEach { offset, similarity in // 3 assertions
@@ -42,14 +44,12 @@ extension Channel {
     * - Parameters:
     *   - rgbaImg: The RGBAImage to extract data from
     *   - assert: takes Pixeldata, returns Bool
+    * - Note to debug, you can trace the asserter(pixel).strength
     */
    private static func channel(rgbaImg: RGBARep, asserter: PixelDataSimilarity) -> GrayscaleRep {
       let output: GrayscaleRep = .grayscaleRep(capacity: rgbaImg.capacity, size: rgbaImg.size) // We create a blank RGBImage, as it's faster than copy probably
       return GrayscaleRepModifier.process(input: rgbaImg, output: output) { (pixel: Pixel) -> UInt8 in
-//         Swift.print("asserter(pixel).strength:  \(asserter(pixel).strength)")
-//         let assertion = asserter(pixel)
-//         return assertion.assert ? assertion.strength : 0 // more strength, more white
-         return asserter(pixel).strength
+         asserter(pixel).strength
       }
    }
 }

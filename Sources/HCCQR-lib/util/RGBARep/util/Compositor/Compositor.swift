@@ -31,6 +31,26 @@ final class Compositor {
  */
 extension Compositor {
    /**
+    * let doublearrptr = UnsafePointer<Double>(cda)
+    * let arr = convertArr(Int(shobjarrlen), data: doublearrptr)
+    */
+   static func convertArr<T>(count: Int, data: UnsafePointer<T>) -> [T] {
+      let buffer = UnsafeBufferPointer(start: data, count: count)
+      return Array(buffer)
+   }
+   
+   private static var _blankRep: GrayscaleRep?
+   private static func blankRep(size: Size) -> GrayscaleRep {
+      guard let rep = _blankRep, rep.size == size else {
+         let rep: GrayscaleRep = .grayscaleRep(pixel: .black, size: size) // because white is 255
+         _blankRep = rep
+         return rep
+      }
+      // 🏀 see methods in rgba rep getter etc
+      let pixels: [UInt8] = convertArr(count: rep.pixels.count, data: rep.pixels)
+      return .grayscaleRep(pixels: pixels, size: rep.size)
+   }
+   /**
     * Photo 👉 Split into Channels -> Combine 2 channels into 1 QR-image (Combines many grayscale reps into one)
     * - Abstract: we overlay many b&w to produce one b&w image (to be used as a QR-Image to be read from)
     * 1. GrayScale-images comes in
@@ -41,7 +61,7 @@ extension Compositor {
     * - Note: We use array to support richer color pallets in the future
     * - Note: The pixels are never overwritten
     * - Note: Should really be private, but some tests use it
-    * - Note: its tempting to do reduce on the forEach loop, but its not possible etc
+    * - Note: it's tempting to do reduce on the forEach loop, but its not possible etc
     * - Fixme: ⚠️️ Can the compositing be done simpler, more efficient?
     * - Fixme: ⚠️️ Make a method that returns CIImage?
     * - Fixme: ⚠️️ Should we get size from calling method?
@@ -51,8 +71,8 @@ extension Compositor {
    private static func composite(grayscaleReps: [GrayscaleRep]) -> GrayscaleRep {
       let first: GrayscaleRep = grayscaleReps[0]
       // - Fixme: ⚠️️ Could be the problem that we use white, to avoid inverting
-      // - Fixme: ⚠️️ Possibly make a clone method so that we dont have to recreate the blank grayscale rep everytime?
-      let blankRep: GrayscaleRep = .grayscaleRep(pixel: .black, size: first.size) // because white is 255
+      // - Fixme: ⚠️️ Possibly make a clone method so that we don't have to recreate the blank grayscale rep everytime?
+      let blankRep: GrayscaleRep = Compositor.blankRep(size: first.size)// .grayscaleRep(pixel: .black, size: first.size) // because white is 255
       return GrayscaleRepModifier.process(input: blankRep) { (index: Int, pixel: UInt8) -> UInt8 in // Loop things
          var pixel: UInt8 = pixel
          grayscaleReps.forEach { (grayscaleImage: GrayscaleRep) in // loop over every image in the list, this is inside here because the process method uses concurrent_apply

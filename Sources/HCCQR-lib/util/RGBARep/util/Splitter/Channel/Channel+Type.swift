@@ -13,7 +13,7 @@ extension Channel {
     */
    public typealias RGBChannels = (r: GrayscaleRep, g: GrayscaleRep, b: GrayscaleRep)
    /**
-    * - Fixme: ⚠️️ error is never used, figure out why etc
+    * - Fixme: ⚠️️ error is never used, might be used if threads dont finish? or simplify and dont use result?
     */
    typealias ChannelResult = Result<RGBChannels, Error>
 }

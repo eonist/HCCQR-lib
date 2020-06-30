@@ -44,6 +44,9 @@
 		F146A52724AB97A900FE136C /* GrayscaleRepModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = F146A52624AB97A900FE136C /* GrayscaleRepModifier.swift */; };
 		F146A52824AB97A900FE136C /* GrayscaleRepModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = F146A52624AB97A900FE136C /* GrayscaleRepModifier.swift */; };
 		F146A52924AB97A900FE136C /* GrayscaleRepModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = F146A52624AB97A900FE136C /* GrayscaleRepModifier.swift */; };
+		F146A52B24ABB1A400FE136C /* Channel+Assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F146A52A24ABB1A400FE136C /* Channel+Assert.swift */; };
+		F146A52C24ABB1A400FE136C /* Channel+Assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F146A52A24ABB1A400FE136C /* Channel+Assert.swift */; };
+		F146A52D24ABB1A400FE136C /* Channel+Assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F146A52A24ABB1A400FE136C /* Channel+Assert.swift */; };
 		F1471FBE248C0007008A01AD /* BufferUtil+RGBA+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E5DC0423F9802300605775 /* BufferUtil+RGBA+Debug.swift */; };
 		F1471FBF248C0016008A01AD /* RGBARepParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18A4D7F239F11040065078A /* RGBARepParser.swift */; };
 		F1471FC0248C001B008A01AD /* RGBARepModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18A4D82239F11ED0065078A /* RGBARepModifier.swift */; };
@@ -325,6 +328,7 @@
 		F1467653249F5FAC009D392A /* UInt8+Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UInt8+Const.swift"; sourceTree = "<group>"; };
 		F146A52224AB60D900FE136C /* RGBARepUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBARepUtil.swift; sourceTree = "<group>"; };
 		F146A52624AB97A900FE136C /* GrayscaleRepModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrayscaleRepModifier.swift; sourceTree = "<group>"; };
+		F146A52A24ABB1A400FE136C /* Channel+Assert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Channel+Assert.swift"; sourceTree = "<group>"; };
 		F1484AD623AE657F001E5CE3 /* HCCQR-lib.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "HCCQR-lib.entitlements"; sourceTree = "<group>"; };
 		F1487F13249F84D400265A81 /* SplitError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitError.swift; sourceTree = "<group>"; };
 		F14DDE1423C0E26A00FA0022 /* BulkPhotoTest+Handler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BulkPhotoTest+Handler.swift"; sourceTree = "<group>"; };
@@ -957,6 +961,7 @@
 				F1D8A67323E846FC00F17A81 /* Channel+Handler.swift */,
 				F1D8A66A23E83F0100F17A81 /* Channel+Type.swift */,
 				F1E5DBFB23F7EFF900605775 /* Channel+Const.swift */,
+				F146A52A24ABB1A400FE136C /* Channel+Assert.swift */,
 			);
 			path = Channel;
 			sourceTree = "<group>";
@@ -1215,6 +1220,7 @@
 				F1E645E823940B3D008D2ABE /* Pixel+Getter.swift in Sources */,
 				F17F5B88221A267600383955 /* AppDelegate.swift in Sources */,
 				F143EC3723FAB8DE0006743C /* UInt8Modifier.swift in Sources */,
+				F146A52C24ABB1A400FE136C /* Channel+Assert.swift in Sources */,
 				F181F11423B92A1700145DEA /* GrayscaleRep+Init.swift in Sources */,
 				F15C9F8123BA747800F9D524 /* Writer.swift in Sources */,
 				F1E645DD23940B3D008D2ABE /* RGBARep+Init.swift in Sources */,
@@ -1299,6 +1305,7 @@
 				F1E645CF23940B3C008D2ABE /* Colorizer+RGBA.swift in Sources */,
 				F1E205AB2495E60A00E3A82E /* VC+RGBAPhoto.swift in Sources */,
 				F1E67D4B24A8D124007FC5C0 /* UIView+Ext.swift in Sources */,
+				F146A52B24ABB1A400FE136C /* Channel+Assert.swift in Sources */,
 				F1E645C223940B3C008D2ABE /* RGBARep+Init.swift in Sources */,
 				F165C24A239FF49C005D30EC /* Pixel.Colors.swift in Sources */,
 				F1487F14249F84D400265A81 /* SplitError.swift in Sources */,
@@ -1395,6 +1402,7 @@
 				F165D4AE24A9FF9500C99CD7 /* HCCQRSetup.swift in Sources */,
 				F146A52524AB60D900FE136C /* RGBARepUtil.swift in Sources */,
 				F146A52924AB97A900FE136C /* GrayscaleRepModifier.swift in Sources */,
+				F146A52D24ABB1A400FE136C /* Channel+Assert.swift in Sources */,
 				F1E5DC1023F9A1C300605775 /* RGBAImageTest.swift in Sources */,
 				F147200D248C0727008A01AD /* Hybrid+Mac.swift in Sources */,
 				F1E5711923A3F2C400E090BB /* MemLeakTest.swift in Sources */,
