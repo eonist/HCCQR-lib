@@ -9,19 +9,19 @@ extension Channel {
    typealias ChannelMap = [Pixel] // this seems to be still in use
    /**
     * RGB
-    * - Fixme: ⚠️️ this needs to be array, or else custom colormaps wont work
+    * - Fixme: ⚠️️ this needs to be array, or else custom colormaps won't work
     */
    public typealias RGBChannels = (r: GrayscaleRep, g: GrayscaleRep, b: GrayscaleRep)
    /**
     * - Fixme: ⚠️️ error is never used, figure out why etc
     */
-   typealias ChannelPayload = Result<RGBChannels, Error>
+   typealias ChannelResult = Result<RGBChannels, Error>
 }
 /**
  * Completion type
  */
 extension Channel {
-   typealias OnAllChannelsComplete = (ChannelPayload) -> Void
+   typealias OnAllChannelsComplete = (ChannelResult) -> Void
 }
 /**
  * Assert

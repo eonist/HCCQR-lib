@@ -17,6 +17,7 @@ class GrayscaleRepParser {
       let ciImg: CIImage = .init(bitmapData: data, bytesPerRow: bytesPerRow, size: CGSize(width: CGFloat(grayscaleRep.size.width), height: CGFloat(grayscaleRep.size.height)), format: format, colorSpace: colorSpace)
       return ciImg
    }
+}
 //   private static var monoFormat {
 //      guard let monoFormat = vImage_CGImageFormat(
 //         bitsPerComponent: 8,
@@ -27,4 +28,3 @@ class GrayscaleRepParser {
 //            return
 //      }
 //   }
-}

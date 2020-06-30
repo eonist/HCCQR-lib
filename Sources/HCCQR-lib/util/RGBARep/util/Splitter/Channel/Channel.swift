@@ -45,7 +45,7 @@ extension Channel {
     */
    private static func channel(rgbaImg: RGBARep, asserter: PixelDataSimilarity) -> GrayscaleRep {
       let output: GrayscaleRep = .grayscaleRep(capacity: rgbaImg.capacity, size: rgbaImg.size) // We create a blank RGBImage, as it's faster than copy probably
-      return GrayscaleRep.process(input: rgbaImg, output: output) { (pixel: Pixel) -> UInt8 in
+      return GrayscaleRepModifier.process(input: rgbaImg, output: output) { (pixel: Pixel) -> UInt8 in
 //         Swift.print("asserter(pixel).strength:  \(asserter(pixel).strength)")
 //         let assertion = asserter(pixel)
 //         return assertion.assert ? assertion.strength : 0 // more strength, more white
