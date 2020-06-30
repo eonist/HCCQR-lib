@@ -8,16 +8,16 @@ extension Pixel {
    /**
     * Asserts if a pixel is sort of a color within a threshold (also returns the strength of the color)
     * - Fixme: ⚠️️ How ish is a color, figure out 0 - 1 how strong a color is, remember channels can be fractional when we start using other colors than R, B, G
-    * - Fixme: ⚠️️ Look for algorithms that can measure how strong a color is. 99% Cyan etc
+    * - Fixme: ⚠️️ Look for algorithms that can measure how strong a color is. 99% Cyan etc, do research around this
     * - Fixme: ⚠️️ Find alt name for similar, hasSimilarity, hasCommonality etc?
     * - Note: the reason we don't store individual strength for each channel, is that the collective strength wont be applied if one of the individual strengths are out of bound, this works because we store the bool of this pre-assert, also saves cpu cycles etc
     * - Important: ⚠️️ For now we just measure for R, G, B
     * - Returns: returns Bool and the amount of that color in UInt8
     * - Parameter ishColor: a color (dynamic / impure color) to check against self (self is static / pure colors)
     */
-   func isSimilar(_ ishColor: Pixel) -> Similarity { // - Fixme: ⚠️️ Might not need to return a tuple, the strength alone may be enough
-      let isColorish: Bool = self.isColorish(ishColor) // channels r,g,b are within the color
-      let strength = isColorish ? PixelParser.similarity(a: ishColor, b: self) : UInt8.black // if not colorish, then return no intensity, and thus avoid calculating strength
+   func isSimilar(_ ishColor: Pixel) -> Similarity {
+      let isColorish: Bool = self.isColorish(ishColor) // channels r,g,b are within-ish the color
+      let strength = isColorish ? PixelParser.similarity(a: ishColor, b: self) : .black // if not colorish, then return no intensity, and thus avoid calculating strength
       return (assert: isColorish, strength: strength)
    }
    /**
@@ -73,22 +73,22 @@ extension Pixel {
    static func isBlue(rgbColor: Pixel) -> Bool {
       isRGBColor(a: rgbColor, b: Pixel.Colors.blue)
    }
-   /**
-    * - Parameters:
-    *   - a: first color (usuallu dynamic im-pure colors)
-    *   - b: second color (usualy static pure colors)
-    */
-   static func isRGBColor(a: Pixel, b: Pixel) -> Bool {
-      a.r == b.r && a.g == b.g && a.b == b.b /* && a.a == b.a*/
-   }
 }
 /**
  * Private
  */
 extension Pixel {
    /**
+    * Asserts if a pixel is the same as another pixel (does not account for alpha)
+    * - Parameters:
+    *   - a: first color (usualy dynamic non-pure colors)
+    *   - b: second color (usualy static pure colors)
+    */
+   private static func isRGBColor(a: Pixel, b: Pixel) -> Bool {
+      a.r == b.r && a.g == b.g && a.b == b.b /* && a.a == b.a*/
+   }
+   /**
     * Match two pixels
-    * - Note: Looks funny, but it's that way to make it fast (basically exits early if something doesn't match)
     * - Important: ⚠️️ This is not private because it is accessed in the testColorizingMonoPixel test
     * - Note: alpha is disregarded because we don't use alpha
     */

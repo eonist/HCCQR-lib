@@ -2,7 +2,7 @@ import Foundation
 
 extension Pixel { enum Colors {} }
 /**
- * Pure colors
+ * RGB
  */
 extension Pixel.Colors {
    static let red: Pixel = .init(r: 255, g: 0, b: 0, a: 255)
@@ -18,14 +18,17 @@ extension Pixel.Colors {
    static let yellow: Pixel = .init(r: 255, g: 255, b: 0, a: 255)
 }
 /**
- * Colors
+ * B&W colors
  * - Fixme: ⚠️️ We are going to remove alpha, so rename to RGBColor again at some point
  */
 extension Pixel.Colors {
-   // B&W
    static var black: Pixel { .init(r: .black, g: .black, b: UInt8.black, a: 255) }
    static var white: Pixel { .init(r: .white, g: .white, b: UInt8.white, a: 255) }
-   // test colors:
+}
+/**
+ * Test colors
+ */
+extension Pixel.Colors {
    static let redish: Pixel = .init(UInt8(255 * 0.75), UInt8(255 * 0.2), UInt8(255 * 0.25), 255)
    static let greenish: Pixel = .init(UInt8(255 * 0.27), UInt8(255 * 0.77), UInt8(255 * 0.25), 255)
    static let blueish: Pixel = .init(UInt8(255 * 0.25), UInt8(255 * 0.25), UInt8(255 * 0.86), 255)

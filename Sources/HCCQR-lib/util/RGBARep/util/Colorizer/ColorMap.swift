@@ -15,7 +15,7 @@ public typealias ColorMap = [ColorMapItem]
  */
 public typealias ColorMapItem = (idx: [Bool], color: Pixel)
 /**
- * Helper
+ * Helper and custom color-maps
  */
 extension Array where Element == ColorMapItem {
    /**

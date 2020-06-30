@@ -29,7 +29,8 @@ extension CVImageBufferUtil {
       CVPixelBufferLockBaseAddress(imageBuffer, CVPixelBufferLockFlags(rawValue: CVOptionFlags(0))) // lock access for cpu reading
       let bytesPerPixel: Int = CVPixelBufferGetBytesPerRow(imageBuffer) // let bufferSize: (width: Int, height: Int) = (Int(CVPixelBufferGetWidth(imageBuffer)), Int(CVPixelBufferGetHeight(imageBuffer))) //  let size: (width: Int, height: Int) = (Int(size.width * scale), Int(size.height * scale))
       guard let baseAddress: UnsafeMutableRawPointer = CVPixelBufferGetBaseAddress(imageBuffer) else { throw NSError(domain: "Unable to get baseAddress", code: 0) }
-      // CVPixelBufferLockBaseAddress(imageBuffer, CVPixelBufferLockFlags(rawValue: 0)) // - Fixme: ⚠️️ This is prob a bug, you should only lock once
+      // - Fixme: ⚠️️ This is prob a bug, you should only lock once
+      // CVPixelBufferLockBaseAddress(imageBuffer, CVPixelBufferLockFlags(rawValue: 0))
       let byteBuffer: UnsafeMutablePointer<UInt8> = baseAddress.assumingMemoryBound(to: UInt8.self)
       let capacity: Int = bufferRect.width * bufferRect.height
       let pixels = UnsafeMutableBufferPointer<Pixel>.allocate(capacity: capacity)
@@ -37,13 +38,14 @@ extension CVImageBufferUtil {
          DispatchQueue.concurrentPerform(iterations: bufferRect.width) { x in // ⚠️️ Optimization initiative, might be faster, also try striding?
             let index: Int = (bufferRect.x + x) * 4 + y * bytesPerPixel // We add the crop to the x // (y * bytesPerPixel + x) * 4
             let (b, g, r) = (byteBuffer[index], byteBuffer[index + 1], byteBuffer[index + 2]) // let a = byteBuffer[index + 3]
-            let pixel: Pixel = .init(r: r, g: g, b: b, a: 255) // Swift.print("r:  \(r) g:  \(g) b:  \(b) a: \(a)")
+            let pixel: Pixel = .init(r, g, b, 255)
             let i: Int = y * bufferRect.width + x
             pixels[i] = pixel
          }
       }
       let rgbaImage: RGBARep = .init(pixels: pixels, width: bufferRect.width, height: bufferRect.height)
       CVPixelBufferUnlockBaseAddress(imageBuffer, CVPixelBufferLockFlags(rawValue: CVOptionFlags(0))) // release access for cpu reading
-      return rgbaImage // - Fixme: ⚠️️ might want to wrap all this in autoreleasepool as well
+      // - Fixme: ⚠️️ might want to wrap all this in autoreleasepool as well
+      return rgbaImage
    }
 }

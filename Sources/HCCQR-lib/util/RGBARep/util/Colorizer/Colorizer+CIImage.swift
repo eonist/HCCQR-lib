@@ -20,8 +20,7 @@ extension Colorizer {
     * - Return: we return a color CIImage
     * - Parameters:
     *   - ciImages: qr code images (BGRA8, opaque) (B&W QR-Images)
-    *   - colorMap: rule-set (The color depth you want the HCCQR image in. 4, 8, 16, 32 etc)
-    *   - scale: module and screen, for retina you need 2x scale etc, This is the multiplier. ModuleCount equals 1 pixel. ModuleCount for QRVersion 10 is 57 not counting 2 for margins. So (57+2)*6 = 354, if you want 2xretina its 354 * 2 = 708
+    *   - config: module and screen, for retina you need 2x scale etc, This is the multiplier. ModuleCount equals 1 pixel. ModuleCount for QRVersion 10 is 57 not counting 2 for margins. So (57+2)*6 = 354, if you want 2xretina its 354 * 2 = 708, rule-set (The color depth you want the HCCQR image in. 4, 8, 16, 32 etc)
     */
    static func colorize(ciImages: [CIImage], config: HCCQROutput) -> ColorizerResult {
       guard let rgbaRep: RGBARep = try? colorize(ciImages: ciImages, config: config) else { return .failure(.unableToCreateRGBAImageFromQRImages) }
@@ -41,6 +40,10 @@ extension Colorizer {
     * 2. Convert the CIImage-array to Monotone pixel representations
     * 3. Colorize the Monotone array to an RGBAImage and return it
     * - Fixme: ⚠️️ Use ConcurrentPerform in conjunction with image quadrants / cores, threads
+    * - Return: we return RGBARep
+    * - Parameters:
+    *   - ciImages: qr code images (BGRA8, opaque) (B&W QR-Images)
+    *   - config: module and screen, for retina you need 2x scale etc, This is the multiplier. ModuleCount equals 1 pixel. ModuleCount for QRVersion 10 is 57 not counting 2 for margins. So (57+2)*6 = 354, if you want 2xretina its 354 * 2 = 708, rule-set (The color depth you want the HCCQR image in. 4, 8, 16, 32 etc)
     */
    static func colorize(ciImages: [CIImage], config: HCCQROutput) throws -> RGBARep {
       let reps: [MonotoneRep] = ciImages.compactMap { try? MonotoneRep.monotoneRep(ciImg: $0) } // convert QR images to Pixel-data

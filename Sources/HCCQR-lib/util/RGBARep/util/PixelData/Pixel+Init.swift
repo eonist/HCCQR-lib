@@ -9,7 +9,7 @@ extension Pixel {
       self.init(r: rgba.r, g: rgba.g, b: rgba.b, a: rgba.a)
    }
    /**
-    * New
+    * None param based init
     */
    init(_ r: UInt8, _ g: UInt8, _ b: UInt8, _ a: UInt8) {
       self.r = r

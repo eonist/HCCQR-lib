@@ -1,12 +1,13 @@
 import Foundation
 import QuartzCore
-
+/**
+ * - Note: Conceptually we need to set threshold dynamically at one point, to allow for differnt thresholds with differnt color maps etc
+ */
 extension Pixel {
    /**
     * Percentage of color (0.2 means can be 20% of some color)
     * - Note:  with threshold more or less (I.e: +25,-25 from a value)
     * - Fixme: ⚠️️ Move the threshold to the caller of the methods using this variable
-    * - Fixme: ⚠️️ 0.6 seems like alot, try less, trying .4 and .2 ?
     * - Note: it becomes half of threshold 
     */
    private static let threshold: CGFloat = 0.3 //  Rename to defaultThreshold

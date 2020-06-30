@@ -80,7 +80,7 @@ extension Image {
     * - Parameter pos: The x/y position in the image to grab color from
     */
    private func getPixelColor(pos: CGPoint) -> Color? { // Fixme: ⚠️️ make this for cgImage, converting it over and over is not good
-      // ⚠️️ The bellow fix could hurt performance
+      // ⚠️️ The bellow fix could hurt performance, its just for testing tho
       guard let cgImage = self.cgImage() else { Swift.print("getPixelColor() - unable to get cgImage"); return nil }
       guard let dataProvider = cgImage.dataProvider else { Swift.print("getPixelColor() - unable to get dataProvider"); return nil }
       guard let pixelData: CFData = dataProvider.data else { Swift.print("getPixelColor() - unable to get cfData"); return nil }

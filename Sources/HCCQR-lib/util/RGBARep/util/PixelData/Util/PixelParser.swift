@@ -12,6 +12,7 @@ final class PixelParser {
     * - Discussion: the problem with this method is that one channel can be totally off and other can be exact same and it still return true, it should fail if one channel is totally off, but since we do the bool assert in conjunction with this method, then it works
     * - Discussion: so the red channel is always dominating, green is weakest etc. Look into this phenomenome, some grayscale conversion algos account for this etc
     * - Fixme: ⚠️️ figure out how to divide a value that is bigger than UINT8.max etc and then divide it etc
+    * - Fixme: ⚠️️ Maybe optimize this methods somehow? research? COnverting to Int is not optimal
     * - Fixme: ⚠️️ It might be the case that if we should also limit the combined values of difference. say if R,B combined are more than 50% off, then its not a match. etc. It might be valuable to make advance tests, of how to match colors
     * - Fixme: ⚠️️ rename to commonality, correlation, parity? 
     * - Important: ⚠️️⚠️️⚠️️ has to be used in conjunction with the isColorish method, since this only returns the intensity of the output pixel, and is only valid if the isColorish method is within thresholds etc
@@ -27,10 +28,10 @@ final class PixelParser {
       let distR: Int = abs(Int(a.r) - Int(b.r))
       let distG: Int = abs(Int(a.g) - Int(b.g))
       let distB: Int = abs(Int(a.b) - Int(b.b))
-      let scalarR: Int = (255 - distR) // 255
-      let scalarG: Int = (255 - distG) // 255
-      let scalarB: Int = (255 - distB) // 255
-      let combinedScalar = ((scalarR) + (scalarG) + (scalarB)) / 3
+      let scalarR: Int = 255 - distR
+      let scalarG: Int = 255 - distG
+      let scalarB: Int = 255 - distB
+      let combinedScalar: Int = (scalarR + scalarG + scalarB) / 3
       return UInt8(combinedScalar)
    }
 }
@@ -49,10 +50,10 @@ extension PixelParser {
       guard uiColor.getRed(&r, green: &g, blue: &b, alpha: &a) else { throw NSError(domain: "Could not extract RGBA components", code: 0) }
       #elseif os(macOS)
       guard let ciColor = CIColor(color: uiColor) else { throw NSError(domain: "PixelDataUtil.rgba() - Could not convert nsColor to CIColor", code: 0) }
-      fRed = ciColor.red // 1.0
-      fGreen = ciColor.green // 0.0
-      fBlue = ciColor.blue // 0.0
-      fAlpha = ciColor.alpha // 1.0 or use nsColor.alphaComponent
+      r = ciColor.red // 1.0
+      g = ciColor.green // 0.0
+      b = ciColor.blue // 0.0
+      a = ciColor.alpha // 1.0 or use nsColor.alphaComponent
       #else
       throw NSError(domain: "os not supported", code: 0)
       #endif

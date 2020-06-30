@@ -1,9 +1,6 @@
 import Foundation
-/**
- * Private static helper
- */
+
 extension Colorizer {
-   typealias Match = (_ i: Int, _ pixel: Bool) -> Bool
    /**
     * Multiple B&W Pixel -> Color-Pixel
     * - Abstract: Converts a layers of b&w pixels into one color pixel (on the basis of a colorMap rule set)
@@ -11,8 +8,7 @@ extension Colorizer {
     * 1. Get pixel-layers and ColorMap
     * 2. Loop through ColorMap colors to find the matching color to the matching pixel combination
     * 3. Return the matching color-pixel if one is found in the ColorMap array
-    * - Fixme: ⚠️️ Try to make this method more readable, and faster, can we use concurrent_apply ?
-    * - Fixme: ⚠️️ Could maybe the method clearer by moving the findColor method outsid the scope. Just figure out how to do .first with custom method signatures etc
+    *  - Fixme ⚠️️ could we use concurrent_apply here, in the .first loop?
     * ## Examples:
     * colorize(pixels: [false, true]) -> RedPixel
     * colorize(pixels: [true, true]) -> BluePixel
@@ -21,21 +17,28 @@ extension Colorizer {
     *   - colorMap: the color-map to match against (colorMap has info for toggeling darkmode etc)
     */
    static func colorize(pixels: [Bool], colorMap: ColorMap) throws -> Pixel {
-      let findColor: (ColorMapItem) throws -> Bool = { colorMapItem in
-         if colorMapItem.idx.count != pixels.count { Swift.print("⚠️️ err"); throw ColorizeError.mismatchbetweenNumOfLayersAndColorMap }
-         let condition: Match = { (i: Int, pixel: Bool) in
-            var bothAreBlack: Bool { !pixel && !colorMapItem.idx[i] } // false means black
-            var bothAreWhite: Bool { pixel && colorMapItem.idx[i] } // true means white
-//            Swift.print("bothAreBlack:  \(bothAreBlack) bothAreWhite:  \(bothAreWhite)")
-            return !(bothAreBlack || bothAreWhite) // looks a bit funny, but it's more efficient than using &&
-//            if  { return false } // <- Sort of crazy looking, but it works
-//            else { return true }
-         }
-         // - Fixme ⚠️️ could we use async_apply here, in the .first loop?
-         return !pixels.enumerated().contains(where: condition)
-      }
-      // - Fixme ⚠️️ could we use async_apply here, in the .first loop?
-      guard let color: Pixel = try colorMap.first(where: findColor)?.color else { throw NSError(domain: "Unable to colorize", code: 0) }
+      guard let color: Pixel = colorMap.first(where: { let result = try? matchColorMapItem(pixels, $0); return result ?? false })?.color else { throw NSError(domain: "Unable to colorize", code: 0) }
       return .init(r: color.r, g: color.g, b: color.b, a: color.a)
+   }
+}
+/**
+ * Private static helpers
+ */
+extension Colorizer {
+   /**
+    * Find colorMapItem that matches
+    * - Fixme ⚠️️ could we use async_apply here, in the .first loop?
+    */
+   private static func matchColorMapItem(_ pixels: [Bool], _ map: ColorMapItem) throws -> Bool { // = { (map: ColorMapItem) in
+      if map.idx.count != pixels.count { throw ColorizeError.mismatchbetweenNumOfLayersAndColorMap }
+      return !pixels.enumerated().contains { matchColor(map, $0.offset, $0.element) }
+   }
+   /**
+    * Find color that matches
+    */
+   private static func matchColor(_ map: ColorMapItem, _ i: Int, _ pixel: Bool) -> Bool { //= { (i: Int, pixel: Bool) in
+      var bothAreBlack: Bool { !pixel && !map.idx[i] } // false means black
+      var bothAreWhite: Bool { pixel && map.idx[i] } // true means white
+      return !(bothAreBlack || bothAreWhite) // looks a bit funny, but it's more efficient than using &&, - Fixme: ⚠️️ or is it?
    }
 }

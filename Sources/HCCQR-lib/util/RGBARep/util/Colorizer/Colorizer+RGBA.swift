@@ -20,11 +20,11 @@ extension Colorizer {
     *   - config: scaling and color rule-set (darkmode ability is possible epending on what colormap is used)
     */
    static func colorize(monotoneReps: [MonotoneRep], config: HCCQROutput) -> RGBARep {
-      let size: MonotoneRep.Size = monotoneReps[0].size
+      let size: MonotoneRep.Size = monotoneReps[0].size // get size from first rep
       let capacity: Int = monotoneReps[0].capacity // get capacity from first item
       let pixels = UnsafeMutableBufferPointer<Pixel>.allocate(capacity: capacity) // Create a new array // pixels.reserveCapacity(size.width * size.height)
       (0..<size.height).indices.forEach { y in // every y pixel
-         DispatchQueue.concurrentPerform(iterations: size.width) { x in // Optimization initiatives
+         DispatchQueue.concurrentPerform(iterations: size.width) { (x: Int) in // Optimization initiatives
             // - Fixme: ⚠️️ We should just pass the ref to the array etc. instead of making new arrays?, might be faster
             let idx: Int = y * size.width + x // every x pixel
             let layerPixels: [Bool] = monotoneReps.map { $0.pixels[idx] } // We get pixels from both RGBAImages

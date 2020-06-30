@@ -10,21 +10,15 @@ extension Pixel {
     * - Fixme: ⚠️️ maybe move to PixelParser? To keep this class simple
     */
    var color: Color {
-      // wrap UInt8 with cgfloat
-      let r = CGFloat(CGFloat(self.r) / 255)
-      let g = CGFloat(CGFloat(self.g) / 255)
-      let b = CGFloat(CGFloat(self.b) / 255)
-      let a = CGFloat(CGFloat(self.a) / 255)
-//      Swift.print("r:  \(r)")
+      let r = CGFloat(self.r) / 255
+      let g = CGFloat(self.g) / 255
+      let b = CGFloat(self.b) / 255
+      let a = CGFloat(self.a) / 255
       return .init(red: r, green: g, blue: b, alpha: a)
    }
    /**
     * Returns rgb
-    * - Note: Used in the Asser methods
+    * - Note: Used in the Asserter methods
     */
    var rgb: Pixel.RGB { (r, g, b) }
-   /**
-    * - Note: Used by Pixel.isSimilar method
-    */
-//   var rgba: Pixel.RGBAColor { .init(r: r, g: g, b: b, a: a) }
 }
