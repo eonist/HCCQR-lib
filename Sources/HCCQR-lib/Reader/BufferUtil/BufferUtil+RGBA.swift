@@ -21,6 +21,7 @@ extension BufferUtil {
     * - Fixme: ⚠️️ Using a pointer to iterate might be faster, see stackoverflow
     * - Fixme: ⚠️️ Striding with 20 might be faster than nested for loop, experiment with this
     * - Fixme: ⚠️️ Add debug tool with: CVPixelBufferGetDataSize(imageBuffer), \(CVPixelBufferGetDataSize(imageBuffer)) type:  \(CVPixelBufferGetPixelFormatType(imageBuffer)), let info = RGBImage.bitmapInfo(buffer: imageBuffer)// if type != kCVPixelFormatType_DepthFloat32 { print("Wrong type \(type)"); throw NSError(domain: "Wrong type", code: 0) }, let type: OSType = CVPixelBufferGetPixelFormatType(imageBuffer) // Swift.print("type:  \(type)")
+    * - Fixme: ⚠️️ rename imageBuffer to buffer
     * - Parameters:
     *   - imageBuffer: the buffer containing the raw pixel data and size
     *   - crop: Makes processing the raw imagery faster since we don't have to process areas where the QR info is not etc.

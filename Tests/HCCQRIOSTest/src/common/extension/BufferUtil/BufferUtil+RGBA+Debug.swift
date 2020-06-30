@@ -1,6 +1,7 @@
 import AVFoundation
 import QuartzCore
 import CoreImage
+@testable import HCCQR_lib
 /**
  * For testing only (May be deprecated soon)
  */
