@@ -1,13 +1,14 @@
 import Foundation
 import CoreImage
 
-extension MonotoneRep {
+extension MonoRep {
    /**
-    * Pure B&W-QR-CIImage 👉 MonotoneRep (grid of bool values)
+    * Pure B&W-QR-CIImage 👉 MonoRep (grid of bool values)
+    * - Fixme: ⚠️️ rename function to init
     * 1. CIImage comes in
     * 2. Meta data is extracted from the CIImage
     * 3. Pixels are extracted from the CGContext
-    * 4. Pixels are added to MonotoneRep and returned
+    * 4. Pixels are added to MonoRep and returned
     * - Abstract: Takes a CIImage and converts it to a GrayScale pixel representation
     * - Note: Seems to be slightly faster than converting CIImage to CGImage etc
     * - Note: Ref https://www.geekspiff.com/unlinkedCrap/ciImageToBitmap.html
@@ -15,7 +16,7 @@ extension MonotoneRep {
     * - Caution: ⚠️️ Only works if CIImage is pure black and white, which is the case for generated qr images
     * - parameter ciImg: The CIImage to convert to monotone representative
     */
-   static func monotoneRep(ciImg: CIImage) throws -> MonotoneRep {
+   static func monoRep(ciImg: CIImage) throws -> MonoRep {
       let colorSpace: CGColorSpace = CGColorSpaceCreateDeviceRGB()
       let size: Size = (width: Int(ciImg.extent.width), height: Int(ciImg.extent.height))
       let capacity: Int = size.width * size.height

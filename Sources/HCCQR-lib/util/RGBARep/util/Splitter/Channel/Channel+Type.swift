@@ -11,7 +11,7 @@ extension Channel {
     * RGB
     * - Fixme: ⚠️️ this needs to be array, or else custom colormaps won't work
     */
-   public typealias RGBChannels = (r: GrayscaleRep, g: GrayscaleRep, b: GrayscaleRep)
+   public typealias RGBChannels = (r: GrayRep, g: GrayRep, b: GrayRep)
    /**
     * - Fixme: ⚠️️ error is never used, might be used if threads dont finish? or simplify and dont use result?
     */

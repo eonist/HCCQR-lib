@@ -45,8 +45,8 @@ extension ViewController {
             _ = ciImage
             _ = rgbChannels
             _ = {
-               let redChannel: GrayscaleRep = rgbChannels.r
-               let redChannelImg: CIImage = GrayscaleRepParser.ciImage(grayscaleRep: redChannel)
+               let redChannel: GrayRep = rgbChannels.r
+               let redChannelImg: CIImage = GrayRepParser.ciImage(grayscaleRep: redChannel)
                let img = UIImage(ciImage: redChannelImg, scale: 2, orientation: .up)
                let imgView: UIImageView = .init(image: img)
                self.view.addSubview(imgView)
@@ -75,8 +75,8 @@ extension ViewController {
 
 //      Swift.print("value.qr1:  \(value.payload.qrImgs[0])")
       _ = {
-         let redChannel: GrayscaleRep = value.payload.rgbChannels.b
-         let redChannelImg: CIImage = GrayscaleRepParser.ciImage(grayscaleRep: redChannel)
+         let redChannel: GrayRep = value.payload.rgbChannels.b
+         let redChannelImg: CIImage = GrayRepParser.ciImage(grayscaleRep: redChannel)
          let img = UIImage(ciImage: redChannelImg, scale: 2, orientation: .up) // value.payload.qrImgs[0]
          let imgView: UIImageView = .init(image: img)
          self.view.addSubview(imgView)

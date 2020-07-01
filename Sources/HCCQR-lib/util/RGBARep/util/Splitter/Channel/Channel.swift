@@ -19,11 +19,11 @@ extension Channel {
     */
    static func channels(rgbaImg: RGBARep, channelMap: ChannelMap = rgbChannelMap, onComplete:@escaping OnAllChannelsComplete) {
       // - Fixme: ⚠️️ find an error to throw or remove the result mechanism in the oncomplete
-      var channels: [GrayscaleRep?] = [GrayscaleRep?](repeating: nil, count: channelMap.count) // Fixme: ⚠️️ we could use unmanaged pointer with capacity as well, might be faster
+      var channels: [GrayRep?] = [GrayRep?](repeating: nil, count: channelMap.count) // Fixme: ⚠️️ we could use unmanaged pointer with capacity as well, might be faster
       let similarities: [PixelDataSimilarity] = Channel.similarities(channelMap: channelMap)
       similarities.enumerated().forEach { offset, similarity in // 3 assertions
          DispatchQueue.global(qos: .userInitiated).async { // - Fixme: ⚠️️ This could be the cause of random error bug, maybe drop the async and just do it on current thread
-            let channel: GrayscaleRep = self.channel(rgbaImg: rgbaImg, asserter: similarity) // Finds the red-channel, blue-channel, green-channel
+            let channel: GrayRep = self.channel(rgbaImg: rgbaImg, asserter: similarity) // Finds the red-channel, blue-channel, green-channel
             DispatchQueue.main.async { // We need to go on the mainthread to manipulate array
                onChannelComplete(i: offset, channel: channel, channels: &channels, rgbaImg: rgbaImg, onComplete: onComplete)
             }
@@ -44,9 +44,9 @@ extension Channel {
     *   - assert: takes Pixeldata, returns Bool
     * - Note to debug, you can trace the asserter(pixel).strength
     */
-   private static func channel(rgbaImg: RGBARep, asserter: PixelDataSimilarity) -> GrayscaleRep {
-      let output: GrayscaleRep = .grayscaleRep(capacity: rgbaImg.capacity, size: rgbaImg.size) // We create a blank RGBImage, as it's faster than copy probably
-      return GrayscaleRepModifier.process(input: rgbaImg, output: output) { (pixel: Pixel) -> UInt8 in
+   private static func channel(rgbaImg: RGBARep, asserter: PixelDataSimilarity) -> GrayRep {
+      let output: GrayRep = .grayRep(capacity: rgbaImg.capacity, size: rgbaImg.size) // We create a blank RGBImage, as it's faster than copy probably
+      return GrayRepModifier.process(input: rgbaImg, output: output) { (pixel: Pixel) -> UInt8 in
          asserter(pixel).strength
       }
    }

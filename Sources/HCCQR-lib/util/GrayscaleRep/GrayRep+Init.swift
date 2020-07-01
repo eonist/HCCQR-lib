@@ -3,7 +3,7 @@ import CoreImage
 /**
  * Init
  */
-extension GrayscaleRep {
+extension GrayRep {
    /**
     * Creates a Filled rep of the same pixel
     * - Fixme: ⚠️️ Prob create the unmanaged pointer directly for better speed
@@ -12,10 +12,10 @@ extension GrayscaleRep {
     *   - pixels: the pixels to populate the GrayscaleRep with
     *   - size: the size you want to us ein the GrayScaleRep
     */
-   static func grayscaleRep(pixel: UInt8, size: Size) -> GrayscaleRep {
+   static func grayRep(pixel: UInt8, size: Size) -> GrayRep {
       let capacity: Int = size.width * size.height
       let pixels: [UInt8] = .init(repeating: pixel, count: capacity)
-      return .grayscaleRep(pixels: pixels, size: size)
+      return .grayRep(pixels: pixels, size: size)
    }
    /**
     * Create GrayScaleImage From pixel-array
@@ -23,7 +23,7 @@ extension GrayscaleRep {
     *   - pixels: the pixels to populate the GrayscaleRep with
     *   - size: the size you want to us ein the GrayScaleRep
     */
-   static func grayscaleRep(pixels: [UInt8], size: Size) -> GrayscaleRep {
+   static func grayRep(pixels: [UInt8], size: Size) -> GrayRep {
       let unsafePixels: UnsafeMutableBufferPointer<UInt8> = .allocate(capacity: pixels.count)
       _ = unsafePixels.initialize(from: pixels)
       return .init(pixels: unsafePixels, width: size.width, height: size.height)
@@ -35,7 +35,7 @@ extension GrayscaleRep {
     *   - capacity: the number of pixels you want to use
     *   - size: the size of the returned GrayScaleRep
     */
-   static func grayscaleRep(capacity: Int, size: Size) -> GrayscaleRep {
+   static func grayRep(capacity: Int, size: Size) -> GrayRep {
       let unsafePixels: UnsafeMutableBufferPointer<UInt8> = .allocate(capacity: capacity)
       return .init(pixels: unsafePixels, width: size.width, height: size.height)
    }

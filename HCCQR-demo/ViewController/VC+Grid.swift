@@ -25,13 +25,13 @@ extension ViewController {
 //      self.view.addSubview(uiImageView)
       Splitter.split(rgbaRep: rgbaRep) { (result: Splitter.SplitResult) in // Start the splitting process
          guard let payload: Splitter.SplitPayload = result.value() else { fatalError("err") }
-         let redChannel: GrayscaleRep = payload.rgbChannels.r
+         let redChannel: GrayRep = payload.rgbChannels.r
 //         redChannel.pixels.enumerated().forEach {
 //            if $0.element > 0 {
 ////               Swift.print("$0.element:  \($0.element)")
 //            }
 //         }
-         let redChannelImg: CIImage = GrayscaleRepParser.ciImage(grayscaleRep: redChannel)
+         let redChannelImg: CIImage = GrayRepParser.ciImage(grayscaleRep: redChannel)
          let img = UIImage(ciImage: redChannelImg, scale: 2, orientation: .up)
          let imgView: UIImageView = .init(image: img)
          self.view.addSubview(imgView)

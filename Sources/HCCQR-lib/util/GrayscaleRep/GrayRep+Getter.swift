@@ -2,7 +2,7 @@ import Foundation
 /**
  * Getter
  */
-extension GrayscaleRep {
+extension GrayRep {
    /**
     * Convenience
     */

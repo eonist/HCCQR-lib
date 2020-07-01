@@ -3,7 +3,6 @@ import CoreImage
 import QR_lib
 /**
  * DataAndMeta (CVImageBuffer)
- * - Fixme: ⚠️️ rename to something leaner
  */
 extension Reader {
    public typealias ReadPayload = (data: Data, quad: QRReader.Quad, imageSize: CGSize)
@@ -16,7 +15,7 @@ extension Reader {
 extension Reader {
    /**
     * - Note: The images was returned for debugging, can be useful for optimizing later
-    * - Fixme: ⚠️️ rename to something leaner: ReaderPayload, ReaderResult, ReaderCompleted
+    * - Fixme: ⚠️️ rename to something leaner: something Debug or something
     */
    public typealias ReadPayload2 = (data: Data?, payload: Splitter.SplitPayload, quad: QRReader.Quad?)
    public typealias ReadResult2 = Result<ReadPayload2, ReadError>

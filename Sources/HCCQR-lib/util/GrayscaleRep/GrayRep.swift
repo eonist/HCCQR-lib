@@ -4,7 +4,7 @@ import Foundation
  * - Fixme: ⚠️️ You have to dealocate the memory at some point, see: https://stackoverflow.com/questions/34750166/how-to-use-unsafemutablebufferpointer
  * - Fixme: ⚠️️ rename to GrayRep
  */
-public struct GrayscaleRep {
+public struct GrayRep {
    var pixels: UnsafeMutableBufferPointer<UInt8>
    var width: Int
    var height: Int

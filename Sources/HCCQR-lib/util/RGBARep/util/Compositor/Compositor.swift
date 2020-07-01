@@ -19,9 +19,9 @@ final class Compositor {
     * - Fixme: ⚠️️ Possibly simplify method with defering deinit of composite
     * - Fixme: ⚠️️ Defer deinit instead of having two deInit calls. Research this first, could make this method cleaner
     */
-   static func composite(grayscaleReps: [GrayscaleRep]) -> CIImage {
-      let composition: GrayscaleRep = composite(grayscaleReps: grayscaleReps) // smash two grayscaleReps together
-      let img: CIImage = GrayscaleRepParser.ciImage(grayscaleRep: composition)
+   static func composite(grayscaleReps: [GrayRep]) -> CIImage {
+      let composition: GrayRep = composite(grayscaleReps: grayscaleReps) // smash two grayscaleReps together
+      let img: CIImage = GrayRepParser.ciImage(grayscaleRep: composition)
       composition.deInit() // We de-init the Img after we have consumed it to avoid mem leak
       return img
    }
@@ -49,13 +49,13 @@ extension Compositor {
     * - Fixme: ⚠️️⚠️️⚠️️ when a posetive is found stop, iterating
     * - Parameter grayscaleReps: An array of GrayscaleRep to be composited together into 1 RGBARep
     */
-   private static func composite(grayscaleReps: [GrayscaleRep]) -> GrayscaleRep {
-      let first: GrayscaleRep = grayscaleReps[0]
+   private static func composite(grayscaleReps: [GrayRep]) -> GrayRep {
+      let first: GrayRep = grayscaleReps[0]
       // - Fixme: ⚠️️ Could be the problem that we use white, to avoid inverting
-      let blankRep: GrayscaleRep = .grayscaleRep(pixel: .black, size: first.size)// .grayscaleRep(pixel: .black, size: first.size) // because white is 255
-      return GrayscaleRepModifier.process(input: blankRep) { (index: Int, pixel: UInt8) -> UInt8 in // Loop things
+      let blankRep: GrayRep = .grayRep(pixel: .black, size: first.size)// .grayscaleRep(pixel: .black, size: first.size) // because white is 255
+      return GrayRepModifier.process(input: blankRep) { (index: Int, pixel: UInt8) -> UInt8 in // Loop things
          var pixel: UInt8 = pixel
-         grayscaleReps.forEach { (grayscaleImage: GrayscaleRep) in // loop over every image in the list, this is inside here because the process method uses concurrent_apply
+         grayscaleReps.forEach { (grayscaleImage: GrayRep) in // loop over every image in the list, this is inside here because the process method uses concurrent_apply
             let newPixel: UInt8 = grayscaleImage.pixels[index] // - Fixme: ⚠️️ Can be removed because this will basically never happen, because channels can't overlap
             pixel.addition(value: newPixel) // ⚠️️ we now add....instead of adding, we substract and then we wouldn't have to invert the image at the end
          }

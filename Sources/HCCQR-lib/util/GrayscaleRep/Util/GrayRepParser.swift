@@ -1,13 +1,13 @@
 import Foundation
 import CoreImage
 
-class GrayscaleRepParser {
+class GrayRepParser {
    /**
     * New (⚠️️ experimental, untested, prob needs more research ⚠️️)
     * - Fixme: ⚠️️ rename param
     * - Note: fast grayscale: https://developer.apple.com/documentation/accelerate/converting_color_images_to_grayscale  and vImage_CGImageFormat might also be interesting
     */
-   static func ciImage(grayscaleRep: GrayscaleRep) /*throws*/ -> CIImage {
+   static func ciImage(grayscaleRep: GrayRep) /*throws*/ -> CIImage {
       let data: Data = .init(buffer: grayscaleRep.pixels)
       // - Fixme: ⚠️️ look for CIFormat for grayscale on google
       // I think the .L8 is monotone?

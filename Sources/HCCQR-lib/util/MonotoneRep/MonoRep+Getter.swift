@@ -2,7 +2,7 @@ import Foundation
 /**
  * Getter
  */
-extension MonotoneRep {
+extension MonoRep {
    /**
     * Convenience
     */

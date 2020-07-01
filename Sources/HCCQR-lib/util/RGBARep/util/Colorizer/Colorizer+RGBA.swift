@@ -16,24 +16,24 @@ extension Colorizer {
     * - Fixme: ⚠️️ The concurrentPerform should be done on the amount of cores / threads vs quadrants of the whole picture to be generated
     * - Note: Used in the process of converting Data to HCCQR
     * - Parameters:
-    *   - monotoneReps: (black / white)-pixel-array
+    *   - monoReps: (black / white)-pixel-array
     *   - config: scaling and color rule-set (darkmode ability is possible epending on what colormap is used)
     */
-   static func colorize(monotoneReps: [MonotoneRep], config: HCCQROutput) -> RGBARep {
-      let size: Size = monotoneReps[0].size // get size from first rep
-      let capacity: Int = monotoneReps[0].capacity // get capacity from first item
+   static func colorize(monoReps: [MonoRep], config: HCCQROutput) -> RGBARep {
+      let size: Size = monoReps[0].size // get size from first rep
+      let capacity: Int = monoReps[0].capacity // get capacity from first item
       let pixels = UnsafeMutableBufferPointer<Pixel>.allocate(capacity: capacity) // Create a new array // pixels.reserveCapacity(size.width * size.height)
       (0..<size.height).indices.forEach { y in // every y pixel
          DispatchQueue.concurrentPerform(iterations: size.width) { (x: Int) in // Optimization initiatives
             // - Fixme: ⚠️️ We should just pass the ref to the array etc. instead of making new arrays?, might be faster
             let idx: Int = y * size.width + x // every x pixel
-            let layerPixels: [Bool] = monotoneReps.map { $0.pixels[idx] } // We get pixels from both RGBAImages
+            let layerPixels: [Bool] = monoReps.map { $0.pixels[idx] } // We get pixels from both RGBAImages
             if let colorizedPixel: Pixel = try? colorize(pixels: layerPixels, colorMap: config.map) { // else { throw NSError.init(domain: "Unable to make pixel", code: 0) } //            let arr: [UInt8] = grayscaleImages.map { $0.getPixel(x: x, y: y) } // We get pixels from both RGBAImages
                pixels[idx] = colorizedPixel
             }
          }
       }
-      monotoneReps.deInit() // Avoids mem leak // guard pixels.count == size.width * size.height else { throw NSError(domain: "missing some pixels", code: 0) } // Check if array has all the pixels
+      monoReps.deInit() // Avoids mem leak // guard pixels.count == size.width * size.height else { throw NSError(domain: "missing some pixels", code: 0) } // Check if array has all the pixels
       let rgbaImage: RGBARep = RGBARepModifier.scale(pixels: pixels, size: size, scale: config.scale)
       pixels.deallocate() // ⚠️️ New, so might not work, this deallocates the pixels once they are not needed anymore
       return rgbaImage

@@ -26,5 +26,5 @@ extension Splitter {
     * Used when compositing together 
     * - Fixme: ⚠️️ should prob use array when supporting more than 4 colors etc?, or is it always pairs?
     */
-   typealias ChannelPair = (first: GrayscaleRep, second: GrayscaleRep)
+   typealias ChannelPair = (first: GrayRep, second: GrayRep)
 }

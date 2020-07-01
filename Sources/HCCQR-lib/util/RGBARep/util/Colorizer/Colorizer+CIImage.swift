@@ -46,9 +46,9 @@ extension Colorizer {
     *   - config: module and screen, for retina you need 2x scale etc, This is the multiplier. ModuleCount equals 1 pixel. ModuleCount for QRVersion 10 is 57 not counting 2 for margins. So (57+2)*6 = 354, if you want 2xretina its 354 * 2 = 708, rule-set (The color depth you want the HCCQR image in. 4, 8, 16, 32 etc)
     */
    static func colorize(ciImages: [CIImage], config: HCCQROutput) throws -> RGBARep {
-      let reps: [MonotoneRep] = ciImages.compactMap { try? MonotoneRep.monotoneRep(ciImg: $0) } // convert QR images to Pixel-data
+      let reps: [MonoRep] = ciImages.compactMap { try? MonoRep.monoRep(ciImg: $0) } // convert QR images to Pixel-data
 //      guard ciImages.count == monotoneImages.count else { throw NSError("Colorize.colorize() - some rgbaImages was not created") }
-      let result: RGBARep = colorize(monotoneReps: reps, config: config)// else { throw NSError("Colorize.colorize() - Unable to create colorized rgbaImage") } // overlay the qr-pixel-data
+      let result: RGBARep = colorize(monoReps: reps, config: config)// else { throw NSError("Colorize.colorize() - Unable to create colorized rgbaImage") } // overlay the qr-pixel-data
       return result
    }
 }

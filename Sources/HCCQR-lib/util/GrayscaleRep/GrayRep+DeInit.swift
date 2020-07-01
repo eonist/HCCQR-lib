@@ -2,7 +2,7 @@ import Foundation
 /**
  * DeInit
  */
-extension MonotoneRep {
+extension GrayRep {
    /**
     * You can debug if it's always deinited by counting init() calls
     */
@@ -11,9 +11,9 @@ extension MonotoneRep {
    }
 }
 /**
- * For [MonotoneRep] (very convenient)
+ * For [GrayscaleRep]
  */
-extension Array where Element == MonotoneRep {
+extension Array where Element == GrayRep {
    /**
     * Bulk deInit
     * - Abstract: deInit multiple reps
