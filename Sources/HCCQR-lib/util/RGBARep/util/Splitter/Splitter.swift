@@ -16,6 +16,7 @@ extension Splitter {
     * - Abstract: pair b&g = qr1(), pair r&b = qr2()
     * - Note: RGBAImage -> (3x GrayScaleRep) -> (2x QRImg)
     * - Note: the conversion to rgbaImg here is CPU intensive, but in the camera session we get RGBA data, so this is just for debugging etc
+    * - Fixme: ⚠️️ rename channelMap to map
     */
    static func split(rgbaRep: RGBARep, channelMap: Channel.ChannelMap = Channel.rgbChannelMap, onComplete:@escaping SplitComplete) {
       // HCCQRReader.splitTime = .init() // Debugging performance

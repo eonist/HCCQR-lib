@@ -10,14 +10,6 @@ extension Pixel.Colors {
    static let blue: Pixel = .init(r: 0, g: 0, b: 255, a: 255)
 }
 /**
- * CMY
- */
-extension Pixel.Colors {
-   static let cyan: Pixel = .init(r: 0, g: 255, b: 255, a: 255)
-   static let magenta: Pixel = .init(r: 255, g: 0, b: 255, a: 255)
-   static let yellow: Pixel = .init(r: 255, g: 255, b: 0, a: 255)
-}
-/**
  * B&W colors
  * - Fixme: ⚠️️ We are going to remove alpha, so rename to RGBColor again at some point
  */

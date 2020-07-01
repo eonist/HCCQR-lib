@@ -38,15 +38,4 @@ extension Array where Element == ColorMapItem {
          (idx: [false, false], useDarkMode ? Pixel.Colors.black : Pixel.Colors.white) // white block 👉 (qr1: white, qr2: white)
       ]
    }
-   /**
-    * CMY based colorMap
-    */
-   public static func cmyColorMap(useDarkMode: Bool = false) -> ColorMap {
-      [
-         (idx: [false, true], Pixel.Colors.cyan), // magenta block 👉 (qr1: black, qr2: white)
-         (idx: [true, false], Pixel.Colors.yellow), // yellow block 👉 (qr1: white, qr2: black)
-         (idx: [true, true], Pixel.Colors.magenta), // cyan block 👉 (qr1: black, qr2: black)
-         (idx: [false, false], useDarkMode ? Pixel.Colors.black : Pixel.Colors.white) // white block 👉 (qr1: white, qr2: white)
-      ]
-   }
 }

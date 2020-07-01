@@ -42,14 +42,15 @@ extension Reader {
     * - Fixme: ⚠️️ Rename to just data
     * - Abstract: Since we get pixel data from the camera, this will be faster than converting to image first
     * - Fixme: ⚠️️ When the first QRImage Quad is found, the subsequent QR-Rects will be in the same quadrant, clip the subsequent images
+    * - Fixme: ⚠️️ make it possible to provide custom colormap
     * - Note: returning qrimage is useful, it is used as a way to debug that the HCCQR ws split correctly
     * - Note: Isn't private because Reader+CVIUmageBuffer calls it
     * - Parameters:
     *   - rgbaRep: raw pixels and size
     *   - onComplete: completion block
     */
-   static func dataAndQR(rgbaRep: RGBARep, onComplete:@escaping DataAndPayloadCompleted) {
-      Splitter.split(rgbaRep: rgbaRep) { (result: Splitter.SplitResult) in // Start the splitting process
+   static func dataAndQR(rgbaRep: RGBARep, channelMap: Channel.ChannelMap = Channel.rgbChannelMap, onComplete:@escaping DataAndPayloadCompleted) {
+      Splitter.split(rgbaRep: rgbaRep, channelMap: channelMap) { (result: Splitter.SplitResult) in // Start the splitting process
          onSplitComplete(result: result, onComplete: onComplete) // readTime += abs(HCCQRReader.splitTime.timeIntervalSinceNow); Swift.print("👉 Splitting rgbaImage done: \(abs(HCCQRReader.splitTime.timeIntervalSinceNow))")
       }
    }
