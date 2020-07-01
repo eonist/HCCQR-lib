@@ -10,7 +10,6 @@ extension RGBARep {
    var size: Size { (width: width, height: height) }
    var cgSize: CGSize { .init(width: CGFloat(self.width), height: CGFloat(self.height)) }
    var capacity: Int { self.width * self.height }
-   
    /**
     * unsafePixels, new (⚠️️ might work, might not ⚠️️)
     */

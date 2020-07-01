@@ -21,7 +21,7 @@ extension Writer {
       rgbaRep(data: data, config: config) { result in
          guard let rgbaRep: RGBARep = try? result.get() else { onComplete(.failure(.unableToCreateRGBAImage(errMSG: result.errorStr))); return }
          guard let image: Image = try? RGBARepParser.image(rgbaRep: rgbaRep, scale: CGFloat(config.scale.screen)) else { onComplete(.failure(.unableToConvertRGBAToImage)); return }
-         rgbaRep.deinitiate() // De alloc rgbaImage when it servers no purpouse anymore
+         rgbaRep.deInitiate() // De alloc rgbaImage when it servers no purpouse anymore
          onComplete(.success(image))
       }
    }

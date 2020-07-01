@@ -26,8 +26,8 @@ extension Channel {
     */
    private static func onAllChannelsComplete(channels: [GrayscaleRep?], rgbaImg: RGBARep, onComplete: OnAllChannelsComplete) {
       let arr: [GrayscaleRep] = channels.compactMap { $0 } // removes optionality
+      // ⚠️️ moving the deInititiate here is new, was bellow oncomplete before, should have no implication
+      rgbaImg.deInitiate() // deinit rgbaImage after it has been consumed, to avoid memleak
       onComplete(.success((arr[0], arr[1], arr[2])))
-      // - Fixme: ⚠️️ should we call deinitiate before callback?
-      rgbaImg.deinitiate() // deinit rgbaImage after it has been consumed, to avoid memleak
    }
 }

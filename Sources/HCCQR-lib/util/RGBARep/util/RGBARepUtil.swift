@@ -32,7 +32,7 @@ extension RGBARepUtil {
       let bytesPerRow: Int = size.width * 4 // We multiply per 4 because of the 4 channels, RGBA
       let capacity: Int = size.width * size.height
       let imageData = UnsafeMutablePointer<Pixel>.allocate(capacity: capacity)
-      //      Swift.print("cgImage.colorSpace:  \(String(describing: cgImage.colorSpace))")
+      // Swift.print("cgImage.colorSpace:  \(String(describing: cgImage.colorSpace))")
       let colorSpace: CGColorSpace = CGColorSpaceCreateDeviceRGB()
       let bitMapInfo = RGBARep.bitmapInfo
       guard let cgContext = CGContext(data: imageData, width: size.width, height: size.height, bitsPerComponent: 8, bytesPerRow: bytesPerRow, space: colorSpace, bitmapInfo: bitMapInfo) else { throw NSError(domain: "rgbaImage - Unable to create rgbaImage", code: 0) }
@@ -97,9 +97,8 @@ extension RGBARepUtil {
 /**
  *
  */
+
 //extension RGBAImage {
-
-
 
 /**
  * CIImage -> RGBAImage (⭐ new, works ⭐)
@@ -128,5 +127,4 @@ extension RGBARepUtil {
 //   let unsafePixels = UnsafeMutableBufferPointer<Pixel>.allocate(capacity: capacity)
 //   return .init(pixels: unsafePixels, width: size.width, height: size.height)
 //}
-
 //}

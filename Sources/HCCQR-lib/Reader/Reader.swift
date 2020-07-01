@@ -49,7 +49,7 @@ extension Reader {
     *   - onComplete: completion block
     */
    static func dataAndQR(rgbaRep: RGBARep, onComplete:@escaping DataAndPayloadCompleted) {
-      Splitter.split(rgbaImage: rgbaRep) { (result: Splitter.SplitResult) in // Start the splitting process
+      Splitter.split(rgbaRep: rgbaRep) { (result: Splitter.SplitResult) in // Start the splitting process
          onSplitComplete(result: result, onComplete: onComplete) // readTime += abs(HCCQRReader.splitTime.timeIntervalSinceNow); Swift.print("👉 Splitting rgbaImage done: \(abs(HCCQRReader.splitTime.timeIntervalSinceNow))")
       }
    }

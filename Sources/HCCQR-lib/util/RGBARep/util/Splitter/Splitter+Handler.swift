@@ -20,7 +20,7 @@ extension Splitter {
     * - Fixme: ⚠️️ rename to onChannelSplitComplete?
     * - Fixme: ⚠️️ Use Dispatchgroup to make the completion more readable
     * - Fixme: ⚠️️ Maybe do the result.value in the calling method and not in this method?
-    * - Important: ⚠️️ grayscale is better for qr to read than monotone (probably)
+    * - Important: ⚠️️ grayscale is better for QR to read than monotone (probably)
     */
    static func onSplitComplete(result: Channel.ChannelResult, onComplete:@escaping SplitComplete) { // called when the (R,G,B) channels are split
       guard let channels: Channel.RGBChannels = result.value() else { onComplete(.failure(.unableToCreateRGBAImgs(msg: result.errorStr))); return } // (r,g,b)
@@ -29,16 +29,7 @@ extension Splitter {
       var qrImgs: [CIImage?] = [CIImage?](repeating: nil, count: channelPairs.count) // Result array
       channelPairs.enumerated().forEach { channelPair in
          DispatchQueue.global(qos: .userInitiated).async { // - Fixme: ⚠️️ This could be the cause of random error bug, maybe drop the async and just do it on current thread
-            // - Fixme: ⚠️️ Benchmark the composition process as well
-            // - Fixme: ⚠️️ Figure out how to return qrImg even if data can't be read by it,
-            // - Fixme: ⚠️️ or look into tests, if they can help the split method etc
-//            Swift.print("element.second.pixels.count:  \(channelPair.element.second.pixels.count)")
-//            if channelPair.offset == 0 {
-//               channelPair.element.second.pixels.forEach {
-//                  Swift.print("$0:  \($0)")
-//               }
-//            }
-            let qrImg: CIImage = Compositor.composite(grayscaleReps: [channelPair.element.first, channelPair.element.second]) // compositeDEPRECATD(first: channel.element.first, second: channel.element.second)
+            let qrImg: CIImage = Compositor.composite(grayscaleReps: [channelPair.element.first, channelPair.element.second])
             DispatchQueue.main.async { // We need to go on the mainthread to manipulate array
                onCompositeComplete(i: channelPair.offset, qrImg: qrImg, qrImgs: &qrImgs, channels: channels, onComplete: onComplete)
             }

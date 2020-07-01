@@ -22,5 +22,4 @@ import Foundation
 //   func getPixelDEPRECATED(x: Int, y: Int) -> Pixel {
 //      let address = y * width + x
 //      return pixels[address]
-//   }
-
+//   
