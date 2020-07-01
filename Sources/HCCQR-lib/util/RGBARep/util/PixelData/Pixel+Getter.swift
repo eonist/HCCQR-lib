@@ -7,7 +7,7 @@ extension Pixel {
    /**
     * Returns color for pixel
     * - Note: use of UInt8 speccific divide method, didnt make usable results
-    * - Fixme: ⚠️️ maybe move to PixelParser? To keep this class simple
+    * - Fixme: ⚠️️ maybe move to PixelParser? To keep this class simple 👈
     */
    var color: Color {
       let r = CGFloat(self.r) / 255

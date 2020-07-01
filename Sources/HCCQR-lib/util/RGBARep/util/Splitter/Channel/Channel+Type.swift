@@ -4,10 +4,6 @@ import Foundation
  */
 extension Channel {
    /**
-    * - Fixme: ⚠️️ Move this outside the Channel scope (make it internal)
-    */
-   typealias ChannelMap = [Pixel] // this seems to be still in use
-   /**
     * RGB
     * - Fixme: ⚠️️ this needs to be array, or else custom colormaps won't work
     */

@@ -12,7 +12,7 @@ final class ColorMapAsserter {
     * Asserts if an image has non black or white pixel.
     */
    static func hasOnlyBlackAndWhiteColorMap(uiImage: Image) -> Bool {
-      hasOnlyColorMap(image: uiImage, colorMap: [.black, .white])
+      hasOnlyColorMap(image: uiImage, rgbColorMap: [.black, .white])
    }
 }
 /**
@@ -33,12 +33,12 @@ extension ColorMapAsserter {
     *   - uiImage: The image to assert if has color-map
     *   - colorMap: the color-map to assert against
     */
-   private static func hasOnlyColorMap(image: Image, colorMap: [Color]) -> Bool {
+   private static func hasOnlyColorMap(image: Image, rgbColorMap: [Color]) -> Bool {
       let condition: (Color) -> Bool = { color in
          let matchCondition: (Color) -> Bool = {
             $0.isEqualRGBA(color: color)
          }
-         let retVal = !colorMap.contains(where: matchCondition)
+         let retVal = !rgbColorMap.contains(where: matchCondition)
          Swift.print("retVal:  \(retVal) color: \(color)")
          return retVal
       }

@@ -2,7 +2,7 @@ import Foundation
 import QuartzCore
 /**
  * Asserter
- * - Fixme: ⚠️️ Move some of these into PixelDataAsserter class
+ * - Fixme: ⚠️️ Move some of these into PixelDataAsserter class, if it makes sense?
  */
 extension Pixel {
    /**

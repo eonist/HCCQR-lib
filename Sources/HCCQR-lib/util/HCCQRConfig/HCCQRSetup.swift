@@ -27,9 +27,9 @@ public struct QRSetup {
 public struct HCCQROutput {
    let scale: Scale
    let map: ColorMap
-   init(scale: Scale, map: ColorMap = ColorMap.colorMap()) {
+   init(scale: Scale, map: ColorMap = ColorMap.rgbColorMap()) {
       self.scale = scale
       self.map = map
    }
-   static let `default`: HCCQROutput = .init(scale: (6, 2), map: ColorMap.colorMap())
+   static let `default`: HCCQROutput = .init(scale: (6, 2), map: ColorMap.rgbColorMap())
 }

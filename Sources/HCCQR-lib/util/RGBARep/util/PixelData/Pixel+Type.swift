@@ -6,10 +6,11 @@ extension Pixel {
    /**
     * - Note: Used with threshold methods in assert extension
     */
-   typealias Limit = ( min: UInt8, max: UInt8)
+   typealias Limit = (min: UInt8, max: UInt8)
    typealias RGB = (r: UInt8, b: UInt8, g: UInt8) // <- Prefer this
    /**
     * Stores if is valid and the strength if it's already valid
+    * - Fixme: ⚠️️ move to own file, maybe re-make as struct
     * - Note: Strength alone is not enough, there is a reason we have a bool as well
     * - Note: assert is cheaper than calculating strength again
     * - Parameters:
