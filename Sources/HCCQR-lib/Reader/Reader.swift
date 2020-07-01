@@ -23,12 +23,12 @@ extension Reader {
     *   - crop: Makes processing the raw imagery faster since we don't have to process areas where the QR info is not etc.
     *   - onComplete: Return Data and Meta-data in this completion-block
     */
-   public static func dataAndMeta(imageBuffer: CVImageBuffer, crop: BufferRect, onComplete: @escaping OnGetDataAndMetaCompleted) {
+   public static func data(imageBuffer: CVImageBuffer, crop: BufferRect, onComplete: @escaping OnReadCompleted) {
       guard let rgbaImg: RGBARep = try? BufferUtil.rgbaRep(imageBuffer: imageBuffer, crop: crop) else { onComplete(.failure(.unableToExtractRGBAImageFromCVBuffer)); return }
-      dataAndQR(rgbaRep: rgbaImg) { (result: Reader.DataAndPayloadResult) in
-         guard let dataAndImagesAndQuad: DataAndPayload = try? result.get() else { onComplete(.failure(.unableToGetDataAndImages(msg: result.errorStr))); return }
+      data(rgbaRep: rgbaImg) { (result: Reader.ReadResult2) in
+         guard let dataAndImagesAndQuad: ReadPayload2 = try? result.get() else { onComplete(.failure(.unableToGetDataAndImages(msg: result.errorStr))); return }
          guard let data: Data = dataAndImagesAndQuad.data, let quad = dataAndImagesAndQuad.quad  else { onComplete(.failure(.unableToGetDataOrQuad)); return }
-         let dataAndMeta: DataAndMeta = (data: data, quad: quad, imageSize: rgbaImg.cgSize)
+         let dataAndMeta: ReadPayload = (data: data, quad: quad, imageSize: rgbaImg.cgSize)
          onComplete(.success(dataAndMeta))
       }
    }
@@ -42,14 +42,13 @@ extension Reader {
     * - Fixme: ⚠️️ Rename to just data
     * - Abstract: Since we get pixel data from the camera, this will be faster than converting to image first
     * - Fixme: ⚠️️ When the first QRImage Quad is found, the subsequent QR-Rects will be in the same quadrant, clip the subsequent images
-    * - Fixme: ⚠️️ make it possible to provide custom colormap
     * - Note: returning qrimage is useful, it is used as a way to debug that the HCCQR ws split correctly
     * - Note: Isn't private because Reader+CVIUmageBuffer calls it
     * - Parameters:
     *   - rgbaRep: raw pixels and size
     *   - onComplete: completion block
     */
-   static func dataAndQR(rgbaRep: RGBARep, channelMap: Channel.ChannelMap = Channel.rgbChannelMap, onComplete:@escaping DataAndPayloadCompleted) {
+   static func data(rgbaRep: RGBARep, channelMap: Channel.ChannelMap = Channel.rgbChannelMap, onComplete:@escaping OnReadCompleted2) {
       Splitter.split(rgbaRep: rgbaRep, channelMap: channelMap) { (result: Splitter.SplitResult) in // Start the splitting process
          onSplitComplete(result: result, onComplete: onComplete) // readTime += abs(HCCQRReader.splitTime.timeIntervalSinceNow); Swift.print("👉 Splitting rgbaImage done: \(abs(HCCQRReader.splitTime.timeIntervalSinceNow))")
       }

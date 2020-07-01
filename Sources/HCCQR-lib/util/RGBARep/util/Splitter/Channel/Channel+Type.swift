@@ -4,7 +4,7 @@ import Foundation
  */
 extension Channel {
    /**
-    * - Fixme: ⚠️️ Move this outside the Channel scope
+    * - Fixme: ⚠️️ Move this outside the Channel scope (make it internal)
     */
    typealias ChannelMap = [Pixel] // this seems to be still in use
    /**

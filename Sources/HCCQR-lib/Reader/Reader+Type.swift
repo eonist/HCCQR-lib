@@ -6,9 +6,9 @@ import QR_lib
  * - Fixme: ⚠️️ rename to something leaner
  */
 extension Reader {
-   public typealias DataAndMeta = (data: Data, quad: QRReader.Quad, imageSize: CGSize)
-   public typealias DataAndMetaResult = Result<DataAndMeta, ReadError>
-   public typealias OnGetDataAndMetaCompleted = (DataAndMetaResult) -> Void
+   public typealias ReadPayload = (data: Data, quad: QRReader.Quad, imageSize: CGSize)
+   public typealias ReadResult = Result<ReadPayload, ReadError>
+   public typealias OnReadCompleted = (ReadResult) -> Void
 }
 /**
  * DataAndImages
@@ -18,7 +18,7 @@ extension Reader {
     * - Note: The images was returned for debugging, can be useful for optimizing later
     * - Fixme: ⚠️️ rename to something leaner: ReaderPayload, ReaderResult, ReaderCompleted
     */
-   public typealias DataAndPayload = (data: Data?, payload: Splitter.SplitPayload, quad: QRReader.Quad?)
-   public typealias DataAndPayloadResult = Result<DataAndPayload, ReadError>
-   public typealias DataAndPayloadCompleted = (DataAndPayloadResult) -> Void
+   public typealias ReadPayload2 = (data: Data?, payload: Splitter.SplitPayload, quad: QRReader.Quad?)
+   public typealias ReadResult2 = Result<ReadPayload2, ReadError>
+   public typealias OnReadCompleted2 = (ReadResult2) -> Void
 }
