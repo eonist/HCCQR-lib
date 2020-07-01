@@ -13,7 +13,7 @@ class ViewController: UIViewController {
       view.backgroundColor = .white // .systemTeal
 //      createRGBAPhoto()
 //      testSplitting()
-      testHCCQR()
+//      testHCCQR()
 //      testGrid()
    }
    override var prefersStatusBarHidden: Bool { true }
