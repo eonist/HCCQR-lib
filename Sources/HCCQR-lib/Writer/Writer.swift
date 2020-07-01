@@ -17,7 +17,7 @@ extension Writer {
     * - Fixme: ⚠️️ Try a sync version of this method with semphors
     * - Note: Supports The grayscaleImage optimization
     */
-   public static func image(data: Data, config: HCCQRSetup, onComplete: @escaping OnImageComplete) {
+   public static func image(data: Data, config: HCCQRSetup, onComplete: @escaping OnWriteComplete) {
       rgbaRep(data: data, config: config) { result in
          guard let rgbaRep: RGBARep = try? result.get() else { onComplete(.failure(.unableToCreateRGBAImage(errMSG: result.errorStr))); return }
          guard let image: Image = try? RGBARepParser.image(rgbaRep: rgbaRep, scale: CGFloat(config.scale.screen)) else { onComplete(.failure(.unableToConvertRGBAToImage)); return }

@@ -8,7 +8,7 @@ extension CVBufferTest {
    /**
     * On HCCQR image created
     */
-   static func onWriteComplete(result: Writer.ImageResult, data randomData: Data, onComplete: @escaping OnComplete) {
+   static func onWriteComplete(result: Writer.WriteResult, data randomData: Data, onComplete: @escaping OnComplete) {
       Swift.print("CVBufferTest.onHCCQRImageComplete")
       guard let image: Image = result.value() else { Swift.print("Unable to create hccqr image \(result.errorStr)"); return }
       Swift.print("hccqrImage.size:  \(image.size) scale:  \(image.scale)") //      Swift.print("hccqrImage.cgImage()?.width:  \(hccqrImage.cgImage?.width)")

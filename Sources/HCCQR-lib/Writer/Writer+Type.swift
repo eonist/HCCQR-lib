@@ -6,15 +6,20 @@ import CoreImage
  */
 extension Writer {
    /**
-    * When RGBAImage generation completes
-    */
-   public typealias OnRGBRepComplete = (Result<RGBARep, WriteError>) -> Void
-   /**
     * The result signature for HCCQRCompletion block
     */
-   public typealias ImageResult = Result<Image, WriteError>
+   public typealias WriteResult = Result<Image, WriteError>
    /**
     * Useful when you setup the callbacks in apps (That's why they are in public scope)
     */
-   public typealias OnImageComplete = (ImageResult) -> Void
+   public typealias OnWriteComplete = (WriteResult) -> Void
+}
+/**
+ * Internal typealias
+ */
+extension Writer {
+   /**
+    * When RGBAImage generation completes
+    */
+   internal typealias OnRGBRepComplete = (Result<RGBARep, WriteError>) -> Void
 }
