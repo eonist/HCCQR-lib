@@ -19,7 +19,11 @@ extension Writer {
  */
 extension Writer {
    /**
+    * Result signature
+    */
+   internal typealias RGBRepResult = Result<RGBARep, WriteError>
+   /**
     * When RGBAImage generation completes
     */
-   internal typealias OnRGBRepComplete = (Result<RGBARep, WriteError>) -> Void
+   internal typealias OnRGBRepComplete = (RGBRepResult) -> Void
 }

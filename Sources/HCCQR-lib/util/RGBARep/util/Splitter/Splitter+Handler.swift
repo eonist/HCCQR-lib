@@ -27,11 +27,11 @@ extension Splitter {
       // - Fixme: ⚠️️ Somehow generate the pairs more dynamically 🏀
       let channelPairs: [ChannelPair] = [(channels.b, channels.g), (channels.r, channels.b)] // pair b&g = qr1, pair r$b = qr2
       var qrImgs: [CIImage?] = [CIImage?](repeating: nil, count: channelPairs.count) // Result array
-      channelPairs.enumerated().forEach { channelPair in
+      channelPairs.enumerated().forEach { item in
          DispatchQueue.global(qos: .userInitiated).async { // - Fixme: ⚠️️ This could be the cause of random error bug, maybe drop the async and just do it on current thread
-            let qrImg: CIImage = Compositor.composite(grayscaleReps: [channelPair.element.first, channelPair.element.second])
+            let qrImg: CIImage = Compositor.composite(grayscaleReps: [item.element.first, item.element.second])
             DispatchQueue.main.async { // We need to go on the mainthread to manipulate array
-               onCompositeComplete(i: channelPair.offset, qrImg: qrImg, qrImgs: &qrImgs, channels: channels, onComplete: onComplete)
+               onCompositeComplete(i: item.offset, qrImg: qrImg, qrImgs: &qrImgs, channels: channels, onComplete: onComplete)
             }
          }
       }

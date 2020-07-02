@@ -7,7 +7,7 @@ import CoreImage
  */
 final class Compositor {
    /**
-    * Photo -> Split into Channels -> Combine 2 channels into 1 QR-image (Combines many grayscale images into one)
+    * Photo 👉 Split into Channels 👉 Combine many channels into 1 QR-image (Combines many grayscale images into one)
     * Returns a QR-Image based on two (GrayscaleRep) channels (We use CIImage, because that is what apple prefers to read qr from)
     * 1. GrayScaleRep-layers comes in
     * 2. GrayscaleRep-layers are composited together

@@ -1,15 +1,19 @@
 import Foundation
 
-typealias Pixels = [Pixel]
 /**
  * Custom ChannelMap
  */
-extension Pixels {
+extension ChannelMap {
    /**
     * For 4 color HCCQR (default)
     * - Fixme: ⚠️️ rename to rgb?
     * - Fixme: ⚠️️ deprecate eventually, we will have to support 8 colors etc
     * - Fixme: ⚠️️ See that alt QR and other .pdf's for the colors to use for 8-colorHCCQR etc
+    * - Fixme: ⚠️️ rename to fourColorMap?
     */
-   static let rgbMap: ChannelMap = [Pixel.Colors.red, Pixel.Colors.green, Pixel.Colors.blue] // { $0.isColorish() }, { $0.isColorish() }]
+   static let rgbMap: ChannelMap = [Pixel.Colors.red, Pixel.Colors.green, Pixel.Colors.blue]
+   /**
+    * - Note: the 7th and 8th colors are white and black, but depending on darkmode etc, we switch them
+    */
+   static let eightColorMap: ChannelMap = [Pixel.Colors.red, Pixel.Colors.green, Pixel.Colors.blue, Pixel.Colors.cyan, Pixel.Colors.magenta, Pixel.Colors.yellow]
 }

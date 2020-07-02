@@ -1,5 +1,7 @@
 import Foundation
-
+/**
+ * - Fixme: ⚠️️ Move colors to the Pixel-scope, it makes dot notation more readable, more succinct etc
+ */
 extension Pixel { enum Colors {} }
 /**
  * RGB

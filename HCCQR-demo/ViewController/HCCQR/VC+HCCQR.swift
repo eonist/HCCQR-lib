@@ -12,15 +12,16 @@ extension ViewController {
          // self.view.addSubview(UIImageView(image: $0))
          guard let rgbaRep: RGBARep = try? RGBARepUtil.rgbaRep(image: image) else { Swift.print("err getting rgbImage"); return } // CVImageBufferUtil.rgbaRep(image: image)
          _ = { // add output to view
+            Swift.print("add img")
             guard let img = try? RGBARepParser.image(rgbaRep: rgbaRep, scale: 1) else { Swift.print("err making img"); return }
             let imgView: UIImageView = .init(image: img)
             self.view.addSubview(imgView)
          }()
          _ = { // ⚠️️ enable this again ⚠️️ if u want to read
-            Reader.data(rgbaRep: rgbaRep, channelMap: Channel.greenMap) { result in // Split the hccqrImg
+            Reader.data(rgbaRep: rgbaRep, channelMap: .eightColorMap) { result in // Split the hccqrImg
                self.onReadComplete(result: result) { success in Swift.print("dataAndImages success: \(success)") }
             }
-         }()
+         }
       }
    }
 }
@@ -41,7 +42,7 @@ extension ViewController {
    static func makeHCCQRImage(onComplete: @escaping OnHCCQRImageComplete) {
       let setup: HCCQRSetup = {
          let qrSetup: QRSetup = .init(qrVersion: .v1, ecLevel: .l)
-         let output: HCCQROutput = .init(scale: (6, 2), map: ColorMap.greenColorMap(useDarkMode: true))
+         let output: HCCQROutput = .init(scale: (6, 2), map: .eightColorMap(useDarkMode: true))
          return .init(qr: qrSetup, output: output)
       }()
       guard let data: Data = HCCQRStringData.randomData(setup: setup) else { Swift.print("unable to create data"); return }

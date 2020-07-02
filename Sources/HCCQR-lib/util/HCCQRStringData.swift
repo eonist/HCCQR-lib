@@ -26,6 +26,7 @@ extension HCCQRStringData {
     *   - colorDepth: 2 color-depths equals 4 colors, 4 = 8 etc
     */
    private static func randomString(config: QRConfig, colorDepth: Int) -> String {
+      Swift.print("HCCQRStringData.randomString.colorDepth:  \(colorDepth)")
       let maxStringCount: Int = QRConfigUtil.dataCount(config: config) // Get max amount of characters you can fit into a speccific HCCQR config combination
       let maxStrCount: Int = maxStringCount * colorDepth // We want to multiply with colorDepth for HCCQR
       return QRStringData.randomString(max: maxStrCount, qrMode: config.mode)

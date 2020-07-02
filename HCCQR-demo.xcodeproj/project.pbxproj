@@ -54,8 +54,6 @@
 		F146A53624AC70F500FE136C /* RGBARep+Experiment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F146A53424AC70F500FE136C /* RGBARep+Experiment.swift */; };
 		F146A53724AC70F500FE136C /* RGBARep+Experiment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F146A53424AC70F500FE136C /* RGBARep+Experiment.swift */; };
 		F146A53B24AD048500FE136C /* CustomColorMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = F146A53A24AD048500FE136C /* CustomColorMap.swift */; };
-		F146A53C24AD048500FE136C /* CustomColorMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = F146A53A24AD048500FE136C /* CustomColorMap.swift */; };
-		F146A53D24AD048500FE136C /* CustomColorMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = F146A53A24AD048500FE136C /* CustomColorMap.swift */; };
 		F146A54024AD06E400FE136C /* ChannelMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = F146A53F24AD06E400FE136C /* ChannelMap.swift */; };
 		F146A54124AD06E400FE136C /* ChannelMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = F146A53F24AD06E400FE136C /* ChannelMap.swift */; };
 		F146A54224AD06E400FE136C /* ChannelMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = F146A53F24AD06E400FE136C /* ChannelMap.swift */; };
@@ -203,6 +201,7 @@
 		F18E387F24AE085800F33947 /* ColorMapUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18E387E24AE085800F33947 /* ColorMapUtil.swift */; };
 		F18E388024AE085800F33947 /* ColorMapUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18E387E24AE085800F33947 /* ColorMapUtil.swift */; };
 		F18E388124AE085800F33947 /* ColorMapUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18E387E24AE085800F33947 /* ColorMapUtil.swift */; };
+		F18E388324AE09D300F33947 /* CustomChannelMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18E388224AE09D300F33947 /* CustomChannelMap.swift */; };
 		F19251B9249EAC6900068073 /* Writer+Handler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19251B8249EAC6900068073 /* Writer+Handler.swift */; };
 		F19251BA249EAC6900068073 /* Writer+Handler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19251B8249EAC6900068073 /* Writer+Handler.swift */; };
 		F19251BB249EAC6900068073 /* Writer+Handler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19251B8249EAC6900068073 /* Writer+Handler.swift */; };
@@ -436,6 +435,7 @@
 		F18C7B4323BF7EF9009D9B29 /* BufferUtil+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BufferUtil+Helper.swift"; sourceTree = "<group>"; };
 		F18C7B4723BFB06D009D9B29 /* BulkPhotoTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulkPhotoTest.swift; sourceTree = "<group>"; };
 		F18E387E24AE085800F33947 /* ColorMapUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorMapUtil.swift; sourceTree = "<group>"; };
+		F18E388224AE09D300F33947 /* CustomChannelMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomChannelMap.swift; sourceTree = "<group>"; };
 		F19251B8249EAC6900068073 /* Writer+Handler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Writer+Handler.swift"; sourceTree = "<group>"; };
 		F194BAA32224C304001C5DBB /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		F19C1C7124A8837100E93F4D /* GrayRepParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrayRepParser.swift; sourceTree = "<group>"; };
@@ -558,6 +558,7 @@
 			children = (
 				F1CF2D79249380F8007ACC0E /* VC+HCCQR.swift */,
 				F146A53A24AD048500FE136C /* CustomColorMap.swift */,
+				F18E388224AE09D300F33947 /* CustomChannelMap.swift */,
 			);
 			path = HCCQR;
 			sourceTree = "<group>";
@@ -1377,7 +1378,6 @@
 				F1E645AF23940ACA008D2ABE /* ImageUtil.swift in Sources */,
 				F143EC3023FA98390006743C /* MonoRep+Init.swift in Sources */,
 				F1E67D4E24A9059C007FC5C0 /* Metric.swift in Sources */,
-				F146A53C24AD048500FE136C /* CustomColorMap.swift in Sources */,
 				F181F10723B8FD7E00145DEA /* Reader+Handler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1461,6 +1461,7 @@
 				F181F11023B929F800145DEA /* GrayRep+Type.swift in Sources */,
 				F1467659249F77EC009D392A /* SimpleHCCQRView.swift in Sources */,
 				F18A25E123BB7F5F00EF8151 /* BufferUtil+RGBA.swift in Sources */,
+				F18E388324AE09D300F33947 /* CustomChannelMap.swift in Sources */,
 				F1E645A323940AC9008D2ABE /* UIImage+Extension.swift in Sources */,
 				F18A25E723BB83E700EF8151 /* NSImage+Extension.swift in Sources */,
 				F1E645A623940AC9008D2ABE /* Data+Extension.swift in Sources */,
@@ -1508,7 +1509,6 @@
 				F146A52D24ABB1A400FE136C /* Channel+Assert.swift in Sources */,
 				F1E5DC1023F9A1C300605775 /* RGBAImageTest.swift in Sources */,
 				F147200D248C0727008A01AD /* Hybrid+Mac.swift in Sources */,
-				F146A53D24AD048500FE136C /* CustomColorMap.swift in Sources */,
 				F1E5711923A3F2C400E090BB /* MemLeakTest.swift in Sources */,
 				F12274DA2498EA0A0045573B /* ReadError.swift in Sources */,
 				F1471FC5248C005B008A01AD /* BufferUtil+Type.swift in Sources */,

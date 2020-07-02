@@ -18,7 +18,7 @@ extension Writer {
     * - Note: Supports The grayscaleImage optimization
     */
    public static func image(data: Data, config: HCCQRSetup, onComplete: @escaping OnWriteComplete) {
-      rgbaRep(data: data, config: config) { result in
+      rgbaRep(data: data, config: config) { (result: RGBRepResult) in
          guard let rgbaRep: RGBARep = try? result.get() else { onComplete(.failure(.unableToCreateRGBAImage(errMSG: result.errorStr))); return }
          guard let image: Image = try? RGBARepParser.image(rgbaRep: rgbaRep, scale: CGFloat(config.scale.screen)) else { onComplete(.failure(.unableToConvertRGBAToImage)); return }
          rgbaRep.deInitiate() // De alloc rgbaImage when it servers no purpouse anymore
@@ -41,7 +41,10 @@ extension Writer {
     * - Fixme: ⚠️️ Splitting the data in two allows 4 color map, in the future we will allow 8 color map etc (pallet etc)
     */
    internal static func rgbaRep(data: Data, config: HCCQRSetup = .default, onComplete: @escaping OnRGBRepComplete) {
-      let dataArr: [Data] = data.split(index: data.count / config.map.layerCount) // Split the data in to the num of layers
+      Swift.print("config.map.layerCount:  \(config.map.layerCount)")
+      let length: Int = data.count / config.map.layerCount
+      let dataArr: [Data] = data.chunk(size: length) // Split the data in to the num of layers
+      Swift.print("dataArr.count:  \(dataArr.count)")
       var ciImgs: [CIImage?] = [CIImage?](repeating: nil, count: dataArr.count) // Pre-filled array for the images
       dataArr.enumerated().forEach { (offset: Int, data: Data) in
          DispatchQueue.global(qos: .userInitiated).async { // Adds the operation to a background-thread
