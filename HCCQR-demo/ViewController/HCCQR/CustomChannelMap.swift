@@ -1,12 +1,5 @@
 import Foundation
-/**
- * CMY
- */
-extension Pixel.Colors {
-   static let cyan: Pixel = .init(r: 0, g: 255, b: 255, a: 255)
-   static let magenta: Pixel = .init(r: 255, g: 0, b: 255, a: 255)
-   static let yellow: Pixel = .init(r: 255, g: 255, b: 0, a: 255)
-}
+
 /**
  * Blue shaded colormap
  */

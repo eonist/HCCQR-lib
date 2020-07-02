@@ -41,10 +41,10 @@ extension Writer {
     * - Fixme: ⚠️️ Splitting the data in two allows 4 color map, in the future we will allow 8 color map etc (pallet etc)
     */
    internal static func rgbaRep(data: Data, config: HCCQRSetup = .default, onComplete: @escaping OnRGBRepComplete) {
-      Swift.print("config.map.layerCount:  \(config.map.layerCount)")
+//      Swift.print("config.map.layerCount:  \(config.map.layerCount)")
       let length: Int = data.count / config.map.layerCount
       let dataArr: [Data] = data.chunk(size: length) // Split the data in to the num of layers
-      Swift.print("dataArr.count:  \(dataArr.count)")
+//      Swift.print("dataArr.count:  \(dataArr.count)")
       var ciImgs: [CIImage?] = [CIImage?](repeating: nil, count: dataArr.count) // Pre-filled array for the images
       dataArr.enumerated().forEach { (offset: Int, data: Data) in
          DispatchQueue.global(qos: .userInitiated).async { // Adds the operation to a background-thread
