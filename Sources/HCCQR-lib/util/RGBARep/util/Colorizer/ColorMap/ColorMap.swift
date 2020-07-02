@@ -5,5 +5,6 @@ import Foundation
  * - Note: idx represent false = black, true = white
  * - Note: if you match the array correctly, then the color is used
  * - Note: there is also Channel map which is used to read hccqr codes
+ * - Fixme: ⚠️️ Consider renaming to ColorMaps ? it's more array-esque
  */
 public typealias ColorMap = [ColorMapItem]

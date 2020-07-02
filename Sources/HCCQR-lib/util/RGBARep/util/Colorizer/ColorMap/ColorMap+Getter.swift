@@ -2,7 +2,7 @@ import QuartzCore
 /**
  * Getter
  */
-extension Array where Element == ColorMapItem {
+extension ColorMap {
    /**
     * 4 colors = 2 layers, 8 colors = 3 coloers, 256 colors = 8 layers etc
     */

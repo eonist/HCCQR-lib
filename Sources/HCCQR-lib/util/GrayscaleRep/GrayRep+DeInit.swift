@@ -10,10 +10,11 @@ extension GrayRep {
       pixels.deallocate()
    }
 }
+typealias GrayReps = [GrayRep] // gets rid of: Array where Element == GrayRep
 /**
  * For [GrayscaleRep]
  */
-extension Array where Element == GrayRep {
+extension GrayReps {
    /**
     * Bulk deInit
     * - Abstract: deInit multiple reps

@@ -3,7 +3,7 @@ import QR_lib
 /**
  * Custom colormaps
  */
-extension Array where Element == ColorMapItem {
+extension ColorMap {
    /**
     * CMY based colorMap
     */

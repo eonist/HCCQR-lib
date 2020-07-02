@@ -1,10 +1,13 @@
 import Foundation
+
+typealias Pixels = [Pixel]
 /**
  * Custom ChannelMap
  */
-extension Array where Element == Pixel {
+extension Pixels {
    /**
     * For 4 color HCCQR (default)
+    * - Fixme: ⚠️️ rename to rgb?
     * - Fixme: ⚠️️ deprecate eventually, we will have to support 8 colors etc
     * - Fixme: ⚠️️ See that alt QR and other .pdf's for the colors to use for 8-colorHCCQR etc
     */
