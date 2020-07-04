@@ -23,11 +23,11 @@ extension Pixel.Colors {
  * Test colors
  */
 extension Pixel.Colors {
-   static let redish: Pixel = .init(UInt8(255 * 0.75), UInt8(255 * 0.2), UInt8(255 * 0.25), 255)
-   static let greenish: Pixel = .init(UInt8(255 * 0.27), UInt8(255 * 0.77), UInt8(255 * 0.25), 255)
-   static let blueish: Pixel = .init(UInt8(255 * 0.25), UInt8(255 * 0.25), UInt8(255 * 0.86), 255)
-   static let whiteish: Pixel = .init(UInt8(255 * 0.85), UInt8(255 * 0.95), UInt8(255 * 0.86), 255)
-   static let blackish: Pixel = .init(UInt8(255 * 0.15), UInt8(255 * 0.15), UInt8(255 * 0.16), 255)
+   static let redish: Pixel = .init(r: UInt8(255 * 0.75), g: UInt8(255 * 0.2), b: UInt8(255 * 0.25), a: 255)
+   static let greenish: Pixel = .init(r: UInt8(255 * 0.27), g: UInt8(255 * 0.77), b: UInt8(255 * 0.25), a: 255)
+   static let blueish: Pixel = .init(r: UInt8(255 * 0.25), g: UInt8(255 * 0.25), b: UInt8(255 * 0.86), a: 255)
+   static let whiteish: Pixel = .init(r: UInt8(255 * 0.85), g: UInt8(255 * 0.95), b: UInt8(255 * 0.86), a: 255)
+   static let blackish: Pixel = .init(r: UInt8(255 * 0.15), g: UInt8(255 * 0.15), b: UInt8(255 * 0.16), a: 255)
 }
 /**
  * CMY

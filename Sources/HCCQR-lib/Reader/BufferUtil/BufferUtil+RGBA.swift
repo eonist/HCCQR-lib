@@ -39,7 +39,7 @@ extension BufferUtil {
          DispatchQueue.concurrentPerform(iterations: bufferRect.width) { x in // ⚠️️ Optimization initiative, might be faster, also try striding?
             let index: Int = (bufferRect.x + x) * 4 + y * bytesPerPixel // We add the crop to the x // (y * bytesPerPixel + x) * 4
             let (b, g, r) = (byteBuffer[index], byteBuffer[index + 1], byteBuffer[index + 2]) // let a = byteBuffer[index + 3]
-            let pixel: Pixel = .init(r, g, b, 255)
+            let pixel: Pixel = .init(r: r, g: g, b: b, a: 255)
             let i: Int = y * bufferRect.width + x
             pixels[i] = pixel
          }

@@ -9,6 +9,9 @@ class BinarySequencer {
     * ## Examples
     * let seq = sequence(size: 2) // [[0,1], [1,0], [0,0], [1,1]]
     * sequence(size: 8).count // 256
+    * - Parameters:
+    *   - size: the length of the bool row
+    *   - row: the row to populate
     */
    static func sequence(size: Int, row: Row = []) -> Col {
       if size == 0 { return [row] }
