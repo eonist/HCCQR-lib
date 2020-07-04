@@ -202,6 +202,9 @@
 		F18E388024AE085800F33947 /* ColorMapUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18E387E24AE085800F33947 /* ColorMapUtil.swift */; };
 		F18E388124AE085800F33947 /* ColorMapUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18E387E24AE085800F33947 /* ColorMapUtil.swift */; };
 		F18E388324AE09D300F33947 /* CustomChannelMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18E388224AE09D300F33947 /* CustomChannelMap.swift */; };
+		F18E38B024B0EC1B00F33947 /* BinarySequencer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18E38AF24B0EC1B00F33947 /* BinarySequencer.swift */; };
+		F18E38B124B0EC1B00F33947 /* BinarySequencer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18E38AF24B0EC1B00F33947 /* BinarySequencer.swift */; };
+		F18E38B224B0EC1B00F33947 /* BinarySequencer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18E38AF24B0EC1B00F33947 /* BinarySequencer.swift */; };
 		F19251B9249EAC6900068073 /* Writer+Handler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19251B8249EAC6900068073 /* Writer+Handler.swift */; };
 		F19251BA249EAC6900068073 /* Writer+Handler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19251B8249EAC6900068073 /* Writer+Handler.swift */; };
 		F19251BB249EAC6900068073 /* Writer+Handler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19251B8249EAC6900068073 /* Writer+Handler.swift */; };
@@ -436,6 +439,7 @@
 		F18C7B4723BFB06D009D9B29 /* BulkPhotoTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulkPhotoTest.swift; sourceTree = "<group>"; };
 		F18E387E24AE085800F33947 /* ColorMapUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorMapUtil.swift; sourceTree = "<group>"; };
 		F18E388224AE09D300F33947 /* CustomChannelMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomChannelMap.swift; sourceTree = "<group>"; };
+		F18E38AF24B0EC1B00F33947 /* BinarySequencer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BinarySequencer.swift; sourceTree = "<group>"; };
 		F19251B8249EAC6900068073 /* Writer+Handler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Writer+Handler.swift"; sourceTree = "<group>"; };
 		F194BAA32224C304001C5DBB /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		F19C1C7124A8837100E93F4D /* GrayRepParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrayRepParser.swift; sourceTree = "<group>"; };
@@ -723,6 +727,7 @@
 		F168527D2213443700C27EAA /* util */ = {
 			isa = PBXGroup;
 			children = (
+				F18E38AF24B0EC1B00F33947 /* BinarySequencer.swift */,
 				F168527E2213443700C27EAA /* UInt8Asserter.swift */,
 				F168527F2213443700C27EAA /* UInt8Parser.swift */,
 				F143EC3523FAB8DE0006743C /* UInt8Modifier.swift */,
@@ -1314,6 +1319,7 @@
 				F15C9F8123BA747800F9D524 /* Writer.swift in Sources */,
 				F1E645DD23940B3D008D2ABE /* RGBARep+Init.swift in Sources */,
 				F1D8A66C23E83F0100F17A81 /* Channel+Type.swift in Sources */,
+				F18E38B124B0EC1B00F33947 /* BinarySequencer.swift in Sources */,
 				F1B698D7239E64E70085B3C9 /* View.swift in Sources */,
 				F18A4D87239F170F0065078A /* HCCQRConfigUtil.swift in Sources */,
 				F165D4A924A9FD2700C99CD7 /* ColorMap.swift in Sources */,
@@ -1483,6 +1489,7 @@
 				F18A4D80239F11040065078A /* RGBARepParser.swift in Sources */,
 				F165D4A724A9FD2300C99CD7 /* ColorMap.swift in Sources */,
 				F146A55524ADE08100FE136C /* MonoPattern.swift in Sources */,
+				F18E38B024B0EC1B00F33947 /* BinarySequencer.swift in Sources */,
 				F143EC2F23FA98390006743C /* MonoRep+Init.swift in Sources */,
 				F146A53524AC70F500FE136C /* RGBARep+Experiment.swift in Sources */,
 				F181F10623B8FD7E00145DEA /* Reader+Handler.swift in Sources */,
@@ -1601,6 +1608,7 @@
 				F1472010248C0820008A01AD /* Data+Ext.swift in Sources */,
 				F146A53224AC64CB00FE136C /* RGBARepParser+Experimental.swift in Sources */,
 				F1471FC7248C0085008A01AD /* RGBARep+Init.swift in Sources */,
+				F18E38B224B0EC1B00F33947 /* BinarySequencer.swift in Sources */,
 				F14E1F8924A9ED9A00C2406C /* HCCQRStringData.swift in Sources */,
 				F146A53724AC70F500FE136C /* RGBARep+Experiment.swift in Sources */,
 				F1471FF5248C0573008A01AD /* MonoRep+Init.swift in Sources */,

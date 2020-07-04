@@ -15,6 +15,7 @@ extension Data {
 //   }
    /**
     * split into chunks
+    * - Note: ref https://gist.github.com/ericdke/fa262bdece59ff786fcb
     */
    func chunk(size: Int) -> [Data] {
       let arr: [UInt8] = [UInt8](self)
