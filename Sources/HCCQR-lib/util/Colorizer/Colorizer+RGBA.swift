@@ -8,7 +8,7 @@ extension Colorizer {
     * 1. Collect size and capacity
     * 2. Fuse pixels at different layers into one pixel
     * 3. Scale the colorized array, since the colorized array is always just 1px block in size
-    * - Abstract: Converts B&W RGBAImages into one unified color RGBAImage (on the basis of a colorMap rule-set)
+    * - Abstract: Converts B&W RGBAImages into one unified color RGBAImage (on the basis of a color-pallete rule-set)
     * - Note: creates an HCCQR from two Qr images
     * - Note: We use MonotoneImage that has single Bit data, bool, it will be faster
     * - Fixme: ⚠️️⚠️️ Could be faster to just mutate the pixels directly in an RGBAImage instead of creating an pixel array like it is now?
@@ -17,7 +17,7 @@ extension Colorizer {
     * - Note: Used in the process of converting Data to HCCQR
     * - Parameters:
     *   - monoReps: (black / white)-pixel-array
-    *   - config: scaling and color rule-set (darkmode ability is possible epending on what colormap is used)
+    *   - config: scaling and color rule-set (darkmode ability is possible epending on what color-pallete is used)
     */
    static func colorize(monoReps: [MonoRep], config: OutputConfig) -> RGBARep {
       let size: Size = monoReps[0].size // get size from first rep
@@ -28,7 +28,7 @@ extension Colorizer {
             // - Fixme: ⚠️️ We should just pass the ref to the array etc. instead of making new arrays?, might be faster
             let idx: Int = y * size.width + x // every x pixel
             let layerPixels: [Bool] = monoReps.map { $0.pixels[idx] } // We get pixels from both RGBAImages
-            if let colorizedPixel: Pixel = try? colorize(pixels: layerPixels, colorMap: config.map) { // else { throw NSError.init(domain: "Unable to make pixel", code: 0) } //            let arr: [UInt8] = grayscaleImages.map { $0.getPixel(x: x, y: y) } // We get pixels from both RGBAImages
+            if let colorizedPixel: Pixel = try? colorize(pixels: layerPixels, pallete: config.map) { // else { throw NSError.init(domain: "Unable to make pixel", code: 0) } //            let arr: [UInt8] = grayscaleImages.map { $0.getPixel(x: x, y: y) } // We get pixels from both RGBAImages
                pixels[idx] = colorizedPixel
             }
          }

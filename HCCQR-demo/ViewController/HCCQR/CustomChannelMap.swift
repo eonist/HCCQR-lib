@@ -1,7 +1,7 @@
 import Foundation
 
 /**
- * Blue shaded colormap
+ * Blue shaded colorPallete
  */
 extension Pixel.Colors {
    static let blue1: Pixel = .init(r: 50, g: 197, b: 255, a: 255)
@@ -9,7 +9,7 @@ extension Pixel.Colors {
    static let blue3: Pixel = .init(r: 43, g: 0, b: 205, a: 255) // dominating color
 }
 /**
- * Purple shaded colormap
+ * Purple shaded color-pallete
  */
 extension Pixel.Colors {
    static let purple1: Pixel = .init(r: 68, g: 18, b: 163, a: 255)
@@ -17,7 +17,7 @@ extension Pixel.Colors {
    static let purple3: Pixel = .init(r: 186, g: 41, b: 181, a: 255)
 }
 /**
- * Green shaded colormap
+ * Green shaded color-pallete
  */
 extension Pixel.Colors {
    static let green1: Pixel = .init(r: 10, g: 123, b: 0, a: 255)

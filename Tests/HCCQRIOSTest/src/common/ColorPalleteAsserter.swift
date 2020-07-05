@@ -7,18 +7,18 @@ import CoreImage
  * Asserter
  * - Note: Used for internal debugging
  */
-final class ColorMapAsserter {
+final class ColorPalleteAsserter {
    /**
     * Asserts if an image has non black or white pixel.
     */
-   static func hasOnlyBlackAndWhiteColorMap(uiImage: Image) -> Bool {
-      hasOnlyColorMap(image: uiImage, rgbColorMap: [.black, .white])
+   static func hasOnlyBlackAndWhiteColorPallete(uiImage: Image) -> Bool {
+      hasOnlyColorPallete(image: uiImage, pallete: [.black, .white])
    }
 }
 /**
  * internal helper
  */
-extension ColorMapAsserter {
+extension ColorPalleteAsserter {
    /**
     * Asserts if an image has only the colors specified in the colors array
     * 1. Look for color that doesnt match
@@ -27,18 +27,18 @@ extension ColorMapAsserter {
     * - Abstract: ensure that img only has valid colors, aka no bluring
     * - Note: ⚠️️ This method is used for testing and debugging mostly
     * ## Example:
-    * hasOnlyColorMap(these: [.red, .green, .blue, .white])
+    * hasOnlyColorPallete(these: [.red, .green, .blue, .white])
     * - Note: this method is just for debugging, so no need to optimize it too much
     * - Parameters:
-    *   - uiImage: The image to assert if has color-map
-    *   - colorMap: the color-map to assert against
+    *   - image: The image to assert if has color-map
+    *   - pallete: the color-map to assert against
     */
-   private static func hasOnlyColorMap(image: Image, rgbColorMap: [Color]) -> Bool {
+   private static func hasOnlyColorPallete(image: Image, pallete: [Color]) -> Bool {
       let condition: (Color) -> Bool = { color in
          let matchCondition: (Color) -> Bool = {
             $0.isEqualRGBA(color: color)
          }
-         let retVal = !rgbColorMap.contains(where: matchCondition)
+         let retVal = !pallete.contains(where: matchCondition)
          Swift.print("retVal:  \(retVal) color: \(color)")
          return retVal
       }

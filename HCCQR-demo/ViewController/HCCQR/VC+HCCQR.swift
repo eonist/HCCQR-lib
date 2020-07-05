@@ -42,7 +42,7 @@ extension ViewController {
    static func makeHCCQRImage(onComplete: @escaping OnHCCQRImageComplete) {
       let setup: HCCQRSetup = {
          let qrSetup: QRSetup = .init(qrVersion: .v1, ecLevel: .l)
-         let output: OutputConfig = .init(scale: (6, 2), map: .eightColorMap(useDarkMode: true))
+         let output: OutputConfig = .init(scale: (6, 2), map: .eightColorPallete(useDarkMode: true))
          return .init(qr: qrSetup, output: output)
       }()
       guard let data: Data = HCCQRStringData.randomData(setup: setup) else { Swift.print("unable to create data"); return }

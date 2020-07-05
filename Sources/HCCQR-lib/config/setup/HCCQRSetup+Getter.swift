@@ -5,7 +5,7 @@ import QR_lib
  */
 extension HCCQRSetup {
    var scale: Scale { output.scale }
-   var map: ColorMap { output.map }
+   var map: ColorPallete { output.map }
    var ecLevel: ECLevel { qr.ecLevel }
    var qrVersion: QRVer { qr.qrVersion }
 }

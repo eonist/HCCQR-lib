@@ -1,5 +1,7 @@
 import Foundation
 /**
- * Used for reading HCCQR
+ * Stores HCCQR color combos (4,8,16..256)
+ * - Note: Used for reading HCCQR
+ * - Fixme: ⚠️️ rename to ChannelPallete? ColorCombo ? ColorCombination?
  */
-internal typealias ChannelMap = [Pixel] // this seems to be still in use
+internal typealias ChannelMap = [Pixel]

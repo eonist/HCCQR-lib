@@ -6,10 +6,10 @@ import QR_lib
  */
 public struct OutputConfig {
    let scale: Scale
-   let map: ColorMap
-   init(scale: Scale, map: ColorMap = ColorMap.rgbColorMap()) {
+   let map: ColorPallete
+   init(scale: Scale, map: ColorPallete = ColorPallete.rgbColorPallete()) {
       self.scale = scale
       self.map = map
    }
-   static let `default`: OutputConfig = .init(scale: (6, 2), map: ColorMap.rgbColorMap())
+   static let `default`: OutputConfig = .init(scale: (6, 2), map: ColorPallete.rgbColorPallete())
 }

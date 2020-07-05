@@ -11,7 +11,7 @@ public final class Colorizer {}
 extension Colorizer {
    /**
     * CIImage's -> RGBAImage -> CIImage
-    * - Abstract: Converts multiple b&w images to color-image based on the defined colorMap
+    * - Abstract: Converts multiple b&w images to color-image based on the defined color-pallete
     * 1. Two B&W-QR-CIImage's comes in
     * 2. A HCCQR Color RGBAImage is created from the grayscale QR-Images
     * 3. Converts the RGBA image to ciImage and returns it

@@ -35,10 +35,9 @@
 | Pixel | Stores RGB channels |
 | BoolColumn | Stores the order of the stacked b&w layers |
 | BoolRow | Stores the bool array for each b&w layer |
-
-| | |
-| | |
-| | |
+| ColorChannel | Stores HCCQR color combos (4,8,16..256) |
+| ColorMap | Stores many ColorMapItems which makes up the pallet |
+| ColorMapItem | Stores the BoolRow that correspond to a color|
 
 ##### Config
 | Class | Description |

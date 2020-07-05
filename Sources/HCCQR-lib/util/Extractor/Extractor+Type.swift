@@ -5,7 +5,7 @@ import Foundation
 extension Extractor {
    /**
     * Store the luminocity of the Red, green, blue channels. White = 100%, black = 0%
-    * - Note: ColorMaps determines their similarity by comparing these r,g,b values
+    * - Note: color-pallete's determines their similarity by comparing these r,g,b values
     * - Fixme: ⚠️️ Maybe rename to Luminosities?
     */
    public typealias RGBChannels = (r: GrayRep, g: GrayRep, b: GrayRep)

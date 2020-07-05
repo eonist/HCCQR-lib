@@ -2,14 +2,12 @@ import Foundation
 /**
  * Stores the order of the stacked b&w layers
  * - Abstract: The boolean pattern that unlocks each color
- * - Fixme: ⚠️️  find better name: turnKey, combination, sequence, BoolSequence? BoolColumn, BoolCol?
  */
 typealias BoolColumn = [BoolRow]
 /**
  * Stores the bool array for each b&w layer
  */
 public typealias BoolRow = [Bool]
-
 /**
  * - Note: store the bool array as a const.
  * - Note: uses zip or similar to weave in the data into the color map
@@ -18,6 +16,7 @@ public typealias BoolRow = [Bool]
 extension BoolColumn {
    /**
     * 4-color-scheme
+    * - Fixme: ⚠️️ rename to fourBoolCol
     */
    static let fourColorScheme: BoolColumn = [
       [false, true],
