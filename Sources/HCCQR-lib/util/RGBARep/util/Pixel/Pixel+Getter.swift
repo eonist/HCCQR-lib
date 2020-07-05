@@ -7,6 +7,7 @@ extension Pixel {
    /**
     * Returns color for pixel
     * - Note: use of UInt8 speccific divide method, didnt make usable results
+    * - Note: used by a few visual tests etc
     * - Fixme: ⚠️️ maybe move to PixelParser? To keep this class simple 👈
     */
    var color: Color {

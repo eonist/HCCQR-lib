@@ -1,6 +1,6 @@
 import Foundation
 /**
- * PixelData (holds a color for a pixel)
+ * Pixel (stores a color for a pixel in the red,green, blue channels)
  * - Fixme: ⚠️️⚠️️⚠️️ get rid of alpha, because there is no alpha, just be careful that you don't ruin the conversion methods that rely on struct being what it is etc
  */
 public struct Pixel {

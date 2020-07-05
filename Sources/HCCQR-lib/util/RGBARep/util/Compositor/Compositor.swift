@@ -1,13 +1,17 @@
 import Foundation
 import CoreImage
 /**
- * Compositor (Takes many Channels and converts to a new b&w QRImage)
+ * Compositor (Takes two grayscale channels and converts to one new b&w QRImage)
+ * - Description: Creates a grayscale image by combining two grayscale images
+ * - Note: the two grayscale images is the luminosity of two colors, orange, purple etc
  * - Abstract: Used in the Reading of HCCQR
+ * - Note: the output can then be read by a QRReader
  * - Fixme: ⚠️️ Will we ever have more than two channels?
+ * - Fixme: ⚠️️⚠️️ I think maybe get rid of the array, and pass a and b instead
  */
 final class Compositor {
    /**
-    * Photo 👉 Split into Channels 👉 Combine many channels into 1 QR-image (Combines many grayscale images into one)
+    * Photo 👉 Split into Channels 👉 Combine two channels into 1 QR-image (Combines two grayscale images into one)
     * Returns a QR-Image based on two (GrayscaleRep) channels (We use CIImage, because that is what apple prefers to read qr from)
     * 1. GrayScaleRep-layers comes in
     * 2. GrayscaleRep-layers are composited together
@@ -18,9 +22,10 @@ final class Compositor {
     * - Note: Used in the process to convert HCCQR to Data
     * - Fixme: ⚠️️ Possibly simplify method with defering deinit of composite
     * - Fixme: ⚠️️ Defer deinit instead of having two deInit calls. Research this first, could make this method cleaner
+    * - Fixme: ⚠️️⚠️️ I think maybe get rid of the array, and pass a and b instead
     */
-   static func composite(grayscaleReps: [GrayRep]) -> CIImage {
-      let composition: GrayRep = composite(grayscaleReps: grayscaleReps) // smash two grayscaleReps together
+   static func composite(grayReps: [GrayRep]) -> CIImage {
+      let composition: GrayRep = composite(grayReps: grayReps) // smash two grayscaleReps together
       let img: CIImage = GrayRepParser.ciImage(grayscaleRep: composition)
       composition.deInit() // We de-init the Img after we have consumed it to avoid mem leak
       return img
@@ -32,7 +37,7 @@ final class Compositor {
 extension Compositor {
    /**
     * Photo 👉 Split into Channels -> Combine 2 channels into 1 QR-image (Combines many grayscale reps into one)
-    * - Abstract: we overlay many b&w to produce one b&w image (to be used as a QR-Image to be read from)
+    * - Abstract: we overlay two b&w to produce one b&w image (to be used as a QR-Image to be read from)
     * 1. GrayScale-images comes in
     * 2. First image is used as base
     * 3. Then subsequent images are applied on top of base
@@ -47,15 +52,16 @@ extension Compositor {
     * - Fixme: ⚠️️ Make a method that returns CIImage?
     * - Fixme: ⚠️️ Should we get size from calling method?
     * - Fixme: ⚠️️⚠️️⚠️️ when a posetive is found stop, iterating
-    * - Parameter grayscaleReps: An array of GrayscaleRep to be composited together into 1 RGBARep
+    * - Fixme: ⚠️️ The creation of the black representation, can probably be done once and then copied in subsequent calls, it was tried but c-pointer copying and dealoc is compolicated
+    * - Parameter grayReps: An array of GrayscaleRep to be composited together into 1 RGBARep
     */
-   private static func composite(grayscaleReps: [GrayRep]) -> GrayRep {
-      let first: GrayRep = grayscaleReps[0]
+   private static func composite(grayReps: [GrayRep]) -> GrayRep {
+      let first: GrayRep = grayReps[0] // get first layer
       // - Fixme: ⚠️️ Could be the problem that we use white, to avoid inverting
       let blankRep: GrayRep = .grayRep(pixel: .black, size: first.size)// .grayscaleRep(pixel: .black, size: first.size) // because white is 255
       return GrayRepModifier.process(input: blankRep) { (index: Int, pixel: UInt8) -> UInt8 in // Loop things
          var pixel: UInt8 = pixel
-         grayscaleReps.forEach { (grayscaleImage: GrayRep) in // loop over every image in the list, this is inside here because the process method uses concurrent_apply
+         grayReps.forEach { (grayscaleImage: GrayRep) in // loop over every image in the list, this is inside here because the process method uses concurrent_apply
             let newPixel: UInt8 = grayscaleImage.pixels[index] // - Fixme: ⚠️️ Can be removed because this will basically never happen, because channels can't overlap
             pixel.addition(value: newPixel) // ⚠️️ we now add....instead of adding, we substract and then we wouldn't have to invert the image at the end
          }

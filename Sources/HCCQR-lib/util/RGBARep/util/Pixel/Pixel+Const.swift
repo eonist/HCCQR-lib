@@ -8,6 +8,7 @@ extension Pixel {
     * Percentage of color (0.2 means can be 20% of some color)
     * - Note:  with threshold more or less (I.e: +25,-25 from a value)
     * - Fixme: ⚠️️ Move the threshold to the caller of the methods using this variable
+    * - Fixme: ⚠️️ move threshold const to a different place. 
     * - Note: it becomes half of threshold 
     */
    private static let threshold: CGFloat = 0.3 //  Rename to defaultThreshold

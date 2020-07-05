@@ -4,12 +4,12 @@ import Foundation
  */
 extension Channel {
    /**
-    * RGB
-    * - Fixme: ⚠️️ this needs to be array, or else custom colormaps won't work
+    * Store the luminocity of the Red, green, blue channels. White = 100%, black = 0%
+    * - Note: ColorMaps determines their similarity by comparing these r,g,b values
     */
    public typealias RGBChannels = (r: GrayRep, g: GrayRep, b: GrayRep)
    /**
-    * - Fixme: ⚠️️ error is never used, might be used if threads dont finish? or simplify and dont use result?
+    * - Fixme: ⚠️️ error is never used, might be used if threads don't finish? or simplify and don't use result?
     */
    typealias ChannelResult = Result<RGBChannels, Error>
 }
@@ -24,8 +24,8 @@ extension Channel {
  */
 extension Channel {
    /**
-    * Input pixel
     * Output pixel similarity
+    * - Parameter pixel: the input pixel
     */
-   typealias PixelDataSimilarity = (_ pixel: Pixel) -> Pixel.Similarity
+   typealias PixelSimilarity = (_ pixel: Pixel) -> Pixel.Similarity
 }

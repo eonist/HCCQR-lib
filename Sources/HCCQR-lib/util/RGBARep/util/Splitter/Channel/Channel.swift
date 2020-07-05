@@ -1,12 +1,13 @@
 import Foundation
 /**
- * channels
+ * Split the 3 R,G,B channels into grayscale lumonocity channels
+ * - Fixme: ⚠️️ rename to Extractor?
  */
 public final class Channel {}
 
 extension Channel {
    /**
-    * Split an RGBAImage 👉 3 GrayScaleRep's consisting of singular (R,G,B) channels
+    * Split an RGBAImage 👉 3 GrayRep's consisting of singular (R,G,B) channels
     * 1. RGBAImage comes in with a ChannelMap rule-set
     * 2. Create Result-array of empty GrayscaleRep
     * 3. Go through each item in the ChannelMap array and try to find the the 3 colors defined in the channelMap
@@ -20,7 +21,7 @@ extension Channel {
    static func channels(rgbaImg: RGBARep, channelMap: ChannelMap = .rgbMap, onComplete:@escaping OnAllChannelsComplete) {
       // - Fixme: ⚠️️ find an error to throw or remove the result mechanism in the oncomplete
       var channels: [GrayRep?] = [GrayRep?](repeating: nil, count: channelMap.count) // Fixme: ⚠️️ we could use unmanaged pointer with capacity as well, might be faster
-      let similarities: [PixelDataSimilarity] = Channel.similarities(channelMap: channelMap)
+      let similarities: [PixelSimilarity] = Channel.similarities(channelMap: channelMap)
       similarities.enumerated().forEach { offset, similarity in // 3 assertions
          DispatchQueue.global(qos: .userInitiated).async { // - Fixme: ⚠️️ This could be the cause of random error bug, maybe drop the async and just do it on current thread
             let channel: GrayRep = self.channel(rgbaImg: rgbaImg, asserter: similarity) // Finds the red-channel, blue-channel, green-channel
@@ -44,7 +45,7 @@ extension Channel {
     *   - assert: takes Pixeldata, returns Bool
     * - Note to debug, you can trace the asserter(pixel).strength
     */
-   private static func channel(rgbaImg: RGBARep, asserter: PixelDataSimilarity) -> GrayRep {
+   private static func channel(rgbaImg: RGBARep, asserter: PixelSimilarity) -> GrayRep {
       let output: GrayRep = .grayRep(capacity: rgbaImg.capacity, size: rgbaImg.size) // We create a blank RGBImage, as it's faster than copy probably
       return GrayRepModifier.process(input: rgbaImg, output: output) { (pixel: Pixel) -> UInt8 in
          asserter(pixel).strength

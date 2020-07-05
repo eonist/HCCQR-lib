@@ -2,10 +2,13 @@ import Foundation
 /**
  * Stores the order of the stacked b&w layers
  * - Abstract: The boolean pattern that unlocks each color
- * - Fixme: ⚠️️  find better name: turnKey, combination, sequence, BoolSequence?
+ * - Fixme: ⚠️️  find better name: turnKey, combination, sequence, BoolSequence? BoolColumn, BoolCol?
  */
 typealias MonoPattern = [MonoPatternItem]
-typealias MonoPatternItem = [Bool]
+/**
+ * Rename to BoolRow?
+ */
+public typealias MonoPatternItem = [Bool]
 
 /**
  * - Note: store the bool array as a const.

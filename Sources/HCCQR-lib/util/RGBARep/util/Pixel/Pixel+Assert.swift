@@ -10,6 +10,8 @@ extension Pixel {
     * - Fixme: ⚠️️ How ish is a color, figure out 0 - 1 how strong a color is, remember channels can be fractional when we start using other colors than R, B, G
     * - Fixme: ⚠️️ Look for algorithms that can measure how strong a color is. 99% Cyan etc, do research around this
     * - Fixme: ⚠️️ Find alt name for similar, hasSimilarity, hasCommonality etc?
+    * - Fixme: ⚠️️⚠️️ Move to Pixel asserter?
+    * - Note: Is only used by Channel+Assert 
     * - Note: the reason we don't store individual strength for each channel, is that the collective strength wont be applied if one of the individual strengths are out of bound, this works because we store the bool of this pre-assert, also saves cpu cycles etc
     * - Important: ⚠️️ For now we just measure for R, G, B
     * - Returns: returns Bool and the amount of that color in UInt8

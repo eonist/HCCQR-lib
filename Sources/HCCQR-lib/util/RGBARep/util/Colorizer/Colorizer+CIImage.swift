@@ -2,7 +2,7 @@ import Foundation
 import QuartzCore
 import CoreImage
 /**
- * Converts b&w layers into color layers (Used in the HCCQR-creation-process)
+ * Converts b&w layers into a color layer (Used in the HCCQR-creation-process)
  */
 public final class Colorizer {}
 /**

@@ -1,7 +1,9 @@
 import Foundation
 import CoreImage
 /**
- * ImageData 👉 RGBA-rep 👉 QRImage's 👉 Data
+ * RGBA-rep 👉 extract R,G,B 👉 combine colors 👉 QRImage's
+ * - Note: you can derive the data by analysing each QRImage and combining their data to one data
+ * - Fixme: ⚠️️ Rename to Combiner? or ReCombiner?
  */
 public final class Splitter {}
 

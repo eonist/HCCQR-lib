@@ -12,6 +12,19 @@
 - Splitting "HCCQR-frame-colors" into layers black and white layers
 - Reading QR layers
 
+### Overview:
+
+| Class | Description |
+| - | - |
+| Colorizer | Converts b&w layers into a color layer |
+| Pixel | Stores RGB channels |
+| MonoPattern | Stores the order of the stacked b&w layers |
+| Compositor | Composite two luminosity channels into one luminosity channel |
+| Splitter | Extracts RGB and recombine defined colors to QRImage's |
+| Channel | Extracts RGB into luminosity channels |
+
+
+
 ### Solution
 **Image -> Data** (grayscale)  
 1. Split colors into layers (divide into quadrants, and distribute tasks to multiple cpu-cores)
