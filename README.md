@@ -6,11 +6,15 @@
 
 # HCCQR
 
-<img width="138" alt="img" src="https://github.com/stylekit/img/blob/master/Screenshot 2019-04-05 at 11.01.21.png?raw=true">
+<img width="128" alt="img" src="https://github.com/stylekit/img/blob/master/Screenshot 2020-07-02 at 15.50.05.png?raw=true">
 
-### Problem:
-- Splitting "HCCQR-frame-colors" into layers black and white layers
-- Reading QR layers
+### Description
+HCCQR is the natural progression of black and white QR. HCCQR can store up to 8 times of data as a regular b&w QR code can
+
+### Features
+- Read HCCQR (4 - 256 colors)
+- Write HCCQR (4 - 256 colors)
+- Support Custom color-pallets
 
 ### Structure overview:
 
@@ -32,12 +36,12 @@
 ##### Type:
 | Class | Description |
 | - | - |
-| Pixel | Stores RGB channels |
+| Pixel | Stores RGB values for 1 pixel |
 | BoolColumn | Stores the order of the stacked b&w layers |
 | BoolRow | Stores the bool array for each b&w layer |
 | ColorChannel | Stores HCCQR color combos (4,8,16..256) |
-| ColorMap | Stores many ColorMapItems which makes up the pallet |
-| ColorMapItem | Stores the BoolRow that correspond to a color|
+| ColorPallete | Stores many ColorMap's which makes up the pallet |
+| ColorMap | Stores the BoolRow that correspond to a color |
 
 ##### Config
 | Class | Description |
@@ -48,6 +52,9 @@
 | | |
 | | |
 
+### Problem:
+- Splitting "HCCQR-frame-colors" into layers black and white layers
+- Reading QR layers
 
 ### Solution
 **Image -> Data** (grayscale)  
@@ -98,12 +105,14 @@ HCCQRReader.data(image: img) { result in
 ```
 
 ### Roadmap:
+- Support custom colormaps ✅
+- Support dynamic ColorMaps 4 - 256 Colors
+- Add Heuristic optimizations (croping etc)
 - Metal / GPU / Accelerate optimisations
-- Port to android
-- Support custom colormaps
-- Implement project FT
+- Implement project FT (Patent-pending)
 - Utilise custom QR libs (faster read / write)
 - Build own custom QR architecture
+- Port to android
 
 ### Todo:
 - Add smart cropping for for every qr-layer after the first (refine crop)

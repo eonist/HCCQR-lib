@@ -29,14 +29,14 @@ extension Colorizer {
     * Find colorMapItem that matches
     * - Fixme ⚠️️ could we use async_apply here, in the .first loop?
     */
-   private static func matchColorMap(_ pixels: [Bool], _ map: ColorMapItem) throws -> Bool { // = { (map: ColorMapItem) in
-      if map.idx.count != pixels.count { throw ColorizeError.mismatchbetweenNumOfLayersAndColorMap }
+   private static func matchColorMap(_ pixels: [Bool], _ map: ColorMap) throws -> Bool { // = { (map: ColorMapItem) in
+      if map.idx.count != pixels.count { throw ColorizeError.mismatchbetweenNumOfLayersAndColorPallet }
       return !pixels.enumerated().contains { matchColor(map, $0.offset, $0.element) }
    }
    /**
     * Find color that matches
     */
-   private static func matchColor(_ map: ColorMapItem, _ i: Int, _ pixel: Bool) -> Bool { //= { (i: Int, pixel: Bool) in
+   private static func matchColor(_ map: ColorMap, _ i: Int, _ pixel: Bool) -> Bool { //= { (i: Int, pixel: Bool) in
       var bothAreBlack: Bool { !pixel && !map.idx[i] } // false means black
       var bothAreWhite: Bool { pixel && map.idx[i] } // true means white
       return !(bothAreBlack || bothAreWhite) // looks a bit funny, but it's more efficient than using &&, - Fixme: ⚠️️ or is it?

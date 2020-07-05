@@ -21,7 +21,7 @@ extension Splitter {
     * - Fixme: ⚠️️ potentially remove the default vaclue for channel map
     * - Fixme: ⚠️️ maybe rename param to map
     */
-   static func split(rgbaRep: RGBARep, channelMap: ChannelMap = .rgbMap, onComplete:@escaping SplitComplete) {
+   static func split(rgbaRep: RGBARep, channelMap: ChannelMap = .rgbChannelMap, onComplete:@escaping SplitComplete) {
       // HCCQRReader.splitTime = .init() // Debugging performance
       Extractor.channels(rgbaImg: rgbaRep, channelMap: channelMap ) { (result: Extractor.ChannelResult) in
          onSplitComplete(result: result, onComplete: onComplete)

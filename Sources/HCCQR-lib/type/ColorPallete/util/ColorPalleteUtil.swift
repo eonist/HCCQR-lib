@@ -1,6 +1,8 @@
 import Foundation
-
-class ColorMapUtil {
+/**
+ * - Fixme: ⚠️️ Rename to ...Modifier
+ */
+class ColorPalleteUtil {
    /**
     * Combines (black&white) with color
     * - Note: Having the .zip inside an array extension doesn't work, so we put it in an external util class and method
