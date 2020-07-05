@@ -36,6 +36,9 @@ HCCQR is the natural progression of black and white QR. HCCQR can store up to 8 
 ##### Type:
 | Class | Description |
 | - | - |
+| RGBARep | A grid of color pixels |
+| GrayRep | A grid of grayscale pixels |
+| MonoRep | A grid of monotone pixels |
 | Pixel | Stores RGB values for 1 pixel |
 | BoolColumn | Stores the order of the stacked b&w layers |
 | BoolRow | Stores the bool array for each b&w layer |
@@ -49,8 +52,6 @@ HCCQR is the natural progression of black and white QR. HCCQR can store up to 8 
 | HCCQRSetup | Stores QRConfig and OutputConfig |
 | OutputConfig | Stores Scale and ColorMap details |
 | QRSetup | Stores QR density and error correction level |
-| | |
-| | |
 
 ### Problem:
 - Splitting "HCCQR-frame-colors" into layers black and white layers

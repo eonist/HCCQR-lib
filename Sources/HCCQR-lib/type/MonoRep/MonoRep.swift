@@ -1,8 +1,8 @@
 import Foundation
 /**
  * We create HCCQR-images from QR-Image monotone representations
+ * - Note: A grid of monotone pixels
  * - Fixme: ⚠️️ You have to dealocate the memory at some point, (are we not deallocing already?) see: https://stackoverflow.com/questions/34750166/how-to-use-unsafemutablebufferpointer
- * - Fixme: ⚠️️ rename to MonoRep?
  */
 struct MonoRep {
    var pixels: UnsafeMutableBufferPointer<Bool>

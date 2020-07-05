@@ -60,9 +60,9 @@
 		F146A55124AD0EA600FE136C /* ChannelPallete+Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = F146A55024AD0EA600FE136C /* ChannelPallete+Const.swift */; };
 		F146A55224AD0EA600FE136C /* ChannelPallete+Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = F146A55024AD0EA600FE136C /* ChannelPallete+Const.swift */; };
 		F146A55324AD0EA600FE136C /* ChannelPallete+Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = F146A55024AD0EA600FE136C /* ChannelPallete+Const.swift */; };
-		F146A55524ADE08100FE136C /* MonoPattern.swift in Sources */ = {isa = PBXBuildFile; fileRef = F146A55424ADE08100FE136C /* MonoPattern.swift */; };
-		F146A55624ADE08100FE136C /* MonoPattern.swift in Sources */ = {isa = PBXBuildFile; fileRef = F146A55424ADE08100FE136C /* MonoPattern.swift */; };
-		F146A55724ADE08100FE136C /* MonoPattern.swift in Sources */ = {isa = PBXBuildFile; fileRef = F146A55424ADE08100FE136C /* MonoPattern.swift */; };
+		F146A55524ADE08100FE136C /* BoolColumn.swift in Sources */ = {isa = PBXBuildFile; fileRef = F146A55424ADE08100FE136C /* BoolColumn.swift */; };
+		F146A55624ADE08100FE136C /* BoolColumn.swift in Sources */ = {isa = PBXBuildFile; fileRef = F146A55424ADE08100FE136C /* BoolColumn.swift */; };
+		F146A55724ADE08100FE136C /* BoolColumn.swift in Sources */ = {isa = PBXBuildFile; fileRef = F146A55424ADE08100FE136C /* BoolColumn.swift */; };
 		F1471FBE248C0007008A01AD /* BufferUtil+RGBA+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E5DC0423F9802300605775 /* BufferUtil+RGBA+Debug.swift */; };
 		F1471FBF248C0016008A01AD /* RGBARepParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18A4D7F239F11040065078A /* RGBARepParser.swift */; };
 		F1471FC0248C001B008A01AD /* RGBARepModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18A4D82239F11ED0065078A /* RGBARepModifier.swift */; };
@@ -130,6 +130,9 @@
 		F14DDE1723C0E27800FA0022 /* BulkPhotoTest+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14DDE1623C0E27800FA0022 /* BulkPhotoTest+Core.swift */; };
 		F14DDE1923C0E30500FA0022 /* BulkPhotoTest+Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14DDE1823C0E30500FA0022 /* BulkPhotoTest+Type.swift */; };
 		F14E1F8A24A9ED9A00C2406C /* HCCQRVersionUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B698DF239E6D410085B3C9 /* HCCQRVersionUtil.swift */; };
+		F1537EEC24B2297F00160FEC /* BoolRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1537EEB24B2297F00160FEC /* BoolRow.swift */; };
+		F1537EED24B23F1F00160FEC /* BoolRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1537EEB24B2297F00160FEC /* BoolRow.swift */; };
+		F1537EEE24B23F1F00160FEC /* BoolRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1537EEB24B2297F00160FEC /* BoolRow.swift */; };
 		F15C9F7D23BA6FD000F9D524 /* RGBARep+Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15C9F7C23BA6FD000F9D524 /* RGBARep+Const.swift */; };
 		F15C9F7E23BA6FD000F9D524 /* RGBARep+Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15C9F7C23BA6FD000F9D524 /* RGBARep+Const.swift */; };
 		F15C9F8023BA747800F9D524 /* Writer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15C9F7F23BA747800F9D524 /* Writer.swift */; };
@@ -375,7 +378,7 @@
 		F146A53A24AD048500FE136C /* CustomColorPallete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColorPallete.swift; sourceTree = "<group>"; };
 		F146A53F24AD06E400FE136C /* ChannelPallete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelPallete.swift; sourceTree = "<group>"; };
 		F146A55024AD0EA600FE136C /* ChannelPallete+Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChannelPallete+Const.swift"; sourceTree = "<group>"; };
-		F146A55424ADE08100FE136C /* MonoPattern.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonoPattern.swift; sourceTree = "<group>"; };
+		F146A55424ADE08100FE136C /* BoolColumn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoolColumn.swift; sourceTree = "<group>"; };
 		F1484AD623AE657F001E5CE3 /* HCCQR-lib.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "HCCQR-lib.entitlements"; sourceTree = "<group>"; };
 		F1487F13249F84D400265A81 /* SplitError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitError.swift; sourceTree = "<group>"; };
 		F14DDE1423C0E26A00FA0022 /* BulkPhotoTest+Handler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BulkPhotoTest+Handler.swift"; sourceTree = "<group>"; };
@@ -383,6 +386,7 @@
 		F14DDE1823C0E30500FA0022 /* BulkPhotoTest+Type.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BulkPhotoTest+Type.swift"; sourceTree = "<group>"; };
 		F14FADE721F75EF100ACE5FF /* SplitTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitTestView.swift; sourceTree = "<group>"; };
 		F14FADEF21F761FD00ACE5FF /* GridTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridTestView.swift; sourceTree = "<group>"; };
+		F1537EEB24B2297F00160FEC /* BoolRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoolRow.swift; sourceTree = "<group>"; };
 		F15C9F7C23BA6FD000F9D524 /* RGBARep+Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RGBARep+Const.swift"; sourceTree = "<group>"; };
 		F15C9F7F23BA747800F9D524 /* Writer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Writer.swift; sourceTree = "<group>"; };
 		F162145321FC7138005297DE /* SimpleHCCQRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleHCCQRView.swift; sourceTree = "<group>"; };
@@ -595,6 +599,15 @@
 			path = SplitTestView;
 			sourceTree = "<group>";
 		};
+		F1537EEA24B2295700160FEC /* BoolColumn */ = {
+			isa = PBXGroup;
+			children = (
+				F146A55424ADE08100FE136C /* BoolColumn.swift */,
+				F1537EEB24B2297F00160FEC /* BoolRow.swift */,
+			);
+			path = BoolColumn;
+			sourceTree = "<group>";
+		};
 		F165C24F23A00D08005D30EC /* src */ = {
 			isa = PBXGroup;
 			children = (
@@ -689,7 +702,6 @@
 				F1D8A68A23E9952200F17A81 /* Colorizer+Pixel.swift */,
 				F165D4AA24A9FEA300C99CD7 /* Colorizer+Type.swift */,
 				F12274DF249BCC8D0045573B /* ColorizeError.swift */,
-				F146A55424ADE08100FE136C /* MonoPattern.swift */,
 			);
 			path = Colorizer;
 			sourceTree = "<group>";
@@ -992,6 +1004,7 @@
 		F1C42F6924B1F8BD00DA7F23 /* type */ = {
 			isa = PBXGroup;
 			children = (
+				F1537EEA24B2295700160FEC /* BoolColumn */,
 				F1690A9B24B1F9B8000EC61A /* ColorPallete */,
 				F146A53E24AD06CD00FE136C /* ChannelPallete */,
 				F16852612213443700C27EAA /* Pixel */,
@@ -1389,7 +1402,7 @@
 				F18A4D84239F11ED0065078A /* RGBARepModifier.swift in Sources */,
 				F165C24E239FF501005D30EC /* Pixel+Const.swift in Sources */,
 				F1E645B123940ACA008D2ABE /* UIImage+Extension.swift in Sources */,
-				F146A55624ADE08100FE136C /* MonoPattern.swift in Sources */,
+				F146A55624ADE08100FE136C /* BoolColumn.swift in Sources */,
 				F1690AB524B2011D000EC61A /* HCCQRSetup+Getter.swift in Sources */,
 				F1D8A67523E846FC00F17A81 /* Extractor+Handler.swift in Sources */,
 				F1240F6C23B4E01400ECD116 /* Splitter.swift in Sources */,
@@ -1434,6 +1447,7 @@
 				F143EC3023FA98390006743C /* MonoRep+Init.swift in Sources */,
 				F1E67D4E24A9059C007FC5C0 /* Metric.swift in Sources */,
 				F181F10723B8FD7E00145DEA /* Reader+Handler.swift in Sources */,
+				F1537EED24B23F1F00160FEC /* BoolRow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1509,6 +1523,7 @@
 				F1AF9D3623E2D7630085DA0C /* BufferUtil+Type.swift in Sources */,
 				F165D4AB24A9FEA300C99CD7 /* Colorizer+Type.swift in Sources */,
 				F181F11623B92D0500145DEA /* GrayRep+Getter.swift in Sources */,
+				F1537EEC24B2297F00160FEC /* BoolRow.swift in Sources */,
 				F146A53024AC64CB00FE136C /* RGBARepParser+Experimental.swift in Sources */,
 				F18A52DF21790F8A003F8C13 /* AppDelegate.swift in Sources */,
 				F19C1C7224A8837100E93F4D /* GrayRepParser.swift in Sources */,
@@ -1539,7 +1554,7 @@
 				F18A4D86239F170F0065078A /* HCCQRConfigUtil.swift in Sources */,
 				F146A55124AD0EA600FE136C /* ChannelPallete+Const.swift in Sources */,
 				F18A4D80239F11040065078A /* RGBARepParser.swift in Sources */,
-				F146A55524ADE08100FE136C /* MonoPattern.swift in Sources */,
+				F146A55524ADE08100FE136C /* BoolColumn.swift in Sources */,
 				F18E38B024B0EC1B00F33947 /* BinarySequencer.swift in Sources */,
 				F143EC2F23FA98390006743C /* MonoRep+Init.swift in Sources */,
 				F146A53524AC70F500FE136C /* RGBARep+Experiment.swift in Sources */,
@@ -1565,6 +1580,7 @@
 				F1471FEF248C053C008A01AD /* Colorizer+Pixel.swift in Sources */,
 				F165D4AE24A9FF9500C99CD7 /* HCCQRSetup.swift in Sources */,
 				F146A52524AB60D900FE136C /* RGBARepUtil.swift in Sources */,
+				F1537EEE24B23F1F00160FEC /* BoolRow.swift in Sources */,
 				F146A52924AB97A900FE136C /* GrayRepModifier.swift in Sources */,
 				F146A52D24ABB1A400FE136C /* Extractor+Assert.swift in Sources */,
 				F1690AA624B1F9B8000EC61A /* ColorPallete+Const.swift in Sources */,
@@ -1589,7 +1605,7 @@
 				F1471FE3248C04FF008A01AD /* Writer.swift in Sources */,
 				F12274E2249BCC8D0045573B /* ColorizeError.swift in Sources */,
 				F1472005248C0704008A01AD /* RangeUInt8.swift in Sources */,
-				F146A55724ADE08100FE136C /* MonoPattern.swift in Sources */,
+				F146A55724ADE08100FE136C /* BoolColumn.swift in Sources */,
 				F12274DE249B7C7B0045573B /* WriteError.swift in Sources */,
 				F1471FC2248C0040008A01AD /* RGBARep.swift in Sources */,
 				F1E5710923A3EF3100E090BB /* HCCQRIOSTest.swift in Sources */,

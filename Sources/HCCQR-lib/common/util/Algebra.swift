@@ -17,3 +17,14 @@ class Algebra {
       log(value) / log(base) // var i: Int = 1; while pow(base, CGFloat(i)) < value { i += 1 }; return i
    }
 }
+/**
+ * Convenient
+ */
+extension Algebra {
+   /**
+    * Convenient for Int
+    */
+   static func exponent(base: Int, value: Int) -> Int {
+      Int(exponent(base: CGFloat(base), value: CGFloat(value))) // var i: Int = 1; while pow(base, CGFloat(i)) < value { i += 1 }; return i
+   }
+}
