@@ -4,4 +4,4 @@ import Foundation
  * - Note: Used for reading HCCQR
  * - Fixme: ⚠️️ rename to 👉 ChannelPallete? 👈 ColorCombo ? ColorCombination?
  */
-internal typealias ChannelMap = [Pixel]
+internal typealias ChannelPallete = [Pixel]

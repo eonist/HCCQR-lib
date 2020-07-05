@@ -12,8 +12,8 @@ class ColorPalleteUtil {
     *   - channelMap: The colors that coorespond to each unique boolean pattern (color)
     *   - useDarkMode: Use black or white as background in the QR graphics
     */
-   static func combine(boolCol: BoolColumn, channelMap: ChannelMap, useDarkMode: Bool = false) -> ColorPallete {
-      let map: ChannelMap = {
+   static func combine(boolCol: BoolColumn, channelMap: ChannelPallete, useDarkMode: Bool = false) -> ColorPallete {
+      let map: ChannelPallete = {
          let end = [useDarkMode ? Pixel.Colors.black : Pixel.Colors.white] // add the last color to the end
          if boolCol.count == 8 { // 8 colors require white and black at the end
              return channelMap + [useDarkMode ? Pixel.Colors.white : Pixel.Colors.black] + end

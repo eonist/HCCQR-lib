@@ -18,7 +18,7 @@ extension ViewController {
             self.view.addSubview(imgView)
          }()
          _ = { // ⚠️️ enable this again ⚠️️ if u want to read
-            Reader.data(rgbaRep: rgbaRep, channelMap: .eightChannelMap) { result in // Split the hccqrImg
+            Reader.data(rgbaRep: rgbaRep, channelMap: .eightChannelPallete) { result in // Split the hccqrImg
                self.onReadComplete(result: result) { success in Swift.print("dataAndImages success: \(success)") }
             }
          }
