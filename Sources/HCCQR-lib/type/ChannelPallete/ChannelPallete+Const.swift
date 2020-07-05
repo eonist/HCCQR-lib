@@ -10,10 +10,10 @@ extension ChannelPallete {
     * - Fixme: ⚠️️ See that alt QR and other .pdf's for the colors to use for 8-colorHCCQR etc
     * - Fixme: ⚠️️ rename to fourColorMap?
     */
-   static let rgbChannelPallete: ChannelPallete = [Pixel.Colors.white, Pixel.Colors.red, Pixel.Colors.green, Pixel.Colors.blue]
+   static let fourChannels: ChannelPallete = [Pixel.Colors.white, Pixel.Colors.red, Pixel.Colors.green, Pixel.Colors.blue]
    /**
     * - Note: the 7th and 8th colors are white and black, but depending on darkmode etc, we switch them
     * - Fixme: ⚠️️ This will also be generated dynamically
     */
-   static let eightChannelPallete: ChannelPallete = [Pixel.Colors.white, Pixel.Colors.red, Pixel.Colors.green, Pixel.Colors.blue, Pixel.Colors.cyan, Pixel.Colors.magenta, Pixel.Colors.yellow, Pixel.Colors.black]
+   static let eightChannels: ChannelPallete = [Pixel.Colors.white, Pixel.Colors.red, Pixel.Colors.green, Pixel.Colors.blue, Pixel.Colors.cyan, Pixel.Colors.magenta, Pixel.Colors.yellow, Pixel.Colors.black]
 }

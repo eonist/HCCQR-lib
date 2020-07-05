@@ -18,7 +18,7 @@ extension ViewController {
             self.view.addSubview(imgView)
          }()
          _ = { // ⚠️️ enable this again ⚠️️ if u want to read
-            Reader.data(rgbaRep: rgbaRep, pallete: .eightChannelPallete) { result in // Split the hccqrImg
+            Reader.data(rgbaRep: rgbaRep, pallete: .eightChannels) { result in // Split the hccqrImg
                self.onReadComplete(result: result) { success in Swift.print("dataAndImages success: \(success)") }
             }
          }
@@ -42,7 +42,7 @@ extension ViewController {
    static func makeHCCQRImage(onComplete: @escaping OnHCCQRImageComplete) {
       let setup: HCCQRSetup = {
          let qrSetup: QRSetup = .init(qrVersion: .v1, ecLevel: .l)
-         let output: OutputConfig = .init(scale: (6, 2), map: .eightColorPallete(useDarkMode: true))
+         let output: OutputConfig = .init(scale: (6, 2), map: .fourColors(useDarkMode: false))
          return .init(qr: qrSetup, output: output)
       }()
       guard let data: Data = HCCQRStringData.randomData(setup: setup) else { Swift.print("unable to create data"); return }

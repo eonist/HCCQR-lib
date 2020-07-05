@@ -17,7 +17,7 @@ extension Extractor {
     *   - channelMap: rule-set for the splitting process
     *   - onComplete: notify when process has completed
     */
-   static func channels(rgbaImg: RGBARep, pallete: ChannelPallete = .rgbChannelPallete, onComplete:@escaping OnAllChannelsComplete) {
+   static func channels(rgbaImg: RGBARep, pallete: ChannelPallete = .fourChannels, onComplete:@escaping OnAllChannelsComplete) {
       // - Fixme: ⚠️️ find an error to throw or remove the result mechanism in the oncomplete
       var channels: [GrayRep?] = [GrayRep?](repeating: nil, count: pallete.count) // Fixme: ⚠️️ we could use unmanaged pointer with capacity as well, might be faster
       let similarities: [PixelSimilarity] = Extractor.similarities(pallete: pallete)
