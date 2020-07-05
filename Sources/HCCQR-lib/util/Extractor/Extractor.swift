@@ -17,10 +17,10 @@ extension Extractor {
     *   - channelMap: rule-set for the splitting process
     *   - onComplete: notify when process has completed
     */
-   static func channels(rgbaImg: RGBARep, channelMap: ChannelPallete = .rgbChannelPallete, onComplete:@escaping OnAllChannelsComplete) {
+   static func channels(rgbaImg: RGBARep, pallete: ChannelPallete = .rgbChannelPallete, onComplete:@escaping OnAllChannelsComplete) {
       // - Fixme: ⚠️️ find an error to throw or remove the result mechanism in the oncomplete
-      var channels: [GrayRep?] = [GrayRep?](repeating: nil, count: channelMap.count) // Fixme: ⚠️️ we could use unmanaged pointer with capacity as well, might be faster
-      let similarities: [PixelSimilarity] = Extractor.similarities(channelMap: channelMap)
+      var channels: [GrayRep?] = [GrayRep?](repeating: nil, count: pallete.count) // Fixme: ⚠️️ we could use unmanaged pointer with capacity as well, might be faster
+      let similarities: [PixelSimilarity] = Extractor.similarities(pallete: pallete)
       similarities.enumerated().forEach { offset, similarity in // 3 assertions
          DispatchQueue.global(qos: .userInitiated).async { // - Fixme: ⚠️️ This could be the cause of random error bug, maybe drop the async and just do it on current thread
             let channel: GrayRep = self.channel(rgbaImg: rgbaImg, asserter: similarity) // Finds the red-channel, blue-channel, green-channel

@@ -214,7 +214,7 @@
 		F18A52E921790F8D003F8C13 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F18A52E721790F8D003F8C13 /* LaunchScreen.storyboard */; };
 		F18C7B4423BF7EF9009D9B29 /* BufferUtil+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18C7B4323BF7EF9009D9B29 /* BufferUtil+Helper.swift */; };
 		F18C7B4523BF7EF9009D9B29 /* BufferUtil+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18C7B4323BF7EF9009D9B29 /* BufferUtil+Helper.swift */; };
-		F18E388324AE09D300F33947 /* CustomChannelMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18E388224AE09D300F33947 /* CustomChannelMap.swift */; };
+		F18E388324AE09D300F33947 /* CustomChannelPallete.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18E388224AE09D300F33947 /* CustomChannelPallete.swift */; };
 		F18E38B024B0EC1B00F33947 /* BinarySequencer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18E38AF24B0EC1B00F33947 /* BinarySequencer.swift */; };
 		F18E38B124B0EC1B00F33947 /* BinarySequencer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18E38AF24B0EC1B00F33947 /* BinarySequencer.swift */; };
 		F18E38B224B0EC1B00F33947 /* BinarySequencer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18E38AF24B0EC1B00F33947 /* BinarySequencer.swift */; };
@@ -454,7 +454,7 @@
 		F18A52EA21790F8D003F8C13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F18C7B4323BF7EF9009D9B29 /* BufferUtil+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BufferUtil+Helper.swift"; sourceTree = "<group>"; };
 		F18C7B4723BFB06D009D9B29 /* BulkPhotoTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulkPhotoTest.swift; sourceTree = "<group>"; };
-		F18E388224AE09D300F33947 /* CustomChannelMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomChannelMap.swift; sourceTree = "<group>"; };
+		F18E388224AE09D300F33947 /* CustomChannelPallete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomChannelPallete.swift; sourceTree = "<group>"; };
 		F18E38AF24B0EC1B00F33947 /* BinarySequencer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BinarySequencer.swift; sourceTree = "<group>"; };
 		F18E38B324B1167400F33947 /* Pixel+Parsing+Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Pixel+Parsing+Test.swift"; sourceTree = "<group>"; };
 		F19251B8249EAC6900068073 /* Writer+Handler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Writer+Handler.swift"; sourceTree = "<group>"; };
@@ -572,7 +572,7 @@
 			children = (
 				F1CF2D79249380F8007ACC0E /* VC+HCCQR.swift */,
 				F146A53A24AD048500FE136C /* CustomColorPallete.swift */,
-				F18E388224AE09D300F33947 /* CustomChannelMap.swift */,
+				F18E388224AE09D300F33947 /* CustomChannelPallete.swift */,
 				F1690AC824B22601000EC61A /* CustomColors.swift */,
 			);
 			path = HCCQR;
@@ -1518,7 +1518,7 @@
 				F18A25E123BB7F5F00EF8151 /* BufferUtil+RGBA.swift in Sources */,
 				F1690AB424B2011D000EC61A /* HCCQRSetup+Getter.swift in Sources */,
 				F1690AA724B1F9B8000EC61A /* ColorPallete+Getter.swift in Sources */,
-				F18E388324AE09D300F33947 /* CustomChannelMap.swift in Sources */,
+				F18E388324AE09D300F33947 /* CustomChannelPallete.swift in Sources */,
 				F1690ABC24B2015E000EC61A /* QRSetup.swift in Sources */,
 				F1E645A323940AC9008D2ABE /* UIImage+Extension.swift in Sources */,
 				F18A25E723BB83E700EF8151 /* NSImage+Extension.swift in Sources */,

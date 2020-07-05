@@ -6,7 +6,7 @@ extension Extractor {
     * - Important: ⚠️️ For some reason this method has to be on the same line or else the linter complains
     * - Fixme: ⚠️️ Avoid regenerating these everytime, store as static let? TBH I don't think anything expensive is regenerated, just normal calls etc, maybe keep as is
     */
-   static func similarities(channelMap: ChannelPallete) -> [PixelSimilarity] {
-      channelMap.map { (channel: Pixel) in { (ishColor: Pixel) in channel.isSimilar(ishColor) } }
+   static func similarities(pallete: ChannelPallete) -> [PixelSimilarity] {
+      pallete.map { (channel: Pixel) in { (ishColor: Pixel) in channel.isSimilar(ishColor) } }
    }
 }

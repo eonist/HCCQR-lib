@@ -11,13 +11,13 @@ extension ColorPallete { // Array where Element == ColorMapItem
     * - Parameter useDarkMode: Enables the HCCQR to be inverted and support darkmode
     */
    public static func rgbColorPallete(useDarkMode: Bool = false) -> ColorPallete {
-      ColorPalleteUtil.combine(boolCol: .fourColorScheme, channelMap: .rgbChannelPallete, useDarkMode: useDarkMode)
+      ColorPalleteUtil.combine(boolCol: .fourColorScheme, pallete: .rgbChannelPallete, useDarkMode: useDarkMode)
    }
    /**
     * Standard eight color map
     * - Fixme: ⚠️️ rename eightColorPallete
     */
    public static func eightColorPallete(useDarkMode: Bool = false) -> ColorPallete {
-      ColorPalleteUtil.combine(boolCol: .eightColorScheme, channelMap: .eightChannelPallete, useDarkMode: useDarkMode)
+      ColorPalleteUtil.combine(boolCol: .eightColorScheme, pallete: .eightChannelPallete, useDarkMode: useDarkMode)
    }
 }

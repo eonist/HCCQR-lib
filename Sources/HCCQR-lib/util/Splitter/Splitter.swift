@@ -19,11 +19,10 @@ extension Splitter {
     * - Note: RGBAImage -> (3x GrayScaleRep) -> (2x QRImg)
     * - Note: the conversion to rgbaImg here is CPU intensive, but in the camera session we get RGBA data, so this is just for debugging etc
     * - Fixme: ⚠️️ potentially remove the default vaclue for channel map
-    * - Fixme: ⚠️️ maybe rename param to pallete
     */
-   static func split(rgbaRep: RGBARep, channelMap: ChannelPallete = .rgbChannelPallete, onComplete:@escaping SplitComplete) {
+   static func split(rgbaRep: RGBARep, pallete: ChannelPallete = .rgbChannelPallete, onComplete:@escaping SplitComplete) {
       // HCCQRReader.splitTime = .init() // Debugging performance
-      Extractor.channels(rgbaImg: rgbaRep, channelMap: channelMap ) { (result: Extractor.ChannelResult) in
+      Extractor.channels(rgbaImg: rgbaRep, pallete: pallete) { (result: Extractor.ChannelResult) in
          onSplitComplete(result: result, onComplete: onComplete)
       }
    }

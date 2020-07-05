@@ -48,8 +48,8 @@ extension Reader {
     *   - rgbaRep: raw pixels and size
     *   - onComplete: completion block
     */
-   static func data(rgbaRep: RGBARep, channelMap: ChannelPallete = .rgbChannelPallete, onComplete:@escaping OnReadCompleted2) {
-      Splitter.split(rgbaRep: rgbaRep, channelMap: channelMap) { (result: Splitter.SplitResult) in // Start the splitting process
+   static func data(rgbaRep: RGBARep, pallete: ChannelPallete = .rgbChannelPallete, onComplete:@escaping OnReadCompleted2) {
+      Splitter.split(rgbaRep: rgbaRep, pallete: pallete) { (result: Splitter.SplitResult) in // Start the splitting process
          onSplitComplete(result: result, onComplete: onComplete) // readTime += abs(HCCQRReader.splitTime.timeIntervalSinceNow); Swift.print("👉 Splitting rgbaImage done: \(abs(HCCQRReader.splitTime.timeIntervalSinceNow))")
       }
    }
