@@ -22,7 +22,7 @@ extension Colorizer {
     *   - ciImages: qr code images (BGRA8, opaque) (B&W QR-Images)
     *   - config: module and screen, for retina you need 2x scale etc, This is the multiplier. ModuleCount equals 1 pixel. ModuleCount for QRVersion 10 is 57 not counting 2 for margins. So (57+2)*6 = 354, if you want 2xretina its 354 * 2 = 708, rule-set (The color depth you want the HCCQR image in. 4, 8, 16, 32 etc)
     */
-   static func colorize(ciImages: [CIImage], config: HCCQROutput) -> ColorizerResult {
+   static func colorize(ciImages: [CIImage], config: OutputConfig) -> ColorizerResult {
       guard let rgbaRep: RGBARep = try? colorize(ciImages: ciImages, config: config) else { return .failure(.unableToCreateRGBAImageFromQRImages) }
       guard let ciImage: CIImage = try? RGBARepParser.ciImg2(rgbaRep: rgbaRep, useGrayscale: false/*, scale: CGFloat(multipliers.screenScale)*/) else { return .failure(.unableToConvertRGBAToImage)/*Swift.print();return nil*/ }
       rgbaRep.deInitiate() // ⚠️️⚠️️ We dealloc pixels after they are consumed, We get a mem leak in iOS if we don't deallocate the pixels ⚠️️⚠️️
@@ -45,7 +45,7 @@ extension Colorizer {
     *   - ciImages: qr code images (BGRA8, opaque) (B&W QR-Images)
     *   - config: module and screen, for retina you need 2x scale etc, This is the multiplier. ModuleCount equals 1 pixel. ModuleCount for QRVersion 10 is 57 not counting 2 for margins. So (57+2)*6 = 354, if you want 2xretina its 354 * 2 = 708, rule-set (The color depth you want the HCCQR image in. 4, 8, 16, 32 etc)
     */
-   static func colorize(ciImages: [CIImage], config: HCCQROutput) throws -> RGBARep {
+   static func colorize(ciImages: [CIImage], config: OutputConfig) throws -> RGBARep {
       let reps: [MonoRep] = ciImages.compactMap { try? MonoRep.monoRep(ciImg: $0) } // convert QR images to Pixel-data
 //      guard ciImages.count == monotoneImages.count else { throw NSError("Colorize.colorize() - some rgbaImages was not created") }
       let result: RGBARep = colorize(monoReps: reps, config: config)// else { throw NSError("Colorize.colorize() - Unable to create colorized rgbaImage") } // overlay the qr-pixel-data

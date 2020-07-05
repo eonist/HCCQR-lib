@@ -1,6 +1,6 @@
 import Foundation
 
-extension Channel {
+extension Extractor {
    /**
     * The purpouse of this method is to setup static calls, that compare channel and pixel color
     * - Important: ⚠️️ For some reason this method has to be on the same line or else the linter complains

@@ -23,7 +23,7 @@ extension Splitter {
     */
    static func split(rgbaRep: RGBARep, channelMap: ChannelMap = .rgbMap, onComplete:@escaping SplitComplete) {
       // HCCQRReader.splitTime = .init() // Debugging performance
-      Channel.channels(rgbaImg: rgbaRep, channelMap: channelMap ) { (result: Channel.ChannelResult) in
+      Extractor.channels(rgbaImg: rgbaRep, channelMap: channelMap ) { (result: Extractor.ChannelResult) in
          onSplitComplete(result: result, onComplete: onComplete)
       }
    }

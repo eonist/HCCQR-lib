@@ -1,6 +1,8 @@
 import Foundation
 import QR_lib
-
+/**
+ * - Fixme: ⚠️️ Rename to Version?
+ */
 public final class HCCQRVersion {
    /**
     * Get QR version for HCCQR dataCount

@@ -19,7 +19,7 @@ extension Colorizer {
     *   - monoReps: (black / white)-pixel-array
     *   - config: scaling and color rule-set (darkmode ability is possible epending on what colormap is used)
     */
-   static func colorize(monoReps: [MonoRep], config: HCCQROutput) -> RGBARep {
+   static func colorize(monoReps: [MonoRep], config: OutputConfig) -> RGBARep {
       let size: Size = monoReps[0].size // get size from first rep
       let capacity: Int = monoReps[0].capacity // get capacity from first item
       let pixels = UnsafeMutableBufferPointer<Pixel>.allocate(capacity: capacity) // Create a new array // pixels.reserveCapacity(size.width * size.height)

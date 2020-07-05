@@ -12,17 +12,42 @@
 - Splitting "HCCQR-frame-colors" into layers black and white layers
 - Reading QR layers
 
-### Overview:
+### Structure overview:
 
+##### Core:
+| Class | Description |
+| - | - |
+| Reader | Reads HCCQR images |
+| Writer | Creates HCCQR images |
+
+
+##### Util:
 | Class | Description |
 | - | - |
 | Colorizer | Converts b&w layers into a color layer |
-| Pixel | Stores RGB channels |
-| MonoPattern | Stores the order of the stacked b&w layers |
-| Compositor | Composite two luminosity channels into one luminosity channel |
 | Splitter | Extracts RGB and recombine defined colors to QRImage's |
-| Channel | Extracts RGB into luminosity channels |
+| Compositor | Composite two luminosity channels into one luminosity channel |
+| Extractor | Extracts RGB into grayscale luminosity channels |
 
+##### Type:
+| Class | Description |
+| - | - |
+| Pixel | Stores RGB channels |
+| BoolColumn | Stores the order of the stacked b&w layers |
+| BoolRow | Stores the bool array for each b&w layer |
+
+| | |
+| | |
+| | |
+
+##### Config
+| Class | Description |
+| - | - |
+| HCCQRSetup | Stores QRConfig and OutputConfig |
+| OutputConfig | Stores Scale and ColorMap details |
+| QRSetup | Stores QR density and error correction level |
+| | |
+| | |
 
 
 ### Solution

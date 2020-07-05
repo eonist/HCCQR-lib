@@ -2,6 +2,7 @@ import Foundation
 import QR_lib
 /**
  * This class is for testing with random data
+ * - Fixme: ⚠️️ Rename to StringData?
  */
 public final class HCCQRStringData {
    /**

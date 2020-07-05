@@ -2,7 +2,7 @@ import Foundation
 /**
  * Handler
  */
-extension Channel {
+extension Extractor {
    /**
     * Channel completion handler (just makes sure everything completed)
     * 1. GrayscaleRep comes in (white represents strength of the color)
@@ -19,7 +19,7 @@ extension Channel {
 /**
  * Private completion handler
  */
-extension Channel {
+extension Extractor {
    /**
     * When all channels completed
     * - Fixme: ⚠️️ simplify the deinit

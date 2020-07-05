@@ -1,11 +1,10 @@
 import Foundation
 /**
  * Split the 3 R,G,B channels into grayscale lumonocity channels
- * - Fixme: ⚠️️ rename to Extractor?
  */
-public final class Channel {}
+public final class Extractor {}
 
-extension Channel {
+extension Extractor {
    /**
     * Split an RGBAImage 👉 3 GrayRep's consisting of singular (R,G,B) channels
     * 1. RGBAImage comes in with a ChannelMap rule-set
@@ -21,7 +20,7 @@ extension Channel {
    static func channels(rgbaImg: RGBARep, channelMap: ChannelMap = .rgbMap, onComplete:@escaping OnAllChannelsComplete) {
       // - Fixme: ⚠️️ find an error to throw or remove the result mechanism in the oncomplete
       var channels: [GrayRep?] = [GrayRep?](repeating: nil, count: channelMap.count) // Fixme: ⚠️️ we could use unmanaged pointer with capacity as well, might be faster
-      let similarities: [PixelSimilarity] = Channel.similarities(channelMap: channelMap)
+      let similarities: [PixelSimilarity] = Extractor.similarities(channelMap: channelMap)
       similarities.enumerated().forEach { offset, similarity in // 3 assertions
          DispatchQueue.global(qos: .userInitiated).async { // - Fixme: ⚠️️ This could be the cause of random error bug, maybe drop the async and just do it on current thread
             let channel: GrayRep = self.channel(rgbaImg: rgbaImg, asserter: similarity) // Finds the red-channel, blue-channel, green-channel
@@ -35,7 +34,7 @@ extension Channel {
 /**
  * Private helper
  */
-extension Channel {
+extension Extractor {
    /**
     * RGBAImage channel (R, G, B) -> GrayscaleRep
     * 1. Creates a blank grayscale image of a specific size

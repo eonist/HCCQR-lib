@@ -8,7 +8,7 @@ extension Splitter {
     * Contains two QR-images which is the result of 4-color split (R,G,B,(W/B))
     * - Note: when added to an UIImage, you need to set scale to 2.0 and orientation to .up
     */
-   public typealias SplitPayload = (qrImgs: [CIImage], rgbChannels: Channel.RGBChannels)
+   public typealias SplitPayload = (qrImgs: [CIImage], rgbChannels: Extractor.RGBChannels)
    /**
     * CIImgPair and SplitError
     */

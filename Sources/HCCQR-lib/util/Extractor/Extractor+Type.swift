@@ -2,10 +2,11 @@ import Foundation
 /**
  * Grayscale channel
  */
-extension Channel {
+extension Extractor {
    /**
     * Store the luminocity of the Red, green, blue channels. White = 100%, black = 0%
     * - Note: ColorMaps determines their similarity by comparing these r,g,b values
+    * - Fixme: ⚠️️ Maybe rename to Luminosities?
     */
    public typealias RGBChannels = (r: GrayRep, g: GrayRep, b: GrayRep)
    /**
@@ -16,13 +17,13 @@ extension Channel {
 /**
  * Completion type
  */
-extension Channel {
+extension Extractor {
    typealias OnAllChannelsComplete = (ChannelResult) -> Void
 }
 /**
  * Assert
  */
-extension Channel {
+extension Extractor {
    /**
     * Output pixel similarity
     * - Parameter pixel: the input pixel

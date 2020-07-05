@@ -6,4 +6,4 @@ import Foundation
  *   - idx: The array represents the layers of QRImages (true equals black, false equals white)
  *   - color: the color at the index
  */
-public typealias ColorMapItem = (idx: MonoPatternItem, color: Pixel)
+public typealias ColorMapItem = (idx: BoolRow, color: Pixel)

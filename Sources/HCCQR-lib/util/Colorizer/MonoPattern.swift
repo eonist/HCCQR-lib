@@ -4,22 +4,22 @@ import Foundation
  * - Abstract: The boolean pattern that unlocks each color
  * - Fixme: ⚠️️  find better name: turnKey, combination, sequence, BoolSequence? BoolColumn, BoolCol?
  */
-typealias MonoPattern = [MonoPatternItem]
+typealias BoolColumn = [BoolRow]
 /**
- * Rename to BoolRow?
+ * Stores the bool array for each b&w layer
  */
-public typealias MonoPatternItem = [Bool]
+public typealias BoolRow = [Bool]
 
 /**
  * - Note: store the bool array as a const.
  * - Note: uses zip or similar to weave in the data into the color map
  * - Note: store the rgb colors as an array, (same as color channels)
  */
-extension MonoPattern {
+extension BoolColumn {
    /**
     * 4-color-scheme
     */
-   static let fourColorScheme: MonoPattern = [
+   static let fourColorScheme: BoolColumn = [
       [false, true],
       [true, false],
       [true, true],
@@ -29,7 +29,7 @@ extension MonoPattern {
     * 8-color-scheme
     * - Fixme: ⚠️️ the order of these may not be important? other than frequency of use?
     */
-   static let eightColorScheme: MonoPattern = [
+   static let eightColorScheme: BoolColumn = [
       /*2 true*/
       [false, true, true],
       [true, true, false],

@@ -22,8 +22,8 @@ extension Splitter {
     * - Fixme: ⚠️️ Maybe do the result.value in the calling method and not in this method?
     * - Important: ⚠️️ grayscale is better for QR to read than monotone (probably)
     */
-   static func onSplitComplete(result: Channel.ChannelResult, onComplete:@escaping SplitComplete) { // called when the (R,G,B) channels are split
-      guard let channels: Channel.RGBChannels = result.value() else { onComplete(.failure(.unableToCreateRGBAImgs(msg: result.errorStr))); return } // (r,g,b)
+   static func onSplitComplete(result: Extractor.ChannelResult, onComplete:@escaping SplitComplete) { // called when the (R,G,B) channels are split
+      guard let channels: Extractor.RGBChannels = result.value() else { onComplete(.failure(.unableToCreateRGBAImgs(msg: result.errorStr))); return } // (r,g,b)
       // - Fixme: ⚠️️⚠️️⚠️️ Somehow generate the pairs more dynamically 🏀🏀🏀
       let channelPairs: [ChannelPair] = [(channels.b, channels.g), (channels.r, channels.b)] // pair b&g = qr1, pair r$b = qr2
       var qrImgs: [CIImage?] = [CIImage?](repeating: nil, count: channelPairs.count) // Result array
@@ -50,7 +50,7 @@ extension Splitter {
     *   - channels: we need to deInit the channels on completion
     *   - onComplete: final onCompletion handler
     */
-   private static func onCompositeComplete(i: Int, qrImg: CIImage?, qrImgs: inout [CIImage?], channels: Channel.RGBChannels, onComplete: SplitComplete) {
+   private static func onCompositeComplete(i: Int, qrImg: CIImage?, qrImgs: inout [CIImage?], channels: Extractor.RGBChannels, onComplete: SplitComplete) {
       guard let qrImg: CIImage = qrImg else { [channels.r, channels.g, channels.b].deInit(); onComplete(.failure(.noQRImg(i: i))); return }
       qrImgs[i] = qrImg // It matters which order the qrImages came in when you stitch them back together
       if !qrImgs.contains(where: { $0 == nil }) { // Makes sure all images finished
@@ -64,7 +64,7 @@ extension Splitter {
     *   - channels: we need to deInit the channels on completion
     *   - onComplete: final onCompletion handler
     */
-   private static func onAllCompositeComplete(qrImgs: inout [CIImage?], channels: Channel.RGBChannels, onComplete: SplitComplete) {
+   private static func onAllCompositeComplete(qrImgs: inout [CIImage?], channels: Extractor.RGBChannels, onComplete: SplitComplete) {
       [channels.r, channels.g, channels.b].deInit() // Or else we get mem leak /*Swift.print("Splitter.split() - deallocate")*/
       let qrImages: [CIImage] = qrImgs.compactMap { $0 } // get rid of optionality
       onComplete(.success((qrImages, channels)))

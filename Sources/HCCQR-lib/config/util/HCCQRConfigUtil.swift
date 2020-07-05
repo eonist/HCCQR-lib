@@ -1,6 +1,8 @@
 import QR_lib
 import Foundation
-
+/**
+ * - Fixme: ⚠️️ Rename to ConfigUtil ? 
+ */
 public final class HCCQRConfigUtil {
    /**
     * Returns dataCount for (QRVersion, QRMode, ECLevel),

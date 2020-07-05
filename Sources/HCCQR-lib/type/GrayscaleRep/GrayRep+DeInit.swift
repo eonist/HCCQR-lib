@@ -10,7 +10,10 @@ extension GrayRep {
       pixels.deallocate()
    }
 }
-typealias GrayReps = [GrayRep] // gets rid of: Array where Element == GrayRep
+/**
+ * - Note: this gets rid of: Array where Element == GrayRep
+ */
+typealias GrayReps = [GrayRep]
 /**
  * For [GrayscaleRep]
  */

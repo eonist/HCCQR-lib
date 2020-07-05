@@ -11,12 +11,12 @@ extension ColorMap { // Array where Element == ColorMapItem
     * - Parameter useDarkMode: Enables the HCCQR to be inverted and support darkmode
     */
    public static func rgbColorMap(useDarkMode: Bool = false) -> ColorMap {
-      ColorMapUtil.combine(monoPattern: .fourColorScheme, channelMap: .rgbMap, useDarkMode: useDarkMode)
+      ColorMapUtil.combine(boolCol: .fourColorScheme, channelMap: .rgbMap, useDarkMode: useDarkMode)
    }
    /**
     * Standard eight color map
     */
    public static func eightColorMap(useDarkMode: Bool = false) -> ColorMap {
-      ColorMapUtil.combine(monoPattern: .eightColorScheme, channelMap: .eightColorMap, useDarkMode: useDarkMode)
+      ColorMapUtil.combine(boolCol: .eightColorScheme, channelMap: .eightColorMap, useDarkMode: useDarkMode)
    }
 }
