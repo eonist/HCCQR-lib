@@ -15,12 +15,17 @@ extension Extractor {
     * - Fixme: ⚠️️ rename to ExtractionResult
     */
    typealias ChannelResult = Result<RGBChannels, Error>
+   /**
+    * - Note: we keep the this as a typealias, we might want to pass errors, and debug info with the payload in the future
+    */
+   typealias ExtractResult = [GrayRep]
 }
 /**
  * Completion type
  */
 extension Extractor {
    typealias OnAllChannelsComplete = (ChannelResult) -> Void
+   typealias OnExtractionComplete = (ExtractResult) -> Void
 }
 /**
  * Assert

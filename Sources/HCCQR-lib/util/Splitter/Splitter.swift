@@ -20,10 +20,14 @@ extension Splitter {
     * - Abstract: pair b&g = qr1(), pair r&b = qr2()
     * - Note: RGBAImage -> (3x GrayScaleRep) -> (2x QRImg)
     * - Note: the conversion to rgbaImg here is CPU intensive, but in the camera session we get RGBA data, so this is just for debugging etc
+    * - Parameters:
+    *   - rgbaRep: a HCCQR representation
+    *   - pallete: the colors used in the HCCQR (4 to 256 colors)
+    *   - onComplete: the callback when the split process is complete
     */
    static func split(rgbaRep: RGBARep, pallete: ChannelPallete, onComplete:@escaping SplitComplete) {
       // HCCQRReader.splitTime = .init() // Debugging performance
-      Extractor.channels(rgbaImg: rgbaRep, pallete: pallete) { (result: Extractor.ChannelResult) in
+      Extractor.channels(rgbaImg: rgbaRep, pallete: pallete) { (result: Extractor.ExtractResult) in
          onExtractComplete(result: result, onComplete: onComplete)
       }
    }

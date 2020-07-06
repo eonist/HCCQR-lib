@@ -18,7 +18,7 @@ extension Extractor {
     *   - channelMap: rule-set for the splitting process
     *   - onComplete: notify when process has completed
     */
-   static func channels(rgbaImg: RGBARep, pallete: ChannelPallete, onComplete:@escaping OnAllChannelsComplete) {
+   static func channels(rgbaImg: RGBARep, pallete: ChannelPallete, onComplete:@escaping OnExtractionComplete) {
       // - Fixme: ⚠️️ find an error to throw or remove the result mechanism in the oncomplete
       // - Fixme: ⚠️️ we could use unmanaged pointer with capacity as well, might be faster
       var channels: [GrayRep?] = [GrayRep?](repeating: nil, count: pallete.count)

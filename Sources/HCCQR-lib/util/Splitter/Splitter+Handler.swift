@@ -21,19 +21,20 @@ extension Splitter {
     * - Fixme: ⚠️️ Use Dispatchgroup to make the completion more readable
     * - Fixme: ⚠️️ Maybe do the result.value in the calling method and not in this method?
     * - Important: ⚠️️ grayscale is better for QR to read than monotone (probably)
+    * - Parameters:
+    *   - result: array of GrayRep's
+    *   - onComplete: when the extraction is complete, this callback is called
     */
-   static func onExtractComplete(result: Extractor.ChannelResult, onComplete:@escaping SplitComplete) { // called when the (R,G,B) channels are split
-      guard let channels: Extractor.RGBChannels = result.value() else { onComplete(.failure(.unableToCreateRGBAImgs(msg: result.errorStr))); return } // (r,g,b)
-      // - Fixme: ⚠️️⚠️️⚠️️ Somehow generate the pairs more dynamically 🏀🏀🏀
+   static func onExtractComplete(result: Extractor.ExtractResult, onComplete:@escaping SplitComplete) { // called when the (R,G,B) channels are split
+//      guard let channels: Extractor.RGBChannels = result.value() else { onComplete(.failure(.unableToCreateRGBAImgs(msg: result.errorStr))); return } // (r,g,b)
       // - Fixme: ⚠️️ I guess this is reverse for some reason
-      // - Fixme: ⚠️️ 👉 make the channels array, and it should be close 👈 , also disregard first as its white etc
-      let channelPairs: [ChannelPair] = [(channels.b, channels.g), (channels.r, channels.b)] // pair b&g = qr1, pair r$b = qr2
-      var qrImgs: [CIImage?] = [CIImage?](repeating: nil, count: channelPairs.count) // Result array
-      channelPairs.enumerated().forEach { item in // we need index to put things back together while async
+      let channelCombos: ChannelCombinations = .combinations(channels: result)
+      var qrImgs: [CIImage?] = [CIImage?](repeating: nil, count: channelCombos.count) // Result array
+      channelCombos.enumerated().forEach { item in // we need index to put things back together while async
          DispatchQueue.global(qos: .userInitiated).async { // - Fixme: ⚠️️ This could be the cause of random error bug, maybe drop the async and just do it on current thread
-            let qrImg: CIImage = Compositor.composite(grayReps: [item.element.first, item.element.second])
+            let qrImg: CIImage = Compositor.composite(grayReps: item.element)
             DispatchQueue.main.async { // We need to go on the mainthread to manipulate array
-               onCompositeComplete(i: item.offset, qrImg: qrImg, qrImgs: &qrImgs, channels: channels, onComplete: onComplete)
+               onCompositeComplete(i: item.offset, qrImg: qrImg, qrImgs: &qrImgs, channels: result, onComplete: onComplete)
             }
          }
       }
@@ -54,6 +55,8 @@ extension Splitter {
     *   - onComplete: final onCompletion handler
     */
    private static func onCompositeComplete(i: Int, qrImg: CIImage?, qrImgs: inout [CIImage?], channels: Extractor.RGBChannels, onComplete: SplitComplete) {
+      // continue here: 🏀
+         // pass array not tuple
       // - Fixme: ⚠️️ deinit array of channels here
       guard let qrImg: CIImage = qrImg else { [channels.r, channels.g, channels.b].deInit(); onComplete(.failure(.noQRImg(i: i))); return }
       qrImgs[i] = qrImg // It matters which order the qrImages came in when you stitch them back together
