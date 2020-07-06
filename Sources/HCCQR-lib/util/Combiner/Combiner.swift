@@ -1,16 +1,13 @@
 import Foundation
 import CoreImage
 /**
- * Compositor (Takes two grayscale channels and converts to one new b&w QRImage)
- * - Description: Creates a grayscale image by combining two grayscale images
+ * Combiner (Takes many grayscale channels and converts to one new b&w QRImage)
+ * - Description: Creates a grayscale image by combining multiple grayscale images (4 color HCCQR: 2 layers to produce by combining 3 color-channels)
  * - Note: the two grayscale images is the luminosity of two colors, orange, purple etc
  * - Abstract: Used in the Reading of HCCQR
  * - Note: the output can then be read by a QRReader
- * - Fixme: ⚠️️ Will we ever have more than two channels?
- * - Fixme: ⚠️️⚠️️ I think maybe get rid of the array, and pass a and b instead
- * - Fixme: ⚠️️ rename to Combiner?
  */
-final class Compositor {
+final class Combiner {
    /**
     * Photo 👉 Split into Channels 👉 Combine two channels into 1 QR-image (Combines two grayscale images into one)
     * Returns a QR-Image based on two (GrayscaleRep) channels (We use CIImage, because that is what apple prefers to read qr from)
@@ -23,10 +20,9 @@ final class Compositor {
     * - Note: Used in the process to convert HCCQR to Data
     * - Fixme: ⚠️️ Possibly simplify method with defering deinit of composite
     * - Fixme: ⚠️️ Defer deinit instead of having two deInit calls. Research this first, could make this method cleaner
-    * - Fixme: ⚠️️⚠️️ I think maybe get rid of the array, and pass a and b instead
     */
-   static func composite(grayReps: GrayReps) -> CIImage {
-      let composition: GrayRep = composite(grayReps: grayReps) // smash two grayscaleReps together
+   static func combine(grayReps: GrayReps) -> CIImage {
+      let composition: GrayRep = combine(grayReps: grayReps) // smash two grayscaleReps together
       let img: CIImage = GrayRepParser.ciImage(grayscaleRep: composition)
       composition.deInit() // We de-init the Img after we have consumed it to avoid mem leak
       return img
@@ -35,7 +31,7 @@ final class Compositor {
 /**
  * Private static helper
  */
-extension Compositor {
+extension Combiner {
    /**
     * Photo 👉 Split into Channels -> Combine 2 channels into 1 QR-image (Combines many grayscale reps into one)
     * - Abstract: we overlay two b&w to produce one b&w image (to be used as a QR-Image to be read from)
@@ -56,7 +52,7 @@ extension Compositor {
     * - Fixme: ⚠️️ The creation of the black representation, can probably be done once and then copied in subsequent calls, it was tried but c-pointer copying and dealoc is compolicated
     * - Parameter grayReps: An array of GrayscaleRep to be composited together into 1 RGBARep
     */
-   private static func composite(grayReps: GrayReps) -> GrayRep {
+   private static func combine(grayReps: GrayReps) -> GrayRep {
       let first: GrayRep = grayReps[0] // get first layer
       // - Fixme: ⚠️️ Could be the problem that we use white, to avoid inverting
       let blankRep: GrayRep = .grayRep(pixel: .black, size: first.size)// .grayscaleRep(pixel: .black, size: first.size) // because white is 255

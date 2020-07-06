@@ -9,7 +9,7 @@ extension Extractor {
     * - Note: we keep the this as a typealias, we might want to pass errors, and debug info with the payload in the future
     * - Fixme: ⚠️️ rename to GrayReps?, move to global scope
     */
-   typealias OnExtractionComplete = (GrayReps) -> Void
+   typealias OnExtractComplete = (GrayReps) -> Void
 }
 /**
  * Assert
