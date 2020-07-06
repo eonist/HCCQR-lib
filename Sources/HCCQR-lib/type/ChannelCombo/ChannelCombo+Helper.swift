@@ -5,6 +5,8 @@ import Foundation
 extension ChannelCombos {
    /**
     * Returns the the channel combinations for each layer
+    * - Note: the output ignores all true values, i.e posetivr (aka white etc)
+    * - Note: The output will look something like this for: [.white,.red,.green,.blue]) // [[.blue,.red], [.red, .green]]
     * - Returns: For 4 Colored HCCQR, 2 channelCombo's are returned (8 = 3, 16, 4...etc)
     * - Parameters:
     *   - channels: there will be 4 channels for 4-color HCCQR (4-256)

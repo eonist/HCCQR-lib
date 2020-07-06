@@ -148,6 +148,7 @@
 		F1537F0124B3598200160FEC /* ChannelCombo+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1537F0024B3598200160FEC /* ChannelCombo+Helper.swift */; };
 		F1537F0224B3598200160FEC /* ChannelCombo+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1537F0024B3598200160FEC /* ChannelCombo+Helper.swift */; };
 		F1537F0324B3598200160FEC /* ChannelCombo+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1537F0024B3598200160FEC /* ChannelCombo+Helper.swift */; };
+		F1537F0724B362E300160FEC /* ChannelComboTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1537F0424B362E300160FEC /* ChannelComboTest.swift */; };
 		F15C9F7D23BA6FD000F9D524 /* RGBARep+Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15C9F7C23BA6FD000F9D524 /* RGBARep+Const.swift */; };
 		F15C9F7E23BA6FD000F9D524 /* RGBARep+Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15C9F7C23BA6FD000F9D524 /* RGBARep+Const.swift */; };
 		F15C9F8023BA747800F9D524 /* Writer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15C9F7F23BA747800F9D524 /* Writer.swift */; };
@@ -407,6 +408,7 @@
 		F1537EF824B331ED00160FEC /* ChannelCombo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCombo.swift; sourceTree = "<group>"; };
 		F1537EFC24B353E500160FEC /* GrayReps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrayReps.swift; sourceTree = "<group>"; };
 		F1537F0024B3598200160FEC /* ChannelCombo+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChannelCombo+Helper.swift"; sourceTree = "<group>"; };
+		F1537F0424B362E300160FEC /* ChannelComboTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelComboTest.swift; sourceTree = "<group>"; };
 		F15C9F7C23BA6FD000F9D524 /* RGBARep+Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RGBARep+Const.swift"; sourceTree = "<group>"; };
 		F15C9F7F23BA747800F9D524 /* Writer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Writer.swift; sourceTree = "<group>"; };
 		F162145321FC7138005297DE /* SimpleHCCQRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleHCCQRView.swift; sourceTree = "<group>"; };
@@ -980,6 +982,7 @@
 			isa = PBXGroup;
 			children = (
 				F165C25023A00D35005D30EC /* ScaleTesting.swift */,
+				F1537F0424B362E300160FEC /* ChannelComboTest.swift */,
 				F165C25323A01044005D30EC /* QRTesting.swift */,
 				F165C26023A020E2005D30EC /* MemLeakTest.swift */,
 				F1BFEFD223A06899007F4261 /* ColorishTest.swift */,
@@ -1669,6 +1672,7 @@
 				F1690ABE24B2015E000EC61A /* QRSetup.swift in Sources */,
 				F1471FD1248C00C0008A01AD /* Pixel+Const.swift in Sources */,
 				F1471FEB248C052E008A01AD /* Extractor+Type.swift in Sources */,
+				F1537F0724B362E300160FEC /* ChannelComboTest.swift in Sources */,
 				F1471FC8248C0085008A01AD /* RGBARep+Const.swift in Sources */,
 				F1487F16249F84D400265A81 /* SplitError.swift in Sources */,
 				F1472019248C087D008A01AD /* Image+Extension.swift in Sources */,

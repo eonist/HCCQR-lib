@@ -29,7 +29,8 @@ extension Splitter {
 //      guard let channels: Extractor.RGBChannels = result.value() else { onComplete(.failure(.unableToCreateRGBAImgs(msg: result.errorStr))); return } // (r,g,b)
       // - Fixme: ⚠️️ I guess this is reverse for some reason
       let channelCombos: ChannelCombos = .combos(channels: result)
-      // 🏀
+      Swift.print("channelCombos.count:  \(channelCombos.count)") // should be 2 for 4 colors
+      // 🏀 things should now work, start testing
       var qrImgs: [CIImage?] = [CIImage?](repeating: nil, count: channelCombos.count) // Result array
       channelCombos.enumerated().forEach { offset, grayReps in // we need index to put things back together while async
          DispatchQueue.global(qos: .userInitiated).async { // - Fixme: ⚠️️ This could be the cause of random error bug, maybe drop the async and just do it on current thread

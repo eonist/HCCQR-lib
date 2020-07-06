@@ -22,7 +22,7 @@ final class Combiner {
     * - Fixme: ⚠️️ Defer deinit instead of having two deInit calls. Research this first, could make this method cleaner
     */
    static func combine(grayReps: GrayReps) -> CIImage {
-      let composition: GrayRep = combine(grayReps: grayReps) // smash two grayscaleReps together
+      let composition: GrayRep = combine(grayReps: grayReps) // smash multiple grayscaleReps together
       let img: CIImage = GrayRepParser.ciImage(grayscaleRep: composition)
       composition.deInit() // We de-init the Img after we have consumed it to avoid mem leak
       return img
