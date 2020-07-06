@@ -14,16 +14,9 @@ class ColorPalleteUtil {
     *   - useDarkMode: Use black or white as background in the QR graphics
     */
    static func combine(boolCol: BoolColumn, pallete: ChannelPallete, useDarkMode: Bool = false) -> ColorPallete {
-      let newPallet: ChannelPallete = {
-         if useDarkMode {
-            var pallete = pallete // make copy
-            pallete.swapAt(0, pallete.count - 1) // swap light for dark color
-            return pallete
-         }
-         return pallete
-      }()
-      guard boolCol.count == newPallet.count else { fatalError("boolCol.count and pallete.count does not match") }
-      return Array(zip(boolCol, newPallet))
+      guard boolCol.count == pallete.count else { fatalError("boolCol.count and pallete.count does not match") }
+      let pallete: ChannelPallete = .pallete(pallete: pallete, darkMode: useDarkMode)
+      return Array(zip(boolCol, pallete))
    }
 }
 //let map: ChannelPallete = {

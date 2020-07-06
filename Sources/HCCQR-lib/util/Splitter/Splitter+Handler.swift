@@ -6,7 +6,7 @@ import ResultSugar
  */
 extension Splitter {
    /**
-    * onComplete (New ⚠️️)
+    * onSplitComplete
     * 1. GrayScaleRepresentations representing the channels R,G,B comes in
     * 2. Channels are grouped into pairs
     * 3. QR-Image Result array is created
@@ -17,17 +17,19 @@ extension Splitter {
     * - Note: green means black in layer-1 only
     * - Note: red means black in layer-2 only
     * - Note: white means white in both layers
-    * - Fixme: ⚠️️ rename to onChannelSplitComplete?
+    * - Fixme: ⚠️️  rename onComplete to onSplitComplete
     * - Fixme: ⚠️️ Use Dispatchgroup to make the completion more readable
     * - Fixme: ⚠️️ Maybe do the result.value in the calling method and not in this method?
     * - Important: ⚠️️ grayscale is better for QR to read than monotone (probably)
     */
-   static func onSplitComplete(result: Extractor.ChannelResult, onComplete:@escaping SplitComplete) { // called when the (R,G,B) channels are split
+   static func onExtractComplete(result: Extractor.ChannelResult, onComplete:@escaping SplitComplete) { // called when the (R,G,B) channels are split
       guard let channels: Extractor.RGBChannels = result.value() else { onComplete(.failure(.unableToCreateRGBAImgs(msg: result.errorStr))); return } // (r,g,b)
       // - Fixme: ⚠️️⚠️️⚠️️ Somehow generate the pairs more dynamically 🏀🏀🏀
+      // - Fixme: ⚠️️ I guess this is reverse for some reason
+      // - Fixme: ⚠️️ 👉 make the channels array, and it should be close 👈 , also disregard first as its white etc
       let channelPairs: [ChannelPair] = [(channels.b, channels.g), (channels.r, channels.b)] // pair b&g = qr1, pair r$b = qr2
       var qrImgs: [CIImage?] = [CIImage?](repeating: nil, count: channelPairs.count) // Result array
-      channelPairs.enumerated().forEach { item in
+      channelPairs.enumerated().forEach { item in // we need index to put things back together while async
          DispatchQueue.global(qos: .userInitiated).async { // - Fixme: ⚠️️ This could be the cause of random error bug, maybe drop the async and just do it on current thread
             let qrImg: CIImage = Compositor.composite(grayReps: [item.element.first, item.element.second])
             DispatchQueue.main.async { // We need to go on the mainthread to manipulate array
@@ -43,6 +45,7 @@ extension Splitter {
 extension Splitter {
    /**
     * Composite complete
+    * - Fixme: ⚠️️  rename onComplete to onSplitComplete
     * - Parameters:
     *   - i: index (async so, they come in non cronologically)
     *   - qrImg: the current qr image
@@ -51,6 +54,7 @@ extension Splitter {
     *   - onComplete: final onCompletion handler
     */
    private static func onCompositeComplete(i: Int, qrImg: CIImage?, qrImgs: inout [CIImage?], channels: Extractor.RGBChannels, onComplete: SplitComplete) {
+      // - Fixme: ⚠️️ deinit array of channels here
       guard let qrImg: CIImage = qrImg else { [channels.r, channels.g, channels.b].deInit(); onComplete(.failure(.noQRImg(i: i))); return }
       qrImgs[i] = qrImg // It matters which order the qrImages came in when you stitch them back together
       if !qrImgs.contains(where: { $0 == nil }) { // Makes sure all images finished
@@ -59,6 +63,7 @@ extension Splitter {
    }
    /**
     * When all qrImgs finished successfully
+    * - Fixme: ⚠️️  rename onComplete to onSplitComplete
     * - Parameters:
     *   - qrImgs: the result array
     *   - channels: we need to deInit the channels on completion

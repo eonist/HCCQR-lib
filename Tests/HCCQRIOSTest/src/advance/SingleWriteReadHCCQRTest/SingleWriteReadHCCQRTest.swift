@@ -10,10 +10,10 @@ final class SingleWriteReadHCCQRTest {}
  * Test reading and writing
  * ## Examples:
  * SingleHCCQRTest.testCreatingHCCQRImage { isMatching in Swift.print("isMatching:  \(isMatching)") }
- * - Note: we cant combine read and write time, so we must have start time
+ * - Note: we can't combine read and write time, so we must have start time
  */
 extension SingleWriteReadHCCQRTest {
-   typealias OnComplete = (Bool) -> Void
+   typealias OnComplete = (Bool) -> Void // - Fixme: ⚠️️ rename to onAllComplete
    static var startTime: Date = .init()
    static var readTime: Date = .init()
    static var writeTime: Date = .init()
@@ -21,11 +21,8 @@ extension SingleWriteReadHCCQRTest {
     * Test HCCQRImage creation (creates a single HCCQR image, then read it
     */
    static func testWritingHCCQRImage(onComplete: @escaping OnComplete) {
-      // get this to work again 👌
       let setup: HCCQRSetup = .init(qr: .init(qrVersion: .v8, ecLevel: .l), output: .init(scale: (6, 2)))
-//      let config: QRConfig = (setup.qrVersion, .byte, setup.ecLevel) // Config
       guard let randomData: Data = HCCQRStringData.randomData(setup: setup) else { Swift.print("err"); onComplete(false); return }
-      _ = randomData
       startTime = .init()
       writeTime = .init() // We start the write clock here (random data creation time isn't interesting)
       DispatchQueue.global(qos: .userInitiated).async {

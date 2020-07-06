@@ -8,6 +8,7 @@ import CoreImage
  * - Note: the output can then be read by a QRReader
  * - Fixme: ⚠️️ Will we ever have more than two channels?
  * - Fixme: ⚠️️⚠️️ I think maybe get rid of the array, and pass a and b instead
+ * - Fixme: ⚠️️ rename to Combiner?
  */
 final class Compositor {
    /**

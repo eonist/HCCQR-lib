@@ -3,7 +3,7 @@ import XCTest
 
 class HCCQRIOSTest: XCTestCase {
    func testExample() {
-      simpleTests()
+//      simpleTests()
       advanceTests()
    }
    /**
@@ -26,11 +26,11 @@ class HCCQRIOSTest: XCTestCase {
     */
    func advanceTests() {
       Swift.print("advanceTests")
-      testReadingHCCQRPhoto() // ✅ ⚠️️ only works in xcode-simulator, because no assets in spm,
       testSingleWriteRead() // ✅ "syntethic-HCCQR-images"
-      testCVImageBuffer() // ✅ Test the new buffer -> RGBA (syntethic)
-      testBulk() // ✅ Read and write multiple "syntetic-HCCQR-images"
-      testReadingManyPhotos() // ✅ Reading many photos
+//      testCVImageBuffer() // ✅ Test the new buffer -> RGBA (syntethic)
+//      testBulk() // ✅ Read and write multiple "syntetic-HCCQR-images"
+//      testReadingHCCQRPhoto() // ✅ ⚠️️ only works in xcode-simulator, because no assets in spm
+//      testReadingManyPhotos() // ✅ Reading many photos
    }
 }
 /**

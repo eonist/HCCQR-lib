@@ -1,7 +1,7 @@
 import QR_lib
 import Foundation
 /**
- * - Fixme: ⚠️️ Rename to ConfigUtil ? 
+ * - Fixme: ⚠️️ Rename to ConfigUtil, HCCQRSetupUtil ? 
  */
 public final class HCCQRConfigUtil {
    /**
@@ -17,5 +17,14 @@ public final class HCCQRConfigUtil {
    public static func dataCount(config: QRConfig, colorDepth: Int) -> Int {
       let dataCount: Int = QRConfigUtil.dataCount(config: config)
       return dataCount * colorDepth
+   }
+   /**
+    * Returns data in array
+    * - Note: used to get chunks of data from one big data, in order to populate each layer with a data-set
+    */
+   public static func data(data: Data, config: HCCQRSetup) -> [Data] {
+      let length: Int = data.count / config.map.layerCount
+      let dataArr: [Data] = data.chunk(size: length) // Split the data in to the num of layers
+      return dataArr
    }
 }

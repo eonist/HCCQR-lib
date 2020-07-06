@@ -29,9 +29,9 @@ HCCQR is the natural progression of black and white QR. HCCQR can store up to 8 
 | Class | Description |
 | - | - |
 | Colorizer | Converts b&w layers into a color layer |
-| Splitter | Extracts RGB and recombine defined colors to QRImage's |
-| Compositor | Composite two luminosity channels into one luminosity channel |
+| Splitter | Extracts colors and recombine the colors to QRImage's |
 | Extractor | Extracts RGB into grayscale luminosity channels |
+| Compositor | Composite pairs of luminosity channels into one luminosity channel |
 
 ##### Type:
 | Class | Description |
