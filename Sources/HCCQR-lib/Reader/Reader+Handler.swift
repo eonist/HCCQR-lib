@@ -57,7 +57,7 @@ extension Reader {
     *   - dataAndQuad: the item to insert into the result array
     *   - error: error from caller
     *   - dataAndFrames: result array
-    *   - payload: 2 CIImage's
+    *   - payload: multiple CIImage's
     *   - onComplete: completion block with DataAndImage
     */
    private static func onReadQRCodeComplete(i: Int, dataAndQuad: QRReader.DataAndQuad?, dataAndQuads: inout [QRReader.DataAndQuad?], payload: Splitter.SplitPayload, error: Error?, onComplete: OnReadCompleted2 ) {

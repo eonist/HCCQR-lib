@@ -3,8 +3,8 @@ import XCTest
 
 class HCCQRIOSTest: XCTestCase {
    func testExample() {
-//      simpleTests()
-      advanceTests()
+      simpleTests()
+//      advanceTests()
    }
    /**
     * Utility tests etc
@@ -12,12 +12,12 @@ class HCCQRIOSTest: XCTestCase {
    func simpleTests() {
       Swift.print("simpleTests")
       XCTAssertEqual(ScaleTesting.testScalingRGBARep(), 4)
-      XCTAssertTrue(MonoPixelColorization.testColorizingMonoPixel()) // ✅ b&w-pixels (mono) to color-pixels
-      XCTAssertTrue(ColorishTest.testThreshold()) // ✅
-      XCTAssertTrue(ColorishTest.testColorish()) // ✅
-      XCTAssertTrue(ColorishTest.testWashedOutColor()) // ✅
-      XCTAssertTrue(QRTesting.testQRGeneration()) // ?
-      XCTAssertTrue(ColorishTest.testUInt8Aritmitic())
+//      XCTAssertTrue(MonoPixelColorization.testColorizingMonoPixel()) // ✅ b&w-pixels (mono) to color-pixels
+//      XCTAssertTrue(ColorishTest.testThreshold()) // ✅
+//      XCTAssertTrue(ColorishTest.testColorish()) // ✅
+//      XCTAssertTrue(ColorishTest.testWashedOutColor()) // ✅
+//      XCTAssertTrue(QRTesting.testQRGeneration()) // ?
+//      XCTAssertTrue(ColorishTest.testUInt8Aritmitic())
 //      XCTAssertTrue(CIImageTest.testCIImage()) // 🚫
    }
    /**
@@ -26,7 +26,7 @@ class HCCQRIOSTest: XCTestCase {
     */
    func advanceTests() {
       Swift.print("advanceTests")
-      testSingleWriteRead() // ✅ "syntethic-HCCQR-images"
+//      testSingleWriteRead() // ✅ "syntethic-HCCQR-images"
 //      testCVImageBuffer() // ✅ Test the new buffer -> RGBA (syntethic)
 //      testBulk() // ✅ Read and write multiple "syntetic-HCCQR-images"
 //      testReadingHCCQRPhoto() // ✅ ⚠️️ only works in xcode-simulator, because no assets in spm

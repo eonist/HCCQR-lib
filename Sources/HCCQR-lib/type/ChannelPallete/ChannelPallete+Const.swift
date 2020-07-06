@@ -1,6 +1,8 @@
 import Foundation
 /**
- * Custom ChannelMap
+ * Custom ChannelPallete
+ * - Note: the first color is the background color
+ * - Note: to enable darkmode, use a dark color as the first color
  */
 extension ChannelPallete {
    /**

@@ -25,7 +25,7 @@ extension ViewController {
 //      self.view.addSubview(uiImageView)
       Splitter.split(rgbaRep: rgbaRep, pallete: .fourChannels) { (result: Splitter.SplitResult) in // Start the splitting process
          guard let payload: Splitter.SplitPayload = result.value() else { fatalError("err") }
-         let redChannel: GrayRep = payload.rgbChannels.r
+         let redChannel: GrayRep = payload.rgbChannels[1]
 //         redChannel.pixels.enumerated().forEach {
 //            if $0.element > 0 {
 ////               Swift.print("$0.element:  \($0.element)")

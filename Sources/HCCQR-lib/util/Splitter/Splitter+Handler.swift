@@ -25,16 +25,17 @@ extension Splitter {
     *   - result: array of GrayRep's
     *   - onComplete: when the extraction is complete, this callback is called
     */
-   static func onExtractComplete(result: Extractor.ExtractResult, onComplete:@escaping SplitComplete) { // called when the (R,G,B) channels are split
+   static func onExtractComplete(result: GrayReps, onComplete:@escaping SplitComplete) { // called when the (R,G,B) channels are split
 //      guard let channels: Extractor.RGBChannels = result.value() else { onComplete(.failure(.unableToCreateRGBAImgs(msg: result.errorStr))); return } // (r,g,b)
       // - Fixme: ⚠️️ I guess this is reverse for some reason
-      let channelCombos: ChannelCombinations = .combinations(channels: result)
+      let channelCombos: ChannelCombos = .combos(channels: result)
+      // 🏀
       var qrImgs: [CIImage?] = [CIImage?](repeating: nil, count: channelCombos.count) // Result array
-      channelCombos.enumerated().forEach { item in // we need index to put things back together while async
+      channelCombos.enumerated().forEach { offset, grayReps in // we need index to put things back together while async
          DispatchQueue.global(qos: .userInitiated).async { // - Fixme: ⚠️️ This could be the cause of random error bug, maybe drop the async and just do it on current thread
-            let qrImg: CIImage = Compositor.composite(grayReps: item.element)
+            let qrImg: CIImage = Compositor.composite(grayReps: grayReps)
             DispatchQueue.main.async { // We need to go on the mainthread to manipulate array
-               onCompositeComplete(i: item.offset, qrImg: qrImg, qrImgs: &qrImgs, channels: result, onComplete: onComplete)
+               onCompositeComplete(i: offset, qrImg: qrImg, qrImgs: &qrImgs, channels: result, onComplete: onComplete)
             }
          }
       }
@@ -54,11 +55,9 @@ extension Splitter {
     *   - channels: we need to deInit the channels on completion
     *   - onComplete: final onCompletion handler
     */
-   private static func onCompositeComplete(i: Int, qrImg: CIImage?, qrImgs: inout [CIImage?], channels: Extractor.RGBChannels, onComplete: SplitComplete) {
-      // continue here: 🏀
-         // pass array not tuple
+   private static func onCompositeComplete(i: Int, qrImg: CIImage?, qrImgs: inout [CIImage?], channels: GrayReps, onComplete: SplitComplete) {
       // - Fixme: ⚠️️ deinit array of channels here
-      guard let qrImg: CIImage = qrImg else { [channels.r, channels.g, channels.b].deInit(); onComplete(.failure(.noQRImg(i: i))); return }
+      guard let qrImg: CIImage = qrImg else { channels.deInit(); onComplete(.failure(.noQRImg(i: i))); return }
       qrImgs[i] = qrImg // It matters which order the qrImages came in when you stitch them back together
       if !qrImgs.contains(where: { $0 == nil }) { // Makes sure all images finished
          onAllCompositeComplete(qrImgs: &qrImgs, channels: channels, onComplete: onComplete)
@@ -72,8 +71,8 @@ extension Splitter {
     *   - channels: we need to deInit the channels on completion
     *   - onComplete: final onCompletion handler
     */
-   private static func onAllCompositeComplete(qrImgs: inout [CIImage?], channels: Extractor.RGBChannels, onComplete: SplitComplete) {
-      [channels.r, channels.g, channels.b].deInit() // Or else we get mem leak /*Swift.print("Splitter.split() - deallocate")*/
+   private static func onAllCompositeComplete(qrImgs: inout [CIImage?], channels: GrayReps, onComplete: SplitComplete) {
+      channels.deInit() // Or else we get mem leak /*Swift.print("Splitter.split() - deallocate")*/
       let qrImages: [CIImage] = qrImgs.compactMap { $0 } // get rid of optionality
       onComplete(.success((qrImages, channels)))
    }

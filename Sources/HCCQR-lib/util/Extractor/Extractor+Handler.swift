@@ -27,7 +27,7 @@ extension Extractor {
     */
    private static func onAllChannelsComplete(channels: [GrayRep?], rgbaImg: RGBARep, onComplete: OnExtractionComplete) {
       Swift.print("channels.count:  \(channels.count)")
-      let arr: [GrayRep] = channels.compactMap { $0 } // removes optionality
+      let arr: GrayReps = channels.compactMap { $0 } // removes optionality
       rgbaImg.deInitiate() // deinit rgbaImage after it has been consumed, to avoid memleak // ⚠️️ moving the deInititiate here is new, was bellow oncomplete before, should have no implication
       onComplete([arr[0], arr[1], arr[2]])
    }

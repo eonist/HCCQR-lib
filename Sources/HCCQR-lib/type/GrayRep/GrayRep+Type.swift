@@ -1,6 +1,6 @@
 import Foundation
 /**
- * New
+ * For processing
  */
 extension GrayRep {
    internal typealias FunctorCall = ((Pixel) -> UInt8)

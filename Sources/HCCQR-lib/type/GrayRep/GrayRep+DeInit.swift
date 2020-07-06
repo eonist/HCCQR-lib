@@ -11,10 +11,6 @@ extension GrayRep {
    }
 }
 /**
- * - Note: this gets rid of: Array where Element == GrayRep
- */
-typealias GrayReps = [GrayRep]
-/**
  * For [GrayscaleRep]
  */
 extension GrayReps {

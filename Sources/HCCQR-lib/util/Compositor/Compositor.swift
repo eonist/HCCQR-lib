@@ -25,7 +25,7 @@ final class Compositor {
     * - Fixme: ⚠️️ Defer deinit instead of having two deInit calls. Research this first, could make this method cleaner
     * - Fixme: ⚠️️⚠️️ I think maybe get rid of the array, and pass a and b instead
     */
-   static func composite(grayReps: [GrayRep]) -> CIImage {
+   static func composite(grayReps: GrayReps) -> CIImage {
       let composition: GrayRep = composite(grayReps: grayReps) // smash two grayscaleReps together
       let img: CIImage = GrayRepParser.ciImage(grayscaleRep: composition)
       composition.deInit() // We de-init the Img after we have consumed it to avoid mem leak
@@ -56,7 +56,7 @@ extension Compositor {
     * - Fixme: ⚠️️ The creation of the black representation, can probably be done once and then copied in subsequent calls, it was tried but c-pointer copying and dealoc is compolicated
     * - Parameter grayReps: An array of GrayscaleRep to be composited together into 1 RGBARep
     */
-   private static func composite(grayReps: [GrayRep]) -> GrayRep {
+   private static func composite(grayReps: GrayReps) -> GrayRep {
       let first: GrayRep = grayReps[0] // get first layer
       // - Fixme: ⚠️️ Could be the problem that we use white, to avoid inverting
       let blankRep: GrayRep = .grayRep(pixel: .black, size: first.size)// .grayscaleRep(pixel: .black, size: first.size) // because white is 255
