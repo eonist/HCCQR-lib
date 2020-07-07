@@ -9,7 +9,7 @@ import CoreImage
  */
 final class Combiner {
    /**
-    * Photo 👉 Split into Channels 👉 Combine two channels into 1 QR-image (Combines two grayscale images into one)
+    * Combine color-channels into 1 QR-image (Combines multiple grayscale representations into one QR-Image)
     * Returns a QR-Image based on two (GrayscaleRep) channels (We use CIImage, because that is what apple prefers to read qr from)
     * 1. GrayScaleRep-layers comes in
     * 2. GrayscaleRep-layers are composited together
@@ -20,6 +20,7 @@ final class Combiner {
     * - Note: Used in the process to convert HCCQR to Data
     * - Fixme: ⚠️️ Possibly simplify method with defering deinit of composite
     * - Fixme: ⚠️️ Defer deinit instead of having two deInit calls. Research this first, could make this method cleaner
+    * - Parameter grayReps: color-channels in grayscale representations (4 for 4-color HCCQR)
     */
    static func combine(grayReps: GrayReps) -> CIImage {
       let composition: GrayRep = combine(grayReps: grayReps) // smash multiple grayscaleReps together

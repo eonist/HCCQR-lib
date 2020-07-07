@@ -18,8 +18,10 @@ extension ChannelCombos {
       let numOfColors: Int = channels.count // Int(pow(Double(layerCount), Double(layerCount))) // 2 = 4, 3 = 8, 4 = 16..etc
       let boolColumn: BoolColumn = .sequence(numOfColors)
       let channelCombinations: [[Int]] = layerIndicies.map { rowIdx(col: boolColumn, layerIdx: $0) }
-      return channelCombinations.map { channelCombination in
-         channelCombination.map { channelIndex in
+      // 🏀 this is the error
+      Swift.print("channelCombinations:  \(channelCombinations)")
+      return channelCombinations.map { (channelCombination: [Int]) in
+         channelCombination.map { (channelIndex: Int) in
             channels[channelIndex]
          }
       }

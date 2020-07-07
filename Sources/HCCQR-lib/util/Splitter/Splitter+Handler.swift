@@ -74,8 +74,8 @@ extension Splitter {
     *   - onComplete: final onCompletion handler
     */
    private static func onAllCombineComplete(qrImgs: inout [CIImage?], channels: GrayReps, onComplete: SplitComplete) {
-      Swift.print("⚠️️ Remember to deinit, and pass empty array ⚠️️")
-      channels.deInit() // Or else we get mem leak /* Swift.print("Splitter.split() - deallocate") */
+      // ⚠️️ Remember to deinit, and pass empty array, when debug etc ⚠️️
+//      channels.deInit() // Or else we get mem leak /* Swift.print("Splitter.split() - deallocate") */
       let qrImages: [CIImage] = qrImgs.compactMap { $0 } // get rid of optionality
       onComplete(.success((qrImages, channels))) // - Fixme: ⚠️️ if you pass on the channels, after they are deInit, will they still be readable?
    }

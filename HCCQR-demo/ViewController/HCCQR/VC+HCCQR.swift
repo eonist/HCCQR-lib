@@ -18,8 +18,11 @@ extension ViewController {
             self.view.addSubview(imgView)
          }()
          _ = { // ⚠️️ enable this again ⚠️️ if u want to read
-            Reader.data(rgbaRep: rgbaRep, pallete: .pallete(pallete: .fourChannels, darkMode: true)) { result in // Split the hccqrImg
-               self.onReadComplete(result: result) { success in Swift.print("dataAndImages success: \(success)") }
+            Reader.data(rgbaRep: rgbaRep, pallete: .pallete(pallete: .fourChannels, darkMode: true)) { (result: Reader.ReadResult2) in // Split the hccqrImg
+               self.onReadComplete(result: result) {
+                  // why is this called 2 🏀
+                  success in Swift.print("Test - dataAndImages success: \(success)")
+               }
             }
          }()
       }
