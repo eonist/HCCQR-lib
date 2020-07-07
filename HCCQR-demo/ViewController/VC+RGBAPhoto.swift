@@ -42,9 +42,10 @@ extension ViewController {
          case let .unableToExtractQRData(_/*msg*/, _/*ciImage*/, colorChannels):
             Swift.print("⚠️️ onReadComplete - unableToExtractQRData ⚠️️")
             _ = {
-               let redChannel: GrayRep = colorChannels[2]
-               let redChannelImg: CIImage = GrayRepParser.ciImage(grayscaleRep: redChannel)
-               let img = UIImage(ciImage: redChannelImg, scale: 2, orientation: .up)
+               let colorChannel: GrayRep = colorChannels[2]
+               Swift.print("colorChannel.capacity:  \(colorChannel.capacity)")
+               let channelImg: CIImage = GrayRepParser.ciImage(grayscaleRep: colorChannel)
+               let img = UIImage(ciImage: channelImg, scale: 2, orientation: .up)
                let imgView: UIImageView = .init(image: img)
                self.view.addSubview(imgView)
             }()

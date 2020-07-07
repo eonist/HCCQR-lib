@@ -43,7 +43,7 @@ extension Combiner {
     * - Note: We use array to support richer color pallets in the future
     * - Note: The pixels are never overwritten
     * - Note: Should really be private, but some tests use it
-    * - Note: it's tempting to do reduce on the forEach loop, but its not possible etc
+    * - Note: it's tempting to do reduce on the forEach loop, but it's not possible etc
     * - Note: recreating the blankRep everytime seems superflouse, but storing a cache of it isnt that straight forward
     * - Fixme: ⚠️️ Can the compositing be done simpler, more efficient?
     * - Fixme: ⚠️️ Make a method that returns CIImage?
@@ -53,9 +53,9 @@ extension Combiner {
     * - Parameter grayReps: An array of GrayscaleRep to be composited together into 1 RGBARep
     */
    private static func combine(grayReps: GrayReps) -> GrayRep {
-      let first: GrayRep = grayReps[0] // get first layer
+      let size: Size = grayReps[0].size // get size from first layer
       // - Fixme: ⚠️️ Could be the problem that we use white, to avoid inverting
-      let blankRep: GrayRep = .grayRep(pixel: .black, size: first.size)// .grayscaleRep(pixel: .black, size: first.size) // because white is 255
+      let blankRep: GrayRep = .grayRep(pixel: .black, size: size)// .grayscaleRep(pixel: .black, size: first.size) // because white is 255
       return GrayRepModifier.process(input: blankRep) { (index: Int, pixel: UInt8) -> UInt8 in // Loop things
          var pixel: UInt8 = pixel
          grayReps.forEach { (grayscaleImage: GrayRep) in // loop over every image in the list, this is inside here because the process method uses concurrent_apply

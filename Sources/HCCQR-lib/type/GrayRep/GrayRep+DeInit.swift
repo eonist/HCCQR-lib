@@ -10,15 +10,3 @@ extension GrayRep {
       pixels.deallocate()
    }
 }
-/**
- * For [GrayscaleRep]
- */
-extension GrayReps {
-   /**
-    * Bulk deInit
-    * - Abstract: deInit multiple reps
-    */
-   func deInit() {
-      self.forEach { $0.deInit() }
-   }
-}

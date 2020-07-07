@@ -2,7 +2,8 @@ import AVFoundation
 import QuartzCore
 import CoreImage
 /**
- * Reads camera output / image output
+ * Reads camera input
+ * - Note: also supports reading generated mock CVBuffere image
  * - Abstract: Converts image, to rgb and SambleBuffer to RGB
  * - Note: Ref context for macos might need: https://stackoverflow.com/a/43893381/5389500
  */
@@ -36,6 +37,7 @@ extension BufferUtil {
       let capacity: Int = bufferRect.width * bufferRect.height
       let pixels = UnsafeMutableBufferPointer<Pixel>.allocate(capacity: capacity)
       for y in bufferRect.y..<bufferRect.height {
+         // - Fixme: ⚠️️ many of the calculations can be done before the loop is performed
          DispatchQueue.concurrentPerform(iterations: bufferRect.width) { x in // ⚠️️ Optimization initiative, might be faster, also try striding?
             let index: Int = (bufferRect.x + x) * 4 + y * bytesPerPixel // We add the crop to the x // (y * bytesPerPixel + x) * 4
             let (b, g, r) = (byteBuffer[index], byteBuffer[index + 1], byteBuffer[index + 2]) // let a = byteBuffer[index + 3]

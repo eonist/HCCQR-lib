@@ -55,13 +55,12 @@ extension Splitter {
     *   - i: index (async so, they come in non cronologically)
     *   - qrImg: the current qr image
     *   - qrImgs: the result array
-    *   - channels: we need to deInit the channels on completion
+    *   - channels: the hccqr channels (needed here in order to deInit the channels on completion)
     *   - onComplete: final onCompletion handler
     */
    private static func onCombineComplete(i: Int, qrImg: CIImage?, qrImgs: inout [CIImage?], channels: GrayReps, onComplete: SplitComplete) {
-      // - Fixme: ⚠️️ deinit array of channels here
       guard let qrImg: CIImage = qrImg else { channels.deInit(); onComplete(.failure(.noQRImg(i: i))); return }
-      qrImgs[i] = qrImg // It matters which order the qrImages came in when you stitch them back together
+      qrImgs[i] = qrImg // It matters which order the QRImages came in when you stitch them back together
       if !qrImgs.contains(where: { $0 == nil }) { // Makes sure all images finished
          onAllCombineComplete(qrImgs: &qrImgs, channels: channels, onComplete: onComplete)
       }
@@ -75,7 +74,8 @@ extension Splitter {
     *   - onComplete: final onCompletion handler
     */
    private static func onAllCombineComplete(qrImgs: inout [CIImage?], channels: GrayReps, onComplete: SplitComplete) {
-      channels.deInit() // Or else we get mem leak /*Swift.print("Splitter.split() - deallocate")*/
+      Swift.print("⚠️️ Remember to deinit, and pass empty array ⚠️️")
+      channels.deInit() // Or else we get mem leak /* Swift.print("Splitter.split() - deallocate") */
       let qrImages: [CIImage] = qrImgs.compactMap { $0 } // get rid of optionality
       onComplete(.success((qrImages, channels))) // - Fixme: ⚠️️ if you pass on the channels, after they are deInit, will they still be readable?
    }

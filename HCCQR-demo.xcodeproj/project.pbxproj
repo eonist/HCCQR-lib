@@ -149,6 +149,9 @@
 		F1537F0224B3598200160FEC /* ChannelCombo+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1537F0024B3598200160FEC /* ChannelCombo+Helper.swift */; };
 		F1537F0324B3598200160FEC /* ChannelCombo+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1537F0024B3598200160FEC /* ChannelCombo+Helper.swift */; };
 		F1537F0724B362E300160FEC /* ChannelComboTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1537F0424B362E300160FEC /* ChannelComboTest.swift */; };
+		F1537F0924B47C5200160FEC /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1537F0824B47C5200160FEC /* Array+Extension.swift */; };
+		F1537F0A24B47C5200160FEC /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1537F0824B47C5200160FEC /* Array+Extension.swift */; };
+		F1537F0B24B47C5200160FEC /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1537F0824B47C5200160FEC /* Array+Extension.swift */; };
 		F15C9F7D23BA6FD000F9D524 /* RGBARep+Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15C9F7C23BA6FD000F9D524 /* RGBARep+Const.swift */; };
 		F15C9F7E23BA6FD000F9D524 /* RGBARep+Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15C9F7C23BA6FD000F9D524 /* RGBARep+Const.swift */; };
 		F15C9F8023BA747800F9D524 /* Writer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15C9F7F23BA747800F9D524 /* Writer.swift */; };
@@ -409,6 +412,7 @@
 		F1537EFC24B353E500160FEC /* GrayReps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrayReps.swift; sourceTree = "<group>"; };
 		F1537F0024B3598200160FEC /* ChannelCombo+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChannelCombo+Helper.swift"; sourceTree = "<group>"; };
 		F1537F0424B362E300160FEC /* ChannelComboTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelComboTest.swift; sourceTree = "<group>"; };
+		F1537F0824B47C5200160FEC /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
 		F15C9F7C23BA6FD000F9D524 /* RGBARep+Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RGBARep+Const.swift"; sourceTree = "<group>"; };
 		F15C9F7F23BA747800F9D524 /* Writer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Writer.swift; sourceTree = "<group>"; };
 		F162145321FC7138005297DE /* SimpleHCCQRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleHCCQRView.swift; sourceTree = "<group>"; };
@@ -755,6 +759,7 @@
 			children = (
 				F168527B2213443700C27EAA /* Data+Extension.swift */,
 				F1FDA6262395C2EB0096EEBD /* image */,
+				F1537F0824B47C5200160FEC /* Array+Extension.swift */,
 			);
 			path = extension;
 			sourceTree = "<group>";
@@ -1460,6 +1465,7 @@
 				F1E205B424964DDB00E3A82E /* PixelParser.swift in Sources */,
 				F1AF9D3723E2D7630085DA0C /* BufferUtil+Type.swift in Sources */,
 				F181F11723B92D0500145DEA /* GrayRep+Getter.swift in Sources */,
+				F1537F0A24B47C5200160FEC /* Array+Extension.swift in Sources */,
 				F1E645D723940B3D008D2ABE /* RGBARep.swift in Sources */,
 				F181F11123B929F800145DEA /* GrayRep+Type.swift in Sources */,
 				F18A25E223BB7F5F00EF8151 /* BufferUtil+RGBA.swift in Sources */,
@@ -1535,6 +1541,7 @@
 				F1D8A66E23E83F8900F17A81 /* GrayRep+DeInit.swift in Sources */,
 				F146A54024AD06E400FE136C /* ChannelPallete.swift in Sources */,
 				F1690AA424B1F9B8000EC61A /* ColorPallete+Const.swift in Sources */,
+				F1537F0924B47C5200160FEC /* Array+Extension.swift in Sources */,
 				F18357D624A9E5A500C2220D /* Algebra.swift in Sources */,
 				F1E645D423940B3C008D2ABE /* Writer+Type.swift in Sources */,
 				F1FE7E0224A0A9AF0094B1BD /* VC+Grid.swift in Sources */,
@@ -1737,6 +1744,7 @@
 				F1471FC7248C0085008A01AD /* RGBARep+Init.swift in Sources */,
 				F18E38B224B0EC1B00F33947 /* BinarySequencer.swift in Sources */,
 				F146A53724AC70F500FE136C /* RGBARep+Experiment.swift in Sources */,
+				F1537F0B24B47C5200160FEC /* Array+Extension.swift in Sources */,
 				F1471FF5248C0573008A01AD /* MonoRep+Init.swift in Sources */,
 				F1E205B124964DD500E3A82E /* PixelAsserter.swift in Sources */,
 				F1E205B224964DD500E3A82E /* PixelParser.swift in Sources */,

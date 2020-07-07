@@ -15,7 +15,7 @@ extension Extractor {
     * - Important: ⚠️️ I guess the reason why we don't use concurrentPerform on this array is that we use it on the pixel iteration in the grayChannel method, but maybe we should explore dong concurrent perform on this array as well?
     * - Parameters:
     *   - rgbaRep: target to derive channels from
-    *   - channelMap: rule-set for the splitting process
+    *   - pallete: rule-set for the splitting process
     *   - onComplete: notify when process has completed
     */
    static func extract(rgbaRep: RGBARep, pallete: ChannelPallete, onComplete:@escaping OnExtractComplete) {
