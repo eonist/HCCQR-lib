@@ -1,28 +1,32 @@
 import Foundation
+
 /**
  * Asserter
  */
-extension Array where Element == Any? {
+extension Array {
    /**
     * Asserts if array has nil values
     * ## Examples:
     * let someArr: [Int?] = [1,2,nil]
-    * Array.hasNil(someArr) // true
-    * Array.hasNil([1,2,2]) // false
+    * someArr.hasNil() // true
+    * [1,2,2].hasNil() // false
     */
-   static func hasNil(_ arr: [Element] ) -> Bool {
-      arr.contains { $0 == nil }
+   public func hasNil<T>() -> Bool where Element == T? {
+      self.contains { $0 == nil }
    }
 }
-extension Array where Element == Any? {
+/**
+ * Modifier
+ */
+extension Array {
    /**
     * Remove optionals from array
     * ## Examples:
-    * Array.filterNils([2,nil,1,0]) // [2,1,0]
+    * [2,nil,1,0].filterNils() // [2,1,0]
     * let someArr: [Int?] = [2,nil,1,0]
-    * Array.filterNils(someArr) // [2,1,0]
+    * someArr.filterNils() // [2,1,0]
     */
-   static func filterNils<T>(_ array: [T?]) -> [T] {
-      array.compactMap { $0 }
+   public func filterNils<T>() -> [T] where Element == T? {
+      self.compactMap { $0 }
    }
 }

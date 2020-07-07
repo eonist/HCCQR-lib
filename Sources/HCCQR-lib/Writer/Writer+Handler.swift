@@ -22,7 +22,7 @@ extension Writer {
    internal static func onQRImageComplete(i: Int, ciImg: CIImage?, ciImgs:inout [CIImage?], config: HCCQRSetup, onComplete: OnRGBRepComplete) {
       guard let ciImg: CIImage = ciImg else { onComplete(.failure(.unableToCreateCIImage)); return }
       ciImgs[i] = ciImg // It matters which order the QRImage's came in when you stitch them back together
-      if !Array.hasNil(ciImgs) { // Makes sure all images finished (aka no nil values)
+      if !ciImgs.hasNil() { // Makes sure all images finished (aka no nil values)
          onAllQrImageComplete(ciImgs: ciImgs, config: config, onComplete: onComplete)
       }
    }

@@ -47,7 +47,7 @@ extension Pixel {
     * - Note: Used by colorize method and inverted method
     */
    var isWhite: Bool {
-      Pixel.isMatching(a: self, b: Colors.white)
+      Pixel.isMatching(a: self, b: .white)
    }
    /**
     * Measure if color is black (used in the colorize method)
@@ -55,25 +55,25 @@ extension Pixel {
     * - Note: Used by colorize method
     */
    var isBlack: Bool {
-      Pixel.isMatching(a: self, b: Colors.black)
+      Pixel.isMatching(a: self, b: .black)
    }
    /**
     * Assert if rgbColor is red
     */
    static func isRed(rgbColor: Pixel) -> Bool {
-      isRGBColor(a: rgbColor, b: Pixel.Colors.red)
+      isRGBColor(a: rgbColor, b: .red)
    }
    /**
     * Assert if rgbColor is green
     */
    static func isGreen(rgbColor: Pixel) -> Bool {
-      isRGBColor(a: rgbColor, b: Pixel.Colors.green)
+      isRGBColor(a: rgbColor, b: .green)
    }
    /**
     * Assert if rgbColor is blue
     */
    static func isBlue(rgbColor: Pixel) -> Bool {
-      isRGBColor(a: rgbColor, b: Pixel.Colors.blue)
+      isRGBColor(a: rgbColor, b: .blue)
    }
 }
 /**

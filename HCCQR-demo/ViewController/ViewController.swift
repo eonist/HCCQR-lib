@@ -15,6 +15,7 @@ class ViewController: UIViewController {
 //      testSplitting()
       testHCCQR()
 //      testGrid()
+//      Pixels._4.forEach { Swift.print("$0:  \($0)") }
    }
    override var prefersStatusBarHidden: Bool { true }
 }
