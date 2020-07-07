@@ -4,20 +4,21 @@ import XCTest
 class HCCQRIOSTest: XCTestCase {
    func testExample() {
       simpleTests()
-//      advanceTests()
+      advanceTests()
    }
    /**
     * Utility tests etc
     */
    func simpleTests() {
       Swift.print("simpleTests")
-      XCTAssertEqual(ScaleTesting.testScalingRGBARep(), 4)
-//      XCTAssertTrue(MonoPixelColorization.testColorizingMonoPixel()) // ✅ b&w-pixels (mono) to color-pixels
-//      XCTAssertTrue(ColorishTest.testThreshold()) // ✅
-//      XCTAssertTrue(ColorishTest.testColorish()) // ✅
-//      XCTAssertTrue(ColorishTest.testWashedOutColor()) // ✅
-//      XCTAssertTrue(QRTesting.testQRGeneration()) // ?
-//      XCTAssertTrue(ColorishTest.testUInt8Aritmitic())
+//      XCTAssertEqual(ScaleTesting.testScalingRGBARep(), 4)
+      XCTAssertTrue(MonoPixelColorization.testColorizingMonoPixel()) // ✅ b&w-pixels (mono) to color-pixels
+      XCTAssertTrue(ColorishTest.testThreshold()) // ✅
+      XCTAssertTrue(ColorishTest.testColorish()) // ✅
+      XCTAssertTrue(ColorishTest.testWashedOutColor()) // ✅
+      XCTAssertTrue(QRTesting.testQRGeneration()) // ?
+      XCTAssertTrue(ColorishTest.testUInt8Aritmitic())
+      // - Fixme: ⚠️️ fix the bellow test somehow
 //      XCTAssertTrue(CIImageTest.testCIImage()) // 🚫
    }
    /**
@@ -26,11 +27,11 @@ class HCCQRIOSTest: XCTestCase {
     */
    func advanceTests() {
       Swift.print("advanceTests")
-//      testSingleWriteRead() // ✅ "syntethic-HCCQR-images"
-//      testCVImageBuffer() // ✅ Test the new buffer -> RGBA (syntethic)
-//      testBulk() // ✅ Read and write multiple "syntetic-HCCQR-images"
-//      testReadingHCCQRPhoto() // ✅ ⚠️️ only works in xcode-simulator, because no assets in spm
-//      testReadingManyPhotos() // ✅ Reading many photos
+      testSingleWriteRead() // ✅ "syntethic-HCCQR-images"
+      testCVImageBuffer() // ✅ Test the new buffer -> RGBA (syntethic)
+      testBulk() // ✅ Read and write multiple "syntetic-HCCQR-images"
+      testReadingHCCQRPhoto() // ✅ ⚠️️ only works in xcode-simulator, because no assets in spm
+      testReadingManyPhotos() // ✅ Reading many photos
    }
 }
 /**

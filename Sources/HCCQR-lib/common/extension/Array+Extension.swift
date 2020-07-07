@@ -23,6 +23,6 @@ extension Array where Element == Any? {
     * Array.filterNils(someArr) // [2,1,0]
     */
    static func filterNils<T>(_ array: [T?]) -> [T] {
-      return array.compactMap { $0 }
+      array.compactMap { $0 }
    }
 }

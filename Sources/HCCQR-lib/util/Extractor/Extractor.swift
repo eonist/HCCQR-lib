@@ -21,10 +21,10 @@ extension Extractor {
    static func extract(rgbaRep: RGBARep, pallete: ChannelPallete, onComplete:@escaping OnExtractComplete) {
       // - Fixme: ⚠️️ find an error to throw or remove the result mechanism in the oncomplete
       // - Fixme: ⚠️️ we could use unmanaged pointer with capacity as well, might be faster
-      Swift.print("pallete.count:  \(pallete.count)")
+//      Swift.print("pallete.count:  \(pallete.count)")
       var channels: [GrayRep?] = [GrayRep?](repeating: nil, count: pallete.count) // color-channels
       let similarities: [PixelSimilarity] = Extractor.similarities(pallete: pallete) // create similarity asserters
-      Swift.print("similarities.count:  \(similarities.count)")
+//      Swift.print("similarities.count:  \(similarities.count)")
       similarities.enumerated().forEach { offset, similarity in // loop through assertions
          // - Fixme: ⚠️️ This could be the cause of random error bug, maybe drop the async and just do it on current thread, might not even be needed, once we do quadrent based threading
          DispatchQueue.global(qos: .userInitiated).async {
