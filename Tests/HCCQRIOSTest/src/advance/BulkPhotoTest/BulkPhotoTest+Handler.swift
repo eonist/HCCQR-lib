@@ -23,7 +23,7 @@ extension BulkPhotoTest {
     * on all read complete
     */
    private static func onAllReadComplete(dataArray: [Data?], onComplete: @escaping OnReadManyComplete) {
-      if !dataArray.contains(where: { $0 == nil }) { // Asserts that array has zero nils before calling onComplete
+      if !Array.hasNil(dataArray) { // Asserts that array has zero nils before calling onComplete
          Swift.print("Array has zero nils ✅")
          onComplete()
       }

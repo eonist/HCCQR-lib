@@ -17,7 +17,7 @@ extension Extractor {
     */
    static func onExtractComplete(i: Int, channel: GrayRep, channels: inout [GrayRep?], rgbaRep: RGBARep, onComplete: OnExtractComplete) {
       channels[i] = channel // it matters which order the grayscaleReps came in when you stitch them back together
-      if !channels.contains(where: { $0 == nil }) { // makes sure all images finished (fastest way to check for nil)
+      if !Array.hasNil(channels) { // makes sure all images finished (fastest way to check for nil)
          Swift.print("complete channels.count:  \(channels.count)")
          onAllExtractComplete(channels: channels, rgbaRep: rgbaRep, onComplete: onComplete)
       }

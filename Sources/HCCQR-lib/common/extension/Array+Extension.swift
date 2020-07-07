@@ -2,12 +2,15 @@ import Foundation
 /**
  * Asserter
  */
-extension Array where Element == Optional<Any> {
+extension Array where Element == Any? {
    /**
     * Asserts if array has nil values
     * ## Examples:
-    * [0,nil,1,2].hasNil // true
-    * [0,1,2].hasNil // false
+    * let someArr: [Int?] = [1,2,nil]
+    * Array.hasNil(someArr) // true
+    * Array.hasNil([1,2,2]) // false
     */
-   var hasNil: Bool { self.contains(where: { $0 == nil }) }
+   static func hasNil(_ arr: [Element] ) -> Bool {
+      arr.contains { $0 == nil }
+   }
 }

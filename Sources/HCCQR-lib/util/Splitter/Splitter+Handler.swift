@@ -61,7 +61,7 @@ extension Splitter {
    private static func onCombineComplete(i: Int, qrImg: CIImage?, qrImgs: inout [CIImage?], channels: GrayReps, onComplete: SplitComplete) {
       guard let qrImg: CIImage = qrImg else { channels.deInit(); onComplete(.failure(.noQRImg(i: i))); return }
       qrImgs[i] = qrImg // It matters which order the QRImages came in when you stitch them back together
-      if !qrImgs.contains(where: { $0 == nil }) { // Makes sure all images finished
+      if !Array.hasNil(qrImgs) { // Makes sure all images finished
          onAllCombineComplete(qrImgs: &qrImgs, channels: channels, onComplete: onComplete)
       }
    }

@@ -13,7 +13,7 @@ extension BulkRGBAHCCQRTest {
    static func onWriteComplete(i: Int, rgbaImage: RGBARep?, images: inout [RGBARep?], onComplete:@escaping OnWriteImagesComplete) {
       guard let rgbaImage = rgbaImage else { onComplete(.failure(NSError(domain: "Unable to create hccqr image", code: 0))); return }
       images[i] = rgbaImage
-      if !images.contains(where: { $0 == nil }) { // Make sure all images were written
+      if !Array.hasNil(images) { // Make sure all images were written
          let images: [RGBARep] = images.compactMap { $0 }
          onComplete(.success(images))
       }
@@ -24,7 +24,7 @@ extension BulkRGBAHCCQRTest {
    static func onReadComplete(i: Int, result: Reader.ReadResult2, payloads: inout [Data?], onComplete: OnReadImagesComplete) {
       guard  let payload: Data = try? result.get().data else { onComplete(.failure(NSError(domain: "Unable to read hccqr image \(result.errorStr)", code: 0))); return }
       payloads[i] = payload
-      if !payloads.contains(where: { $0 == nil }) { // Makes sure all images were read
+      if !Array.hasNil(payloads) { // Makes sure all images were read
          let payloads: [Data] = payloads.compactMap { $0 }
          onComplete(.success(payloads))
       }
