@@ -26,13 +26,15 @@ extension Splitter {
     *   - onComplete: when the extraction is complete, this callback is called
     */
    static func onExtractComplete(result: GrayReps, onComplete:@escaping SplitComplete) { // called when the (R,G,B) channels are split
+      Swift.print("result.count:  \(result.count)") // should be 4 for 4Color hccqr
 //      guard let channels: Extractor.RGBChannels = result.value() else { onComplete(.failure(.unableToCreateRGBAImgs(msg: result.errorStr))); return } // (r,g,b)
       // - Fixme: ⚠️️ I guess this is reverse for some reason
-      let channelCombos: ChannelCombos = .combos(channels: result)
+      let channelCombos: ChannelCombos = .combos(channels: result) // arrays of grayreps (2 arrays of 2 grayReps for 4color hcqr, 3 arrays of 7 grayreps for 8 color-hccqr etc)
       Swift.print("channelCombos.count:  \(channelCombos.count)") // should be 2 for 4 colors
-      // 🏀 things should now work, start testing
-      var qrImgs: [CIImage?] = [CIImage?](repeating: nil, count: channelCombos.count) // Result array
+      // 🏀 things should now work, start testing 👈
+      var qrImgs: [CIImage?] = [CIImage?](repeating: nil, count: channelCombos.count) // Result array (accumulated)
       channelCombos.enumerated().forEach { offset, grayReps in // we need index to put things back together while async
+         Swift.print("grayReps.count:  \(grayReps.count)") // should be 2 for 4color hccqr, 3 for 8 color hccqr etc
          DispatchQueue.global(qos: .userInitiated).async { // - Fixme: ⚠️️ This could be the cause of random error bug, maybe drop the async and just do it on current thread
             let qrImg: CIImage = Combiner.combine(grayReps: grayReps)
             DispatchQueue.main.async { // We need to go on the mainthread to manipulate array
@@ -75,6 +77,6 @@ extension Splitter {
    private static func onAllCombineComplete(qrImgs: inout [CIImage?], channels: GrayReps, onComplete: SplitComplete) {
       channels.deInit() // Or else we get mem leak /*Swift.print("Splitter.split() - deallocate")*/
       let qrImages: [CIImage] = qrImgs.compactMap { $0 } // get rid of optionality
-      onComplete(.success((qrImages, channels)))
+      onComplete(.success((qrImages, channels))) // - Fixme: ⚠️️ if you pass on the channels, after they are deInit, will they still be readable?
    }
 }

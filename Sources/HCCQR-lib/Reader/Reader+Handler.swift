@@ -61,7 +61,11 @@ extension Reader {
     *   - onComplete: completion block with DataAndImage
     */
    private static func onReadQRCodeComplete(i: Int, dataAndQuad: QRReader.DataAndQuad?, dataAndQuads: inout [QRReader.DataAndQuad?], payload: Splitter.SplitPayload, error: Error?, onComplete: OnReadCompleted2 ) {
-      guard let dataAndFrame: QRReader.DataAndQuad = dataAndQuad else { onComplete(.failure(.unableToExtractQRData(msg: "QRIMG: \(i) error: \(String(describing: error?.localizedDescription))", ciImage: payload.qrImgs[i], rgbChannels: payload.rgbChannels))); return }
+      guard let dataAndFrame: QRReader.DataAndQuad = dataAndQuad else {
+         let errMsg: String = "QRIMG: \(i) error: \(String(describing: error?.localizedDescription))"
+         onComplete(.failure(.unableToExtractQRData(msg: errMsg, ciImage: payload.qrImgs[i], colorChannels: payload.colorChannels)))
+         return
+      }
       dataAndQuads[i] = dataAndQuad
       if !dataAndQuads.contains (where: { $0 == nil }) { // Makes sure all images finished
          let data: Data = dataAndQuads.compactMap { $0?.qrData }.reduce(Data(), +) // Merges the data

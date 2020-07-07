@@ -7,8 +7,9 @@ public enum ReadError: Error {
     * - Parameters:
     *   - msg: the error message from previous called method
     *   - ciImage: the qrImage that the lib was unable to extract data from
+    *   - colorChannels: represents each channel defined by the ChannelPallete
     */
-   case unableToExtractQRData(msg: String, ciImage: CIImage, rgbChannels: GrayReps) // unable to extract data from QRImages
+   case unableToExtractQRData(msg: String, ciImage: CIImage, colorChannels: GrayReps) // unable to extract data from QRImages
    case unableToSplit(errMSG: String)
    case unableToExtractRGBAImageFromCVBuffer // unable to extract RGBAImage from CVBuffer
    case unableToGetDataOrQuad // cvimagebuffer error

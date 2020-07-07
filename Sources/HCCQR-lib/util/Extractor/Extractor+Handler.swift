@@ -18,6 +18,7 @@ extension Extractor {
    static func onExtractComplete(i: Int, channel: GrayRep, channels: inout [GrayRep?], rgbaRep: RGBARep, onComplete: OnExtractComplete) {
       channels[i] = channel // it matters which order the grayscaleReps came in when you stitch them back together
       if !channels.contains(where: { $0 == nil }) { // makes sure all images finished (fastest way to check for nil)
+         Swift.print("complete channels.count:  \(channels.count)")
          onAllExtractComplete(channels: channels, rgbaRep: rgbaRep, onComplete: onComplete)
       }
    }
@@ -32,9 +33,9 @@ extension Extractor {
     * - Fixme: ⚠️️ rename to onAllExtractionComplete, onExtractionComplete ?
     */
    private static func onAllExtractComplete(channels: [GrayRep?], rgbaRep: RGBARep, onComplete: OnExtractComplete) {
-      Swift.print("channels.count:  \(channels.count)")
+      Swift.print("onAllExtractComplete - channels.count:  \(channels.count)")
       let arr: GrayReps = channels.compactMap { $0 } // removes optionality
       rgbaRep.deInitiate() // deinit rgbaRep after it has been consumed, to avoid memleak // ⚠️️ moving the deInititiate here is new, was bellow oncomplete before, should have no implication
-      onComplete([arr[0], arr[1], arr[2]])
+      onComplete(arr)
    }
 }

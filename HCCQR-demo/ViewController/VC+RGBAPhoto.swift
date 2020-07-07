@@ -39,18 +39,15 @@ extension ViewController {
          let err: ReadError? = result.error()
 //         Swift.print("err:  \(err)");
          switch err {
-         case let .unableToExtractQRData(msg, ciImage, rgbChannels):
-            Swift.print("⚠️️ unableToExtractQRData ⚠️️")
-            _ = msg
-            _ = ciImage
-            _ = rgbChannels
+         case let .unableToExtractQRData(_/*msg*/, _/*ciImage*/, colorChannels):
+            Swift.print("⚠️️ onReadComplete - unableToExtractQRData ⚠️️")
             _ = {
-               let redChannel: GrayRep = rgbChannels[1]
+               let redChannel: GrayRep = colorChannels[2]
                let redChannelImg: CIImage = GrayRepParser.ciImage(grayscaleRep: redChannel)
                let img = UIImage(ciImage: redChannelImg, scale: 2, orientation: .up)
                let imgView: UIImageView = .init(image: img)
                self.view.addSubview(imgView)
-            }
+            }()
             //         let img: UIImage = .init(ciImage: redChannelImg, scale: 1, orientation: .up)
             //         let uiImageView: UIImageView = .init(image: img)
 //            imgView.frame.origin = .init(x: 0, y: GridTestView.frame.height * 1)
@@ -75,7 +72,7 @@ extension ViewController {
 
 //      Swift.print("value.qr1:  \(value.payload.qrImgs[0])")
       _ = {
-         let redChannel: GrayRep = value.payload.rgbChannels[1]
+         let redChannel: GrayRep = value.payload.colorChannels[1]
          let redChannelImg: CIImage = GrayRepParser.ciImage(grayscaleRep: redChannel)
          let img = UIImage(ciImage: redChannelImg, scale: 2, orientation: .up) // value.payload.qrImgs[0]
          let imgView: UIImageView = .init(image: img)

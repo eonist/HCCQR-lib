@@ -7,8 +7,12 @@ extension Splitter {
    /**
     * Contains two QR-images which is the result of 4-color split (R,G,B,(W/B))
     * - Note: when added to an UIImage, you need to set scale to 2.0 and orientation to .up
+    * - Note: we pass on the colorChannels for debugging. should remove this in the future
+    * - Parameters:
+    *   - qrImgs: the QR images that was extracted from the HCCQR image
+    *   - colorChannels: represents each channel defined by the ChannelPallete (The channels that was extracted from the hccqr)
     */
-   public typealias SplitPayload = (qrImgs: [CIImage], rgbChannels: GrayReps)
+   public typealias SplitPayload = (qrImgs: [CIImage], colorChannels: GrayReps)
    /**
     * CIImgPair and SplitError
     */
@@ -17,15 +21,4 @@ extension Splitter {
     * Completion handler for the split method
     */
    public typealias SplitComplete = (SplitResult) -> Void
-}
-/**
- * Used with composition process
- */
-extension Splitter {
-   /**
-    * Used when compositing together 
-    * - Fixme: ⚠️️ should prob use array when supporting more than 4 colors etc?, or is it always pairs?
-    * - Fixme: ⚠️️ deprecate this
-    */
-   typealias ChannelPair = (first: GrayRep, second: GrayRep)
 }
