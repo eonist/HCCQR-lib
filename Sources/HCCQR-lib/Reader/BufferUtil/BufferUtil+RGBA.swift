@@ -37,12 +37,13 @@ extension BufferUtil {
       let capacity: Int = bufferRect.width * bufferRect.height
       let pixels = UnsafeMutableBufferPointer<Pixel>.allocate(capacity: capacity)
       for y in bufferRect.y..<bufferRect.height {
-         // - Fixme: ⚠️️ many of the calculations can be done before the loop is performed
+         let yVal: Int = y * bytesPerPixel // we calc these outside the x loop, to gain performance
+         let yAndWidth: Int = y * bufferRect.width // we calc these outside the x loop, to gain performance
          DispatchQueue.concurrentPerform(iterations: bufferRect.width) { x in // ⚠️️ Optimization initiative, might be faster, also try striding?
-            let index: Int = (bufferRect.x + x) * 4 + y * bytesPerPixel // We add the crop to the x // (y * bytesPerPixel + x) * 4
+            let index: Int = (bufferRect.x + x) * 4 + yVal // We add the crop to the x // (y * bytesPerPixel + x) * 4
             let (b, g, r) = (byteBuffer[index], byteBuffer[index + 1], byteBuffer[index + 2]) // let a = byteBuffer[index + 3]
             let pixel: Pixel = .init(r: r, g: g, b: b, a: 255)
-            let i: Int = y * bufferRect.width + x
+            let i: Int = yAndWidth + x
             pixels[i] = pixel
          }
       }
