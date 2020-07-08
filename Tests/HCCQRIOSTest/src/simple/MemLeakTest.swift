@@ -4,7 +4,7 @@ import CoreGraphics
 import CoreImage
 @testable import HCCQR_lib
 
-class MemLeakTest {}
+final class MemLeakTest {}
 
 extension MemLeakTest {
    /**

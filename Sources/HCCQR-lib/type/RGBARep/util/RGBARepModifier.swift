@@ -3,7 +3,7 @@ import CoreImage
 /**
  * - Fixme: ⚠️️ rename to ..rep
  */
-class RGBARepModifier {
+final class RGBARepModifier {
    /**
     * Scales img without becoming blurry (Sharp pixel multiplier)
     * - Note: This method is used when creating HCCQR images from data

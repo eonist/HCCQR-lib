@@ -3,7 +3,7 @@ import Foundation
 /**
  * - Fixme: ⚠️️ Possibly make these .init, or add them to a RGBAUtil class?
  */
-class RGBARepUtil {
+final class RGBARepUtil {
    /**
     * Converts an Image to an rgbaImage
     * - Abstract: RGBAImage holds the individual pixels of an image in an array (also stores the size of an image)

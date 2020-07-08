@@ -3,7 +3,7 @@ import Foundation
 import QR_lib
 import ResourceHelper
 
-class BulkPhotoTest {
+final class BulkPhotoTest {
    /**
     * Initiate test
     * - 1. Reads many images from disk

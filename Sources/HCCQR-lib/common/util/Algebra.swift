@@ -1,6 +1,6 @@
 import QuartzCore
 
-class Algebra {
+final class Algebra {
    /**
     * Find exponent when you have base and result
     * - Parameters:

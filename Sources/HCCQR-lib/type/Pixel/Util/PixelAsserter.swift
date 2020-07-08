@@ -1,6 +1,6 @@
 import Foundation
 
-class PixelAsserter {
+final class PixelAsserter {
    /**
     * Asserts if a color is near another color within a threshold
     * - Abstract: Basically makes sure each channel is within the threshold defined

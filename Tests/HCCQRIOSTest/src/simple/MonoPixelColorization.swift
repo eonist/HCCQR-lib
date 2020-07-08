@@ -1,7 +1,7 @@
 import Foundation
 @testable import HCCQR_lib
 
-class MonoPixelColorization {
+final class MonoPixelColorization {
    /**
     * Mono pixel colorization test (b&w-pixels 👉 color-pixels)
     * - Fixme: ⚠️️ Use ChannelCombos instead of manual bool array

@@ -2,7 +2,7 @@ import Foundation
 @testable import HCCQR_lib
 import QR_lib
 
-class CVBufferTest {
+final class CVBufferTest {
    /**
     * HCCQR -> RGBAImage
     * 1. Creates random HCCQR-Data

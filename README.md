@@ -107,7 +107,7 @@ HCCQRReader.data(image: img) { result in
 
 ### Roadmap:
 - Support custom colormaps ✅
-- Support dynamic ColorMaps 4 - 256 Colors
+- Support dynamic ColorMaps 4 - 256 Colors ✅
 - Add Heuristic optimizations (croping etc)
 - Metal / GPU / Accelerate optimisations
 - Implement project FT (Patent-pending)
@@ -120,3 +120,4 @@ HCCQRReader.data(image: img) { result in
 - Test the new ColorSplitter library with HCCQR photos ✅
 - Simplify the CPU core optimizations, by just dividing the image into 1-8 parts. Depending on cpu core/ thread count. Then assign each part to each cpu core with concurrentPerform (🚫 maybe not, rather batch-read the frames)
 - Remove alpha from the various conversion methods (alpha value is superfluous)
+- Maybe orgnaize the tests in the xcode project instead of in the spm. This way, the rename feature will work on test code

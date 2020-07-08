@@ -3,7 +3,7 @@ import Foundation
 #if os(iOS)
 import UIKit
 
-class RGBAImageTest {}
+final class RGBAImageTest {}
 
 extension RGBAImageTest {
    /**

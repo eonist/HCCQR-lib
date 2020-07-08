@@ -1,7 +1,7 @@
 #if os(iOS)
 import UIKit
 
-class CIImageTest {
+final class CIImageTest {
    /**
     * UIImage -> RGBARep -> CIImage
     * - Fixme: ⚠️️ Move into own class

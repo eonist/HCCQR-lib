@@ -1,6 +1,6 @@
 import Foundation
 
-class GrayRepModifier {
+final class GrayRepModifier {
    /**
     * Populate GrayscaleRep with 0 - 255 values based on the grayscale equivilent (R, G, B) channel
     * - Abstract: Get grayscale UInt8 intensity for a (R, G, B) channel

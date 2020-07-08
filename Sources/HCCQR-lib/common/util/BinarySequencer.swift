@@ -1,6 +1,6 @@
 import Foundation
 
-class BinarySequencer {
+final class BinarySequencer {
    typealias Row = [Bool]
    typealias Col = [Row]
    /**

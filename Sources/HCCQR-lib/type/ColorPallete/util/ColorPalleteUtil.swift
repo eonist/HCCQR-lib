@@ -2,7 +2,7 @@ import Foundation
 /**
  * - Fixme: ⚠️️ Rename to ...Modifier
  */
-class ColorPalleteUtil {
+final class ColorPalleteUtil {
    /**
     * Combines (black&white) with color
     * - Abstract: uses zip or similar to weave in the data into the color map

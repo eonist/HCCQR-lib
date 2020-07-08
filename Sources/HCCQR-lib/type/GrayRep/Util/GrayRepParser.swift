@@ -1,7 +1,7 @@
 import Foundation
 import CoreImage
 
-class GrayRepParser {
+final class GrayRepParser {
    /**
     * New (⚠️️ experimental, untested, prob needs more research ⚠️️)
     * - Fixme: ⚠️️ rename param
