@@ -38,7 +38,7 @@ extension Array {
     * - Note: One needs to ensure that there is enough work on each thread to justify the inherent overhead of managing all of these threads. (E.g. a simple xor call per loop is not sufficient, and you'll find that it's actually slower than the non-concurrent rendition.) In these cases, make sure you stride (see Improving Loop Code that balances the amount of work per concurrent block). For example, rather than doing 5000 iterations of one extremely simple operation, do 10 iterations of 500 operations per loop. You may have to experiment with suitable striding values.
     * - Note: on striding: https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/ThreadMigration/ThreadMigration.html#//apple_ref/doc/uid/TP40008091-CH105-SW2
     * ## Examples:
-    * [0,1,2,3].concurrentMap { i in i * 2 } // 0,2,4,6
+    * [0, 1, 2, 3].concurrentMap { i in i * 2 } // 0, 2, 4, 6
     */
    public func concurrentMap<T>(_ transform: (Element) -> T) -> [T] {
       var results = [Int: T]()
@@ -50,5 +50,15 @@ extension Array {
       return queue.sync(flags: .barrier) {
          (0 ..< results.count).map { results[$0]! }
       }
+   }
+   /**
+    * - Note: ⚠️️ Naive approach ⚠️️
+    */
+   public func concurrentApplyMap<T>(_ transform: (Element) -> T) -> [T] {
+      var summary: [T?] = .init(repeating: nil, count: self.count)
+      DispatchQueue.concurrentPerform(iterations: self.count) { index in
+         summary[index] = transform(self[index])
+      }
+      return summary.compactMap { $0 }
    }
 }

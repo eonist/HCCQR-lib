@@ -348,8 +348,6 @@
 		F1E645F3239429CA008D2ABE /* QR-lib in Frameworks */ = {isa = PBXBuildFile; productRef = F1E645F2239429CA008D2ABE /* QR-lib */; };
 		F1E67D4B24A8D124007FC5C0 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852782213443700C27EAA /* UIView+Ext.swift */; };
 		F1E67D4D24A9059C007FC5C0 /* Metric.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E67D4C24A9059C007FC5C0 /* Metric.swift */; };
-		F1E67D4E24A9059C007FC5C0 /* Metric.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E67D4C24A9059C007FC5C0 /* Metric.swift */; };
-		F1E67D4F24A9059C007FC5C0 /* Metric.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E67D4C24A9059C007FC5C0 /* Metric.swift */; };
 		F1E6F6872493B2DC00975607 /* MonoPixelColorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E6F6862493B2DC00975607 /* MonoPixelColorization.swift */; };
 		F1F3E04A23BA1CA200D367F1 /* Extractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F3E04923BA1CA200D367F1 /* Extractor.swift */; };
 		F1F3E04B23BA1CA200D367F1 /* Extractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F3E04923BA1CA200D367F1 /* Extractor.swift */; };
@@ -795,11 +793,11 @@
 		F16852B122134A3800C27EAA /* util */ = {
 			isa = PBXGroup;
 			children = (
+				F18A25DF23BB7F3900EF8151 /* BufferUtil */,
 				F168525F2213443700C27EAA /* Splitter */,
 				F1F3E04223BA1C4300D367F1 /* Extractor */,
 				F168525D2213443700C27EAA /* Combiner */,
 				F168526A2213443700C27EAA /* Colorizer */,
-				F1E67D4C24A9059C007FC5C0 /* Metric.swift */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -1049,6 +1047,7 @@
 		F1C42F6924B1F8BD00DA7F23 /* type */ = {
 			isa = PBXGroup;
 			children = (
+				F1E67D4C24A9059C007FC5C0 /* Metric.swift */,
 				F1537EF724B331D300160FEC /* ChannelCombo */,
 				F1537EEA24B2295700160FEC /* BoolColumn */,
 				F1690A9B24B1F9B8000EC61A /* ColorPallete */,
@@ -1176,7 +1175,6 @@
 		F1F6F7C222221EBC0075E7FD /* Reader */ = {
 			isa = PBXGroup;
 			children = (
-				F18A25DF23BB7F3900EF8151 /* BufferUtil */,
 				F1AF9D3223E2CF460085DA0C /* Reader.swift */,
 				F181F10523B8FD7E00145DEA /* Reader+Handler.swift */,
 				F1F6F7BF22221EA80075E7FD /* Reader+Type.swift */,
@@ -1498,7 +1496,6 @@
 				F1E645DB23940B3D008D2ABE /* RGBARep+Getter.swift in Sources */,
 				F1E645AF23940ACA008D2ABE /* ImageUtil.swift in Sources */,
 				F143EC3023FA98390006743C /* MonoRep+Init.swift in Sources */,
-				F1E67D4E24A9059C007FC5C0 /* Metric.swift in Sources */,
 				F181F10723B8FD7E00145DEA /* Reader+Handler.swift in Sources */,
 				F1537EED24B23F1F00160FEC /* BoolRow.swift in Sources */,
 			);
@@ -1733,7 +1730,6 @@
 				F1690AAC24B1F9B8000EC61A /* ColorPallete.swift in Sources */,
 				F18E38B624B1167500F33947 /* Pixel+Parsing+Test.swift in Sources */,
 				F14E1F8A24A9ED9A00C2406C /* HCCQRVersionUtil.swift in Sources */,
-				F1E67D4F24A9059C007FC5C0 /* Metric.swift in Sources */,
 				F1E5712923A3F2C400E090BB /* BulkRGBAHCCQRTest+Type.swift in Sources */,
 				F19C1C7424A8837100E93F4D /* GrayRepParser.swift in Sources */,
 				F1472001248C0704008A01AD /* UInt8Asserter.swift in Sources */,
