@@ -36,6 +36,7 @@ extension BufferUtil {
       let byteBuffer: UnsafeMutablePointer<UInt8> = baseAddress.assumingMemoryBound(to: UInt8.self)
       let capacity: Int = bufferRect.width * bufferRect.height
       let pixels = UnsafeMutableBufferPointer<Pixel>.allocate(capacity: capacity)
+      // - Fixme: ⚠️️ the optimal amount of work vs coordination is not optimal on the bellow, use stride or do new optimization effors
       for y in bufferRect.y..<bufferRect.height {
          let yVal: Int = y * bytesPerPixel // we calc these outside the x loop, to gain performance
          let yAndWidth: Int = y * bufferRect.width // we calc these outside the x loop, to gain performance

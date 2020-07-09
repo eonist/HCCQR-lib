@@ -23,6 +23,7 @@ final class RGBARepModifier {
       (0..<scaledSize.height).indices.forEach { (y: Int) in
          let scaledY = y / scale * size.height
          let yWidth = y * scaledSize.width
+         // - Fixme: ⚠️️ optimal amount of work on bellow is suboptimal
          DispatchQueue.concurrentPerform(iterations: scaledSize.width) { x in // Optimization initiative, might be faster
             let pixIndex: Int = scaledY + x / scale
             let resIndex: Int = yWidth + x
