@@ -34,13 +34,40 @@ extension Array {
  */
 extension Array {
    /**
+    * Map with parallel processing (Synchronous)
+    * - Note: Should work from any queue you call it from, it will just return once it's done
     * - Note: This will block the thread you call it from (just like the non-concurrent map will), so make sure to dispatch this to a background queue.
     * - Note: One needs to ensure that there is enough work on each thread to justify the inherent overhead of managing all of these threads. (E.g. a simple xor call per loop is not sufficient, and you'll find that it's actually slower than the non-concurrent rendition.) In these cases, make sure you stride (see Improving Loop Code that balances the amount of work per concurrent block). For example, rather than doing 5000 iterations of one extremely simple operation, do 10 iterations of 500 operations per loop. You may have to experiment with suitable striding values.
     * - Note: on striding: https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/ThreadMigration/ThreadMigration.html#//apple_ref/doc/uid/TP40008091-CH105-SW2
     * ## Examples:
     * [0, 1, 2, 3].concurrentMap { i in i * 2 } // 0, 2, 4, 6
     */
-   public func concurrentMap<T>(_ transform: (Element) -> T) -> [T] {
+   @discardableResult
+   public func concurrentMap<T>(transform: @escaping (Element) -> T) -> [T] {
+      let buffer: UnsafeMutablePointer<T> = .allocate(capacity: count) // Create a thread safe array
+      defer { buffer.deallocate() } // Always clean up allocated resources
+      DispatchQueue.concurrentPerform(iterations: count) { i in
+         buffer.advanced(by: i).initialize(to: transform(self[i]))
+      }
+      return .init(UnsafeBufferPointer(start: buffer, count: count))
+   }
+   /**
+    * forEach with parallel processing (Synchronous)
+    * ## Examples:
+    * [1, 2, 3, 4].concurrentForEach { print($0) }
+    */
+   public func concurrentForEach(action: @escaping (Element) -> Void) {
+      concurrentMap { _ = action($0) }
+   }
+}
+ 
+extension Array {
+   /**
+    * ⚠️️ Testing ⚠️️
+    * ## Examples:
+    * [0, 1, 2, 3].concurrentMap { i in i * 2 } // 0, 2, 4, 6
+    */
+   public func concurrentMap1<T>(_ transform: (Element) -> T) -> [T] {
       var results = [Int: T]()
       let queue = DispatchQueue(label: Bundle.main.bundleIdentifier! + ".sync", attributes: .concurrent)
       DispatchQueue.concurrentPerform(iterations: count) { index in
