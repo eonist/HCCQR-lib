@@ -8,15 +8,36 @@
 
 <img width="128" alt="img" src="https://github.com/stylekit/img/blob/master/Screenshot 2020-07-02 at 15.50.05.png?raw=true">
 
-### Description
+## Description
 HCCQR is the natural progression of black and white QR. HCCQR can store up to 8 times of data as a regular b&w QR code can
 
-### Features
+## Features
 - Read HCCQR (4 - 256 colors)
 - Write HCCQR (4 - 256 colors)
 - Support Custom color-pallets
 
-### Structure overview:
+## Milestones:
+**Rocks**
+- Support custom colormaps ✅
+- Support dynamic ColorMaps 4 - 256 Colors ✅
+- Implement Multicore Quadrant optimization 👈 (working on)
+- Implement project FT (Patent-pending)
+- Build own custom QR architecture
+- Port to android
+
+**Pebbles**
+- Add Heuristic optimizations (cropping)
+- Metal / GPU / Accelerate optimisations
+- Utilise custom QR libs (faster read / write)
+- Create imperfect synthetic tests
+
+**Sand**
+- Tweak syntax
+- Document and refactor
+- Continuously improve and make smarter tests
+- Tweak naming and simplicity / customizabiity of API
+
+## Structure overview:
 
 ##### Core:
 | Class | Description |
@@ -31,7 +52,8 @@ HCCQR is the natural progression of black and white QR. HCCQR can store up to 8 
 | Colorizer | Converts b&w layers into a color layer |
 | Splitter | Extracts colors and recombine the colors to QRImage's |
 | Extractor | Extracts RGB into grayscale luminosity channels |
-| Compositor | Composite pairs of luminosity channels into one luminosity channel |
+| Combiner | Combine pairs of luminosity channels into one luminosity channel |
+| BufferUtil | Converts camera buffer to RGB pixels |
 
 ##### Type:
 | Class | Description |
@@ -104,16 +126,6 @@ HCCQRReader.data(image: img) { result in
    Swift.print("isMatching:  \(isMatching ? "Success": "Failure")")
 }
 ```
-
-### Roadmap:
-- Support custom colormaps ✅
-- Support dynamic ColorMaps 4 - 256 Colors ✅
-- Add Heuristic optimizations (croping etc)
-- Metal / GPU / Accelerate optimisations
-- Implement project FT (Patent-pending)
-- Utilise custom QR libs (faster read / write)
-- Build own custom QR architecture
-- Port to android
 
 ### Todo:
 - Add smart cropping for for every qr-layer after the first (refine crop)
