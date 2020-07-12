@@ -6,9 +6,9 @@ extension Array {
    /**
     * Asserts if array has nil values
     * ## Examples:
-    * let someArr: [Int?] = [1,2,nil]
+    * let someArr: [Int?] = [1, 2, nil]
     * someArr.hasNil() // true
-    * [1,2,2].hasNil() // false
+    * [1, 2, 2].hasNil() // false
     */
    public func hasNil<T>() -> Bool where Element == T? {
       self.contains { $0 == nil }
@@ -21,9 +21,9 @@ extension Array {
    /**
     * Remove optionals from array
     * ## Examples:
-    * [2,nil,1,0].filterNils() // [2,1,0]
-    * let someArr: [Int?] = [2,nil,1,0]
-    * someArr.filterNils() // [2,1,0]
+    * [2, nil, 1, 0].filterNils() // [2, 1, 0]
+    * let someArr: [Int?] = [2, nil, 1, 0]
+    * someArr.filterNils() // [2, 1, 0]
     */
    public func filterNils<T>() -> [T] where Element == T? {
       self.compactMap { $0 }
@@ -35,6 +35,7 @@ extension Array {
 extension Array {
    /**
     * Map with parallel processing (Synchronous)
+    * - Fixme: ⚠️️ write a concurrentCompactMap?
     * - Fixme: ⚠️️ might need to run things on global que, man que could result in deadlock with concurrentPerform DispatchQueue.global().async { }
     * - Note: Should work from any queue you call it from, it will just return once it's done
     * - Note: This will block the thread you call it from (just like the non-concurrent map will), so make sure to dispatch this to a background queue.

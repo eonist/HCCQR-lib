@@ -24,7 +24,7 @@ public final class RGBARepParser {
     * - Note: Used by colorizer method
     */
    static func ciImg2(rgbaRep: RGBARep, useGrayscale: Bool) throws -> CIImage {
-      //      Swift.print("ciImg2")
+      // Swift.print("ciImg2")
       let format: CIFormat = .RGBA8 //.BGRA8 // .RGBA8// .ARGB8//.ABGR8// // A pixel format constant. See Pixel Formats.
       let colorSpace: CGColorSpace = useGrayscale ? CGColorSpaceCreateDeviceGray() : CGColorSpaceCreateDeviceRGB()//CGColorSpaceCreateDeviceRGB() // The color space that the image is defined in. It must be a Quartz 2D color space (CGColorSpace). Pass nil for images that don’t contain color data (such as elevation maps, normal vector maps, and sampled function tables).
       let bytesPerRow: Int = rgbaRep.size.width * 4

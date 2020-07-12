@@ -7,9 +7,9 @@ import QR_lib
 public struct OutputConfig {
    let scale: Scale
    let map: ColorPallete
-   init(scale: Scale, map: ColorPallete = ColorPallete.fourColors()) {
+   init(scale: Scale, map: ColorPallete = .cp4()) {
       self.scale = scale
       self.map = map
    }
-   static let `default`: OutputConfig = .init(scale: (6, 2), map: ColorPallete.fourColors())
+   static let `default`: OutputConfig = .init(scale: (6, 2), map: .cp4())
 }

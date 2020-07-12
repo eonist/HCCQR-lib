@@ -13,7 +13,7 @@ class ViewController: UIViewController {
       view.backgroundColor = .white // .systemTeal
 //      createRGBAPhoto()
 //      testSplitting()
-      testHCCQR()
+//      testHCCQR() // 👈
 //      testGrid()
 //      Pixels._4.forEach { Swift.print("$0:  \($0)") }
    }
