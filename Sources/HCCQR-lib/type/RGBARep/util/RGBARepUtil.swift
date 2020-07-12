@@ -31,13 +31,14 @@ extension RGBARepUtil {
       let size: Size = (width: Int(cgImage.width), height: Int(cgImage.height))
       let bytesPerRow: Int = size.width * 4 // We multiply per 4 because of the 4 channels, RGBA
       let capacity: Int = size.width * size.height
-      let imageData = UnsafeMutablePointer<Pixel>.allocate(capacity: capacity)
+      let imageData: UnsafeMutablePointer<Pixel> = .allocate(capacity: capacity)
+      defer { imageData.deallocate() }
       // Swift.print("cgImage.colorSpace:  \(String(describing: cgImage.colorSpace))")
       let colorSpace: CGColorSpace = CGColorSpaceCreateDeviceRGB()
       let bitMapInfo = RGBARep.bitmapInfo
       guard let cgContext = CGContext(data: imageData, width: size.width, height: size.height, bitsPerComponent: 8, bytesPerRow: bytesPerRow, space: colorSpace, bitmapInfo: bitMapInfo) else { throw NSError(domain: "rgbaImage - Unable to create rgbaImage", code: 0) }
       cgContext.draw(cgImage, in: .init(origin: .zero, size: .init(width: cgImage.width, height: cgImage.height))) // draws the cgImage into the context
-      let pixels = UnsafeMutableBufferPointer<Pixel>(start: imageData, count: capacity)
+      let pixels: UnsafeMutableBufferPointer<Pixel> = .init(start: imageData, count: capacity) // we dealoc this when we are finished with RGBARep
       return .init(pixels: pixels, width: size.width, height: size.height)
    }
 }

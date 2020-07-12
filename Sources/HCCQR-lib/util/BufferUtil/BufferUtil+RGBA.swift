@@ -34,9 +34,10 @@ extension BufferUtil {
       // - Fixme: ⚠️️ This is prob a bug, you should only lock once
       // CVPixelBufferLockBaseAddress(imageBuffer, CVPixelBufferLockFlags(rawValue: 0))
       let byteBuffer: UnsafeMutablePointer<UInt8> = baseAddress.assumingMemoryBound(to: UInt8.self)
+      defer { byteBuffer.deallocate() } // new ⚠️️
       let capacity: Int = bufferRect.width * bufferRect.height
-      let pixels = UnsafeMutableBufferPointer<Pixel>.allocate(capacity: capacity)
-      // - Fixme: ⚠️️ the optimal amount of work vs coordination is not optimal on the bellow, use stride or do new optimization effors
+      let pixels = UnsafeMutableBufferPointer<Pixel>.allocate(capacity: capacity) // we dealoc this when we have finished working with rgbaRep
+      // - Fixme: ⚠️️ the optimal amount of work vs coordination is not optimal on the bellow, use stride or do new optimization efforts
       for y in bufferRect.y..<bufferRect.height {
          let yVal: Int = y * bytesPerPixel // we calc these outside the x loop, to gain performance
          let yAndWidth: Int = y * bufferRect.width // we calc these outside the x loop, to gain performance

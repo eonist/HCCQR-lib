@@ -23,6 +23,7 @@ extension Colorizer {
       let size: Size = monoReps[0].size // get size from first rep
       let capacity: Int = monoReps[0].capacity // get capacity from first item
       let pixels = UnsafeMutableBufferPointer<Pixel>.allocate(capacity: capacity) // Create a new array // pixels.reserveCapacity(size.width * size.height)
+      defer { pixels.deallocate() } // ⚠️️ this deallocates the pixels once they are not needed anymore
       (0..<size.height).indices.forEach { y in // every y pixel
          // - Fixme: ⚠️️ optimal amount of work on bellow is suboptimal
          DispatchQueue.concurrentPerform(iterations: size.width) { (x: Int) in // Optimization initiatives
@@ -36,7 +37,6 @@ extension Colorizer {
       }
       monoReps.deInit() // Avoids mem leak // guard pixels.count == size.width * size.height else { throw NSError(domain: "missing some pixels", code: 0) } // Check if array has all the pixels
       let rgbaImage: RGBARep = RGBARepModifier.scale(pixels: pixels, size: size, scale: config.scale)
-      pixels.deallocate() // ⚠️️ New, so might not work, this deallocates the pixels once they are not needed anymore
       return rgbaImage
    }
 }
