@@ -346,6 +346,8 @@
 		F1E645EF23940B3D008D2ABE /* Writer+Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F6F7BD22221E9B0075E7FD /* Writer+Type.swift */; };
 		F1E645F123940B3D008D2ABE /* Reader+Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F6F7BF22221EA80075E7FD /* Reader+Type.swift */; };
 		F1E645F3239429CA008D2ABE /* QR-lib in Frameworks */ = {isa = PBXBuildFile; productRef = F1E645F2239429CA008D2ABE /* QR-lib */; };
+		F1E67CA624BB217000EB90F6 /* Metric.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E67D4C24A9059C007FC5C0 /* Metric.swift */; };
+		F1E67CA724BB217100EB90F6 /* Metric.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E67D4C24A9059C007FC5C0 /* Metric.swift */; };
 		F1E67D4B24A8D124007FC5C0 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852782213443700C27EAA /* UIView+Ext.swift */; };
 		F1E67D4D24A9059C007FC5C0 /* Metric.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E67D4C24A9059C007FC5C0 /* Metric.swift */; };
 		F1E6F6872493B2DC00975607 /* MonoPixelColorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E6F6862493B2DC00975607 /* MonoPixelColorization.swift */; };
@@ -1490,6 +1492,7 @@
 				F1A2FB1A24A9BA8700596FFE /* HCCQRSetup.swift in Sources */,
 				F146A52824AB97A900FE136C /* GrayRepModifier.swift in Sources */,
 				F1F3E04B23BA1CA200D367F1 /* Extractor.swift in Sources */,
+				F1E67CA624BB217000EB90F6 /* Metric.swift in Sources */,
 				F18A25E523BB7F8600EF8151 /* BufferUtil+Image.swift in Sources */,
 				F1E645E023940B3D008D2ABE /* Splitter+Type.swift in Sources */,
 				F1537EF124B2462200160FEC /* ChannelPallete+Helper.swift in Sources */,
@@ -1682,6 +1685,7 @@
 				F1E5712823A3F2C400E090BB /* BulkRGBAHCCQRTest+Handler.swift in Sources */,
 				F1690ABE24B2015E000EC61A /* QRSetup.swift in Sources */,
 				F1471FD1248C00C0008A01AD /* Pixel+Const.swift in Sources */,
+				F1E67CA724BB217100EB90F6 /* Metric.swift in Sources */,
 				F1471FEB248C052E008A01AD /* Extractor+Type.swift in Sources */,
 				F1537F0724B362E300160FEC /* ChannelComboTest.swift in Sources */,
 				F1471FC8248C0085008A01AD /* RGBARep+Const.swift in Sources */,

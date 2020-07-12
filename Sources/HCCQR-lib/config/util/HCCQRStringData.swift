@@ -11,7 +11,7 @@ public final class HCCQRStringData {
     * - Returns: data
     */
    public static func randomData(setup: HCCQRSetup) -> Data? {
-      let qrConfig: QRConfig = (version: setup.qrVersion, mode: .byte, ecLevel: setup.ecLevel)
+      let qrConfig: QRConfig = .init(setup.qrVersion, .byte, setup.ecLevel)
       let ranStr: String = randomString(config: qrConfig, colorDepth: setup.output.map.layerCount)
       return ranStr.data(using: .utf8) // converts the string to data
    }
@@ -28,8 +28,8 @@ extension HCCQRStringData {
     */
    private static func randomString(config: QRConfig, colorDepth: Int) -> String {
 //      Swift.print("HCCQRStringData.randomString.colorDepth:  \(colorDepth)")
-      let maxStringCount: Int = QRConfigUtil.dataCount(config: config) // Get max amount of characters you can fit into a speccific HCCQR config combination
+      let maxStringCount: Int = config.maxChar // Get max amount of characters you can fit into a speccific HCCQR config combination
       let maxStrCount: Int = maxStringCount * colorDepth // We want to multiply with colorDepth for HCCQR
-      return QRStringData.randomString(max: maxStrCount, qrMode: config.mode)
+      return RandomData.randomString(count: maxStrCount, qrMode: config.mode)
    }
 }

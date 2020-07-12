@@ -65,7 +65,9 @@ extension Array {
       concurrentMap { _ = action($0) }
    }
 }
- 
+/**
+ * Experimental
+ */
 extension Array {
    /**
     * ⚠️️ Testing ⚠️️

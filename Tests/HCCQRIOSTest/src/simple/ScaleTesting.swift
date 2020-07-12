@@ -16,10 +16,10 @@ extension ScaleTesting {
     * - Fixme: ⚠️️  add ImageView to this repo and add the two lines bellow
     */
    static func testScalingRGBARep() -> Int? {
-      let config: QRConfig = (version: .v4, mode: .byte, ecLevel: .l)
+      let config: QRConfig = .init(.v4, .byte, .l)
       let image: Image? = { // Test QR scaling
-         let stringCount: Int = QRConfigUtil.dataCount(config: config)
-         let randomStr: String = QRStringData.randomString(max: stringCount, qrMode: .byte)
+         let stringCount: Int = config.maxChar
+         let randomStr: String = RandomData.randomString(count: stringCount, qrMode: .byte)
          guard let dataItem: Data = randomStr.data(using: .utf8, allowLossyConversion: false) else { Swift.print("err"); return nil }
          guard let qrImage: Image = try? QRWriter.image(data: dataItem, ecLevel: .l) else { Swift.print("unable to create UIImage");return nil }
          guard let rgbaRep: RGBARep = try? RGBARepUtil.rgbaRep(image: qrImage) else { Swift.print("unable to get rgbaimage from img"); return nil }

@@ -7,7 +7,7 @@ public struct QRSetup {
    /**
     * QR density
     */
-   let qrVersion: QRVer
+   let qrVersion: QRVersion
    /**
     * Error correction level
     */
