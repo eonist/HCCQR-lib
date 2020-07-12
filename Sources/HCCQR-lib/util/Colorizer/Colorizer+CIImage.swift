@@ -54,25 +54,40 @@ extension Colorizer {
    }
 }
 /**
- * Quadrant optimizer for
+ * Quadrant optimizer for ⚠️️ New ⚠️️
  */
 extension Colorizer {
    /**
     * Colorize layers to rgbaRep
-    * - Parameter coreCount: num of cores in cpu ProcessInfo().activeProcessorCount
-    * - Parameter qrLayers: qr layers as CIImages
+    * - Returns: RGBARep
+    * - Parameters:
+    *   - coreCount: num of cores in CPU ProcessInfo().activeProcessorCount
+    *   - qrLayers: qr layers as CIImages
     */
-   static func colorize(qrLayers: [CIImage], config: OutputConfig, coreCount: Int) {
+   internal static func colorize(qrLayers: [CIImage], config: OutputConfig, coreCount: Int) {
+      // loop over coreCount
+      let size: Size = (width: Int(qrLayers[0].extent.width), height: Int(qrLayers[0].extent.height))
+      _ = (0..<coreCount).map { idx in
+         let rect: BufferRect = QuadrantRect.quadrantRect(idx: idx, count: coreCount, size: size)
+         let reps: [MonoRep] = qrLayers.compactMap { colorize(qrLayer: $0, config: config, rect: rect) }
+         _ = reps
+         // 🏀 continue here
+            // colorize the monoreps,
+            // figure out how to combine RGBAImages into one
+         //         colorize(qrLayer: item.element, idx: item.offset, config: config, coreCount: coreCount)
+      }
+      // create quadrantRect
+      // colorize each quadrant rect
+      // stitch partial RGBAReps together
       _ = qrLayers.enumerated().map { item in
-         colorize(qrLayer: item.element, idx: item.offset, config: config, coreCount: coreCount)
+         _ = item
       }
    }
    /**
     * Colorize layer
+    * - Returns: a partial RGBARep
     */
-   private static func colorize(qrLayer: CIImage, idx: Int, config: OutputConfig, coreCount: Int) {
-      let size: Size = (width: Int(qrLayer.extent.width), height: Int(qrLayer.extent.height))
-      let rect: BufferRect = QuadrantRect.quadrantRect(idx: idx, count: coreCount, size: size)
-      _ = rect
+   private static func colorize(qrLayer: CIImage, config: OutputConfig, rect: BufferRect) -> MonoRep? {
+      try? MonoRep.monoRep(ciImg: qrLayer)
    }
 }

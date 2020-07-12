@@ -14,7 +14,7 @@ extension ChannelCombos {
     */
    static func combos(channels: GrayReps) -> ChannelCombos {
       let layerCount: Int = BoolColumn.numOfLayers(numOfColors: channels.count)
-      let layerIndicies: [Int] = (0..<layerCount).indices.compactMap { $0 } // [0,1] for 4-color-HCCQR ⚠️️ this uses compactmap, because lint gives a warning for regular map, and other alternatives doesnt work inside array extension
+      let layerIndicies: [Int] = (0..<layerCount).compactMap { $0 } // [0,1] for 4-color-HCCQR ⚠️️ this uses compactmap, because lint gives a warning for regular map, and other alternatives doesnt work inside array extension
       let numOfColors: Int = channels.count // Int(pow(Double(layerCount), Double(layerCount))) // 2 = 4, 3 = 8, 4 = 16..etc
       let boolColumn: BoolColumn = .sequence(numOfColors)
 //      Swift.print("boolColumn:  \(boolColumn)")

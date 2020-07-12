@@ -22,9 +22,9 @@ extension Colorizer {
    static func colorize(monoReps: [MonoRep], config: OutputConfig) -> RGBARep {
       let size: Size = monoReps[0].size // get size from first rep
       let capacity: Int = monoReps[0].capacity // get capacity from first item
-      let pixels = UnsafeMutableBufferPointer<Pixel>.allocate(capacity: capacity) // Create a new array // pixels.reserveCapacity(size.width * size.height)
+      let pixels: UnsafeMutableBufferPointer<Pixel> = .allocate(capacity: capacity) // Create a new array // pixels.reserveCapacity(size.width * size.height)
       defer { pixels.deallocate() } // ⚠️️ this deallocates the pixels once they are not needed anymore
-      (0..<size.height).indices.forEach { y in // every y pixel
+      (0..<size.height).forEach { y in // every y pixel
          // - Fixme: ⚠️️ optimal amount of work on bellow is suboptimal
          DispatchQueue.concurrentPerform(iterations: size.width) { (x: Int) in // Optimization initiatives
             // - Fixme: ⚠️️ We should just pass the ref to the array etc. instead of making new arrays?, might be faster
