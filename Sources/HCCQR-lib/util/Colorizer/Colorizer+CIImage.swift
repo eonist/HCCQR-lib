@@ -24,6 +24,7 @@ extension Colorizer {
     */
    static func colorize(ciImages: [CIImage], config: OutputConfig) -> ColorizerResult {
       guard let rgbaRep: RGBARep = try? colorize(ciImages: ciImages, config: config) else { return .failure(.unableToCreateRGBAImageFromQRImages) }
+      // BufferUtil.rgbaRep has crop
       guard let ciImage: CIImage = try? RGBARepParser.ciImg2(rgbaRep: rgbaRep, useGrayscale: false/*, scale: CGFloat(multipliers.screenScale)*/) else { return .failure(.unableToConvertRGBAToImage)/*Swift.print();return nil*/ }
       rgbaRep.deInitiate() // ⚠️️⚠️️ We dealloc pixels after they are consumed, We get a mem leak in iOS if we don't deallocate the pixels ⚠️️⚠️️
       return .success(ciImage)
@@ -50,5 +51,28 @@ extension Colorizer {
 //      guard ciImages.count == monotoneImages.count else { throw NSError("Colorize.colorize() - some rgbaImages was not created") }
       let result: RGBARep = colorize(monoReps: reps, config: config)// else { throw NSError("Colorize.colorize() - Unable to create colorized rgbaImage") } // overlay the qr-pixel-data
       return result
+   }
+}
+/**
+ * Quadrant optimizer for
+ */
+extension Colorizer {
+   /**
+    * Colorize layers to rgbaRep
+    * - Parameter coreCount: num of cores in cpu ProcessInfo().activeProcessorCount
+    * - Parameter qrLayers: qr layers as CIImages
+    */
+   static func colorize(qrLayers: [CIImage], config: OutputConfig, coreCount: Int) {
+      _ = qrLayers.enumerated().map { item in
+         colorize(qrLayer: item.element, idx: item.offset, config: config, coreCount: coreCount)
+      }
+   }
+   /**
+    * Colorize layer
+    */
+   private static func colorize(qrLayer: CIImage, idx: Int, config: OutputConfig, coreCount: Int) {
+      let size: Size = (width: Int(qrLayer.extent.width), height: Int(qrLayer.extent.height))
+      let rect: BufferRect = QuadrantRect.quadrantRect(idx: idx, count: coreCount, size: size)
+      _ = rect
    }
 }

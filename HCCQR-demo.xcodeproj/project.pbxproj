@@ -353,6 +353,9 @@
 		F1E67CAC24BB2D2800EB90F6 /* Writer2.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E67CA924BB2D2800EB90F6 /* Writer2.swift */; };
 		F1E67CB124BB533800EB90F6 /* QuadrantOptimizationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E67CAE24BB533800EB90F6 /* QuadrantOptimizationTest.swift */; };
 		F1E67CB324BB566E00EB90F6 /* TimeMeasure.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E67CB224BB566E00EB90F6 /* TimeMeasure.swift */; };
+		F1E67CB524BB691F00EB90F6 /* QuadrantRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E67CB424BB691F00EB90F6 /* QuadrantRect.swift */; };
+		F1E67CB624BB691F00EB90F6 /* QuadrantRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E67CB424BB691F00EB90F6 /* QuadrantRect.swift */; };
+		F1E67CB724BB691F00EB90F6 /* QuadrantRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E67CB424BB691F00EB90F6 /* QuadrantRect.swift */; };
 		F1E67D4B24A8D124007FC5C0 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852782213443700C27EAA /* UIView+Ext.swift */; };
 		F1E67D4D24A9059C007FC5C0 /* Metric.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E67D4C24A9059C007FC5C0 /* Metric.swift */; };
 		F1E6F6872493B2DC00975607 /* MonoPixelColorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E6F6862493B2DC00975607 /* MonoPixelColorization.swift */; };
@@ -537,6 +540,7 @@
 		F1E67CA924BB2D2800EB90F6 /* Writer2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Writer2.swift; sourceTree = "<group>"; };
 		F1E67CAE24BB533800EB90F6 /* QuadrantOptimizationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuadrantOptimizationTest.swift; sourceTree = "<group>"; };
 		F1E67CB224BB566E00EB90F6 /* TimeMeasure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeMeasure.swift; sourceTree = "<group>"; };
+		F1E67CB424BB691F00EB90F6 /* QuadrantRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuadrantRect.swift; sourceTree = "<group>"; };
 		F1E67D4C24A9059C007FC5C0 /* Metric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Metric.swift; sourceTree = "<group>"; };
 		F1E6F6862493B2DC00975607 /* MonoPixelColorization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonoPixelColorization.swift; sourceTree = "<group>"; };
 		F1F3E04923BA1CA200D367F1 /* Extractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extractor.swift; sourceTree = "<group>"; };
@@ -753,6 +757,7 @@
 				F1D8A68A23E9952200F17A81 /* Colorizer+Pixel.swift */,
 				F165D4AA24A9FEA300C99CD7 /* Colorizer+Type.swift */,
 				F12274DF249BCC8D0045573B /* ColorizeError.swift */,
+				F1E67CB424BB691F00EB90F6 /* QuadrantRect.swift */,
 			);
 			path = Colorizer;
 			sourceTree = "<group>";
@@ -1489,6 +1494,7 @@
 				F1E645ED23940B3D008D2ABE /* HCCQRStringData.swift in Sources */,
 				F1E67CAB24BB2D2800EB90F6 /* Writer2.swift in Sources */,
 				F1E645E223940B3D008D2ABE /* Pixel.swift in Sources */,
+				F1E67CB624BB691F00EB90F6 /* QuadrantRect.swift in Sources */,
 				F143EC2A23FA96F60006743C /* MonoRep+DeInit.swift in Sources */,
 				F1D8A68C23E9952200F17A81 /* Colorizer+Pixel.swift in Sources */,
 				F181F10B23B9091400145DEA /* GrayRep.swift in Sources */,
@@ -1570,6 +1576,7 @@
 				F1E67D4D24A9059C007FC5C0 /* Metric.swift in Sources */,
 				F1E645A823940AC9008D2ABE /* UInt8Asserter.swift in Sources */,
 				F1CF2D7A249380F8007ACC0E /* VC+HCCQR.swift in Sources */,
+				F1E67CB524BB691F00EB90F6 /* QuadrantRect.swift in Sources */,
 				F12274E0249BCC8D0045573B /* ColorizeError.swift in Sources */,
 				F146A53B24AD048500FE136C /* CustomColorPallete.swift in Sources */,
 				F1D8A66E23E83F8900F17A81 /* GrayRep+DeInit.swift in Sources */,
@@ -1770,6 +1777,7 @@
 				F19C1C7424A8837100E93F4D /* GrayRepParser.swift in Sources */,
 				F1472001248C0704008A01AD /* UInt8Asserter.swift in Sources */,
 				F1690AC724B2129D000EC61A /* ColorPalleteUtil.swift in Sources */,
+				F1E67CB724BB691F00EB90F6 /* QuadrantRect.swift in Sources */,
 				F1690AB624B2011D000EC61A /* HCCQRSetup+Getter.swift in Sources */,
 				F1537EF624B311E900160FEC /* BoolColumn+Helper.swift in Sources */,
 				F1471FDC248C0419008A01AD /* GrayRep+Getter.swift in Sources */,
