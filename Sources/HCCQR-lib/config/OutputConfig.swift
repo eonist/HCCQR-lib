@@ -7,6 +7,11 @@ import QR_lib
 public struct OutputConfig {
    let scale: Scale
    let map: ColorPallete
+   /**
+    * - Parameters:
+    *    - scale: which colors to use in the output HCCQR
+    *    - map: screen and module scale
+    */
    init(scale: Scale, map: ColorPallete = .cp4()) {
       self.scale = scale
       self.map = map

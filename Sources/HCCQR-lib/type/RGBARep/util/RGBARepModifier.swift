@@ -16,7 +16,7 @@ final class RGBARepModifier {
     *   - scale: The amount to scale the pixel by (module, screen)
     */
    static func scale(pixels: UnsafeMutableBufferPointer<Pixel>, size: Size, scale: Scale) -> RGBARep {
-      let scale: Int = scale.module * scale.screen
+      let scale: Int = scale.module * scale.screen // multiply screen and module multiplier
       let scaledSize: Size = (size.width * scale, size.height * scale)
       let capacity: Int = scaledSize.width * scaledSize.height
       let resultPixels: UnsafeMutableBufferPointer<Pixel> = .allocate(capacity: capacity)
@@ -24,7 +24,8 @@ final class RGBARepModifier {
          let scaledY = y / scale * size.height
          let yWidth = y * scaledSize.width
          // - Fixme: ⚠️️ optimal amount of work on bellow is suboptimal
-         DispatchQueue.concurrentPerform(iterations: scaledSize.width) { x in // Optimization initiative, might be faster
+         (0..<scaledSize.width).forEach { (x: Int) in
+//         DispatchQueue.concurrentPerform(iterations: scaledSize.width) { x in // Optimization initiative, might be faster
             let pixIndex: Int = scaledY + x / scale
             let resIndex: Int = yWidth + x
             resultPixels[resIndex] = pixels[pixIndex]

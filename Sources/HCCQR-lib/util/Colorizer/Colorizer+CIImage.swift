@@ -54,7 +54,7 @@ extension Colorizer {
    }
 }
 /**
- * Quadrant optimizer for ⚠️️ New ⚠️️
+ * Colorizer with (Quadrant optimization support) ⚠️️ New ⚠️️
  */
 extension Colorizer {
    /**
@@ -64,29 +64,16 @@ extension Colorizer {
     *   - coreCount: num of cores in CPU ProcessInfo().activeProcessorCount
     *   - qrLayers: qr layers as CIImages
     */
-   internal static func colorize(qrLayers: [CIImage], config: OutputConfig, coreCount: Int) {
-      // loop over coreCount
+   internal static func colorize(qrLayers: [CIImage], config: OutputConfig, coreCount: Int) -> RGBARep {
       let size: Size = (width: Int(qrLayers[0].extent.width), height: Int(qrLayers[0].extent.height))
-      _ = (0..<coreCount).map { idx in
+      let rgbaReps: [RGBARep] = (0..<coreCount).map { idx in // loop over coreCount
          let rect: BufferRect = QuadrantRect.quadrantRect(idx: idx, count: coreCount, size: size)
-         let reps: [MonoRep] = qrLayers.compactMap { colorize(qrLayer: $0, config: config, rect: rect) }
-         _ = reps
-         // 🏀 continue here
-            // colorize the monoreps
-            // figure out how to combine RGBAImages into one
-         //         colorize(qrLayer: item.element, idx: item.offset, config: config, coreCount: coreCount)
+         let monoReps: [MonoRep] = qrLayers.compactMap { try? MonoRep.monoRep(ciImg: $0, crop: rect) }
+         let rgbaRep: RGBARep = colorize(monoReps: monoReps, config: config)
+         return rgbaRep
       }
-      // create quadrantRect
-      // stitch partial RGBAReps together
-      _ = qrLayers.enumerated().map { item in
-         _ = item
-      }
-   }
-   /**
-    * Colorize layer
-    * - Returns: a partial RGBARep
-    */
-   private static func colorize(qrLayer: CIImage, config: OutputConfig, rect: BufferRect) -> MonoRep? {
-      try? MonoRep.monoRep(ciImg: qrLayer)
+      let rgbaRep: RGBARep = RGBARepModifier.combine(rgbaReps: rgbaReps, size: size)// combine partial RGBAReps together into one RGBARep
+      // - Fixme: ⚠️️ maybe scale here instead of inside the partial rgbareps?
+      return rgbaRep
    }
 }
