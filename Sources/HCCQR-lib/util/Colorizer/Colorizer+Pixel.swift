@@ -27,7 +27,8 @@ extension Colorizer {
 extension Colorizer {
    /**
     * Find colorMapItem that matches
-    * - Fixme ⚠️️ could we use async_apply here, in the .first loop?
+    * - Fixme: ⚠️️ could we use concurrent_apply here, in the .first loop?, probably not
+    * - Fixme: ⚠️️ do we need throw?, why not just use optional?
     */
    private static func matchColorMap(_ pixels: [Bool], _ map: ColorMap) throws -> Bool { // = { (map: ColorMapItem) in
       if map.idx.count != pixels.count { throw ColorizeError.mismatchbetweenNumOfLayersAndColorPallet }

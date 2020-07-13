@@ -4,7 +4,7 @@ import QuartzCore
 import CoreGraphics
 import CoreImage
 /**
- * - Fixme: ⚠️️ These are mostly visual tests, find something to unit-test
+ * Visual tests
  */
 class ViewController: UIViewController {
    override func viewDidLoad() {
@@ -14,6 +14,7 @@ class ViewController: UIViewController {
 //      createRGBAPhoto()
 //      testSplitting()
 //      testHCCQR() // 👈
+      testQuadrantOptimization() // 👈
 //      testGrid()
 //      Pixels._4.forEach { Swift.print("$0:  \($0)") }
    }

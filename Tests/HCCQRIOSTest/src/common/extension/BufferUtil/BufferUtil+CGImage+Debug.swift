@@ -4,6 +4,10 @@ import CoreImage
 @testable import HCCQR_lib
 
 extension BufferUtil {
+   public enum ImgBufferError: Error {
+      case statusError
+      case unableToGetContext
+   }
    /**
     * CGImage -> CVPixelBuffer (⭐ works ⭐)
     * - Note: Ref https://github.com/brianadvent/UIImage-to-CVPixelBuffer/blob/master/ImageProcessor.swift
@@ -15,12 +19,12 @@ extension BufferUtil {
       let frameSize = CGSize(width: cgImage.width, height: cgImage.height)
       var buffer: CVPixelBuffer?
       let status = CVPixelBufferCreate(kCFAllocatorDefault, Int(frameSize.width), Int(frameSize.height), kCVPixelFormatType_32BGRA, nil, &buffer)
-      if status != kCVReturnSuccess { throw NSError(domain: "status err", code: 0) }
+      if status != kCVReturnSuccess { throw ImgBufferError.statusError }
       CVPixelBufferLockBaseAddress(buffer!, CVPixelBufferLockFlags(rawValue: 0))
       let data = CVPixelBufferGetBaseAddress(buffer!)
       let rgbColorSpace = CGColorSpaceCreateDeviceRGB()
       let bitmapInfo = CGBitmapInfo(rawValue: CGBitmapInfo.byteOrder32Little.rawValue | CGImageAlphaInfo.premultipliedFirst.rawValue)
-      guard let context = CGContext(data: data, width: Int(frameSize.width), height: Int(frameSize.height), bitsPerComponent: 8, bytesPerRow: CVPixelBufferGetBytesPerRow(buffer!), space: rgbColorSpace, bitmapInfo: bitmapInfo.rawValue) else { Swift.print("Unable to get context"); throw NSError(domain: "Unable to get context", code: 0) }
+      guard let context = CGContext(data: data, width: Int(frameSize.width), height: Int(frameSize.height), bitsPerComponent: 8, bytesPerRow: CVPixelBufferGetBytesPerRow(buffer!), space: rgbColorSpace, bitmapInfo: bitmapInfo.rawValue) else { throw ImgBufferError.unableToGetContext }
       context.draw(cgImage, in: CGRect(x: 0, y: 0, width: cgImage.width, height: cgImage.height))
       // - Fixme: ⚠️️ Should we unlock buffer here, since we return it etc ?, other repos lock here and still forward buffer
 //      let pixelFormatName: String = BufferUtil.pixelFormatName(pixelBuffer: buffer!) // kCVPixelFormatType_2Indexed

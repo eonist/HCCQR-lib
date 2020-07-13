@@ -31,10 +31,10 @@ extension BulkPhotoTest {
    static func readMany(rgbaImages: [RGBARep], onComplete: @escaping OnReadManyComplete) {
       Swift.print("readMany()")
       var dataArray: [Data?] = .init(repeating: nil, count: rgbaImages.count) // Stores the results in this array
-      rgbaImages.enumerated().forEach { arg in
+      rgbaImages.enumerated().forEach { (i: Int, rgbaRep: RGBARep) in
          //DispatchQueue.main.async {
-         Reader.data(rgbaRep: arg.element) { result in  // Process the hccqrImg
-            onReadComplete(result: result, i: arg.offset, dataArray: &dataArray, onComplete: onComplete)
+         Reader.data(rgbaRep: rgbaRep) { result in  // Process the hccqrImg
+            onReadComplete(result: result, i: i, dataArray: &dataArray, onComplete: onComplete)
          }
          //}
       }

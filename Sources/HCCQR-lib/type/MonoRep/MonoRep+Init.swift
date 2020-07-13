@@ -33,7 +33,7 @@ extension MonoRep {
       let fromExtent: CGRect = BufferRectUtil.cgRect(bufferRect: crop)
       context.draw(ciImg, in: ciImg.extent, from: fromExtent)
       let pixels: UnsafeMutableBufferPointer<Pixel> = .init(start: imageData, count: capacity)
-      let monotonePixels = UnsafeMutableBufferPointer<Bool>.allocate(capacity: capacity)
+      let monotonePixels: UnsafeMutableBufferPointer<Bool> = .allocate(capacity: capacity)
       pixels.enumerated().forEach { monotonePixels[$0.offset] = $0.element.isWhite } // set bools (white is true, black is false)
       //       defer { imageData.deallocate() } // ⚠️️ new
       defer { pixels.deallocate() } // dealloc this, as we have no more use for it

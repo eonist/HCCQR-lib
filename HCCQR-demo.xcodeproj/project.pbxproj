@@ -348,14 +348,12 @@
 		F1E645F3239429CA008D2ABE /* QR-lib in Frameworks */ = {isa = PBXBuildFile; productRef = F1E645F2239429CA008D2ABE /* QR-lib */; };
 		F1E67CA624BB217000EB90F6 /* Metric.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E67D4C24A9059C007FC5C0 /* Metric.swift */; };
 		F1E67CA724BB217100EB90F6 /* Metric.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E67D4C24A9059C007FC5C0 /* Metric.swift */; };
-		F1E67CAA24BB2D2800EB90F6 /* Writer2.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E67CA924BB2D2800EB90F6 /* Writer2.swift */; };
-		F1E67CAB24BB2D2800EB90F6 /* Writer2.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E67CA924BB2D2800EB90F6 /* Writer2.swift */; };
-		F1E67CAC24BB2D2800EB90F6 /* Writer2.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E67CA924BB2D2800EB90F6 /* Writer2.swift */; };
 		F1E67CB124BB533800EB90F6 /* QuadrantOptimizationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E67CAE24BB533800EB90F6 /* QuadrantOptimizationTest.swift */; };
 		F1E67CB324BB566E00EB90F6 /* TimeMeasure.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E67CB224BB566E00EB90F6 /* TimeMeasure.swift */; };
 		F1E67CB524BB691F00EB90F6 /* QuadrantRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E67CB424BB691F00EB90F6 /* QuadrantRect.swift */; };
 		F1E67CB624BB691F00EB90F6 /* QuadrantRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E67CB424BB691F00EB90F6 /* QuadrantRect.swift */; };
 		F1E67CB724BB691F00EB90F6 /* QuadrantRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E67CB424BB691F00EB90F6 /* QuadrantRect.swift */; };
+		F1E67CB924BC8BA800EB90F6 /* VC+QuadrantTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E67CB824BC8BA800EB90F6 /* VC+QuadrantTest.swift */; };
 		F1E67D4B24A8D124007FC5C0 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852782213443700C27EAA /* UIView+Ext.swift */; };
 		F1E67D4D24A9059C007FC5C0 /* Metric.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E67D4C24A9059C007FC5C0 /* Metric.swift */; };
 		F1E6F6872493B2DC00975607 /* MonoPixelColorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E6F6862493B2DC00975607 /* MonoPixelColorization.swift */; };
@@ -537,10 +535,10 @@
 		F1E5DC1123F9A2DF00605775 /* UIImage+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Ext.swift"; sourceTree = "<group>"; };
 		F1E5DC1723F9A5B700605775 /* Image+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Ext.swift"; sourceTree = "<group>"; };
 		F1E5DC1923F9D37700605775 /* NSImage+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSImage+Ext.swift"; sourceTree = "<group>"; };
-		F1E67CA924BB2D2800EB90F6 /* Writer2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Writer2.swift; sourceTree = "<group>"; };
 		F1E67CAE24BB533800EB90F6 /* QuadrantOptimizationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuadrantOptimizationTest.swift; sourceTree = "<group>"; };
 		F1E67CB224BB566E00EB90F6 /* TimeMeasure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeMeasure.swift; sourceTree = "<group>"; };
 		F1E67CB424BB691F00EB90F6 /* QuadrantRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuadrantRect.swift; sourceTree = "<group>"; };
+		F1E67CB824BC8BA800EB90F6 /* VC+QuadrantTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VC+QuadrantTest.swift"; sourceTree = "<group>"; };
 		F1E67D4C24A9059C007FC5C0 /* Metric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Metric.swift; sourceTree = "<group>"; };
 		F1E6F6862493B2DC00975607 /* MonoPixelColorization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonoPixelColorization.swift; sourceTree = "<group>"; };
 		F1F3E04923BA1CA200D367F1 /* Extractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extractor.swift; sourceTree = "<group>"; };
@@ -1032,6 +1030,7 @@
 				F18A52E021790F8A003F8C13 /* ViewController.swift */,
 				F1FE7DFF24A0A7360094B1BD /* VC+Split.swift */,
 				F1FE7E0124A0A9AF0094B1BD /* VC+Grid.swift */,
+				F1E67CB824BC8BA800EB90F6 /* VC+QuadrantTest.swift */,
 				F146A53924AD047100FE136C /* HCCQR */,
 				F1E205AA2495E60A00E3A82E /* VC+RGBAPhoto.swift */,
 				F1CF2D7B24938254007ACC0E /* View.swift */,
@@ -1158,7 +1157,6 @@
 			isa = PBXGroup;
 			children = (
 				F16852762213443700C27EAA /* common */,
-				F1E67CA824BB2D0D00EB90F6 /* Writer2 */,
 				F1F6F7C122221EB00075E7FD /* Writer */,
 				F1F6F7C222221EBC0075E7FD /* Reader */,
 				F16852B122134A3800C27EAA /* util */,
@@ -1166,14 +1164,6 @@
 				F1C42F6924B1F8BD00DA7F23 /* type */,
 			);
 			path = "HCCQR-lib";
-			sourceTree = "<group>";
-		};
-		F1E67CA824BB2D0D00EB90F6 /* Writer2 */ = {
-			isa = PBXGroup;
-			children = (
-				F1E67CA924BB2D2800EB90F6 /* Writer2.swift */,
-			);
-			path = Writer2;
 			sourceTree = "<group>";
 		};
 		F1E67CAD24BB531000EB90F6 /* QuadrantOptimizationTest */ = {
@@ -1492,7 +1482,6 @@
 				F12274DD249B7C7B0045573B /* WriteError.swift in Sources */,
 				F143EC2423FA8E2F0006743C /* MonoRep.swift in Sources */,
 				F1E645ED23940B3D008D2ABE /* HCCQRStringData.swift in Sources */,
-				F1E67CAB24BB2D2800EB90F6 /* Writer2.swift in Sources */,
 				F1E645E223940B3D008D2ABE /* Pixel.swift in Sources */,
 				F1E67CB624BB691F00EB90F6 /* QuadrantRect.swift in Sources */,
 				F143EC2A23FA96F60006743C /* MonoRep+DeInit.swift in Sources */,
@@ -1612,7 +1601,6 @@
 				F1E645A423940AC9008D2ABE /* Image+Extension.swift in Sources */,
 				F143EC2C23FA97B60006743C /* MonoRep+Getter.swift in Sources */,
 				F1AF9D3623E2D7630085DA0C /* BufferUtil+Type.swift in Sources */,
-				F1E67CAA24BB2D2800EB90F6 /* Writer2.swift in Sources */,
 				F165D4AB24A9FEA300C99CD7 /* Colorizer+Type.swift in Sources */,
 				F181F11623B92D0500145DEA /* GrayRep+Getter.swift in Sources */,
 				F1537EEC24B2297F00160FEC /* BoolRow.swift in Sources */,
@@ -1633,6 +1621,7 @@
 				F18A25E723BB83E700EF8151 /* NSImage+Extension.swift in Sources */,
 				F1537EFD24B353E500160FEC /* GrayReps.swift in Sources */,
 				F1E645A623940AC9008D2ABE /* Data+Extension.swift in Sources */,
+				F1E67CB924BC8BA800EB90F6 /* VC+QuadrantTest.swift in Sources */,
 				F12274DC249B7C7B0045573B /* WriteError.swift in Sources */,
 				F1D8A67123E842B000F17A81 /* UInt8+Extension.swift in Sources */,
 				F181F11923B931D300145DEA /* Combiner.swift in Sources */,
@@ -1742,7 +1731,6 @@
 				F1537EFF24B353E500160FEC /* GrayReps.swift in Sources */,
 				F1AF9D3F23E37E5D0085DA0C /* CVBufferTest+Handler.swift in Sources */,
 				F1E5DC1223F9A2DF00605775 /* UIImage+Ext.swift in Sources */,
-				F1E67CAC24BB2D2800EB90F6 /* Writer2.swift in Sources */,
 				F1472003248C0704008A01AD /* UInt8Modifier.swift in Sources */,
 				F1471FE2248C04F9008A01AD /* Reader+Type.swift in Sources */,
 				F1E5DC1523F9A43A00605775 /* CGImage+Ext.swift in Sources */,

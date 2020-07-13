@@ -37,10 +37,15 @@ public final class RGBARepParser {
  * Private static helper method
  */
 extension RGBARepParser {
+   internal enum CGImageErr: Error {
+      case unableToCreateCFData
+      case unableToCreateCGDataProvider
+      case unableToCreateCGImage
+   }
    /**
     * rgbaRep 👉 cgImage
     * - Fixme: ⚠️️ Try the CIImage conversions as well, might be even faster?
-    * - Fixme: ⚠️️ Make custom Error types for the erros this method can throw
+    * - Fixme: ⚠️️ Make custom Error types for the erros this method can throw 👈
     * - Note: this method is much faster than the slow version of this where you use: CGContext().makeImage() etc
     * - Note: alternative data -> img code, might be faster?: https://stackoverflow.com/questions/51372245/swift-covert-byte-array-into-ciimage
     * - Note: We use autorelease Because CoreGraphics is not handled by ARC (like all other C libraries),
@@ -55,10 +60,10 @@ extension RGBARepParser {
          bitmapInfo |= CGImageAlphaInfo.premultipliedLast.rawValue & CGBitmapInfo.alphaInfoMask.rawValue
          let bitsPerComponent: Int = 8 // (8 bits per each channel)
          let bytesPerPixel: Int = 4 // 4 bytes(rgba channels) for each pixel
-         guard let cfData = CFDataCreate(nil, rgbaRep.flatPixels, rgbaRep.width * rgbaRep.height * bytesPerPixel) else { throw NSError(domain: "Unable to create cfData", code: 0) }
-         guard let cgDataProvider = CGDataProvider(data: cfData) else { throw NSError(domain: "Unable to create cgDataProvider", code: 0) }
-         let bitsPerPixel = bytesPerPixel * bitsPerComponent
-         guard let image = CGImage(width: rgbaRep.width, height: rgbaRep.height, bitsPerComponent: bitsPerComponent, bitsPerPixel: bitsPerPixel, bytesPerRow: bytesPerRow, space: deviceColorSpace, bitmapInfo: [], provider: cgDataProvider, decode: nil, shouldInterpolate: true, intent: CGColorRenderingIntent.defaultIntent) else { throw NSError(domain: "Unable to create cgImage", code: 0) }
+         guard let cfData = CFDataCreate(nil, rgbaRep.flatPixels, rgbaRep.width * rgbaRep.height * bytesPerPixel) else { throw CGImageErr.unableToCreateCFData }
+         guard let cgDataProvider = CGDataProvider(data: cfData) else { throw CGImageErr.unableToCreateCGDataProvider }
+         let bitsPerPixel: Int = bytesPerPixel * bitsPerComponent
+         guard let image = CGImage(width: rgbaRep.width, height: rgbaRep.height, bitsPerComponent: bitsPerComponent, bitsPerPixel: bitsPerPixel, bytesPerRow: bytesPerRow, space: deviceColorSpace, bitmapInfo: [], provider: cgDataProvider, decode: nil, shouldInterpolate: true, intent: CGColorRenderingIntent.defaultIntent) else { throw CGImageErr.unableToCreateCGImage }
          return image
       }
    }

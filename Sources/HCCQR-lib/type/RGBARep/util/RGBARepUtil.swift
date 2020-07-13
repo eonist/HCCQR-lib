@@ -32,7 +32,7 @@ extension RGBARepUtil {
       let bytesPerRow: Int = size.width * 4 // We multiply per 4 because of the 4 channels, RGBA
       let capacity: Int = size.width * size.height
       let imageData: UnsafeMutablePointer<Pixel> = .allocate(capacity: capacity)
-      defer { imageData.deallocate() }
+//      defer { imageData.deallocate() }
       // Swift.print("cgImage.colorSpace:  \(String(describing: cgImage.colorSpace))")
       let colorSpace: CGColorSpace = CGColorSpaceCreateDeviceRGB()
       let bitMapInfo = RGBARep.bitmapInfo

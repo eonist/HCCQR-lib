@@ -48,9 +48,25 @@ extension Reader {
     *   - rgbaRep: raw pixels and size
     *   - onComplete: completion block
     */
-   static func data(rgbaRep: RGBARep, pallete: ChannelPallete = .pallete(pallete: ._4, darkMode: true), onComplete:@escaping OnReadCompleted2) {
+   static func data(rgbaRep: RGBARep, pallete: ChannelPallete = .pallete(pallete: ._4, darkMode: true), onComplete: @escaping OnReadCompleted2) {
       Splitter.split(rgbaRep: rgbaRep, pallete: pallete) { (result: Splitter.SplitResult) in // Start the splitting process
          onSplitComplete(result: result, onComplete: onComplete) // readTime += abs(HCCQRReader.splitTime.timeIntervalSinceNow); Swift.print("👉 Splitting rgbaImage done: \(abs(HCCQRReader.splitTime.timeIntervalSinceNow))")
+      }
+   }
+}
+/**
+ * Image -> Data
+ */
+extension Reader {
+   /**
+    * Image -> Data (⚠️️ new ⚠️️)
+    * - Fixme: ⚠️️ make this with out the callback
+    */
+   public static func data(image: Image, pallete: ChannelPallete = .default, onComplete: @escaping (_ data: Data?) -> Void) {
+      guard let rgbaRep: RGBARep = try? RGBARepUtil.rgbaRep(image: image) else { Swift.print("err getting rgbImage"); return } // CVImageBufferUtil.rgbaRep(image: image)
+      Reader.data(rgbaRep: rgbaRep, pallete: pallete) { (result: Reader.ReadResult2) in // Split the hccqrImg
+         guard let value = try? result.get() else { onComplete(nil); return }
+         onComplete(value.data)
       }
    }
 }

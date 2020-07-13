@@ -7,4 +7,7 @@ import Foundation
  * - Fixme: ⚠️️ make it a struct, width .scale that combines module and screen?
  */
 public typealias Scale = (module: Int, screen: Int)
+/**
+ * - Fixme: ⚠️️ make Size a stuct, because then you can add capacity and scaledSize to it as getters in an extension
+ */
 public typealias Size = (width: Int, height: Int)

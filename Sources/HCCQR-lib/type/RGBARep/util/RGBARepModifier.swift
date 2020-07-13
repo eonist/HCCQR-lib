@@ -33,6 +33,11 @@ final class RGBARepModifier {
       }
       return .init(pixels: resultPixels, width: scaledSize.width, height: scaledSize.height)
    }
+}
+/**
+ * Experimental
+ */
+extension RGBARepModifier {
    /**
     * Combines many rgbaRep's into one
     * - Parameters:
@@ -40,20 +45,39 @@ final class RGBARepModifier {
     *   - size: final output size (has to be the combined size of all rgbaReps)
     */
    static func combine(rgbaReps: [RGBARep], size: Size) -> RGBARep {
+      Swift.print("combine.size:  \(size)")
       let capacity: Int = size.width * size.height
       let resultPixels: UnsafeMutableBufferPointer<Pixel> = .allocate(capacity: capacity)
+      Swift.print("rgbaReps.count:  \(rgbaReps.count)")
+      //      rgbaReps.map { $0.pixels }.enumerated().forEach { resultPixels[$0.offset] = $0.element }
+      var rowYOffset: Int = 0
+      //      var i: Int = 0
       rgbaReps.forEach { (rgbaRep: RGBARep) in
-         var yOffset: Int = 0
-         (0..<rgbaRep.height).forEach { (y: Int) in
+         Swift.print("rgbaRep.height:  \(rgbaRep.height)")
+         Swift.print("rgbaRep.width:  \(rgbaRep.width)")
+         Swift.print("rowYOffset:  \(rowYOffset)")
+         // 🏀
+         // figure out the chopping height
+         // think of a way to increment the array, dra on paper with simple data
+         // the way this works is that for every yRow we write until width
+         (0..<rgbaRep.height).forEach { (y: Int) in // 276
+            //            let offsetY = y * i
             // - Fixme: ⚠️️ do some of the y calc here
-            (0..<rgbaRep.width).forEach { (x: Int) in
+            (0..<rgbaRep.width).forEach { (x: Int) in // 276
                let idx: Int = y * rgbaRep.width + x // every x pixel
-               let offsetIdx: Int = yOffset * y * rgbaRep.width + x
-               resultPixels[offsetIdx] = rgbaRep.pixels[idx]
+               //               Swift.print("y \(y) x: \(x) rgbaRep.width \(rgbaRep.width) rgbaRep.height: \(rgbaRep.height) idx:  \(idx) ")
+               let resultIdx: Int = rowYOffset + idx
+               Swift.print("resultIdx:  \(resultIdx)")
+               resultPixels[resultIdx] = rgbaRep.pixels[idx]
+               //               i += 1
             }
          }
-         yOffset += rgbaRep.height // increment the height
+         //            Swift.print("rowYOffset:  \(rowYOffset)")
+         //         Swift.print("rgbaRep.height:  \(rgbaRep.height)")
+         rowYOffset += rgbaRep.width * rgbaRep.height // increment the height
       }
+      //      Swift.print("i:  \(i)")
+      Swift.print("capacity:  \(capacity)")
       let result: RGBARep = .init(pixels: resultPixels, width: size.width, height: size.height)
       return result
    }

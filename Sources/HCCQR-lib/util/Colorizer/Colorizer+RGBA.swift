@@ -31,12 +31,12 @@ extension Colorizer {
             // - Fixme: ⚠️️ We should just pass the ref to the array etc. instead of making new arrays?, might be faster
             let idx: Int = y * size.width + x // every x pixel
             let layerPixels: [Bool] = monoReps.map { $0.pixels[idx] } // We get pixels from both RGBAImages
-            if let colorizedPixel: Pixel = try? colorize(pixels: layerPixels, pallete: config.map) { // else { throw NSError.init(domain: "Unable to make pixel", code: 0) } //            let arr: [UInt8] = grayscaleImages.map { $0.getPixel(x: x, y: y) } // We get pixels from both RGBAImages
+            if let colorizedPixel: Pixel = try? colorize(pixels: layerPixels, pallete: config.map) {
                pixels[idx] = colorizedPixel
             }
          }
       }
-      monoReps.deInit() // Avoids mem leak // guard pixels.count == size.width * size.height else { throw NSError(domain: "missing some pixels", code: 0) } // Check if array has all the pixels
+      monoReps.deInit() // Avoids mem leak 
       let rgbaImage: RGBARep = RGBARepModifier.scale(pixels: pixels, size: size, scale: config.scale)
       return rgbaImage
    }

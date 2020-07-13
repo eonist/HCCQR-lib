@@ -17,7 +17,7 @@ extension ChannelPallete {
       return pallete
    }
    /**
-    * - Note: We dont seperate the white
+    * - Note: We don't seperate the white
     * - Fixme: ⚠️️ account for darkmode
     */
    static func core(pallete: ChannelPallete) -> ChannelPallete {

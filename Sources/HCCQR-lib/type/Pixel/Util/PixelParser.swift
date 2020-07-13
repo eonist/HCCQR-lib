@@ -40,6 +40,11 @@ final class PixelParser {
  */
 extension PixelParser {
    private typealias RGBAColor = (CGFloat, CGFloat, CGFloat, CGFloat)
+   internal enum RGBAError: Error {
+      case couldNotExtractRGBAComponents
+      case couldNotConvertNSColorToCIColor
+      case osNotSupported
+   }
    /**
     * Color -> (r: UInt8, g: UInt8 ,b: UInt8, a: UInt8)
     * - Fixme: ⚠️️ You can also probably do (maybe faster?): UIColor.blue.colorComponents // (red: 0.0, green: 0.0, blue: 1.0, alpha: 1.0)
@@ -47,15 +52,15 @@ extension PixelParser {
    static func rgba(uiColor: Color) throws -> Pixel {
       var (r, g, b, a): RGBAColor = (0, 0, 0, 0)
       #if os(iOS)
-      guard uiColor.getRed(&r, green: &g, blue: &b, alpha: &a) else { throw NSError(domain: "Could not extract RGBA components", code: 0) }
+      guard uiColor.getRed(&r, green: &g, blue: &b, alpha: &a) else { throw RGBAError.couldNotExtractRGBAComponents }
       #elseif os(macOS)
-      guard let ciColor = CIColor(color: uiColor) else { throw NSError(domain: "PixelDataUtil.rgba() - Could not convert nsColor to CIColor", code: 0) }
+      guard let ciColor = CIColor(color: uiColor) else { throw RGBAError.couldNotConvertNSColorToCIColor }
       r = ciColor.red // 1.0
       g = ciColor.green // 0.0
       b = ciColor.blue // 0.0
       a = ciColor.alpha // 1.0 or use nsColor.alphaComponent
       #else
-      throw NSError(domain: "os not supported", code: 0)
+      throw RGBAError.osNotSupported
       #endif
       return .init(r: UInt8(r * 255.0), g: UInt8(g * 255.0), b: UInt8(b * 255.0), a: UInt8(a * 255.0))
    }

@@ -6,8 +6,8 @@ class HCCQRIOSTest: XCTestCase {
       print(TimeMeasure.timeElapsed {
          XCTAssertTrue(QuadrantOptimizationTest.test())
       }) // 2.20000
-      simpleTests()
-      advanceTests()
+//      simpleTests()
+//      advanceTests()
    }
    /**
     * Utility tests etc

@@ -16,7 +16,7 @@ final class GrayRepModifier {
    static func process(input: RGBARep, output: GrayRep, functor: GrayRep.FunctorCall) -> GrayRep {
       (0..<input.height).forEach { y in
          let idx: Int = y * input.width // we calc this here as optimization
-         // - Fixme: ⚠️️ optimal amount of work on bellow is suboptimal
+         // - Fixme: ⚠️️ optimal amount of work on bellow is suboptimal (will be omitted soon)
          DispatchQueue.concurrentPerform(iterations: input.width) { x in // ⚠️️ Optimization initiative
             let index: Int = idx + x // Pixel index
             output.pixels[index] = functor(input.pixels[index]) // apply new pixel to old pixel

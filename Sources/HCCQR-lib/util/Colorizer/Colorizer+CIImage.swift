@@ -58,21 +58,31 @@ extension Colorizer {
  */
 extension Colorizer {
    /**
-    * Colorize layers to rgbaRep
+    * Colorize layers to rgbaRep (⚠️️ New ⚠️️)
     * - Returns: RGBARep
     * - Parameters:
     *   - coreCount: num of cores in CPU ProcessInfo().activeProcessorCount
     *   - qrLayers: qr layers as CIImages
     */
    internal static func colorize(qrLayers: [CIImage], config: OutputConfig, coreCount: Int) -> RGBARep {
-      let size: Size = (width: Int(qrLayers[0].extent.width), height: Int(qrLayers[0].extent.height))
-      let rgbaReps: [RGBARep] = (0..<coreCount).map { idx in // loop over coreCount
-         let rect: BufferRect = QuadrantRect.quadrantRect(idx: idx, count: coreCount, size: size)
-         let monoReps: [MonoRep] = qrLayers.compactMap { try? MonoRep.monoRep(ciImg: $0, crop: rect) }
-         let rgbaRep: RGBARep = colorize(monoReps: monoReps, config: config)
-         return rgbaRep
-      }
-      let rgbaRep: RGBARep = RGBARepModifier.combine(rgbaReps: rgbaReps, size: size)// combine partial RGBAReps together into one RGBARep
+//      let size: Size = (width: Int(qrLayers[0].extent.width), height: Int(qrLayers[0].extent.height))
+//      Swift.print("size:  \(size)")
+//      let capacity: Int = size.width * size.height
+//      Swift.print("capacity:  \(capacity)")
+//      let rgbaReps: [RGBARep] = (0..<coreCount).map { idx in // loop over coreCount
+//         let rect: BufferRect = QuadrantRect.quadrantRect(idx: idx, count: coreCount, size: size)
+//         Swift.print("rect.height:  \(rect.height)")
+//         let monoReps: [MonoRep] = qrLayers.compactMap { try? MonoRep.monoRep(ciImg: $0, crop: rect) }
+//         let rgbaRep: RGBARep = colorize(monoReps: monoReps, config: config)
+//         return rgbaRep
+//      }
+      let monoReps: [MonoRep] = qrLayers.compactMap { try? MonoRep.monoRep(ciImg: $0/*, crop: rect*/) }
+      let rgbaRep: RGBARep = colorize(monoReps: monoReps, config: config)
+      // - Fixme: ⚠️️ potentially we could stick things together when forming the CIImage etc
+//      let scale: Int = config.scale.module * config.scale.screen
+//      let scaledSize: Size = (size.width * scale, size.height * scale) // final size
+//      let rgbaRep: RGBARep = RGBARepModifier.combine(rgbaReps: rgbaReps, size: scaledSize) // combine partial RGBAReps together into one RGBARep
+//      Swift.print("rgbaRep.size:  \(rgbaRep.size)")
       // - Fixme: ⚠️️ maybe scale here instead of inside the partial rgbareps?
       return rgbaRep
    }
