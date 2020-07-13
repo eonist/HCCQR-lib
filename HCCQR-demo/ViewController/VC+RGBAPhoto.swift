@@ -47,7 +47,7 @@ extension ViewController {
                // 🏀 take a look at the QRImages that are produced
                let colorChannel: GrayRep = colorChannels[3]
                Swift.print("colorChannel.capacity:  \(colorChannel.capacity)")
-               let channelImg: CIImage = GrayRepParser.ciImage(grayscaleRep: colorChannel)
+               let channelImg: CIImage = GrayRepParser.ciImage(grayRep: colorChannel)
                let img = UIImage(ciImage: channelImg, scale: 2, orientation: .up)
                let imgView: UIImageView = .init(image: img)
                self.view.addSubview(imgView)
@@ -75,7 +75,7 @@ extension ViewController {
 //      Swift.print("value.qr1:  \(value.payload.qrImgs[0])")
       _ = { // look at channel even if it succeded
          let redChannel: GrayRep = value.payload.colorChannels[1]
-         let redChannelImg: CIImage = GrayRepParser.ciImage(grayscaleRep: redChannel)
+         let redChannelImg: CIImage = GrayRepParser.ciImage(grayRep: redChannel)
          let img = UIImage(ciImage: redChannelImg, scale: 2, orientation: .up) // value.payload.qrImgs[0]
          let imgView: UIImageView = .init(image: img)
          self.view.addSubview(imgView)

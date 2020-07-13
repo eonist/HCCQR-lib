@@ -36,7 +36,8 @@ final class GrayRepModifier {
       (0..<input.height).forEach { y in
          let idx: Int = y * input.width // we calc this here as optimization
          // - Fixme: ⚠️️ optimal amount of work on bellow is suboptimal
-         DispatchQueue.concurrentPerform(iterations: input.width) { x in // ⚠️️ Optimization initiative
+         (0..<input.width).forEach { x in
+//         DispatchQueue.concurrentPerform(iterations: input.width) { x in // ⚠️️ Optimization initiative
             let index: Int = idx + x
             input.pixels[index] = functor(index, input.pixels[index])
          }

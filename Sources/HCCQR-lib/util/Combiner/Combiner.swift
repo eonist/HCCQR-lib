@@ -24,7 +24,7 @@ final class Combiner {
     */
    static func combine(grayReps: GrayReps) -> CIImage {
       let composition: GrayRep = combine(grayReps: grayReps) // smash multiple grayscaleReps together
-      let img: CIImage = GrayRepParser.ciImage(grayscaleRep: composition)
+      let img: CIImage = GrayRepParser.ciImage(grayRep: composition)
       composition.deInit() // We de-init the Img after we have consumed it to avoid mem leak
       return img
    }
@@ -54,16 +54,19 @@ extension Combiner {
     * - Parameter grayReps: An array of GrayscaleRep to be composited together into 1 RGBARep
     */
    private static func combine(grayReps: GrayReps) -> GrayRep {
+//      Swift.print("grayReps.count:  \(grayReps.count)")
       let size: Size = grayReps[0].size // get size from first layer
       // - Fixme: ⚠️️ Could be the problem that we use white, to avoid inverting
-      let blankRep: GrayRep = .grayRep(pixel: .black, size: size)// .grayscaleRep(pixel: .black, size: first.size) // because white is 255
-      return GrayRepModifier.process(input: blankRep) { (index: Int, pixel: UInt8) -> UInt8 in // Loop things
-         var pixel: UInt8 = pixel
-         grayReps.forEach { (grayscaleImage: GrayRep) in // loop over every image in the list, this is inside here because the process method uses concurrent_apply
+      var blankRep: GrayRep = .grayRep(pixel: .black, size: size)// .grayscaleRep(pixel: .black, size: first.size) // because white is 255
+      grayReps.concurrentForEach { (grayscaleImage: GrayRep) in // loop over every image in the list, this is inside here because the process method uses concurrent_apply
+         // - Fixme: ⚠️️ put concurrent apply on the grayreps 👈
+         blankRep = GrayRepModifier.process(input: blankRep) { (index: Int, pixel: UInt8) -> UInt8 in // Loop things
+            var pixel: UInt8 = pixel
             let newPixel: UInt8 = grayscaleImage.pixels[index] // - Fixme: ⚠️️ Can be removed because this will basically never happen, because channels can't overlap
             pixel.addition(value: newPixel) // ⚠️️ we now add....instead of adding, we substract and then we wouldn't have to invert the image at the end
+            return pixel
          }
-         return pixel
       }
+      return blankRep
    }
 }

@@ -31,7 +31,7 @@ extension ViewController {
 ////               Swift.print("$0.element:  \($0.element)")
 //            }
 //         }
-         let redChannelImg: CIImage = GrayRepParser.ciImage(grayscaleRep: redChannel)
+         let redChannelImg: CIImage = GrayRepParser.ciImage(grayRep: redChannel)
          let img = UIImage(ciImage: redChannelImg, scale: 2, orientation: .up)
          let imgView: UIImageView = .init(image: img)
          self.view.addSubview(imgView)
