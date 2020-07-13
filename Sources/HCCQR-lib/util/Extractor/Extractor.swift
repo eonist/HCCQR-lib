@@ -11,7 +11,7 @@ extension Extractor {
     * 2. Create Result-array of empty GrayscaleRep
     * 3. Go through each item in the ChannelMap array and try to find the the colors defined in the channelMap
     * 4. pass the grayScale-channel-representation of each color to the completion block
-    * - Fixme: ⚠️️ Skip extracting the white channel, as its not used when we later combine color channels
+    * - Fixme: ⚠️️ Skip extracting the white channel, as it's not used when we later combine color channels
     * - Important: ⚠️️ I guess the reason why we don't use concurrentPerform on this array is that we use it on the pixel iteration in the grayChannel method, but maybe we should explore dong concurrent perform on this array as well?
     * - Parameters:
     *   - rgbaRep: target to derive channels from
@@ -19,7 +19,7 @@ extension Extractor {
     *   - onComplete: notify when process has completed
     */
    static func extract(rgbaRep: RGBARep, pallete: ChannelPallete, onComplete:@escaping OnExtractComplete) {
-      // - Fixme: ⚠️️ find an error to throw or remove the result mechanism in the oncomplete
+      // - Fixme: ⚠️️ find an error to throw or remove the result mechanism in the onComplete
       // - Fixme: ⚠️️ we could use unmanaged pointer with capacity as well, might be faster
 //      Swift.print("pallete.count:  \(pallete.count)")
       var channels: [GrayRep?] = [GrayRep?](repeating: nil, count: pallete.count) // color-channels
@@ -33,6 +33,18 @@ extension Extractor {
                onExtractComplete(i: offset, channel: channel, channels: &channels, rgbaRep: rgbaRep, onComplete: onComplete)
             }
          }
+      }
+   }
+   /**
+    * New
+    * - Fixme: ⚠️️ add doc
+    * - Fixme: ⚠️️ we could use unmanaged pointer with capacity as well, might be faster
+    */
+   static func extract(rgbaRep: RGBARep, pallete: ChannelPallete) -> GrayReps {
+      let similarities: [PixelSimilarity] = Extractor.similarities(pallete: pallete) // create similarity asserters
+      return similarities.concurrentMap {
+         let channel: GrayRep = extract(rgbaRep: rgbaRep, asserter: $0) // Finds the red-channel, blue-channel, green-channel
+         return channel
       }
    }
 }

@@ -735,7 +735,7 @@
 		F16852612213443700C27EAA /* Pixel */ = {
 			isa = PBXGroup;
 			children = (
-				F1E205AC249628CD00E3A82E /* Util */,
+				F1E205AC249628CD00E3A82E /* util */,
 				F16852622213443700C27EAA /* Pixel.swift */,
 				F1D0FCBF24B4EFA10065A7CA /* Pixels.swift */,
 				F16852692213443700C27EAA /* Pixel+Getter.swift */,
@@ -872,7 +872,7 @@
 		F181F10823B9090300145DEA /* GrayRep */ = {
 			isa = PBXGroup;
 			children = (
-				F19C1C7024A8834100E93F4D /* Util */,
+				F19C1C7024A8834100E93F4D /* util */,
 				F181F10923B9091400145DEA /* GrayRep.swift */,
 				F181F11223B92A1700145DEA /* GrayRep+Init.swift */,
 				F1D8A66D23E83F8900F17A81 /* GrayRep+DeInit.swift */,
@@ -963,13 +963,13 @@
 			path = test;
 			sourceTree = "<group>";
 		};
-		F19C1C7024A8834100E93F4D /* Util */ = {
+		F19C1C7024A8834100E93F4D /* util */ = {
 			isa = PBXGroup;
 			children = (
 				F19C1C7124A8837100E93F4D /* GrayRepParser.swift */,
 				F146A52624AB97A900FE136C /* GrayRepModifier.swift */,
 			);
-			path = Util;
+			path = util;
 			sourceTree = "<group>";
 		};
 		F1AF9D3B23E37E080085DA0C /* CVImageBufferTest */ = {
@@ -1075,13 +1075,13 @@
 			path = type;
 			sourceTree = "<group>";
 		};
-		F1E205AC249628CD00E3A82E /* Util */ = {
+		F1E205AC249628CD00E3A82E /* util */ = {
 			isa = PBXGroup;
 			children = (
 				F1E205AD249628E500E3A82E /* PixelAsserter.swift */,
 				F1E205AF24964ACB00E3A82E /* PixelParser.swift */,
 			);
-			path = Util;
+			path = util;
 			sourceTree = "<group>";
 		};
 		F1E5710723A3EF3100E090BB /* HCCQRIOSTest */ = {

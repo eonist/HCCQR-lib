@@ -3,7 +3,7 @@ import QR_lib
 import QuartzCore
 import CoreImage
 /**
- * - Fixme: ⚠️️ Rename to HCCQRReader again
+ * Reads HCCQR into binary data
  */
 public final class Reader {}
 /**
@@ -48,10 +48,21 @@ extension Reader {
     *   - rgbaRep: raw pixels and size
     *   - onComplete: completion block
     */
-   static func data(rgbaRep: RGBARep, pallete: ChannelPallete = .pallete(pallete: ._4, darkMode: true), onComplete: @escaping OnReadCompleted2) {
+   static func data(rgbaRep: RGBARep, pallete: ChannelPallete = .default, onComplete: @escaping OnReadCompleted2) {
       Splitter.split(rgbaRep: rgbaRep, pallete: pallete) { (result: Splitter.SplitResult) in // Start the splitting process
          onSplitComplete(result: result, onComplete: onComplete) // readTime += abs(HCCQRReader.splitTime.timeIntervalSinceNow); Swift.print("👉 Splitting rgbaImage done: \(abs(HCCQRReader.splitTime.timeIntervalSinceNow))")
       }
+   }
+}
+/**
+ * Support for parallel reading of input
+ */
+extension Reader {
+   /**
+    * Reads rgbaRep (support for parallel reading)
+    */
+   func data(rgbaRep: RGBARep, pallete: ChannelPallete = .default) {
+      //
    }
 }
 /**
@@ -60,6 +71,7 @@ extension Reader {
 extension Reader {
    /**
     * Image -> Data (⚠️️ new ⚠️️)
+    * - Needed for quick tests etc
     * - Fixme: ⚠️️ make this with out the callback
     */
    public static func data(image: Image, pallete: ChannelPallete = .default, onComplete: @escaping (_ data: Data?) -> Void) {

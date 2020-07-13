@@ -7,7 +7,7 @@ extension GrayRep {
    /**
     * Creates a Filled rep of the same pixel
     * - Fixme: ⚠️️ Prob create the unmanaged pointer directly for better speed
-    * - Fixme: ⚠️️ maybe make this an init
+    * - Fixme: ⚠️️ maybe make this an .init?
     * - Parameters:
     *   - pixels: the pixels to populate the GrayscaleRep with
     *   - size: the size you want to us ein the GrayScaleRep
@@ -19,6 +19,7 @@ extension GrayRep {
    }
    /**
     * Create GrayScaleImage From pixel-array
+    * - Fixme: ⚠️️ rename to .init?
     * - Parameters:
     *   - pixels: the pixels to populate the GrayscaleRep with
     *   - size: the size you want to us ein the GrayScaleRep
@@ -31,6 +32,7 @@ extension GrayRep {
    /**
     * Returns empty grayScale-rep
     * - Fixme: ⚠️️ Seems counter productive to allocate and then populate the array, can't it be done in one go?
+    * - Fixme: ⚠️️ rename to .init?
     * - Parameters:
     *   - capacity: the number of pixels you want to use
     *   - size: the size of the returned GrayScaleRep

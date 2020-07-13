@@ -28,7 +28,7 @@ extension Splitter {
    static func onExtractComplete(result: GrayReps, onComplete:@escaping SplitComplete) { // called when the (R,G,B) channels are split
 //      Swift.print("result.count:  \(result.count)") // should be 4 for 4Color hccqr
 //      guard let channels: Extractor.RGBChannels = result.value() else { onComplete(.failure(.unableToCreateRGBAImgs(msg: result.errorStr))); return } // (r,g,b)
-      // - Fixme: ⚠️️ I guess this is reverse for some reason
+      // - Fixme: ⚠️️ I guess this is reverse for some reason??
       let channelCombos: ChannelCombos = .combos(channels: result) // arrays of grayreps (2 arrays of 2 grayReps for 4color hcqr, 3 arrays of 7 grayreps for 8 color-hccqr etc)
 //      Swift.print("channelCombos.count:  \(channelCombos.count)") // should be 2 for 4 colors
       // 🏀 things should now work, start testing 👈

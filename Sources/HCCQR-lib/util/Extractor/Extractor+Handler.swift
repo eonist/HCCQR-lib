@@ -32,7 +32,7 @@ extension Extractor {
     * - Fixme: ⚠️️ simplify the deinit
     * - Fixme: ⚠️️ rename to onAllExtractionComplete, onExtractionComplete ?
     */
-   private static func onAllExtractComplete(channels: [GrayRep?], rgbaRep: RGBARep, onComplete: OnExtractComplete) {
+   internal static func onAllExtractComplete(channels: [GrayRep?], rgbaRep: RGBARep, onComplete: OnExtractComplete) {
       defer { rgbaRep.deInitiate() } // deinit rgbaRep after it has been consumed, to avoid memleak // ⚠️️ moving the deInititiate here is new, was bellow oncomplete before, should have no implication
 //      Swift.print("onAllExtractComplete - channels.count:  \(channels.count)")
       let arr: GrayReps = channels.compactMap { $0 } // removes optionality

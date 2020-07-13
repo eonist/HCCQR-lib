@@ -2,8 +2,7 @@ import Foundation
 import QR_lib
 import CoreImage
 /**
- * Creates HCCQR-Image from HCCQR-Data
- * - Fixme: ⚠️️ Rename to HCCQRWriter again
+ * Creates HCCQR-Image from binary Data
  */
 public final class Writer {}
 

@@ -9,7 +9,7 @@ public final class Splitter {}
 
 extension Splitter {
    /**
-    * Returns two b&w qr images in RGBAImage format (by splitting a single hccqr ciImage)
+    * Returns multiple b&w qr images in RGBAImage format (by splitting a single hccqr ciImage)
     * - Note: Splits an image into r,g,b channels
     * 1. RGBA-rep comes in
     * 2. RGBA-rep is split into many different color channels as Grayscale-Represenations

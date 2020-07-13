@@ -16,17 +16,18 @@ final class GrayRepModifier {
    static func process(input: RGBARep, output: GrayRep, functor: GrayRep.FunctorCall) -> GrayRep {
       (0..<input.height).forEach { y in
          let idx: Int = y * input.width // we calc this here as optimization
-         // - Fixme: ⚠️️ optimal amount of work on bellow is suboptimal (will be omitted soon)
-         DispatchQueue.concurrentPerform(iterations: input.width) { x in // ⚠️️ Optimization initiative
+         // - Fixme: ⚠️️ Optimal amount of work on bellow is suboptimal (will be omitted soon)
+         (0..<input.width).forEach { x in
+//         DispatchQueue.concurrentPerform(iterations: input.width) { x in // ⚠️️ Optimization initiative
             let index: Int = idx + x // Pixel index
-            output.pixels[index] = functor(input.pixels[index]) // apply new pixel to old pixel
+            output.pixels[index] = functor(input.pixels[index]) // Apply new pixel to old pixel
          }
       }
       return output
    }
    /**
     * Applies pixels with a method (for index)
-    * - Note: Used in the (composite) process to convert HCCQR to Data
+    * - Note: Used in the Combine-process to convert HCCQR to Data
     * - Fixme: ⚠️️ We can prob stride to get better speed
     * - Fixme: ⚠️️ Using a pointer might speed up this method
     * - Fixme: ⚠️️ We can calc in quadrants that utilize the cpu / threads better
