@@ -32,4 +32,28 @@ final class RGBARepModifier {
       }
       return .init(pixels: resultPixels, width: scaledSize.width, height: scaledSize.height)
    }
+   /**
+    * Combines many rgbaRep's into one
+    * - Parameters:
+    *   - rgbaReps: reps to be merged into one (has to be in 1 column)
+    *   - size: final output size (has to be the combined size of all rgbaReps)
+    */
+   static func combine(rgbaReps: [RGBARep], size: Size) -> RGBARep {
+      let capacity: Int = size.width * size.height
+      let resultPixels: UnsafeMutableBufferPointer<Pixel> = .allocate(capacity: capacity)
+      rgbaReps.forEach { (rgbaRep: RGBARep) in
+         var yOffset: Int = 0
+         (0..<rgbaRep.height).forEach { (y: Int) in
+            // - Fixme: ⚠️️ do some of the y calc here
+            (0..<rgbaRep.width).forEach { (x: Int) in
+               let idx: Int = y * rgbaRep.width + x // every x pixel
+               let offsetIdx: Int = yOffset * y * rgbaRep.width + x
+               resultPixels[offsetIdx] = rgbaRep.pixels[idx]
+            }
+         }
+         yOffset += rgbaRep.height // increment the height
+      }
+      let result: RGBARep = .init(pixels: resultPixels, width: size.width, height: size.height)
+      return result
+   }
 }

@@ -72,12 +72,11 @@ extension Colorizer {
          let reps: [MonoRep] = qrLayers.compactMap { colorize(qrLayer: $0, config: config, rect: rect) }
          _ = reps
          // 🏀 continue here
-            // colorize the monoreps,
+            // colorize the monoreps
             // figure out how to combine RGBAImages into one
          //         colorize(qrLayer: item.element, idx: item.offset, config: config, coreCount: coreCount)
       }
       // create quadrantRect
-      // colorize each quadrant rect
       // stitch partial RGBAReps together
       _ = qrLayers.enumerated().map { item in
          _ = item
