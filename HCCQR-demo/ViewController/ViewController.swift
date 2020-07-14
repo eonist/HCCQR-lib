@@ -14,7 +14,7 @@ class ViewController: UIViewController {
 //      createRGBAPhoto()
 //      testSplitting()
 //      testHCCQR() // 👈
-      testQuadrantOptimization() // 👈
+//      testQuadrantOptimization() // 👈
 //      testGrid()
 //      Pixels._4.forEach { Swift.print("$0:  \($0)") }
    }

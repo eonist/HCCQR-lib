@@ -34,7 +34,7 @@ extension Reader {
    }
 }
 /**
- * RGBARep -> data & qr
+ * RGBARep -> Data & QR
  */
 extension Reader {
    /**
@@ -59,11 +59,12 @@ extension Reader {
  */
 extension Reader {
    /**
-    * Reads rgbaRep (support for parallel processing)
+    * Reads rgbaRep (support for parallel processing) (⚠️️ New ⚠️️)
+    * - Note: the QRReader doesnt like to be processes parralelly
     */
    static func data(rgbaRep: RGBARep, pallete: ChannelPallete = .default) throws -> QRReader.DataAndQuad {
       let qrLayers: [CIImage] = Splitter.split(rgbaRep: rgbaRep, pallete: pallete)
-      let dataAndQuads = qrLayers.concurrentCompactMap {
+      let dataAndQuads = qrLayers.compactMap { // concurrentCompactMap
          try? QRReader.dataAndQuad(ciImage: $0)
       }
       guard dataAndQuads.count == qrLayers.count else { throw NSError("Unable to read QR Layer") }
@@ -76,7 +77,16 @@ extension Reader {
  */
 extension Reader {
    /**
-    * Image -> Data (⚠️️ new ⚠️️)
+    * Image -> Data (⚠️️ New ⚠️️)
+    * - Needed for quick tests etc
+    * - Fixme: ⚠️️ make this with out the callback
+    */
+   public static func data(image: Image, pallete: ChannelPallete = .default) throws -> QRReader.DataAndQuad {
+      let rgbaRep: RGBARep = try RGBARepUtil.rgbaRep(image: image)
+      return try Reader.data(rgbaRep: rgbaRep, pallete: pallete)
+   }
+   /**
+    * Image -> Data (⚠️️ New ⚠️️)
     * - Needed for quick tests etc
     * - Fixme: ⚠️️ make this with out the callback
     */

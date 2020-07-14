@@ -1,7 +1,7 @@
 import Foundation
 import QR_lib
 /**
- * Getter
+ * Getter (convenience)
  */
 extension HCCQRSetup {
    var scale: Scale { output.scale }

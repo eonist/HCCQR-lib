@@ -20,11 +20,22 @@ extension ViewController {
       let imgView: UIImageView = .init(image: img)
       self.view.addSubview(imgView)
       _ = {
+         // try to figure out if the bug is in callback solution as well 🏀
+         do {
+            let dataAndQuad: QRReader.DataAndQuad = try Reader.data(image: img, pallete: ._16)
+            let isValid: Bool = randomData == dataAndQuad.qrData
+            Swift.print("data?.count:  \(String(describing: dataAndQuad.qrData.count))")
+            Swift.print("isValid:  \(isValid ? "✅" : "🚫")")
+         } catch {
+            Swift.print("error:  \(error)")
+         }
+      }()
+      _ = {
          Reader.data(image: img, pallete: ._16) { (data: Data?) in
             let isValid: Bool = randomData == data
             Swift.print("data?.count:  \(String(describing: data?.count))")
             Swift.print("isValid:  \(isValid ? "✅" : "🚫")")
          }
-      }()
+      }
    }
 }
