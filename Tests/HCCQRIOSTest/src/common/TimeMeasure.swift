@@ -3,6 +3,7 @@ import Foundation
 internal final class TimeMeasure {
    /**
     * Measures how long a closure takes to complete
+    * - Note: Great for UnitTesting
     * ## Examples:
     * timeElapsed { sleep(2.2) } // 2.20000
     */

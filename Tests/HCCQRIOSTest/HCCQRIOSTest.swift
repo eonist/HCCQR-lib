@@ -3,9 +3,8 @@ import XCTest
 
 class HCCQRIOSTest: XCTestCase {
    func testExample() {
-      print(TimeMeasure.timeElapsed {
-         XCTAssertTrue(QuadrantOptimizationTest.test())
-      }) // 2.20000
+//      print(TimeMeasure.timeElapsed { XCTAssertTrue(ConcurrentTest.test()) })
+      print(TimeMeasure.timeElapsed { XCTAssertTrue(ConcurrentTest.bulkTest()) })
 //      simpleTests()
 //      advanceTests()
    }
