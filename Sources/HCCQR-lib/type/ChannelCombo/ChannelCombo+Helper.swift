@@ -5,6 +5,7 @@ import Foundation
 extension ChannelCombos {
    /**
     * Returns the the channel combinations for each layer
+    * - Description: Basically the different color channels that make up a layer, for 4-color HCCQR that is 2 layers, for 8 colors its 3+ etc
     * - Note: the output ignores all true values, i.e posetivr (aka white etc)
     * - Note: The output will look something like this for: [.white,.red,.green,.blue]) // [[.blue,.red], [.red, .green]]
     * - Returns: For 4 Colored HCCQR, 2 channelCombo's are returned (8 = 3, 16, 4...etc)
@@ -14,13 +15,9 @@ extension ChannelCombos {
     */
    static func combos(channels: GrayReps) -> ChannelCombos {
       let layerCount: Int = BoolColumn.numOfLayers(numOfColors: channels.count)
-      let layerIndicies: [Int] = (0..<layerCount).compactMap { $0 } // [0,1] for 4-color-HCCQR ⚠️️ this uses compactmap, because lint gives a warning for regular map, and other alternatives doesnt work inside array extension
-      let numOfColors: Int = channels.count // Int(pow(Double(layerCount), Double(layerCount))) // 2 = 4, 3 = 8, 4 = 16..etc
-      let boolColumn: BoolColumn = .sequence(numOfColors)
-//      Swift.print("boolColumn:  \(boolColumn)")
-//      Swift.print("layerIndicies:  \(layerIndicies)")
+      let layerIndicies: [Int] = (0..<layerCount).compactMap { $0 } // [0,1] for 4-color-HCCQR ⚠️️ this uses compactmap, because lint gives a warning for regular map, and other alternatives doesn't work inside array extension
+      let boolColumn: BoolColumn = .sequence(channels.count)
       let channelCombinations: [[Int]] = layerIndicies.map { rowIdx(col: boolColumn, layerIdx: $0) }
-//      Swift.print("channelCombinations:  \(channelCombinations)")
       return channelCombinations.map { (channelCombination: [Int]) in
          channelCombination.map { (channelIndex: Int) in
             channels[channelIndex]

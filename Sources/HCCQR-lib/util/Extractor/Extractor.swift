@@ -38,11 +38,12 @@ extension Extractor {
    /**
     * New
     * - Fixme: ⚠️️ add doc
+    * - Fixme: ⚠️️ might need striding
     * - Fixme: ⚠️️ we could use unmanaged pointer with capacity as well, might be faster
     */
    static func extract(rgbaRep: RGBARep, pallete: ChannelPallete) -> GrayReps {
       let similarities: [PixelSimilarity] = Extractor.similarities(pallete: pallete) // create similarity asserters
-      return similarities.concurrentMap {
+      return similarities.concurrentMap { // 4 - 256 items depending on hccqr config
          let channel: GrayRep = extract(rgbaRep: rgbaRep, asserter: $0) // Finds the red-channel, blue-channel, green-channel
          return channel
       }

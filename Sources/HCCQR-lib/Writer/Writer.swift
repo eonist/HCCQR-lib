@@ -39,9 +39,9 @@ extension Writer {
     */
    public static func img(data: Data, config: HCCQRSetup, coreCount: Int) -> Image? {
       let dataArr: [Data] = HCCQRConfigUtil.data(data: data, config: config) // splits data
-      let ciImgs: [CIImage] = dataArr.concurrentMap { (data: Data) in // parraelly create the qr-image-Layers
+      let ciImgs: [CIImage] = dataArr.concurrentCompactMap { (data: Data) in // parraelly create the qr-image-Layers
          try? QRWriter.ciImage(data: data, ecLevel: config.ecLevel) // Create B&W QR-layers (CIImage)
-      }.compactMap { $0 }
+      }
       guard dataArr.count == ciImgs.count else { return nil } // if qrImgs was not created correctly etc
       // - Fixme: ⚠️️ benchmark how timeconsuming the colorization part is, if its worth doing parallel processing on
       let rgbaRep: RGBARep = Colorizer.colorize(qrLayers: ciImgs, config: config.output, coreCount: coreCount)

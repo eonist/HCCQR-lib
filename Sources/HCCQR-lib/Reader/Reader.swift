@@ -59,10 +59,16 @@ extension Reader {
  */
 extension Reader {
    /**
-    * Reads rgbaRep (support for parallel reading)
+    * Reads rgbaRep (support for parallel processing)
     */
-   func data(rgbaRep: RGBARep, pallete: ChannelPallete = .default) {
-      //
+   static func data(rgbaRep: RGBARep, pallete: ChannelPallete = .default) throws -> QRReader.DataAndQuad {
+      let qrLayers: [CIImage] = Splitter.split(rgbaRep: rgbaRep, pallete: pallete)
+      let dataAndQuads = qrLayers.concurrentCompactMap {
+         try? QRReader.dataAndQuad(ciImage: $0)
+      }
+      guard dataAndQuads.count == qrLayers.count else { throw NSError("Unable to read QR Layer") }
+      let data: Data = .combine(data: dataAndQuads.map { $0.qrData })
+      return (data, dataAndQuads[0].quad)
    }
 }
 /**

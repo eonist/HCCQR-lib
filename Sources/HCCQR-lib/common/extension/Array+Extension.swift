@@ -34,8 +34,8 @@ extension Array {
  */
 extension Array {
    /**
-    * Map with parallel processing (Synchronous)
-    * - Fixme: ⚠️️ write a concurrentCompactMap?
+    * Map with parallel processing (returns array in correct order as well)
+    * - Fixme: ⚠️️ you could add rethrow and throw on this method, but it would work after looping sort of
     * - Fixme: ⚠️️ might need to run things on global que, man que could result in deadlock with concurrentPerform DispatchQueue.global().async { }
     * - Note: Should work from any queue you call it from, it will just return once it's done
     * - Note: This will block the thread you call it from (just like the non-concurrent map will), so make sure to dispatch this to a background queue.
@@ -65,20 +65,26 @@ extension Array {
    public func concurrentForEach(action: @escaping (Element) -> Void) {
       concurrentMap { _ = action($0) }
    }
+   /**
+    * Convenience
+    */
+   public func concurrentCompactMap<T>(transform: @escaping (Element) -> T?) -> [T] {
+      self.concurrentMap(transform: transform).compactMap { $0 }
+   }
 }
 /**
  * Experimental
  */
 extension Array {
    /**
-    * ⚠️️ Testing ⚠️️
+    * ⚠️️ Testing / Experimental ⚠️️
     * - Ref: https://swift.org/blog/tsan-support-on-linux/
     * - Note: the .barrier flag to allow concurrent reads, but block access when a write is in progress
     * - Note: More info on barrier here: https://basememara.com/creating-thread-safe-arrays-in-swift/
     * ## Examples:
     * [0, 1, 2, 3].concurrentMap { i in i * 2 } // 0, 2, 4, 6
     */
-   public func concurrentMap1<T>(_ transform: (Element) -> T) -> [T] {
+   private func concurrentMap1<T>(_ transform: (Element) -> T) -> [T] {
       var results = [Int: T]()
       let queue = DispatchQueue(label: Bundle.main.bundleIdentifier! + ".sync", attributes: .concurrent)
       DispatchQueue.concurrentPerform(iterations: count) { index in
@@ -90,9 +96,10 @@ extension Array {
       }
    }
    /**
+    * ⚠️️ Testing / Experimental ⚠️️
     * - Note: ⚠️️ Naive approach ⚠️️ (naive because array is sort of accessed from different threads)
     */
-   public func concurrentApplyMap<T>(_ transform: (Element) -> T) -> [T] {
+   private func concurrentApplyMap<T>(_ transform: (Element) -> T) -> [T] {
       var summary: [T?] = .init(repeating: nil, count: self.count)
       DispatchQueue.concurrentPerform(iterations: self.count) { index in
          summary[index] = transform(self[index]) // can cause problems

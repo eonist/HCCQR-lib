@@ -31,7 +31,6 @@ extension Splitter {
       // - Fixme: ⚠️️ I guess this is reverse for some reason??
       let channelCombos: ChannelCombos = .combos(channels: result) // arrays of grayreps (2 arrays of 2 grayReps for 4color hcqr, 3 arrays of 7 grayreps for 8 color-hccqr etc)
 //      Swift.print("channelCombos.count:  \(channelCombos.count)") // should be 2 for 4 colors
-      // 🏀 things should now work, start testing 👈
       var qrImgs: [CIImage?] = [CIImage?](repeating: nil, count: channelCombos.count) // Result array (accumulated)
       channelCombos.enumerated().forEach { offset, grayReps in // we need index to put things back together while async
 //         Swift.print("grayReps.count:  \(grayReps.count)") // should be 2 for 4color hccqr, 3 for 8 color hccqr etc

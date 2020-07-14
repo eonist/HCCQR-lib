@@ -58,8 +58,8 @@ extension Combiner {
       let size: Size = grayReps[0].size // get size from first layer
       // - Fixme: ⚠️️ Could be the problem that we use white, to avoid inverting
       var blankRep: GrayRep = .grayRep(pixel: .black, size: size)// .grayscaleRep(pixel: .black, size: first.size) // because white is 255
+      // we put concurrent apply on the grayreps
       grayReps.concurrentForEach { (grayscaleImage: GrayRep) in // loop over every image in the list, this is inside here because the process method uses concurrent_apply
-         // - Fixme: ⚠️️ put concurrent apply on the grayreps 👈
          blankRep = GrayRepModifier.process(input: blankRep) { (index: Int, pixel: UInt8) -> UInt8 in // Loop things
             var pixel: UInt8 = pixel
             let newPixel: UInt8 = grayscaleImage.pixels[index] // - Fixme: ⚠️️ Can be removed because this will basically never happen, because channels can't overlap

@@ -25,10 +25,26 @@ extension Splitter {
     *   - pallete: the colors used in the HCCQR (4 to 256 colors)
     *   - onComplete: the callback when the split process is complete
     */
-   static func split(rgbaRep: RGBARep, pallete: ChannelPallete, onComplete:@escaping SplitComplete) {
+   internal static func split(rgbaRep: RGBARep, pallete: ChannelPallete, onComplete:@escaping SplitComplete) {
       // HCCQRReader.splitTime = .init() // Debugging performance
       Extractor.extract(rgbaRep: rgbaRep, pallete: pallete) { (result: GrayReps) in
          onExtractComplete(result: result, onComplete: onComplete)
       }
+   }
+}
+/**
+ * New
+ */
+extension Splitter {
+   /**
+    * Splits HCCQR rep into qr layers
+    * 1. Extracts graychannels for each color in channelPallet
+    * 2. Orders these graychannels in special arrangments (defined by predefned rule-set)
+    * 3. Converts to combinations of graychannels CIImage
+    */
+   internal static func split(rgbaRep: RGBARep, pallete: ChannelPallete) -> [CIImage] {
+      let grayReps: GrayReps = Extractor.extract(rgbaRep: rgbaRep, pallete: pallete)
+      let channelCombos: ChannelCombos = .combos(channels: grayReps) // arrays of grayreps (2 arrays of 2 grayReps for 4color hcqr, 3 arrays of 7 grayreps for 8 color-hccqr etc)
+      return channelCombos.compactMap { Combiner.combine(grayReps: $0) }
    }
 }
