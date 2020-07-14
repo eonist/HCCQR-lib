@@ -48,7 +48,7 @@ extension Reader {
     *   - rgbaRep: raw pixels and size
     *   - onComplete: completion block
     */
-   static func data(rgbaRep: RGBARep, pallete: ChannelPallete = .default, onComplete: @escaping OnReadCompleted2) {
+   internal static func data(rgbaRep: RGBARep, pallete: ChannelPallete = .default, onComplete: @escaping OnReadCompleted2) {
       Splitter.split(rgbaRep: rgbaRep, pallete: pallete) { (result: Splitter.SplitResult) in // Start the splitting process
          onSplitComplete(result: result, onComplete: onComplete) // readTime += abs(HCCQRReader.splitTime.timeIntervalSinceNow); Swift.print("👉 Splitting rgbaImage done: \(abs(HCCQRReader.splitTime.timeIntervalSinceNow))")
       }
@@ -62,7 +62,7 @@ extension Reader {
     * Reads rgbaRep (support for parallel processing) (⚠️️ New ⚠️️)
     * - Note: the QRReader doesnt like to be processes parralelly
     */
-   static func data(rgbaRep: RGBARep, pallete: ChannelPallete = .default) throws -> QRReader.DataAndQuad {
+   public static func data(rgbaRep: RGBARep, pallete: ChannelPallete = .default) throws -> QRReader.DataAndQuad {
       let qrLayers: [CIImage] = Splitter.split(rgbaRep: rgbaRep, pallete: pallete)
       let dataAndQuads = qrLayers.compactMap { // concurrentCompactMap
          try? QRReader.dataAndQuad(ciImage: $0)
@@ -79,7 +79,6 @@ extension Reader {
    /**
     * Image -> Data (⚠️️ New ⚠️️)
     * - Needed for quick tests etc
-    * - Fixme: ⚠️️ make this with out the callback
     */
    public static func data(image: Image, pallete: ChannelPallete = .default) throws -> QRReader.DataAndQuad {
       let rgbaRep: RGBARep = try RGBARepUtil.rgbaRep(image: image)
@@ -88,7 +87,6 @@ extension Reader {
    /**
     * Image -> Data (⚠️️ New ⚠️️)
     * - Needed for quick tests etc
-    * - Fixme: ⚠️️ make this with out the callback
     */
    public static func data(image: Image, pallete: ChannelPallete = .default, onComplete: @escaping (_ data: Data?) -> Void) {
       guard let rgbaRep: RGBARep = try? RGBARepUtil.rgbaRep(image: image) else { Swift.print("err getting rgbImage"); return } // CVImageBufferUtil.rgbaRep(image: image)

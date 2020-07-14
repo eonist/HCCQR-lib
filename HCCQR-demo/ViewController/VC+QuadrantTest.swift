@@ -16,7 +16,7 @@ extension ViewController {
       guard let randomData: Data = HCCQRStringData.randomData(setup: setup) else { return }
       let coreCount: Int = ProcessInfo().activeProcessorCount
       print("coreCount \(coreCount)")
-      guard let img: Image = Writer.img(data: randomData, config: setup, coreCount: coreCount) else { return }
+      guard let img: Image = Writer.img(data: randomData, config: setup/*, coreCount: coreCount*/) else { return }
       let imgView: UIImageView = .init(image: img)
       self.view.addSubview(imgView)
       _ = {

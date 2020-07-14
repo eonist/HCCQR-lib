@@ -64,7 +64,7 @@ extension Colorizer {
     *   - coreCount: num of cores in CPU ProcessInfo().activeProcessorCount
     *   - qrLayers: qr layers as CIImages
     */
-   internal static func colorize(qrLayers: [CIImage], config: OutputConfig, coreCount: Int) -> RGBARep {
+   internal static func colorize(qrLayers: [CIImage], config: OutputConfig/*, coreCount: Int*/) -> RGBARep {
 //      let size: Size = (width: Int(qrLayers[0].extent.width), height: Int(qrLayers[0].extent.height))
 //      Swift.print("size:  \(size)")
 //      let capacity: Int = size.width * size.height

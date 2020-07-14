@@ -1,23 +1,23 @@
-import Foundation
-@testable import HCCQR_lib
 import QR_lib
-
+import QuartzCore
+import CoreGraphics
+import CoreImage
+@testable import HCCQR_lib
+/**
+ * - Fixme: ⚠️️ rename to concurrent optimization test
+ */
 final class QuadrantOptimizationTest {
+   private static let singleSetup: HCCQRSetup = {
+      let qrSetup: QRSetup = .init(qrVersion: .v4, ecLevel: .l)
+      let output: OutputConfig = .init(scale: (6, 2), map: .cp16(useDarkMode: false))
+      return .init(qr: qrSetup, output: output)
+   }()
    /**
     * Test
     */
    static func test() -> Bool {
-      let setup: HCCQRSetup = {
-         let qrSetup: QRSetup = .init(qrVersion: .v4, ecLevel: .l)
-         let output: OutputConfig = .init(scale: (6, 2), map: .cp16(useDarkMode: false))
-         return .init(qr: qrSetup, output: output)
-      }()
-      guard let randomData: Data = HCCQRStringData.randomData(setup: setup) else { return false }
-      let coreCount: Int = ProcessInfo().activeProcessorCount
-      guard let image: Image = Writer.img(data: randomData, config: setup, coreCount: coreCount) else { return false }
-//      let testPassed: Bool = image != nil
-//      Swift.print("testPassed:  \(testPassed ? "✅" : "🚫")")
-      // try to figure out if the bug is in callback solution as well 🏀
+      guard let randomData: Data = HCCQRStringData.randomData(setup: singleSetup) else { return false }
+      guard let image: Image = Writer.img(data: randomData, config: singleSetup) else { return false }
       do {
          let dataAndQuad: QRReader.DataAndQuad = try Reader.data(image: image, pallete: ._16)
          let isValid: Bool = randomData == dataAndQuad.qrData
@@ -28,5 +28,44 @@ final class QuadrantOptimizationTest {
          Swift.print("error:  \(error)")
          return false
       }
+   }
+}
+/**
+ * Bulk
+ */
+extension QuadrantOptimizationTest {
+   /**
+    * - Important: ⚠️️ remember to match the colorPallete and channelPallet
+    */
+   private static let bulkSetup: HCCQRSetup = {
+      let qrSetup: QRSetup = .init(qrVersion: .v4, ecLevel: .l)
+      let output: OutputConfig = .init(scale: (6, 2), map: .cp16(useDarkMode: false))
+      return .init(qr: qrSetup, output: output)
+   }()
+   /**
+    * Bulk test
+    */
+   static func bulkTest() -> Bool {
+      let rgbaReps: [RGBARep] = writeMany(setup: bulkSetup)
+      let didSuccessfullyReadMany: Bool = readMany(rgbaReps: rgbaReps)
+      return didSuccessfullyReadMany
+   }
+   /**
+    * Bulk write many
+    */
+   private static func writeMany(setup: HCCQRSetup) -> [RGBARep] {
+      let randomData: [Data] = (0..<100).compactMap { _ in HCCQRStringData.randomData(setup: setup) } // Num of items to load
+      return randomData.compactMap {
+         Writer.rgbaRep(data: $0, config: setup)
+      }
+   }
+   /**
+    * Bulk read many
+    */
+   private static func readMany(rgbaReps: [RGBARep]) -> Bool {
+      let payloads = rgbaReps.compactMap {
+         try? Reader.data(rgbaRep: $0, pallete: ._16)
+      }
+      return rgbaReps.count == payloads.count
    }
 }
