@@ -60,7 +60,7 @@ extension Reader {
 extension Reader {
    /**
     * Reads rgbaRep (support for parallel processing) (⚠️️ New ⚠️️)
-    * - Note: the QRReader doesnt like to be processes parralelly
+    * - Note: the QRReader doesn't like to be processes parralelly
     */
    public static func data(rgbaRep: RGBARep, pallete: ChannelPallete = .default) throws -> QRReader.DataAndQuad {
       let qrLayers: [CIImage] = Splitter.split(rgbaRep: rgbaRep, pallete: pallete)

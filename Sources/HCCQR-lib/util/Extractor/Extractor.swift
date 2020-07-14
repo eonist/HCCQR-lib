@@ -38,7 +38,7 @@ extension Extractor {
    /**
     * New
     * - Fixme: ⚠️️ add doc
-    * - Fixme: ⚠️️ might need striding
+    * - Fixme: ⚠️️ might be more efficient with striding for 16-colors ++
     * - Fixme: ⚠️️ we could use unmanaged pointer with capacity as well, might be faster
     */
    static func extract(rgbaRep: RGBARep, pallete: ChannelPallete) -> GrayReps {

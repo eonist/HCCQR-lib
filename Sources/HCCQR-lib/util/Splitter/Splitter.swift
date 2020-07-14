@@ -45,6 +45,6 @@ extension Splitter {
    internal static func split(rgbaRep: RGBARep, pallete: ChannelPallete) -> [CIImage] {
       let grayReps: GrayReps = Extractor.extract(rgbaRep: rgbaRep, pallete: pallete)
       let channelCombos: ChannelCombos = .combos(channels: grayReps) // arrays of grayreps (2 arrays of 2 grayReps for 4color hcqr, 3 arrays of 7 grayreps for 8 color-hccqr etc)
-      return channelCombos.compactMap { Combiner.combine(grayReps: $0) }
+      return channelCombos.compactMap { Combiner.combine(grayReps: $0) } // combine
    }
 }
