@@ -45,9 +45,9 @@
 		F146A52724AB97A900FE136C /* GrayRepModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = F146A52624AB97A900FE136C /* GrayRepModifier.swift */; };
 		F146A52824AB97A900FE136C /* GrayRepModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = F146A52624AB97A900FE136C /* GrayRepModifier.swift */; };
 		F146A52924AB97A900FE136C /* GrayRepModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = F146A52624AB97A900FE136C /* GrayRepModifier.swift */; };
-		F146A52B24ABB1A400FE136C /* Extractor+Assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F146A52A24ABB1A400FE136C /* Extractor+Assert.swift */; };
-		F146A52C24ABB1A400FE136C /* Extractor+Assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F146A52A24ABB1A400FE136C /* Extractor+Assert.swift */; };
-		F146A52D24ABB1A400FE136C /* Extractor+Assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F146A52A24ABB1A400FE136C /* Extractor+Assert.swift */; };
+		F146A52B24ABB1A400FE136C /* Extractor+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F146A52A24ABB1A400FE136C /* Extractor+Helper.swift */; };
+		F146A52C24ABB1A400FE136C /* Extractor+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F146A52A24ABB1A400FE136C /* Extractor+Helper.swift */; };
+		F146A52D24ABB1A400FE136C /* Extractor+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F146A52A24ABB1A400FE136C /* Extractor+Helper.swift */; };
 		F146A53024AC64CB00FE136C /* RGBARepParser+Experimental.swift in Sources */ = {isa = PBXBuildFile; fileRef = F146A52F24AC64CB00FE136C /* RGBARepParser+Experimental.swift */; };
 		F146A53124AC64CB00FE136C /* RGBARepParser+Experimental.swift in Sources */ = {isa = PBXBuildFile; fileRef = F146A52F24AC64CB00FE136C /* RGBARepParser+Experimental.swift */; };
 		F146A53224AC64CB00FE136C /* RGBARepParser+Experimental.swift in Sources */ = {isa = PBXBuildFile; fileRef = F146A52F24AC64CB00FE136C /* RGBARepParser+Experimental.swift */; };
@@ -248,6 +248,18 @@
 		F19C1C7224A8837100E93F4D /* GrayRepParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19C1C7124A8837100E93F4D /* GrayRepParser.swift */; };
 		F19C1C7324A8837100E93F4D /* GrayRepParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19C1C7124A8837100E93F4D /* GrayRepParser.swift */; };
 		F19C1C7424A8837100E93F4D /* GrayRepParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19C1C7124A8837100E93F4D /* GrayRepParser.swift */; };
+		F19CFB9B24BF193E002444AE /* Reader+DEPRECATED.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19CFB9A24BF193E002444AE /* Reader+DEPRECATED.swift */; };
+		F19CFB9E24BF2379002444AE /* Splitter+DEPRECATED.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19CFB9D24BF2379002444AE /* Splitter+DEPRECATED.swift */; };
+		F19CFB9F24BF2379002444AE /* Splitter+DEPRECATED.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19CFB9D24BF2379002444AE /* Splitter+DEPRECATED.swift */; };
+		F19CFBA024BF2379002444AE /* Splitter+DEPRECATED.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19CFB9D24BF2379002444AE /* Splitter+DEPRECATED.swift */; };
+		F19CFBA124BF237E002444AE /* Reader+DEPRECATED.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19CFB9A24BF193E002444AE /* Reader+DEPRECATED.swift */; };
+		F19CFBA224BF237E002444AE /* Reader+DEPRECATED.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19CFB9A24BF193E002444AE /* Reader+DEPRECATED.swift */; };
+		F19CFBA524BF24B9002444AE /* Extractor+DEPRECATED.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19CFBA424BF24B9002444AE /* Extractor+DEPRECATED.swift */; };
+		F19CFBA624BF24B9002444AE /* Extractor+DEPRECATED.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19CFBA424BF24B9002444AE /* Extractor+DEPRECATED.swift */; };
+		F19CFBA724BF24B9002444AE /* Extractor+DEPRECATED.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19CFBA424BF24B9002444AE /* Extractor+DEPRECATED.swift */; };
+		F19CFBAA24BF2534002444AE /* Writer+DEPRECATED.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19CFBA924BF2534002444AE /* Writer+DEPRECATED.swift */; };
+		F19CFBAB24BF2534002444AE /* Writer+DEPRECATED.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19CFBA924BF2534002444AE /* Writer+DEPRECATED.swift */; };
+		F19CFBAC24BF2534002444AE /* Writer+DEPRECATED.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19CFBA924BF2534002444AE /* Writer+DEPRECATED.swift */; };
 		F19E0A1323AFEDE7000B8827 /* CVBufferTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19E0A1223AFEDE7000B8827 /* CVBufferTest.swift */; };
 		F1A2FB1924A9BA4B00596FFE /* HCCQRSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A2FB1824A9BA4B00596FFE /* HCCQRSetup.swift */; };
 		F1A2FB1A24A9BA8700596FFE /* HCCQRSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A2FB1824A9BA4B00596FFE /* HCCQRSetup.swift */; };
@@ -402,7 +414,7 @@
 		F1467653249F5FAC009D392A /* UInt8+Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UInt8+Const.swift"; sourceTree = "<group>"; };
 		F146A52224AB60D900FE136C /* RGBARepUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBARepUtil.swift; sourceTree = "<group>"; };
 		F146A52624AB97A900FE136C /* GrayRepModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrayRepModifier.swift; sourceTree = "<group>"; };
-		F146A52A24ABB1A400FE136C /* Extractor+Assert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extractor+Assert.swift"; sourceTree = "<group>"; };
+		F146A52A24ABB1A400FE136C /* Extractor+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extractor+Helper.swift"; sourceTree = "<group>"; };
 		F146A52F24AC64CB00FE136C /* RGBARepParser+Experimental.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RGBARepParser+Experimental.swift"; sourceTree = "<group>"; };
 		F146A53424AC70F500FE136C /* RGBARep+Experiment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RGBARep+Experiment.swift"; sourceTree = "<group>"; };
 		F146A53A24AD048500FE136C /* CustomColorPallete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColorPallete.swift; sourceTree = "<group>"; };
@@ -501,6 +513,10 @@
 		F19251B8249EAC6900068073 /* Writer+Handler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Writer+Handler.swift"; sourceTree = "<group>"; };
 		F194BAA32224C304001C5DBB /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		F19C1C7124A8837100E93F4D /* GrayRepParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrayRepParser.swift; sourceTree = "<group>"; };
+		F19CFB9A24BF193E002444AE /* Reader+DEPRECATED.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reader+DEPRECATED.swift"; sourceTree = "<group>"; };
+		F19CFB9D24BF2379002444AE /* Splitter+DEPRECATED.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Splitter+DEPRECATED.swift"; sourceTree = "<group>"; };
+		F19CFBA424BF24B9002444AE /* Extractor+DEPRECATED.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extractor+DEPRECATED.swift"; sourceTree = "<group>"; };
+		F19CFBA924BF2534002444AE /* Writer+DEPRECATED.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Writer+DEPRECATED.swift"; sourceTree = "<group>"; };
 		F19E0A1223AFEDE7000B8827 /* CVBufferTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CVBufferTest.swift; sourceTree = "<group>"; };
 		F1A2FB1824A9BA4B00596FFE /* HCCQRSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HCCQRSetup.swift; sourceTree = "<group>"; };
 		F1AF9D3223E2CF460085DA0C /* Reader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reader.swift; sourceTree = "<group>"; };
@@ -726,10 +742,8 @@
 		F168525F2213443700C27EAA /* Splitter */ = {
 			isa = PBXGroup;
 			children = (
+				F19CFBA324BF2384002444AE /* DEPRECATED */,
 				F1240F6A23B4E01400ECD116 /* Splitter.swift */,
-				F1F3E05223BA277600D367F1 /* Splitter+Handler.swift */,
-				F10296C0222219EF001FA2DF /* Splitter+Type.swift */,
-				F1487F13249F84D400265A81 /* SplitError.swift */,
 			);
 			path = Splitter;
 			sourceTree = "<group>";
@@ -974,6 +988,47 @@
 			path = util;
 			sourceTree = "<group>";
 		};
+		F19CFB9C24BF1944002444AE /* DEPRECATED */ = {
+			isa = PBXGroup;
+			children = (
+				F181F10523B8FD7E00145DEA /* Reader+Handler.swift */,
+				F1F6F7BF22221EA80075E7FD /* Reader+Type.swift */,
+				F19CFB9A24BF193E002444AE /* Reader+DEPRECATED.swift */,
+			);
+			path = DEPRECATED;
+			sourceTree = "<group>";
+		};
+		F19CFBA324BF2384002444AE /* DEPRECATED */ = {
+			isa = PBXGroup;
+			children = (
+				F1F3E05223BA277600D367F1 /* Splitter+Handler.swift */,
+				F10296C0222219EF001FA2DF /* Splitter+Type.swift */,
+				F1487F13249F84D400265A81 /* SplitError.swift */,
+				F19CFB9D24BF2379002444AE /* Splitter+DEPRECATED.swift */,
+			);
+			path = DEPRECATED;
+			sourceTree = "<group>";
+		};
+		F19CFBA824BF24BD002444AE /* DEPRECATED */ = {
+			isa = PBXGroup;
+			children = (
+				F1D8A67323E846FC00F17A81 /* Extractor+Handler.swift */,
+				F19CFBA424BF24B9002444AE /* Extractor+DEPRECATED.swift */,
+			);
+			path = DEPRECATED;
+			sourceTree = "<group>";
+		};
+		F19CFBAD24BF253B002444AE /* DEPRECATED */ = {
+			isa = PBXGroup;
+			children = (
+				F19CFBA924BF2534002444AE /* Writer+DEPRECATED.swift */,
+				F1F6F7BD22221E9B0075E7FD /* Writer+Type.swift */,
+				F12274DB249B7C7B0045573B /* WriteError.swift */,
+				F19251B8249EAC6900068073 /* Writer+Handler.swift */,
+			);
+			path = DEPRECATED;
+			sourceTree = "<group>";
+		};
 		F1AF9D3B23E37E080085DA0C /* CVImageBufferTest */ = {
 			isa = PBXGroup;
 			children = (
@@ -1180,10 +1235,10 @@
 		F1F3E04223BA1C4300D367F1 /* Extractor */ = {
 			isa = PBXGroup;
 			children = (
+				F19CFBA824BF24BD002444AE /* DEPRECATED */,
 				F1F3E04923BA1CA200D367F1 /* Extractor.swift */,
-				F1D8A67323E846FC00F17A81 /* Extractor+Handler.swift */,
 				F1D8A66A23E83F0100F17A81 /* Extractor+Type.swift */,
-				F146A52A24ABB1A400FE136C /* Extractor+Assert.swift */,
+				F146A52A24ABB1A400FE136C /* Extractor+Helper.swift */,
 			);
 			path = Extractor;
 			sourceTree = "<group>";
@@ -1191,10 +1246,8 @@
 		F1F6F7C122221EB00075E7FD /* Writer */ = {
 			isa = PBXGroup;
 			children = (
+				F19CFBAD24BF253B002444AE /* DEPRECATED */,
 				F15C9F7F23BA747800F9D524 /* Writer.swift */,
-				F19251B8249EAC6900068073 /* Writer+Handler.swift */,
-				F1F6F7BD22221E9B0075E7FD /* Writer+Type.swift */,
-				F12274DB249B7C7B0045573B /* WriteError.swift */,
 			);
 			path = Writer;
 			sourceTree = "<group>";
@@ -1202,9 +1255,8 @@
 		F1F6F7C222221EBC0075E7FD /* Reader */ = {
 			isa = PBXGroup;
 			children = (
+				F19CFB9C24BF1944002444AE /* DEPRECATED */,
 				F1AF9D3223E2CF460085DA0C /* Reader.swift */,
-				F181F10523B8FD7E00145DEA /* Reader+Handler.swift */,
-				F1F6F7BF22221EA80075E7FD /* Reader+Type.swift */,
 				F12274D72498EA0A0045573B /* ReadError.swift */,
 			);
 			path = Reader;
@@ -1443,13 +1495,16 @@
 				F17CB70123AB9DDB00C4BED8 /* Colorizer+CIImage.swift in Sources */,
 				F146A52424AB60D900FE136C /* RGBARepUtil.swift in Sources */,
 				F1E645E723940B3D008D2ABE /* Pixel+Type.swift in Sources */,
+				F19CFB9F24BF2379002444AE /* Splitter+DEPRECATED.swift in Sources */,
 				F18C7B4523BF7EF9009D9B29 /* BufferUtil+Helper.swift in Sources */,
+				F19CFBA624BF24B9002444AE /* Extractor+DEPRECATED.swift in Sources */,
 				F1537EF524B311E900160FEC /* BoolColumn+Helper.swift in Sources */,
+				F19CFBA124BF237E002444AE /* Reader+DEPRECATED.swift in Sources */,
 				F1E645E823940B3D008D2ABE /* Pixel+Getter.swift in Sources */,
 				F146A55224AD0EA600FE136C /* ChannelPallete+Const.swift in Sources */,
 				F17F5B88221A267600383955 /* AppDelegate.swift in Sources */,
 				F143EC3723FAB8DE0006743C /* UInt8Modifier.swift in Sources */,
-				F146A52C24ABB1A400FE136C /* Extractor+Assert.swift in Sources */,
+				F146A52C24ABB1A400FE136C /* Extractor+Helper.swift in Sources */,
 				F181F11423B92A1700145DEA /* GrayRep+Init.swift in Sources */,
 				F15C9F8123BA747800F9D524 /* Writer.swift in Sources */,
 				F1E645DD23940B3D008D2ABE /* RGBARep+Init.swift in Sources */,
@@ -1472,6 +1527,7 @@
 				F1D8A66F23E83F8900F17A81 /* GrayRep+DeInit.swift in Sources */,
 				F1E645AE23940ACA008D2ABE /* Hybrid+Mac.swift in Sources */,
 				F1E645B823940ACA008D2ABE /* UInt8Parser.swift in Sources */,
+				F19CFBAB24BF2534002444AE /* Writer+DEPRECATED.swift in Sources */,
 				F1690AC624B2129D000EC61A /* ColorPalleteUtil.swift in Sources */,
 				F18A4D84239F11ED0065078A /* RGBARepModifier.swift in Sources */,
 				F165C24E239FF501005D30EC /* Pixel+Const.swift in Sources */,
@@ -1547,7 +1603,7 @@
 				F1E645CF23940B3C008D2ABE /* Colorizer+RGBA.swift in Sources */,
 				F1E205AB2495E60A00E3A82E /* VC+RGBAPhoto.swift in Sources */,
 				F1E67D4B24A8D124007FC5C0 /* UIView+Ext.swift in Sources */,
-				F146A52B24ABB1A400FE136C /* Extractor+Assert.swift in Sources */,
+				F146A52B24ABB1A400FE136C /* Extractor+Helper.swift in Sources */,
 				F1690AC024B20178000EC61A /* OutputConfig.swift in Sources */,
 				F1E645C223940B3C008D2ABE /* RGBARep+Init.swift in Sources */,
 				F1690AC924B22601000EC61A /* CustomColors.swift in Sources */,
@@ -1561,6 +1617,7 @@
 				F18A52E121790F8A003F8C13 /* ViewController.swift in Sources */,
 				F1E205B024964ACB00E3A82E /* PixelParser.swift in Sources */,
 				F1E205AE249628E500E3A82E /* PixelAsserter.swift in Sources */,
+				F19CFBA524BF24B9002444AE /* Extractor+DEPRECATED.swift in Sources */,
 				F1E645A023940AC9008D2ABE /* Hybrid+Mac.swift in Sources */,
 				F1E645CD23940B3C008D2ABE /* Pixel+Getter.swift in Sources */,
 				F1F3E05323BA277600D367F1 /* Splitter+Handler.swift in Sources */,
@@ -1571,6 +1628,7 @@
 				F1E67CB524BB691F00EB90F6 /* QuadrantRect.swift in Sources */,
 				F12274E0249BCC8D0045573B /* ColorizeError.swift in Sources */,
 				F146A53B24AD048500FE136C /* CustomColorPallete.swift in Sources */,
+				F19CFB9E24BF2379002444AE /* Splitter+DEPRECATED.swift in Sources */,
 				F1D8A66E23E83F8900F17A81 /* GrayRep+DeInit.swift in Sources */,
 				F146A54024AD06E400FE136C /* ChannelPallete.swift in Sources */,
 				F1690AA424B1F9B8000EC61A /* ColorPallete+Const.swift in Sources */,
@@ -1623,6 +1681,7 @@
 				F1E645A323940AC9008D2ABE /* UIImage+Extension.swift in Sources */,
 				F18A25E723BB83E700EF8151 /* NSImage+Extension.swift in Sources */,
 				F1537EFD24B353E500160FEC /* GrayReps.swift in Sources */,
+				F19CFB9B24BF193E002444AE /* Reader+DEPRECATED.swift in Sources */,
 				F1E645A623940AC9008D2ABE /* Data+Extension.swift in Sources */,
 				F1E67CB924BC8BA800EB90F6 /* VC+QuadrantTest.swift in Sources */,
 				F12274DC249B7C7B0045573B /* WriteError.swift in Sources */,
@@ -1647,6 +1706,7 @@
 				F143EC2F23FA98390006743C /* MonoRep+Init.swift in Sources */,
 				F146A53524AC70F500FE136C /* RGBARep+Experiment.swift in Sources */,
 				F1690AC524B2129D000EC61A /* ColorPalleteUtil.swift in Sources */,
+				F19CFBAA24BF2534002444AE /* Writer+DEPRECATED.swift in Sources */,
 				F181F10623B8FD7E00145DEA /* Reader+Handler.swift in Sources */,
 				F1690AAA24B1F9B8000EC61A /* ColorPallete.swift in Sources */,
 			);
@@ -1671,7 +1731,7 @@
 				F1537EEE24B23F1F00160FEC /* BoolRow.swift in Sources */,
 				F1E67CB324BB566E00EB90F6 /* TimeMeasure.swift in Sources */,
 				F146A52924AB97A900FE136C /* GrayRepModifier.swift in Sources */,
-				F146A52D24ABB1A400FE136C /* Extractor+Assert.swift in Sources */,
+				F146A52D24ABB1A400FE136C /* Extractor+Helper.swift in Sources */,
 				F1690AA624B1F9B8000EC61A /* ColorPallete+Const.swift in Sources */,
 				F1E5DC1023F9A1C300605775 /* RGBAImageTest.swift in Sources */,
 				F147200D248C0727008A01AD /* Hybrid+Mac.swift in Sources */,
@@ -1701,6 +1761,7 @@
 				F1471FC2248C0040008A01AD /* RGBARep.swift in Sources */,
 				F1E5710923A3EF3100E090BB /* HCCQRIOSTest.swift in Sources */,
 				F1E5711823A3F2C400E090BB /* QRTesting.swift in Sources */,
+				F19CFBAC24BF2534002444AE /* Writer+DEPRECATED.swift in Sources */,
 				F1471FE0248C04F9008A01AD /* Reader.swift in Sources */,
 				F1471FCB248C0085008A01AD /* RGBARep+Getter.swift in Sources */,
 				F1E5711723A3F2C400E090BB /* ScaleTesting.swift in Sources */,
@@ -1711,6 +1772,7 @@
 				F1471FDD248C0419008A01AD /* GrayRep+Type.swift in Sources */,
 				F1537EF224B2462200160FEC /* ChannelPallete+Helper.swift in Sources */,
 				F1690AAF24B1F9B8000EC61A /* ColorMap.swift in Sources */,
+				F19CFBA024BF2379002444AE /* Splitter+DEPRECATED.swift in Sources */,
 				F1471FE6248C0528008A01AD /* Splitter+Handler.swift in Sources */,
 				F1E5712823A3F2C400E090BB /* BulkRGBAHCCQRTest+Handler.swift in Sources */,
 				F1690ABE24B2015E000EC61A /* QRSetup.swift in Sources */,
@@ -1752,6 +1814,7 @@
 				F1E5712723A3F2C400E090BB /* BulkRGBAHCCQRTest+Core.swift in Sources */,
 				F1471FF4248C0573008A01AD /* MonoRep.swift in Sources */,
 				F1471FD8248C0415008A01AD /* GrayRep.swift in Sources */,
+				F19CFBA224BF237E002444AE /* Reader+DEPRECATED.swift in Sources */,
 				F1690AB124B1FA15000EC61A /* HCCQRConfigUtil.swift in Sources */,
 				F1471FBF248C0016008A01AD /* RGBARepParser.swift in Sources */,
 				F14DDE1523C0E26A00FA0022 /* BulkPhotoTest+Handler.swift in Sources */,
@@ -1783,6 +1846,7 @@
 				F146A53224AC64CB00FE136C /* RGBARepParser+Experimental.swift in Sources */,
 				F1471FC7248C0085008A01AD /* RGBARep+Init.swift in Sources */,
 				F18E38B224B0EC1B00F33947 /* BinarySequencer.swift in Sources */,
+				F19CFBA724BF24B9002444AE /* Extractor+DEPRECATED.swift in Sources */,
 				F146A53724AC70F500FE136C /* RGBARep+Experiment.swift in Sources */,
 				F1537F0B24B47C5200160FEC /* Array+Extension.swift in Sources */,
 				F1471FF5248C0573008A01AD /* MonoRep+Init.swift in Sources */,

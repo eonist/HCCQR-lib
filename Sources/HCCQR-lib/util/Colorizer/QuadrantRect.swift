@@ -10,6 +10,7 @@ final class QuadrantRect {
     * let coreCount: Int = ProcessInfo().activeProcessorCount
     * quadrantRect(idx: 0, coreCount: coreCount, (276, 276)) // 34
     * quadrantRect(idx: 7, coreCount: coreCount, (276, 276)) // 38 (left over)
+    * - Fixme: ⚠️️ Rename to something Segment, Segmentation, SegmentRect etc? SegmentCrop? look for similar words etc
     * - Fixme: ⚠️️ if size is not dividable by coreCount, then there will be issues, make fallback functionality
     * - Fixme: ⚠️️ Might want to return other configurations that might be more optimal. Some sizes are more optimal to slice 2 rows and 4 columns etc
     */

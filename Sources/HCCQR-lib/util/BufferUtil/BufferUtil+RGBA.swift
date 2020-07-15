@@ -20,7 +20,7 @@ extension BufferUtil {
     * - Note: CVPixelBufferRelease' is unavailable: Core Foundation objects are automatically memory managed
     * - Fixme: ⚠️️ Might have the solution for av buffer: https://stackoverflow.com/questions/29375471/how-to-convert-cvimagebuffer-to-uiimage
     * - Fixme: ⚠️️ Using a pointer to iterate might be faster, see stackoverflow
-    * - Fixme: ⚠️️ Striding with 20 might be faster than nested for loop, experiment with this
+    * - Fixme: ⚠️️⚠️️⚠️️ Striding with 20 might be faster than nested for loop, experiment with this
     * - Fixme: ⚠️️ Add debug tool with: CVPixelBufferGetDataSize(imageBuffer), \(CVPixelBufferGetDataSize(imageBuffer)) type:  \(CVPixelBufferGetPixelFormatType(imageBuffer)), let info = RGBImage.bitmapInfo(buffer: imageBuffer)// if type != kCVPixelFormatType_DepthFloat32 { print("Wrong type \(type)"); throw NSError(domain: "Wrong type", code: 0) }, let type: OSType = CVPixelBufferGetPixelFormatType(imageBuffer) // Swift.print("type:  \(type)")
     * - Fixme: ⚠️️ Rename imageBuffer to buffer
     * - Parameters:
@@ -38,6 +38,7 @@ extension BufferUtil {
       let capacity: Int = bufferRect.width * bufferRect.height
       let pixels = UnsafeMutableBufferPointer<Pixel>.allocate(capacity: capacity) // we dealoc this when we have finished working with rgbaRep
       // - Fixme: ⚠️️ the optimal amount of work vs coordination is not optimal on the bellow, use stride or do new optimization efforts
+      // - Fixme: ⚠️️ Either research and use stride, or chop into segments, probably use stride, as its the same thing, and you only do one operation not many.
       for y in bufferRect.y..<bufferRect.height {
          let yVal: Int = y * bytesPerPixel // we calc these outside the x loop, to gain performance
          let yAndWidth: Int = y * bufferRect.width // we calc these outside the x loop, to gain performance

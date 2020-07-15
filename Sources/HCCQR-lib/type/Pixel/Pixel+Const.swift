@@ -11,8 +11,7 @@ extension Pixel {
     * - Fixme: ⚠️️ move threshold const to a different place.
     * - Note: it becomes half of threshold 
     */
-   static let defaultHalfThreshold: UInt8 = Pixel.getHalfThreshold(0.3) // i think this is: 1/2
-//   static let ht8: UInt8 = Pixel.getHalfThreshold(1/4)
+   static let defaultHalfThreshold: UInt8 = Pixel.getHalfThreshold(1.0 / 4) // 4-colors equal 0.25, 8-color equal 0.125
    /**
     * Used with threshold methods in assert extension
     */

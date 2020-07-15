@@ -5,6 +5,7 @@ import CoreImage
 @testable import HCCQR_lib
 /**
  * Bulk tests
+ * - Fixme: ⚠️️ move bulk test into it's own class
  */
 extension ConcurrentTest {
    /**
