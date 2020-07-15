@@ -13,12 +13,10 @@ final class GrayRepModifier {
     *   - output: The GrayScaleImage to populate pixels into (we only need [UInt8])
     *   - functor: A function which manipulates each pixel
     */
-   static func process(input: RGBARep, output: GrayRep, functor: GrayRep.FunctorCall) -> GrayRep {
+   static func process(input: RGBARep, output: GrayRep, functor: GrayRep.FunctorRGBA) -> GrayRep {
       (0..<input.height).forEach { y in
          let idx: Int = y * input.width // we calc this here as optimization
-         // - Fixme: ⚠️️ Optimal amount of work on bellow is suboptimal (will be omitted soon)
          (0..<input.width).forEach { x in
-//         DispatchQueue.concurrentPerform(iterations: input.width) { x in // ⚠️️ Optimization initiative
             let index: Int = idx + x // Pixel index
             output.pixels[index] = functor(input.pixels[index]) // Apply new pixel to old pixel
          }
@@ -30,18 +28,20 @@ final class GrayRepModifier {
     * - Note: Used in the Combine-process to convert HCCQR to Data
     * - Fixme: ⚠️️ We can prob stride to get better speed
     * - Fixme: ⚠️️ Using a pointer might speed up this method
-    * - Fixme: ⚠️️ We can calc in quadrants that utilize the cpu / threads better
     */
-   static func process(input: GrayRep, functor: GrayRep.FunctorIndexCall) -> GrayRep {
-      (0..<input.height).forEach { y in
-         let idx: Int = y * input.width // we calc this here as optimization
-         // - Fixme: ⚠️️ optimal amount of work on bellow is suboptimal
-         (0..<input.width).forEach { x in
-//         DispatchQueue.concurrentPerform(iterations: input.width) { x in // ⚠️️ Optimization initiative
-            let index: Int = idx + x
-            input.pixels[index] = functor(index, input.pixels[index])
+   static func process(input: GrayRep, functor: @escaping GrayRep.FunctorIndexGray) -> GrayRep {
+//      Swift.print("process")
+//      let batches = Array(0..<input.height).divideBy(by: 1)
+      /**/
+//      batches.concurrentForEach { batch in // concurrentForEach
+         Array(0..<input.height).forEach { y in
+            let idx: Int = y * input.width // we calc this here as optimization
+            (0..<input.width).forEach { x in
+               let index: Int = idx + x
+               input.pixels[index] = functor(index, input.pixels[index])
+            }
          }
-      }
+//      }
       return input
    }
 }

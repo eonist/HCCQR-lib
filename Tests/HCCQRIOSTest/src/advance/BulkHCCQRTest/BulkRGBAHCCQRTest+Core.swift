@@ -12,7 +12,7 @@ extension BulkRGBAHCCQRTest {
     */
    static func writeMany(onComplete:@escaping OnWriteImagesComplete) {
 //      let config: QRConfig = (.v6, .byte, .l) // Config (app uses 4 to 10)
-      let setup: HCCQRSetup = .init(qr: .init(qrVersion: .v6, ecLevel: .l), output: .init(scale: (6, 2)))
+      let setup: HCCQRSetup = .init(qr: .init(qrVersion: .v6, ecLevel: .l), output: .init(scale: (6, 2), map: .cp8(useDarkMode: false)))
 //      let config: QRConfig = (setup.qrVersion, .byte, setup.ecLevel) // Config
       let randomData: [Data] = (0..<100).compactMap { _ in HCCQRStringData.randomData(setup: setup) } // Num of items to load
       var images: [RGBARep?] = [RGBARep?](repeating: nil, count: randomData.count)//      var images: [CIImage?] = [CIImage?](repeating: nil, count: randomData.count)
@@ -31,7 +31,7 @@ extension BulkRGBAHCCQRTest {
       var payloads: [Data?] = [Data?](repeating: nil, count: rgbaImages.count)
       rgbaImages.enumerated().forEach { arg in // the calles are async, and will finish randomly
 //         DispatchQueue.global(qos: .background).async { // ⚠️️ seems 🤔 to fail if this is put on a bg thread, it doesnt provide any speed benfit either
-         Reader.data(rgbaRep: arg.element) { (result: Reader.ReadResult2) in  // split the hccqrImg
+         Reader.data(rgbaRep: arg.element, pallete: ._8) { (result: Reader.ReadResult2) in  // split the hccqrImg
             DispatchQueue.main.async { // We need to go on the mainthread to manipulate array
                onReadComplete(i: arg.offset, result: result, payloads: &payloads, onComplete: onComplete)
             }

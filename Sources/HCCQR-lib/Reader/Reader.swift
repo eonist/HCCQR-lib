@@ -11,7 +11,7 @@ public final class Reader {}
  */
 extension Reader {
    /**
-    * CVImageBuffer -> Data (⚠️️ New ⚠️️)
+    * CVImageBuffer -> Data (⚠️️ New, UNTESTED ⚠️️)
     * - Parameters:
     *   - imageBuffer: The buffer containing the raw pixel data and size
     *   - crop: Makes processing the raw imagery faster since we don't have to process areas where the QR info is not etc.
@@ -35,8 +35,14 @@ extension Reader {
     */
    public static func data(rgbaRep: RGBARep, pallete: ChannelPallete = .default) throws -> QRReader.DataAndQuad {
       let qrLayers: [CIImage] = Splitter.split(rgbaRep: rgbaRep, pallete: pallete)
-      let dataAndQuads = qrLayers.compactMap { // concurrentCompactMap
-         try? QRReader.dataAndQuad(ciImage: $0)
+      // the concurrentCompactMap is experimental, works for now
+      let dataAndQuads: [QRReader.DataAndQuad] = /*try*/ qrLayers.concurrentCompactMap { // concurrentCompactMap
+         do {
+            return try QRReader.dataAndQuad(ciImage: $0)
+         } catch {
+            Swift.print("⚠️️ error ⚠️️ :  \(error)")
+            return nil
+         }
       }
       guard dataAndQuads.count == qrLayers.count else { throw NSError("Unable to read QR Layer") }
       let data: Data = .combine(data: dataAndQuads.map { $0.qrData })
@@ -57,7 +63,7 @@ extension Reader {
    }
    /**
     * Image -> Data (⚠️️ New ⚠️️)
-    * - Needed for quick tests etc
+    * - Note: Needed for quick tests etc
     */
    public static func data(image: Image, pallete: ChannelPallete = .default, onComplete: @escaping (_ data: Data?) -> Void) {
       guard let rgbaRep: RGBARep = try? RGBARepUtil.rgbaRep(image: image) else { Swift.print("err getting rgbImage"); return } // CVImageBufferUtil.rgbaRep(image: image)

@@ -7,13 +7,15 @@ import CoreImage
  * Bulk tests
  * - Fixme: ⚠️️ move bulk test into it's own class
  */
-extension ConcurrentTest {
+final class ConcurrentBulkTest {}
+
+extension ConcurrentBulkTest {
    /**
     * - Important: ⚠️️ remember to match the colorPallete and channelPallet
     */
    private static let bulkSetup: HCCQRSetup = {
-      let qrSetup: QRSetup = .init(qrVersion: .v1, ecLevel: .l)
-      let output: OutputConfig = .init(scale: (6, 2), map: .cp4(useDarkMode: false))
+      let qrSetup: QRSetup = .init(qrVersion: .v4, ecLevel: .l)
+      let output: OutputConfig = .init(scale: (6, 2), map: .cp8(useDarkMode: false))
       return .init(qr: qrSetup, output: output)
    }()
    /**
@@ -22,18 +24,19 @@ extension ConcurrentTest {
    static func bulkTest() -> Bool {
       let rgbaReps: [RGBARep] = writeMany(setup: bulkSetup)
       let didSuccessfullyReadMany: Bool = readMany(rgbaReps: rgbaReps)
+      Swift.print("didSuccessfullyReadMany: \(didSuccessfullyReadMany ? "✅" : "🚫")")
       return didSuccessfullyReadMany
    }
 }
 /**
  * Private static helper methods
  */
-extension ConcurrentTest {
+extension ConcurrentBulkTest {
    /**
     * Bulk write many
     */
    private static func writeMany(setup: HCCQRSetup) -> [RGBARep] {
-      let randomData: [Data] = (0..<100).compactMap { _ in HCCQRStringData.randomData(setup: setup) } // Num of items to load
+      let randomData: [Data] = (0..<100).compactMap { _ in HCCQRStringData.randomData(setup: setup) } // Num of items to load, we create this outside, because we dont want to time the creation of it
       let (payloads, time) = TimeMeasure.timeElapsed {
          randomData.compactMap {
             Writer.rgbaRep(data: $0, config: setup)
@@ -46,9 +49,14 @@ extension ConcurrentTest {
     * Bulk read many
     */
    private static func readMany(rgbaReps: [RGBARep]) -> Bool {
-      let (payloads, time) = TimeMeasure.timeElapsed {
-         rgbaReps.compactMap {
-            try? Reader.data(rgbaRep: $0, pallete: ._4)
+      let (payloads, time): ([QRReader.DataAndQuad], Double) = TimeMeasure.timeElapsed {
+         rgbaReps.compactMap { rgbaRep in
+            do {
+               return try Reader.data(rgbaRep: rgbaRep, pallete: ._8)
+            } catch {
+               Swift.print("⚠️️ Error: ⚠️️  \(error)")
+               return nil
+            }
          }
       }
       Swift.print("read many time:  \(time)")

@@ -62,8 +62,8 @@ extension Array {
     * ## Examples:
     * [1, 2, 3, 4].concurrentForEach { print($0) }
     */
-   public func concurrentForEach(action: @escaping (Element) -> Void) {
-      concurrentMap { _ = action($0) }
+   public func concurrentForEach(transform: @escaping (Element) -> Void) {
+      concurrentMap { _ = transform($0) }
    }
    /**
     * Convenience
@@ -77,10 +77,27 @@ extension Array {
  */
 extension Array {
    /**
+    * ⚠️️ New, not fully tested ⚠️️
+    * ## Examples:
+    * let str: String = [0, 1, 2].concurrentReduce("") { $0 + "\( $1)" } // "012"
+    */
+   public func concurrentReduce<T>(_ initValue: T, transform: @escaping (_ acc: T, _ new: Element) -> T) -> T {
+      let lock = NSLock() // needed when accessing a variable from many threads
+      var initValue = initValue
+      self.concurrentForEach { item in
+         let tempVal = transform(initValue, item) // we have to do the processing outside the lock operation
+         lock.lock() // lock.sync {} // probably extend NSlock to make this functionality
+         initValue = tempVal // needed when accessing a variable from many threads
+         lock.unlock()
+      }
+      return initValue
+   }
+   /**
     * ⚠️️ Testing / Experimental ⚠️️
     * - Ref: https://swift.org/blog/tsan-support-on-linux/
     * - Note: the .barrier flag to allow concurrent reads, but block access when a write is in progress
     * - Note: More info on barrier here: https://basememara.com/creating-thread-safe-arrays-in-swift/
+    * - Note: Its also possible to do this with NSLock and .sync {} see your concurrent post from 2019
     * ## Examples:
     * [0, 1, 2, 3].concurrentMap { i in i * 2 } // 0, 2, 4, 6
     */
@@ -105,5 +122,18 @@ extension Array {
          summary[index] = transform(self[index]) // can cause problems
       }
       return summary.compactMap { $0 }
+   }
+}
+/**
+ * Modifier
+ */
+extension Array {
+   /**
+    * Used to make concurrent striding simpler
+    */
+   internal func divideBy(by size: Int) -> [[Element]] {
+      stride(from: 0, to: self.count, by: size).map {
+         Array(self[$0..<Swift.min($0 + size, self.count)])
+      }
    }
 }

@@ -4,7 +4,7 @@ import CoreGraphics
 import CoreImage
 @testable import HCCQR_lib
 /**
- * - Fixme: ⚠️️ rename to concurrent optimization test
+ * - Fixme: ⚠️️ Rename to concurrent optimization test
  */
 final class ConcurrentTest {}
 

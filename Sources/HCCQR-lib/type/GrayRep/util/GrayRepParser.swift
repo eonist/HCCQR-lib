@@ -3,8 +3,7 @@ import CoreImage
 
 final class GrayRepParser {
    /**
-    * New (⚠️️ experimental, untested, prob needs more research ⚠️️)
-    * - Fixme: ⚠️️ rename param ro grayRep
+    * New (⚠️️ experimental, untested, prob needs more research, it works tho ⚠️️)
     * - Note: fast grayscale: https://developer.apple.com/documentation/accelerate/converting_color_images_to_grayscale  and vImage_CGImageFormat might also be interesting
     */
    static func ciImage(grayRep: GrayRep) /*throws*/ -> CIImage {

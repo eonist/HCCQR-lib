@@ -24,6 +24,7 @@ extension Colorizer {
       let capacity: Int = monoReps[0].capacity // get capacity from first item
       let pixels: UnsafeMutableBufferPointer<Pixel> = .allocate(capacity: capacity) // Create a new array // pixels.reserveCapacity(size.width * size.height)
       defer { pixels.deallocate() } // ⚠️️ this deallocates the pixels once they are not needed anymore
+      // - Fixme: ⚠️️  concurrent + stride this?
       (0..<size.height).forEach { (y: Int) in // every y pixel
          // - Fixme: ⚠️️ optimal amount of work on bellow is suboptimal
          (0..<size.width).forEach { (x: Int) in

@@ -20,6 +20,7 @@ final class RGBARepModifier {
       let scaledSize: Size = (size.width * scale, size.height * scale)
       let capacity: Int = scaledSize.width * scaledSize.height
       let resultPixels: UnsafeMutableBufferPointer<Pixel> = .allocate(capacity: capacity)
+      // - Fixme: ⚠️️ do concurrent + stride?
       (0..<scaledSize.height).forEach { (y: Int) in
          let scaledY = y / scale * size.height
          let yWidth = y * scaledSize.width
