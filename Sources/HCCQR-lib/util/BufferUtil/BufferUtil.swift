@@ -39,6 +39,7 @@ extension BufferUtil {
       let pixels = UnsafeMutableBufferPointer<Pixel>.allocate(capacity: capacity) // we dealoc this when we have finished working with rgbaRep
       // - Fixme: ⚠️️ the optimal amount of work vs coordination is not optimal on the bellow, use stride or do new optimization efforts
       // - Fixme: ⚠️️ Either research and use stride, or chop into segments, probably use stride, as its the same thing, and you only do one operation not many.
+      Swift.print("⚠️️ test the batch ⚠️️")
       for y in bufferRect.y..<bufferRect.height {
          let yVal: Int = y * bytesPerPixel // we calc these outside the x loop, to gain performance
          let yAndWidth: Int = y * bufferRect.width // we calc these outside the x loop, to gain performance

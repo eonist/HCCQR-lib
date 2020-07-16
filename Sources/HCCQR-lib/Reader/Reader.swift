@@ -6,26 +6,30 @@ import CoreImage
  * Reads HCCQR into binary data
  */
 public final class Reader {}
-/**
- * Adds support for CVImageBuffer (For processing data from camera)
- */
+
 extension Reader {
    /**
     * CVImageBuffer -> Data (⚠️️ New, UNTESTED ⚠️️)
+    * - Note: Adds support for CVImageBuffer (For processing data from camera)
+    * 1. Create RGBA representation of the CVImageBuffer
+    * 2. Split the RGBA into multiple QR-Images
+    * 3. Extract the data from the QR-Images
+    * 4. Combine the multiple Data's into one Data
+    * 5. Return the data and the meta-data
     * - Parameters:
     *   - imageBuffer: The buffer containing the raw pixel data and size
     *   - crop: Makes processing the raw imagery faster since we don't have to process areas where the QR info is not etc.
     */
    public static func data(imageBuffer: CVImageBuffer, crop: BufferRect, pallete: ChannelPallete = .default) throws -> ReadPayload {
-      guard let rgbaImg: RGBARep = try? BufferUtil.rgbaRep(imageBuffer: imageBuffer, crop: crop) else { throw ReadError.unableToExtractRGBAImageFromCVBuffer }
-      guard let dataAndImagesAndQuad: QRReader.DataAndQuad = try? data(rgbaRep: rgbaImg, pallete: pallete) else { throw ReadError.unableToGetDataAndImages(msg: "err") }
+      let rgbaImg: RGBARep = try BufferUtil.rgbaRep(imageBuffer: imageBuffer, crop: crop)
+      let dataAndImagesAndQuad: QRReader.DataAndQuad = try data(rgbaRep: rgbaImg, pallete: pallete)
       let data: Data = dataAndImagesAndQuad.qrData
-      let quad: QRReader.Quad = dataAndImagesAndQuad.quad // else { throw ReadError.unableToGetDataOrQuad }
+      let quad: QRReader.Quad = dataAndImagesAndQuad.quad
       let dataAndMeta: ReadPayload = (data: data, quad: quad, imageSize: rgbaImg.cgSize)
       return dataAndMeta
    }
    /**
-    * Image -> Data (⚠️️ New ⚠️️)
+    * Image -> Data
     * - Needed for quick tests etc
     */
    public static func data(image: Image, pallete: ChannelPallete = .default) throws -> QRReader.DataAndQuad {
@@ -38,19 +42,21 @@ extension Reader {
  */
 extension Reader {
    /**
-    * Reads rgbaRep (support for parallel processing) (⚠️️ New ⚠️️)
-    * - Note: the QRReader doesn't like to be processes parralelly
+    * Reads rgbaRep, outputs Data
+    * - Fixme: ⚠️️ the QRReader doesn't like to be processes parralelly, this needs confirmation with concurrent test
+    * - Fixme: ⚠️️ When the first QRImage Quad is found, the subsequent QR-Rects will be in the same quadrant, clip the subsequent images, maybe if you do the parrallel computing in the sequence / streaming lib
+    * - Abstract: Since we get pixel data from the camera, this will be faster than converting to image first
+    * - Note: returning qrimage is useful, it is used as a way to debug that the HCCQR ws split correctly
+    * - Note: Isn't private because Tests use it
+    * - Parameters:
+    *   - rgbaRep: raw pixels and size
+    *   - pallete: the arrangment of colors
     */
-   public static func data(rgbaRep: RGBARep, pallete: ChannelPallete = .default) throws -> QRReader.DataAndQuad {
+   internal static func data(rgbaRep: RGBARep, pallete: ChannelPallete = .default) throws -> QRReader.DataAndQuad {
       let qrLayers: [CIImage] = Splitter.split(rgbaRep: rgbaRep, pallete: pallete)
-      // the concurrentCompactMap is experimental, works for now
-      let dataAndQuads: [QRReader.DataAndQuad] = /*try*/ qrLayers.concurrentCompactMap { // concurrentCompactMap
-         do {
-            return try QRReader.dataAndQuad(ciImage: $0)
-         } catch {
-            Swift.print("⚠️️ error ⚠️️ :  \(error)")
-            return nil
-         }
+      // ⚠️️ the concurrentCompactMap is experimental, works for now
+      let dataAndQuads: [QRReader.DataAndQuad] = qrLayers.concurrentCompactMap { // concurrentCompactMap
+         try? QRReader.dataAndQuad(ciImage: $0)
       }
       guard dataAndQuads.count == qrLayers.count else { throw NSError("Unable to read QR Layer") }
       let data: Data = .combine(data: dataAndQuads.map { $0.qrData })
