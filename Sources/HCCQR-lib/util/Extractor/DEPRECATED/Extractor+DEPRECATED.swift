@@ -31,3 +31,14 @@ extension Extractor {
       }
    }
 }
+/**
+ * Completion type
+ */
+extension Extractor {
+   /**
+    * Returns the luminocity of each Color as a Grayscale representation
+    * - Note: we keep the this as a typealias, we might want to pass errors, and debug info with the payload in the future
+    * - Fixme: ⚠️️ rename to GrayReps?, move to global scope
+    */
+   typealias OnExtractComplete = (GrayReps) -> Void
+}

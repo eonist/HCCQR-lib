@@ -130,6 +130,9 @@ extension Array {
 extension Array {
    /**
     * Used to make concurrent striding simpler
+    * ## Examples:
+    * let batches = Array(0..<1000).divideBy(by: 20)
+    * batches.concurrentForEach { batch in batch.forEach { $0 } }
     */
    internal func divideBy(by size: Int) -> [[Element]] {
       stride(from: 0, to: self.count, by: size).map {

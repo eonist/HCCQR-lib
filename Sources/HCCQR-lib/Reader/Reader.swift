@@ -24,6 +24,14 @@ extension Reader {
       let dataAndMeta: ReadPayload = (data: data, quad: quad, imageSize: rgbaImg.cgSize)
       return dataAndMeta
    }
+   /**
+    * Image -> Data (⚠️️ New ⚠️️)
+    * - Needed for quick tests etc
+    */
+   public static func data(image: Image, pallete: ChannelPallete = .default) throws -> QRReader.DataAndQuad {
+      let rgbaRep: RGBARep = try RGBARepUtil.rgbaRep(image: image)
+      return try Reader.data(rgbaRep: rgbaRep, pallete: pallete)
+   }
 }
 /**
  * Support for parallel reading of input
@@ -47,29 +55,5 @@ extension Reader {
       guard dataAndQuads.count == qrLayers.count else { throw NSError("Unable to read QR Layer") }
       let data: Data = .combine(data: dataAndQuads.map { $0.qrData })
       return (data, dataAndQuads[0].quad)
-   }
-}
-/**
- * Image -> Data
- */
-extension Reader {
-   /**
-    * Image -> Data (⚠️️ New ⚠️️)
-    * - Needed for quick tests etc
-    */
-   public static func data(image: Image, pallete: ChannelPallete = .default) throws -> QRReader.DataAndQuad {
-      let rgbaRep: RGBARep = try RGBARepUtil.rgbaRep(image: image)
-      return try Reader.data(rgbaRep: rgbaRep, pallete: pallete)
-   }
-   /**
-    * Image -> Data (⚠️️ New ⚠️️)
-    * - Note: Needed for quick tests etc
-    */
-   public static func data(image: Image, pallete: ChannelPallete = .default, onComplete: @escaping (_ data: Data?) -> Void) {
-      guard let rgbaRep: RGBARep = try? RGBARepUtil.rgbaRep(image: image) else { Swift.print("err getting rgbImage"); return } // CVImageBufferUtil.rgbaRep(image: image)
-      Reader.data(rgbaRep: rgbaRep, pallete: pallete) { (result: Reader.ReadResult2) in // Split the hccqrImg
-         guard let value = try? result.get() else { onComplete(nil); return }
-         onComplete(value.data)
-      }
    }
 }

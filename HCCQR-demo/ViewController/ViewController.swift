@@ -25,11 +25,11 @@ class ViewController: UIViewController {
 /**
  * Experiment
  */
-extension ViewController {
-   /**
-    * Do concurrent stride testing, do research first
-    */
-   static func testStride() {
-      
-   }
-}
+//extension ViewController {
+//   /**
+//    * Do concurrent stride testing, do research first
+//    */
+//   static func testStride() {
+//
+//   }
+//}

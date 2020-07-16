@@ -3,6 +3,7 @@ import QuartzCore
 
 final class QuadrantRect {
    /**
+    * ⚠️️ EXPERIMENTAL ⚠️️
     * Returns a slice of a rectangle depending on the index of that slice. Sliced to count
     * - Note: creates int based rect, in order to distribute heavy tasks over many cpu cores
     * - Returns: rect is int based CGRect

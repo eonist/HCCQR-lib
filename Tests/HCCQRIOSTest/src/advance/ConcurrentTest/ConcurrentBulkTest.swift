@@ -39,7 +39,7 @@ extension ConcurrentBulkTest {
       let randomData: [Data] = (0..<100).compactMap { _ in HCCQRStringData.randomData(setup: setup) } // Num of items to load, we create this outside, because we dont want to time the creation of it
       let (payloads, time) = TimeMeasure.timeElapsed {
          randomData.compactMap {
-            Writer.rgbaRep(data: $0, config: setup)
+            try? Writer.rgbaRep(data: $0, config: setup)
          }
       }
       Swift.print("write many time:  \(time)")

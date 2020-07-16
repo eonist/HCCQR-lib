@@ -6,15 +6,20 @@ import CoreImage
  * - Note: the two grayscale images is the luminosity of two colors, orange, purple etc
  * - Abstract: Used in the Reading of HCCQR
  * - Note: the output can then be read by a QRReader
+ * - Note: pair b&g = qr1, pair r$b = qr2
+ * - Note: blue means black in both layers
+ * - Note: green means black in layer-1 only
+ * - Note: red means black in layer-2 only
+ * - Note: white means white in both layers
  */
 final class Combiner {
    /**
     * Combine color-channels into 1 QR-image (Combines multiple grayscale representations into one QR-Image)
-    * - Returns: a QR-Image based on multiple (GrayscaleRep) channels (We use CIImage, because that is what apple prefers to read qr from)
+    * - Abstract: Here we combine the channels into QR-Images
     * 1. GrayScaleRep-layers comes in
     * 2. GrayscaleRep-layers are composited together
-    * 3. A CIImage is created from the GrayscaleRep
-    * - Returns: CIImage (Since apples-QR-api only reads CIImage)
+    * 3. Combine the different ColorChannels in the correct ways to unlock the B&W-QR-Layers
+    * - Returns: a QR-Image based on multiple (GrayscaleRep) channels (We use CIImage, because that is what apple prefers to read qr from) CIImage (Since apples-QR-api only reads CIImage)
     * - Note: layer 1: r, b -> qrImg1 (⚠️️ I'm not sure this is correct, think R -> Black, White B -> Black, Black, G-> WHite,Black, white -> white,white)
     * - Note: layer 2: b, g -> qrImg2 (⚠️️ I'm not sure this is correct, think R -> Black, White B -> Black, Black, G-> WHite,Black, white -> white,white)
     * - Note: Used in the process to convert HCCQR to Data

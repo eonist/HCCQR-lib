@@ -51,4 +51,15 @@ extension Reader {
          onSplitComplete(result: result, onComplete: onComplete) // readTime += abs(HCCQRReader.splitTime.timeIntervalSinceNow); Swift.print("👉 Splitting rgbaImage done: \(abs(HCCQRReader.splitTime.timeIntervalSinceNow))")
       }
    }
+   /**
+    * Image -> Data (⚠️️ New ⚠️️)
+    * - Note: Needed for quick tests etc
+    */
+   public static func data(image: Image, pallete: ChannelPallete = .default, onComplete: @escaping (_ data: Data?) -> Void) {
+      guard let rgbaRep: RGBARep = try? RGBARepUtil.rgbaRep(image: image) else { Swift.print("err getting rgbImage"); return } // CVImageBufferUtil.rgbaRep(image: image)
+      Reader.data(rgbaRep: rgbaRep, pallete: pallete) { (result: Reader.ReadResult2) in // Split the hccqrImg
+         guard let value = try? result.get() else { onComplete(nil); return }
+         onComplete(value.data)
+      }
+   }
 }

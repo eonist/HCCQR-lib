@@ -22,7 +22,7 @@ extension ConcurrentTest {
     */
    internal static func test() -> Bool {
       guard let randomData: Data = HCCQRStringData.randomData(setup: singleSetup) else { return false }
-      guard let image: Image = Writer.img(data: randomData, config: singleSetup) else { return false }
+      guard let image: Image = try? Writer.img(data: randomData, config: singleSetup) else { return false }
       do {
          let dataAndQuad: QRReader.DataAndQuad = try Reader.data(image: image, pallete: ._8)
          let isValid: Bool = randomData == dataAndQuad.qrData
