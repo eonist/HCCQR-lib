@@ -9,7 +9,7 @@ import UIKit
  * let splitView = SplitTestView(frame: .init(origin: .zero, size: .init(width: 300, height: 100)))
  * view.addSubview(splitView)
  */
-class SplitTestView: UIView {
+final class SplitTestView: UIView {
    static let width: CGFloat = height * 3
    static let height: CGFloat = 100
    override init(frame: CGRect) {

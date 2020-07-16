@@ -12,9 +12,9 @@ extension UIView {
    func snapShot(scale: CGFloat? = nil) -> UIImage? {
       UIGraphicsBeginImageContextWithOptions(self.bounds.size, true, scale ?? 0 )
       self.layer.render(in: UIGraphicsGetCurrentContext()!)
-      let img = UIGraphicsGetImageFromCurrentImageContext()
+      let image = UIGraphicsGetImageFromCurrentImageContext()
       UIGraphicsEndImageContext()
-      return img
+      return image
    }
    var snapshot2: UIImage? {
       if #available(iOS 10, *) {

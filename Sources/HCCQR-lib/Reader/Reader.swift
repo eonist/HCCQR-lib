@@ -21,9 +21,9 @@ extension Reader {
     *   - imageBuffer: The buffer containing the raw pixel data and size
     *   - crop: Makes processing the raw imagery faster since we don't have to process areas where the QR info is not etc.
     */
-   public static func data(imageBuffer: CVImageBuffer, crop: BufferRect, pallete: ChannelPallete = .default) throws -> ReadPayload {
+   public static func data(imageBuffer: CVImageBuffer, crop: BufferRect, scheme: ChannelScheme = .default) throws -> ReadPayload {
       let rgbaImg: RGBARep = try BufferUtil.rgbaRep(buffer: imageBuffer, crop: crop)
-      let dataAndImagesAndQuad: QRReader.DataAndQuad = try data(rgbaRep: rgbaImg, pallete: pallete)
+      let dataAndImagesAndQuad: QRReader.DataAndQuad = try data(rgbaRep: rgbaImg, scheme: scheme)
       let data: Data = dataAndImagesAndQuad.qrData
       let quad: QRReader.Quad = dataAndImagesAndQuad.quad
       let dataAndMeta: ReadPayload = (data: data, quad: quad, imageSize: rgbaImg.cgSize)
@@ -33,9 +33,9 @@ extension Reader {
     * Image -> Data
     * - Needed for quick tests etc
     */
-   public static func data(image: Image, pallete: ChannelPallete = .default) throws -> QRReader.DataAndQuad {
+   public static func data(image: Image, scheme: ChannelScheme = .default) throws -> QRReader.DataAndQuad {
       let rgbaRep: RGBARep = try RGBARepUtil.rgbaRep(image: image)
-      return try Reader.data(rgbaRep: rgbaRep, pallete: pallete)
+      return try Reader.data(rgbaRep: rgbaRep, scheme: scheme)
    }
 }
 /**
@@ -52,10 +52,10 @@ extension Reader {
     * - Note: Isn't private because Tests use it
     * - Parameters:
     *   - rgbaRep: raw pixels and size
-    *   - pallete: the arrangment of colors
+    *   - scheme: the arrangment of colors
     */
-   internal static func data(rgbaRep: RGBARep, pallete: ChannelPallete/* = .default*/) throws -> QRReader.DataAndQuad {
-      let qrLayers: [CIImage] = Splitter.split(rgbaRep: rgbaRep, pallete: pallete)
+   internal static func data(rgbaRep: RGBARep, scheme: ChannelScheme/* = .default*/) throws -> QRReader.DataAndQuad {
+      let qrLayers: [CIImage] = Splitter.split(rgbaRep: rgbaRep, scheme: scheme)
       // ⚠️️ the concurrentCompactMap is experimental, works for now
       let dataAndQuads: [QRReader.DataAndQuad] = qrLayers.concurrentCompactMap { // concurrentCompactMap
          try? QRReader.dataAndQuad(ciImage: $0)

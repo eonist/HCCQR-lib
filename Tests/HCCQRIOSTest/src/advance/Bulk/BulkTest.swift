@@ -29,7 +29,7 @@ extension BulkTest {
     */
    static func test() -> Bool {
       let rgbaReps: [RGBARep] = writeMany(setup: bulkSetup)
-      let didSuccessfullyReadMany: Bool = readMany(rgbaReps: rgbaReps, pallete: ._8)
+      let didSuccessfullyReadMany: Bool = readMany(rgbaReps: rgbaReps, scheme: .cs8)
       Swift.print("didSuccessfullyReadMany: \(didSuccessfullyReadMany ? "✅" : "🚫")")
       return didSuccessfullyReadMany
    }
@@ -54,12 +54,12 @@ extension BulkTest {
    /**
     * Bulk read many
     */
-   internal static func readMany(rgbaReps: [RGBARep], pallete: ChannelPallete) -> Bool {
+   internal static func readMany(rgbaReps: [RGBARep], scheme: ChannelScheme) -> Bool {
       let (payloads, time): ([QRReader.DataAndQuad], Double) = TimeMeasure.timeElapsed {
          // - Fixme: ⚠️️ putting this loop on concurrent speeds up things 2x 👌🎉
          rgbaReps.compactMap { rgbaRep in
             do {
-               return try Reader.data(rgbaRep: rgbaRep, pallete: pallete)
+               return try Reader.data(rgbaRep: rgbaRep, scheme: scheme)
             } catch {
                Swift.print("⚠️️ Error: ⚠️️  \(error)")
                return nil

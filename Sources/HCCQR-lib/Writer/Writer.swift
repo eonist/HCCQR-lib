@@ -18,7 +18,7 @@ extension Writer {
     *   - data: data to be converted to HCCQR
     *   - config: config of HCCQR
     */
-   public static func img(data: Data, config: HCCQRSetup) throws -> Image {
+   public static func image(data: Data, config: HCCQRSetup) throws -> Image {
       let rep: RGBARep = try rgbaRep(data: data, config: config)
       let image: Image = try RGBARepParser.image(rgbaRep: rep, scale: CGFloat(config.scale.screen))
       return image

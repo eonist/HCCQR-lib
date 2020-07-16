@@ -14,15 +14,15 @@ extension Extractor {
     * 4. pass the grayScale-channel-representation of each color to the completion block
     * - Parameters:
     *   - rgbaRep: target to derive channels from (GrayScaleRepresentations representing the channels R,G,B)
-    *   - pallete: rule-set for the splitting process
+    *   - scheme: rule-set for the splitting process
     * - Returns: the luminocity of each Color as a Grayscale representation
     * - Note: grayscale is better for QR to read than monotone (probably)
     * - Fixme: ⚠️️ might be more efficient with striding for 16-colors ++
     * - Fixme: ⚠️️ we could use unmanaged pointer with capacity as well, might be faster
     * - Fixme: ⚠️️ Skip extracting the white channel, as it's not used when we later combine color channels
     */
-   static func extract(rgbaRep: RGBARep, pallete: ChannelPallete) -> GrayReps {
-      let similarities: [PixelSimilarity] = Extractor.similarities(pallete: pallete) // create similarity asserters
+   static func extract(rgbaRep: RGBARep, scheme: ChannelScheme) -> GrayReps {
+      let similarities: [PixelSimilarity] = Extractor.similarities(scheme: scheme) // create similarity asserters
       return similarities.concurrentMap { // 4 - 256 items depending on hccqr config
          let channel: GrayRep = extract(rgbaRep: rgbaRep, asserter: $0) // Finds the red-channel, blue-channel, green-channel
          return channel
@@ -60,10 +60,10 @@ extension Extractor {
     * The purpouse of this method is to setup static calls, that compare channel and pixel color
     * - Important: ⚠️️ For some reason this method has to be on the same line or else the linter complains
     * - Fixme: ⚠️️ Avoid regenerating these everytime, store as static let? TBH I don't think anything expensive is regenerated, just normal calls etc, maybe keep as is
-    * - Parameter pallete: rule-set for the splitting process
+    * - Parameter scheme: rule-set for the splitting process
     */
-   internal static func similarities(pallete: ChannelPallete) -> [PixelSimilarity] {
-      let halfThreshold: UInt8 = Pixel.getHalfThreshold(1.0 / CGFloat(pallete.count)) // we must use finer threshold if we use more colors (2.5 for 4-color, 0.125 for 8-color)
-      return pallete.map { (channel: Pixel) in { (ishColor: Pixel) in channel.isSimilar(ishColor, halfThreshold: halfThreshold) } }
+   internal static func similarities(scheme: ChannelScheme) -> [PixelSimilarity] {
+      let halfThreshold: UInt8 = Pixel.getHalfThreshold(1.0 / CGFloat(scheme.count)) // we must use finer threshold if we use more colors (2.5 for 4-color, 0.125 for 8-color)
+      return scheme.map { (channel: Pixel) in { (ishColor: Pixel) in channel.isSimilar(ishColor, halfThreshold: halfThreshold) } }
    }
 }

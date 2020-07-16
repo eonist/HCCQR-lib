@@ -8,24 +8,24 @@ extension ColorPallete {
     * CMY based colorMap
     */
    public static func cmy(useDarkMode: Bool = false) -> ColorPallete {
-      ColorPalleteUtil.combine(boolCol: .sequence(4), pallete: .cmyPallete, useDarkMode: useDarkMode)
+      ColorPalleteUtil.combine(boolCol: .sequence(4), scheme: .cmy, useDarkMode: useDarkMode)
    }
    /**
     * Blue shaded colorMap
     */
    public static func blue(useDarkMode: Bool = false) -> ColorPallete {
-      ColorPalleteUtil.combine(boolCol: .sequence(4), pallete: .bluePallete, useDarkMode: useDarkMode)
+      ColorPalleteUtil.combine(boolCol: .sequence(4), scheme: .blue, useDarkMode: useDarkMode)
    }
    /**
     * Custom color map
     */
    public static func purple(useDarkMode: Bool = false) -> ColorPallete {
-      ColorPalleteUtil.combine(boolCol: .sequence(4), pallete: .purplePallete, useDarkMode: useDarkMode)
+      ColorPalleteUtil.combine(boolCol: .sequence(4), scheme: .purple, useDarkMode: useDarkMode)
    }
    /**
     * Custom color map
     */
    public static func green(useDarkMode: Bool = false) -> ColorPallete {
-      ColorPalleteUtil.combine(boolCol: .sequence(4), pallete: .greenPallete, useDarkMode: useDarkMode)
+      ColorPalleteUtil.combine(boolCol: .sequence(4), scheme: .green, useDarkMode: useDarkMode)
    }
 }

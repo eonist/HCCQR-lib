@@ -31,7 +31,7 @@ extension BulkPhotoTesting {
          }
       }
       Swift.print("BufferUtil.rgbaRep time:  \(time)")
-      let didSuccessfullyReadMany: Bool = BulkTest.readMany(rgbaReps: rgbaReps, pallete: .pallete(pallete: ._4, darkMode: true))
+      let didSuccessfullyReadMany: Bool = BulkTest.readMany(rgbaReps: rgbaReps, scheme: .scheme(scheme: .cs4, darkMode: true))
       Swift.print("didSuccessfullyReadMany: \(didSuccessfullyReadMany ? "✅" : "🚫")")
       return didSuccessfullyReadMany
    }

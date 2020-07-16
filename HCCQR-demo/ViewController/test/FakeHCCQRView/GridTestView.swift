@@ -17,7 +17,7 @@ import UIKit
  * let demoView = FakeHCCQRView.init(.init(origin: .init(x: 0, y: 0), size: .init(width: 100, height: 100)))
  * addSubview(demoView)
  */
-class GridTestView: UIView {
+final class GridTestView: UIView {
    static let frame: CGRect = .init(origin: .init(x: 0, y: 0), size: .init(width: GridTestView.size.width * GridTestView.xCount, height: GridTestView.size.height * GridTestView.yCount))
    static let xCount: CGFloat = 5
    static let yCount: CGFloat = 5

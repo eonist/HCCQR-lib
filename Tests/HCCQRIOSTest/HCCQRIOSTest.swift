@@ -1,7 +1,7 @@
 import XCTest
 @testable import HCCQR_lib
 
-class HCCQRIOSTest: XCTestCase {
+final class HCCQRIOSTest: XCTestCase {
    func testExample() {
       simpleTests()
       advanceTests()

@@ -12,7 +12,7 @@ final class ColorPalleteAsserter {
     * Asserts if an image has non black or white pixel.
     */
    static func hasOnlyBlackAndWhiteColorPallete(uiImage: Image) -> Bool {
-      hasOnlyColorPallete(image: uiImage, pallete: [.black, .white])
+      hasOnlyColorPallete(image: uiImage, scheme: [.black, .white])
    }
 }
 /**
@@ -33,12 +33,12 @@ extension ColorPalleteAsserter {
     *   - image: The image to assert if has color-map
     *   - pallete: the color-map to assert against
     */
-   private static func hasOnlyColorPallete(image: Image, pallete: [Color]) -> Bool {
+   private static func hasOnlyColorPallete(image: Image, scheme: [Color]) -> Bool {
       let condition: (Color) -> Bool = { color in
          let matchCondition: (Color) -> Bool = {
             $0.isEqualRGBA(color: color)
          }
-         let retVal = !pallete.contains(where: matchCondition)
+         let retVal = !scheme.contains(where: matchCondition)
          Swift.print("retVal:  \(retVal) color: \(color)")
          return retVal
       }

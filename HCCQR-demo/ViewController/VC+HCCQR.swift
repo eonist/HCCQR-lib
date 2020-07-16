@@ -16,12 +16,12 @@ extension ViewController {
       guard let randomData: Data = HCCQRStringData.randomData(setup: setup) else { return }
       //      let coreCount: Int = ProcessInfo().activeProcessorCount
       //      print("coreCount \(coreCount)")
-      guard let img: Image = try? Writer.img(data: randomData, config: setup/*, coreCount: coreCount*/) else { return }
+      guard let img: Image = try? Writer.image(data: randomData, config: setup/*, coreCount: coreCount*/) else { return }
       let imgView: UIImageView = .init(image: img)
       self.view.addSubview(imgView)
       _ = {
          do {
-            let dataAndQuad: QRReader.DataAndQuad = try Reader.data(image: img, pallete: ._8)
+            let dataAndQuad: QRReader.DataAndQuad = try Reader.data(image: img, scheme: .cs8)
             let isValid: Bool = randomData == dataAndQuad.qrData
             Swift.print("data?.count:  \(String(describing: dataAndQuad.qrData.count))")
             Swift.print("isValid:  \(isValid ? "✅" : "🚫")")
@@ -30,7 +30,7 @@ extension ViewController {
          }
       }()
       _ = {
-         let data: Data? = try? Reader.data(image: img, pallete: ._16).qrData
+         let data: Data? = try? Reader.data(image: img, scheme: .cs16).qrData
          let isValid: Bool = randomData == data
          Swift.print("data?.count:  \(String(describing: data?.count))")
          Swift.print("isValid:  \(isValid ? "✅" : "🚫")")
