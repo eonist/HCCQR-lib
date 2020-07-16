@@ -9,9 +9,13 @@ public final class HCCQRVersionUtil {
    /**
     * Get QR version for HCCQR dataCount
     * - Note: Use this when you know the data size, and want to know optimal QR setup etc
-    * - parameter colorDepth: number of color Layers (4 colors = 2 layers etc)
     * ## Examples:
     * let hccqrVersion = try? HCCQRVersion.version(dataCount: data.count, qrMode: .byte, ecLevel: .l)
+    * - Parameters:
+    *   - dataCount: binary data size
+    *   - qrMode: byte or ascii etc
+    *   - ecLevel: error correction level
+    *   - colorDepth: number of color Layers (4 colors = 2 layers etc)
     */
    static func version(dataCount: Int, qrMode: QRMode = .byte, ecLevel: ECLevel = .l, colorDepth: Int = 2) throws -> Int {
       let dataCount: Int = dataCount / colorDepth

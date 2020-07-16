@@ -51,6 +51,7 @@ extension RGBARepParser {
     * - Note: We use autorelease Because CoreGraphics is not handled by ARC (like all other C libraries),
     * - Note: you need to wrap your code with with an autorelease, even in Swift.
     * - Note: Particularly if you are not on the main thread (which you should not be, if CoreGraphics is involved... .userInitiated or lower is appropriate).
+    * - Parameter rgbaRep: The rep to convert into cgImage
     */
    private static func cgImage(rgbaRep: RGBARep) throws -> CGImage {
       try autoreleasepool {  // ⚠️️ testing to get rid of mem leak ⚠️️

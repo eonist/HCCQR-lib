@@ -12,6 +12,10 @@ public struct RGBARep {
    var height: Int
    /**
     * Creates a copy if you already have the pixels and width height
+    * - Parameters:
+    *   - pixels: the raw pixels
+    *   - width: width of rep
+    *   - height: height of rep
     */
    init(pixels: UnsafeMutableBufferPointer<Pixel>, width: Int, height: Int) {
       self.pixels = pixels

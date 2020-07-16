@@ -21,6 +21,9 @@ public final class HCCQRConfigUtil {
    /**
     * Returns data in array
     * - Note: used to get chunks of data from one big data, in order to populate each layer with a data-set
+    * - Parameters:
+    *   - data: binary data
+    *   - config: hccqr setup details
     */
    public static func data(data: Data, config: HCCQRSetup) -> [Data] {
       let length: Int = data.count / config.map.layerCount
