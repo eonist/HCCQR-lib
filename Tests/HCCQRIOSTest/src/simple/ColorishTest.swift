@@ -34,14 +34,14 @@ final class ColorishTest {
     */
    static func testWashedOutColor() -> Bool {
       Swift.print("PixelData.halfThresholdUInt8:  \(Pixel.defaultHalfThreshold)")
-      Swift.print("UInt8(255 * 0.81):  \(UInt8(255 * 0.81))")
+//      Swift.print("UInt8(255 * 0.81):  \(UInt8(255 * 0.81))")
       let redish: Pixel = .init(r: UInt8(255 * 0.75), g: UInt8(255 * 0.2), b: UInt8(255 * 0.25), a: 255)
       Swift.print("redish.r: \(redish.r)")
-      let assertRedish: Bool = try! Pixel.pixel(color: Color.red).isColorish(.redish)
+      let assertRedish: Bool = try! Pixel.pixel(color: Color.red).isColorish(.redish, halfThreshold: 40)
       Swift.print("assertRedish: \(assertRedish)")
-      let assertGreenish: Bool = try! Pixel.pixel(color: Color.green).isColorish(.greenish)
+      let assertGreenish: Bool = try! Pixel.pixel(color: Color.green).isColorish(.greenish, halfThreshold: 40)
       Swift.print("assertGreenish: \(assertGreenish)")
-      let assertBlueish: Bool = try! Pixel.pixel(color: Color.blue).isColorish(.blueish)
+      let assertBlueish: Bool = try! Pixel.pixel(color: Color.blue).isColorish(.blueish, halfThreshold: 40)
       Swift.print("assertBlueish: \(assertBlueish)")
       let isWithin: Bool = assertRedish && assertGreenish && assertBlueish
       Swift.print("washed out isWithin: \(isWithin ? "✅": "🚫")")

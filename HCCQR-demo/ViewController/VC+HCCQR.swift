@@ -7,15 +7,15 @@ extension ViewController {
    /**
     * Visual and Syntetic write / read HCCQR
     */
-   func testQuadrantOptimization() {
+   func testHCCQR() {
       let setup: HCCQRSetup = {
          let qrSetup: QRSetup = .init(qrVersion: .v1, ecLevel: .l)
-         let output: OutputConfig = .init(scale: (6, 2), map: .cp8(useDarkMode: false))
+         let output: OutputConfig = .init(scale: (6, 2), map: .cp16(useDarkMode: false))
          return .init(qr: qrSetup, output: output)
       }()
       guard let randomData: Data = HCCQRStringData.randomData(setup: setup) else { return }
-      let coreCount: Int = ProcessInfo().activeProcessorCount
-      print("coreCount \(coreCount)")
+      //      let coreCount: Int = ProcessInfo().activeProcessorCount
+      //      print("coreCount \(coreCount)")
       guard let img: Image = try? Writer.img(data: randomData, config: setup/*, coreCount: coreCount*/) else { return }
       let imgView: UIImageView = .init(image: img)
       self.view.addSubview(imgView)
@@ -30,11 +30,10 @@ extension ViewController {
          }
       }()
       _ = {
-         Reader.data(image: img, pallete: ._16) { (data: Data?) in
-            let isValid: Bool = randomData == data
-            Swift.print("data?.count:  \(String(describing: data?.count))")
-            Swift.print("isValid:  \(isValid ? "✅" : "🚫")")
-         }
+         let data: Data? = try? Reader.data(image: img, pallete: ._16).qrData
+         let isValid: Bool = randomData == data
+         Swift.print("data?.count:  \(String(describing: data?.count))")
+         Swift.print("isValid:  \(isValid ? "✅" : "🚫")")
       }
    }
 }

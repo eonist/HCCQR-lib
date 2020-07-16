@@ -18,11 +18,8 @@ extension MemLeakTest {
 //      let config: QRConfig = (setup.qrVersion, .byte, setup.ecLevel) // Config
       (0..<40).forEach { _ in
          guard let data = HCCQRStringData.randomData(setup: setup) else { Swift.print("err data"); return }
-         Writer.image(data: data, config: setup) { result in
-//            Swift.print("img.size:  \(String(describing: try? result.get().size))")
-            guard let img: Image = result.value() else { Swift.print("result.errorStr:  \(result.errorStr)"); fatalError("err") }
-            Swift.print("img:  \(img)")
-         }
+         let img: Image? = try? Writer.img(data: data, config: setup)
+         Swift.print("img:  \(String(describing: img))")
       }
    }
 }

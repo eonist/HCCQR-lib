@@ -11,25 +11,7 @@ class ViewController: UIViewController {
       super.viewDidLoad()
       view = View()
       view.backgroundColor = .white // .systemTeal
-//      let str: String = [0, 1, 2].concurrentReduce("") { $0 + "\( $1)" }
-//      Swift.print("str:  \(str)")
-//      createRGBAPhoto()
-//      testSplitting()
 //      testHCCQR() // 👈
-//      testQuadrantOptimization() // 👈
-//      testGrid()
-//      Pixels._4.forEach { Swift.print("$0:  \($0)") }
    }
    override var prefersStatusBarHidden: Bool { true }
 }
-/**
- * Experiment
- */
-//extension ViewController {
-//   /**
-//    * Do concurrent stride testing, do research first
-//    */
-//   static func testStride() {
-//
-//   }
-//}

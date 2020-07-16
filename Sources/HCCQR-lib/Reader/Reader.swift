@@ -8,6 +8,7 @@ import CoreImage
 public final class Reader {}
 
 extension Reader {
+   public typealias ReadPayload = (data: Data, quad: QRReader.Quad, imageSize: CGSize)
    /**
     * CVImageBuffer -> Data (⚠️️ New, UNTESTED ⚠️️)
     * - Note: Adds support for CVImageBuffer (For processing data from camera)
@@ -59,7 +60,7 @@ extension Reader {
       let dataAndQuads: [QRReader.DataAndQuad] = qrLayers.concurrentCompactMap { // concurrentCompactMap
          try? QRReader.dataAndQuad(ciImage: $0)
       }
-      guard dataAndQuads.count == qrLayers.count else { throw NSError("Unable to read QR Layer") }
+      guard dataAndQuads.count == qrLayers.count else { throw NSError(domain: "Unable to read QR Layer", code: 0) }
       let data: Data = .combine(data: dataAndQuads.map { $0.qrData })
       return (data, dataAndQuads[0].quad)
    }

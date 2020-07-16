@@ -11,12 +11,12 @@ class HCCQRIOSTest: XCTestCase {
     */
    func simpleTests() {
       Swift.print("simpleTests")
-//      XCTAssertEqual(ScaleTesting.testScalingRGBARep(), 4)
+      XCTAssertEqual(ScaleTesting.testScalingRGBARep(), 4) // ✅
       XCTAssertTrue(MonoPixelColorization.testColorizingMonoPixel()) // ✅ b&w-pixels (mono) to color-pixels
       XCTAssertTrue(ColorishTest.testThreshold()) // ✅
       XCTAssertTrue(ColorishTest.testColorish()) // ✅
-//      XCTAssertTrue(ColorishTest.testWashedOutColor()) // ✅
-      XCTAssertTrue(QRTesting.testQRGeneration()) // ?
+      XCTAssertTrue(ColorishTest.testWashedOutColor()) // ✅
+      XCTAssertTrue(QRTesting.testQRGeneration()) // ✅
       XCTAssertTrue(ColorishTest.testUInt8Aritmitic())
       // - Fixme: ⚠️️ fix the bellow test somehow
 //      XCTAssertTrue(CIImageTest.testCIImage()) // 🚫

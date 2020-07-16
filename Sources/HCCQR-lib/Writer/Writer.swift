@@ -44,7 +44,7 @@ extension Writer {
       let ciImgs: [CIImage] = dataArr.concurrentCompactMap { (data: Data) in // parraelly create the qr-image-Layers
          try? QRWriter.ciImage(data: data, ecLevel: config.ecLevel) // Create B&W QR-layers (CIImage)
       }
-      guard dataArr.count == ciImgs.count else { throw NSError("\(dataArr.count - ciImgs.count) qr imgs did not finish") } // if qrImgs was not created correctly etc
+      guard dataArr.count == ciImgs.count else { throw NSError(domain: "\(dataArr.count - ciImgs.count) qr imgs did not finish", code: 0) } // if qrImgs was not created correctly etc
       // - Fixme: ⚠️️ benchmark how timeconsuming the colorization part is, if its worth doing parallel processing on
       let rgbaRep: RGBARep = Colorizer.colorize(qrLayers: ciImgs, config: config.output/*, coreCount: coreCount*/)
       return rgbaRep
