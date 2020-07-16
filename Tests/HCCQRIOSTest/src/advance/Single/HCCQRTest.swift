@@ -4,11 +4,12 @@ import CoreGraphics
 import CoreImage
 @testable import HCCQR_lib
 /**
+ * Test reading and writing
  * - Fixme: ⚠️️ Rename to concurrent optimization test
  */
-final class ConcurrentTest {}
+final class HCCQRTest {}
 
-extension ConcurrentTest {
+extension HCCQRTest {
    /**
     * Setup for single test
     */
@@ -22,12 +23,13 @@ extension ConcurrentTest {
     */
    internal static func test() -> Bool {
       guard let randomData: Data = HCCQRStringData.randomData(setup: singleSetup) else { return false }
+      // - Fixme: ⚠️️ get data from rgba? 
       guard let image: Image = try? Writer.img(data: randomData, config: singleSetup) else { return false }
       do {
          let dataAndQuad: QRReader.DataAndQuad = try Reader.data(image: image, pallete: ._8)
          let isValid: Bool = randomData == dataAndQuad.qrData
-         Swift.print("data?.count:  \(String(describing: dataAndQuad.qrData.count))")
-         Swift.print("isValid:  \(isValid ? "✅" : "🚫")")
+//         Swift.print("data?.count:  \(String(describing: dataAndQuad.qrData.count))")
+         Swift.print("HCCQRTest isValid:  \(isValid ? "✅" : "🚫")")
          return isValid
       } catch {
          Swift.print("error:  \(error)")

@@ -32,7 +32,7 @@ class HCCQRIOSTest: XCTestCase {
 //      testBulk() // ✅ Read and write multiple "syntetic-HCCQR-images"
 //      testReadingHCCQRPhoto() // ✅ ⚠️️ only works in xcode-simulator, because no assets in spm
 //      testReadingManyPhotos() // ✅ Reading many photos
-      XCTAssertTrue(ConcurrentBulkTest.bulkTest())
+      XCTAssertTrue(HCCQRBulkTest.bulkTest())
 //      print(TimeMeasure.timeElapsed { XCTAssertTrue(ConcurrentTest.test()) })
    }
 }

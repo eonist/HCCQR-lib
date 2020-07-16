@@ -5,17 +5,17 @@ import CoreImage
 @testable import HCCQR_lib
 /**
  * Bulk tests
- *  * Read and write multiple HCCQR images
+ * Read and write multiple HCCQR images
  * 1. Writes many HCCQR images
  * 2. Reads many HCCQR images
  * 3. Asserts that all images were written/read successfully
  * - Important: ⚠️️ This does not use the CVImageBuffer so tests may be irrelevant
  * - Fixme: ⚠️️ Use The CVImageBuffer instead
- * - Fixme: ⚠️️ rename to SynteticBulkTest
+ * - Fixme: ⚠️️ rename to SynteticBulkTest, HCCQRBulkTest?
  */
-final class ConcurrentBulkTest {}
+final class HCCQRBulkTest {}
 
-extension ConcurrentBulkTest {
+extension HCCQRBulkTest {
    /**
     * - Important: ⚠️️ remember to match the colorPallete and channelPallet
     */
@@ -29,7 +29,7 @@ extension ConcurrentBulkTest {
     */
    static func bulkTest() -> Bool {
       let rgbaReps: [RGBARep] = writeMany(setup: bulkSetup)
-      let didSuccessfullyReadMany: Bool = readMany(rgbaReps: rgbaReps)
+      let didSuccessfullyReadMany: Bool = readMany(rgbaReps: rgbaReps, pallete: ._8)
       Swift.print("didSuccessfullyReadMany: \(didSuccessfullyReadMany ? "✅" : "🚫")")
       return didSuccessfullyReadMany
    }
@@ -37,11 +37,11 @@ extension ConcurrentBulkTest {
 /**
  * Private static helper methods
  */
-extension ConcurrentBulkTest {
+extension HCCQRBulkTest {
    /**
     * Bulk write many
     */
-   private static func writeMany(setup: HCCQRSetup) -> [RGBARep] {
+   internal static func writeMany(setup: HCCQRSetup) -> [RGBARep] {
       let randomData: [Data] = (0..<100).compactMap { _ in HCCQRStringData.randomData(setup: setup) } // Num of items to load, we create this outside, because we dont want to time the creation of it
       let (payloads, time) = TimeMeasure.timeElapsed {
          randomData.compactMap {
@@ -54,11 +54,11 @@ extension ConcurrentBulkTest {
    /**
     * Bulk read many
     */
-   private static func readMany(rgbaReps: [RGBARep]) -> Bool {
+   internal static func readMany(rgbaReps: [RGBARep], pallete: ChannelPallete) -> Bool {
       let (payloads, time): ([QRReader.DataAndQuad], Double) = TimeMeasure.timeElapsed {
          rgbaReps.compactMap { rgbaRep in
             do {
-               return try Reader.data(rgbaRep: rgbaRep, pallete: ._8)
+               return try Reader.data(rgbaRep: rgbaRep, pallete: pallete)
             } catch {
                Swift.print("⚠️️ Error: ⚠️️  \(error)")
                return nil
