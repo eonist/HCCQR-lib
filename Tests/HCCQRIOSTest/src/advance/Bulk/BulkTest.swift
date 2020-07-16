@@ -5,7 +5,7 @@ import CoreImage
 @testable import HCCQR_lib
 /**
  * Bulk tests
- * Read and write multiple HCCQR images
+ * - Abstract: Read and write multiple HCCQR images
  * 1. Writes many HCCQR images
  * 2. Reads many HCCQR images
  * 3. Asserts that all images were written/read successfully
@@ -13,9 +13,9 @@ import CoreImage
  * - Fixme: ⚠️️ Use The CVImageBuffer instead
  * - Fixme: ⚠️️ rename to SynteticBulkTest, HCCQRBulkTest?
  */
-final class HCCQRBulkTest {}
+final class BulkTest {}
 
-extension HCCQRBulkTest {
+extension BulkTest {
    /**
     * - Important: ⚠️️ remember to match the colorPallete and channelPallet
     */
@@ -27,7 +27,7 @@ extension HCCQRBulkTest {
    /**
     * Bulk test
     */
-   static func bulkTest() -> Bool {
+   static func test() -> Bool {
       let rgbaReps: [RGBARep] = writeMany(setup: bulkSetup)
       let didSuccessfullyReadMany: Bool = readMany(rgbaReps: rgbaReps, pallete: ._8)
       Swift.print("didSuccessfullyReadMany: \(didSuccessfullyReadMany ? "✅" : "🚫")")
@@ -37,7 +37,7 @@ extension HCCQRBulkTest {
 /**
  * Private static helper methods
  */
-extension HCCQRBulkTest {
+extension BulkTest {
    /**
     * Bulk write many
     */
@@ -56,6 +56,7 @@ extension HCCQRBulkTest {
     */
    internal static func readMany(rgbaReps: [RGBARep], pallete: ChannelPallete) -> Bool {
       let (payloads, time): ([QRReader.DataAndQuad], Double) = TimeMeasure.timeElapsed {
+         // - Fixme: ⚠️️ putting this loop on concurrent speeds up things 2x 👌🎉
          rgbaReps.compactMap { rgbaRep in
             do {
                return try Reader.data(rgbaRep: rgbaRep, pallete: pallete)
@@ -65,8 +66,8 @@ extension HCCQRBulkTest {
             }
          }
       }
-      Swift.print("read many time:  \(time)")
-      Swift.print("payloads.count:  \(payloads.count)")
+      Swift.print("Read many time:  \(time)")
+      Swift.print("Payloads.count:  \(payloads.count)")
       return rgbaReps.count == payloads.count
    }
 }

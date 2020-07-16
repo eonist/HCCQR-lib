@@ -13,13 +13,15 @@ final class BufferTest {
     *  - Note: We just compare the data payload here, since FileHasher is not added as a dep, it could be added, since this is just test code
     */
    static func test() -> Bool {
-      let setup: HCCQRSetup = .init(qr: .init(qrVersion: .v8, ecLevel: .l), output: .init(scale: (6, 2)))
+      let setup: HCCQRSetup = .init(qr: .init(qrVersion: .v4, ecLevel: .l), output: .init(scale: (6, 2), map: .cp8()))
       guard let randomData = HCCQRStringData.randomData(setup: setup) else { Swift.print("unable to create data"); return false }
       guard let image: Image = try? Writer.img(data: randomData, config: setup) else { return false }
       Swift.print("hccqrImage.size:  \(image.size) scale:  \(image.scale)") //      Swift.print("hccqrImage.cgImage()?.width:  \(hccqrImage.cgImage?.width)")
       guard let rgbaRep: RGBARep = try? BufferUtil.rgbaRep(image: image) else { Swift.print("err getting rgbImage"); return false }
       do {
          let dataAndQuad: QRReader.DataAndQuad = try Reader.data(rgbaRep: rgbaRep, pallete: ._8) // Convert RGBAImage to Data
+         Swift.print("dataAndQuad.qrData.count:  \(dataAndQuad.qrData.count)")
+         Swift.print("randomData.count:  \(randomData.count)")
          let isValid: Bool = randomData == dataAndQuad.qrData
 //         Swift.print("data?.count:  \(String(describing: dataAndQuad.qrData.count))")
          Swift.print("BufferTest isValid:  \(isValid ? "✅" : "🚫")")

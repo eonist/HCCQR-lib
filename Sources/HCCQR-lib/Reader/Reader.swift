@@ -43,6 +43,7 @@ extension Reader {
 extension Reader {
    /**
     * Reads rgbaRep, outputs Data
+    * - Fixme: ⚠️️⚠️️⚠️️ Putting many calls to this method in a concurrent loop is very effective, possibly disable concurrancy within this call might speed up things even more? like a toggle
     * - Fixme: ⚠️️ the QRReader doesn't like to be processes parralelly, this needs confirmation with concurrent test
     * - Fixme: ⚠️️ When the first QRImage Quad is found, the subsequent QR-Rects will be in the same quadrant, clip the subsequent images, maybe if you do the parrallel computing in the sequence / streaming lib
     * - Abstract: Since we get pixel data from the camera, this will be faster than converting to image first
@@ -52,7 +53,7 @@ extension Reader {
     *   - rgbaRep: raw pixels and size
     *   - pallete: the arrangment of colors
     */
-   internal static func data(rgbaRep: RGBARep, pallete: ChannelPallete = .default) throws -> QRReader.DataAndQuad {
+   internal static func data(rgbaRep: RGBARep, pallete: ChannelPallete/* = .default*/) throws -> QRReader.DataAndQuad {
       let qrLayers: [CIImage] = Splitter.split(rgbaRep: rgbaRep, pallete: pallete)
       // ⚠️️ the concurrentCompactMap is experimental, works for now
       let dataAndQuads: [QRReader.DataAndQuad] = qrLayers.concurrentCompactMap { // concurrentCompactMap

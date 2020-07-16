@@ -7,9 +7,9 @@ import CoreImage
  * Test reading and writing
  * - Fixme: ⚠️️ Rename to concurrent optimization test
  */
-final class HCCQRTest {}
+final class SingleTest {}
 
-extension HCCQRTest {
+extension SingleTest {
    /**
     * Setup for single test
     */
@@ -29,7 +29,7 @@ extension HCCQRTest {
          let dataAndQuad: QRReader.DataAndQuad = try Reader.data(image: image, pallete: ._8)
          let isValid: Bool = randomData == dataAndQuad.qrData
 //         Swift.print("data?.count:  \(String(describing: dataAndQuad.qrData.count))")
-         Swift.print("HCCQRTest isValid:  \(isValid ? "✅" : "🚫")")
+         Swift.print("SingleTest isValid:  \(isValid ? "✅" : "🚫")")
          return isValid
       } catch {
          Swift.print("error:  \(error)")
