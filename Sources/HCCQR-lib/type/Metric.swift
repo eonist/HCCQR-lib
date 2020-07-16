@@ -1,13 +1,28 @@
 import Foundation
 /**
  * Store module & screen scale
- * - Parameters:
- *   - module: 1-module means 1qr-unit is 1x1 Pixel, 8 means 8x8 Pixel
- *   - screen: 1px means normal screen 2x mens retina screen etc
- * - Fixme: ⚠️️ make it a struct, width .scale that combines module and screen?
  */
-public typealias Scale = (module: Int, screen: Int)
+public struct Scale {
+   let module: Int
+   let screen: Int
+   /**
+    * - Parameters:
+    *   - module: 1-module means 1qr-unit is 1x1 Pixel, 8 means 8x8 Pixel
+    *   - screen: 1px means normal screen 2x mens retina screen etc
+    */
+   init(_ module: Int, _ screen: Int) {
+      self.module = module
+      self.screen = screen
+   }
+}
 /**
- * - Fixme: ⚠️️ make Size a stuct, because then you can add capacity and scaledSize to it as getters in an extension
+ * - Fixme: ⚠️️ rename to BufferSize? maybe not
  */
-public typealias Size = (width: Int, height: Int)
+public struct Size {
+   let width: Int
+   let height: Int
+   init(_ width: Int, _ height: Int) {
+      self.width = width
+      self.height = height
+   }
+}

@@ -56,8 +56,8 @@ extension Combiner {
     */
    private static func combine(grayReps: GrayReps) -> GrayRep {
       let size: Size = grayReps[0].size // get size from first layer
-      var output: GrayRep = .grayRep(pixel: .black, size: size)// .grayscaleRep(pixel: .black, size: first.size) // because white is 255
-      output = GrayRepModifier.process(input: output) { (index: Int, pixel: UInt8) -> UInt8 in // Loop things
+      let output: GrayRep = .grayRep(pixel: .black, size: size)// .grayscaleRep(pixel: .black, size: first.size) // because white is 255
+      return GrayRepModifier.process(input: output) { (index: Int, pixel: UInt8) -> UInt8 in // Loop things
          var pixel: UInt8 = pixel
          grayReps.forEach { (grayRep: GrayRep) in // loop over every image in the list, this is inside here because the process method uses concurrent_apply
             let newPixel: UInt8 = grayRep.pixels[index] // - Fixme: ⚠️️ Can be removed because this will basically never happen, because channels can't overlap
@@ -65,6 +65,5 @@ extension Combiner {
          }
          return pixel
       }
-      return output
    }
 }

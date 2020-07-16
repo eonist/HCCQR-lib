@@ -16,5 +16,5 @@ public struct OutputConfig {
       self.scale = scale
       self.map = map
    }
-   static let `default`: OutputConfig = .init(scale: (6, 2), map: .cp4())
+   static let `default`: OutputConfig = .init(scale: .init(6, 2), map: .cp4())
 }

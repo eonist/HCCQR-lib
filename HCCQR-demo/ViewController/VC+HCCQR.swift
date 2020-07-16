@@ -10,7 +10,7 @@ extension ViewController {
    func testHCCQR() {
       let setup: HCCQRSetup = {
          let qrSetup: QRSetup = .init(qrVersion: .v1, ecLevel: .l)
-         let output: OutputConfig = .init(scale: (6, 2), map: .cp16(useDarkMode: false))
+         let output: OutputConfig = .init(scale: .init(6, 2), map: .cp16(useDarkMode: false))
          return .init(qr: qrSetup, output: output)
       }()
       guard let randomData: Data = HCCQRStringData.randomData(setup: setup) else { return }

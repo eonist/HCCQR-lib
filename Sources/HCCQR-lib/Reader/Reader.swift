@@ -22,7 +22,7 @@ extension Reader {
     *   - crop: Makes processing the raw imagery faster since we don't have to process areas where the QR info is not etc.
     */
    public static func data(imageBuffer: CVImageBuffer, crop: BufferRect, pallete: ChannelPallete = .default) throws -> ReadPayload {
-      let rgbaImg: RGBARep = try BufferUtil.rgbaRep(imageBuffer: imageBuffer, crop: crop)
+      let rgbaImg: RGBARep = try BufferUtil.rgbaRep(buffer: imageBuffer, crop: crop)
       let dataAndImagesAndQuad: QRReader.DataAndQuad = try data(rgbaRep: rgbaImg, pallete: pallete)
       let data: Data = dataAndImagesAndQuad.qrData
       let quad: QRReader.Quad = dataAndImagesAndQuad.quad

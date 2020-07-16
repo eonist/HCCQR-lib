@@ -13,7 +13,7 @@ final class QRTesting {
     * - Fixme: ⚠️️ test if total payload matches
     */
    static func testQRGeneration() -> Bool {
-      let setup: HCCQRSetup = .init(qr: .init(qrVersion: .v8, ecLevel: .l), output: .init(scale: (6, 2)))
+      let setup: HCCQRSetup = .init(qr: .init(qrVersion: .v8, ecLevel: .l), output: .init(scale: .init(6, 2)))
       guard let hccqrData: Data = HCCQRStringData.randomData(setup: setup) else { return false }
       let dataArr: [Data] = HCCQRConfigUtil.data(data: hccqrData, config: setup)
       guard let firstItem: Data = dataArr.first else { Swift.print("err data"); return false }

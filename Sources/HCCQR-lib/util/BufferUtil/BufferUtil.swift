@@ -20,18 +20,16 @@ extension BufferUtil {
     * - Note: CVPixelBufferRelease' is unavailable: Core Foundation objects are automatically memory managed
     * - Fixme: ⚠️️ Might have the solution for av buffer: https://stackoverflow.com/questions/29375471/how-to-convert-cvimagebuffer-to-uiimage
     * - Fixme: ⚠️️ Using a pointer to iterate might be faster, see stackoverflow
-    * - Fixme: ⚠️️⚠️️⚠️️ Striding with 20 might be faster than nested for loop, experiment with this
     * - Fixme: ⚠️️ Add debug tool with: CVPixelBufferGetDataSize(imageBuffer), \(CVPixelBufferGetDataSize(imageBuffer)) type:  \(CVPixelBufferGetPixelFormatType(imageBuffer)), let info = RGBImage.bitmapInfo(buffer: imageBuffer)// if type != kCVPixelFormatType_DepthFloat32 { print("Wrong type \(type)"); throw NSError(domain: "Wrong type", code: 0) }, let type: OSType = CVPixelBufferGetPixelFormatType(imageBuffer) // Swift.print("type:  \(type)")
-    * - Fixme: ⚠️️ Rename imageBuffer to buffer
-    * - Important: ⚠️️ doing concurrent on the loop has minimal effect
+    * - Important: ⚠️️ doing concurrent on the loop has minimal effect, doing it on the call to this method has alot of effect
     * - Parameters:
-    *   - imageBuffer: the buffer containing the raw pixel data and size
+    *   - buffer: the buffer containing the raw pixel data and size
     *   - crop: Makes processing the raw imagery faster since we don't have to process areas where the QR info is not etc.
     */
-   public static func rgbaRep(imageBuffer: CVImageBuffer, crop bufferRect: BufferRect) throws -> RGBARep { /*, size: CGSize, scale: CGFloat */
-      CVPixelBufferLockBaseAddress(imageBuffer, CVPixelBufferLockFlags(rawValue: CVOptionFlags(0))) // lock access for cpu reading
-      let bytesPerPixel: Int = CVPixelBufferGetBytesPerRow(imageBuffer) // let bufferSize: (width: Int, height: Int) = (Int(CVPixelBufferGetWidth(imageBuffer)), Int(CVPixelBufferGetHeight(imageBuffer))) //  let size: (width: Int, height: Int) = (Int(size.width * scale), Int(size.height * scale))
-      guard let baseAddress: UnsafeMutableRawPointer = CVPixelBufferGetBaseAddress(imageBuffer) else { throw NSError(domain: "Unable to get baseAddress", code: 0) }
+   public static func rgbaRep(buffer: CVImageBuffer, crop bufferRect: BufferRect) throws -> RGBARep { /*, size: CGSize, scale: CGFloat */
+      CVPixelBufferLockBaseAddress(buffer, CVPixelBufferLockFlags(rawValue: CVOptionFlags(0))) // lock access for cpu reading
+      let bytesPerPixel: Int = CVPixelBufferGetBytesPerRow(buffer) // let bufferSize: (width: Int, height: Int) = (Int(CVPixelBufferGetWidth(imageBuffer)), Int(CVPixelBufferGetHeight(imageBuffer))) //  let size: (width: Int, height: Int) = (Int(size.width * scale), Int(size.height * scale))
+      guard let baseAddress: UnsafeMutableRawPointer = CVPixelBufferGetBaseAddress(buffer) else { throw NSError(domain: "Unable to get baseAddress", code: 0) }
       // - Fixme: ⚠️️ This is prob a bug, you should only lock once
       // CVPixelBufferLockBaseAddress(imageBuffer, CVPixelBufferLockFlags(rawValue: 0))
       let byteBuffer: UnsafeMutablePointer<UInt8> = baseAddress.assumingMemoryBound(to: UInt8.self)
@@ -50,7 +48,7 @@ extension BufferUtil {
          }
       }
       let rgbaImage: RGBARep = .init(pixels: pixels, width: bufferRect.width, height: bufferRect.height)
-      CVPixelBufferUnlockBaseAddress(imageBuffer, CVPixelBufferLockFlags(rawValue: CVOptionFlags(0))) // release access for cpu reading
+      CVPixelBufferUnlockBaseAddress(buffer, CVPixelBufferLockFlags(rawValue: CVOptionFlags(0))) // release access for cpu reading
       // - Fixme: ⚠️️ might want to wrap all this in autoreleasepool as well
       return rgbaImage
    }

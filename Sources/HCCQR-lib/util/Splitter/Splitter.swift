@@ -24,7 +24,6 @@ extension Splitter {
    internal static func split(rgbaRep: RGBARep, pallete: ChannelPallete) -> [CIImage] {
       let grayReps: GrayReps = Extractor.extract(rgbaRep: rgbaRep, pallete: pallete)
       let channelCombos: ChannelCombos = .combos(channels: grayReps) // Arrays of grayreps (2 arrays of 2 grayReps for 4color hcqr, 3 arrays of 7 grayreps for 8 color-hccqr etc)
-//      Swift.print("channelCombos.count:  \(channelCombos.count)")
       return channelCombos.concurrentCompactMap { Combiner.combine(grayReps: $0) } // combine the combinations to produce layers of qr-images
    }
 }

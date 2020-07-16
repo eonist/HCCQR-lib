@@ -28,7 +28,7 @@ extension RGBARepUtil {
     * cgImage -> rgbaImage (new)
     */
    private static func rgbaRep(cgImage: CGImage) throws -> RGBARep {
-      let size: Size = (width: Int(cgImage.width), height: Int(cgImage.height))
+      let size: Size = .init(Int(cgImage.width), Int(cgImage.height))
       let bytesPerRow: Int = size.width * 4 // We multiply per 4 because of the 4 channels, RGBA
       let capacity: Int = size.width * size.height
       let imageData: UnsafeMutablePointer<Pixel> = .allocate(capacity: capacity)

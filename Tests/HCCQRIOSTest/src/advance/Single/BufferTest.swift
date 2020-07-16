@@ -13,7 +13,7 @@ final class BufferTest {
     *  - Note: We just compare the data payload here, since FileHasher is not added as a dep, it could be added, since this is just test code
     */
    static func test() -> Bool {
-      let setup: HCCQRSetup = .init(qr: .init(qrVersion: .v4, ecLevel: .l), output: .init(scale: (6, 2), map: .cp8()))
+      let setup: HCCQRSetup = .init(qr: .init(qrVersion: .v4, ecLevel: .l), output: .init(scale: .init(6, 2), map: .cp8()))
       guard let randomData = HCCQRStringData.randomData(setup: setup) else { Swift.print("unable to create data"); return false }
       guard let image: Image = try? Writer.img(data: randomData, config: setup) else { return false }
       Swift.print("hccqrImage.size:  \(image.size) scale:  \(image.scale)") //      Swift.print("hccqrImage.cgImage()?.width:  \(hccqrImage.cgImage?.width)")

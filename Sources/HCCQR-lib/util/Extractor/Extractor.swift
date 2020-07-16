@@ -34,6 +34,12 @@ extension Extractor {
  */
 extension Extractor {
    /**
+    * Output pixel similarity
+    * - Note: color-pallete's determines their similarity by comparing these r,g,b values
+    * - Parameter pixel: the input pixel
+    */
+   typealias PixelSimilarity = (_ pixel: Pixel) -> Pixel.Similarity
+   /**
     * RGBARep channel 👉 GrayscaleRep
     * 1. Creates a blank grayscale image of a specific size
     * 2. Asserts if the pixel is sort of a color or not
@@ -54,6 +60,7 @@ extension Extractor {
     * The purpouse of this method is to setup static calls, that compare channel and pixel color
     * - Important: ⚠️️ For some reason this method has to be on the same line or else the linter complains
     * - Fixme: ⚠️️ Avoid regenerating these everytime, store as static let? TBH I don't think anything expensive is regenerated, just normal calls etc, maybe keep as is
+    * - Parameter pallete: rule-set for the splitting process
     */
    internal static func similarities(pallete: ChannelPallete) -> [PixelSimilarity] {
       let halfThreshold: UInt8 = Pixel.getHalfThreshold(1.0 / CGFloat(pallete.count)) // we must use finer threshold if we use more colors (2.5 for 4-color, 0.125 for 8-color)

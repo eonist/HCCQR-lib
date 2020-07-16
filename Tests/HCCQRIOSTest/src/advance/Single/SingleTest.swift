@@ -15,7 +15,7 @@ extension SingleTest {
     */
    private static let singleSetup: HCCQRSetup = {
       let qrSetup: QRSetup = .init(qrVersion: .v1, ecLevel: .l)
-      let output: OutputConfig = .init(scale: (6, 2), map: .cp8(useDarkMode: false))
+      let output: OutputConfig = .init(scale: .init(6, 2), map: .cp8(useDarkMode: false))
       return .init(qr: qrSetup, output: output)
    }()
    /**

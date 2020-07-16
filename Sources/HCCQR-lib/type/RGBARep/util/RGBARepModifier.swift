@@ -17,7 +17,7 @@ final class RGBARepModifier {
     */
    static func scale(pixels: UnsafeMutableBufferPointer<Pixel>, size: Size, scale: Scale) -> RGBARep {
       let scale: Int = scale.module * scale.screen // multiply screen and module multiplier
-      let scaledSize: Size = (size.width * scale, size.height * scale)
+      let scaledSize: Size = .init(size.width * scale, size.height * scale)
       let capacity: Int = scaledSize.width * scaledSize.height
       let resultPixels: UnsafeMutableBufferPointer<Pixel> = .allocate(capacity: capacity)
       // - Fixme: ⚠️️ do concurrent + stride?

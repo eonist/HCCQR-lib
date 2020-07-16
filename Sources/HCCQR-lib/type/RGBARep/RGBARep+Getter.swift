@@ -7,7 +7,7 @@ extension RGBARep {
    /**
     * Convenience
     */
-   var size: Size { (width: width, height: height) }
+   var size: Size { .init(width, height) }
    var cgSize: CGSize { .init(width: CGFloat(self.width), height: CGFloat(self.height)) }
    var capacity: Int { self.width * self.height }
    /**

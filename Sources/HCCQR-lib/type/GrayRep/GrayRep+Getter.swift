@@ -6,7 +6,7 @@ extension GrayRep {
    /**
     * Convenience
     */
-   var size: Size { (width: width, height: height) }
+   var size: Size { .init(width, height) }
    var capacity: Int { self.width * self.height }
    /**
     * Get pixel
