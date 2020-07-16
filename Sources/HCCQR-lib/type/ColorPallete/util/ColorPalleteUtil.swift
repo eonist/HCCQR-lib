@@ -13,7 +13,7 @@ final class ColorPalleteUtil {
     *   - pallete: The colors that coorespond to each unique boolean pattern (color)
     *   - useDarkMode: Use black or white as background in the QR graphics
     */
-   static func combine(boolCol: BoolColumn, scheme: ChannelScheme, useDarkMode: Bool = false) -> ColorPallete {
+   static func combine(boolCol: BoolColumn, scheme: ChannelScheme, useDarkMode: Bool = false) -> ColorPalette {
       guard boolCol.count == scheme.count else { fatalError("boolCol.count and pallete.count does not match") }
       let pallete: ChannelScheme = .scheme(scheme: scheme, darkMode: useDarkMode)
       return Array(zip(boolCol, pallete))

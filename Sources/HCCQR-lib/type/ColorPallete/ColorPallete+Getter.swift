@@ -2,7 +2,7 @@ import QuartzCore
 /**
  * Getter
  */
-extension ColorPallete {
+extension ColorPalette {
    /**
     * 4 colors = 2 layers, 8 colors = 3 coloers, 256 colors = 8 layers etc
     */

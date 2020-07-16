@@ -13,7 +13,6 @@ extension Colorizer {
     * - Note: We use MonotoneImage that has single Bit data, bool, it will be faster
     * - Fixme: ⚠️️⚠️️ Could be faster to just mutate the pixels directly in an RGBAImage instead of creating an pixel array like it is now?
     * - Fixme: ⚠️️⚠️️ Do the scaling inside the fuse-loop, figure out how to scale in the unscalled array first 👈, then apply the scaling directly to the colorized pixels, somehow, requires some whiteboard thinking
-    * - Fixme: ⚠️️ The concurrentPerform should be done on the amount of cores / threads vs quadrants of the whole picture to be generated
     * - Note: Used in the process of converting Data to HCCQR
     * - Parameters:
     *   - monoReps: (black / white)-pixel-array
@@ -24,15 +23,14 @@ extension Colorizer {
       let capacity: Int = monoReps[0].capacity // get capacity from first item
       let pixels: UnsafeMutableBufferPointer<Pixel> = .allocate(capacity: capacity) // Create a new array // pixels.reserveCapacity(size.width * size.height)
       defer { pixels.deallocate() } // ⚠️️ this deallocates the pixels once they are not needed anymore
-      // - Fixme: ⚠️️  concurrent + stride this?
       (0..<size.height).forEach { (y: Int) in // every y pixel
-         // - Fixme: ⚠️️ optimal amount of work on bellow is suboptimal
+         let yAndWidth = y * size.width
          (0..<size.width).forEach { (x: Int) in
-//         DispatchQueue.concurrentPerform(iterations: size.width) { (x: Int) in // Optimization initiatives
             // - Fixme: ⚠️️ We should just pass the ref to the array etc. instead of making new arrays?, might be faster
-            let idx: Int = y * size.width + x // every x pixel
+            let idx: Int = yAndWidth + x // every x pixel
+            // - Fixme: ⚠️️ you could move the monoReps loop to the outer loop, and do concurrentMap on it, maybe?
             let layerPixels: [Bool] = monoReps.map { $0.pixels[idx] } // We get pixels from both RGBAImages
-            if let colorizedPixel: Pixel = try? colorize(pixels: layerPixels, pallete: config.map) {
+            if let colorizedPixel: Pixel = try? colorize(pixels: layerPixels, pallete: config.palette) {
                pixels[idx] = colorizedPixel
             }
          }

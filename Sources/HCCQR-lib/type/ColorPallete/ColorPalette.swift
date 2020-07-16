@@ -6,4 +6,4 @@ import Foundation
  * - Note: if you match the array correctly, then the color is used
  * - Fixme: ⚠️️ differentiate ColorPallet and ChannelPallet names
  */
-public typealias ColorPallete = [ColorMap]
+public typealias ColorPalette = [ColorMap]

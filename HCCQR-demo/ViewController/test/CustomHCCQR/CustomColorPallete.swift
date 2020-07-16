@@ -3,29 +3,29 @@ import QR_lib
 /**
  * Custom color-palletes
  */
-extension ColorPallete {
+extension ColorPalette {
    /**
     * CMY based colorMap
     */
-   public static func cmy(useDarkMode: Bool = false) -> ColorPallete {
+   public static func cmy(useDarkMode: Bool = false) -> ColorPalette {
       ColorPalleteUtil.combine(boolCol: .sequence(4), scheme: .cmy, useDarkMode: useDarkMode)
    }
    /**
     * Blue shaded colorMap
     */
-   public static func blue(useDarkMode: Bool = false) -> ColorPallete {
+   public static func blue(useDarkMode: Bool = false) -> ColorPalette {
       ColorPalleteUtil.combine(boolCol: .sequence(4), scheme: .blue, useDarkMode: useDarkMode)
    }
    /**
     * Custom color map
     */
-   public static func purple(useDarkMode: Bool = false) -> ColorPallete {
+   public static func purple(useDarkMode: Bool = false) -> ColorPalette {
       ColorPalleteUtil.combine(boolCol: .sequence(4), scheme: .purple, useDarkMode: useDarkMode)
    }
    /**
     * Custom color map
     */
-   public static func green(useDarkMode: Bool = false) -> ColorPallete {
+   public static func green(useDarkMode: Bool = false) -> ColorPalette {
       ColorPalleteUtil.combine(boolCol: .sequence(4), scheme: .green, useDarkMode: useDarkMode)
    }
 }
