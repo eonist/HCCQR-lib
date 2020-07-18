@@ -17,7 +17,8 @@ let package = Package(
         .package(url: "https://eonist:2fa35e4ff44eac34e98f01f2c83a16f00e650e56@github.com/light-stream/QR-lib.git", .branch("master")),
         .package(url: "https://github.com/eonist/ResultSugar.git", .branch("master")),
         .package(url: "https://github.com/eonist/ResourceHelper.git", .branch("master")),
-        .package(url: "https://github.com/passbook/ParallelLoop.git", .branch("master"))
+        .package(url: "https://github.com/passbook/ParallelLoop.git", .branch("master")),
+        .package(url: "https://github.com/eonist/TimeMeasure.git", .branch("master"))
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -27,6 +28,6 @@ let package = Package(
             dependencies: ["QR-lib", "ResultSugar", "ParallelLoop"]),
         .testTarget(
             name: "HCCQRIOSTest",
-            dependencies: ["HCCQR-lib", "QR-lib", "ResultSugar", "ResourceHelper", "ParallelLoop"])
+            dependencies: ["HCCQR-lib", "QR-lib", "ResultSugar", "ResourceHelper", "ParallelLoop", "TimeMeasure"])
     ]
 )

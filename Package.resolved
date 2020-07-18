@@ -6,7 +6,7 @@
         "repositoryURL": "https://github.com/passbook/ParallelLoop.git",
         "state": {
           "branch": "master",
-          "revision": "dcb29c8cc29474d7267554036e7c909b1e999b6b",
+          "revision": "290ea82cbe932296ce00ab4708c5f3e6203d2ad7",
           "version": null
         }
       },
@@ -15,7 +15,7 @@
         "repositoryURL": "https://eonist:2fa35e4ff44eac34e98f01f2c83a16f00e650e56@github.com/light-stream/QR-lib.git",
         "state": {
           "branch": "master",
-          "revision": "371dd19d0bb2a0570d9997f171a182e30b0fe4c8",
+          "revision": "9e0b04ec10bbb57690cf3293427ac420a1218c23",
           "version": null
         }
       },
@@ -34,6 +34,15 @@
         "state": {
           "branch": "master",
           "revision": "73747c87445aa5b45213162ff4a66378fc105cbd",
+          "version": null
+        }
+      },
+      {
+        "package": "TimeMeasure",
+        "repositoryURL": "https://github.com/eonist/TimeMeasure.git",
+        "state": {
+          "branch": "master",
+          "revision": "9ea3436e6008ba1e29393f4e91c8f8e5c0cd8577",
           "version": null
         }
       }
