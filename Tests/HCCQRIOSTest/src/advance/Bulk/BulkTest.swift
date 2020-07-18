@@ -2,6 +2,7 @@ import QR_lib
 import QuartzCore
 import CoreGraphics
 import CoreImage
+import TimeMeasure
 @testable import HCCQR_lib
 /**
  * Bulk tests

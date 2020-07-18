@@ -1,7 +1,8 @@
 import Foundation
-@testable import HCCQR_lib
 import QR_lib
 import ResourceHelper
+import TimeMeasure
+@testable import HCCQR_lib
 /**
  * - Fixme: ⚠️️ try bigger numbers
  */

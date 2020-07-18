@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "ParallelLoop",
+        "repositoryURL": "https://github.com/passbook/ParallelLoop.git",
+        "state": {
+          "branch": "master",
+          "revision": "dcb29c8cc29474d7267554036e7c909b1e999b6b",
+          "version": null
+        }
+      },
+      {
         "package": "QR-lib",
         "repositoryURL": "https://eonist:2fa35e4ff44eac34e98f01f2c83a16f00e650e56@github.com/light-stream/QR-lib.git",
         "state": {

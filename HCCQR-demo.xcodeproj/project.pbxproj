@@ -232,6 +232,7 @@
 		F1B698E0239E6D410085B3C9 /* HCCQRVersionUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B698DF239E6D410085B3C9 /* HCCQRVersionUtil.swift */; };
 		F1B698E1239E6D410085B3C9 /* HCCQRVersionUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B698DF239E6D410085B3C9 /* HCCQRVersionUtil.swift */; };
 		F1C094CC24C3307800970065 /* ParallelLoop in Frameworks */ = {isa = PBXBuildFile; productRef = F1C094CB24C3307800970065 /* ParallelLoop */; };
+		F1C094D224C3410700970065 /* TimeMeasure in Frameworks */ = {isa = PBXBuildFile; productRef = F1C094D124C3410700970065 /* TimeMeasure */; };
 		F1CF2D7A249380F8007ACC0E /* VC+HCCQR.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CF2D79249380F8007ACC0E /* VC+HCCQR.swift */; };
 		F1CF2D7C24938254007ACC0E /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CF2D7B24938254007ACC0E /* View.swift */; };
 		F1D0FCC024B4EFA10065A7CA /* Pixels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D0FCBF24B4EFA10065A7CA /* Pixels.swift */; };
@@ -301,7 +302,6 @@
 		F1E67CA624BB217000EB90F6 /* Metric.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E67D4C24A9059C007FC5C0 /* Metric.swift */; };
 		F1E67CA724BB217100EB90F6 /* Metric.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E67D4C24A9059C007FC5C0 /* Metric.swift */; };
 		F1E67CB124BB533800EB90F6 /* SingleTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E67CAE24BB533800EB90F6 /* SingleTest.swift */; };
-		F1E67CB324BB566E00EB90F6 /* TimeMeasure.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E67CB224BB566E00EB90F6 /* TimeMeasure.swift */; };
 		F1E67D4B24A8D124007FC5C0 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852782213443700C27EAA /* UIView+Ext.swift */; };
 		F1E67D4D24A9059C007FC5C0 /* Metric.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E67D4C24A9059C007FC5C0 /* Metric.swift */; };
 		F1E6F6872493B2DC00975607 /* MonoPixelColorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E6F6862493B2DC00975607 /* MonoPixelColorization.swift */; };
@@ -461,7 +461,6 @@
 		F1E5DC1723F9A5B700605775 /* Image+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Ext.swift"; sourceTree = "<group>"; };
 		F1E5DC1923F9D37700605775 /* NSImage+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSImage+Ext.swift"; sourceTree = "<group>"; };
 		F1E67CAE24BB533800EB90F6 /* SingleTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleTest.swift; sourceTree = "<group>"; };
-		F1E67CB224BB566E00EB90F6 /* TimeMeasure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeMeasure.swift; sourceTree = "<group>"; };
 		F1E67D4C24A9059C007FC5C0 /* Metric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Metric.swift; sourceTree = "<group>"; };
 		F1E6F6862493B2DC00975607 /* MonoPixelColorization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonoPixelColorization.swift; sourceTree = "<group>"; };
 		F1F3E04923BA1CA200D367F1 /* Extractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extractor.swift; sourceTree = "<group>"; };
@@ -487,6 +486,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1C094D224C3410700970065 /* TimeMeasure in Frameworks */,
 				F165C243239FC8B9005D30EC /* ResultSugar in Frameworks */,
 				F1E6459E239407BC008D2ABE /* QR-lib in Frameworks */,
 				F14DDE1323C0E1A800FA0022 /* ResourceHelper in Frameworks */,
@@ -985,7 +985,6 @@
 			children = (
 				F1E5DC0C23F9950200605775 /* extension */,
 				F1E5DBFF23F9757D00605775 /* ColorPalleteAsserter.swift */,
-				F1E67CB224BB566E00EB90F6 /* TimeMeasure.swift */,
 			);
 			path = common;
 			sourceTree = "<group>";
@@ -1154,6 +1153,7 @@
 				F165C242239FC8B9005D30EC /* ResultSugar */,
 				F14DDE1223C0E1A800FA0022 /* ResourceHelper */,
 				F1C094CB24C3307800970065 /* ParallelLoop */,
+				F1C094D124C3410700970065 /* TimeMeasure */,
 			);
 			productName = "HCCQR-demo";
 			productReference = F18A52DB21790F8A003F8C13 /* HCCQR-lib.app */;
@@ -1215,6 +1215,7 @@
 				F165C241239FC8B9005D30EC /* XCRemoteSwiftPackageReference "ResultSugar" */,
 				F14DDE1123C0E1A800FA0022 /* XCRemoteSwiftPackageReference "ResourceHelper" */,
 				F1C094CA24C3307800970065 /* XCRemoteSwiftPackageReference "ParallelLoop" */,
+				F1C094D024C3410700970065 /* XCRemoteSwiftPackageReference "TimeMeasure" */,
 			);
 			productRefGroup = F18A52DC21790F8A003F8C13 /* Products */;
 			projectDirPath = "";
@@ -1508,7 +1509,6 @@
 				F165D4AE24A9FF9500C99CD7 /* HCCQRSetup.swift in Sources */,
 				F146A52524AB60D900FE136C /* RGBARepUtil.swift in Sources */,
 				F1537EEE24B23F1F00160FEC /* BoolRow.swift in Sources */,
-				F1E67CB324BB566E00EB90F6 /* TimeMeasure.swift in Sources */,
 				F146A52924AB97A900FE136C /* GrayRepModifier.swift in Sources */,
 				F1690AA624B1F9B8000EC61A /* ColorPallete+Const.swift in Sources */,
 				F1E5DC1023F9A1C300605775 /* RGBAImageTest.swift in Sources */,
@@ -1983,6 +1983,14 @@
 				kind = branch;
 			};
 		};
+		F1C094D024C3410700970065 /* XCRemoteSwiftPackageReference "TimeMeasure" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/eonist/TimeMeasure.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		F1E6459C239407BC008D2ABE /* XCRemoteSwiftPackageReference "QR-lib" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/light-stream/QR-lib.git";
@@ -2033,6 +2041,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F1C094CA24C3307800970065 /* XCRemoteSwiftPackageReference "ParallelLoop" */;
 			productName = ParallelLoop;
+		};
+		F1C094D124C3410700970065 /* TimeMeasure */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F1C094D024C3410700970065 /* XCRemoteSwiftPackageReference "TimeMeasure" */;
+			productName = TimeMeasure;
 		};
 		F1E6459D239407BC008D2ABE /* QR-lib */ = {
 			isa = XCSwiftPackageProductDependency;
