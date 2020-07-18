@@ -30,7 +30,7 @@ final class HCCQRIOSTest: XCTestCase {
       XCTAssertTrue(SingleTest.test()) // ✅ "syntethic-HCCQR-images"
       XCTAssertTrue(PhotoTest.test()) // ✅
       XCTAssertTrue(BufferTest.test()) // ✅ Test the new buffer -> RGBA (syntethic)
-//      // bulk
+      // bulk
       XCTAssertTrue(BulkTest.test()) // ✅ Read and write multiple "syntetic-HCCQR-images"
       XCTAssertTrue(BulkPhotoTesting.test()) // ✅ Reading many photos
    }

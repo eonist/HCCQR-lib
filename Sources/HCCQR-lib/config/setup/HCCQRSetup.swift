@@ -7,6 +7,6 @@ import Foundation
  * let setup: HCCQRSetup = .init(qr: .init(qrVersion: .v4, ecLevel: .l), output: .init(scale: (6, 2), map: .cp16()))
  */
 public struct HCCQRSetup {
-   let qr: QRSetup
-   let output: OutputConfig
+   public let qr: QRSetup
+   public let output: OutputConfig
 }

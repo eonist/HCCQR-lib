@@ -5,16 +5,16 @@ import QR_lib
  * - Fixme: ⚠️️ maybe find a better name?
  */
 public struct OutputConfig {
-   let scale: Scale
-   let palette: ColorPalette
+   public let scale: Scale
+   public let palette: ColorPalette
    /**
     * - Parameters:
     *    - scale: which colors to use in the output HCCQR
     *    - palette: screen and module scale
     */
-   init(scale: Scale, palette: ColorPalette = .cp4()) {
+   public init(scale: Scale, palette: ColorPalette = .cp4()) {
       self.scale = scale
       self.palette = palette
    }
-   static let `default`: OutputConfig = .init(scale: .init(6, 2), palette: .cp4())
+   public static let `default`: OutputConfig = .init(scale: .init(6, 2), palette: .cp4())
 }

@@ -7,15 +7,15 @@ public struct QRSetup {
    /**
     * QR density
     */
-   let qrVersion: QRVersion
+   public let qrVersion: QRVersion
    /**
     * Error correction level
     */
-   let ecLevel: ECLevel
+   public let ecLevel: ECLevel
 }
 /**
  * Const
  */
 extension QRSetup {
-   static let `default`: QRSetup = .init(qrVersion: .v10, ecLevel: .l)
+   public static let `default`: QRSetup = .init(qrVersion: .v10, ecLevel: .l)
 }
