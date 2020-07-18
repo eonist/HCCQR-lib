@@ -8,11 +8,11 @@ import CoreImage
  * - Fixme: ⚠️️ rename to Rect or no?
  */
 public struct BufferRect {
-   let x: Int
-   let y: Int
-   let width: Int
-   let height: Int
-   init(_ x: Int, _ y: Int, _ width: Int, _ height: Int) {
+   public let x: Int
+   public let y: Int
+   public let width: Int
+   public let height: Int
+   public init(_ x: Int, _ y: Int, _ width: Int, _ height: Int) {
       self.x = x
       self.y = y
       self.width = width
