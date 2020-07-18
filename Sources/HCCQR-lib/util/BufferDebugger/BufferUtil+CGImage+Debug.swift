@@ -1,9 +1,11 @@
 import AVFoundation
 import QuartzCore
 import CoreImage
-@testable import HCCQR_lib
 
 extension BufferUtil {
+   /**
+    * Rename to CIImgBufferError
+    */
    public enum ImgBufferError: Error {
       case statusError
       case unableToGetContext

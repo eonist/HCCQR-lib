@@ -1,7 +1,6 @@
 import AVFoundation
 import QuartzCore
 import CoreImage
-@testable import HCCQR_lib
 
 extension BufferUtil {
    /**
