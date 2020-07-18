@@ -1,6 +1,7 @@
 import Foundation
 import QR_lib
 import CoreImage
+import ParallelLoop
 /**
  * Creates HCCQR-Image from binary Data
  */

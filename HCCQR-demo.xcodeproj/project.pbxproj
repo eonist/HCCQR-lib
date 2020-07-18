@@ -231,6 +231,7 @@
 		F1B698D7239E64E70085B3C9 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B698D6239E64E70085B3C9 /* View.swift */; };
 		F1B698E0239E6D410085B3C9 /* HCCQRVersionUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B698DF239E6D410085B3C9 /* HCCQRVersionUtil.swift */; };
 		F1B698E1239E6D410085B3C9 /* HCCQRVersionUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B698DF239E6D410085B3C9 /* HCCQRVersionUtil.swift */; };
+		F1C094CC24C3307800970065 /* ParallelLoop in Frameworks */ = {isa = PBXBuildFile; productRef = F1C094CB24C3307800970065 /* ParallelLoop */; };
 		F1CF2D7A249380F8007ACC0E /* VC+HCCQR.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CF2D79249380F8007ACC0E /* VC+HCCQR.swift */; };
 		F1CF2D7C24938254007ACC0E /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CF2D7B24938254007ACC0E /* View.swift */; };
 		F1D0FCC024B4EFA10065A7CA /* Pixels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D0FCBF24B4EFA10065A7CA /* Pixels.swift */; };
@@ -489,6 +490,7 @@
 				F165C243239FC8B9005D30EC /* ResultSugar in Frameworks */,
 				F1E6459E239407BC008D2ABE /* QR-lib in Frameworks */,
 				F14DDE1323C0E1A800FA0022 /* ResourceHelper in Frameworks */,
+				F1C094CC24C3307800970065 /* ParallelLoop in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1151,6 +1153,7 @@
 				F1E6459D239407BC008D2ABE /* QR-lib */,
 				F165C242239FC8B9005D30EC /* ResultSugar */,
 				F14DDE1223C0E1A800FA0022 /* ResourceHelper */,
+				F1C094CB24C3307800970065 /* ParallelLoop */,
 			);
 			productName = "HCCQR-demo";
 			productReference = F18A52DB21790F8A003F8C13 /* HCCQR-lib.app */;
@@ -1211,6 +1214,7 @@
 				F1E6459C239407BC008D2ABE /* XCRemoteSwiftPackageReference "QR-lib" */,
 				F165C241239FC8B9005D30EC /* XCRemoteSwiftPackageReference "ResultSugar" */,
 				F14DDE1123C0E1A800FA0022 /* XCRemoteSwiftPackageReference "ResourceHelper" */,
+				F1C094CA24C3307800970065 /* XCRemoteSwiftPackageReference "ParallelLoop" */,
 			);
 			productRefGroup = F18A52DC21790F8A003F8C13 /* Products */;
 			projectDirPath = "";
@@ -1971,6 +1975,14 @@
 				kind = branch;
 			};
 		};
+		F1C094CA24C3307800970065 /* XCRemoteSwiftPackageReference "ParallelLoop" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/passbook/ParallelLoop.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		F1E6459C239407BC008D2ABE /* XCRemoteSwiftPackageReference "QR-lib" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/light-stream/QR-lib.git";
@@ -2016,6 +2028,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F165C241239FC8B9005D30EC /* XCRemoteSwiftPackageReference "ResultSugar" */;
 			productName = ResultSugar;
+		};
+		F1C094CB24C3307800970065 /* ParallelLoop */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F1C094CA24C3307800970065 /* XCRemoteSwiftPackageReference "ParallelLoop" */;
+			productName = ParallelLoop;
 		};
 		F1E6459D239407BC008D2ABE /* QR-lib */ = {
 			isa = XCSwiftPackageProductDependency;

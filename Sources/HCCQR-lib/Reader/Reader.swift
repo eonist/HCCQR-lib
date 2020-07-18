@@ -2,6 +2,7 @@ import Foundation
 import QR_lib
 import QuartzCore
 import CoreImage
+import ParallelLoop
 /**
  * Reads HCCQR into binary data
  */

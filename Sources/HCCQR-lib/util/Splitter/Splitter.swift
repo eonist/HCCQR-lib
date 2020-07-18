@@ -1,5 +1,6 @@
 import Foundation
 import CoreImage
+import ParallelLoop
 /**
  * RGBA-rep 👉 extract R,G,B 👉 combine colors 👉 QRImage's
  * - Note: you can derive the data by analysing each QRImage and combining their data to one data

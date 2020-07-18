@@ -1,5 +1,6 @@
 import Foundation
 import QuartzCore
+import ParallelLoop
 /**
  * Split the 3 R,G,B channels into grayscale lumonocity channels
  */
