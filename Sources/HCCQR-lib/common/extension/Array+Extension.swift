@@ -4,7 +4,7 @@ import Foundation
  */
 extension Array {
    /**
-    * Asserts if array has nil values
+    * Asserts if an array has nil values
     * ## Examples:
     * let someArr: [Int?] = [1, 2, nil]
     * someArr.hasNil() // true
@@ -19,7 +19,7 @@ extension Array {
  */
 extension Array {
    /**
-    * Remove optionals from array
+    * Remove optionals from an array
     * ## Examples:
     * [2, nil, 1, 0].filterNils() // [2, 1, 0]
     * let someArr: [Int?] = [2, nil, 1, 0]
