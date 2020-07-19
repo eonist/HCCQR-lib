@@ -12,7 +12,11 @@ public final class RGBARepParser {
     */
    static func image(rgbaRep: RGBARep, scale: CGFloat) throws -> Image {
       try autoreleasepool { // Ref: ⚠️️ https://stackoverflow.com/questions/25860942/is-it-necessary-to-use-autoreleasepool-in-a-swift-program
+//         Swift.print("👇")
+//         let ciImg = try ciImg2(rgbaRep: rgbaRep, useGrayscale: false)//try cgImage(rgbaRep: rgbaRep) // cgImage
+//         guard let cgImg: CGImage = ciImg.cgImage else { throw NSError(domain: "err", code: 0) }
          let cgImg: CGImage = try cgImage(rgbaRep: rgbaRep)
+//         Swift.print("👆")
          return ImageUtil.image(cgImage: cgImg, scale: scale) // Convert CGImage to UIImage
       }
    }
@@ -57,8 +61,8 @@ extension RGBARepParser {
       try autoreleasepool {  // ⚠️️ testing to get rid of mem leak ⚠️️
          let deviceColorSpace: CGColorSpace = CGColorSpaceCreateDeviceRGB()
          var bitmapInfo: UInt32 = CGBitmapInfo.byteOrder32Big.rawValue
-         let bytesPerRow: Int = rgbaRep.width * 4 // channels in each row (width)
          bitmapInfo |= CGImageAlphaInfo.premultipliedLast.rawValue & CGBitmapInfo.alphaInfoMask.rawValue
+         let bytesPerRow: Int = rgbaRep.width * 4 // channels in each row (width)
          let bitsPerComponent: Int = 8 // (8 bits per each channel)
          let bytesPerPixel: Int = 4 // 4 bytes(rgba channels) for each pixel
          guard let cfData = CFDataCreate(nil, rgbaRep.flatPixels, rgbaRep.width * rgbaRep.height * bytesPerPixel) else { throw CGImageErr.unableToCreateCFData }

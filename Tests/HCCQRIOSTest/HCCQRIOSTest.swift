@@ -3,8 +3,9 @@ import XCTest
 
 final class HCCQRIOSTest: XCTestCase {
    func testExample() {
-      simpleTests()
-      advanceTests()
+//      simpleTests()
+//      advanceTests()
+      XCTAssertTrue(BufferTest.test())
    }
    /**
     * Utility tests etc

@@ -42,8 +42,7 @@ internal final class ImageUtil {
     */
    #if os(iOS)
    private static func uiImage(cgImage: CGImage, scale: CGFloat) -> UIImage {
-      let image: UIImage = .init(cgImage: cgImage, scale: scale, orientation: .up) // .leftMirrored
-      return image
+      .init(cgImage: cgImage, scale: scale, orientation: .up) // .leftMirrored
    }
    #endif
    /**
@@ -53,8 +52,7 @@ internal final class ImageUtil {
     */
    #if os(macOS)
    private static func nsImage(cgImage: CGImage) -> NSImage {
-      let nsImg: NSImage = .init(cgImage: cgImage, size: .init(width: cgImage.width, height: cgImage.height))
-      return nsImg
+      .init(cgImage: cgImage, size: .init(width: cgImage.width, height: cgImage.height))
    }
    #endif
 }
