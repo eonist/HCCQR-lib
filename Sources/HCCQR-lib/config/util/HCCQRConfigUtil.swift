@@ -8,19 +8,18 @@ public final class HCCQRConfigUtil {
     * Returns dataCount for (QRVersion, QRMode, ECLevel),
     * ## Examples:
     * HCCQRConfigUtil.dataCount(config: (.v10, .byte, .l), colorDepth: 2) // 542
-    * - Fixme: ⚠️️ Use Result type, or?
-    * - Fixme: ⚠️️ rename to numOfLayers
+    * - Fixme: ⚠️️ rename color depth to numOfLayers, yes!
     * - Parameters:
     *   - config: ecLevel, mode, version
     *   - colorDepth: 2 color-depths num of layers (equals 4 colors, 3-layers = 8, 4 = 16, 5 = 32, 6 = 64, 7 = 128, 8 = 256 etc)
     */
-   public static func dataCount(config: QRConfig, colorDepth: Int) -> Int {
+   internal static func dataCount(config: QRConfig, colorDepth: Int) -> Int {
       let dataCount: Int = config.maxChar
       return dataCount * colorDepth
    }
    /**
     * Returns data in array
-    * - Note: used to get chunks of data from one big data, in order to populate each layer with a data-set
+    * - Note: used as a way of getting chunks of data from one big data, in order to populate each layer with a data-set
     * - Parameters:
     *   - data: binary data
     *   - config: hccqr setup details
