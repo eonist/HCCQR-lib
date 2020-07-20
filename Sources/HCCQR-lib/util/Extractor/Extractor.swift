@@ -22,11 +22,10 @@ extension Extractor {
     * - Fixme: ⚠️️ we could use unmanaged pointer with capacity as well, might be faster
     * - Fixme: ⚠️️ Skip extracting the white channel, as it's not used when we later combine color channels
     */
-   static func extract(rgbaRep: RGBARep, scheme: ChannelScheme) -> GrayReps {
+   static func extract(rgbaRep: RGBARep, scheme: ChannelScheme, parallel: Bool) -> GrayReps {
       let similarities: [PixelSimilarity] = Extractor.similarities(scheme: scheme) // create similarity asserters
-      return similarities.concurrentMap { // 4 - 256 items depending on hccqr config
-         let channel: GrayRep = extract(rgbaRep: rgbaRep, asserter: $0) // Finds the red-channel, blue-channel, green-channel
-         return channel
+      return similarities.concurrentMap(parallel: parallel) { // 4 - 256 items depending on hccqr config
+         extract(rgbaRep: rgbaRep, asserter: $0) // Finds the red-channel, blue-channel, green-channel
       }
    }
 }

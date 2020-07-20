@@ -24,9 +24,9 @@ extension SingleTest {
    internal static func test() -> Bool {
       guard let randomData: Data = HCCQRStringData.randomData(setup: singleSetup) else { return false }
       // - Fixme: ⚠️️ get data from rgba? 
-      guard let image: Image = try? Writer.image(data: randomData, config: singleSetup) else { return false }
+      guard let image: Image = try? Writer.image(data: randomData, config: singleSetup, parallel: true) else { return false }
       do {
-         let dataAndQuad: QRReader.DataAndQuad = try Reader.data(image: image, scheme: .cs8)
+         let dataAndQuad: QRReader.DataAndQuad = try Reader.data(image: image, scheme: .cs8, parallel: true)
          let isValid: Bool = randomData == dataAndQuad.qrData
 //         Swift.print("data?.count:  \(String(describing: dataAndQuad.qrData.count))")
          Swift.print("SingleTest isValid:  \(isValid ? "✅" : "🚫")")

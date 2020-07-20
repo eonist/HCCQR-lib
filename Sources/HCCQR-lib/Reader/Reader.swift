@@ -6,6 +6,7 @@ import ParallelLoop
 /**
  * Reads HCCQR into binary data
  */
+public typealias HCCQRReader = Reader
 public final class Reader {}
 
 extension Reader {
@@ -18,14 +19,17 @@ extension Reader {
     * 3. Extract the data from the QR-Images
     * 4. Combine the multiple Data's into one Data
     * 5. Return the data and the meta-data
+    * - Fixme: ⚠️️ rename imageBuffer to buffer
     * - Parameters:
     *   - imageBuffer: The buffer containing the raw pixel data and size
     *   - crop: Makes processing the raw imagery faster since we don't have to process areas where the QR info is not etc.
+    *   - scheme: hccqr setup
+    *   - parallel: for single capture, parallel is fast, for sequence, parallel is slower
     */
-   public static func data(imageBuffer: CVImageBuffer, crop: BufferRect, scheme: ChannelScheme = .default) throws -> ReadPayload {
+   public static func data(imageBuffer: CVImageBuffer, crop: BufferRect, scheme: ChannelScheme = .default, parallel: Bool) throws -> ReadPayload {
 //      let crop = crop ?? CVImageBufferGetEncodedSize(imageBuffer) // CVImageBufferGetDisplaySize, CVImageBufferGetCleanRect
       let rgbaImg: RGBARep = try BufferUtil.rgbaRep(buffer: imageBuffer, crop: crop)
-      let dataAndImagesAndQuad: QRReader.DataAndQuad = try data(rgbaRep: rgbaImg, scheme: scheme)
+      let dataAndImagesAndQuad: QRReader.DataAndQuad = try data(rgbaRep: rgbaImg, scheme: scheme, parallel: parallel)
       let data: Data = dataAndImagesAndQuad.qrData
       let quad: QRReader.Quad = dataAndImagesAndQuad.quad
       let dataAndMeta: ReadPayload = (data: data, quad: quad, imageSize: rgbaImg.cgSize)
@@ -34,10 +38,14 @@ extension Reader {
    /**
     * Image -> Data
     * - Needed for quick tests etc
+    * - Parameters:
+    *   - image: hccqr test
+    *   - scheme: hccqr setup
+    *   - parallel: for single capture, parallel is fast, for sequence, parallel is slower
     */
-   public static func data(image: Image, scheme: ChannelScheme = .default) throws -> QRReader.DataAndQuad {
+   public static func data(image: Image, scheme: ChannelScheme = .default, parallel: Bool) throws -> QRReader.DataAndQuad {
       let rgbaRep: RGBARep = try RGBARepUtil.rgbaRep(image: image)
-      return try Reader.data(rgbaRep: rgbaRep, scheme: scheme)
+      return try Reader.data(rgbaRep: rgbaRep, scheme: scheme, parallel: parallel)
    }
 }
 /**
@@ -55,11 +63,12 @@ extension Reader {
     * - Parameters:
     *   - rgbaRep: raw pixels and size
     *   - scheme: the arrangment of colors
+    *   - parallel: for single capture, parallel is fast, for sequence, parallel is slower
     */
-   internal static func data(rgbaRep: RGBARep, scheme: ChannelScheme/* = .default*/) throws -> QRReader.DataAndQuad {
-      let qrLayers: [CIImage] = Splitter.split(rgbaRep: rgbaRep, scheme: scheme)
+   internal static func data(rgbaRep: RGBARep, scheme: ChannelScheme, parallel: Bool) throws -> QRReader.DataAndQuad {
+      let qrLayers: [CIImage] = Splitter.split(rgbaRep: rgbaRep, scheme: scheme, parallel: parallel)
       // ⚠️️ the concurrentCompactMap is experimental, works for now
-      let dataAndQuads: [QRReader.DataAndQuad] = qrLayers.concurrentCompactMap { // concurrentCompactMap
+      let dataAndQuads: [QRReader.DataAndQuad] = qrLayers.concurrentCompactMap(parallel: parallel) { // concurrentCompactMap
          try? QRReader.dataAndQuad(ciImage: $0)
       }
       guard dataAndQuads.count == qrLayers.count else { throw NSError(domain: "Unable to read QR Layer", code: 0) }

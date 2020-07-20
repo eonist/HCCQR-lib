@@ -43,11 +43,19 @@ extension BulkTest {
     * Bulk write many
     */
    internal static func writeMany(setup: HCCQRSetup) -> [RGBARep] {
-      let randomData: [Data] = (0..<100).compactMap { _ in HCCQRStringData.randomData(setup: setup) } // Num of items to load, we create this outside, because we dont want to time the creation of it
-      let (payloads, time) = TimeMeasure.timeElapsed {
-         randomData.compactMap {
-            try? Writer.rgbaRep(data: $0, config: setup)
-         }
+      let randomData: [Data] = (0..<300).compactMap { _ in HCCQRStringData.randomData(setup: setup) } // Num of items to load, we create this outside, because we dont want to time the creation of it
+      let (payloads, time): ([RGBARep], Double) = TimeMeasure.timeElapsed {
+         let batches = randomData.divideBy(by: 30) // doing striding has minimal effect on just 100 items
+         return batches.concurrentMap { batch in
+            batch.compactMap {
+               do {
+                  return try Writer.rgbaRep(data: $0, config: setup, parallel: false)
+               } catch {
+                  Swift.print("⚠️️ Error: ⚠️️  \(error)")
+                  return nil
+               }
+            }
+         }.flatMap { $0 }
       }
       Swift.print("write many time:  \(time)")
       return payloads
@@ -58,14 +66,19 @@ extension BulkTest {
    internal static func readMany(rgbaReps: [RGBARep], scheme: ChannelScheme) -> Bool {
       let (payloads, time): ([QRReader.DataAndQuad], Double) = TimeMeasure.timeElapsed {
          // - Fixme: ⚠️️ putting this loop on concurrent speeds up things 2x 👌🎉
-         rgbaReps.compactMap { rgbaRep in
-            do {
-               return try Reader.data(rgbaRep: rgbaRep, scheme: scheme)
-            } catch {
-               Swift.print("⚠️️ Error: ⚠️️  \(error)")
-               return nil
+         let batches = rgbaReps.divideBy(by: 30)// doing striding has minimal effect on just 100 items
+         let res: [[QRReader.DataAndQuad]] = batches.concurrentMap { batch in
+            let result: [QRReader.DataAndQuad] = batch.compactMap { rgbaRep in
+               do {
+                  return try Reader.data(rgbaRep: rgbaRep, scheme: scheme, parallel: false)
+               } catch {
+                  Swift.print("⚠️️ Error: ⚠️️  \(error)")
+                  return nil
+               }
             }
+            return result
          }
+         return res.flatMap { $0 }
       }
       Swift.print("Read many time:  \(time)")
       Swift.print("Payloads.count:  \(payloads.count)")
