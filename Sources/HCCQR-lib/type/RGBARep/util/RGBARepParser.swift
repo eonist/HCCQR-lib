@@ -12,11 +12,7 @@ public final class RGBARepParser {
     */
    static func image(rgbaRep: RGBARep, scale: CGFloat) throws -> Image {
       try autoreleasepool { // Ref: ⚠️️ https://stackoverflow.com/questions/25860942/is-it-necessary-to-use-autoreleasepool-in-a-swift-program
-//         Swift.print("👇")
-//         let ciImg = try ciImg2(rgbaRep: rgbaRep, useGrayscale: false)//try cgImage(rgbaRep: rgbaRep) // cgImage
-//         guard let cgImg: CGImage = ciImg.cgImage else { throw NSError(domain: "err", code: 0) }
          let cgImg: CGImage = try cgImage(rgbaRep: rgbaRep)
-//         Swift.print("👆")
          return ImageUtil.image(cgImage: cgImg, scale: scale) // Convert CGImage to UIImage
       }
    }
@@ -51,24 +47,25 @@ extension RGBARepParser {
     * - Fixme: ⚠️️ Try the CIImage conversions as well, might be even faster?
     * - Fixme: ⚠️️ Make custom Error types for the erros this method can throw 👈
     * - Note: this method is much faster than the slow version of this where you use: CGContext().makeImage() etc
-    * - Note: alternative data -> img code, might be faster?: https://stackoverflow.com/questions/51372245/swift-covert-byte-array-into-ciimage
+    * - Note: alternative data -> img code, might be faster?: https://stackoverflow.com/questions/51372245/swift-covert-byte-array-into-ciimage (this recuires .flatPixels)
     * - Note: We use autorelease Because CoreGraphics is not handled by ARC (like all other C libraries),
     * - Note: you need to wrap your code with with an autorelease, even in Swift.
     * - Note: Particularly if you are not on the main thread (which you should not be, if CoreGraphics is involved... .userInitiated or lower is appropriate).
     * - Parameter rgbaRep: The rep to convert into cgImage
     */
-   private static func cgImage(rgbaRep: RGBARep) throws -> CGImage {
+   internal static func cgImage(rgbaRep: RGBARep) throws -> CGImage {
       try autoreleasepool {  // ⚠️️ testing to get rid of mem leak ⚠️️
          let deviceColorSpace: CGColorSpace = CGColorSpaceCreateDeviceRGB()
-         var bitmapInfo: UInt32 = CGBitmapInfo.byteOrder32Big.rawValue
-         bitmapInfo |= CGImageAlphaInfo.premultipliedLast.rawValue & CGBitmapInfo.alphaInfoMask.rawValue
+         let bitmapInfo: CGBitmapInfo = .init(rawValue: CGBitmapInfo.byteOrder32Big.rawValue | CGImageAlphaInfo.noneSkipLast.rawValue) // premultipliedLast also works
+//         var bitmapInfo: UInt32 = CGBitmapInfo.byteOrder32Big.rawValue
+//         bitmapInfo |= CGImageAlphaInfo.premultipliedLast.rawValue & CGBitmapInfo.alphaInfoMask.rawValue
          let bytesPerRow: Int = rgbaRep.width * 4 // channels in each row (width)
          let bitsPerComponent: Int = 8 // (8 bits per each channel)
          let bytesPerPixel: Int = 4 // 4 bytes(rgba channels) for each pixel
          guard let cfData = CFDataCreate(nil, rgbaRep.flatPixels, rgbaRep.width * rgbaRep.height * bytesPerPixel) else { throw CGImageErr.unableToCreateCFData }
          guard let cgDataProvider = CGDataProvider(data: cfData) else { throw CGImageErr.unableToCreateCGDataProvider }
          let bitsPerPixel: Int = bytesPerPixel * bitsPerComponent
-         guard let image = CGImage(width: rgbaRep.width, height: rgbaRep.height, bitsPerComponent: bitsPerComponent, bitsPerPixel: bitsPerPixel, bytesPerRow: bytesPerRow, space: deviceColorSpace, bitmapInfo: [], provider: cgDataProvider, decode: nil, shouldInterpolate: true, intent: CGColorRenderingIntent.defaultIntent) else { throw CGImageErr.unableToCreateCGImage }
+         guard let image = CGImage(width: rgbaRep.width, height: rgbaRep.height, bitsPerComponent: bitsPerComponent, bitsPerPixel: bitsPerPixel, bytesPerRow: bytesPerRow, space: deviceColorSpace, bitmapInfo: bitmapInfo, provider: cgDataProvider, decode: nil, shouldInterpolate: true, intent: CGColorRenderingIntent.defaultIntent) else { throw CGImageErr.unableToCreateCGImage }
          return image
       }
    }

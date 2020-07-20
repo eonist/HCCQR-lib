@@ -3,8 +3,9 @@ import QR_lib
 import QuartzCore
 import CoreGraphics
 import CoreImage
-//import HCCQR_lib
-
+/**
+ * reads HCCQR photo
+ */
 extension ViewController {
    /**
     * RGBAPhoto

@@ -35,10 +35,10 @@ extension BufferRect {
  * - Note: ⚠️️ this method is global, so that other class scopes can also use this functionality (Similar to how other Native Buffer methods work)
  * - Fixme: ⚠️️ rename to cvImage.. or maybe not sinc eits a global method
  * - Fixme: ⚠️️ we could actually scope this to the BufferRect now
+ * - Fixme: ⚠️️ add getter that creates bufferect from buffer, add to BufferRect type
  * - Parameter imageBuffer: the buffer containing the raw pixel data and size
  */
-func CVImageBufferGetDisplayRect(imageBuffer: CVImageBuffer) -> BufferRect {
+public func CVImageBufferGetDisplayRect(imageBuffer: CVImageBuffer) -> BufferRect {
    let size: CGSize = CVImageBufferGetDisplaySize(imageBuffer)
-   let point: CGPoint = .zero
-   return .init(Int(point.x), Int(point.y), Int(size.width), Int(size.height))
+   return .init(0, 0, Int(size.width), Int(size.height))
 }

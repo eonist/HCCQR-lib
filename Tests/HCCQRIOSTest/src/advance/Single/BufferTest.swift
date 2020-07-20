@@ -19,14 +19,13 @@ final class BufferTest {
       let setup: HCCQRSetup = .init(qr: .init(qrVersion: .v4, ecLevel: .l), output: .init(scale: .init(6, 2), palette: .cp8()))
       guard let randomData = HCCQRStringData.randomData(setup: setup) else { Swift.print("unable to create data"); return false }
       guard let image: Image = try? Writer.image(data: randomData, config: setup) else { return false }
-      Swift.print("hccqrImage.size:  \(image.size) scale:  \(image.scale)") //      Swift.print("hccqrImage.cgImage()?.width:  \(hccqrImage.cgImage?.width)")
+//      Swift.print("hccqrImage.size:  \(image.size) scale:  \(image.scale)") //      Swift.print("hccqrImage.cgImage()?.width:  \(hccqrImage.cgImage?.width)")
 //      guard let rgbaRep: RGBARep = try? BufferUtil.rgbaRep(image: image) else { Swift.print("err getting rgbImage"); return false }
       guard let buffer = try? BufferUtil.imageBuffer(image: image) else { Swift.print("err"); return false }
       do {
-         // - Fixme: ⚠️️ add getter that creates bufferect from buffer, add to BufferRect type
-         let size = CVImageBufferGetEncodedSize(buffer) // CVImageBufferGetDisplaySize, CVImageBufferGetCleanRect
-         let crop: BufferRect = .init(0, 0, Int(size.width), Int(size.height))
-         Swift.print("crop:  \(crop)")
+//         let size = CVImageBufferGetEncodedSize(buffer) // CVImageBufferGetDisplaySize, CVImageBufferGetCleanRect
+         let crop: BufferRect = CVImageBufferGetDisplayRect(imageBuffer: buffer)//.init(0, 0, Int(size.width), Int(size.height))
+//         Swift.print("crop:  \(crop)")
          let payload: Reader.ReadPayload = try Reader.data(imageBuffer: buffer, crop: crop, scheme: .cs8)
 //         let dataAndQuad: QRReader.DataAndQuad = try Reader.data(rgbaRep: rgbaRep, scheme: .cs8) // Convert RGBAImage to Data
 //         Swift.print("dataAndQuad.qrData.count:  \(dataAndQuad.qrData.count)")

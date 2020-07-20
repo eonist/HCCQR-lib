@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F1133DDC24C4CE8A0097E5C9 /* BufferUtil+Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1133DDB24C4CE8A0097E5C9 /* BufferUtil+Data.swift */; };
+		F1133DDD24C4CE8A0097E5C9 /* BufferUtil+Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1133DDB24C4CE8A0097E5C9 /* BufferUtil+Data.swift */; };
+		F1133DDE24C4CE910097E5C9 /* BufferUtil+Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1133DDB24C4CE8A0097E5C9 /* BufferUtil+Data.swift */; };
 		F11DE860220B6C53007A8A7A /* temp.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F11DE85F220B6C53007A8A7A /* temp.bundle */; };
 		F12274E0249BCC8D0045573B /* ColorizeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12274DF249BCC8D0045573B /* ColorizeError.swift */; };
 		F12274E1249BCC8D0045573B /* ColorizeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12274DF249BCC8D0045573B /* ColorizeError.swift */; };
@@ -250,6 +253,9 @@
 		F1D8A67223E842B000F17A81 /* UInt8+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D8A67023E842B000F17A81 /* UInt8+Extension.swift */; };
 		F1D8A68B23E9952200F17A81 /* Colorizer+Pixel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D8A68A23E9952200F17A81 /* Colorizer+Pixel.swift */; };
 		F1D8A68C23E9952200F17A81 /* Colorizer+Pixel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D8A68A23E9952200F17A81 /* Colorizer+Pixel.swift */; };
+		F1DB02C624C5B2A00037E2FB /* ResourceHelper in Frameworks */ = {isa = PBXBuildFile; productRef = F1DB02C524C5B2A00037E2FB /* ResourceHelper */; };
+		F1DB02C824C5B2A00037E2FB /* ParallelLoop in Frameworks */ = {isa = PBXBuildFile; productRef = F1DB02C724C5B2A00037E2FB /* ParallelLoop */; };
+		F1DB02CA24C5B2A00037E2FB /* TimeMeasure in Frameworks */ = {isa = PBXBuildFile; productRef = F1DB02C924C5B2A00037E2FB /* TimeMeasure */; };
 		F1E205AE249628E500E3A82E /* PixelAsserter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E205AD249628E500E3A82E /* PixelAsserter.swift */; };
 		F1E205B024964ACB00E3A82E /* PixelParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E205AF24964ACB00E3A82E /* PixelParser.swift */; };
 		F1E205B124964DD500E3A82E /* PixelAsserter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E205AD249628E500E3A82E /* PixelAsserter.swift */; };
@@ -338,6 +344,7 @@
 /* Begin PBXFileReference section */
 		F10296B8222218D1001FA2DF /* RGBARep+Getter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RGBARep+Getter.swift"; sourceTree = "<group>"; };
 		F10296BA222218DC001FA2DF /* RGBARep+DeInit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RGBARep+DeInit.swift"; sourceTree = "<group>"; };
+		F1133DDB24C4CE8A0097E5C9 /* BufferUtil+Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BufferUtil+Data.swift"; sourceTree = "<group>"; };
 		F11DE85F220B6C53007A8A7A /* temp.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = temp.bundle; sourceTree = "<group>"; };
 		F12274DF249BCC8D0045573B /* ColorizeError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorizeError.swift; sourceTree = "<group>"; };
 		F1240F6A23B4E01400ECD116 /* Splitter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Splitter.swift; sourceTree = "<group>"; };
@@ -483,8 +490,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1DB02CA24C5B2A00037E2FB /* TimeMeasure in Frameworks */,
 				F165C245239FC8C2005D30EC /* ResultSugar in Frameworks */,
 				F1E645F3239429CA008D2ABE /* QR-lib in Frameworks */,
+				F1DB02C624C5B2A00037E2FB /* ResourceHelper in Frameworks */,
+				F1DB02C824C5B2A00037E2FB /* ParallelLoop in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -972,8 +982,8 @@
 		F1E5710723A3EF3100E090BB /* HCCQRIOSTest */ = {
 			isa = PBXGroup;
 			children = (
-				F165C24F23A00D08005D30EC /* src */,
 				F1E5710823A3EF3100E090BB /* HCCQRIOSTest.swift */,
+				F165C24F23A00D08005D30EC /* src */,
 				F1E5710A23A3EF3100E090BB /* Info.plist */,
 			);
 			path = HCCQRIOSTest;
@@ -1002,6 +1012,7 @@
 				F18A25DC23BB7ED200EF8151 /* BufferUtil+Buffer.swift */,
 				F1E5DC0723F9929300605775 /* BufferUtil+CGImage.swift */,
 				F1E5DC0423F9802300605775 /* BufferUtil+RGBA.swift */,
+				F1133DDB24C4CE8A0097E5C9 /* BufferUtil+Data.swift */,
 			);
 			path = BufferDebugger;
 			sourceTree = "<group>";
@@ -1135,6 +1146,9 @@
 			packageProductDependencies = (
 				F1E645F2239429CA008D2ABE /* QR-lib */,
 				F165C244239FC8C2005D30EC /* ResultSugar */,
+				F1DB02C524C5B2A00037E2FB /* ResourceHelper */,
+				F1DB02C724C5B2A00037E2FB /* ParallelLoop */,
+				F1DB02C924C5B2A00037E2FB /* TimeMeasure */,
 			);
 			productName = "HCCQR-demo-mac";
 			productReference = F17F5B85221A267600383955 /* HCCQR-demo-mac.app */;
@@ -1337,6 +1351,7 @@
 				F15C9F7E23BA6FD000F9D524 /* RGBARep+Const.swift in Sources */,
 				F1E645AD23940ACA008D2ABE /* Hybrid+iOS.swift in Sources */,
 				F12EE26724C39E6D00FD9417 /* BufferUtil+Buffer.swift in Sources */,
+				F1133DDD24C4CE8A0097E5C9 /* BufferUtil+Data.swift in Sources */,
 				F1E645DC23940B3D008D2ABE /* RGBARep+DeInit.swift in Sources */,
 				F1E645EA23940B3D008D2ABE /* Colorizer+RGBA.swift in Sources */,
 				F1E645B323940ACA008D2ABE /* Image+Extension.swift in Sources */,
@@ -1479,6 +1494,7 @@
 				F18E388324AE09D300F33947 /* CustomChannelScheme.swift in Sources */,
 				F1690ABC24B2015E000EC61A /* QRSetup.swift in Sources */,
 				F1E645A323940AC9008D2ABE /* UIImage+Extension.swift in Sources */,
+				F1133DDC24C4CE8A0097E5C9 /* BufferUtil+Data.swift in Sources */,
 				F18A25E723BB83E700EF8151 /* NSImage+Extension.swift in Sources */,
 				F1537EFD24B353E500160FEC /* GrayReps.swift in Sources */,
 				F1E645A623940AC9008D2ABE /* Data+Extension.swift in Sources */,
@@ -1610,6 +1626,7 @@
 				F1472010248C0820008A01AD /* Data+Ext.swift in Sources */,
 				F146A53224AC64CB00FE136C /* RGBARepParser+Experimental.swift in Sources */,
 				F18E38B224B0EC1B00F33947 /* BinarySequencer.swift in Sources */,
+				F1133DDE24C4CE910097E5C9 /* BufferUtil+Data.swift in Sources */,
 				F146A53724AC70F500FE136C /* RGBARep+Experiment.swift in Sources */,
 				F1537F0B24B47C5200160FEC /* Array+Extension.swift in Sources */,
 				F1471FF5248C0573008A01AD /* MonoRep+Init.swift in Sources */,
@@ -1686,7 +1703,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = "io.github.futurelab.HCCQR-demo-mac";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -1710,7 +1727,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = "io.github.futurelab.HCCQR-demo-mac";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -2055,6 +2072,21 @@
 			productName = ParallelLoop;
 		};
 		F1C094D124C3410700970065 /* TimeMeasure */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F1C094D024C3410700970065 /* XCRemoteSwiftPackageReference "TimeMeasure" */;
+			productName = TimeMeasure;
+		};
+		F1DB02C524C5B2A00037E2FB /* ResourceHelper */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F14DDE1123C0E1A800FA0022 /* XCRemoteSwiftPackageReference "ResourceHelper" */;
+			productName = ResourceHelper;
+		};
+		F1DB02C724C5B2A00037E2FB /* ParallelLoop */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F1C094CA24C3307800970065 /* XCRemoteSwiftPackageReference "ParallelLoop" */;
+			productName = ParallelLoop;
+		};
+		F1DB02C924C5B2A00037E2FB /* TimeMeasure */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = F1C094D024C3410700970065 /* XCRemoteSwiftPackageReference "TimeMeasure" */;
 			productName = TimeMeasure;
