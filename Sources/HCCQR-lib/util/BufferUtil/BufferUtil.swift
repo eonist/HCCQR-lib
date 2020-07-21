@@ -24,7 +24,7 @@ extension BufferUtil {
     * - Important: ⚠️️ doing concurrent on the loop has minimal effect, doing it on the call to this method has alot of effect
     * - Parameters:
     *   - buffer: the buffer containing the raw pixel data and size
-    *   - crop: Makes processing the raw imagery faster since we don't have to process areas where the QR info is not etc.
+    *   - crop: Makes processing the raw imagery faster since we don't have to process areas where the QR info is not etc. (provided we know where the QR rect is)
     */
    public static func rgbaRep(buffer: CVImageBuffer, crop bufferRect: BufferRect) throws -> RGBARep { /*, size: CGSize, scale: CGFloat */
       CVPixelBufferLockBaseAddress(buffer, CVPixelBufferLockFlags(rawValue: CVOptionFlags(0))) // lock access for cpu reading
@@ -35,7 +35,7 @@ extension BufferUtil {
       let byteBuffer: UnsafeMutablePointer<UInt8> = baseAddress.assumingMemoryBound(to: UInt8.self)
 //      defer { byteBuffer.deallocate() } // new ⚠️️
       let capacity: Int = bufferRect.width * bufferRect.height
-      let pixels = UnsafeMutableBufferPointer<Pixel>.allocate(capacity: capacity) // we dealoc this when we have finished working with rgbaRep
+      let pixels: UnsafeMutableBufferPointer<Pixel> = .allocate(capacity: capacity) // we dealoc this when we have finished working with rgbaRep
       (bufferRect.y..<bufferRect.height).forEach { y in
          let yVal: Int = y * bytesPerPixel // we calc these outside the x loop, to gain performance
          let yAndWidth: Int = y * bufferRect.width // we calc these outside the x loop, to gain performance

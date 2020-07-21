@@ -20,6 +20,7 @@ extension Reader {
     * 4. Combine the multiple Data's into one Data
     * 5. Return the data and the meta-data
     * - Fixme: ⚠️️ rename imageBuffer to buffer
+    * - Fixme: ⚠️️ Maybe
     * - Parameters:
     *   - imageBuffer: The buffer containing the raw pixel data and size
     *   - crop: Makes processing the raw imagery faster since we don't have to process areas where the QR info is not etc.
@@ -63,11 +64,10 @@ extension Reader {
     * - Parameters:
     *   - rgbaRep: raw pixels and size
     *   - scheme: the arrangment of colors
-    *   - parallel: for single capture, parallel is fast, for sequence, parallel is slower
+    *   - parallel: for single capture, parallel is fast, but for sequence parallel is slower
     */
    internal static func data(rgbaRep: RGBARep, scheme: ChannelScheme, parallel: Bool) throws -> QRReader.DataAndQuad {
       let qrLayers: [CIImage] = Splitter.split(rgbaRep: rgbaRep, scheme: scheme, parallel: parallel)
-      // ⚠️️ the concurrentCompactMap is experimental, works for now
       let dataAndQuads: [QRReader.DataAndQuad] = qrLayers.concurrentCompactMap(parallel: parallel) { // concurrentCompactMap
          try? QRReader.dataAndQuad(ciImage: $0)
       }

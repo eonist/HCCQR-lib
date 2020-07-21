@@ -23,8 +23,7 @@ extension Extractor {
     * - Fixme: ⚠️️ Skip extracting the white channel, as it's not used when we later combine color channels
     */
    static func extract(rgbaRep: RGBARep, scheme: ChannelScheme, parallel: Bool) -> GrayReps {
-      let similarities: [PixelSimilarity] = Extractor.similarities(scheme: scheme) // create similarity asserters
-      return similarities.concurrentMap(parallel: parallel) { // 4 - 256 items depending on hccqr config
+      Extractor.similarities(scheme: scheme).concurrentMap(parallel: parallel) { // create similarity asserters, 4 - 256 items depending on hccqr config
          extract(rgbaRep: rgbaRep, asserter: $0) // Finds the red-channel, blue-channel, green-channel
       }
    }
@@ -38,7 +37,7 @@ extension Extractor {
     * - Note: color-pallete's determines their similarity by comparing these r,g,b values
     * - Parameter pixel: the input pixel
     */
-   typealias PixelSimilarity = (_ pixel: Pixel) -> Pixel.Similarity
+   internal typealias PixelSimilarity = (_ pixel: Pixel) -> Pixel.Similarity
    /**
     * RGBARep channel 👉 GrayscaleRep
     * 1. Creates a blank grayscale image of a specific size
