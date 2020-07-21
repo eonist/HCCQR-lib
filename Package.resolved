@@ -1,0 +1,52 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "ParallelLoop",
+        "repositoryURL": "https://github.com/passbook/ParallelLoop.git",
+        "state": {
+          "branch": "master",
+          "revision": "3c58106ce0c1a28de812c7ec9501b4690963bd3b",
+          "version": null
+        }
+      },
+      {
+        "package": "QR-lib",
+        "repositoryURL": "https://eonist:2fa35e4ff44eac34e98f01f2c83a16f00e650e56@github.com/light-stream/QR-lib.git",
+        "state": {
+          "branch": "master",
+          "revision": "9e0b04ec10bbb57690cf3293427ac420a1218c23",
+          "version": null
+        }
+      },
+      {
+        "package": "ResourceHelper",
+        "repositoryURL": "https://github.com/eonist/ResourceHelper.git",
+        "state": {
+          "branch": "master",
+          "revision": "ffd67d93541e74e1322ed2cd25c4d620fbd395b4",
+          "version": null
+        }
+      },
+      {
+        "package": "ResultSugar",
+        "repositoryURL": "https://github.com/eonist/ResultSugar.git",
+        "state": {
+          "branch": "master",
+          "revision": "73747c87445aa5b45213162ff4a66378fc105cbd",
+          "version": null
+        }
+      },
+      {
+        "package": "TimeMeasure",
+        "repositoryURL": "https://github.com/eonist/TimeMeasure.git",
+        "state": {
+          "branch": "master",
+          "revision": "bba7fdd4104df804417af4b3d19b825b3bbe5e54",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}
