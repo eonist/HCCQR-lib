@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F1084F9524C7016900A62AA5 /* BulkBufferTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1084F9424C7016900A62AA5 /* BulkBufferTest.swift */; };
 		F1133DDC24C4CE8A0097E5C9 /* BufferUtil+Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1133DDB24C4CE8A0097E5C9 /* BufferUtil+Data.swift */; };
 		F1133DDD24C4CE8A0097E5C9 /* BufferUtil+Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1133DDB24C4CE8A0097E5C9 /* BufferUtil+Data.swift */; };
 		F1133DDE24C4CE910097E5C9 /* BufferUtil+Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1133DDB24C4CE8A0097E5C9 /* BufferUtil+Data.swift */; };
@@ -344,6 +345,7 @@
 /* Begin PBXFileReference section */
 		F10296B8222218D1001FA2DF /* RGBARep+Getter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RGBARep+Getter.swift"; sourceTree = "<group>"; };
 		F10296BA222218DC001FA2DF /* RGBARep+DeInit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RGBARep+DeInit.swift"; sourceTree = "<group>"; };
+		F1084F9424C7016900A62AA5 /* BulkBufferTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulkBufferTest.swift; sourceTree = "<group>"; };
 		F1133DDB24C4CE8A0097E5C9 /* BufferUtil+Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BufferUtil+Data.swift"; sourceTree = "<group>"; };
 		F11DE85F220B6C53007A8A7A /* temp.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = temp.bundle; sourceTree = "<group>"; };
 		F12274DF249BCC8D0045573B /* ColorizeError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorizeError.swift; sourceTree = "<group>"; };
@@ -904,6 +906,7 @@
 			children = (
 				F1488E3724BF94A80067C0F4 /* BulkTest.swift */,
 				F1ADB48C24C0840100C1FDC6 /* BulkPhotoTesting.swift */,
+				F1084F9424C7016900A62AA5 /* BulkBufferTest.swift */,
 			);
 			path = Bulk;
 			sourceTree = "<group>";
@@ -1525,6 +1528,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1084F9524C7016900A62AA5 /* BulkBufferTest.swift in Sources */,
 				F19FC44824C09F460045BDB0 /* BufferTest.swift in Sources */,
 				F1ADB48D24C0840100C1FDC6 /* BulkPhotoTesting.swift in Sources */,
 				F147200C248C071D008A01AD /* BufferUtil+CGImage.swift in Sources */,

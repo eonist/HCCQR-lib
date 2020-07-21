@@ -6,7 +6,7 @@
         "repositoryURL": "https://github.com/passbook/ParallelLoop.git",
         "state": {
           "branch": "master",
-          "revision": "78040e4e7163bcec8dbb95cad9224205479dacba",
+          "revision": "cd5deae2c36be018ae887e6db8df3c9693da0d8c",
           "version": null
         }
       },
@@ -42,7 +42,7 @@
         "repositoryURL": "https://github.com/eonist/TimeMeasure.git",
         "state": {
           "branch": "master",
-          "revision": "4c136e266386f3c0171719305b27d757079c191f",
+          "revision": "bba7fdd4104df804417af4b3d19b825b3bbe5e54",
           "version": null
         }
       }
