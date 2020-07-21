@@ -9,4 +9,13 @@ import Foundation
 public struct HCCQRSetup {
    public let qr: QRSetup
    public let output: OutputConfig
+   /**
+    * - Parameters:
+    *   - qr: qr config
+    *   - output: custom colormap and custome scale
+    */
+   public init(qr: QRSetup, output: OutputConfig) {
+      self.qr = qr
+      self.output = output
+   }
 }

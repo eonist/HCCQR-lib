@@ -4,14 +4,17 @@ import QR_lib
  * custom qr
  */
 public struct QRSetup {
-   /**
-    * QR density
-    */
    public let qrVersion: QRVersion
-   /**
-    * Error correction level
-    */
    public let ecLevel: ECLevel
+   /**
+    * - Parameters:
+    *   - qrVersion: QR density
+    *   - ecLevel: Error correction level
+    */
+   public init(qrVersion: QRVersion, ecLevel: ECLevel) {
+      self.qrVersion = qrVersion
+      self.ecLevel = ecLevel
+   }
 }
 /**
  * Const
