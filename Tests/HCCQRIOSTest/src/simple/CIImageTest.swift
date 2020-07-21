@@ -1,5 +1,6 @@
 #if os(iOS)
 import UIKit
+@testable import HCCQR_lib
 
 final class CIImageTest {
    /**

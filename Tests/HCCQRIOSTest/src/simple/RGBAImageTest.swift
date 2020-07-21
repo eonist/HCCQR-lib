@@ -2,6 +2,7 @@ import QR_lib
 import Foundation
 #if os(iOS)
 import UIKit
+@testable import HCCQR_lib
 
 final class RGBAImageTest {}
 
