@@ -12,7 +12,7 @@ final class BulkBufferTest {
    static func test() -> Bool {
       let setup: HCCQRSetup = .init(qr: .init(qrVersion: .v4, ecLevel: .l), output: .init(scale: .init(6, 2), palette: .cp8()))
 //      guard let randomData = HCCQRStringData.randomData(setup: setup) else { Swift.print("unable to create data"); return false }
-      let randomDataArr: [Data] = (0..<100).compactMap { _ in HCCQRStringData.randomData(setup: setup) } // Num of items to load, we create this outside, because we dont want to time the creation of it
+      let randomDataArr: [Data] = (0..<15).compactMap { _ in HCCQRStringData.randomData(setup: setup) } // Num of items to load, we create this outside, because we dont want to time the creation of it
 //      let dataArray: [Data] = .init(repeating: randomData, count: 100)
       let buffers: [CVImageBuffer] = randomDataArr.batches(spread: 10).concurrentFlatMap { batch in
          batch.compactMap { data in
@@ -24,6 +24,7 @@ final class BulkBufferTest {
       let (payloads, time): ([Reader.ReadPayload], Double) = TimeMeasure.timeElapsed {
          buffers.batches(spread: 10).concurrentFlatMap { batch in
             batch.compactMap { buffer in
+//               print("Current thread \(Thread.current)")
 //               Swift.print("Thread.isMainThread:  \(Thread.isMainThread)")
                let crop: BufferRect = CVImageBufferGetDisplayRect(imageBuffer: buffer)  // CVImageBufferGetDisplaySize, CVImageBufferGetCleanRect
 //               Swift.print("crop:  \(crop)")
