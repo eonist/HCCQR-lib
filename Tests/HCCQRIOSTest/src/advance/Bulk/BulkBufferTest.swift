@@ -2,7 +2,7 @@ import Foundation
 import AVFoundation
 import CoreImage
 import CoreVideo
-import HCCQR_lib
+@testable import HCCQR_lib
 import TimeMeasure
 
 final class BulkBufferTest {

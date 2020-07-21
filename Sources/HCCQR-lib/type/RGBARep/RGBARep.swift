@@ -21,6 +21,7 @@ public struct RGBARep {
       self.pixels = pixels
       self.width = width
       self.height = height
-      RGBARep.initiatedCount += 1 // this is a hack to debug dealoc, until we solve the Dealoc stuff in a better way
+      // - Fixme: ⚠️️ if your going to use these, make them Atomic, use the parallelLoop lib
+//      RGBARep.initiatedCount += 1 // this is a hack to debug dealoc, until we solve the Dealoc stuff in a better way
    }
 }

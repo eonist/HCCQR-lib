@@ -47,6 +47,16 @@
                ReferencedContainer = "container:HCCQR-demo.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "F1C6A46F24C7805C0095BCEF"
+               BuildableName = "TestsMacOS.xctest"
+               BlueprintName = "TestsMacOS"
+               ReferencedContainer = "container:HCCQR-demo.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

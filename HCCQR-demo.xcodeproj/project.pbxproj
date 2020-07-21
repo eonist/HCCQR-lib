@@ -1122,7 +1122,7 @@
 		F18A52D321790F8A003F8C13 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1120;
+				LastSwiftUpdateCheck = 1150;
 				LastUpgradeCheck = 1120;
 				ORGANIZATIONNAME = FutureLab;
 				TargetAttributes = {
