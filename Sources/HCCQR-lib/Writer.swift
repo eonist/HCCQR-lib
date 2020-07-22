@@ -2,6 +2,7 @@ import Foundation
 import QR_lib
 import CoreImage
 import ParallelLoop
+import TimeMeasure
 /**
  * Creates HCCQR-Image from binary Data
  */
@@ -41,13 +42,15 @@ extension Writer {
     * - Important: internal because: SingleWriteReadHCCQRTest and BulkHCCQRTest uses it for tests
     */
    internal static func rgbaRep(data: Data, config: HCCQRSetup/* = .default*/, parallel: Bool) throws -> RGBARep {
-      let dataArr: [Data] = HCCQRConfigUtil.data(data: data, config: config) // splits data
+      let dataArr: [Data] = HCCQRConfigUtil.data(data: data, config: config) // splits data (for multiple layers 2-8, 4-256 colors respectfully)
       let ciImgs: [CIImage] = dataArr.concurrentCompactMap(parallel: parallel) { (data: Data) in // parraelly create the qr-image-Layers
          try? QRWriter.ciImage(data: data, ecLevel: config.ecLevel) // Create B&W QR-layers (CIImage)
       }
       guard dataArr.count == ciImgs.count else { throw NSError(domain: "\(dataArr.count - ciImgs.count) qr imgs did not finish", code: 0) } // if qrImgs was not created correctly etc
-      // - Fixme: ⚠️️ benchmark how timeconsuming the colorization part is, if it's worth doing parallel processing on
-      let rgbaRep: RGBARep = Colorizer.colorize(qrLayers: ciImgs, config: config.output/*, coreCount: coreCount*/)
+      let (rgbaRep, colorizeTime): (RGBARep, Double) = TimeMeasure.timeElapsed {
+         /*let rgbaRep: RGBARep = */Colorizer.colorize(qrLayers: ciImgs, config: config.output/*, coreCount: coreCount*/)
+      }
+      Swift.print("colorizeTime:  \(colorizeTime)")
       return rgbaRep
    }
 }

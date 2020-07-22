@@ -2,7 +2,7 @@ import Foundation
 /**
  * - Fixme: ⚠️️ Rename to ...Modifier?
  */
-final class ColorPalleteUtil {
+extension ColorPalette {
    /**
     * Combines (black&white) with color
     * - Fixme: ⚠️️ potentially move to ColorPallete extension?
@@ -16,7 +16,15 @@ final class ColorPalleteUtil {
    static func combine(boolCol: BoolColumn, scheme: ChannelScheme, useDarkMode: Bool = false) -> ColorPalette {
       guard boolCol.count == scheme.count else { fatalError("boolCol.count and pallete.count does not match") }
       let pallete: ChannelScheme = .scheme(scheme: scheme, darkMode: useDarkMode)
-      return Array(zip(boolCol, pallete))
+      return ColorPaletteUtil.zipResult(pallete, boolCol)
+   }
+}
+/**
+ * - Note: Quick hack to get arround zip not woring inside array typealias extension
+ */
+final class ColorPaletteUtil {
+   fileprivate static func zipResult(_ pallete: ChannelScheme, _ boolCol: BoolColumn) -> ColorPalette {
+      Array(zip(boolCol, pallete))
    }
 }
 //let map: ChannelPallete = {

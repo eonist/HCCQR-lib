@@ -18,7 +18,8 @@ extension Colorizer {
     *   - monoReps: (black / white)-pixel-array
     *   - config: scaling and color rule-set (darkmode ability is possible epending on what color-pallete is used)
     */
-   static func colorize(monoReps: [MonoRep], config: OutputConfig) -> RGBARep {
+   static func colorize(monoReps: MonoReps, config: OutputConfig) -> RGBARep {
+      defer { monoReps.deInit() } // Avoids mem leak, we have it here, as other methods call this as well
       let size: Size = monoReps[0].size // get size from first rep
       let capacity: Int = monoReps[0].capacity // get capacity from first item
       let pixels: UnsafeMutableBufferPointer<Pixel> = .allocate(capacity: capacity) // Create a new array // pixels.reserveCapacity(size.width * size.height)
@@ -35,6 +36,7 @@ extension Colorizer {
             }
          }
       }
+      // - Fixme: ⚠️️ move the scale into the above array, benchmark first tho
       return RGBARepModifier.scale(pixels: pixels, size: size, scale: config.scale)
    }
 }

@@ -30,18 +30,13 @@ final class GrayRepModifier {
     * - Fixme: ⚠️️ Using a pointer might speed up this method
     */
    static func process(input: GrayRep, functor: @escaping GrayRep.FunctorIndexGray) -> GrayRep {
-//      Swift.print("process")
-//      let batches = Array(0..<input.height).divideBy(by: 1)
-      /**/
-//      batches.concurrentForEach { batch in // concurrentForEach
-         Array(0..<input.height).forEach { y in
-            let idx: Int = y * input.width // we calc this here as optimization
-            (0..<input.width).forEach { x in
-               let index: Int = idx + x
-               input.pixels[index] = functor(index, input.pixels[index])
-            }
+      Array(0..<input.height).forEach { y in
+         let idx: Int = y * input.width // we calc this here as optimization
+         (0..<input.width).forEach { x in
+            let index: Int = idx + x
+            input.pixels[index] = functor(index, input.pixels[index])
          }
-//      }
+      }
       return input
    }
 }
