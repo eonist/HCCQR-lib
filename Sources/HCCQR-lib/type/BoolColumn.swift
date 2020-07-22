@@ -1,4 +1,15 @@
 import Foundation
+/**
+ * Stores the order of the stacked b&w layers
+ * - Abstract: The boolean pattern that unlocks each color
+ * - Note: store the rgb colors as an array, (similar to color channels)
+ */
+typealias BoolColumn = [BoolRow]
+/**
+ * Stores the bool array for each b&w layer
+ * - Note: used in colormap as well
+ */
+public typealias BoolRow = [Bool]
 
 extension BoolColumn {
    /**
@@ -16,7 +27,6 @@ extension BoolColumn {
     * Returns "num of layers" for "num of colors"
     */
    static func numOfLayers(numOfColors: Int) -> Int {
-      let numOfLayers: Int = Algebra.exponent(base: 2, value: numOfColors)
-      return numOfLayers
+      Algebra.exponent(base: 2, value: numOfColors)
    }
 }

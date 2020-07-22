@@ -1,5 +1,9 @@
 import Foundation
 /**
+ * Array of ChannelCombo
+ */
+typealias ChannelCombos = [GrayReps]
+/**
  * Helper methods for ChannelCombos
  */
 extension ChannelCombos {
