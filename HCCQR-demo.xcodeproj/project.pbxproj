@@ -24,8 +24,6 @@
 		F143EC2023F9DC460006743C /* Color+Asserter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852842213443700C27EAA /* Color+Asserter.swift */; };
 		F143EC2323FA8E2F0006743C /* MonoRep.swift in Sources */ = {isa = PBXBuildFile; fileRef = F143EC2223FA8E2F0006743C /* MonoRep.swift */; };
 		F143EC2423FA8E2F0006743C /* MonoRep.swift in Sources */ = {isa = PBXBuildFile; fileRef = F143EC2223FA8E2F0006743C /* MonoRep.swift */; };
-		F143EC2923FA96F60006743C /* MonoRep+DeInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = F143EC2823FA96F60006743C /* MonoRep+DeInit.swift */; };
-		F143EC2A23FA96F60006743C /* MonoRep+DeInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = F143EC2823FA96F60006743C /* MonoRep+DeInit.swift */; };
 		F143EC2C23FA97B60006743C /* MonoRep+Getter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F143EC2B23FA97B60006743C /* MonoRep+Getter.swift */; };
 		F143EC2D23FA97B60006743C /* MonoRep+Getter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F143EC2B23FA97B60006743C /* MonoRep+Getter.swift */; };
 		F143EC2F23FA98390006743C /* MonoRep+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = F143EC2E23FA98390006743C /* MonoRep+Init.swift */; };
@@ -264,7 +262,6 @@
 		F12274DF249BCC8D0045573B /* ColorizeError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorizeError.swift; sourceTree = "<group>"; };
 		F1240F6A23B4E01400ECD116 /* Splitter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Splitter.swift; sourceTree = "<group>"; };
 		F143EC2223FA8E2F0006743C /* MonoRep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonoRep.swift; sourceTree = "<group>"; };
-		F143EC2823FA96F60006743C /* MonoRep+DeInit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MonoRep+DeInit.swift"; sourceTree = "<group>"; };
 		F143EC2B23FA97B60006743C /* MonoRep+Getter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MonoRep+Getter.swift"; sourceTree = "<group>"; };
 		F143EC2E23FA98390006743C /* MonoRep+Init.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MonoRep+Init.swift"; sourceTree = "<group>"; };
 		F143EC3523FAB8DE0006743C /* UInt8Modifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UInt8Modifier.swift; sourceTree = "<group>"; };
@@ -451,7 +448,6 @@
 				F143EC2223FA8E2F0006743C /* MonoRep.swift */,
 				F143EC2E23FA98390006743C /* MonoRep+Init.swift */,
 				F143EC2B23FA97B60006743C /* MonoRep+Getter.swift */,
-				F143EC2823FA96F60006743C /* MonoRep+DeInit.swift */,
 				F149992B24C88AB30027C918 /* MonoReps.swift */,
 			);
 			path = MonoRep;
@@ -1222,7 +1218,6 @@
 				F143EC2423FA8E2F0006743C /* MonoRep.swift in Sources */,
 				F1E645ED23940B3D008D2ABE /* HCCQRStringData.swift in Sources */,
 				F1E645E223940B3D008D2ABE /* Pixel.swift in Sources */,
-				F143EC2A23FA96F60006743C /* MonoRep+DeInit.swift in Sources */,
 				F1D8A68C23E9952200F17A81 /* Colorizer+Pixel.swift in Sources */,
 				F181F10B23B9091400145DEA /* GrayRep.swift in Sources */,
 				F143EC2D23FA97B60006743C /* MonoRep+Getter.swift in Sources */,
@@ -1312,7 +1307,6 @@
 				F1E645C723940B3C008D2ABE /* Pixel.swift in Sources */,
 				F1690AAD24B1F9B8000EC61A /* ColorMap.swift in Sources */,
 				F1D8A68B23E9952200F17A81 /* Colorizer+Pixel.swift in Sources */,
-				F143EC2923FA96F60006743C /* MonoRep+DeInit.swift in Sources */,
 				F1A2FB1924A9BA4B00596FFE /* HCCQRSetup.swift in Sources */,
 				F1E645BC23940B3C008D2ABE /* RGBARep.swift in Sources */,
 				F146A52324AB60D900FE136C /* RGBARepUtil.swift in Sources */,

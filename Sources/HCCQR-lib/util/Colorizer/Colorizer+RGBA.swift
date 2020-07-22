@@ -1,4 +1,5 @@
 import Foundation
+import TimeMeasure
 /**
  * Core
  */
@@ -19,10 +20,10 @@ extension Colorizer {
     *   - config: scaling and color rule-set (darkmode ability is possible epending on what color-pallete is used)
     */
    static func colorize(monoReps: MonoReps, config: OutputConfig) -> RGBARep {
-      defer { monoReps.deInit() } // Avoids mem leak, we have it here, as other methods call this as well
+//      defer { monoReps.deInit() } // Avoids mem leak, we have it here, as other methods call this as well
       let size: Size = monoReps[0].size // get size from first rep
       let capacity: Int = monoReps[0].capacity // get capacity from first item
-      let pixels: UnsafeMutableBufferPointer<Pixel> = .allocate(capacity: capacity) // Create a new array // pixels.reserveCapacity(size.width * size.height)
+      let pixels: UnsafeMutablePointer<Pixel> = .allocate(capacity: capacity) // Create a new array // pixels.reserveCapacity(size.width * size.height)
       defer { pixels.deallocate() } // ⚠️️ this deallocates the pixels once they are not needed anymore
       (0..<size.height).forEach { (y: Int) in // every y pixel
          let yAndWidth = y * size.width
@@ -36,7 +37,12 @@ extension Colorizer {
             }
          }
       }
-      // - Fixme: ⚠️️ move the scale into the above array, benchmark first tho
-      return RGBARepModifier.scale(pixels: pixels, size: size, scale: config.scale)
+      // - Fixme: ⚠️️ move the scale into the above array, benchmark first tho (scaling adds about 10% to colorization process)
+      // - Fixme: ⚠️️ to bake this into the above array, you will probably have to start fresh with pen and paper and try to understand the problem better, then try a few different things, then maybe build 4 pix grid that yo uscale up, to debug easier etc
+      let (rgbaRep, time): (RGBARep, Double) = TimeMeasure.timeElapsed {
+         /*let rgbaRep: RGBARep = */RGBARepModifier.scale(pixels: pixels, size: size, scale: config.scale)
+      }
+      Swift.print("scale time:  \(time)")
+      return rgbaRep
    }
 }

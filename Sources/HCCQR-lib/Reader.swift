@@ -34,8 +34,7 @@ extension Reader {
       let dataAndImagesAndQuad: QRReader.DataAndQuad = try data(rgbaRep: rgbaImg, scheme: scheme, parallel: parallel)
       let data: Data = dataAndImagesAndQuad.qrData
       let quad: QRReader.Quad = dataAndImagesAndQuad.quad
-      let dataAndMeta: ReadPayload = (data: data, quad: quad, imageSize: rgbaImg.cgSize)
-      return dataAndMeta
+      return (data: data, quad: quad, imageSize: rgbaImg.cgSize)
    }
    /**
     * Image -> Data
@@ -73,6 +72,7 @@ extension Reader {
     */
    internal static func data(rgbaRep: RGBARep, scheme: ChannelScheme, parallel: Bool) throws -> QRReader.DataAndQuad {
       let qrLayers: [CIImage] = Splitter.split(rgbaRep: rgbaRep, scheme: scheme, parallel: parallel)
+      rgbaRep.deInitiate() // we have no more use for the rgbaRep
       let dataAndQuads: [QRReader.DataAndQuad] = qrLayers.concurrentCompactMap(parallel: parallel) { // concurrentCompactMap
          try? QRReader.dataAndQuad(ciImage: $0)
       }

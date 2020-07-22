@@ -57,12 +57,14 @@ extension Colorizer {
    /**
     * Colorize layers to rgbaRep
     * - Note: while benchmarking this method, it takes about half the time of the entire writing process, where the other half is consumed by the QR creation process
+    * - Note: putting compactMap on concurrentCompactMap doesnt seem to improve already fast speeds
     * - Returns: RGBARep
     * - Parameters:
     *   - coreCount: num of cores in CPU ProcessInfo().activeProcessorCount
     *   - qrLayers: qr layers as CIImages
     */
    internal static func colorize(qrLayers: [CIImage], config: OutputConfig) -> RGBARep {
+      // 🏀 if we are only reading MonoReps, remove the mutable stuff in the struct
       let monoReps: MonoReps = qrLayers.compactMap { try? MonoRep.monoRep(ciImg: $0/*, crop: rect*/) }
       return colorize(monoReps: monoReps, config: config)
    }

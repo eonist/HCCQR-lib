@@ -2,9 +2,10 @@ import Foundation
 /**
  * We create HCCQR-images from QR-Image monotone representations
  * - Note: A grid of monotone pixels
+ * - Fixme: ⚠️️  store size as Size, skip width and height
  */
 struct MonoRep {
-   var pixels: UnsafeMutableBufferPointer<Bool>
+   var pixels: [Bool]
    var width: Int
    var height: Int
    /**
@@ -14,7 +15,7 @@ struct MonoRep {
     *   - width: width of the canvas
     *   - height: height of the canvas
     */
-   init(pixels: UnsafeMutableBufferPointer<Bool>, width: Int, height: Int) {
+   init(pixels: [Bool], width: Int, height: Int) {
       self.pixels = pixels
       self.width = width
       self.height = height

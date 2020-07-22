@@ -32,10 +32,8 @@ extension MonoRep {
       let context: CIContext = .init(cgContext: cgContext, options: nil) // .init(options: nil)// = CIContext.init(cgContext: , options: )
       let fromExtent: CGRect = crop.cgRect
       context.draw(ciImg, in: ciImg.extent, from: fromExtent)
-      let pixels: UnsafeMutableBufferPointer<Pixel> = .init(start: imageData, count: capacity)
-      let monotonePixels: UnsafeMutableBufferPointer<Bool> = .allocate(capacity: capacity)
-      pixels.enumerated().forEach { monotonePixels[$0.offset] = $0.element.isWhite } // set bools (white is true, black is false)
-      pixels.deallocate() // dealloc this, as we have no more use for it
-      return .init(pixels: monotonePixels, width: crop.width, height: crop.height)
+      let pixels: UnsafeBufferPointer<Pixel> = .init(start: imageData, count: capacity)
+      defer { pixels.deallocate() } // dealloc this, as we have no more use for it
+      return .init(pixels: pixels.map { $0.isWhite }, width: crop.width, height: crop.height)
    }
 }
