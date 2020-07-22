@@ -45,9 +45,7 @@ extension BulkTest {
    internal static func writeMany(setup: HCCQRSetup) -> [RGBARep] {
       let randomData: [Data] = (0..<300).compactMap { _ in HCCQRStringData.randomData(setup: setup) } // Num of items to load, we create this outside, because we dont want to time the creation of it
       let (payloads, time): ([RGBARep], Double) = TimeMeasure.timeElapsed {
-         // - Fixme: ⚠️️ use concurrentFlatMap here 
-         let batches = randomData.divideBy(by: 30) // doing striding has minimal effect on just 100 items
-         return batches.concurrentMap { batch in
+         randomData.batches(spread: 20).concurrentFlatMap { batch in
             batch.compactMap {
                do {
                   return try Writer.rgbaRep(data: $0, config: setup, parallel: false)
@@ -56,7 +54,7 @@ extension BulkTest {
                   return nil
                }
             }
-         }.flatMap { $0 }
+         }
       }
       Swift.print("write many time:  \(time)")
       return payloads

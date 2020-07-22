@@ -3,6 +3,7 @@ import QuartzCore
 import CoreGraphics
 import CoreImage
 @testable import HCCQR_lib
+import TimeMeasure
 /**
  * Test reading and writing
  * - Fixme: ⚠️️ Rename to concurrent optimization test
@@ -14,8 +15,8 @@ extension SingleTest {
     * Setup for single test
     */
    private static let singleSetup: HCCQRSetup = {
-      let qrSetup: QRSetup = .init(qrVersion: .v1, ecLevel: .l)
-      let output: OutputConfig = .init(scale: .init(6, 2), palette: .cp8(useDarkMode: false))
+      let qrSetup: QRSetup = .init(qrVersion: .v30, ecLevel: .l)
+      let output: OutputConfig = .init(scale: .init(6, 2), palette: .cp256(useDarkMode: false))
       return .init(qr: qrSetup, output: output)
    }()
    /**
@@ -23,12 +24,38 @@ extension SingleTest {
     */
    internal static func test() -> Bool {
       guard let randomData: Data = HCCQRStringData.randomData(setup: singleSetup) else { return false }
-      // - Fixme: ⚠️️ get data from rgba? 
-      guard let image: Image = try? Writer.image(data: randomData, config: singleSetup, parallel: true) else { return false }
+      let (isValid, time) = TimeMeasure.timeElapsed {
+         writeAndRead(data: randomData)
+      }
+      Swift.print("SingleTest time: \(time)")
+      return isValid
+   }
+}
+extension SingleTest {
+   /**
+    * writeAndRead
+    */
+   private static func writeAndRead(data: Data) -> Bool {
+      guard let image = write(data: data) else { return false }
+      let (isValid, time) = TimeMeasure.timeElapsed {
+         read(image: image, data: data)
+      }
+      Swift.print("Read time: \(time)")
+      return isValid
+   }
+   private static func write(data: Data) -> Image? {
+      // - Fixme: ⚠️️ get data from rgba?
+      let (image, time): (Image?, Double) = TimeMeasure.timeElapsed {
+         try? Writer.image(data: data, config: singleSetup, parallel: true)
+      }
+      Swift.print("Write time: \(time)")
+      return image
+   }
+   private static func read(image: Image, data: Data) -> Bool {
       do {
-         let dataAndQuad: QRReader.DataAndQuad = try Reader.data(image: image, scheme: .cs8, parallel: true)
-         let isValid: Bool = randomData == dataAndQuad.qrData
-//         Swift.print("data?.count:  \(String(describing: dataAndQuad.qrData.count))")
+         let dataAndQuad: QRReader.DataAndQuad = try Reader.data(image: image, scheme: .cs256, parallel: true)
+         let isValid: Bool = data == dataAndQuad.qrData
+         Swift.print("data?.count:  \(String(describing: dataAndQuad.qrData.count))")
          Swift.print("SingleTest isValid:  \(isValid ? "✅" : "🚫")")
          return isValid
       } catch {

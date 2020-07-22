@@ -5,8 +5,9 @@ final class HCCQRIOSTest: XCTestCase {
    func testExample() {
 //      simpleTests()
 //      advanceTests()
-      XCTAssertTrue(BulkBufferTest.test())
+//      XCTAssertTrue(BulkBufferTest.test())
 //      XCTAssertTrue(BulkTest.test()) // ✅ Read and write multiple "syntetic-HCCQR-images"
+      XCTAssertTrue(SingleTest.test())
    }
    /**
     * Utility tests etc

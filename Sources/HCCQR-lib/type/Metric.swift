@@ -1,6 +1,7 @@
 import Foundation
 /**
  * Store module & screen scale
+ * - Note: module-size can be the same for any QR-Version, it is only relevant for the final size of the QR rectangle
  */
 public struct Scale {
    public let module: Int
