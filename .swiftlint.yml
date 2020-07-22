@@ -1,6 +1,6 @@
 whitelist_rules:
   - anyobject_protocol
-  - array_init
+  #- array_init
   - attributes
   - block_based_kvo
   - class_delegate_protocol

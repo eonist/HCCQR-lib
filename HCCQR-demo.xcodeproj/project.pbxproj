@@ -106,8 +106,8 @@
 		F1690AC524B2129D000EC61A /* ColorPalleteUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1690AC424B2129D000EC61A /* ColorPalleteUtil.swift */; };
 		F1690AC624B2129D000EC61A /* ColorPalleteUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1690AC424B2129D000EC61A /* ColorPalleteUtil.swift */; };
 		F1690AC924B22601000EC61A /* CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1690AC824B22601000EC61A /* CustomColors.swift */; };
-		F17CB70023AB9DDB00C4BED8 /* Colorizer+CIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17CB6FF23AB9DDB00C4BED8 /* Colorizer+CIImage.swift */; };
-		F17CB70123AB9DDB00C4BED8 /* Colorizer+CIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17CB6FF23AB9DDB00C4BED8 /* Colorizer+CIImage.swift */; };
+		F17CB70023AB9DDB00C4BED8 /* Colorizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17CB6FF23AB9DDB00C4BED8 /* Colorizer.swift */; };
+		F17CB70123AB9DDB00C4BED8 /* Colorizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17CB6FF23AB9DDB00C4BED8 /* Colorizer.swift */; };
 		F17F5B88221A267600383955 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17F5B87221A267600383955 /* AppDelegate.swift */; };
 		F17F5B8A221A267B00383955 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F17F5B89221A267B00383955 /* Assets.xcassets */; };
 		F17F5B8D221A267B00383955 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F17F5B8B221A267B00383955 /* MainMenu.xib */; };
@@ -328,7 +328,7 @@
 		F17A29FF22137BEA000B6C0A /* Hybrid+iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Hybrid+iOS.swift"; sourceTree = "<group>"; };
 		F17A2A17221384F2000B6C0A /* Hybrid+Mac.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Hybrid+Mac.swift"; sourceTree = "<group>"; };
 		F17A2A1F221388E2000B6C0A /* ImageUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUtil.swift; sourceTree = "<group>"; };
-		F17CB6FF23AB9DDB00C4BED8 /* Colorizer+CIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Colorizer+CIImage.swift"; sourceTree = "<group>"; };
+		F17CB6FF23AB9DDB00C4BED8 /* Colorizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colorizer.swift; sourceTree = "<group>"; };
 		F17F5B85221A267600383955 /* HCCQR-demo-mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HCCQR-demo-mac.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F17F5B87221A267600383955 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F17F5B89221A267B00383955 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -604,7 +604,7 @@
 		F168526A2213443700C27EAA /* Colorizer */ = {
 			isa = PBXGroup;
 			children = (
-				F17CB6FF23AB9DDB00C4BED8 /* Colorizer+CIImage.swift */,
+				F17CB6FF23AB9DDB00C4BED8 /* Colorizer.swift */,
 				F168526C2213443700C27EAA /* Colorizer+RGBA.swift */,
 				F1D8A68A23E9952200F17A81 /* Colorizer+Pixel.swift */,
 				F165D4AA24A9FEA300C99CD7 /* Colorizer+Type.swift */,
@@ -1247,7 +1247,7 @@
 				F165C209239F22A7005D30EC /* RangeUInt8.swift in Sources */,
 				F18A4D81239F11040065078A /* RGBARepParser.swift in Sources */,
 				F19C1C7324A8837100E93F4D /* GrayRepParser.swift in Sources */,
-				F17CB70123AB9DDB00C4BED8 /* Colorizer+CIImage.swift in Sources */,
+				F17CB70123AB9DDB00C4BED8 /* Colorizer.swift in Sources */,
 				F146A52424AB60D900FE136C /* RGBARepUtil.swift in Sources */,
 				F1E645E723940B3D008D2ABE /* Pixel+Type.swift in Sources */,
 				F18C7B4523BF7EF9009D9B29 /* BufferUtil+Getter.swift in Sources */,
@@ -1339,7 +1339,7 @@
 				F1E645AB23940AC9008D2ABE /* Color+Parser.swift in Sources */,
 				F1467657249F77E6009D392A /* GridTestView.swift in Sources */,
 				F1467658249F77E6009D392A /* GridTestView+Create.swift in Sources */,
-				F17CB70023AB9DDB00C4BED8 /* Colorizer+CIImage.swift in Sources */,
+				F17CB70023AB9DDB00C4BED8 /* Colorizer.swift in Sources */,
 				F18C7B4423BF7EF9009D9B29 /* BufferUtil+Getter.swift in Sources */,
 				F1E645CF23940B3C008D2ABE /* Colorizer+RGBA.swift in Sources */,
 				F1E67D4B24A8D124007FC5C0 /* UIView+Ext.swift in Sources */,

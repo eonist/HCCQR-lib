@@ -47,9 +47,9 @@ extension Colorizer {
     *   - config: module and screen, for retina you need 2x scale etc, This is the multiplier. ModuleCount equals 1 pixel. ModuleCount for QRVersion 10 is 57 not counting 2 for margins. So (57+2)*6 = 354, if you want 2xretina its 354 * 2 = 708, rule-set (The color depth you want the HCCQR image in. 4, 8, 16, 32 etc)
     */
    static func colorize(ciImages: [CIImage], config: OutputConfig) throws -> RGBARep {
-      let reps: [MonoRep] = ciImages.compactMap { try? MonoRep.monoRep(ciImg: $0) } // convert QR images to Pixel-data
-//      guard ciImages.count == monotoneImages.count else { throw NSError("Colorize.colorize() - some rgbaImages was not created") }
-      let result: RGBARep = colorize(monoReps: reps, config: config)// else { throw NSError("Colorize.colorize() - Unable to create colorized rgbaImage") } // overlay the qr-pixel-data
+      let monoReps: [MonoRep] = try ciImages.compactMap { try MonoRep.monoRep(ciImg: $0) } // convert QR images to Pixel-data
+      let result: RGBARep = colorize(monoReps: monoReps, config: config)// else { throw NSError("Colorize.colorize() - Unable to create colorized rgbaImage") } // overlay the qr-pixel-data
+      monoReps.deInit() // Avoids mem leak
       return result
    }
 }
@@ -64,7 +64,7 @@ extension Colorizer {
     *   - coreCount: num of cores in CPU ProcessInfo().activeProcessorCount
     *   - qrLayers: qr layers as CIImages
     */
-   internal static func colorize(qrLayers: [CIImage], config: OutputConfig/*, coreCount: Int*/) -> RGBARep {
+   internal static func colorize(qrLayers: [CIImage], config: OutputConfig) -> RGBARep {
       let monoReps: [MonoRep] = qrLayers.compactMap { try? MonoRep.monoRep(ciImg: $0/*, crop: rect*/) }
       let rgbaRep: RGBARep = colorize(monoReps: monoReps, config: config)
       return rgbaRep

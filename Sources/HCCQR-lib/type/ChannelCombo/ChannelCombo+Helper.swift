@@ -8,6 +8,7 @@ extension ChannelCombos {
     * - Description: Basically the different color channels that make up a layer, for 4-color HCCQR that is 2 layers, for 8 colors its 3+ etc
     * - Note: the output ignores all true values, i.e posetivr (aka white etc)
     * - Note: The output will look something like this for: [.white,.red,.green,.blue]) // [[.blue,.red], [.red, .green]]
+    * - Note: No need to improve performance on this alot, its not expensive to call
     * - Returns: For 4 Colored HCCQR, 2 channelCombo's are returned (8 = 3, 16, 4...etc)
     * - Parameters:
     *   - channels: there will be 4 channels for 4-color HCCQR (4-256)
@@ -15,7 +16,7 @@ extension ChannelCombos {
     */
    static func combos(channels: GrayReps) -> ChannelCombos {
       let layerCount: Int = BoolColumn.numOfLayers(numOfColors: channels.count)
-      let layerIndicies: [Int] = (0..<layerCount).compactMap { $0 } // [0,1] for 4-color-HCCQR ⚠️️ this uses compactmap, because lint gives a warning for regular map, and other alternatives doesn't work inside array extension
+      let layerIndicies: [Int] = (0..<layerCount).map { $0 } // [0, 1] for 4-color-HCCQR ⚠️️ this uses compactmap, because lint gives a warning for regular map, and other alternatives doesn't work inside array extension
       let boolColumn: BoolColumn = .sequence(channels.count)
       let channelCombinations: [[Int]] = layerIndicies.map { rowIdx(col: boolColumn, layerIdx: $0) }
       return channelCombinations.map { (channelCombination: [Int]) in

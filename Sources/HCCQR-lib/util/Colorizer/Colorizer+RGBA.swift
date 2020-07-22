@@ -35,8 +35,6 @@ extension Colorizer {
             }
          }
       }
-      monoReps.deInit() // Avoids mem leak 
-      let rgbaImage: RGBARep = RGBARepModifier.scale(pixels: pixels, size: size, scale: config.scale)
-      return rgbaImage
+      return RGBARepModifier.scale(pixels: pixels, size: size, scale: config.scale)
    }
 }
