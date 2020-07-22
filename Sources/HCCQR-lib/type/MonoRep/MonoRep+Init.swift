@@ -30,12 +30,6 @@ extension MonoRep {
       // - Fixme: ⚠️️ Do we have to create the cgContext? can CIContext be created directly from pixeldata?
       guard let cgContext = CGContext(data: imageData, width: crop.width, height: crop.height, bitsPerComponent: 8, bytesPerRow: bytesPerRow, space: colorSpace, bitmapInfo: RGBARep.bitmapInfo) else { throw NSError(domain: "rgbaImage - Unable to create rgbaImage", code: 0) }
       let context: CIContext = .init(cgContext: cgContext, options: nil) // .init(options: nil)// = CIContext.init(cgContext: , options: )
-//      let context: CIContext = CIContext.render(_ image: CIImage,
-//                                    toBitmap data: UnsafeMutableRawPointer,
-//               rowBytes: Int,
-//               bounds: CGRect,
-//               format: CIFormat,
-//               colorSpace: CGColorSpace?)
       let fromExtent: CGRect = crop.cgRect
       context.draw(ciImg, in: ciImg.extent, from: fromExtent)
       let pixels: UnsafeMutableBufferPointer<Pixel> = .init(start: imageData, count: capacity)

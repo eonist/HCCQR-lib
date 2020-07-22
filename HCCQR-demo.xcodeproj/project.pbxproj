@@ -157,6 +157,7 @@
 		F1B698D7239E64E70085B3C9 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B698D6239E64E70085B3C9 /* View.swift */; };
 		F1B698E0239E6D410085B3C9 /* HCCQRVersionUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B698DF239E6D410085B3C9 /* HCCQRVersionUtil.swift */; };
 		F1B698E1239E6D410085B3C9 /* HCCQRVersionUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B698DF239E6D410085B3C9 /* HCCQRVersionUtil.swift */; };
+		F1BC216F24C89799002DF3CC /* RGBARep+Experiment2.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BC216E24C89799002DF3CC /* RGBARep+Experiment2.swift */; };
 		F1C094CC24C3307800970065 /* ParallelLoop in Frameworks */ = {isa = PBXBuildFile; productRef = F1C094CB24C3307800970065 /* ParallelLoop */; };
 		F1C094D224C3410700970065 /* TimeMeasure in Frameworks */ = {isa = PBXBuildFile; productRef = F1C094D124C3410700970065 /* TimeMeasure */; };
 		F1CF2D7A249380F8007ACC0E /* VC+HCCQR.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CF2D79249380F8007ACC0E /* VC+HCCQR.swift */; };
@@ -365,6 +366,7 @@
 		F1AF9D3523E2D7630085DA0C /* BufferRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BufferRect.swift; sourceTree = "<group>"; };
 		F1B698D6239E64E70085B3C9 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		F1B698DF239E6D410085B3C9 /* HCCQRVersionUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HCCQRVersionUtil.swift; sourceTree = "<group>"; };
+		F1BC216E24C89799002DF3CC /* RGBARep+Experiment2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RGBARep+Experiment2.swift"; sourceTree = "<group>"; };
 		F1BFEFD223A06899007F4261 /* ColorishTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorishTest.swift; sourceTree = "<group>"; };
 		F1CF2D79249380F8007ACC0E /* VC+HCCQR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VC+HCCQR.swift"; sourceTree = "<group>"; };
 		F1CF2D7B24938254007ACC0E /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
@@ -468,6 +470,7 @@
 			children = (
 				F146A53424AC70F500FE136C /* RGBARep+Experiment.swift */,
 				F146A52F24AC64CB00FE136C /* RGBARepParser+Experimental.swift */,
+				F1BC216E24C89799002DF3CC /* RGBARep+Experiment2.swift */,
 			);
 			path = experimental;
 			sourceTree = "<group>";
@@ -1337,6 +1340,7 @@
 				F149992924C886960027C918 /* Scale.swift in Sources */,
 				F1690AB424B2011D000EC61A /* HCCQRSetup+Getter.swift in Sources */,
 				F1690AA724B1F9B8000EC61A /* ColorPallete+Getter.swift in Sources */,
+				F1BC216F24C89799002DF3CC /* RGBARep+Experiment2.swift in Sources */,
 				F18E388324AE09D300F33947 /* CustomChannelScheme.swift in Sources */,
 				F1690ABC24B2015E000EC61A /* QRSetup.swift in Sources */,
 				F1E645A323940AC9008D2ABE /* UIImage+Extension.swift in Sources */,

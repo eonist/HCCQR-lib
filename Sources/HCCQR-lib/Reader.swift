@@ -45,6 +45,7 @@ extension Reader {
     *   - parallel: for single capture, parallel is fast, for sequence, parallel is slower
     */
    public static func data(image: Image, scheme: ChannelScheme = .default, parallel: Bool) throws -> QRReader.DataAndQuad {
+      // 🏀 add timeMeasure on this call, see if it taints the read benchamarking, if it does, use Buffer as testbed instead
       let rgbaRep: RGBARep = try RGBARepUtil.rgbaRep(image: image)
       return try Reader.data(rgbaRep: rgbaRep, scheme: scheme, parallel: parallel)
    }

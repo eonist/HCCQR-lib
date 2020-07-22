@@ -47,9 +47,10 @@ extension BufferUtil {
             pixels[i] = pixel
          }
       }
+      // - Fixme: ⚠️️ dealoc byteBuffer here
       let rgbaImage: RGBARep = .init(pixels: pixels, width: bufferRect.width, height: bufferRect.height)
       CVPixelBufferUnlockBaseAddress(buffer, CVPixelBufferLockFlags(rawValue: CVOptionFlags(0))) // release access for cpu reading
-      // - Fixme: ⚠️️ might want to wrap all this in autoreleasepool as well
+      // - Fixme: ⚠️️ might want to wrap all this in autoreleasepool as well, or is tha tmore for just cgimage?
       return rgbaImage
    }
 }
