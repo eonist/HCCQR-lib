@@ -8,8 +8,8 @@ import Foundation
  */
 public struct RGBARep {
    var pixels: UnsafeMutableBufferPointer<Pixel>
-   var width: Int
-   var height: Int
+   let width: Int
+   let height: Int
    /**
     * Creates a copy if you already have the pixels and width height
     * - Parameters:

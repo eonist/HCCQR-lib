@@ -64,7 +64,6 @@ extension Colorizer {
     *   - qrLayers: qr layers as CIImages
     */
    internal static func colorize(qrLayers: [CIImage], config: OutputConfig) -> RGBARep {
-      // 🏀 if we are only reading MonoReps, remove the mutable stuff in the struct
       let monoReps: MonoReps = qrLayers.compactMap { try? MonoRep.monoRep(ciImg: $0/*, crop: rect*/) }
       return colorize(monoReps: monoReps, config: config)
    }

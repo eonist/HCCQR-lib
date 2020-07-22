@@ -12,7 +12,7 @@ final class PixelParser {
     * - Discussion: the problem with this method is that one channel can be totally off and other can be exact same and it still return true, it should fail if one channel is totally off, but since we do the bool assert in conjunction with this method, then it works
     * - Discussion: so the red channel is always dominating, green is weakest etc. Look into this phenomenome, some grayscale conversion algos account for this etc
     * - Fixme: ⚠️️ figure out how to divide a value that is bigger than UINT8.max etc and then divide it etc
-    * - Fixme: ⚠️️ Maybe optimize this methods somehow? research? COnverting to Int is not optimal
+    * - Fixme: ⚠️️ Maybe optimize this methods somehow? research? Converting to Int is not optimal
     * - Fixme: ⚠️️ It might be the case that if we should also limit the combined values of difference. say if R,B combined are more than 50% off, then its not a match. etc. It might be valuable to make advance tests, of how to match colors
     * - Fixme: ⚠️️ rename to commonality, correlation, parity? 
     * - Important: ⚠️️⚠️️⚠️️ has to be used in conjunction with the isColorish method, since this only returns the intensity of the output pixel, and is only valid if the isColorish method is within thresholds etc

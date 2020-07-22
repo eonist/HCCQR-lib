@@ -625,7 +625,6 @@
 				F1240F6A23B4E01400ECD116 /* Splitter.swift */,
 				F1F3E04923BA1CA200D367F1 /* Extractor.swift */,
 				F181F11823B931D300145DEA /* Combiner.swift */,
-				F1E5DC0323F9800C00605775 /* BufferDebugger */,
 				F18A25DF23BB7F3900EF8151 /* BufferUtil */,
 				F168526A2213443700C27EAA /* Colorizer */,
 			);
@@ -693,6 +692,7 @@
 		F18A25DF23BB7F3900EF8151 /* BufferUtil */ = {
 			isa = PBXGroup;
 			children = (
+				F1E5DC0323F9800C00605775 /* BufferDebugger */,
 				F18A25E023BB7F5F00EF8151 /* BufferUtil.swift */,
 				F18A25E323BB7F8600EF8151 /* BufferUtil+Image.swift */,
 				F18C7B4323BF7EF9009D9B29 /* BufferUtil+Getter.swift */,
@@ -881,9 +881,9 @@
 		F1E5DC0323F9800C00605775 /* BufferDebugger */ = {
 			isa = PBXGroup;
 			children = (
+				F1E5DC0423F9802300605775 /* BufferUtil+RGBA.swift */,
 				F18A25DC23BB7ED200EF8151 /* BufferUtil+Buffer.swift */,
 				F1E5DC0723F9929300605775 /* BufferUtil+CGImage.swift */,
-				F1E5DC0423F9802300605775 /* BufferUtil+RGBA.swift */,
 				F1133DDB24C4CE8A0097E5C9 /* BufferUtil+Data.swift */,
 			);
 			path = BufferDebugger;

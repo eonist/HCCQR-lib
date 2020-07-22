@@ -5,9 +5,9 @@ import Foundation
  * - Fixme: ⚠️️  store size as Size, skip width and height
  */
 struct MonoRep {
-   var pixels: [Bool]
-   var width: Int
-   var height: Int
+   let pixels: [Bool]
+   let width: Int
+   let height: Int
    /**
     * Creates a copy if you already have the pixels and width height
     * - Parameters:

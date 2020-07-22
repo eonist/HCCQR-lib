@@ -7,8 +7,8 @@ import Foundation
  */
 public struct GrayRep {
    var pixels: UnsafeMutableBufferPointer<UInt8>
-   var width: Int
-   var height: Int
+   let width: Int
+   let height: Int
    /**
     * Creates a copy if you already have the pixels and width height
     * - Parameters:
