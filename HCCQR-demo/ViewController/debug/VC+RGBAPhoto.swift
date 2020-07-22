@@ -45,7 +45,6 @@ extension ViewController {
          case let .unableToExtractQRData(msg, ciImage, colorChannels):
             Swift.print("⚠️️ onReadComplete - unableToExtractQRData reason: \(msg) ⚠️️")
             _ = { // look at color-channel when failed
-               // 🏀 take a look at the QRImages that are produced
                let colorChannel: GrayRep = colorChannels[3]
                Swift.print("colorChannel.capacity:  \(colorChannel.capacity)")
                let channelImg: CIImage = GrayRepParser.ciImage(grayRep: colorChannel)

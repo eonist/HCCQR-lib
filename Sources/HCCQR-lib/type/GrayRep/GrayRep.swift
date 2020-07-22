@@ -3,6 +3,7 @@ import Foundation
  * We extrate data from HCCQR-images by splitting image into grayScale images, then we composite them into QR-Image representations, and then we get data from the qr images, and combine the qr data into one data item
  * - Note: A grid of grayscale pixels
  * - Fixme: ⚠️️ You have to dealocate the memory at some point, see: https://stackoverflow.com/questions/34750166/how-to-use-unsafemutablebufferpointer
+ * - Fixme: ⚠️️ maybe create a UnsafeBufferPointer aswell for when the rep do not need to be mutated? may be faster?
  */
 public struct GrayRep {
    var pixels: UnsafeMutableBufferPointer<UInt8>

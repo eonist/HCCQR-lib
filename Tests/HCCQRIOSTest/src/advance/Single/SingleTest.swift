@@ -20,7 +20,7 @@ extension SingleTest {
       return .init(qr: qrSetup, output: output)
    }()
    /**
-    * Test
+    * Test single write & read
     */
    internal static func test() -> Bool {
       guard let randomData: Data = HCCQRStringData.randomData(setup: singleSetup) else { return false }

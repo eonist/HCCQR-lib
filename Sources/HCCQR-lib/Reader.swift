@@ -3,6 +3,7 @@ import QR_lib
 import QuartzCore
 import CoreImage
 import ParallelLoop
+import TimeMeasure
 /**
  * Reads HCCQR into binary data
  */
@@ -45,8 +46,11 @@ extension Reader {
     *   - parallel: for single capture, parallel is fast, for sequence, parallel is slower
     */
    public static func data(image: Image, scheme: ChannelScheme = .default, parallel: Bool) throws -> QRReader.DataAndQuad {
-      // 🏀 add timeMeasure on this call, see if it taints the read benchamarking, if it does, use Buffer as testbed instead
-      let rgbaRep: RGBARep = try RGBARepUtil.rgbaRep(image: image)
+      let (rgbaRepresentation, time): (RGBARep?, Double) = TimeMeasure.timeElapsed { // adds timeMeasure on this call, see if it taints the read benchamarking, if it does, use Buffer as testbed instead
+         /*let rgbaRep: RGBARep = */try? RGBARepUtil.rgbaRep(image: image)
+      }
+      Swift.print("Image to rgbaRep time:  \(time)")
+      guard let rgbaRep = rgbaRepresentation else { throw NSError(domain: "err creating rgbaRep", code: 0) }
       return try Reader.data(rgbaRep: rgbaRep, scheme: scheme, parallel: parallel)
    }
 }

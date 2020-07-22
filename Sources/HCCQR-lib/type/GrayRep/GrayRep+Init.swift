@@ -25,9 +25,12 @@ extension GrayRep {
     *   - size: the size you want to us ein the GrayScaleRep
     */
    static func grayRep(pixels: [UInt8], size: Size) -> GrayRep {
-      let unsafePixels: UnsafeMutableBufferPointer<UInt8> = .allocate(capacity: pixels.count)
-      _ = unsafePixels.initialize(from: pixels)
-      return .init(pixels: unsafePixels, width: size.width, height: size.height)
+//      let buffer = UnsafeBufferPointer(start: cFloatArrayPtr, count: size)
+//      var reconstructedFloats = Array(buffer)
+      let unSafePixels: UnsafeMutableBufferPointer<UInt8> = .init(start: .allocate(capacity: pixels.count), count: pixels.count)
+//      let unsafePixels: UnsafeMutableBufferPointer<UInt8> =
+//      _ = unsafePixels.initialize(from: pixels)
+      return .init(pixels: unSafePixels, width: size.width, height: size.height)
    }
    /**
     * Returns empty grayScale-rep
@@ -38,7 +41,6 @@ extension GrayRep {
     *   - size: the size of the returned GrayScaleRep
     */
    static func grayRep(capacity: Int, size: Size) -> GrayRep {
-      let unsafePixels: UnsafeMutableBufferPointer<UInt8> = .allocate(capacity: capacity)
-      return .init(pixels: unsafePixels, width: size.width, height: size.height)
+      .init(pixels: .allocate(capacity: capacity), width: size.width, height: size.height)
    }
 }

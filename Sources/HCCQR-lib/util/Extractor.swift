@@ -17,8 +17,7 @@ extension Extractor {
     *   - rgbaRep: target to derive channels from (GrayScaleRepresentations representing the channels R,G,B)
     *   - scheme: rule-set for the splitting process
     * - Returns: the luminocity of each Color as a Grayscale representation
-    * - Note: grayscale is better for QR to read than monotone (probably)
-    * - Fixme: ⚠️️ might be more efficient with striding for 16-colors ++
+    * - Note: grayscale is better for QR to read than monotone (possibly)
     * - Fixme: ⚠️️ we could use unmanaged pointer with capacity as well, might be faster
     * - Fixme: ⚠️️ Skip extracting the white channel, as it's not used when we later combine color channels
     */
