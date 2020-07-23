@@ -3,6 +3,8 @@
 
 import PackageDescription
 
+let optimize = [SwiftSetting.unsafeFlags(["-cross-module-optimization", "-O"])]
+
 let package = Package(
     name: "HCCQR-lib",
     platforms: [.iOS(.v13), .macOS(.v10_15)],
@@ -26,10 +28,12 @@ let package = Package(
         .target(
             name: "HCCQR-lib",
             dependencies: ["QR-lib", "ResultSugar", "ParallelLoop", "TimeMeasure"],
-            swiftSettings: [.unsafeFlags(["-O"])]
+            swiftSettings: optimize
          ),
         .testTarget(
             name: "HCCQRIOSTest",
-            dependencies: ["HCCQR-lib", "QR-lib", "ResultSugar", "ResourceHelper", "ParallelLoop", "TimeMeasure"])
+            dependencies: ["HCCQR-lib", "QR-lib", "ResultSugar", "ResourceHelper", "ParallelLoop", "TimeMeasure"],
+            swiftSettings: optimize
+         )
     ]
 )
