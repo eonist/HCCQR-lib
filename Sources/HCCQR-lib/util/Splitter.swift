@@ -36,6 +36,7 @@ extension Splitter {
       let (combinations, combineTime): ([CIImage], Double) = TimeMeasure.timeElapsed {
          channelCombos.concurrentCompactMap(parallel: parallel) { Combiner.combine(grayReps: $0) } // combine the combinations to produce layers of qr-images
       }
+      grayReps.deInit()
       Swift.print("combineTime:  \(combineTime)")
       return combinations
    }

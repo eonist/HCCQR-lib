@@ -34,6 +34,9 @@ extension MonoRep {
       context.draw(ciImg, in: ciImg.extent, from: fromExtent)
       let pixels: UnsafeBufferPointer<Pixel> = .init(start: imageData, count: capacity)
       defer { pixels.deallocate() } // dealloc this, as we have no more use for it
+//      context?.clearCaches() // new   ⚠️️
+//      context = nil
+//      cgContext = nil
       return .init(pixels: pixels.map { $0.isWhite }, width: crop.width, height: crop.height)
    }
 }
