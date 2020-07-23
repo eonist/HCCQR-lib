@@ -2,7 +2,12 @@ import QR_lib
 import QuartzCore
 import CoreGraphics
 import CoreImage
+#if canImport(HCCQR_lib)
 @testable import HCCQR_lib
+#elseif canImport(HCCQR_demo_mac)
+@testable import HCCQR_demo_mac
+#endif
+
 import TimeMeasure
 /**
  * Test reading and writing
@@ -64,3 +69,4 @@ extension SingleTest {
       }
    }
 }
+

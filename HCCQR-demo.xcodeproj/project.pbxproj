@@ -234,6 +234,8 @@
 		F1FE7E0024A0A7360094B1BD /* VC+Split.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FE7DFF24A0A7360094B1BD /* VC+Split.swift */; };
 		F1FE7E0224A0A9AF0094B1BD /* VC+Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FE7E0124A0A9AF0094B1BD /* VC+Grid.swift */; };
 		F1FE7E0424A1D5360094B1BD /* CIImageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FE7E0324A1D5360094B1BD /* CIImageTest.swift */; };
+		F1FED18424C9930C00AFDB64 /* TestsMac.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FED18324C9930C00AFDB64 /* TestsMac.swift */; };
+		F1FED18B24C9946900AFDB64 /* SingleTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E67CAE24BB533800EB90F6 /* SingleTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -250,6 +252,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = F18A52DA21790F8A003F8C13;
 			remoteInfo = "HCCQR-lib";
+		};
+		F1FED18624C9930C00AFDB64 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F18A52D321790F8A003F8C13 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F17F5B84221A267600383955;
+			remoteInfo = "HCCQR-demo-mac";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -395,6 +404,9 @@
 		F1FE7DFF24A0A7360094B1BD /* VC+Split.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VC+Split.swift"; sourceTree = "<group>"; };
 		F1FE7E0124A0A9AF0094B1BD /* VC+Grid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VC+Grid.swift"; sourceTree = "<group>"; };
 		F1FE7E0324A1D5360094B1BD /* CIImageTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CIImageTest.swift; sourceTree = "<group>"; };
+		F1FED18124C9930C00AFDB64 /* TestsMac.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestsMac.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F1FED18324C9930C00AFDB64 /* TestsMac.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestsMac.swift; sourceTree = "<group>"; };
+		F1FED18524C9930C00AFDB64 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -423,6 +435,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		F1E5710323A3EF3100E090BB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F1FED17E24C9930C00AFDB64 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -715,6 +734,7 @@
 			isa = PBXGroup;
 			children = (
 				F1484AD623AE657F001E5CE3 /* HCCQR-lib.entitlements */,
+				F1FED18224C9930C00AFDB64 /* TestsMac */,
 				F1E5711023A3EF5000E090BB /* Tests */,
 				F1E645F423942E9D008D2ABE /* Sources */,
 				F18A52DD21790F8A003F8C13 /* HCCQR-demo */,
@@ -731,6 +751,7 @@
 				F18A52DB21790F8A003F8C13 /* HCCQR-lib.app */,
 				F17F5B85221A267600383955 /* HCCQR-demo-mac.app */,
 				F1E5710623A3EF3100E090BB /* HCCQRIOSTest.xctest */,
+				F1FED18124C9930C00AFDB64 /* TestsMac.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -971,6 +992,15 @@
 			path = image;
 			sourceTree = "<group>";
 		};
+		F1FED18224C9930C00AFDB64 /* TestsMac */ = {
+			isa = PBXGroup;
+			children = (
+				F1FED18324C9930C00AFDB64 /* TestsMac.swift */,
+				F1FED18524C9930C00AFDB64 /* Info.plist */,
+			);
+			path = TestsMac;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1047,13 +1077,31 @@
 			productReference = F1E5710623A3EF3100E090BB /* HCCQRIOSTest.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		F1FED18024C9930C00AFDB64 /* TestsMac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F1FED18824C9930C00AFDB64 /* Build configuration list for PBXNativeTarget "TestsMac" */;
+			buildPhases = (
+				F1FED17D24C9930C00AFDB64 /* Sources */,
+				F1FED17E24C9930C00AFDB64 /* Frameworks */,
+				F1FED17F24C9930C00AFDB64 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F1FED18724C9930C00AFDB64 /* PBXTargetDependency */,
+			);
+			name = TestsMac;
+			productName = TestsMac;
+			productReference = F1FED18124C9930C00AFDB64 /* TestsMac.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		F18A52D321790F8A003F8C13 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1150;
+				LastSwiftUpdateCheck = 1160;
 				LastUpgradeCheck = 1120;
 				ORGANIZATIONNAME = FutureLab;
 				TargetAttributes = {
@@ -1066,6 +1114,10 @@
 					F1E5710523A3EF3100E090BB = {
 						CreatedOnToolsVersion = 11.2;
 						TestTargetID = F18A52DA21790F8A003F8C13;
+					};
+					F1FED18024C9930C00AFDB64 = {
+						CreatedOnToolsVersion = 11.6;
+						TestTargetID = F17F5B84221A267600383955;
 					};
 				};
 			};
@@ -1092,6 +1144,7 @@
 				F18A52DA21790F8A003F8C13 /* HCCQR-lib */,
 				F17F5B84221A267600383955 /* HCCQR-demo-mac */,
 				F1E5710523A3EF3100E090BB /* HCCQRIOSTest */,
+				F1FED18024C9930C00AFDB64 /* TestsMac */,
 			);
 		};
 /* End PBXProject section */
@@ -1117,6 +1170,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		F1E5710423A3EF3100E090BB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F1FED17F24C9930C00AFDB64 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1396,6 +1456,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F1FED17D24C9930C00AFDB64 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F1FED18424C9930C00AFDB64 /* TestsMac.swift in Sources */,
+				F1FED18B24C9946900AFDB64 /* SingleTest.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -1424,6 +1493,11 @@
 			isa = PBXTargetDependency;
 			target = F18A52DA21790F8A003F8C13 /* HCCQR-lib */;
 			targetProxy = F1E5710B23A3EF3100E090BB /* PBXContainerItemProxy */;
+		};
+		F1FED18724C9930C00AFDB64 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F17F5B84221A267600383955 /* HCCQR-demo-mac */;
+			targetProxy = F1FED18624C9930C00AFDB64 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1705,6 +1779,52 @@
 			};
 			name = Release;
 		};
+		F1FED18924C9930C00AFDB64 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = B5CC9TD7P7;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INFOPLIST_FILE = TestsMac/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = co.passbook.TestsMac;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HCCQR-demo-mac.app/Contents/MacOS/HCCQR-demo-mac";
+			};
+			name = Debug;
+		};
+		F1FED18A24C9930C00AFDB64 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = B5CC9TD7P7;
+				INFOPLIST_FILE = TestsMac/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = co.passbook.TestsMac;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HCCQR-demo-mac.app/Contents/MacOS/HCCQR-demo-mac";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1740,6 +1860,15 @@
 			buildConfigurations = (
 				F1E5710E23A3EF3100E090BB /* Debug */,
 				F1E5710F23A3EF3100E090BB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F1FED18824C9930C00AFDB64 /* Build configuration list for PBXNativeTarget "TestsMac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F1FED18924C9930C00AFDB64 /* Debug */,
+				F1FED18A24C9930C00AFDB64 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
