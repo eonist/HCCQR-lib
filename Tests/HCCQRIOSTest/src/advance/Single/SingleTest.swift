@@ -20,8 +20,8 @@ extension SingleTest {
     * Setup for single test
     */
    private static let singleSetup: HCCQRSetup = {
-      let qrSetup: QRSetup = .init(qrVersion: .v12, ecLevel: .l)
-      let output: OutputConfig = .init(scale: .init(6, 2), palette: .cp64(useDarkMode: false))
+      let qrSetup: QRSetup = .init(qrVersion: .v30, ecLevel: .l)
+      let output: OutputConfig = .init(scale: .init(6, 2), palette: .cp256(useDarkMode: false))
       return .init(qr: qrSetup, output: output)
    }()
    /**
@@ -59,7 +59,7 @@ extension SingleTest {
    private static func read(image: Image, data: Data) -> Bool {
 //      autoreleasepool { // new
          do {
-            let dataAndQuad: QRReader.DataAndQuad = try Reader.data(image: image, scheme: .cs64, parallel: true)
+            let dataAndQuad: QRReader.DataAndQuad = try Reader.data(image: image, scheme: .cs256, parallel: true)
             let isValid: Bool = data == dataAndQuad.qrData
             Swift.print("data?.count:  \(String(describing: dataAndQuad.qrData.count))")
             Swift.print("SingleTest isValid:  \(isValid ? "✅" : "🚫")")

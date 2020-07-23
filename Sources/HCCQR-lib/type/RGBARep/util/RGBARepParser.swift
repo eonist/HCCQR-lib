@@ -11,10 +11,10 @@ public final class RGBARepParser {
     *   - rgbaImage: rgbaRep to convert to image
     */
    static func image(rgbaRep: RGBARep, scale: CGFloat) throws -> Image {
-      try autoreleasepool { // Ref: ⚠️️ https://stackoverflow.com/questions/25860942/is-it-necessary-to-use-autoreleasepool-in-a-swift-program
+//      try autoreleasepool { // Ref: ⚠️️ https://stackoverflow.com/questions/25860942/is-it-necessary-to-use-autoreleasepool-in-a-swift-program
          let cgImg: CGImage = try cgImage(rgbaRep: rgbaRep)
          return ImageUtil.image(cgImage: cgImg, scale: scale) // Convert CGImage to UIImage
-      }
+//      }
    }
    /**
     * RGBAImage -> CIImage
@@ -25,14 +25,14 @@ public final class RGBARepParser {
     */
    static func ciImg2(rgbaRep: RGBARep, useGrayscale: Bool) throws -> CIImage {
       // Swift.print("ciImg2")
-      return autoreleasepool { // ⚠️️ testing to get rid of mem leak ⚠️️ new, doesnt seem to have much effect
+//      return autoreleasepool { // ⚠️️ testing to get rid of mem leak ⚠️️ new, doesnt seem to have much effect
          let format: CIFormat = .RGBA8 //.BGRA8 // .RGBA8// .ARGB8//.ABGR8// // A pixel format constant. See Pixel Formats.
          let colorSpace: CGColorSpace = useGrayscale ? CGColorSpaceCreateDeviceGray() : CGColorSpaceCreateDeviceRGB()//CGColorSpaceCreateDeviceRGB() // The color space that the image is defined in. It must be a Quartz 2D color space (CGColorSpace). Pass nil for images that don’t contain color data (such as elevation maps, normal vector maps, and sampled function tables).
          let bytesPerRow: Int = rgbaRep.size.width * 4
          let data: Data = .init(buffer: rgbaRep.pixels)
          let ciImg: CIImage = .init(bitmapData: data, bytesPerRow: bytesPerRow, size: CGSize(width: CGFloat(rgbaRep.size.width), height: CGFloat(rgbaRep.size.height)), format: format, colorSpace: colorSpace)
          return ciImg
-      }
+//      }
    }
 }
 /**
@@ -56,7 +56,7 @@ extension RGBARepParser {
     * - Parameter rgbaRep: The rep to convert into cgImage
     */
    internal static func cgImage(rgbaRep: RGBARep) throws -> CGImage {
-      try autoreleasepool {  // ⚠️️ testing to get rid of mem leak ⚠️️
+//      try autoreleasepool {  // ⚠️️ testing to get rid of mem leak ⚠️️
          let deviceColorSpace: CGColorSpace = CGColorSpaceCreateDeviceRGB()
          let bitmapInfo: CGBitmapInfo = .init(rawValue: CGBitmapInfo.byteOrder32Big.rawValue | CGImageAlphaInfo.noneSkipLast.rawValue) // premultipliedLast also works
 //         var bitmapInfo: UInt32 = CGBitmapInfo.byteOrder32Big.rawValue
@@ -69,7 +69,7 @@ extension RGBARepParser {
          let bitsPerPixel: Int = bytesPerPixel * bitsPerComponent
          guard let image = CGImage(width: rgbaRep.width, height: rgbaRep.height, bitsPerComponent: bitsPerComponent, bitsPerPixel: bitsPerPixel, bytesPerRow: bytesPerRow, space: deviceColorSpace, bitmapInfo: bitmapInfo, provider: cgDataProvider, decode: nil, shouldInterpolate: true, intent: CGColorRenderingIntent.defaultIntent) else { throw CGImageErr.unableToCreateCGImage }
          return image
-      }
+//      }
    }
 }
 /**
