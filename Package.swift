@@ -3,7 +3,7 @@
 
 import PackageDescription
 
-let optimize = [SwiftSetting.unsafeFlags(["-cross-module-optimization", "-O"], .when(configuration: .release))]
+// let optimize = [SwiftSetting.unsafeFlags(["-cross-module-optimization", "-O"], .when(configuration: .release))]
 
 let package = Package(
     name: "HCCQR-lib",
@@ -27,13 +27,13 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages which this package depends on.
         .target(
             name: "HCCQR-lib",
-            dependencies: ["QR-lib", "ResultSugar", "ParallelLoop", "TimeMeasure"],
-            swiftSettings: optimize
+            dependencies: ["QR-lib", "ResultSugar", "ParallelLoop", "TimeMeasure"]
+            // swiftSettings: optimize
          ),
         .testTarget(
             name: "HCCQRIOSTest",
-            dependencies: ["HCCQR-lib", "QR-lib", "ResultSugar", "ResourceHelper", "ParallelLoop", "TimeMeasure"],
-            swiftSettings: optimize
+            dependencies: ["HCCQR-lib", "QR-lib", "ResultSugar", "ResourceHelper", "ParallelLoop", "TimeMeasure"]
+            // swiftSettings: optimize
          )
     ]
 )
