@@ -3,7 +3,7 @@
 
 import PackageDescription
 
-let optimize = [SwiftSetting.unsafeFlags(["-cross-module-optimization", "-O"], .when(configuration: .debug))]
+let optimize = [SwiftSetting.unsafeFlags(["-cross-module-optimization", "-O"], .when(configuration: .release))]
 
 let package = Package(
     name: "HCCQR-lib",
