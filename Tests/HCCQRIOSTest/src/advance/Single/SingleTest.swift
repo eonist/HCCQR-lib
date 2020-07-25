@@ -2,7 +2,7 @@ import QR_lib
 import QuartzCore
 import CoreGraphics
 import CoreImage
-#if canImport(HCCQR_lib)
+#if canImport(HCCQR_lib) // this is to allow tests to run from macos target in xcode
 @testable import HCCQR_lib
 #elseif canImport(HCCQR_demo_mac)
 @testable import HCCQR_demo_mac

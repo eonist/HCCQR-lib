@@ -17,12 +17,14 @@ import TimeMeasure
 final class BulkTest {}
 
 extension BulkTest {
+   static let count: Int = 200
+   static let (pallete, scheme): (ColorPalette, ChannelScheme) = (.cp8(), .cs8) // the mappings for writing / reading
    /**
     * - Important: ⚠️️ remember to match the colorPallete and channelPallet
     */
    private static let bulkSetup: HCCQRSetup = {
       let qrSetup: QRSetup = .init(qrVersion: .v4, ecLevel: .l)
-      let output: OutputConfig = .init(scale: .init(6, 2), palette: .cp8(useDarkMode: false))
+      let output: OutputConfig = .init(scale: .init(6, 2), palette: pallete)
       return .init(qr: qrSetup, output: output)
    }()
    /**
@@ -30,7 +32,7 @@ extension BulkTest {
     */
    static func test() -> Bool {
       let rgbaReps: [RGBARep] = writeMany(setup: bulkSetup)
-      let didSuccessfullyReadMany: Bool = readMany(rgbaReps: rgbaReps, scheme: .cs8)
+      let didSuccessfullyReadMany: Bool = readMany(rgbaReps: rgbaReps, scheme: scheme)
       Swift.print("didSuccessfullyReadMany: \(didSuccessfullyReadMany ? "✅" : "🚫")")
       return didSuccessfullyReadMany
    }
@@ -43,9 +45,9 @@ extension BulkTest {
     * Bulk write many
     */
    internal static func writeMany(setup: HCCQRSetup) -> [RGBARep] {
-      let randomData: [Data] = (0..<300).compactMap { _ in HCCQRStringData.randomData(setup: setup) } // Num of items to load, we create this outside, because we dont want to time the creation of it
+      let randomData: [Data] = (0..<count).compactMap { _ in HCCQRStringData.randomData(setup: setup) } // Num of items to load, we create this outside, because we dont want to time the creation of it
       let (payloads, time): ([RGBARep], Double) = TimeMeasure.timeElapsed {
-         randomData.batches(spread: 20).concurrentFlatMap { batch in
+         randomData.batches(spread: 8).concurrentFlatMap { batch in
             batch.compactMap {
                do {
                   return try Writer.rgbaRep(data: $0, config: setup, parallel: false)
@@ -61,13 +63,13 @@ extension BulkTest {
    }
    /**
     * Bulk read many
+    * - Note: this test is used by the bulk-photo-test as well
+    * - Note: putting this loop on concurrent speeds up things 2x
     */
    internal static func readMany(rgbaReps: [RGBARep], scheme: ChannelScheme) -> Bool {
       let (payloads, time): ([QRReader.DataAndQuad], Double) = TimeMeasure.timeElapsed {
-         // - Fixme: ⚠️️ putting this loop on concurrent speeds up things 2x 👌🎉
-         let batches = rgbaReps.divideBy(by: 30)// doing striding has minimal effect on just 100 items
-         let res: [[QRReader.DataAndQuad]] = batches.concurrentMap { batch in
-            let result: [QRReader.DataAndQuad] = batch.compactMap { rgbaRep in
+         rgbaReps.batches(spread: 8).concurrentFlatMap { batch in
+            batch.compactMap { rgbaRep in
                do {
                   return try Reader.data(rgbaRep: rgbaRep, scheme: scheme, parallel: false)
                } catch {
@@ -75,9 +77,7 @@ extension BulkTest {
                   return nil
                }
             }
-            return result
          }
-         return res.flatMap { $0 }
       }
       Swift.print("Read many time:  \(time)")
       Swift.print("Payloads.count:  \(payloads.count)")

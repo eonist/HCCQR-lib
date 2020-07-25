@@ -15,6 +15,7 @@ final class BulkPhotoTesting {}
  * - 4. Asserts that all images was read successfully
  */
 extension BulkPhotoTesting {
+   static let count: Int = 40
    /**
     * writeMany
     * - Note: Convert photo's into RGBARep's
@@ -24,7 +25,7 @@ extension BulkPhotoTesting {
       // Swift.print("writeMany()")
       let path: String = ResourceHelper.projectRootURL(projectRef: #file, fileName: "temp.bundle/HCCQR2.png").path //HCCQR2.png, HCCQR12.png,HCCQR13.jpg
       let (rgbaReps, time): ([RGBARep], Double) = TimeMeasure.timeElapsed {
-         Array(0..<40).concurrentCompactMap { _ in
+         Array(0..<count).concurrentCompactMap { _ in
             guard let image = Image(contentsOfFile: path) else { Swift.print("Err creating img at path: \(path)"); return nil }
             //         Swift.print("image.size:  \(image.size)")
             guard let rgbaImage: RGBARep = try? BufferUtil.rgbaRep(image: image) else { Swift.print("err getting rgbImage"); return nil }
@@ -33,7 +34,7 @@ extension BulkPhotoTesting {
       }
       Swift.print("BufferUtil.rgbaRep time:  \(time)")
       let didSuccessfullyReadMany: Bool = BulkTest.readMany(rgbaReps: rgbaReps, scheme: .scheme(scheme: .cs4, darkMode: true))
-      Swift.print("didSuccessfullyReadMany: \(didSuccessfullyReadMany ? "✅" : "🚫")")
+      Swift.print("Bulk photo test didSuccessfullyReadMany: \(didSuccessfullyReadMany ? "✅" : "🚫")")
       return didSuccessfullyReadMany
    }
 }

@@ -38,11 +38,12 @@ extension Colorizer {
          }
       }
       // - Fixme: ⚠️️ move the scale into the above array, benchmark first tho (scaling adds about 10% to colorization process)
-      // - Fixme: ⚠️️ to bake this into the above array, you will probably have to start fresh with pen and paper and try to understand the problem better, then try a few different things, then maybe build 4 pix grid that yo uscale up, to debug easier etc
+      // - Fixme: ⚠️️ to bake this into the above array, you will probably have to start fresh with pen and paper and try to understand the problem better, then try a few different things, then maybe build 4 pix grid that you uscale up, to debug easier etc
       let (rgbaRep, time): (RGBARep, Double) = TimeMeasure.timeElapsed {
          /*let rgbaRep: RGBARep = */RGBARepModifier.scale(pixels: pixels, size: size, scale: config.scale)
       }
-      Swift.print("scale time:  \(time)")
+      _ = time
+//      Swift.print("scale time:  \(time)")
       return rgbaRep
    }
 }

@@ -16,7 +16,7 @@ extension ScaleTesting {
     * - Fixme: ⚠️️  add ImageView to this repo and add the two lines bellow
     */
    static func testScalingRGBARep() -> Int? {
-      Swift.print("⚠️️ broken")
+//      Swift.print("⚠️️ broken")
       let config: QRConfig = .init(.v4, .byte, .l)
       let image: Image? = { // Test QR scaling
          let stringCount: Int = config.maxChar
