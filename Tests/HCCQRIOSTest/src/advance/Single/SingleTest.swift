@@ -16,12 +16,13 @@ import TimeMeasure
 final class SingleTest {}
 
 extension SingleTest {
+   static let (pallete, scheme): (ColorPalette, ChannelScheme) = (.cp64(), .cs64) // the mappings for writing / reading
    /**
     * Setup for single test
     */
    private static let singleSetup: HCCQRSetup = {
       let qrSetup: QRSetup = .init(qrVersion: .v6, ecLevel: .l)
-      let output: OutputConfig = .init(scale: .init(6, 2), palette: .cp64(useDarkMode: false))
+      let output: OutputConfig = .init(scale: .init(6, 2), palette: pallete)
       return .init(qr: qrSetup, output: output)
    }()
    /**
@@ -59,7 +60,7 @@ extension SingleTest {
    private static func read(image: Image, data: Data) -> Bool {
 //      autoreleasepool { // new
          do {
-            let dataAndQuad: QRReader.DataAndQuad = try Reader.data(image: image, scheme: .cs64, parallel: true)
+            let dataAndQuad: QRReader.DataAndQuad = try Reader.data(image: image, scheme: scheme, parallel: true)
             let isValid: Bool = data == dataAndQuad.qrData
             Swift.print("data?.count:  \(String(describing: dataAndQuad.qrData.count))")
             Swift.print("SingleTest isValid:  \(isValid ? "✅" : "🚫")")
