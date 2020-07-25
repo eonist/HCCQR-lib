@@ -23,20 +23,20 @@ extension MonoRep {
    internal static func monoRep(ciImg: CIImage, crop: BufferRect? = nil) throws -> MonoRep {
       let crop: BufferRect = crop ?? .init(0, 0, Int(ciImg.extent.width), Int(ciImg.extent.height))
       let colorSpace: CGColorSpace = CGColorSpaceCreateDeviceRGB()
-//      let size: Size = (width: Int(ciImg.extent.width), height: Int(ciImg.extent.height))
+      //      let size: Size = (width: Int(ciImg.extent.width), height: Int(ciImg.extent.height))
       let capacity: Int = crop.width * crop.height
       let bytesPerRow: Int = crop.width * 4 // We multiply per 4 because of the 4 channels, RGBA
       let imageData: UnsafeMutablePointer<Pixel> = .allocate(capacity: capacity)
       // - Fixme: ⚠️️ Do we have to create the cgContext? can CIContext be created directly from pixeldata?
       guard let cgContext = CGContext(data: imageData, width: crop.width, height: crop.height, bitsPerComponent: 8, bytesPerRow: bytesPerRow, space: colorSpace, bitmapInfo: RGBARep.bitmapInfo) else { throw NSError(domain: "rgbaImage - Unable to create rgbaImage", code: 0) }
-      let context: CIContext = .init(cgContext: cgContext, options: nil) // .init(options: nil)// = CIContext.init(cgContext: , options: )
+      // autoreleasepool avoids contextleak, might be a bit slower than other solution
+      let context: CIContext = autoreleasepool {
+         .init(cgContext: cgContext, options: nil)
+      }
       let fromExtent: CGRect = crop.cgRect
       context.draw(ciImg, in: ciImg.extent, from: fromExtent)
       let pixels: UnsafeBufferPointer<Pixel> = .init(start: imageData, count: capacity)
       defer { pixels.deallocate() } // dealloc this, as we have no more use for it
-//      context?.clearCaches() // new   ⚠️️
-//      context = nil
-//      cgContext = nil
       return .init(pixels: pixels.map { $0.isWhite }, width: crop.width, height: crop.height)
    }
 }

@@ -10,7 +10,7 @@ final class BulkPhotoTesting {}
 /**
  * Initiate test
  * - 1. Reads many images from disk
- * - 2. Converts these into RGBAImages
+ * - 2. Converts these into RGBAImage's
  * - 3. Converts the RGBAImages into data's
  * - 4. Asserts that all images was read successfully
  */
