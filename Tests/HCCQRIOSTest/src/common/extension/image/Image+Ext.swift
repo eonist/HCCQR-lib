@@ -14,14 +14,4 @@ extension Image {
    public func isEqualToImage(image: Image) -> Bool {
       self.pngData() == image.pngData()
    }
-   /**
-    * works better than ciImage() when dealing with qr based ciimages
-    */
-   public func ciImg() -> CIImage? {
-      #if os(macOS)
-      return ciImage()
-      #else
-      return ciImage
-      #endif
-   }
 }

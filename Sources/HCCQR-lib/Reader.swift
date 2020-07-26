@@ -46,7 +46,7 @@ extension Reader {
     */
    public static func data(image: Image, scheme: ChannelScheme = .default, parallel: Bool) throws -> QRReader.DataAndQuad {
       let (rgbaRepresentation, time): (RGBARep?, Double) = TimeMeasure.timeElapsed { // adds timeMeasure on this call, see if it taints the read benchamarking, if it does, use Buffer as testbed instead
-         /*let rgbaRep: RGBARep = */try? RGBARepUtil.rgbaRep(image: image)
+         /*let rgbaRep: RGBARep = */try? RGBARepUtil.rgbaRep(image: image) //
       }
       Swift.print("Image to rgbaRep time:  \(time)")
       guard let rgbaRep = rgbaRepresentation else { throw NSError(domain: "err creating rgbaRep", code: 0) }

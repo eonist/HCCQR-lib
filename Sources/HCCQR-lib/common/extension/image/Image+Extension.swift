@@ -32,6 +32,16 @@ extension Image {
 //      }
    }
    #endif
+   /**
+    * works better than ciImage() when dealing with qr based ciimages
+    */
+   public func ciImg() -> CIImage? {
+      #if os(macOS)
+      return ciImage()
+      #else
+      return ciImage
+      #endif
+   }
 }
 /**
  * Temp solution

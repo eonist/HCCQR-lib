@@ -39,11 +39,9 @@ internal final class ImageUtil {
     */
    static func cgImage(image: Image) -> CGImage? {
       #if os(iOS)
-      guard let cgImage = image.cgImage ?? image.cgImage() else { return nil }
-      return cgImage
+      return image.cgImage ?? image.cgImage()
       #elseif os(macOS)
-      guard let cgImage = /* image.cgImage ??*/ image.cgImage() else { return nil }
-      return cgImage
+      return image.cgImage()
       #else
       fatalError("other OS not supported")/*Other os etc*/
       #endif
@@ -55,7 +53,7 @@ internal final class ImageUtil {
 extension ImageUtil {
    /**
     * CIImage -> UIImage
-    * - NOTE: Helper method for QR images
+    * - Note: Helper method for QR images
     * - Fixme: ⚠️️ Make this throw
     */
    #if os(iOS)
