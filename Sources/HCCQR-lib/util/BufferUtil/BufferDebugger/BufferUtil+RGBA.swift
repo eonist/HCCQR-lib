@@ -14,7 +14,6 @@ extension BufferUtil {
     */
    public static func rgbaRep(image: Image) throws -> RGBARep {
       let imgBuffer: CVImageBuffer = try imageBuffer(image: image)
-      let bufferRect: BufferRect = CVImageBufferGetDisplayRect(imageBuffer: imgBuffer) // We have to provide the area we want to get data from
-      return try rgbaRep(buffer: imgBuffer, crop: bufferRect) /*, size: image.size, scale: image.scale*/
+      return try rgbaRep(buffer: imgBuffer, crop: imgBuffer.rect) // Rect -> We have to provide the area we want to get data from /*, size: image.size, scale: image.scale*/
    }
 }

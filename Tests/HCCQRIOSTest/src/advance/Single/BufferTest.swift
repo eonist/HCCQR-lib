@@ -4,8 +4,15 @@ import CoreImage
 import CoreVideo
 @testable import HCCQR_lib
 import QR_lib
+import TimeMeasure
 
 final class BufferTest {
+   static let (pallete, scheme): (ColorPalette, ChannelScheme) = (.cp64(), .cs64) // the mappings for writing / reading
+   static let setup: HCCQRSetup = {
+      let qrSetup: QRSetup = .init(qrVersion: .v6, ecLevel: .l)
+      let output: OutputConfig = .init(scale: .init(6, 2), palette: pallete)
+      return .init(qr: qrSetup, output: output)
+   }()
    /**
     * HCCQR -> RGBAImage
     * 1. Creates random HCCQR-Data
@@ -16,24 +23,38 @@ final class BufferTest {
     *  - Note: We just compare the data payload here, since FileHasher is not added as a dep, it could be added, since this is just test code
     */
    static func test() -> Bool {
-      let setup: HCCQRSetup = .init(qr: .init(qrVersion: .v4, ecLevel: .l), output: .init(scale: .init(6, 2), palette: .cp8()))
       guard let randomData = HCCQRStringData.randomData(setup: setup) else { Swift.print("unable to create data"); return false }
-      guard let image: Image = try? Writer.image(data: randomData, config: setup, parallel: true) else { return false }
-//      Swift.print("hccqrImage.size:  \(image.size) scale:  \(image.scale)") //      Swift.print("hccqrImage.cgImage()?.width:  \(hccqrImage.cgImage?.width)")
-//      guard let rgbaRep: RGBARep = try? BufferUtil.rgbaRep(image: image) else { Swift.print("err getting rgbImage"); return false }
-      guard let buffer = try? BufferUtil.imageBuffer(image: image) else { Swift.print("err"); return false }
+      guard let buffer: CVImageBuffer = write(data: randomData) else { return false }
+      let (isValid, time): (Bool, Double) = TimeMeasure.timeElapsed {
+         read(buffer: buffer, data: randomData)
+      }
+      Swift.print("read time:  \(time)")
+      Swift.print("BufferTest isValid:  \(isValid ? "✅" : "🚫")")
+      return isValid
+   }
+}
+extension BufferTest {
+   /**
+    * Write (Data -> Image -> Buffer)
+    */
+   private static func write(data: Data) -> CVImageBuffer? {
+      guard let image: Image = try? Writer.image(data: data, config: setup, parallel: true) else { return nil }
+      //      Swift.print("hccqrImage.size:  \(image.size) scale:  \(image.scale)") //      Swift.print("hccqrImage.cgImage()?.width:  \(hccqrImage.cgImage?.width)")
+      //      guard let rgbaRep: RGBARep = try? BufferUtil.rgbaRep(image: image) else { Swift.print("err getting rgbImage"); return false }
+      return try? BufferUtil.imageBuffer(image: image)
+   }
+   /**
+    * Read (Buffer -> Data)
+    */
+   private static func read(buffer: CVImageBuffer, data: Data) -> Bool {
       do {
-//         let size = CVImageBufferGetEncodedSize(buffer) // CVImageBufferGetDisplaySize, CVImageBufferGetCleanRect
-         let crop: BufferRect = CVImageBufferGetDisplayRect(imageBuffer: buffer)//.init(0, 0, Int(size.width), Int(size.height))
-//         Swift.print("crop:  \(crop)")
-         let payload: Reader.ReadPayload = try Reader.data(imageBuffer: buffer, crop: crop, scheme: .cs8, parallel: true)
-//         let dataAndQuad: QRReader.DataAndQuad = try Reader.data(rgbaRep: rgbaRep, scheme: .cs8) // Convert RGBAImage to Data
-//         Swift.print("dataAndQuad.qrData.count:  \(dataAndQuad.qrData.count)")
-//         Swift.print("randomData.count:  \(randomData.count)")
-         let isValid: Bool = randomData == payload.data
-//         Swift.print("data?.count:  \(String(describing: dataAndQuad.qrData.count))")
-         Swift.print("BufferTest isValid:  \(isValid ? "✅" : "🚫")")
-         return isValid
+         // let size = CVImageBufferGetEncodedSize(buffer) // CVImageBufferGetDisplaySize, CVImageBufferGetCleanRect
+         let payload: Reader.ReadPayload = try Reader.data(imageBuffer: buffer, crop: buffer.rect, scheme: scheme, parallel: true)
+         // let dataAndQuad: QRReader.DataAndQuad = try Reader.data(rgbaRep: rgbaRep, scheme: .cs8) // Convert RGBAImage to Data
+         // Swift.print("dataAndQuad.qrData.count:  \(dataAndQuad.qrData.count)")
+         // Swift.print("randomData.count:  \(randomData.count)")
+         // Swift.print("data?.count:  \(String(describing: dataAndQuad.qrData.count))")
+         return data == payload.data
       } catch {
          Swift.print("⚠️️ error:  \(error)")
          return false

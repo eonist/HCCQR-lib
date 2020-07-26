@@ -25,9 +25,7 @@ final class BulkBufferTest {
       let (payloads, time): ([Reader.ReadPayload], Double) = TimeMeasure.timeElapsed {
          buffers.batches(spread: 10).concurrentFlatMap { batch in
             batch.compactMap { buffer in
-               let crop: BufferRect = CVImageBufferGetDisplayRect(imageBuffer: buffer)  // CVImageBufferGetDisplaySize, CVImageBufferGetCleanRect
-//               Swift.print("crop:  \(crop)")
-               return try? Reader.data(imageBuffer: buffer, crop: crop, scheme: scheme, parallel: false)
+               try? Reader.data(imageBuffer: buffer, crop: buffer.rect, scheme: scheme, parallel: false)
             }
          }
       }

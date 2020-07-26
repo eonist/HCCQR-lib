@@ -1,7 +1,5 @@
 import Foundation
-import AVFoundation
 import QuartzCore
-import CoreImage
 /**
  * - Note: We can't use CGRect, as we need Int values
  * - Fixme: ⚠️️ Possibly use UInt32, UInt64 etc in the future
@@ -29,16 +27,4 @@ extension BufferRect {
    public var cgRect: CGRect {
       .init(x: self.x, y: self.y, width: self.width, height: self.height)
    }
-}
-/**
- * Returns the Rect of the Buffer, so that it can work with the cropping functionality
- * - Note: ⚠️️ this method is global, so that other class scopes can also use this functionality (Similar to how other Native Buffer methods work)
- * - Fixme: ⚠️️ rename to cvImage.. or maybe not sinc eits a global method
- * - Fixme: ⚠️️ we could actually scope this to the BufferRect now
- * - Fixme: ⚠️️ add getter that creates bufferect from buffer, add to BufferRect type
- * - Parameter imageBuffer: the buffer containing the raw pixel data and size
- */
-public func CVImageBufferGetDisplayRect(imageBuffer: CVImageBuffer) -> BufferRect {
-   let size: CGSize = CVImageBufferGetDisplaySize(imageBuffer)
-   return .init(0, 0, Int(size.width), Int(size.height))
 }
