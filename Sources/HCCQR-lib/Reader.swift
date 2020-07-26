@@ -77,7 +77,7 @@ extension Reader {
          try? QRReader.dataAndQuad(ciImage: $0)
       }
       guard dataAndQuads.count == qrLayers.count else { throw NSError(domain: "Unable to read QR Layer", code: 0) }
-      let data: Data = .combine(data: dataAndQuads.map { $0.qrData })
+      let data: Data = .combine(data: dataAndQuads.map { $0.qrData }) // merge the data together
       return (data, dataAndQuads[0].quad)
    }
 }

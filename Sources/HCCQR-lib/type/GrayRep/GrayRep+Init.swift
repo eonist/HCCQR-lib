@@ -22,7 +22,7 @@ extension GrayRep {
    }
    /**
     * Returns empty grayScale-rep
-    * - Fixme: ⚠️️ rename to .init?
+    * - Fixme: ⚠️️ rename to .init? 👈
     * - Parameters:
     *   - capacity: the number of pixels you want to use
     *   - size: the size of the returned GrayScaleRep

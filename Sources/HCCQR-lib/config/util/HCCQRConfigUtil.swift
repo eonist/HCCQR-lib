@@ -26,7 +26,6 @@ public final class HCCQRConfigUtil {
     */
    public static func data(data: Data, config: HCCQRSetup) -> [Data] {
       let length: Int = data.count / config.map.layerCount
-      let dataArr: [Data] = data.chunk(size: length) // Split the data in to the num of layers
-      return dataArr
+      return data.chunk(size: length) // Split the data in to the num of layers
    }
 }

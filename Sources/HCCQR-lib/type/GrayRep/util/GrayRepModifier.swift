@@ -6,8 +6,7 @@ final class GrayRepModifier {
     * - Abstract: Get grayscale UInt8 intensity for a (R, G, B) channel
     * - Note: Used when reading HCCQR
     * - Fixme: ⚠️️ find a better name for this method? apply?
-    * - Fixme: ⚠️️ This should ideally be done over "num cores" or "thrads" and be done in quadrants
-    * - Fixme: ⚠️️ We can calc in quadrants that utilize the cpu / threads better
+    * - Fixme: ⚠️️ We can calc in quadrants that utilize the cpu / threads better for single read
     * - Parameters:
     *   - input: The RGBAImage to extract data from (color photo etc)
     *   - output: The GrayScaleImage to populate pixels into (we only need [UInt8])

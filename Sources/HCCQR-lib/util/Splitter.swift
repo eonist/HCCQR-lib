@@ -21,8 +21,8 @@ extension Splitter {
     * - Note: the conversion to rgbaImg here is CPU intensive, but in the camera session we get RGBA data, so this is just for debugging etc
     * - Note: extracting is cpu consuming, creating combos is not, combining is a bit cpu consuming
     * - Parameters:
-    *   - rgbaRep: a HCCQR representation
-    *   - scheme: the colors used in the HCCQR (4 to 256 colors)
+    *   - rgbaRep: A HCCQR representation
+    *   - scheme: The colors used in the HCCQR (4 to 256 colors)
     */
    internal static func split(rgbaRep: RGBARep, scheme: ChannelScheme, parallel: Bool) -> [CIImage] {
       let (grayReps, extractTime): (GrayReps, Double) = TimeMeasure.timeElapsed {

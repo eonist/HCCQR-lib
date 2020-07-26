@@ -38,14 +38,14 @@ extension Writer {
     * 2. Splits the data into two
     * 3. Creates multiple CIImage's of these multiple data items
     * - Abstract: Create two QR images from the data, and combine them into RGBAImage, then convert that to CIImage
-    * - Caution: ⚠️️ Remember to deInit the result once it's consumed
-    * - Important: internal because: SingleWriteReadHCCQRTest and BulkHCCQRTest uses it for tests
+    * - Important: ⚠️️ Remember to deInit the result once it's consumed
+    * - Important: ⚠️️ internal because: SingleWriteReadHCCQRTest and BulkHCCQRTest uses it for tests
     * - Parameters:
     *   - data: data to be converted to HCCQR
     *   - config: config of HCCQR
     *   - parallel: for single capture, parallel is fast, for sequence, parallel is slower
     */
-   internal static func rgbaRep(data: Data, config: HCCQRSetup/* = .default*/, parallel: Bool) throws -> RGBARep {
+   internal static func rgbaRep(data: Data, config: HCCQRSetup, parallel: Bool) throws -> RGBARep {
       let dataArr: [Data] = HCCQRConfigUtil.data(data: data, config: config) // splits data (for multiple layers 2-8, 4-256 colors respectfully)
       let ciImgs: [CIImage] = dataArr.concurrentCompactMap(parallel: parallel) { (data: Data) in // parraelly create the qr-image-Layers
          try? QRWriter.ciImage(data: data, ecLevel: config.ecLevel) // Create B&W QR-layers (CIImage)
