@@ -21,7 +21,7 @@ HCCQR is the natural progression of black and white QR. HCCQR can store up to 8 
 | ------------- | ------------- | ------ | ---- |
 | [QR-lib](https://github.com/eonist/QR-lib) | Quick response | [![CodeBeat badge](https://codebeat.co/badges/7514c7a6-b59d-45bb-8c7f-90be3d0c7ad7)](https://codebeat.co/projects/github-com-light-stream-qr-lib-master) | ![Tests](https://github.com/light-stream/QR-lib/workflows/Tests/badge.svg) |
 | [ResultSugar](https://github.com/eonist/ResultSugar) | Sugar for result | [![CodeBeat badge](https://codebeat.co/badges/cb649e6d-a601-47c5-b2c4-179158d5f431)](https://codebeat.co/projects/github-com-eonist-resultsugar-master) | ![Builds](https://github.com/eonist/ResultSugar/workflows/Builds/badge.svg) |
-| [ResourceHelper](https://github.com/eonist/ResourceHelper) | Enables resources in SPM | [![codebeat badge](https://codebeat.co/badges/6704b945-11ad-43ad-b290-ebe32edd04f0)](https://codebeat.co/projects/github-com-eonist-resourcehelper-master) | [![Github actions badge](https://badgen.net/github/checks/eonist/ResourceHelper?icon=github&label=Builds)](https://github.com/eonist/ResourceHelper/actions) |
+| [ResourceHelper](https://github.com/eonist/ResourceHelper) | Enables resources in SPM | [![codebeat badge](https://codebeat.co/badges/6704b945-11ad-43ad-b290-ebe32edd04f0)](https://codebeat.co/projects/github-com-eonist-resourcehelper-master) | ![Builds](https://github.com/eonist/ResourceHelper/workflows/Builds/badge.svg) |
 
 ### Installation:
 - SPM: `github "light-stream/HCCQR-lib.git"` branch: `"master"`
