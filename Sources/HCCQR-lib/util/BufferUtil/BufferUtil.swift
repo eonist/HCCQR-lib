@@ -21,6 +21,7 @@ extension BufferUtil {
     * - Fixme: ⚠️️ Might have the solution for av buffer: https://stackoverflow.com/questions/29375471/how-to-convert-cvimagebuffer-to-uiimage
     * - Fixme: ⚠️️ Using a pointer to iterate might be faster, see stackoverflow
     * - Fixme: ⚠️️ Add debug tool with: CVPixelBufferGetDataSize(imageBuffer), \(CVPixelBufferGetDataSize(imageBuffer)) type:  \(CVPixelBufferGetPixelFormatType(imageBuffer)), let info = RGBImage.bitmapInfo(buffer: imageBuffer)// if type != kCVPixelFormatType_DepthFloat32 { print("Wrong type \(type)"); throw NSError(domain: "Wrong type", code: 0) }, let type: OSType = CVPixelBufferGetPixelFormatType(imageBuffer) // Swift.print("type:  \(type)")
+    * - Fixme: ⚠️️ These methods might be faster: https://github.com/frogcjn/ImageIOPlus/blob/1d401725a3f7cd87b000a085eaca65e2cd0c0446/Sources/CoreVideoPlus/CVPixelBuffer/CVPixelBuffer%2B.swift
     * - Important: ⚠️️ doing concurrent on the loop has minimal effect, doing it on the call to this method has alot of effect
     * - Parameters:
     *   - buffer: the buffer containing the raw pixel data and size

@@ -16,7 +16,7 @@ extension GrayRep {
     */
    static func grayRep(pixel: UInt8, size: Size) -> GrayRep {
       let capacity: Int = size.width * size.height
-      let unSafePixels = UnsafeMutableBufferPointer<UInt8>.allocate(capacity: capacity)//      let pixels: [UInt8] = .init(repeating: pixel, count: capacity)
+      let unSafePixels = UnsafeMutableBufferPointer<UInt8>.allocate(capacity: capacity) //      let pixels: [UInt8] = .init(repeating: pixel, count: capacity)
       unSafePixels.initialize(repeating: pixel)
       return .init(pixels: unSafePixels, width: size.width, height: size.height)//.grayRep(pixels: pixels, size: size)
    }

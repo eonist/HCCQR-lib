@@ -2,7 +2,7 @@ import Foundation
 import QuartzCore
 import ParallelLoop
 /**
- * Split the 3 R,G,B channels into grayscale lumonocity channels
+ * Split the 3 (R,G,B) channels into grayscale lumonocity channels
  */
 public final class Extractor {}
 
@@ -19,11 +19,11 @@ extension Extractor {
     *   - scheme: rule-set for the splitting process
     * - Returns: the luminocity of each Color as a Grayscale representation
     * - Note: grayscale is better for QR to read than monotone (possibly)
-    * - Fixme: ⚠️️ we could use unmanaged pointer with capacity as well, might be faster
+    * - Fixme: ⚠️️ We could use unmanaged pointer with capacity as well, might be faster
     * - Fixme: ⚠️️ Skip extracting the white channel, as it's not used when we later combine color channels
     */
    static func extract(rgbaRep: RGBARep, scheme: ChannelScheme, parallel: Bool) -> GrayReps {
-      // - Fixme: ⚠️️ benchmark similarties creation
+      // - Fixme: ⚠️️ Benchmark similarties creation
       Extractor.similarities(scheme: scheme).concurrentMap(parallel: parallel) { asserter in // create similarity asserters, 4 - 256 items depending on hccqr config
          extract(rgbaRep: rgbaRep, asserter: asserter) // Finds the red-channel, blue-channel, green-channel
       }

@@ -7,9 +7,7 @@ import TimeMeasure
  * - Note: you can derive the data by analysing each QRImage and combining their data to one data
  */
 public final class Splitter {}
-/**
- * ⚠️️ New ⚠️️
- */
+
 extension Splitter {
    /**
     * Splits HCCQR rep into b&w qr layers
