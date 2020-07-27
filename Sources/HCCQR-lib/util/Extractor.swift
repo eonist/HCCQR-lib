@@ -13,6 +13,7 @@ extension Extractor {
     * 2. Create Result-array of empty GrayRep
     * 3. Go through each item in the ChannelPallet array and try to find the the colors defined in the channelMap
     * 4. pass the grayScale-channel-representation of each color to the completion block
+    * - Important: ⚠️️ we can only to concurrentMap as long as each output is on its own thread
     * - Parameters:
     *   - rgbaRep: target to derive channels from (GrayScaleRepresentations representing the channels R,G,B)
     *   - scheme: rule-set for the splitting process
@@ -23,8 +24,8 @@ extension Extractor {
     */
    static func extract(rgbaRep: RGBARep, scheme: ChannelScheme, parallel: Bool) -> GrayReps {
       // - Fixme: ⚠️️ benchmark similarties creation
-      Extractor.similarities(scheme: scheme).concurrentMap(parallel: parallel) { // create similarity asserters, 4 - 256 items depending on hccqr config
-         extract(rgbaRep: rgbaRep, asserter: $0) // Finds the red-channel, blue-channel, green-channel
+      Extractor.similarities(scheme: scheme).concurrentMap(parallel: parallel) { asserter in // create similarity asserters, 4 - 256 items depending on hccqr config
+         extract(rgbaRep: rgbaRep, asserter: asserter) // Finds the red-channel, blue-channel, green-channel
       }
    }
 }
@@ -49,11 +50,12 @@ extension Extractor {
     * - Fixme: ⚠️️ Somehow reuse the output, it might speed things up
     * - Fixme: ⚠️️ make private after you remove deprecated code etc
     */
-   /*private*/internal static func extract(rgbaRep: RGBARep, asserter: PixelSimilarity) -> GrayRep {
-      let output: GrayRep = .grayRep(capacity: rgbaRep.capacity, size: rgbaRep.size) // We create a blank GrayRep, as it's faster than copy probably
-      return GrayRepModifier.process(input: rgbaRep, output: output) { (pixel: Pixel) -> UInt8 in
-         asserter(pixel).strength
+   /*private*/internal static func extract(rgbaRep: RGBARep, asserter: @escaping PixelSimilarity) -> GrayRep {
+      let output: GrayRep = .grayRep(capacity: rgbaRep.capacity, size: rgbaRep.size) // We create a blank GrayRep, as it's faster than copy probably, The GrayScaleImage to populate pixels into (we only need [UInt8])
+      GrayRepModifier.process(size: rgbaRep.size) { (i: Int) in
+         output.pixels[i] = asserter(rgbaRep.pixels[i]).strength // Apply new pixel to old pixel
       }
+      return output
    }
    /**
     * The purpouse of this method is to setup static calls, that compare channel and pixel color
@@ -66,3 +68,20 @@ extension Extractor {
       return scheme.map { (channel: Pixel) in { (ishColor: Pixel) in channel.isSimilar(ishColor, halfThreshold: halfThreshold) } }
    }
 }
+///**
+// * - Note: the idea is to loop through rgbaRep once, but output was on different threads so didnt work that well, could try atomic, but prob will be same result
+// */
+//internal static func extract2(rgbaRep: RGBARep, scheme: ChannelScheme, parallel: Bool) -> GrayReps {
+//   let similarities: [PixelSimilarity] = Extractor.similarities(scheme: scheme)
+//   let outputs: GrayReps = (0..<similarities.count).map { _ in // Array.init(repeating: output, count: similarities.count) //      let output: GrayRep = .grayRep(capacity: rgbaRep.capacity, size: rgbaRep.size) // We create a blank GrayRep, as it's faster than copy probably
+//      .grayRep(capacity: rgbaRep.capacity, size: rgbaRep.size) // We create a blank GrayRep, as it's faster than copy probably
+//   }
+//   GrayRepModifier.process(size: rgbaRep.size) { (i: Int) in
+//      let pixel = rgbaRep.pixels[i] // rgbaPixel, the idea is to read from rgba, only once
+//      (0..<similarities.count).forEach { e in
+//         //            let similarity =  // create similarity asserters, 4 - 256 items depending on hccqr config
+//         outputs[e].pixels[i] = similarities[e](pixel).strength
+//      }
+//   }
+//   return outputs
+//}

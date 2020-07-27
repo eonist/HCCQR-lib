@@ -56,13 +56,28 @@ extension Combiner {
    private static func combine(grayReps: GrayReps) -> GrayRep {
       let size: Size = grayReps[0].size // get size from first layer
       let output: GrayRep = .grayRep(pixel: .black, size: size)// .grayscaleRep(pixel: .black, size: first.size) // because white is 255
-      return GrayRepModifier.process(input: output) { (index: Int, pixel: UInt8) -> UInt8 in // Loop things
-         var pixel: UInt8 = pixel
+      GrayRepModifier.process(size: output.size) { (i: Int) in // Loop things
+         var pixel: UInt8 = output.pixels[i]
          grayReps.forEach { (grayRep: GrayRep) in // loop over every image in the list, this is inside here because the process method uses concurrent_apply
-            let newPixel: UInt8 = grayRep.pixels[index] // - Fixme: ⚠️️ Can be removed because this will basically never happen, because channels can't overlap
-            pixel.addition(value: newPixel) // ⚠️️ we now add....instead of adding, we substract and then we wouldn't have to invert the image at the end
+            let newPixel: UInt8 = grayRep.pixels[i] // - Fixme: ⚠️️ Can be removed because this will basically never happen, because channels can't overlap
+            pixel.addition(value: newPixel) // ⚠️️ We now add....instead of adding, we substract and then we wouldn't have to invert the image at the end
          }
-         return pixel
+         output.pixels[i] = pixel
       }
+      return output
+   }
+   /**
+    *
+    */
+   static func combine2(grayReps: GrayReps) -> GrayRep {
+      let size: Size = grayReps[0].size // get size from first layer
+      let output: GrayRep = .grayRep(pixel: .black, size: size)// .grayscaleRep(pixel: .black, size: first.size) // because white is 255
+      grayReps.forEach { (grayRep: GrayRep) in // loop over every image in the list, this is inside here because the process method uses concurrent_apply
+         GrayRepModifier.process(size: output.size) { (i: Int) in // Loop things
+            let newPixel: UInt8 = grayRep.pixels[i] // - Fixme: ⚠️️ Can be removed because this will basically never happen, because channels can't overlap
+            output.pixels[i].addition(value: newPixel) // ⚠️️ We now add....instead of adding, we substract and then we wouldn't have to invert the image at the end
+         }
+      }
+      return output
    }
 }

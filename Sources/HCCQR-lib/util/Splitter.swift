@@ -29,18 +29,18 @@ extension Splitter {
          /*let grayReps: GrayReps = */Extractor.extract(rgbaRep: rgbaRep, scheme: scheme, parallel: parallel)
       }
       _ = extractTime
-//      Swift.print("extractTime:  \(extractTime)")
+      Swift.print("extractTime:  \(extractTime)")
       let (channelCombos, comboTime): (ChannelCombos, Double) = TimeMeasure.timeElapsed {
          /*let channelCombos: ChannelCombos = */.combos(channels: grayReps) // Arrays of grayreps (2 arrays of 2 grayReps for 4color hcqr, 3 arrays of 7 grayreps for 8 color-hccqr etc)
       }
       _ = comboTime
-//      Swift.print("comboTime:  \(comboTime)")
+      Swift.print("comboTime:  \(comboTime)")
       let (combinations, combineTime): ([CIImage], Double) = TimeMeasure.timeElapsed {
          channelCombos.concurrentCompactMap(parallel: parallel) { Combiner.combine(grayReps: $0) } // combine the combinations to produce layers of qr-images
       }
       _ = combineTime
       grayReps.deInit()
-//      Swift.print("combineTime:  \(combineTime)")
+      Swift.print("combineTime:  \(combineTime)")
       return combinations
    }
 }
