@@ -29,6 +29,7 @@ extension RGBARep {
       .init(bytes: flatPixelArr, count: flatPixelArr.count)
    }
    private var flatPixelArr: [UInt8] {
-      pixels.flatMap { [$0.r, $0.g, $0.b, $0.a] }
+      // - Fixme: ⚠️️ remove 255 in the future
+      pixels.flatMap { [$0.r, $0.g, $0.b, 255] }
    }
 }

@@ -5,6 +5,7 @@ import Foundation
  * - Fixme: ⚠️️  store size as Size, skip width and height
  */
 struct MonoRep {
+   // - Fixme: ⚠️️ could unsafePointer be faster etc?
    let pixels: [Bool]
    let width: Int
    let height: Int

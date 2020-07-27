@@ -7,7 +7,7 @@ import Foundation
  * - Fixme: ⚠️️ Maybe make RGBAReps?
  */
 public struct RGBARep {
-   var pixels: UnsafeMutableBufferPointer<Pixel>
+   let pixels: UnsafeMutableBufferPointer<Pixel>
    let width: Int
    let height: Int
    /**

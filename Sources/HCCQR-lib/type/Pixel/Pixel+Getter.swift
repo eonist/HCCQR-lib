@@ -14,8 +14,8 @@ extension Pixel {
       let r = CGFloat(self.r) / 255
       let g = CGFloat(self.g) / 255
       let b = CGFloat(self.b) / 255
-      let a = CGFloat(self.a) / 255
-      return .init(red: r, green: g, blue: b, alpha: a)
+//      let a = CGFloat(255 / 255)
+      return .init(red: r, green: g, blue: b, alpha: 1)
    }
    /**
     * Returns rgb

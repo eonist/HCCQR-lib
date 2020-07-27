@@ -6,7 +6,7 @@ import Foundation
  * - Fixme: ⚠️️ maybe create a UnsafeBufferPointer aswell for when the rep do not need to be mutated? may be faster?
  */
 public struct GrayRep {
-   var pixels: UnsafeMutableBufferPointer<UInt8>
+   let pixels: UnsafeMutableBufferPointer<UInt8>
    let width: Int
    let height: Int
    /**

@@ -9,7 +9,7 @@ final class ColorishTest {
     */
    static func testThreshold() -> Bool {
       let offset: UInt8 = .init(255 * 0.2) // the deviation in percentage
-      let redishPixel: Pixel = .init(r: 255 - offset, g: 0 + offset, b: 0 + offset, a: 255)
+      let redishPixel: Pixel = .init(r: 255 - offset, g: 0 + offset, b: 0 + offset/*, a: 255*/)
       let redPixel = Pixel.red // the color it should look like
       let threshold: UInt8 = .init(255 * 0.25) // within this threshold
       let halfThreshold: UInt8 = .init(threshold / 2)
@@ -35,7 +35,7 @@ final class ColorishTest {
    static func testWashedOutColor() -> Bool {
       Swift.print("PixelData.halfThresholdUInt8:  \(Pixel.defaultHalfThreshold)")
 //      Swift.print("UInt8(255 * 0.81):  \(UInt8(255 * 0.81))")
-      let redish: Pixel = .init(r: UInt8(255 * 0.75), g: UInt8(255 * 0.2), b: UInt8(255 * 0.25), a: 255)
+      let redish: Pixel = .init(r: UInt8(255 * 0.75), g: UInt8(255 * 0.2), b: UInt8(255 * 0.25)/*, a: 255*/)
       Swift.print("redish.r: \(redish.r)")
       let assertRedish: Bool = try! Pixel.pixel(color: Color.red).isColorish(.redish, halfThreshold: 40)
       Swift.print("assertRedish: \(assertRedish)")

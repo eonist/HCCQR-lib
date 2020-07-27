@@ -64,7 +64,7 @@ extension RGBARepresentation {
             let r: UInt8 = bytes.advanced(by: i).pointee
             let g: UInt8 = bytes.advanced(by: i + 1).pointee
             let b: UInt8 = bytes.advanced(by: i + 2).pointee
-            return .init(r: r, g: g, b: b, a: 255)
+            return .init(r: r, g: g, b: b/*, a: 255*/)
          }()
          let idx: Int = i / 4
          closure(idx, pixel)

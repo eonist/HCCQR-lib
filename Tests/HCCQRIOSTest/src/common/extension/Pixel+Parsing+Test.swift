@@ -10,6 +10,6 @@ extension Pixel {
     */
    static func pixel(color: Color) throws -> Pixel {
       let rgba: Pixel = try PixelParser.rgba(uiColor: color)
-      return Pixel(r: rgba.r, g: rgba.g, b: rgba.b, a: rgba.a)
+      return .init(r: rgba.r, g: rgba.g, b: rgba.b/*, a: rgba.a*/)
    }
 }

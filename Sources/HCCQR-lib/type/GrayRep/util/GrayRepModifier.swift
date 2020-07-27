@@ -19,13 +19,11 @@ extension GrayRepModifier {
     */
    internal static func process(size: Size, functor: @escaping Functor) {
       // - Fixme: ⚠️️ maybe do single loop?, benchmark diff
-      Array(0..<size.height).batches(spread: 8).concurrentForEach { batch in
-         batch.forEach { y in
-            let idx: Int = y * size.width // We calc this here as optimization
-            (0..<size.width).forEach { x in
-               let index: Int = idx + x // Pixel index
-               functor(index) // Apply new pixel to old pixel
-            }
+      (0..<size.height).forEach { y in
+         let idx: Int = y * size.width // We calc this here as optimization
+         (0..<size.width).forEach { x in
+            let index: Int = idx + x // Pixel index
+            functor(index) // Apply new pixel to old pixel
          }
       }
    }

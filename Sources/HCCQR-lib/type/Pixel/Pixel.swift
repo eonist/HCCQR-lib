@@ -5,8 +5,13 @@ import Foundation
  * - Fixme: ⚠️️ simplify Pixel, by moving code out of it, and into parsers, asserters and modifiers
  */
 public struct Pixel {
-   var r: UInt8
-   var g: UInt8
-   var b: UInt8
-   var a: UInt8
+   let r: UInt8
+   let g: UInt8
+   let b: UInt8
+   let a: UInt8 = 255
+   public init(r: UInt8, g: UInt8, b: UInt8/*, a: UInt8 = 255*/) {
+      self.r = r
+      self.g = g
+      self.b = b
+   }
 }

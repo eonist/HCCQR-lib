@@ -50,7 +50,8 @@ extension PixelParser {
     * - Fixme: ⚠️️ You can also probably do (maybe faster?): UIColor.blue.colorComponents // (red: 0.0, green: 0.0, blue: 1.0, alpha: 1.0)
     */
    static func rgba(uiColor: Color) throws -> Pixel {
-      var (r, g, b, a): RGBAColor = (0, 0, 0, 0)
+      var (r, g, b, a
+         ): RGBAColor = (0, 0, 0, 0)
       #if os(iOS)
       guard uiColor.getRed(&r, green: &g, blue: &b, alpha: &a) else { throw RGBAError.couldNotExtractRGBAComponents }
       #elseif os(macOS)
@@ -58,11 +59,11 @@ extension PixelParser {
       r = ciColor.red // 1.0
       g = ciColor.green // 0.0
       b = ciColor.blue // 0.0
-      a = ciColor.alpha // 1.0 or use nsColor.alphaComponent
+//      a = ciColor.alpha // 1.0 or use nsColor.alphaComponent
       #else
       throw RGBAError.osNotSupported
       #endif
-      return .init(r: UInt8(r * 255.0), g: UInt8(g * 255.0), b: UInt8(b * 255.0), a: UInt8(a * 255.0))
+      return .init(r: UInt8(r * 255.0), g: UInt8(g * 255.0), b: UInt8(b * 255.0)/*, a: UInt8(a * 255.0)*/ )
    }
 }
 /**
@@ -77,7 +78,7 @@ extension PixelParser {
       let r: UInt8 = .init((argb >> 16) & 0xFF)
       let g: UInt8 = .init((argb >> 8) & 0xFF)
       let b: UInt8 = .init(argb & 0xFF)
-      let a: UInt8 = .init((argb >> 24) & 0xFF)
-      return .init(r: r, g: g, b: b, a: a)
+//      let a: UInt8 = .init((argb >> 24) & 0xFF)
+      return .init(r: r, g: g, b: b/*, a: a*/)
    }
 }
