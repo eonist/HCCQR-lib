@@ -84,24 +84,15 @@ extension RGBARepUtil {
       guard let bytes = context.data?.bindMemory(to: UInt8.self, capacity: byteCount) else { fatalError("err") }
       let capacity: Int = rect.width * rect.height
       let pixels: UnsafeMutableBufferPointer<Pixel> = .allocate(capacity: capacity) // we dealoc this when we have finished working with rgbaRep
-      var idx: Int = 0 // - Fixme: ⚠️️ this can be calculated with % width y and x
-      var pixel: Pixel?
-      (0..<byteCount).forEach { i in
-         let value = bytes.advanced(by: i).pointee
-         let component = i % bytesPerPixel
-         if component == 0 { // Red
-            pixel = Pixel(r: value, g: 0, b: 0, a: 0) // Create new
-         } else if component == 1 { // Green
-            pixel?.g = value
-         } else if component == 2 { // Blue
-            pixel?.b = value
-         } else if component == 3 { // Alpha
-            pixel?.a = 255
-            if let pixel = pixel { // Store previous pixel
-               pixels[idx] = pixel
-               idx += 1
-            }
-         }
+      stride(from: 0, to: byteCount, by: 4).forEach { i in
+         let pixel: Pixel = {
+            let r: UInt8 = bytes.advanced(by: i).pointee
+            let g: UInt8 = bytes.advanced(by: i + 1).pointee
+            let b: UInt8 = bytes.advanced(by: i + 2).pointee
+            return .init(r: r, g: g, b: b, a: 255)
+         }()
+         let idx: Int = i / 4
+         pixels[idx] = pixel
       }
       return .init(pixels: pixels, width: rect.width, height: rect.height)
    }

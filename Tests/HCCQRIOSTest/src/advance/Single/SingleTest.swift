@@ -59,19 +59,20 @@ extension SingleTest {
    }
    private static func read(image: Image, data: Data) -> Bool {
 //      autoreleasepool { // new ⚠️️
-         do {
-            // 🏀
-               // continue with rgbaRepresentation, try make RGBARep with a data as its core
-               // read through various RGBA libs to get more info
-            let dataAndQuad: QRReader.DataAndQuad = try Reader.data(image: image, scheme: scheme, parallel: true)
-            let isValid: Bool = data == dataAndQuad.qrData
-            Swift.print("data?.count:  \(String(describing: dataAndQuad.qrData.count))")
-            Swift.print("SingleTest isValid:  \(isValid ? "✅" : "🚫")")
-            return isValid
-         } catch {
-            Swift.print("error:  \(error)")
-            return false
-         }
+      do {
+         // 🏀
+            // continue with rgbaRepresentation, try make RGBARep with a data as it's core
+            // read through various RGBA libs to get more info
+            // maybe even do rgb instead of rgba
+         let dataAndQuad: QRReader.DataAndQuad = try Reader.data(image: image, scheme: scheme, parallel: true)
+         let isValid: Bool = data == dataAndQuad.qrData
+         Swift.print("data?.count:  \(String(describing: dataAndQuad.qrData.count))")
+         Swift.print("SingleTest isValid:  \(isValid ? "✅" : "🚫")")
+         return isValid
+      } catch {
+         Swift.print("error:  \(error)")
+         return false
+      }
 //      }
    }
 }
