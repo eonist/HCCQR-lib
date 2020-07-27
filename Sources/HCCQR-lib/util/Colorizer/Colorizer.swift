@@ -46,7 +46,7 @@ extension Colorizer {
     *   - config: module and screen, for retina you need 2x scale etc, This is the multiplier. ModuleCount equals 1 pixel. ModuleCount for QRVersion 10 is 57 not counting 2 for margins. So (57+2)*6 = 354, if you want 2xretina its 354 * 2 = 708, rule-set (The color depth you want the HCCQR image in. 4, 8, 16, 32 etc)
     */
    static func colorize(ciImages: [CIImage], config: OutputConfig) throws -> RGBARep {
-      let monoReps: MonoReps = try ciImages.compactMap { try MonoRep.monoRep(ciImg: $0) } // convert QR images to Pixel-data
+      let monoReps: MonoReps = try ciImages.map { try MonoRep.monoRep(ciImg: $0) } // convert QR images to Pixel-data
       return colorize(monoReps: monoReps, config: config)// else { throw NSError("Colorize.colorize() - Unable to create colorized rgbaImage") } // overlay the qr-pixel-data
    }
 }
@@ -57,14 +57,14 @@ extension Colorizer {
    /**
     * Colorize layers to rgbaRep
     * - Note: while benchmarking this method, it takes about half the time of the entire writing process, where the other half is consumed by the QR creation process
-    * - Note: putting compactMap on concurrentCompactMap doesnt seem to improve already fast speeds
+    * - Note: putting compactMap on concurrentCompactMap doesn't seem to improve already fast speeds
     * - Returns: RGBARep
     * - Parameters:
     *   - coreCount: num of cores in CPU ProcessInfo().activeProcessorCount
     *   - qrLayers: qr layers as CIImages
     */
-   internal static func colorize(qrLayers: [CIImage], config: OutputConfig) -> RGBARep {
-      let monoReps: MonoReps = qrLayers.compactMap { try? MonoRep.monoRep(ciImg: $0) }
+   internal static func colorize(qrLayers: [CIImage], config: OutputConfig) throws -> RGBARep {
+      let monoReps: MonoReps = try qrLayers.map { try MonoRep.monoRep(ciImg: $0) }
       return colorize(monoReps: monoReps, config: config)
    }
 }

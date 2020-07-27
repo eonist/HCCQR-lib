@@ -51,11 +51,11 @@ extension Writer {
          try? QRWriter.ciImage(data: data, ecLevel: config.ecLevel) // Create B&W QR-layers (CIImage)
       }
       guard dataArr.count == ciImgs.count else { throw NSError(domain: "\(dataArr.count - ciImgs.count) qr imgs did not finish", code: 0) } // if qrImgs was not created correctly etc, we cant do try error inside concurrentMap
-      let (rgbaRep, colorizeTime): (RGBARep, Double) = TimeMeasure.timeElapsed {
-         /*let rgbaRep: RGBARep = */Colorizer.colorize(qrLayers: ciImgs, config: config.output/*, coreCount: coreCount*/)
+      let (rgbaRep, colorizeTime): (RGBARep, Double) = try TimeMeasure.timeElapsed {
+         /*let rgbaRep: RGBARep = */try Colorizer.colorize(qrLayers: ciImgs, config: config.output/*, coreCount: coreCount*/)
       }
       _ = colorizeTime
-//      Swift.print("colorizeTime:  \(colorizeTime)")
+      Swift.print("colorizeTime:  \(colorizeTime)")
       return rgbaRep
    }
 }

@@ -25,7 +25,7 @@ extension ColorPalleteAsserter {
     * 2. if a color doesn't match drop out of searching further
     * 3. if all colors checkout, return true
     * - Abstract: ensure that img only has valid colors, aka no bluring
-    * - Note: ⚠️️ This method is used for testing and debugging mostly
+    * - Important: ⚠️️ This method is used for testing and debugging mostly
     * ## Example:
     * hasOnlyColorPallete(these: [.red, .green, .blue, .white])
     * - Note: this method is just for debugging, so no need to optimize it too much
@@ -53,6 +53,7 @@ extension Image {
    /**
     * Returns color of every pixel in an image
     * - Fixme: ⚠️️ Should return optional
+    * - Only used by tests
     */
    var pixelColors: [Color] {
       // ⚠️️ The bellow fix could hurt performance
@@ -99,7 +100,7 @@ extension Image {
       let g = CGFloat(data[idx + 1]) / 255
       let b = CGFloat(data[idx + 2]) / 255
       let a = CGFloat(data[idx + 3]) / 255
-      return Color(red: r, green: g, blue: b, alpha: a)
+      return .init(red: r, green: g, blue: b, alpha: a)
    }
 }
 #endif
