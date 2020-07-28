@@ -55,7 +55,7 @@ extension Writer {
          /*let rgbaRep: RGBARep = */try Colorizer.colorize(qrLayers: ciImgs, config: config.output/*, coreCount: coreCount*/)
       }
       _ = colorizeTime
-      Swift.print("colorizeTime:  \(colorizeTime)")
+      Log.log("colorizeTime:  \(colorizeTime)")
       return rgbaRep
    }
 }

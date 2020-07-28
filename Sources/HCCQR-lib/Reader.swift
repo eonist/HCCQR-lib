@@ -48,7 +48,7 @@ extension Reader {
          try? RGBARepUtil.rgbaRep(image: image)
 //         /*let rgbaRep: RGBARep = */try? RGBARepresentation.rgbaRepresentation(image: image) //
       }
-      Swift.print("Image to rgbaRep time:  \(time)")
+      Log.log("Image to rgbaRep time:  \(time)")
       guard let _rgbaRep = rgbaRep else { throw NSError(domain: "err creating rgbaRep", code: 0) }
       return try data(rgbaRep: _rgbaRep, scheme: scheme, parallel: parallel)
    }
