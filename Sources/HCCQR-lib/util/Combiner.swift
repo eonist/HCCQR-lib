@@ -55,7 +55,7 @@ extension Combiner {
     */
    private static func combine(grayReps: GrayReps) -> GrayRep {
       let size: Size = grayReps[0].size // get size from first layer
-      let pixels: UnsafeMutableBufferPointer<UInt8> = GrayRep.pixels(pixel: .black, size: size)// .grayscaleRep(pixel: .black, size: first.size) // because white is 255
+      let pixels: UnsafeMutablePointer<UInt8> = GrayRep.pixels(pixel: .black, size: size)// .grayscaleRep(pixel: .black, size: first.size) // because white is 255
       GrayRepModifier.process(size: size) { (i: Int) in // Loop things
          var byte: UInt8 = pixels[i]
          grayReps.forEach { (grayRep: GrayRep) in // loop over every image in the list, this is inside here because the process method uses concurrent_apply
