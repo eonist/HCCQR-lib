@@ -30,6 +30,10 @@ extension RGBARep {
    }
    private var flatPixelArr: [UInt8] {
       // - Fixme: ⚠️️ remove 255 in the future
-      pixels.flatMap { [$0.r, $0.g, $0.b, 255] }
+      let result: [[UInt8]] = (0..<capacity).map {
+         let p: Pixel = pixels[$0]
+         return [p.r, p.g, p.b, 255]
+      }
+      return result.flatMap { $0 }
    }
 }

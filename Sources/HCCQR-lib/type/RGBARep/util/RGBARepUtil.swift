@@ -26,7 +26,8 @@ final class RGBARepUtil {
  */
 extension RGBARepUtil {
    /**
-    * CGImage -> RGBAImage (new)
+    * CGImage -> RGBAImage
+    * - Note: Used by Image -> RGBARep
     */
    private static func rgbaRep(cgImage: CGImage) throws -> RGBARep {
       let size: Size = .init(Int(cgImage.width), Int(cgImage.height))
@@ -39,7 +40,7 @@ extension RGBARepUtil {
       let bitMapInfo = RGBARep.bitmapInfo
       guard let cgContext = CGContext(data: imageData, width: size.width, height: size.height, bitsPerComponent: 8, bytesPerRow: bytesPerRow, space: colorSpace, bitmapInfo: bitMapInfo) else { throw NSError(domain: "rgbaImage - Unable to create rgbaImage", code: 0) }
       cgContext.draw(cgImage, in: .init(origin: .zero, size: .init(width: cgImage.width, height: cgImage.height))) // draws the cgImage into the context
-      let pixels: UnsafeMutableBufferPointer<Pixel> = .init(start: imageData, count: capacity) // we dealoc this when we are finished with RGBARep
+      let pixels: UnsafePointer<Pixel> = .init(imageData) // we dealoc this when we are finished with RGBARep
       // - Fixme: ⚠️️ dealloc imagedata maybe?
       return .init(pixels: pixels, width: size.width, height: size.height)
    }

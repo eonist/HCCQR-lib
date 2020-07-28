@@ -35,10 +35,11 @@ extension MonoRep {
       }
       let fromExtent: CGRect = crop.cgRect
       context.draw(ciImg, in: ciImg.extent, from: fromExtent)
-      let monoPixels: [Bool] = UnsafeBufferPointer(start: imageData, count: capacity).map {
-         $0.isWhite
+      let monoPixels: UnsafeMutablePointer<Bool> = .allocate(capacity: capacity)
+      (0..<capacity).forEach { i in
+         monoPixels[i] = imageData.advanced(by: i).pointee.isWhite
       }
       imageData.deallocate()
-      return .init(pixels: monoPixels, width: crop.width, height: crop.height)
+      return .init(pixels: .init(monoPixels), width: crop.width, height: crop.height)
    }
 }

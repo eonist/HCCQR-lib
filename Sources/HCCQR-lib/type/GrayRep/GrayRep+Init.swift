@@ -9,15 +9,15 @@ extension GrayRep {
     * - Fixme: ⚠️️ maybe make mutable and nonmutable version of this class?
     * - Fixme: ⚠️️ Prob create the unmanaged pointer directly for better speed
     * - Fixme: ⚠️️ maybe make this an .init?
+    * - Fixme: ⚠️️ rename pixel to byte
     * - Note: used in the combine method
     * - Parameters:
     *   - pixels: the pixels to populate the GrayscaleRep with
     *   - size: the size you want to us ein the GrayScaleRep
     */
    static func pixels(pixel: UInt8, size: Size) -> UnsafeMutableBufferPointer<UInt8> {
-      let capacity: Int = size.width * size.height
-      let unSafePixels = UnsafeMutableBufferPointer<UInt8>.allocate(capacity: capacity) //      let pixels: [UInt8] = .init(repeating: pixel, count: capacity)
-      unSafePixels.initialize(repeating: pixel)
+      let unSafePixels = UnsafeMutableBufferPointer<UInt8>.allocate(capacity: size.capacity) //      let pixels: [UInt8] = .init(repeating: pixel, count: capacity)
+      unSafePixels.assign(repeating: pixel) // unSafePixels.initialize(repeating: pixel)
       return unSafePixels
    }
    /**

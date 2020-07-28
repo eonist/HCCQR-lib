@@ -8,7 +8,7 @@ import Foundation
  */
 public struct RGBARep {
 //   let pixels: UnsafeMutableBufferPointer<Pixel>
-   let pixels: UnsafeBufferPointer<Pixel>
+   let pixels: UnsafePointer<Pixel>
    let width: Int
    let height: Int
    /**
@@ -18,9 +18,13 @@ public struct RGBARep {
     *   - width: width of rep
     *   - height: height of rep
     */
-   init(pixels: UnsafeMutableBufferPointer<Pixel>, width: Int, height: Int) {
+   init(pixels: UnsafeMutablePointer<Pixel>, width: Int, height: Int) {
       self.pixels = .init(pixels)
-//      self.pixels = pixels
+      self.width = width
+      self.height = height
+   }
+   init(pixels: UnsafePointer<Pixel>, width: Int, height: Int) {
+      self.pixels = pixels
       self.width = width
       self.height = height
    }

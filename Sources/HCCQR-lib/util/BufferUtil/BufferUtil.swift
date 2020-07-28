@@ -34,21 +34,21 @@ extension BufferUtil {
       // - Fixme: ⚠️️ This is prob a bug, you should only lock once
       // CVPixelBufferLockBaseAddress(imageBuffer, CVPixelBufferLockFlags(rawValue: 0))
       let byteBuffer: UnsafeMutablePointer<UInt8> = baseAddress.assumingMemoryBound(to: UInt8.self)
-//      defer { byteBuffer.deallocate() } // new ⚠️️
+//      defer { byteBuffer.deallocate() } // new ⚠️️ doesnt work
       let capacity: Int = bufferRect.width * bufferRect.height
-      let pixels: UnsafeMutableBufferPointer<Pixel> = .allocate(capacity: capacity) // we dealoc this when we have finished working with rgbaRep
+      let pixels: UnsafeMutablePointer<Pixel> = .allocate(capacity: capacity) // we dealoc this when we have finished working with rgbaRep
       (bufferRect.y..<bufferRect.height).forEach { y in
          let yVal: Int = y * bytesPerPixel // we calc these outside the x loop, to gain performance
          let yAndWidth: Int = y * bufferRect.width // we calc these outside the x loop, to gain performance
          (bufferRect.x..<bufferRect.width).forEach { x in
             let index: Int = x * 4 + yVal // We add the crop to the x // (y * bytesPerPixel + x) * 4
-            let (b, g, r) = (byteBuffer[index], byteBuffer[index + 1], byteBuffer[index + 2]) // let a = byteBuffer[index + 3]
+            // ⚠️️ new, was byteBuffer[index] etc
+            let (b, g, r) = (byteBuffer.advanced(by: index).pointee, byteBuffer.advanced(by: index + 1).pointee, byteBuffer.advanced(by: index + 2).pointee) // let a = byteBuffer[index + 3]
             let pixel: Pixel = .init(r: r, g: g, b: b/*, a: 255*/)
             let i: Int = yAndWidth + x
             pixels[i] = pixel
          }
       }
-      // - Fixme: ⚠️️ dealoc byteBuffer here?????
       defer { CVPixelBufferUnlockBaseAddress(buffer, CVPixelBufferLockFlags(rawValue: CVOptionFlags(0))) } // release access for cpu reading 
       // - Fixme: ⚠️️ might want to wrap all this in autoreleasepool as well, or is tha tmore for just cgimage?
       return .init(pixels: pixels, width: bufferRect.width, height: bufferRect.height)

@@ -6,7 +6,7 @@ import Foundation
  */
 struct MonoRep {
    // - Fixme: ⚠️️ could unsafePointer be faster etc?
-   let pixels: [Bool]
+   let pixels: UnsafePointer<Bool>//[Bool]
    let width: Int
    let height: Int
    /**
@@ -16,7 +16,7 @@ struct MonoRep {
     *   - width: width of the canvas
     *   - height: height of the canvas
     */
-   init(pixels: [Bool], width: Int, height: Int) {
+   init(pixels: UnsafePointer<Bool>, width: Int, height: Int) {
       self.pixels = pixels
       self.width = width
       self.height = height
