@@ -41,7 +41,7 @@ extension BufferUtil {
          let yVal: Int = y * bytesPerPixel // we calc these outside the x loop, to gain performance
          let yAndWidth: Int = y * bufferRect.width // we calc these outside the x loop, to gain performance
          (bufferRect.x..<bufferRect.width).forEach { x in
-            let index: Int = ( x) * 4 + yVal // We add the crop to the x // (y * bytesPerPixel + x) * 4
+            let index: Int = x * 4 + yVal // We add the crop to the x // (y * bytesPerPixel + x) * 4
             let (b, g, r) = (byteBuffer[index], byteBuffer[index + 1], byteBuffer[index + 2]) // let a = byteBuffer[index + 3]
             let pixel: Pixel = .init(r: r, g: g, b: b/*, a: 255*/)
             let i: Int = yAndWidth + x

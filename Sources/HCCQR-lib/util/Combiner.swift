@@ -55,16 +55,16 @@ extension Combiner {
     */
    private static func combine(grayReps: GrayReps) -> GrayRep {
       let size: Size = grayReps[0].size // get size from first layer
-      let output: GrayRep = .grayRep(pixel: .black, size: size)// .grayscaleRep(pixel: .black, size: first.size) // because white is 255
-      GrayRepModifier.process(size: output.size) { (i: Int) in // Loop things
-         var byte: UInt8 = output.pixels[i]
+      let pixels: UnsafeMutableBufferPointer<UInt8> = GrayRep.pixels(pixel: .black, size: size)// .grayscaleRep(pixel: .black, size: first.size) // because white is 255
+      GrayRepModifier.process(size: size) { (i: Int) in // Loop things
+         var byte: UInt8 = pixels[i]
          grayReps.forEach { (grayRep: GrayRep) in // loop over every image in the list, this is inside here because the process method uses concurrent_apply
             let newByte: UInt8 = grayRep.pixels[i] // - Fixme: ⚠️️ Can be removed because this will basically never happen, because channels can't overlap
             byte.addition(value: newByte) // ⚠️️ We now add....instead of adding, we substract and then we wouldn't have to invert the image at the end
          }
-         output.pixels[i] = byte
+         pixels[i] = byte
       }
-      return output
+      return .init(pixels: .init(pixels), width: size.width, height: size.height)
    }
 }
 /**

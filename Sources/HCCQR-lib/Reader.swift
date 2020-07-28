@@ -13,7 +13,7 @@ public final class Reader {}
 extension Reader {
    public typealias ReadPayload = (data: Data, quad: QRReader.Quad, imageSize: CGSize)
    /**
-    * CVImageBuffer -> Data (⚠️️ New, UNTESTED ⚠️️)
+    * CVImageBuffer -> Data
     * - Note: Adds support for CVImageBuffer (For processing data from camera)
     * 1. Create RGBA representation of the CVImageBuffer
     * 2. Split the RGBA into multiple QR-Images
@@ -21,7 +21,6 @@ extension Reader {
     * 4. Combine the multiple Data's into one Data
     * 5. Return the data and the meta-data
     * - Fixme: ⚠️️ rename imageBuffer to buffer
-    * - Fixme: ⚠️️ Maybe
     * - Parameters:
     *   - imageBuffer: The buffer containing the raw pixel data and size
     *   - crop: Makes processing the raw imagery faster since we don't have to process areas where the QR info is not etc.
@@ -45,12 +44,13 @@ extension Reader {
     *   - parallel: for single capture, parallel is fast, for sequence, parallel is slower
     */
    public static func data(image: Image, scheme: ChannelScheme = .default, parallel: Bool) throws -> QRReader.DataAndQuad {
-      let (rgbaRepresentation, time): (RGBARep?, Double) = TimeMeasure.timeElapsed { // adds timeMeasure on this call, see if it taints the read benchamarking, if it does, use Buffer as testbed instead
-         /*let rgbaRep: RGBARep = */try? RGBARepresentation.rgbaRepresentation(image: image) //
+      let (rgbaRep, time): (RGBARep?, Double) = TimeMeasure.timeElapsed { // adds timeMeasure on this call, see if it taints the read benchamarking, if it does, use Buffer as testbed instead
+         try? RGBARepUtil.rgbaRep(image: image)
+//         /*let rgbaRep: RGBARep = */try? RGBARepresentation.rgbaRepresentation(image: image) //
       }
       Swift.print("Image to rgbaRep time:  \(time)")
-      guard let rgbaRep = rgbaRepresentation else { throw NSError(domain: "err creating rgbaRep", code: 0) }
-      return try Reader.data(rgbaRep: rgbaRep, scheme: scheme, parallel: parallel)
+      guard let _rgbaRep = rgbaRep else { throw NSError(domain: "err creating rgbaRep", code: 0) }
+      return try data(rgbaRep: _rgbaRep, scheme: scheme, parallel: parallel)
    }
 }
 /**

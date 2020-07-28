@@ -69,6 +69,18 @@
 		F1537F0724B362E300160FEC /* ChannelComboTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1537F0424B362E300160FEC /* ChannelComboTest.swift */; };
 		F1537F0924B47C5200160FEC /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1537F0824B47C5200160FEC /* Array+Extension.swift */; };
 		F1537F0A24B47C5200160FEC /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1537F0824B47C5200160FEC /* Array+Extension.swift */; };
+		F1593A9D24D023B50017F9A2 /* ByteImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1593A9C24D023B50017F9A2 /* ByteImage.swift */; };
+		F1593A9E24D023B50017F9A2 /* ByteImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1593A9C24D023B50017F9A2 /* ByteImage.swift */; };
+		F1593AA024D023C30017F9A2 /* BytePixel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1593A9F24D023C30017F9A2 /* BytePixel.swift */; };
+		F1593AA124D023C30017F9A2 /* BytePixel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1593A9F24D023C30017F9A2 /* BytePixel.swift */; };
+		F1593AA724D0255C0017F9A2 /* BytePixel+Getter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1593AA624D0255C0017F9A2 /* BytePixel+Getter.swift */; };
+		F1593AA824D0255C0017F9A2 /* BytePixel+Getter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1593AA624D0255C0017F9A2 /* BytePixel+Getter.swift */; };
+		F1593AAA24D025940017F9A2 /* ByteImage+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1593AA924D025940017F9A2 /* ByteImage+Init.swift */; };
+		F1593AAB24D025940017F9A2 /* ByteImage+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1593AA924D025940017F9A2 /* ByteImage+Init.swift */; };
+		F1593AAD24D025F20017F9A2 /* ByteImage+Getter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1593AAC24D025F20017F9A2 /* ByteImage+Getter.swift */; };
+		F1593AAE24D025F20017F9A2 /* ByteImage+Getter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1593AAC24D025F20017F9A2 /* ByteImage+Getter.swift */; };
+		F1593AB024D026320017F9A2 /* ByteImage+Setter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1593AAF24D026320017F9A2 /* ByteImage+Setter.swift */; };
+		F1593AB124D026320017F9A2 /* ByteImage+Setter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1593AAF24D026320017F9A2 /* ByteImage+Setter.swift */; };
 		F15C9F7D23BA6FD000F9D524 /* RGBARep+Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15C9F7C23BA6FD000F9D524 /* RGBARep+Const.swift */; };
 		F15C9F7E23BA6FD000F9D524 /* RGBARep+Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15C9F7C23BA6FD000F9D524 /* RGBARep+Const.swift */; };
 		F15C9F8023BA747800F9D524 /* Writer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15C9F7F23BA747800F9D524 /* Writer.swift */; };
@@ -296,6 +308,12 @@
 		F1537EFC24B353E500160FEC /* GrayReps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrayReps.swift; sourceTree = "<group>"; };
 		F1537F0424B362E300160FEC /* ChannelComboTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelComboTest.swift; sourceTree = "<group>"; };
 		F1537F0824B47C5200160FEC /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
+		F1593A9C24D023B50017F9A2 /* ByteImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ByteImage.swift; sourceTree = "<group>"; };
+		F1593A9F24D023C30017F9A2 /* BytePixel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BytePixel.swift; sourceTree = "<group>"; };
+		F1593AA624D0255C0017F9A2 /* BytePixel+Getter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BytePixel+Getter.swift"; sourceTree = "<group>"; };
+		F1593AA924D025940017F9A2 /* ByteImage+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ByteImage+Init.swift"; sourceTree = "<group>"; };
+		F1593AAC24D025F20017F9A2 /* ByteImage+Getter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ByteImage+Getter.swift"; sourceTree = "<group>"; };
+		F1593AAF24D026320017F9A2 /* ByteImage+Setter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ByteImage+Setter.swift"; sourceTree = "<group>"; };
 		F15C9F7C23BA6FD000F9D524 /* RGBARep+Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RGBARep+Const.swift"; sourceTree = "<group>"; };
 		F15C9F7F23BA747800F9D524 /* Writer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Writer.swift; sourceTree = "<group>"; };
 		F162145321FC7138005297DE /* SimpleHCCQRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleHCCQRView.swift; sourceTree = "<group>"; };
@@ -519,6 +537,26 @@
 				F14FADE721F75EF100ACE5FF /* SplitTestView.swift */,
 			);
 			path = SplitTestView;
+			sourceTree = "<group>";
+		};
+		F1593A9B24D0238F0017F9A2 /* ByteImage */ = {
+			isa = PBXGroup;
+			children = (
+				F1593A9C24D023B50017F9A2 /* ByteImage.swift */,
+				F1593AAC24D025F20017F9A2 /* ByteImage+Getter.swift */,
+				F1593AAF24D026320017F9A2 /* ByteImage+Setter.swift */,
+				F1593AA924D025940017F9A2 /* ByteImage+Init.swift */,
+			);
+			path = ByteImage;
+			sourceTree = "<group>";
+		};
+		F1593AA524D025320017F9A2 /* BytePixel */ = {
+			isa = PBXGroup;
+			children = (
+				F1593A9F24D023C30017F9A2 /* BytePixel.swift */,
+				F1593AA624D0255C0017F9A2 /* BytePixel+Getter.swift */,
+			);
+			path = BytePixel;
 			sourceTree = "<group>";
 		};
 		F165C24F23A00D08005D30EC /* src */ = {
@@ -850,6 +888,8 @@
 		F1C42F6924B1F8BD00DA7F23 /* type */ = {
 			isa = PBXGroup;
 			children = (
+				F1593AA524D025320017F9A2 /* BytePixel */,
+				F1593A9B24D0238F0017F9A2 /* ByteImage */,
 				F1D9687C24CEE1A600B25B73 /* RGBARepresentation */,
 				F1AF9D3523E2D7630085DA0C /* BufferRect.swift */,
 				F1E67D4C24A9059C007FC5C0 /* Size.swift */,
@@ -1239,6 +1279,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1593AA124D023C30017F9A2 /* BytePixel.swift in Sources */,
 				F165C24B239FF49C005D30EC /* Pixel+Colors.swift in Sources */,
 				F1537EFA24B331ED00160FEC /* ChannelCombo.swift in Sources */,
 				F1690AAE24B1F9B8000EC61A /* ColorMap.swift in Sources */,
@@ -1256,11 +1297,13 @@
 				F18C7B4523BF7EF9009D9B29 /* BufferUtil+Getter.swift in Sources */,
 				F1E645E823940B3D008D2ABE /* Pixel+Getter.swift in Sources */,
 				F146A55224AD0EA600FE136C /* ChannelScheme+Const.swift in Sources */,
+				F1593AA824D0255C0017F9A2 /* BytePixel+Getter.swift in Sources */,
 				F17F5B88221A267600383955 /* AppDelegate.swift in Sources */,
 				F143EC3723FAB8DE0006743C /* UInt8Modifier.swift in Sources */,
 				F181F11423B92A1700145DEA /* GrayRep+Init.swift in Sources */,
 				F15C9F8123BA747800F9D524 /* Writer.swift in Sources */,
 				F18E38B124B0EC1B00F33947 /* BinarySequencer.swift in Sources */,
+				F1593AB124D026320017F9A2 /* ByteImage+Setter.swift in Sources */,
 				F1B698D7239E64E70085B3C9 /* View.swift in Sources */,
 				F18A4D87239F170F0065078A /* HCCQRConfigUtil.swift in Sources */,
 				F146A51B24AB48F300FE136C /* UInt8+Const.swift in Sources */,
@@ -1271,9 +1314,11 @@
 				F1E645AD23940ACA008D2ABE /* Hybrid+iOS.swift in Sources */,
 				F12EE26724C39E6D00FD9417 /* BufferUtil+Buffer.swift in Sources */,
 				F1D9687F24CEE1D400B25B73 /* RGBARepresentation.swift in Sources */,
+				F1593AAE24D025F20017F9A2 /* ByteImage+Getter.swift in Sources */,
 				F1133DDD24C4CE8A0097E5C9 /* BufferUtil+Data.swift in Sources */,
 				F1E645DC23940B3D008D2ABE /* RGBARep+DeInit.swift in Sources */,
 				F1E645EA23940B3D008D2ABE /* Colorizer+RGBA.swift in Sources */,
+				F1593AAB24D025940017F9A2 /* ByteImage+Init.swift in Sources */,
 				F1E645B323940ACA008D2ABE /* Image+Extension.swift in Sources */,
 				F1D8A66F23E83F8900F17A81 /* GrayRep+DeInit.swift in Sources */,
 				F1E645AE23940ACA008D2ABE /* Hybrid+Mac.swift in Sources */,
@@ -1315,6 +1360,7 @@
 				F146A53624AC70F500FE136C /* RGBARep+Experiment.swift in Sources */,
 				F1AF9D3423E2CF460085DA0C /* Reader.swift in Sources */,
 				F1E645B523940ACA008D2ABE /* Data+Extension.swift in Sources */,
+				F1593A9E24D023B50017F9A2 /* ByteImage.swift in Sources */,
 				F1690AA524B1F9B8000EC61A /* ColorPallete+Const.swift in Sources */,
 				F1690AB924B20128000EC61A /* HCCQRSetup+Const.swift in Sources */,
 				F1A2FB1A24A9BA8700596FFE /* HCCQRSetup.swift in Sources */,
@@ -1351,6 +1397,8 @@
 				F143EC3623FAB8DE0006743C /* UInt8Modifier.swift in Sources */,
 				F1E645D223940B3C008D2ABE /* HCCQRStringData.swift in Sources */,
 				F181F11323B92A1700145DEA /* GrayRep+Init.swift in Sources */,
+				F1593A9D24D023B50017F9A2 /* ByteImage.swift in Sources */,
+				F1593AB024D026320017F9A2 /* ByteImage+Setter.swift in Sources */,
 				F12EE26C24C39E6E00FD9417 /* BufferUtil+RGBA.swift in Sources */,
 				F15C9F8023BA747800F9D524 /* Writer.swift in Sources */,
 				F18A52E121790F8A003F8C13 /* ViewController.swift in Sources */,
@@ -1379,6 +1427,7 @@
 				F165C208239F22A7005D30EC /* RangeUInt8.swift in Sources */,
 				F143EC2323FA8E2F0006743C /* MonoRep.swift in Sources */,
 				F1E645C723940B3C008D2ABE /* Pixel.swift in Sources */,
+				F1593AAD24D025F20017F9A2 /* ByteImage+Getter.swift in Sources */,
 				F1690AAD24B1F9B8000EC61A /* ColorMap.swift in Sources */,
 				F1D8A68B23E9952200F17A81 /* Colorizer+Pixel.swift in Sources */,
 				F1A2FB1924A9BA4B00596FFE /* HCCQRSetup.swift in Sources */,
@@ -1408,6 +1457,7 @@
 				F149992924C886960027C918 /* Scale.swift in Sources */,
 				F1690AB424B2011D000EC61A /* HCCQRSetup+Getter.swift in Sources */,
 				F1690AA724B1F9B8000EC61A /* ColorPallete+Getter.swift in Sources */,
+				F1593AA024D023C30017F9A2 /* BytePixel.swift in Sources */,
 				F1BC216F24C89799002DF3CC /* RGBARep+Experiment2.swift in Sources */,
 				F18E388324AE09D300F33947 /* CustomChannelScheme.swift in Sources */,
 				F1690ABC24B2015E000EC61A /* QRSetup.swift in Sources */,
@@ -1415,6 +1465,7 @@
 				F1133DDC24C4CE8A0097E5C9 /* BufferUtil+Data.swift in Sources */,
 				F18A25E723BB83E700EF8151 /* NSImage+Extension.swift in Sources */,
 				F1537EFD24B353E500160FEC /* GrayReps.swift in Sources */,
+				F1593AA724D0255C0017F9A2 /* BytePixel+Getter.swift in Sources */,
 				F149992C24C88AB30027C918 /* MonoReps.swift in Sources */,
 				F1E645A623940AC9008D2ABE /* Data+Extension.swift in Sources */,
 				F1D8A67123E842B000F17A81 /* UInt8+Extension.swift in Sources */,
@@ -1430,6 +1481,7 @@
 				F18A25E423BB7F8600EF8151 /* BufferUtil+Image.swift in Sources */,
 				F18A4D86239F170F0065078A /* HCCQRConfigUtil.swift in Sources */,
 				F146A55124AD0EA600FE136C /* ChannelScheme+Const.swift in Sources */,
+				F1593AAA24D025940017F9A2 /* ByteImage+Init.swift in Sources */,
 				F18A4D80239F11040065078A /* RGBARepParser.swift in Sources */,
 				F146A55524ADE08100FE136C /* BoolColumn.swift in Sources */,
 				F18E38B024B0EC1B00F33947 /* BinarySequencer.swift in Sources */,

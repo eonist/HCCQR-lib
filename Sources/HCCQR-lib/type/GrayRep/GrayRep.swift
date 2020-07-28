@@ -6,7 +6,7 @@ import Foundation
  * - Fixme: ⚠️️ maybe create a UnsafeBufferPointer aswell for when the rep do not need to be mutated? may be faster?
  */
 public struct GrayRep {
-   let pixels: UnsafeMutableBufferPointer<UInt8>
+   let pixels: UnsafeBufferPointer<UInt8>
    let width: Int
    let height: Int
    /**
@@ -16,7 +16,7 @@ public struct GrayRep {
     *   - width: width of the canvas
     *   - height: height of the canvas
     */
-   init(pixels: UnsafeMutableBufferPointer<UInt8>, width: Int, height: Int) {
+   init(pixels: UnsafeBufferPointer<UInt8>, width: Int, height: Int) {
       self.pixels = pixels
       self.width = width
       self.height = height

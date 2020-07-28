@@ -3,10 +3,10 @@ import Foundation
 
 public final class RGBARepresentation {}
 /**
- * Experimental
+ * ⚠️️ Experimental ⚠️️
+ * - Note: a test to see if refs with image as base would be faster, looks like its slower
  */
 extension RGBARepresentation {
-   typealias DrawContext = (_ context: CGContext) -> Void
    /**
     * Image -> RGBARep
     * - Note: So the logic here is that some images has cgImg but if not they at least have ciImg
@@ -32,6 +32,7 @@ extension RGBARepresentation {
  * Private static helper
  */
 extension RGBARepresentation {
+   private typealias DrawContext = (_ context: CGContext) -> Void
    /**
     * CGImage -> RGBARep
     * - Note: The bitmap is now in a continous chunk of memory. We can remap pointer into bytes and iterate over it.

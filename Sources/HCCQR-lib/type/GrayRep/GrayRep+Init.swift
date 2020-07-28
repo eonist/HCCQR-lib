@@ -14,11 +14,11 @@ extension GrayRep {
     *   - pixels: the pixels to populate the GrayscaleRep with
     *   - size: the size you want to us ein the GrayScaleRep
     */
-   static func grayRep(pixel: UInt8, size: Size) -> GrayRep {
+   static func pixels(pixel: UInt8, size: Size) -> UnsafeMutableBufferPointer<UInt8> {
       let capacity: Int = size.width * size.height
       let unSafePixels = UnsafeMutableBufferPointer<UInt8>.allocate(capacity: capacity) //      let pixels: [UInt8] = .init(repeating: pixel, count: capacity)
       unSafePixels.initialize(repeating: pixel)
-      return .init(pixels: unSafePixels, width: size.width, height: size.height)//.grayRep(pixels: pixels, size: size)
+      return unSafePixels
    }
    /**
     * Returns empty grayScale-rep
@@ -28,7 +28,7 @@ extension GrayRep {
     *   - size: the size of the returned GrayScaleRep
     */
    static func grayRep(capacity: Int, size: Size) -> GrayRep {
-      .init(pixels: .allocate(capacity: capacity), width: size.width, height: size.height)
+      .init(pixels: .init(.allocate(capacity: capacity)), width: size.width, height: size.height)
    }
 }
 /**
@@ -45,4 +45,8 @@ extension GrayRep {
 //      let unsafePixels: UnsafeMutableBufferPointer<UInt8> = .init(start: .allocate(capacity: pixels.count), count: pixels.count)
 //      _ = unsafePixels.initialize(from: pixels)
 //      return .init(pixels: unsafePixels, width: size.width, height: size.height)
+//   }
+//   static func grayRep(pixel: UInt8, size: Size) -> GrayRep {
+//      let unSafePixels = pixels(pixel: pixel, size: size)
+//      return .init(pixels: .init(unSafePixels), width: size.width, height: size.height)//.grayRep(pixels: pixels, size: size)
 //   }

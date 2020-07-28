@@ -66,8 +66,7 @@ extension ImageUtil {
     * - Fixme: ⚠️️ Make this throw
     */
    private static func uiImage(ciImage: CIImage, scale: CGFloat) -> UIImage {
-      let uiImage: UIImage = .init(ciImage: ciImage, scale: scale, orientation: .up)
-      return uiImage
+      .init(ciImage: ciImage, scale: scale, orientation: .up)
    }
    #endif
    #if os(macOS)

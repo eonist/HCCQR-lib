@@ -1,12 +1,13 @@
 import CoreImage
 import Foundation
 /**
- * - Fixme: ⚠️️ Possibly make these .init, or add them to a RGBAUtil class?
+ * - Fixme: ⚠️️ Possibly make these .init
  */
 final class RGBARepUtil {
    /**
     * Converts an Image to an rgbaImage
     * - Abstract: RGBAImage holds the individual pixels of an image in an array (also stores the size of an image)
+    * - Fixme: ⚠️️ instead of trying to convert to cgImage, you can actually use ciImage or cgImage contexts, an image will have either, and both will render to CGCOntext, no need to convert to a new cgImage or CIImage etc, see rgbaRepresentation for more info
     * - Fixme: ⚠️️ Make this a init?
     * - Fixme: ⚠️️ Move to test scope since it's only for testing
     * - Note: this init is fast. trying other ways to get pixel could have some usefulness, but shouldn't be prioritized 0.016330782sec for v30 image
