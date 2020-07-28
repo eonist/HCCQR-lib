@@ -58,18 +58,20 @@ extension RGBARepParser {
     */
    internal static func cgImage(rgbaRep: RGBARep) throws -> CGImage {
 //      try autoreleasepool {  // ⚠️️ testing to get rid of mem leak ⚠️️
-         let deviceColorSpace: CGColorSpace = CGColorSpaceCreateDeviceRGB()
-         let bitmapInfo: CGBitmapInfo = .init(rawValue: CGBitmapInfo.byteOrder32Big.rawValue | CGImageAlphaInfo.noneSkipLast.rawValue) // premultipliedLast also works
+      let deviceColorSpace: CGColorSpace = CGColorSpaceCreateDeviceRGB()
+      let bitmapInfo: CGBitmapInfo = .init(rawValue: CGBitmapInfo.byteOrder32Big.rawValue | CGImageAlphaInfo.noneSkipLast.rawValue) // premultipliedLast also works
 //         var bitmapInfo: UInt32 = CGBitmapInfo.byteOrder32Big.rawValue
 //         bitmapInfo |= CGImageAlphaInfo.premultipliedLast.rawValue & CGBitmapInfo.alphaInfoMask.rawValue
-         let bytesPerRow: Int = rgbaRep.width * 4 // channels in each row (width)
-         let bitsPerComponent: Int = 8 // (8 bits per each channel)
-         let bytesPerPixel: Int = 4 // 4 bytes(rgba channels) for each pixel
-         guard let cfData = CFDataCreate(nil, rgbaRep.flatPixels, rgbaRep.width * rgbaRep.height * bytesPerPixel) else { throw CGImageErr.unableToCreateCFData }
-         guard let cgDataProvider = CGDataProvider(data: cfData) else { throw CGImageErr.unableToCreateCGDataProvider }
-         let bitsPerPixel: Int = bytesPerPixel * bitsPerComponent
-         guard let image = CGImage(width: rgbaRep.width, height: rgbaRep.height, bitsPerComponent: bitsPerComponent, bitsPerPixel: bitsPerPixel, bytesPerRow: bytesPerRow, space: deviceColorSpace, bitmapInfo: bitmapInfo, provider: cgDataProvider, decode: nil, shouldInterpolate: true, intent: CGColorRenderingIntent.defaultIntent) else { throw CGImageErr.unableToCreateCGImage }
-         return image
+      let bytesPerRow: Int = rgbaRep.width * 4 // channels in each row (width)
+      let bitsPerComponent: Int = 8 // (8 bits per each channel)
+      let bytesPerPixel: Int = 4 // 4 bytes(rgba channels) for each pixel
+      let flatPixels = rgbaRep.flatPixels
+      defer { flatPixels.deallocate() }
+      guard let cfData = CFDataCreate(nil, flatPixels, rgbaRep.width * rgbaRep.height * bytesPerPixel) else { throw CGImageErr.unableToCreateCFData }
+      guard let cgDataProvider = CGDataProvider(data: cfData) else { throw CGImageErr.unableToCreateCGDataProvider }
+      let bitsPerPixel: Int = bytesPerPixel * bitsPerComponent
+      guard let image = CGImage(width: rgbaRep.width, height: rgbaRep.height, bitsPerComponent: bitsPerComponent, bitsPerPixel: bitsPerPixel, bytesPerRow: bytesPerRow, space: deviceColorSpace, bitmapInfo: bitmapInfo, provider: cgDataProvider, decode: nil, shouldInterpolate: true, intent: CGColorRenderingIntent.defaultIntent) else { throw CGImageErr.unableToCreateCGImage }
+      return image
 //      }
    }
 }

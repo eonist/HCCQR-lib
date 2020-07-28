@@ -15,12 +15,11 @@ extension RGBARep {
     * - Fixme: ⚠️️ rename to data
     */
    var flatPixels: UnsafePointer<UInt8> {
-      let data = NSData(bytes: flatPixelArr, length: flatPixelArr.count)
-//      Swift.print("revert to old solution ⚠️️ because swift 5.3 complain about dangling pointer 🤷 ")
-      return data.bytes.assumingMemoryBound(to: UInt8.self)
-      //      let pointer: UnsafePointer< UInt8 > = UnsafePointer(arr)
-      //      return pointer
-      //      return UnsafePointer(arr)
+//      let data = NSData(bytes: flatPixelArr, length: flatPixelArr.count)
+//      return data.bytes.assumingMemoryBound(to: UInt8.self)
+      let pointer = UnsafeMutablePointer<UInt8>.allocate(capacity: flatPixelArr.count)
+      pointer.initialize(from: flatPixelArr, count: flatPixelArr.count)
+      return .init(pointer)
    }
    /**
     * There is also: let data: Data = .init(buffer: rgbaRep.pixels)

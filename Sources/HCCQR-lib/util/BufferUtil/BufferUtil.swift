@@ -16,6 +16,7 @@ extension BufferUtil {
     * 2. Raw data and size is extracted from imageBuffer
     * 3. Raw data is converted into Array of Pixel's
     * 4. Pixel's are added to RGBAImage an is then returned
+    * - Note: We dont dealloc the byteBuffer etc because its backed by the cvimagebuff
     * - Note: CVPixelBuffer is a typalias for CVImageBuffer
     * - Note: CVPixelBufferRelease' is unavailable: Core Foundation objects are automatically memory managed
     * - Fixme: ⚠️️ Might have the solution for av buffer: https://stackoverflow.com/questions/29375471/how-to-convert-cvimagebuffer-to-uiimage
@@ -33,8 +34,7 @@ extension BufferUtil {
       guard let baseAddress: UnsafeMutableRawPointer = CVPixelBufferGetBaseAddress(buffer) else { throw NSError(domain: "Unable to get baseAddress", code: 0) }
       // - Fixme: ⚠️️ This is prob a bug, you should only lock once
       // CVPixelBufferLockBaseAddress(imageBuffer, CVPixelBufferLockFlags(rawValue: 0))
-      let byteBuffer: UnsafeMutablePointer<UInt8> = baseAddress.assumingMemoryBound(to: UInt8.self)
-//      defer { byteBuffer.deallocate() } // new ⚠️️ doesnt work
+      let byteBuffer: UnsafePointer<UInt8> = .init(baseAddress.assumingMemoryBound(to: UInt8.self))
       let capacity: Int = bufferRect.width * bufferRect.height
       let pixels: UnsafeMutablePointer<Pixel> = .allocate(capacity: capacity) // we dealoc this when we have finished working with rgbaRep
       (bufferRect.y..<bufferRect.height).forEach { y in
@@ -49,8 +49,24 @@ extension BufferUtil {
             pixels[i] = pixel
          }
       }
-      defer { CVPixelBufferUnlockBaseAddress(buffer, CVPixelBufferLockFlags(rawValue: CVOptionFlags(0))) } // release access for cpu reading 
+      defer { CVPixelBufferUnlockBaseAddress(buffer, CVPixelBufferLockFlags(rawValue: CVOptionFlags(0))) } // release access for cpu reading
       // - Fixme: ⚠️️ might want to wrap all this in autoreleasepool as well, or is tha tmore for just cgimage?
       return .init(pixels: pixels, width: bufferRect.width, height: bufferRect.height)
+   }
+}
+/**
+ * Image (debug only)
+ */
+extension BufferUtil {
+   /**
+    * CVImageBuffer -> UIImage
+    * - Important: ⚠️️ This methd exists for testing/debugging purpouses, the real code derives the buffer directly
+    * - Parameters:
+    *   - imageBuffer: Convert buffer to image
+    *   - scale: the amount to scale the image by (screenScale)
+    */
+   public static func image(imageBuffer: CVImageBuffer, scale: Int) -> Image {
+      let ciImage: CIImage = .init(cvImageBuffer: imageBuffer)
+      return ImageUtil.image(ciImage: ciImage, scale: CGFloat(scale))
    }
 }
