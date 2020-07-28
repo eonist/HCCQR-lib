@@ -26,6 +26,7 @@ extension Splitter {
       let (grayReps, extractTime): (GrayReps, Double) = TimeMeasure.timeElapsed {
          /*let grayReps: GrayReps = */Extractor.extract(rgbaRep: rgbaRep, scheme: scheme, parallel: parallel)
       }
+      rgbaRep.deallocate() // we have no more use for the rgbaRep
       _ = extractTime
       Log.log("extractTime:  \(extractTime)")
       let (channelCombos, comboTime): (ChannelCombos, Double) = TimeMeasure.timeElapsed {
@@ -36,8 +37,8 @@ extension Splitter {
       let (combinations, combineTime): ([CIImage], Double) = TimeMeasure.timeElapsed {
          channelCombos.concurrentMap(parallel: parallel) { Combiner.combine(grayReps: $0) } // combine the combinations to produce layers of qr-images
       }
+      grayReps.deallocate() // no longer in use
       _ = combineTime
-      grayReps.deInit()
       Log.log("combineTime:  \(combineTime)")
       return combinations
    }

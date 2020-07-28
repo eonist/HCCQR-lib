@@ -27,7 +27,7 @@ final class Combiner {
     */
    static func combine(grayReps: GrayReps) -> CIImage {
       let composition: GrayRep = combine(grayReps: grayReps) // combine multiple grayscaleReps together
-      defer { composition.deInit() } // We de-init the Img after we have consumed it to avoid mem leak
+      defer { composition.pixels.deallocate() } // We de-init the Img after we have consumed it to avoid mem leak
       return GrayRepParser.ciImage(grayRep: composition)
    }
 }

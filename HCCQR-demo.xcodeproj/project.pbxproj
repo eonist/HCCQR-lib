@@ -174,8 +174,6 @@
 		F1CF2D7C24938254007ACC0E /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CF2D7B24938254007ACC0E /* View.swift */; };
 		F1D0FCC024B4EFA10065A7CA /* Pixels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D0FCBF24B4EFA10065A7CA /* Pixels.swift */; };
 		F1D0FCC124B4EFA10065A7CA /* Pixels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D0FCBF24B4EFA10065A7CA /* Pixels.swift */; };
-		F1D8A66E23E83F8900F17A81 /* GrayRep+DeInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D8A66D23E83F8900F17A81 /* GrayRep+DeInit.swift */; };
-		F1D8A66F23E83F8900F17A81 /* GrayRep+DeInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D8A66D23E83F8900F17A81 /* GrayRep+DeInit.swift */; };
 		F1D8A67123E842B000F17A81 /* UInt8+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D8A67023E842B000F17A81 /* UInt8+Extension.swift */; };
 		F1D8A67223E842B000F17A81 /* UInt8+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D8A67023E842B000F17A81 /* UInt8+Extension.swift */; };
 		F1D8A68B23E9952200F17A81 /* Colorizer+Pixel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D8A68A23E9952200F17A81 /* Colorizer+Pixel.swift */; };
@@ -399,7 +397,6 @@
 		F1CF2D79249380F8007ACC0E /* VC+HCCQR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VC+HCCQR.swift"; sourceTree = "<group>"; };
 		F1CF2D7B24938254007ACC0E /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		F1D0FCBF24B4EFA10065A7CA /* Pixels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pixels.swift; sourceTree = "<group>"; };
-		F1D8A66D23E83F8900F17A81 /* GrayRep+DeInit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GrayRep+DeInit.swift"; sourceTree = "<group>"; };
 		F1D8A67023E842B000F17A81 /* UInt8+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UInt8+Extension.swift"; sourceTree = "<group>"; };
 		F1D8A68A23E9952200F17A81 /* Colorizer+Pixel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Colorizer+Pixel.swift"; sourceTree = "<group>"; };
 		F1D9687924CE058A00B25B73 /* CVBufferImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CVBufferImage+Extension.swift"; sourceTree = "<group>"; };
@@ -746,7 +743,6 @@
 				F19C1C7024A8834100E93F4D /* util */,
 				F181F10923B9091400145DEA /* GrayRep.swift */,
 				F181F11223B92A1700145DEA /* GrayRep+Init.swift */,
-				F1D8A66D23E83F8900F17A81 /* GrayRep+DeInit.swift */,
 				F181F11523B92D0500145DEA /* GrayRep+Getter.swift */,
 				F1537EFC24B353E500160FEC /* GrayReps.swift */,
 			);
@@ -1324,7 +1320,6 @@
 				F1E645EA23940B3D008D2ABE /* Colorizer+RGBA.swift in Sources */,
 				F1593AAB24D025940017F9A2 /* ByteImage+Init.swift in Sources */,
 				F1E645B323940ACA008D2ABE /* Image+Extension.swift in Sources */,
-				F1D8A66F23E83F8900F17A81 /* GrayRep+DeInit.swift in Sources */,
 				F1E645AE23940ACA008D2ABE /* Hybrid+Mac.swift in Sources */,
 				F1E645B823940ACA008D2ABE /* UInt8Parser.swift in Sources */,
 				F1D9687B24CE058A00B25B73 /* CVBufferImage+Extension.swift in Sources */,
@@ -1418,7 +1413,6 @@
 				F1CF2D7A249380F8007ACC0E /* VC+HCCQR.swift in Sources */,
 				F12274E0249BCC8D0045573B /* ColorizeError.swift in Sources */,
 				F146A53B24AD048500FE136C /* CustomColorPallete.swift in Sources */,
-				F1D8A66E23E83F8900F17A81 /* GrayRep+DeInit.swift in Sources */,
 				F146A54024AD06E400FE136C /* ChannelScheme.swift in Sources */,
 				F12EE26A24C39E6E00FD9417 /* BufferUtil+Buffer.swift in Sources */,
 				F1690AA424B1F9B8000EC61A /* ColorPallete+Const.swift in Sources */,

@@ -4,16 +4,14 @@ import Foundation
  * - Note: this gets rid of: Array where Element == GrayRep
  */
 public typealias GrayReps = [GrayRep]
-
 /**
- * For [GrayscaleRep]
+ * For [GrayRep]
  */
 extension GrayReps {
    /**
-    * Bulk deInit
-    * - Abstract: deInit multiple reps
+    * Dellocate
     */
-   func deInit() {
-      forEach { $0.deInit() }
+   internal func deallocate() {
+      self.forEach { $0.pixels.deallocate() }
    }
 }
