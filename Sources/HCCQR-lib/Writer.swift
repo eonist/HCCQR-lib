@@ -47,9 +47,12 @@ extension Writer {
     */
    internal static func rgbaRep(data: Data, config: HCCQRSetup, parallel: Bool) throws -> RGBARep {
       let dataArr: [Data] = HCCQRConfigUtil.data(data: data, config: config) // splits data (for multiple layers 2-8, 4-256 colors respectfully)
-      let ciImgs: [CIImage] = dataArr.concurrentCompactMap(parallel: parallel) { (data: Data) in // parraelly create the qr-image-Layers
-         try? QRWriter.ciImage(data: data, ecLevel: config.ecLevel) // Create B&W QR-layers (CIImage)
+      let (ciImgs, qrTime): ([CIImage], Double) = TimeMeasure.timeElapsed {
+         /*let ciImgs: [CIImage] =*/ dataArr.concurrentCompactMap(parallel: parallel) { (data: Data) in // parraelly create the qr-image-Layers
+            try? QRWriter.ciImage(data: data, ecLevel: config.ecLevel) // Create B&W QR-layers (CIImage)
+         }
       }
+      Log.log("qrTime:  \(qrTime)")
       guard dataArr.count == ciImgs.count else { throw NSError(domain: "\(dataArr.count - ciImgs.count) qr imgs did not finish", code: 0) } // if qrImgs was not created correctly etc, we cant do try error inside concurrentMap
       let (rgbaRep, colorizeTime): (RGBARep, Double) = try TimeMeasure.timeElapsed {
          /*let rgbaRep: RGBARep = */try Colorizer.colorize(qrLayers: ciImgs, config: config.output/*, coreCount: coreCount*/)

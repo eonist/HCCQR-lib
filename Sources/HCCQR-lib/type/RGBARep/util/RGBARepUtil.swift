@@ -40,8 +40,10 @@ extension RGBARepUtil {
       let bitMapInfo = RGBARep.bitmapInfo
       guard let cgContext = CGContext(data: imageData, width: size.width, height: size.height, bitsPerComponent: 8, bytesPerRow: bytesPerRow, space: colorSpace, bitmapInfo: bitMapInfo) else { throw NSError(domain: "rgbaImage - Unable to create rgbaImage", code: 0) }
       cgContext.draw(cgImage, in: .init(origin: .zero, size: .init(width: cgImage.width, height: cgImage.height))) // draws the cgImage into the context
-      let pixels: UnsafePointer<Pixel> = .init(imageData) // we dealoc this when we are finished with RGBARep
+      // - Fixme: ⚠️️  the bellow is a hack, find better solution, see legacy
+//      let pixels: UnsafePointer<Pixel> = .init(imageData) // we dealoc this when we are finished with RGBARep
+      let pixis: UnsafeBufferPointer<Pixel> = .init(start: imageData, count: capacity)
       // - Fixme: ⚠️️ dealloc imagedata maybe?
-      return .init(pixels: pixels, width: size.width, height: size.height)
+      return .init(pixels: pixis, width: size.width, height: size.height)
    }
 }

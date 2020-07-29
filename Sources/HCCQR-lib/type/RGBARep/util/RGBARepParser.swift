@@ -1,6 +1,7 @@
 import Foundation
 import QuartzCore
 import CoreImage
+import TimeMeasure
 
 public final class RGBARepParser {
    /**
@@ -12,8 +13,12 @@ public final class RGBARepParser {
     */
    static func image(rgbaRep: RGBARep, scale: CGFloat) throws -> Image {
 //      try autoreleasepool { // Ref: ⚠️️ https://stackoverflow.com/questions/25860942/is-it-necessary-to-use-autoreleasepool-in-a-swift-program
-         let cgImg: CGImage = try cgImage(rgbaRep: rgbaRep)
-         return ImageUtil.image(cgImage: cgImg, scale: scale) // Convert CGImage to UIImage
+//      let (cgImg, time): (CGImage, Double) = try TimeMeasure.timeElapsed {
+//         /**/
+//      }
+      let cgImg: CGImage = try cgImage(rgbaRep: rgbaRep)
+//      Swift.print("cgimg creation time:  \(time)")
+      return ImageUtil.image(cgImage: cgImg, scale: scale) // Convert CGImage to UIImage (very fast, not worth speed testing, basically just adds metadata to cgimg)
 //      }
    }
    /**
@@ -30,7 +35,7 @@ public final class RGBARepParser {
       // new ⚠️️ 
       let colorSpace: CGColorSpace = useGrayscale ? CGColorSpaceCreateDeviceGray() : CGColorSpaceCreateDeviceRGB()//CGColorSpaceCreateDeviceRGB() // The color space that the image is defined in. It must be a Quartz 2D color space (CGColorSpace). Pass nil for images that don’t contain color data (such as elevation maps, normal vector maps, and sampled function tables).
       let bytesPerRow: Int = rgbaRep.size.width * 4
-      let data: Data = .init(buffer: .init(start: rgbaRep.pixels, count: rgbaRep.capacity))
+      let data: Data = .init(buffer: rgbaRep.pixels)
       let ciImg: CIImage = .init(bitmapData: data, bytesPerRow: bytesPerRow, size: CGSize(width: CGFloat(rgbaRep.size.width), height: CGFloat(rgbaRep.size.height)), format: format, colorSpace: colorSpace)
       return ciImg
 //      }
@@ -65,8 +70,12 @@ extension RGBARepParser {
       let bytesPerRow: Int = rgbaRep.width * 4 // channels in each row (width)
       let bitsPerComponent: Int = 8 // (8 bits per each channel)
       let bytesPerPixel: Int = 4 // 4 bytes(rgba channels) for each pixel
+//      let (flatPixels, time): (UnsafePointer<UInt8>, Double) = TimeMeasure.timeElapsed {
+//         /**/
+//      }
       let flatPixels = rgbaRep.flatPixels
-      defer { flatPixels.deallocate() }
+//      Log.log("flatPixels time:  \(time)")
+      defer { flatPixels.deallocate() } // we have no use for flatPixels after image is returned
       guard let cfData = CFDataCreate(nil, flatPixels, rgbaRep.width * rgbaRep.height * bytesPerPixel) else { throw CGImageErr.unableToCreateCFData }
       guard let cgDataProvider = CGDataProvider(data: cfData) else { throw CGImageErr.unableToCreateCGDataProvider }
       let bitsPerPixel: Int = bytesPerPixel * bitsPerComponent

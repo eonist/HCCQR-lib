@@ -8,7 +8,7 @@ extension ByteImage {
     * Init
     */
    public init?(image: Image) {
-      guard let cgImage = image.cgImage else {
+      guard let cgImage = image.cgImage() else {
          return nil
       }
       width = Int(image.size.width)

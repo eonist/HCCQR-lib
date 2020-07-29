@@ -15,7 +15,7 @@ final class BulkBufferTest {
    static func test() -> Bool {
       let setup: HCCQRSetup = .init(qr: .init(qrVersion: .v6, ecLevel: .l), output: .init(scale: .init(6, 2), palette: pallete))
       let randomDataArr: [Data] = (0..<count).compactMap { _ in HCCQRStringData.randomData(setup: setup) } // Num of items to load, we create this outside, because we dont want to time the creation of it
-      var buffers: [CVImageBuffer] = randomDataArr.batches(spread: 8).concurrentFlatMap { batch in
+      let buffers: [CVImageBuffer] = randomDataArr.batches(spread: 8).concurrentFlatMap { batch in
          batch.compactMap { data in
             guard let image = try? Writer.image(data: data, config: setup, parallel: false) else { Swift.print("err img"); return nil }
             guard let buffer: CVImageBuffer = try? BufferUtil.imageBuffer(image: image) else { Swift.print("unable to get buffer"); return nil }

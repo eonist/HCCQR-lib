@@ -16,7 +16,7 @@ extension RGBARepParser {
       let bytesPerRow: Int = rgbaRep.width * 4 //((The number of bytes per row.
       //    let ciContext: CIContext = .init()
       //    ciContext
-      let data = rgbaRep.data
+      let data = Data()//rgbaRep.data
 //      let data = Data(buffer: rgbaRep.flatPixels) // The bitmap data to use for the image. The data you supply must be premultiplied.
       let size: CGSize = .init(width: rgbaRep.size.width, height: rgbaRep.size.height)
       let format: CIFormat = .RGBA8// .BGRA8 // A pixel format constant. See Pixel Formats.

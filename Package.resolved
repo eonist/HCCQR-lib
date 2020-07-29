@@ -15,7 +15,7 @@
         "repositoryURL": "https://eonist:2fa35e4ff44eac34e98f01f2c83a16f00e650e56@github.com/light-stream/QR-lib.git",
         "state": {
           "branch": "master",
-          "revision": "d030a03377c6e2445ef27a57d630410c1a2b40bc",
+          "revision": "ba61446dcee343778aaa9d916324394caeb6e3f4",
           "version": null
         }
       },
@@ -24,7 +24,7 @@
         "repositoryURL": "https://github.com/eonist/ResourceHelper.git",
         "state": {
           "branch": "master",
-          "revision": "ffd67d93541e74e1322ed2cd25c4d620fbd395b4",
+          "revision": "4359edc3fe4f9fa2a78c95261ff1327f3e433780",
           "version": null
         }
       },
@@ -42,7 +42,7 @@
         "repositoryURL": "https://github.com/eonist/TimeMeasure.git",
         "state": {
           "branch": "master",
-          "revision": "bba7fdd4104df804417af4b3d19b825b3bbe5e54",
+          "revision": "6646741b464dd6906b2c71c67d10f7f17e37c4de",
           "version": null
         }
       }

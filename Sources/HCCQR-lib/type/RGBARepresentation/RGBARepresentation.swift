@@ -49,7 +49,7 @@ extension RGBARepresentation {
       guard let context = CGContext(data: nil, width: size.width, height: size.height, bitsPerComponent: bitsPerComponent, bytesPerRow: bytesPerRow, space: rgbaColorSpace, bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue) else { fatalError("err") } // RGBA bitmap context
       draw(context)
       guard let bytes: UnsafeMutablePointer<UInt8> = context.data?.bindMemory(to: UInt8.self, capacity: byteCount) else { fatalError("err") }
-      let pixels: UnsafeMutablePointer<Pixel> = .allocate(capacity: size.capacity) // we dealoc this when we have finished working with rgbaRep
+      let pixels: UnsafeMutableBufferPointer<Pixel> = .allocate(capacity: size.capacity) // we dealoc this when we have finished working with rgbaRep
       process(bytes: bytes, byteCount: byteCount) { (idx: Int, pixel: Pixel) in
          pixels[idx] = pixel
       }

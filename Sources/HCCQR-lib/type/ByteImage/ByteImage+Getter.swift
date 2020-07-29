@@ -15,7 +15,7 @@ extension ByteImage {
     * Clone
     */
    public func clone() -> ByteImage {
-      let cloneImage = ByteImage(width: self.width, height: self.height)
+      let cloneImage = ByteImage(pixels: pixels, width: self.width, height: self.height)
       for y in 0..<height {
          for x in 0..<width {
             let index = y * width + x
@@ -38,7 +38,7 @@ extension ByteImage {
       guard let cgImage = imageContext.makeImage() else {
          return nil
       }
-      let image = Image(cgImage: cgImage)
+      let image = ImageUtil.image(cgImage: cgImage)
       return image
    }
 }

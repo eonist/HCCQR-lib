@@ -34,16 +34,17 @@ extension BufferUtil {
       guard let baseAddress: UnsafeMutableRawPointer = CVPixelBufferGetBaseAddress(buffer) else { throw NSError(domain: "Unable to get baseAddress", code: 0) }
       // - Fixme: ⚠️️ This is prob a bug, you should only lock once
       // CVPixelBufferLockBaseAddress(imageBuffer, CVPixelBufferLockFlags(rawValue: 0))
-      let byteBuffer: UnsafePointer<UInt8> = .init(baseAddress.assumingMemoryBound(to: UInt8.self))
       let capacity: Int = bufferRect.width * bufferRect.height
-      let pixels: UnsafeMutablePointer<Pixel> = .allocate(capacity: capacity) // we dealoc this when we have finished working with rgbaRep
+      let byteBuffer: UnsafeBufferPointer<UInt8> = .init(start: baseAddress.bindMemory(to: UInt8.self, capacity: capacity), count: capacity)// baseAddress.assumingMemoryBound(to: UInt8.self)// .init()
+      let pixels: UnsafeMutableBufferPointer<Pixel> = .allocate(capacity: capacity) // we dealoc this when we have finished working with rgbaRep
+      // - Fixme: ⚠️️ could possibly see great speed increase if we align indecies, and do modulo to find width and y and x etc
       (bufferRect.y..<bufferRect.height).forEach { y in
          let yVal: Int = y * bytesPerPixel // we calc these outside the x loop, to gain performance
          let yAndWidth: Int = y * bufferRect.width // we calc these outside the x loop, to gain performance
          (bufferRect.x..<bufferRect.width).forEach { x in
             let index: Int = x * 4 + yVal // We add the crop to the x // (y * bytesPerPixel + x) * 4
             // ⚠️️ new, was byteBuffer[index] etc
-            let (b, g, r) = (byteBuffer.advanced(by: index).pointee, byteBuffer.advanced(by: index + 1).pointee, byteBuffer.advanced(by: index + 2).pointee) // let a = byteBuffer[index + 3]
+            let (b, g, r) = (byteBuffer[index], byteBuffer[index + 1], byteBuffer[index + 2]) // let a = byteBuffer[index + 3]
             let pixel: Pixel = .init(r: r, g: g, b: b/*, a: 255*/)
             let i: Int = yAndWidth + x
             pixels[i] = pixel

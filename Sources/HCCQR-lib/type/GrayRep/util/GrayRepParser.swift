@@ -9,7 +9,7 @@ final class GrayRepParser {
     * - Note: I think the .L8 is monotone?
     */
    static func ciImage(grayRep: GrayRep) /*throws*/ -> CIImage {
-      let data: Data = .init(buffer: .init(start: grayRep.pixels, count: grayRep.capacity))
+      let data: Data = .init(buffer: grayRep.pixels)
       let format: CIFormat = .L8 //.L8 //.BGRA8 // .RGBA8// .ARGB8//.ABGR8// // A pixel format constant. See Pixel Formats.
       let colorSpace: CGColorSpace = CGColorSpaceCreateDeviceGray()// : CGColorSpaceCreateDeviceRGB()//CGColorSpaceCreateDeviceRGB() // The color space that the image is defined in. It must be a Quartz 2D color space (CGColorSpace). Pass nil for images that don’t contain color data (such as elevation maps, normal vector maps, and sampled function tables).
       let bytesPerRow: Int = grayRep.size.width // * 1

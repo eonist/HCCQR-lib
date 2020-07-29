@@ -16,6 +16,7 @@ extension MonoRep {
     * - Note: Ref https://www.geekspiff.com/unlinkedCrap/ciImageToBitmap.html
     * - Note: Use ciImg.debugDescription to find more info about cgImage
     * - Caution: ⚠️️ Only works if CIImage is pure black and white, which is the case for generated qr images
+    * - Fixme: ⚠️️ we could try using UnsafeMutableRawPointer for imageData, could be faster ?, need more info
     * - Parameters:
     *   - ciImg: The CIImage to convert to monotone representative
     *   - crop: Supports cropping
@@ -35,11 +36,11 @@ extension MonoRep {
       }
       let fromExtent: CGRect = crop.cgRect
       context.draw(ciImg, in: ciImg.extent, from: fromExtent)
-      let monoPixels: UnsafeMutablePointer<Bool> = .allocate(capacity: capacity)
+      let monoPixels: UnsafeMutableBufferPointer<Bool> = .allocate(capacity: capacity)
       (0..<capacity).forEach { i in
          monoPixels[i] = imageData.advanced(by: i).pointee.isWhite
       }
-      imageData.deallocate()
+      imageData.deallocate() // we have no more use for imageData
       return .init(pixels: .init(monoPixels), width: crop.width, height: crop.height)
    }
 }
