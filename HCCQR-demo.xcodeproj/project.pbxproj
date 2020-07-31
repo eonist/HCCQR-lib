@@ -187,6 +187,8 @@
 		F1E5711B23A3F2C400E090BB /* ColorishTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BFEFD223A06899007F4261 /* ColorishTest.swift */; };
 		F1E5A32524D4424600F7AE70 /* PixelKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E5A32424D4424600F7AE70 /* PixelKind.swift */; };
 		F1E5A32624D4424600F7AE70 /* PixelKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E5A32424D4424600F7AE70 /* PixelKind.swift */; };
+		F1E5A32824D4565400F7AE70 /* RGBARepKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E5A32724D4565400F7AE70 /* RGBARepKind.swift */; };
+		F1E5A32924D4565400F7AE70 /* RGBARepKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E5A32724D4565400F7AE70 /* RGBARepKind.swift */; };
 		F1E5DC0223F975AE00605775 /* ColorPalleteAsserter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E5DBFF23F9757D00605775 /* ColorPalleteAsserter.swift */; };
 		F1E5DC1023F9A1C300605775 /* RGBAImageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E5DC0F23F9A1C300605775 /* RGBAImageTest.swift */; };
 		F1E5DC1223F9A2DF00605775 /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E5DC1123F9A2DF00605775 /* UIImage+Ext.swift */; };
@@ -396,6 +398,7 @@
 		F1E5710823A3EF3100E090BB /* HCCQRIOSTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HCCQRIOSTest.swift; sourceTree = "<group>"; };
 		F1E5710A23A3EF3100E090BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F1E5A32424D4424600F7AE70 /* PixelKind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixelKind.swift; sourceTree = "<group>"; };
+		F1E5A32724D4565400F7AE70 /* RGBARepKind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBARepKind.swift; sourceTree = "<group>"; };
 		F1E5DBFF23F9757D00605775 /* ColorPalleteAsserter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPalleteAsserter.swift; sourceTree = "<group>"; };
 		F1E5DC0423F9802300605775 /* BufferUtil+RGBA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BufferUtil+RGBA.swift"; sourceTree = "<group>"; };
 		F1E5DC0723F9929300605775 /* BufferUtil+CGImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BufferUtil+CGImage.swift"; sourceTree = "<group>"; };
@@ -567,6 +570,7 @@
 			isa = PBXGroup;
 			children = (
 				F168526F2213443700C27EAA /* RGBARep.swift */,
+				F1E5A32724D4565400F7AE70 /* RGBARepKind.swift */,
 				F15C9F7C23BA6FD000F9D524 /* RGBARep+Const.swift */,
 				F10296B8222218D1001FA2DF /* RGBARep+Getter.swift */,
 				F10296BA222218DC001FA2DF /* RGBARep+DeInit.swift */,
@@ -1281,6 +1285,7 @@
 				F18E38B124B0EC1B00F33947 /* BinarySequencer.swift in Sources */,
 				F1593AB124D026320017F9A2 /* ByteImage+Setter.swift in Sources */,
 				F1B698D7239E64E70085B3C9 /* View.swift in Sources */,
+				F1E5A32924D4565400F7AE70 /* RGBARepKind.swift in Sources */,
 				F18A4D87239F170F0065078A /* HCCQRConfigUtil.swift in Sources */,
 				F146A51B24AB48F300FE136C /* UInt8+Const.swift in Sources */,
 				F12274E1249BCC8D0045573B /* ColorizeError.swift in Sources */,
@@ -1447,6 +1452,7 @@
 				F1AF9D3323E2CF460085DA0C /* Reader.swift in Sources */,
 				F1E645C023940B3C008D2ABE /* RGBARep+Getter.swift in Sources */,
 				F1CF2D7C24938254007ACC0E /* View.swift in Sources */,
+				F1E5A32824D4565400F7AE70 /* RGBARepKind.swift in Sources */,
 				F165C24D239FF501005D30EC /* Pixel+Const.swift in Sources */,
 				F1467655249F77DA009D392A /* SplitTestView.swift in Sources */,
 				F1F3E04A23BA1CA200D367F1 /* Extractor.swift in Sources */,

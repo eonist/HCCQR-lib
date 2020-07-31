@@ -9,8 +9,8 @@ extension ByteImage {
     */
    public init?(image: Image) {
       guard let cgImage = image.cgImage() else { return nil }
-      width = Int(image.size.width)
-      height = Int(image.size.height)
+      let width = Int(image.size.width)
+      let height = Int(image.size.height)
       let bytesPerRow = width * 4
       let imageData = UnsafeMutablePointer<BytePixel>.allocate(capacity: width * height)
       let colorSpace = CGColorSpaceCreateDeviceRGB()
@@ -18,7 +18,9 @@ extension ByteImage {
       bitmapInfo = bitmapInfo | CGImageAlphaInfo.premultipliedLast.rawValue & CGBitmapInfo.alphaInfoMask.rawValue
       guard let imageContext = CGContext(data: imageData, width: width, height: height, bitsPerComponent: 8, bytesPerRow: bytesPerRow, space: colorSpace, bitmapInfo: bitmapInfo) else { return nil }
       imageContext.draw(cgImage, in: CGRect(origin: .zero, size: image.size))
-      pixels = UnsafeMutableBufferPointer<BytePixel>(start: imageData, count: width * height)
+//      pixels = UnsafeMutableBufferPointer<BytePixel>(start: imageData, count: width * height)
+      let pixis: UnsafeBufferPointer<BytePixel> = .init(start: imageData, count: width * height)
+      self.init(pixels: pixis, width: width, height: height)
    }
    #if os(iOS)
    /**

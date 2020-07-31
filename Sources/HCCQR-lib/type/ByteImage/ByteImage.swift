@@ -1,11 +1,10 @@
 import Foundation
 import CoreImage
-
+/**
+ * ByteImage
+ */
 public struct ByteImage {
-   public var pixels: UnsafeMutableBufferPointer<BytePixel>
+   public var pixels: UnsafeBufferPointer<BytePixel>
    public var width: Int
    public var height: Int
 }
-// 🏀
-// make RGBARepKind
-// move to protocol API
