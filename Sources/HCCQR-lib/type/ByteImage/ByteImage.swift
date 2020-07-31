@@ -6,3 +6,6 @@ public struct ByteImage {
    public var width: Int
    public var height: Int
 }
+// 🏀
+// make RGBARepKind
+// move to protocol API

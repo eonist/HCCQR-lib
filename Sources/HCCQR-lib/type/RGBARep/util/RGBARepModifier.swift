@@ -32,6 +32,6 @@ final class RGBARepModifier {
             resultPixels[resIndex] = pixels[pixIndex]
          }
       }
-      return .init(pixels: resultPixels, width: scaledSize.width, height: scaledSize.height)
+      return .init(pixels: .init(resultPixels), width: scaledSize.width, height: scaledSize.height)
    }
 }

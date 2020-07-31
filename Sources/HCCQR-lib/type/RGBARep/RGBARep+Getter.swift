@@ -12,7 +12,7 @@ extension RGBARep {
    var capacity: Int { self.width * self.height }
    /**
     * unsafePixels, new (⚠️️ might work, might not ⚠️️)
-    * - Fixme: ⚠️️ rename to data
+    * - Fixme: ⚠️️ rename to data?
     * - Fixme: ⚠️️ find cleaner way to convert between unsafe types etc
     * - Note: This method is now super fast
     */

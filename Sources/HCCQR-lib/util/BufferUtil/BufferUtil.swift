@@ -52,7 +52,7 @@ extension BufferUtil {
       }
       defer { CVPixelBufferUnlockBaseAddress(buffer, CVPixelBufferLockFlags(rawValue: CVOptionFlags(0))) } // release access for cpu reading
       // - Fixme: ⚠️️ might want to wrap all this in autoreleasepool as well, or is tha tmore for just cgimage?
-      return .init(pixels: pixels, width: bufferRect.width, height: bufferRect.height)
+      return .init(pixels: .init(pixels), width: bufferRect.width, height: bufferRect.height)
    }
 }
 /**

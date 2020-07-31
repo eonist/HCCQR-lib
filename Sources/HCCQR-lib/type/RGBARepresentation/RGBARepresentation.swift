@@ -53,11 +53,12 @@ extension RGBARepresentation {
       process(bytes: bytes, byteCount: byteCount) { (idx: Int, pixel: Pixel) in
          pixels[idx] = pixel
       }
-      return .init(pixels: pixels, width: size.width, height: size.height)
+      return .init(pixels: .init(pixels), width: size.width, height: size.height)
    }
    /**
     * Process pixels
     * - Note: idea is to store the the cgImg in the representation, and loop through the bytes, with a closure that handles the bytes
+    * - Fixme: ⚠️️ better to not stride, and rather use buffer based pointer
     */
    internal static func process(bytes: UnsafeMutablePointer<UInt8>, byteCount: Int, closure: (_ idx: Int, _ pixel: Pixel) -> Void) {
       stride(from: 0, to: byteCount, by: 4).forEach { i in

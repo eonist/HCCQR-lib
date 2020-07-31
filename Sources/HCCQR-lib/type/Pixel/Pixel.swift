@@ -4,7 +4,7 @@ import Foundation
  * - Fixme: ⚠️️⚠️️⚠️️ get rid of alpha, because there is no alpha, just be careful that you don't ruin the conversion methods that rely on struct being what it is etc
  * - Fixme: ⚠️️ simplify Pixel, by moving code out of it, and into parsers, asserters and modifiers
  */
-public struct Pixel {
+public struct Pixel: PixelKind {
    let r: UInt8
    let g: UInt8
    let b: UInt8

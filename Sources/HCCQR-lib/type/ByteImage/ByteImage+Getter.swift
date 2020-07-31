@@ -13,6 +13,7 @@ extension ByteImage {
    }
    /**
     * Clone
+    * - Fixme: ⚠️️ rename to copy
     */
    public func clone() -> ByteImage {
       let cloneImage = ByteImage(pixels: pixels, width: self.width, height: self.height)
@@ -26,6 +27,7 @@ extension ByteImage {
    }
    /**
     * Image
+    * - Fixme: ⚠️️ rename to image
     */
    public func toUIImage() -> Image? {
       let colorSpace = CGColorSpaceCreateDeviceRGB()
