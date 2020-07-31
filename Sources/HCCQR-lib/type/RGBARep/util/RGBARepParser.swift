@@ -6,20 +6,16 @@ import TimeMeasure
 public final class RGBARepParser {
    /**
     * Converts rgbaImage to uiimage / nsimage
+    * - Note: this method is blazing fat, no need to optimize
     * - Note: used by the colorize process and Write.image method
+    * - Note: regarding autorelease: https://stackoverflow.com/questions/25860942/is-it-necessary-to-use-autoreleasepool-in-a-swift-program
     * - Parameters:
     *   - scale: the amount to scale the image by (screenScale)
     *   - rgbaImage: rgbaRep to convert to image
     */
    static func image(rgbaRep: RGBARep, scale: CGFloat) throws -> Image {
-//      try autoreleasepool { // Ref: ⚠️️ https://stackoverflow.com/questions/25860942/is-it-necessary-to-use-autoreleasepool-in-a-swift-program
-//      let (cgImg, time): (CGImage, Double) = try TimeMeasure.timeElapsed {
-//         /**/
-//      }
       let cgImg: CGImage = try cgImage(rgbaRep: rgbaRep)
-//      Swift.print("cgimg creation time:  \(time)")
-      return ImageUtil.image(cgImage: cgImg, scale: scale) // Convert CGImage to UIImage (very fast, not worth speed testing, basically just adds metadata to cgimg)
-//      }
+      return ImageUtil.image(cgImage: cgImg, scale: scale) // Embed CGImage in UIImage (very fast, not worth speed testing, basically just adds metadata to cgimg)
    }
    /**
     * RGBAImage -> CIImage
@@ -27,6 +23,9 @@ public final class RGBARepParser {
     * - Note: The composite method uses this method
     * - Note: Basically monotone not grayscale
     * - Note: Used by colorizer method
+    * ref https://developer.apple.com/documentation/coreimage/cicontext/1437897-render
+    * https://www.geekspiff.com/unlinkedCrap/ciImageToBitmap.html
+    * ref: https://stackoverflow.com/a/51380146/5389500 (also has pointer while loop)
     */
    static func ciImg2(rgbaRep: RGBARep, useGrayscale: Bool) throws -> CIImage {
       // Swift.print("ciImg2")
@@ -59,27 +58,24 @@ extension RGBARepParser {
     * - Note: We use autorelease Because CoreGraphics is not handled by ARC (like all other C libraries),
     * - Note: you need to wrap your code with with an autorelease, even in Swift.
     * - Note: Particularly if you are not on the main thread (which you should not be, if CoreGraphics is involved... .userInitiated or lower is appropriate).
+    * - Note: use CGImageAlphaInfo.premultipliedFirst if argb
     * - Parameter rgbaRep: The rep to convert into cgImage
     */
    internal static func cgImage(rgbaRep: RGBARep) throws -> CGImage {
-//      try autoreleasepool {  // ⚠️️ testing to get rid of mem leak ⚠️️
+//    try autoreleasepool {  // ⚠️️ testing to get rid of mem leak ⚠️️
       let deviceColorSpace: CGColorSpace = CGColorSpaceCreateDeviceRGB()
       let bitmapInfo: CGBitmapInfo = .init(rawValue: CGBitmapInfo.byteOrder32Big.rawValue | CGImageAlphaInfo.noneSkipLast.rawValue) // premultipliedLast also works
-//         var bitmapInfo: UInt32 = CGBitmapInfo.byteOrder32Big.rawValue
-//         bitmapInfo |= CGImageAlphaInfo.premultipliedLast.rawValue & CGBitmapInfo.alphaInfoMask.rawValue
-      let bytesPerRow: Int = rgbaRep.width * 4 // channels in each row (width)
+//    var bitmapInfo: UInt32 = CGBitmapInfo.byteOrder32Big.rawValue
+//    bitmapInfo |= CGImageAlphaInfo.premultipliedLast.rawValue & CGBitmapInfo.alphaInfoMask.rawValue
+      let bytesPerRow: Int = rgbaRep.width * MemoryLayout<Pixel>.size // channels in each row (width)
       let bitsPerComponent: Int = 8 // (8 bits per each channel)
       let bytesPerPixel: Int = 4 // 4 bytes(rgba channels) for each pixel
-//      let (flatPixels, time): (UnsafePointer<UInt8>, Double) = TimeMeasure.timeElapsed {
-//         /**/
-//      }
+      let bitsPerPixel: Int = bytesPerPixel * bitsPerComponent
       let flatPixels = rgbaRep.flatPixels
-//      Log.log("flatPixels time:  \(time)")
       defer { flatPixels.deallocate() } // we have no use for flatPixels after image is returned
       guard let cfData = CFDataCreate(nil, flatPixels, rgbaRep.width * rgbaRep.height * bytesPerPixel) else { throw CGImageErr.unableToCreateCFData }
       guard let cgDataProvider = CGDataProvider(data: cfData) else { throw CGImageErr.unableToCreateCGDataProvider }
-      let bitsPerPixel: Int = bytesPerPixel * bitsPerComponent
-      guard let image = CGImage(width: rgbaRep.width, height: rgbaRep.height, bitsPerComponent: bitsPerComponent, bitsPerPixel: bitsPerPixel, bytesPerRow: bytesPerRow, space: deviceColorSpace, bitmapInfo: bitmapInfo, provider: cgDataProvider, decode: nil, shouldInterpolate: true, intent: CGColorRenderingIntent.defaultIntent) else { throw CGImageErr.unableToCreateCGImage }
+      guard let image = CGImage(width: rgbaRep.width, height: rgbaRep.height, bitsPerComponent: bitsPerComponent, bitsPerPixel: bitsPerPixel, bytesPerRow: bytesPerRow, space: deviceColorSpace, bitmapInfo: bitmapInfo, provider: cgDataProvider, decode: nil, shouldInterpolate: true, intent: .defaultIntent) else { throw CGImageErr.unableToCreateCGImage }
       return image
 //      }
    }

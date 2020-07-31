@@ -2,9 +2,6 @@ import Foundation
 /**
  * RGBARep is a struct that stores color pixels
  * - Note: A grid of color pixels
- * - Fixme: ⚠️️ You have to dealocate the memory at some point, (this isn't done?) see: https://stackoverflow.com/questions/34750166/how-to-use-unsafemutablebufferpointer
- * - Fixme: ⚠️️ This should really be called ARGBRep?
- * - Fixme: ⚠️️ Maybe use UnsafeBufferPointer
  */
 public struct RGBARep {
 //   let pixels: UnsafeMutableBufferPointer<Pixel>
