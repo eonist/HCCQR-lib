@@ -3,12 +3,18 @@ import QuartzCore
 /**
  * Getter
  */
-extension RGBARep {
+extension ImageRepKind {
    /**
-    * Convenience
+    * Int size
     */
    var size: Size { .init(width, height) }
+   /**
+    * CGFloat size
+    */
    var cgSize: CGSize { .init(width: CGFloat(self.width), height: CGFloat(self.height)) }
+   /**
+    * Num of pixels
+    */
    var capacity: Int { self.width * self.height }
    /**
     * unsafePixels, new (⚠️️ might work, might not ⚠️️)
@@ -23,7 +29,8 @@ extension RGBARep {
       let cap = capacity * 4
       let pointer = UnsafeMutableBufferPointer<UInt8>.allocate(capacity: cap)
       (0..<(capacity)).forEach { i in
-         let p: Pixel = pixels[i]
+         // - Fixme: ⚠️️ maybe make this PixelData instead
+         let p: PixelDataKind = pixels[i]
          let idx = i * 4
          pointer[idx] = p.r
          pointer[idx + 1] = p.g

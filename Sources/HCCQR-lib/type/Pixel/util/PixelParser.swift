@@ -24,7 +24,7 @@ final class PixelParser {
     *   - a: static color (cyan, magenta, red etc)
     *   - b: dynamic color (cyan-ish, meganta-ish, red-ish etc)
     */
-   static func similarity(a: Pixel, b: Pixel) -> UInt8 {
+   static func similarity(a: PixelDataKind, b: PixelDataKind) -> UInt8 {
       let distR: Int = abs(Int(a.r) - Int(b.r))
       let distG: Int = abs(Int(a.g) - Int(b.g))
       let distB: Int = abs(Int(a.b) - Int(b.b))
@@ -40,16 +40,12 @@ final class PixelParser {
  */
 extension PixelParser {
    private typealias RGBAColor = (CGFloat, CGFloat, CGFloat, CGFloat)
-   internal enum RGBAError: Error {
-      case couldNotExtractRGBAComponents
-      case couldNotConvertNSColorToCIColor
-      case osNotSupported
-   }
    /**
     * Color -> (r: UInt8, g: UInt8 ,b: UInt8, a: UInt8)
     * - Fixme: ⚠️️ You can also probably do (maybe faster?): UIColor.blue.colorComponents // (red: 0.0, green: 0.0, blue: 1.0, alpha: 1.0)
+    * - Important: ⚠️️ probably slow, but prob only used in tests
     */
-   static func rgba(uiColor: Color) throws -> Pixel {
+   static func rgba(uiColor: Color) throws -> PixelDataKind {
       var (r, g, b, a
          ): RGBAColor = (0, 0, 0, 0)
       #if os(iOS)
@@ -63,22 +59,16 @@ extension PixelParser {
       #else
       throw RGBAError.osNotSupported
       #endif
-      return .init(r: UInt8(r * 255.0), g: UInt8(g * 255.0), b: UInt8(b * 255.0)/*, a: UInt8(a * 255.0)*/ )
+      return PixelData(r: UInt8(r * 255.0), g: UInt8(g * 255.0), b: UInt8(b * 255.0)/*, a: UInt8(a * 255.0)*/ )
    }
 }
 /**
- * Experimental
+ * Error
  */
 extension PixelParser {
-   /**
-    * pixel.value -> R, G, B, A
-    * setRGBA(argb: 4294967295) // 255, 255, 255, 255 aka UIColor.white
-    */
-   func rgba(argb: Int) -> Pixel {
-      let r: UInt8 = .init((argb >> 16) & 0xFF)
-      let g: UInt8 = .init((argb >> 8) & 0xFF)
-      let b: UInt8 = .init(argb & 0xFF)
-//      let a: UInt8 = .init((argb >> 24) & 0xFF)
-      return .init(r: r, g: g, b: b/*, a: a*/)
+   internal enum RGBAError: Error {
+      case couldNotExtractRGBAComponents
+      case couldNotConvertNSColorToCIColor
+      case osNotSupported
    }
 }

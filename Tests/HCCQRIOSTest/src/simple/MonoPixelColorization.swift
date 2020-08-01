@@ -13,14 +13,14 @@ final class MonoPixelColorization {
    static func testColorizingMonoPixel() -> Bool {
       guard let pixelA: Pixel = try? Colorizer.colorize(pixels: [true, false], pallete: .cp4(useDarkMode: true)) else { fatalError("err") }// -> RedPixel ⚠️️ complete this
       Swift.print("pixelA:  \(pixelA)")
-      let isPixelARed: Bool = Pixel.isMatching(a: pixelA, b: .red)
+      let isPixelARed: Bool = Pixel.isMatching(a: pixelA, b: PixelData.red)
       Swift.print("isPixelARed:  \(isPixelARed)")
       guard let pixelB: Pixel = try? Colorizer.colorize(pixels: [true, true], pallete: .cp4(useDarkMode: true)) else { fatalError("err") }// -> BluePixel
       Swift.print("pixelB:  \(pixelB)")
-      let isPixelBBlue: Bool = Pixel.isMatching(a: pixelB, b: .blue)
+      let isPixelBBlue: Bool = Pixel.isMatching(a: pixelB, b: PixelData.blue)
       Swift.print("isPixelBBlue:  \(isPixelBBlue)")
       guard let pixelC: Pixel = try? Colorizer.colorize(pixels: [false, true], pallete: .cp4(useDarkMode: true)) else { fatalError("err") }// -> BluePixel
-      let isPixelCGreen: Bool = Pixel.isMatching(a: pixelC, b: .green)
+      let isPixelCGreen: Bool = Pixel.isMatching(a: pixelC, b: PixelData.green)
       Swift.print("isPixelCGreen:  \(isPixelCGreen)")
       let isValid = isPixelARed && isPixelBBlue && isPixelCGreen
       Swift.print("isValid:  \(isValid)")

@@ -21,9 +21,9 @@ final class ColorishTest {
     * Test the colorish method (Tests absolute colors)
     */
    static func testColorish() -> Bool {
-      let assertRed: Bool = try! Pixel.pixel(color: Color.red).isColorish(.red)
-      let assertGreen: Bool = try! Pixel.pixel(color: .green).isColorish(.green)
-      let assertBlue: Bool = try! Pixel.pixel(color: .blue).isColorish(.blue)
+      let assertRed: Bool = try! Pixel.pixel(color: Color.red).isColorish(PixelData.red)
+      let assertGreen: Bool = try! Pixel.pixel(color: .green).isColorish(PixelData.green)
+      let assertBlue: Bool = try! Pixel.pixel(color: .blue).isColorish(PixelData.blue)
       let isWithin: Bool = assertRed && assertGreen && assertBlue
       Swift.print("isWithin: \(isWithin ? "✅": "🚫")")
       return isWithin
@@ -37,11 +37,11 @@ final class ColorishTest {
 //      Swift.print("UInt8(255 * 0.81):  \(UInt8(255 * 0.81))")
       let redish: Pixel = .init(r: UInt8(255 * 0.75), g: UInt8(255 * 0.2), b: UInt8(255 * 0.25)/*, a: 255*/)
       Swift.print("redish.r: \(redish.r)")
-      let assertRedish: Bool = try! Pixel.pixel(color: Color.red).isColorish(.redish, halfThreshold: 40)
+      let assertRedish: Bool = try! Pixel.pixel(color: Color.red).isColorish(PixelData.redish, halfThreshold: 40)
       Swift.print("assertRedish: \(assertRedish)")
-      let assertGreenish: Bool = try! Pixel.pixel(color: Color.green).isColorish(.greenish, halfThreshold: 40)
+      let assertGreenish: Bool = try! Pixel.pixel(color: Color.green).isColorish(PixelData.greenish, halfThreshold: 40)
       Swift.print("assertGreenish: \(assertGreenish)")
-      let assertBlueish: Bool = try! Pixel.pixel(color: Color.blue).isColorish(.blueish, halfThreshold: 40)
+      let assertBlueish: Bool = try! Pixel.pixel(color: Color.blue).isColorish(PixelData.blueish, halfThreshold: 40)
       Swift.print("assertBlueish: \(assertBlueish)")
       let isWithin: Bool = assertRedish && assertGreenish && assertBlueish
       Swift.print("washed out isWithin: \(isWithin ? "✅": "🚫")")

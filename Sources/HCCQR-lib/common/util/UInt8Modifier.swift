@@ -17,7 +17,7 @@ final class UInt8Modifier {
     */
    static func addition(a: UInt8, b: UInt8) -> UInt8 {
       let result: ReportingOverflow = a.addingReportingOverflow(b)
-      return result.overflow ? 255 : result.partialValue // -
+      return result.overflow ? 255 : result.partialValue
    }
    /**
     * Division

@@ -27,20 +27,24 @@ extension MonoRep {
       // let size: Size = (width: Int(ciImg.extent.width), height: Int(ciImg.extent.height))
       let capacity: Int = crop.width * crop.height
       let bytesPerRow: Int = crop.width * 4 // We multiply per 4 because of the 4 channels, RGBA
-      let imageData: UnsafeMutablePointer<Pixel> = .allocate(capacity: capacity)
+      let imageData: UnsafeMutablePointer<PixelData> = .allocate(capacity: capacity)
       // - Fixme: ⚠️️ Do we have to create the cgContext? can CIContext be created directly from pixeldata?
-      guard let cgContext = CGContext(data: imageData, width: crop.width, height: crop.height, bitsPerComponent: 8, bytesPerRow: bytesPerRow, space: colorSpace, bitmapInfo: RGBARep.bitmapInfo) else { throw NSError(domain: "rgbaImage - Unable to create rgbaImage", code: 0) }
-      // autoreleasepool avoids contextleak, might be a bit slower than other solution
+      let bitmapInfo = BitmapInfo.bitmapInfo
+      guard let cgContext = CGContext(data: imageData, width: crop.width, height: crop.height, bitsPerComponent: 8, bytesPerRow: bytesPerRow, space: colorSpace, bitmapInfo: bitmapInfo) else { throw NSError(domain: "rgbaImage - Unable to create rgbaImage", code: 0) }
+      // autoreleasepool avoids contextleak, might be a bit slower than other solution, might not be needed anymore?
       let context: CIContext = autoreleasepool {
          .init(cgContext: cgContext, options: nil)
       }
       let fromExtent: CGRect = crop.cgRect
       context.draw(ciImg, in: ciImg.extent, from: fromExtent)
       let monoPixels: UnsafeMutableBufferPointer<Bool> = .allocate(capacity: capacity)
-      (0..<capacity).forEach { i in
+      // ⚠️️ trying while loop for performance gain
+      var i: Int = 0 // was (0..<capacity).forEach { i in }
+      while i < capacity {
          monoPixels[i] = imageData.advanced(by: i).pointee.isWhite
+         i = i &+ 1 // &+ is used for little performance gain
       }
-      imageData.deallocate() // we have no more use for imageData
+      imageData.deallocate() // We have no more use for imageData
       return .init(pixels: .init(monoPixels), width: crop.width, height: crop.height)
    }
 }

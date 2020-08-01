@@ -17,8 +17,8 @@ extension Colorizer {
     *   - palette: the color-map to match against (color-pallete has info for toggeling darkmode etc)
     */
    static func colorize(pixels: [Bool], pallete: ColorPalette) throws -> Pixel {
-      guard let color: Pixel = pallete.first(where: { let result = try? matchColorMap(pixels, $0); return result ?? false })?.color else { throw NSError(domain: "Unable to colorize", code: 0) }
-      return .init(r: color.r, g: color.g, b: color.b/*, a: 255*/)
+      guard let color: PixelDataKind = pallete.first(where: { let result = try? matchColorMap(pixels, $0); return result ?? false })?.color else { throw NSError(domain: "Unable to colorize", code: 0) }
+      return PixelData(r: color.r, g: color.g, b: color.b/*, a: 255*/)
    }
 }
 /**

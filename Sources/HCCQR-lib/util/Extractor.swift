@@ -1,6 +1,7 @@
 import Foundation
 import QuartzCore
 import ParallelLoop
+import TimeMeasure
 /**
  * Split the 3 (R,G,B) channels into grayscale lumonocity channels
  */
@@ -22,10 +23,14 @@ extension Extractor {
     * - Fixme: ⚠️️ We could use unmanaged pointer with capacity as well, might be faster
     * - Fixme: ⚠️️ Skip extracting the white channel, as it's not used when we later combine color channels
     */
-   static func extract(rgbaRep: RGBARep, scheme: ChannelScheme, parallel: Bool) -> GrayReps {
+   static func extract(rgbaRep: ImageRepKind, scheme: ChannelScheme, parallel: Bool) -> GrayReps {
       // - Fixme: ⚠️️ Benchmark similarties creation
-      Extractor.similarities(scheme: scheme).concurrentMap(parallel: parallel) { asserter in // create similarity asserters, 4 - 256 items depending on hccqr config
-         extract(rgbaRep: rgbaRep, asserter: asserter) // Finds the red-channel, blue-channel, green-channel
+//      Swift.print("scheme.count:  \(scheme.count)")
+      let similarities: [PixelSimilarity] = Extractor.similarities(scheme: scheme) // for 128 color scheme there are 128 similarity sets
+      return similarities.batches(spread: 8).flatMap { batch in // create similarity asserters, 4 - 256 items depending on hccqr config
+         batch.concurrentMap(parallel: parallel) { asserter in // create similarity asserters, 4 - 256 items depending on hccqr config
+            extract(rgbaRep: rgbaRep, asserter: asserter) // Finds the red-channel, blue-channel, green-channel
+         }
       }
    }
 }
@@ -38,7 +43,7 @@ extension Extractor {
     * - Note: color-pallete's determines their similarity by comparing these r,g,b values
     * - Parameter pixel: the input pixel
     */
-   internal typealias PixelSimilarity = (_ pixel: Pixel) -> Pixel.Similarity
+   internal typealias PixelSimilarity = (_ pixel: PixelDataKind) -> Pixel.Similarity
    /**
     * RGBARep channel 👉 GrayscaleRep
     * 1. Creates a blank grayscale image of a specific size
@@ -50,13 +55,16 @@ extension Extractor {
     * - Fixme: ⚠️️ Somehow reuse the output, it might speed things up
     * - Fixme: ⚠️️ make private after you remove deprecated code etc
     */
-   /*private*/internal static func extract(rgbaRep: RGBARep, asserter: @escaping PixelSimilarity) -> GrayRep {
+   /*private*/internal static func extract(rgbaRep: ImageRepKind, asserter: @escaping PixelSimilarity) -> GrayRep {
 //      let output: GrayRep = .grayRep(capacity: rgbaRep.capacity, size: rgbaRep.size) // We create a blank GrayRep, as it's faster than copy probably, The GrayScaleImage to populate pixels into (we only need [UInt8])
-      let pixels: UnsafeMutableBufferPointer<UInt8> = .allocate(capacity: rgbaRep.capacity)
-      GrayRepModifier.process(size: rgbaRep.size) { (i: Int) in
-         pixels[i] = asserter(rgbaRep.pixels[i]).strength // Apply new pixel to old pixel
-      }
-      return .init(pixels: .init(pixels), width: rgbaRep.size.width, height: rgbaRep.size.height)
+      let pixels: UnsafeMutablePointer<UInt8> = .allocate(capacity: rgbaRep.capacity)
+//      let time: Double = TimeMeasure.timeElapsed {
+         GrayRepModifier.process(size: rgbaRep.size) { (i: Int) in
+            pixels.advanced(by: i).pointee = asserter(rgbaRep.pixels[i]).strength // Apply new pixel to old pixel
+         }
+//      }
+//      Swift.print("extract.process time :  \(time)")
+      return .init(pixels: .init(start: pixels, count: rgbaRep.capacity), width: rgbaRep.size.width, height: rgbaRep.size.height)
    }
    /**
     * The purpouse of this method is to setup static calls, that compare channel and pixel color
@@ -66,7 +74,7 @@ extension Extractor {
     */
    internal static func similarities(scheme: ChannelScheme) -> [PixelSimilarity] {
       let halfThreshold: UInt8 = Pixel.getHalfThreshold(1.0 / CGFloat(scheme.count)) // we must use finer threshold if we use more colors (2.5 for 4-color, 0.125 for 8-color)
-      return scheme.map { (channel: Pixel) in { (ishColor: Pixel) in channel.isSimilar(ishColor, halfThreshold: halfThreshold) } }
+      return scheme.map { (channel: PixelDataKind) in { (ishColor: PixelDataKind) in channel.isSimilar(ishColor, halfThreshold: halfThreshold) } }
    }
 }
 ///**

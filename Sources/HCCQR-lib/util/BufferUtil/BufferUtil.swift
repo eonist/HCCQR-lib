@@ -28,7 +28,7 @@ extension BufferUtil {
     *   - buffer: the buffer containing the raw pixel data and size
     *   - crop: Makes processing the raw imagery faster since we don't have to process areas where the QR info is not etc. (provided we know where the QR rect is)
     */
-   public static func rgbaRep(buffer: CVImageBuffer, crop bufferRect: BufferRect) throws -> RGBARep { /*, size: CGSize, scale: CGFloat */
+   public static func rgbaRep(buffer: CVImageBuffer, crop bufferRect: BufferRect) throws -> ImageRep { /*, size: CGSize, scale: CGFloat */
       CVPixelBufferLockBaseAddress(buffer, CVPixelBufferLockFlags(rawValue: CVOptionFlags(0))) // lock access for cpu reading
       let bytesPerPixel: Int = CVPixelBufferGetBytesPerRow(buffer) // let bufferSize: (width: Int, height: Int) = (Int(CVPixelBufferGetWidth(imageBuffer)), Int(CVPixelBufferGetHeight(imageBuffer))) //  let size: (width: Int, height: Int) = (Int(size.width * scale), Int(size.height * scale))
       guard let baseAddress: UnsafeMutableRawPointer = CVPixelBufferGetBaseAddress(buffer) else { throw NSError(domain: "Unable to get baseAddress", code: 0) }
@@ -45,7 +45,7 @@ extension BufferUtil {
             let index: Int = x * 4 + yVal // We add the crop to the x // (y * bytesPerPixel + x) * 4
             // ⚠️️ new, was byteBuffer[index] etc
             let (b, g, r) = (byteBuffer[index], byteBuffer[index + 1], byteBuffer[index + 2]) // let a = byteBuffer[index + 3]
-            let pixel: Pixel = .init(r: r, g: g, b: b/*, a: 255*/)
+            let pixel: PixelData = .init(r: r, g: g, b: b/*, a: 255*/)
             let i: Int = yAndWidth + x
             pixels[i] = pixel
          }

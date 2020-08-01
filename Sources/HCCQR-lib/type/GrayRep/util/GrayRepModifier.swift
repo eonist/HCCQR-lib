@@ -18,13 +18,11 @@ extension GrayRepModifier {
     *   - functor: A function which manipulates each pixel
     */
    internal static func process(size: Size, functor: @escaping Functor) {
-      // - Fixme: ⚠️️ maybe do single loop?, benchmark diff
-      (0..<size.height).forEach { y in
-         let idx: Int = y * size.width // We calc this here as optimization
-         (0..<size.width).forEach { x in
-            let index: Int = idx + x // Pixel index
-            functor(index) // Apply new pixel to old pixel
-         }
+      var i: Int = 0
+      let capacity: Int = size.width * size.height
+      while i < capacity {
+         functor(i) // Apply new pixel to old pixel
+         i = i &+ 1
       }
    }
 }

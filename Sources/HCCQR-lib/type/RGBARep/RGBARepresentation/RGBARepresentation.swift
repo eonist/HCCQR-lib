@@ -5,6 +5,7 @@ public final class RGBARepresentation {}
 /**
  * ⚠️️ Experimental ⚠️️
  * - Note: a test to see if refs with image as base would be faster, looks like its slower
+ * - Fixme: ⚠️️ the cgImg / ciImg context stuff is worth keeping. probably faster than current cgImg ciImg conversion
  */
 extension RGBARepresentation {
    /**

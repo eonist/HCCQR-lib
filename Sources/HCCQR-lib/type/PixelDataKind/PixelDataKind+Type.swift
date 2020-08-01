@@ -2,11 +2,14 @@ import Foundation
 /**
  * Type
  */
-extension Pixel {
+extension PixelDataKind {
    /**
     * - Note: Used with threshold methods in assert extension
     */
    typealias Limit = (min: UInt8, max: UInt8)
+   /**
+    * - Fixme: ⚠️️ make this struct?
+    */
    typealias RGB = (r: UInt8, b: UInt8, g: UInt8) // <- Prefer this
    /**
     * Stores if is valid and the strength if it's already valid

@@ -23,9 +23,9 @@ extension ScaleTesting {
          let randomStr: String = RandomData.randomString(count: stringCount, qrMode: .byte)
          guard let dataItem: Data = randomStr.data(using: .utf8, allowLossyConversion: false) else { Swift.print("err"); return nil }
          guard let qrImage: Image = try? QRWriter.image(data: dataItem, ecLevel: .l) else { Swift.print("unable to create UIImage");return nil }
-         guard let rgbaRep: RGBARep = try? RGBARepUtil.rgbaRep(image: qrImage) else { Swift.print("unable to get rgbaimage from img"); return nil }
-         let scaledRGBARep: RGBARep = rgbaRep// ⚠️️ broken here RGBARepModifier.scale(pixels: rgbaRep.pixels, size: rgbaRep.size, scale: .init(6, 1))
-         guard let img: Image = try? RGBARepParser.image(rgbaRep: scaledRGBARep, scale: 1) else { Swift.print("unable to get img from rgbaimage"); return nil }
+         guard let rgbaRep: ImageRepKind = try? ImageRep.imageRep(image: qrImage) else { Swift.print("unable to get rgbaimage from img"); return nil }
+         let scaledRGBARep: ImageRepKind = rgbaRep// ⚠️️ broken here RGBARepModifier.scale(pixels: rgbaRep.pixels, size: rgbaRep.size, scale: .init(6, 1))
+         guard let img: Image = try? scaledRGBARep.image(scale: 1) else { Swift.print("unable to get img from rgbaimage"); return nil }
          return img
       }()
       guard let ciImg: CIImage = image?.ciImage() else { Swift.print("err ciimg"); return nil }

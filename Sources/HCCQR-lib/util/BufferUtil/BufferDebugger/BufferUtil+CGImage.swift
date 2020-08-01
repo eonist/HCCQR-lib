@@ -4,14 +4,7 @@ import CoreImage
 
 extension BufferUtil {
    /**
-    * Rename to CIImgBufferError
-    */
-   public enum ImgBufferError: Error {
-      case statusError
-      case unableToGetContext
-   }
-   /**
-    * CGImage -> CVPixelBuffer (⭐ works ⭐)
+    * CGImage -> CVPixelBuffer
     * - Note: Ref https://github.com/brianadvent/UIImage-to-CVPixelBuffer/blob/master/ImageProcessor.swift
     * - Important: ⚠️️ This methd exists for testing purpouses, the real code derives the buffer directly
     * - Fixme: ⚠️️ Make debug tool for cgImage: cgImage.bitsPerPixel, cgImage.bitsPerComponent, cgImage.colorSpace, cgImage.byteOrderInfo, cgImage.bitmapInfo, image.size, image.scale, image.cgImage?.bytesPerRow
@@ -41,5 +34,17 @@ extension BufferUtil {
 //      Swift.print("pixelFormatName:  \(pixelFormatName)")
       CVPixelBufferUnlockBaseAddress(buffer!, CVPixelBufferLockFlags(rawValue: 0))
       return buffer! // - Fixme ⚠️️ add additional throw here
+   }
+}
+/**
+ * Error
+ */
+extension BufferUtil {
+   /**
+    * Rename to CIImgBufferError
+    */
+   public enum ImgBufferError: Error {
+      case statusError
+      case unableToGetContext
    }
 }

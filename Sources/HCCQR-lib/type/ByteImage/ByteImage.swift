@@ -3,8 +3,8 @@ import CoreImage
 /**
  * ByteImage
  */
-public struct ByteImage {
-   public var pixels: UnsafeBufferPointer<BytePixel>
-   public var width: Int
-   public var height: Int
+public struct ByteImage: ImageRepKind {
+   var pixels: UnsafeBufferPointer<PixelData>
+   var width: Int
+   var height: Int
 }

@@ -1,6 +1,6 @@
 import Foundation
 
-public struct BytePixel: PixelKind {
+public struct BytePixel: PixelDataKind {
    public var value: UInt32
 }
 /**

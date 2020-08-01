@@ -1,9 +1,7 @@
-import CoreImage
 import Foundation
-/**
- * - Fixme: ⚠️️ Possibly make these .init
- */
-final class RGBARepUtil {
+import CoreImage
+
+extension RGBARep {
    /**
     * Converts an Image to an rgbaImage
     * - Abstract: RGBAImage holds the individual pixels of an image in an array (also stores the size of an image)
@@ -15,35 +13,35 @@ final class RGBARepUtil {
     * - Important: ⚠️️ Used only for testing
     * - Parameter image: An UIImage or NSImage
     */
-   static func rgbaRep(image: Image) throws -> RGBARep {
+   internal static func imageRep(image: Image) throws -> ImageRepKind {
       // ⚠️️ The bellow line is a temp fix, could hurt performance
       guard let cgImage: CGImage = ImageUtil.cgImage(image: image) else { throw NSError(domain: "rgbaImage - Unable to get cgImage", code: 0) }
-      return try rgbaRep(cgImage: cgImage)
+      return try imageRep(cgImage: cgImage)
    }
 }
 /**
- * Private helper methods
+ * Private
  */
-extension RGBARepUtil {
+extension RGBARep {
    /**
     * CGImage -> RGBAImage
     * - Note: Used by Image -> RGBARep
     */
-   private static func rgbaRep(cgImage: CGImage) throws -> RGBARep {
+   private static func imageRep(cgImage: CGImage) throws -> ImageRep {
       let size: Size = .init(Int(cgImage.width), Int(cgImage.height))
       let bytesPerRow: Int = size.width * 4 // We multiply per 4 because of the 4 channels, RGBA
       let capacity: Int = size.width * size.height
       let imageData: UnsafeMutablePointer<Pixel> = .allocate(capacity: capacity)
-//      defer { imageData.deallocate() }
+      //      defer { imageData.deallocate() }
       let colorSpace: CGColorSpace = CGColorSpaceCreateDeviceRGB()
-//      Swift.print("⚠️️ might have faulty bitmapInfo")
-      let bitMapInfo = RGBARep.bitmapInfo
+      //      Swift.print("⚠️️ might have faulty bitmapInfo")
+      let bitMapInfo = BitmapInfo.bitmapInfo
       guard let cgContext = CGContext(data: imageData, width: size.width, height: size.height, bitsPerComponent: 8, bytesPerRow: bytesPerRow, space: colorSpace, bitmapInfo: bitMapInfo) else { throw NSError(domain: "rgbaImage - Unable to create rgbaImage", code: 0) }
       cgContext.draw(cgImage, in: .init(origin: .zero, size: .init(width: cgImage.width, height: cgImage.height))) // draws the cgImage into the context
       // - Fixme: ⚠️️  the bellow is a hack, find better solution, see legacy
-//      let pixels: UnsafePointer<Pixel> = .init(imageData) // we dealoc this when we are finished with RGBARep
+      //      let pixels: UnsafePointer<Pixel> = .init(imageData) // we dealoc this when we are finished with RGBARep
       let pixis: UnsafeBufferPointer<Pixel> = .init(start: imageData, count: capacity)
       // - Fixme: ⚠️️ dealloc imagedata maybe?
-      return .init(pixels: pixis, width: size.width, height: size.height)
+      return ImageRep(pixels: pixis, width: size.width, height: size.height)
    }
 }
