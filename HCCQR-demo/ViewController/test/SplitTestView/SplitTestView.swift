@@ -32,7 +32,7 @@ extension SplitTestView {
     * creates 3 color squares
     */
    func createColorGrid() {
-      let pixelColors: [Pixel] = [.redish, .greenish, .blueish] // [Pixel.Colors.greenish]//
+      let pixelColors: [PixelData] = [PixelData.redish, PixelData.greenish, PixelData.blueish] // [Pixel.Colors.greenish]//
 //      Swift.print("Pixel.Colors.greenish:  \(Pixel.Colors.greenish)")
 //      Swift.print("Pixel.Colors.greenish.color:  \(Pixel.Colors.greenish.color)")
 //      Swift.print("Pixel.Colors.redish:  \(Pixel.Colors.redish)")

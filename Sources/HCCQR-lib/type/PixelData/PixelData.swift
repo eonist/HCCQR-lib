@@ -1,3 +1,3 @@
 import Foundation
 
-public typealias PixelData = Pixel
+public typealias PixelData = Pixel//BytePixel//

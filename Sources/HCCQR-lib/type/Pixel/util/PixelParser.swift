@@ -46,8 +46,7 @@ extension PixelParser {
     * - Important: ⚠️️ probably slow, but prob only used in tests
     */
    static func rgba(uiColor: Color) throws -> PixelDataKind {
-      var (r, g, b, a
-         ): RGBAColor = (0, 0, 0, 0)
+      var (r, g, b, a): RGBAColor = (0, 0, 0, 0)
       #if os(iOS)
       guard uiColor.getRed(&r, green: &g, blue: &b, alpha: &a) else { throw RGBAError.couldNotExtractRGBAComponents }
       #elseif os(macOS)

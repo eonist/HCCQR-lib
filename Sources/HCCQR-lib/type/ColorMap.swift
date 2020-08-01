@@ -7,4 +7,4 @@ import Foundation
  *   - idx: The array represents the layers of QRImages (true equals black, false equals white)
  *   - color: the color at the index
  */
-public typealias ColorMap = (idx: BoolRow, color: PixelDataKind)
+public typealias ColorMap = (idx: BoolRow, color: PixelData)

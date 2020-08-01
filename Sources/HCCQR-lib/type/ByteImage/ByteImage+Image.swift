@@ -18,7 +18,7 @@ extension ByteImage {
       let bytesPerRow = width * 4
       bitmapInfo |= CGImageAlphaInfo.premultipliedLast.rawValue & CGBitmapInfo.alphaInfoMask.rawValue
       // work around ⚠️️⚠️️⚠️️ maybe do CFData etc
-      let mutablePointer: UnsafeMutableBufferPointer<Pixel> = .init(mutating: self.pixels)
+      let mutablePointer: UnsafeMutableBufferPointer<PixelData> = .init(mutating: self.pixels)
       guard let imageContext = CGContext(data: mutablePointer.baseAddress, width: width, height: height, bitsPerComponent: 8, bytesPerRow: bytesPerRow, space: colorSpace, bitmapInfo: bitmapInfo, releaseCallback: nil, releaseInfo: nil) else { throw CGImageErr.unableToCreateCGImage }
       guard let cgImage = imageContext.makeImage() else { throw CGImageErr.unableToCreateCGImage }
       return cgImage

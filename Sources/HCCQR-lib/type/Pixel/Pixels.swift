@@ -1,7 +1,6 @@
 import Foundation
 
-typealias Pixels = [Pixel]
-
+public typealias Pixels = [PixelData]
 
 extension Pixels {
    /**
@@ -15,14 +14,14 @@ extension Pixels {
     *   - g: num of greens
     *   - b: num of blues
     */
-   static func dynamicColors(r: UInt8, g: UInt8, b: UInt8) -> [Pixel] {
+   static func dynamicColors(r: UInt8, g: UInt8, b: UInt8) -> [PixelData] {
       let rArr: [UInt8] = channels(count: r)
       let gArr: [UInt8] = channels(count: g)
       let bArr: [UInt8] = channels(count: b)
       return rArr.flatMap { (r: UInt8) in
          gArr.flatMap { (g: UInt8) in
             bArr.map { (b: UInt8) in
-               Pixel(r: r, g: g, b: b/*, a: 255*/)
+               PixelData(r: r, g: g, b: b/*, a: 255*/)
             }
          }
       }

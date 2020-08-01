@@ -9,8 +9,8 @@ final class ColorishTest {
     */
    static func testThreshold() -> Bool {
       let offset: UInt8 = .init(255 * 0.2) // the deviation in percentage
-      let redishPixel: Pixel = .init(r: 255 - offset, g: 0 + offset, b: 0 + offset/*, a: 255*/)
-      let redPixel = Pixel.red // the color it should look like
+      let redishPixel: PixelData = .init(r: 255 - offset, g: 0 + offset, b: 0 + offset/*, a: 255*/)
+      let redPixel = PixelData.red // the color it should look like
       let threshold: UInt8 = .init(255 * 0.25) // within this threshold
       let halfThreshold: UInt8 = .init(threshold / 2)
       let isColorRedish: Bool = PixelAsserter.isColorish(a: redPixel.rgb, b: redishPixel.rgb, halfThreshold: halfThreshold)

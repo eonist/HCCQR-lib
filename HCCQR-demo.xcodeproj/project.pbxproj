@@ -169,8 +169,6 @@
 		F1D8A68C23E9952200F17A81 /* Colorizer+Pixel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D8A68A23E9952200F17A81 /* Colorizer+Pixel.swift */; };
 		F1D9687A24CE058A00B25B73 /* CVBufferImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D9687924CE058A00B25B73 /* CVBufferImage+Extension.swift */; };
 		F1D9687B24CE058A00B25B73 /* CVBufferImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D9687924CE058A00B25B73 /* CVBufferImage+Extension.swift */; };
-		F1D9687E24CEE1D400B25B73 /* RGBARepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D9687D24CEE1D400B25B73 /* RGBARepresentation.swift */; };
-		F1D9687F24CEE1D400B25B73 /* RGBARepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D9687D24CEE1D400B25B73 /* RGBARepresentation.swift */; };
 		F1DB02C624C5B2A00037E2FB /* ResourceHelper in Frameworks */ = {isa = PBXBuildFile; productRef = F1DB02C524C5B2A00037E2FB /* ResourceHelper */; };
 		F1DB02C824C5B2A00037E2FB /* ParallelLoop in Frameworks */ = {isa = PBXBuildFile; productRef = F1DB02C724C5B2A00037E2FB /* ParallelLoop */; };
 		F1DB02CA24C5B2A00037E2FB /* TimeMeasure in Frameworks */ = {isa = PBXBuildFile; productRef = F1DB02C924C5B2A00037E2FB /* TimeMeasure */; };
@@ -1306,7 +1304,6 @@
 				F1690AAB24B1F9B8000EC61A /* ColorPalette.swift in Sources */,
 				F1E645AD23940ACA008D2ABE /* Hybrid+iOS.swift in Sources */,
 				F12EE26724C39E6D00FD9417 /* BufferUtil+Buffer.swift in Sources */,
-				F1D9687F24CEE1D400B25B73 /* RGBARepresentation.swift in Sources */,
 				F1593AAE24D025F20017F9A2 /* ByteImage+Image.swift in Sources */,
 				F1E645DC23940B3D008D2ABE /* ImageRepKind+DeInit.swift in Sources */,
 				F1E645EA23940B3D008D2ABE /* Colorizer+RGBA.swift in Sources */,
@@ -1408,7 +1405,6 @@
 				F12EE26A24C39E6E00FD9417 /* BufferUtil+Buffer.swift in Sources */,
 				F119AEE624D5990B00A67534 /* PixelModifier.swift in Sources */,
 				F1690AA424B1F9B8000EC61A /* ColorPallete+Const.swift in Sources */,
-				F1D9687E24CEE1D400B25B73 /* RGBARepresentation.swift in Sources */,
 				F1537F0924B47C5200160FEC /* Array+Extension.swift in Sources */,
 				F18357D624A9E5A500C2220D /* Algebra.swift in Sources */,
 				F1ED131024D54DCC00129DB4 /* ImageRep.swift in Sources */,

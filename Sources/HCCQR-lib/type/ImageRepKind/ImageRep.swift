@@ -1,3 +1,3 @@
 import Foundation
 
-public typealias ImageRep = RGBARep
+public typealias ImageRep = RGBARep //ByteImage // 

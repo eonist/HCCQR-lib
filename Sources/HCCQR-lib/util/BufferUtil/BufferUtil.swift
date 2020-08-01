@@ -36,7 +36,7 @@ extension BufferUtil {
       // CVPixelBufferLockBaseAddress(imageBuffer, CVPixelBufferLockFlags(rawValue: 0))
       let capacity: Int = bufferRect.width * bufferRect.height
       let byteBuffer: UnsafeBufferPointer<UInt8> = .init(start: baseAddress.bindMemory(to: UInt8.self, capacity: capacity), count: capacity)// baseAddress.assumingMemoryBound(to: UInt8.self)// .init()
-      let pixels: UnsafeMutableBufferPointer<Pixel> = .allocate(capacity: capacity) // we dealoc this when we have finished working with rgbaRep
+      let pixels: UnsafeMutableBufferPointer<PixelData> = .allocate(capacity: capacity) // we dealoc this when we have finished working with rgbaRep
       // - Fixme: ⚠️️ could possibly see great speed increase if we align indecies, and do modulo to find width and y and x etc
       (bufferRect.y..<bufferRect.height).forEach { y in
          let yVal: Int = y * bytesPerPixel // we calc these outside the x loop, to gain performance

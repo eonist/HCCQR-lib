@@ -3,7 +3,7 @@ import Foundation
 public class Log {}
 
 extension Log {
-   public static var isDebug: Bool = false
+   public static var isDebug: Bool = true
    /**
     * log
     */

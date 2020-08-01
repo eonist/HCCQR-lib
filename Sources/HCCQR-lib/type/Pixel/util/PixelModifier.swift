@@ -20,7 +20,7 @@ final class PixelModifier {
       let scale: Int = scale.module * scale.screen // multiply screen and module multiplier
       let scaledSize: Size = .init(size.width * scale, size.height * scale)
       let capacity: Int = scaledSize.width * scaledSize.height
-      let resultPixels: UnsafeMutableBufferPointer<Pixel> = .allocate(capacity: capacity)
+      let resultPixels: UnsafeMutableBufferPointer<PixelData> = .allocate(capacity: capacity)
       // - Fixme: ⚠️️ do concurrent + stride?
       // - Fixme: ⚠️️ could possibly see great speed increase if we align indecies
       (0..<scaledSize.height).forEach { (y: Int) in

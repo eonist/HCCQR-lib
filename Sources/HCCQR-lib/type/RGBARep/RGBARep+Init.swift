@@ -31,7 +31,7 @@ extension RGBARep {
       let size: Size = .init(Int(cgImage.width), Int(cgImage.height))
       let bytesPerRow: Int = size.width * 4 // We multiply per 4 because of the 4 channels, RGBA
       let capacity: Int = size.width * size.height
-      let imageData: UnsafeMutablePointer<Pixel> = .allocate(capacity: capacity)
+      let imageData: UnsafeMutablePointer<PixelData> = .allocate(capacity: capacity)
       //      defer { imageData.deallocate() }
       let colorSpace: CGColorSpace = CGColorSpaceCreateDeviceRGB()
       //      Swift.print("⚠️️ might have faulty bitmapInfo")
@@ -40,7 +40,7 @@ extension RGBARep {
       cgContext.draw(cgImage, in: .init(origin: .zero, size: .init(width: cgImage.width, height: cgImage.height))) // draws the cgImage into the context
       // - Fixme: ⚠️️  the bellow is a hack, find better solution, see legacy
       //      let pixels: UnsafePointer<Pixel> = .init(imageData) // we dealoc this when we are finished with RGBARep
-      let pixis: UnsafeBufferPointer<Pixel> = .init(start: imageData, count: capacity)
+      let pixis: UnsafeBufferPointer<PixelData> = .init(start: imageData, count: capacity)
       // - Fixme: ⚠️️ dealloc imagedata maybe?
       return ImageRep(pixels: pixis, width: size.width, height: size.height)
    }
