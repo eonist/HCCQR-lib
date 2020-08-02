@@ -21,7 +21,7 @@ extension Colorizer {
     */
    static func colorize(monoReps: MonoReps, config: OutputConfig) -> ImageRepKind {
       let size: Size = monoReps[0].size // get size from first rep
-      let capacity: Int = monoReps[0].capacity // get capacity from first item
+      let capacity: Int = size.capacity // get capacity from first item
       // - Fixme: ⚠️️ try non buffer pointer
       let pixels: UnsafeMutableBufferPointer<PixelData> = .allocate(capacity: capacity) // Create a new array // pixels.reserveCapacity(size.width * size.height)
       // - Fixme: ⚠️️ using while and linear index could be faster
@@ -41,7 +41,7 @@ extension Colorizer {
          /*let rgbaRep: RGBARep = */PixelModifier.scale(pixels: pixels, size: size, scale: config.scale)
       }
       _ = time
-      // Swift.print("scale time:  \(time)")
+      Log.log("scale time:  \(time)")
       pixels.deallocate() // ⚠️️ this deallocates the pixels once they are not needed anymore
       return rgbaRep
    }

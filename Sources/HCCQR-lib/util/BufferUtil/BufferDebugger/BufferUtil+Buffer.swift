@@ -17,7 +17,6 @@ extension BufferUtil {
     */
    public static func imageBuffer(image: Image) throws -> CVImageBuffer {
       guard let cgImage = image.cgImage() else { throw NSError(domain: "unable to get cgimage", code: 0) }
-      let retVal = try imageBuffer(cgImage: cgImage)
-      return retVal
+      return try imageBuffer(cgImage: cgImage)
    }
 }

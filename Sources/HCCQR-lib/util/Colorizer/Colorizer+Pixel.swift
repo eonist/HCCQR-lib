@@ -18,8 +18,9 @@ extension Colorizer {
     */
    static func colorize(pixels: [Bool], pallete: ColorPalette) throws -> PixelData {
       guard let color: PixelData = pallete.first(where: { let result = try? matchColorMap(pixels, $0); return result ?? false })?.color else { throw NSError(domain: "Unable to colorize", code: 0) }
-      return color
-//      return PixelData(r: color.r, g: color.g, b: color.b/*, a: 255*/)
+//      return color
+      // figure out why the bellow works 🏀
+      return PixelData(r: color.r, g: color.g, b: color.b/*, a: 255*/)
    }
 }
 /**
@@ -39,8 +40,9 @@ extension Colorizer {
     * Find color that matches
     */
    private static func matchColor(_ map: ColorMap, _ i: Int, _ pixel: Bool) -> Bool { //= { (i: Int, pixel: Bool) in
-      var bothAreBlack: Bool { !pixel && !map.idx[i] } // false means black
-      var bothAreWhite: Bool { pixel && map.idx[i] } // true means white
-      return !(bothAreBlack || bothAreWhite) // looks a bit funny, but it's more efficient than using &&, - Fixme: ⚠️️ or is it?
+      let boolRow: Bool = map.idx[i]
+      var bothAreBlack: Bool { !pixel && !boolRow } // false means black
+      var bothAreWhite: Bool { pixel && boolRow } // true means white
+      return !bothAreBlack && !bothAreWhite
    }
 }

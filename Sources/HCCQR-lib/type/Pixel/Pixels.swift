@@ -21,7 +21,7 @@ extension Pixels {
       return rArr.flatMap { (r: UInt8) in
          gArr.flatMap { (g: UInt8) in
             bArr.map { (b: UInt8) in
-               PixelData(r: r, g: g, b: b/*, a: 255*/)
+               PixelData(r: r, g: g, b: b)
             }
          }
       }

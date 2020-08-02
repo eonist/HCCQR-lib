@@ -7,9 +7,9 @@ import QR_lib
 import TimeMeasure
 
 final class BufferTest {
-   static let (pallete, scheme): (ColorPalette, ChannelScheme) = (.cp128(), .cs128) // the mappings for writing / reading
+   static let (pallete, scheme): (ColorPalette, ChannelScheme) = (.cp8(), .cs8) // the mappings for writing / reading
    static let setup: HCCQRSetup = {
-      let qrSetup: QRSetup = .init(qrVersion: .v16, ecLevel: .l)
+      let qrSetup: QRSetup = .init(qrVersion: .v4, ecLevel: .l)
       let output: OutputConfig = .init(scale: .init(6, 2), palette: pallete)
       return .init(qr: qrSetup, output: output)
    }()
@@ -40,7 +40,7 @@ extension BufferTest {
    private static func write(data: Data) -> CVImageBuffer? {
       guard let image: Image = try? Writer.image(data: data, config: setup, parallel: true) else { return nil }
       //      Swift.print("hccqrImage.size:  \(image.size) scale:  \(image.scale)") //      Swift.print("hccqrImage.cgImage()?.width:  \(hccqrImage.cgImage?.width)")
-      //      guard let rgbaRep: RGBARep = try? BufferUtil.rgbaRep(image: image) else { Swift.print("err getting rgbImage"); return false }
+//      guard let rgbaRep: RGBARep = try? BufferUtil.rgbaRep(image: image) else { Swift.print("err getting rgbImage"); return false }
       return try? BufferUtil.imageBuffer(image: image)
    }
    /**
@@ -52,9 +52,11 @@ extension BufferTest {
          let payload: Reader.ReadPayload = try Reader.data(imageBuffer: buffer, crop: buffer.rect, scheme: scheme, parallel: true)
          // let dataAndQuad: QRReader.DataAndQuad = try Reader.data(rgbaRep: rgbaRep, scheme: .cs8) // Convert RGBAImage to Data
          // Swift.print("dataAndQuad.qrData.count:  \(dataAndQuad.qrData.count)")
-         // Swift.print("randomData.count:  \(randomData.count)")
-         // Swift.print("data?.count:  \(String(describing: dataAndQuad.qrData.count))")
-         return data == payload.data
+          Swift.print("randomData.count:  \(data.count)")
+          Swift.print("data?.count:  \(String(describing: payload.data.count))")
+         let isValid: Bool = data == payload.data
+         print("\(isValid)")
+         return isValid
       } catch {
          Swift.print("⚠️️ error:  \(error)")
          return false

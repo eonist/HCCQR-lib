@@ -16,12 +16,12 @@ import TimeMeasure
 final class SingleTest {}
 
 extension SingleTest {
-   static let (pallete, scheme): (ColorPalette, ChannelScheme) = (.cp64(), .cs64) // the mappings for writing / reading
+   static let (pallete, scheme): (ColorPalette, ChannelScheme) = (.cp4(), .cs4) // the mappings for writing / reading
    /**
     * Setup for single test
     */
    private static let singleSetup: HCCQRSetup = {
-      let qrSetup: QRSetup = .init(qrVersion: .v22, ecLevel: .l)
+      let qrSetup: QRSetup = .init(qrVersion: .v1, ecLevel: .l)
       let output: OutputConfig = .init(scale: .init(6, 2), palette: pallete)
       return .init(qr: qrSetup, output: output)
    }()
@@ -42,7 +42,7 @@ extension SingleTest {
     * writeAndRead
     */
    private static func writeAndRead(data: Data) -> Bool {
-      guard let image = write(data: data) else { return false }
+      guard let image: Image = write(data: data) else { return false }
       let (isValid, time) = TimeMeasure.timeElapsed {
          read(image: image, data: data)
       }

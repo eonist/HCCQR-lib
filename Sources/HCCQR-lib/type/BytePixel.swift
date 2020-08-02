@@ -10,7 +10,7 @@ public struct BytePixel: PixelDataKind {
       let red: UInt32 = .init(r & 0xFF)
       let green: UInt32 = .init(g & 0xFF)
       let blue: UInt32 = .init(b & 0xFF)
-      self.value = alpha << 24 + red << 16 + green << 8 + blue
+      self.value = (alpha << 24) + (red << 16) + (green << 8) + blue
    }
 }
 /**

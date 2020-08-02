@@ -4,6 +4,7 @@ import QR_lib
  * Read test
  */
 extension ViewController {
+   static let (pallete, scheme): (ColorPalette, ChannelScheme) = (.cp4(), .cs4) // the mappings for writing / reading
    /**
     * Visual and Syntetic write / read HCCQR
     */
@@ -11,22 +12,22 @@ extension ViewController {
       Swift.print("testHCCQR")
       let setup: HCCQRSetup = {
          let qrSetup: QRSetup = .init(qrVersion: .v1, ecLevel: .l)
-         let output: OutputConfig = .init(scale: .init(6, 2), palette: .cp16(useDarkMode: false))
+         let output: OutputConfig = .init(scale: .init(6, 2), palette: Self.pallete)
          return .init(qr: qrSetup, output: output)
       }()
       guard let randomData: Data = HCCQRStringData.randomData(setup: setup) else { return }
       //      let coreCount: Int = ProcessInfo().activeProcessorCount
       //      print("coreCount \(coreCount)")
-      guard let img: Image = try? Writer.image(data: randomData, config: setup, parallel: true) else { return }
+      guard let img: Image = try? Writer.image(data: randomData, config: setup, parallel: false) else { return }
       Swift.print("img.size:  \(img.size)")
-      guard let buffer: CVImageBuffer = try? BufferUtil.imageBuffer(image: img) else { Swift.print("unable to get buffer"); return }
-      let image = BufferUtil.image(imageBuffer: buffer, scale: setup.scale.screen)
-      Swift.print("image.size:  \(image.size)")
-      let imgView: UIImageView = .init(image: image)
+//      guard let buffer: CVImageBuffer = try? BufferUtil.imageBuffer(image: img) else { Swift.print("unable to get buffer"); return }
+//      let image = BufferUtil.image(imageBuffer: buffer, scale: setup.scale.screen)
+//      Swift.print("image.size:  \(image.size)")
+      let imgView: UIImageView = .init(image: img)
       self.view.addSubview(imgView)
       _ = {
          do {
-            let dataAndQuad: QRReader.DataAndQuad = try Reader.data(image: image, scheme: .cs16, parallel: true)
+            let dataAndQuad: QRReader.DataAndQuad = try Reader.data(image: img, scheme: Self.scheme, parallel: false)
             let isValid: Bool = randomData == dataAndQuad.qrData
             Swift.print("data?.count:  \(String(describing: dataAndQuad.qrData.count))")
             Swift.print("isValid:  \(isValid ? "✅" : "🚫")")

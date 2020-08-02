@@ -11,6 +11,7 @@ final class HCCQRIOSTest: XCTestCase {
 //      sleep(15)
 //      XCTAssertTrue(SingleTest.test())
 //      XCTAssertTrue(SingleTest.test())
+      // fix buffertest 🏀
 //      XCTAssertTrue(BufferTest.test()) // ✅ Test the new buffer -> RGBA (syntethic)
       sleep(5) // give some time to look at debug instruments etc
    }

@@ -87,7 +87,7 @@ extension PixelDataKind {
     *   - b: second color (usualy static pure colors)
     */
    private static func isRGBColor(a: PixelDataKind, b: PixelDataKind) -> Bool {
-      a.r == b.r && a.g == b.g && a.b == b.b /* && a.a == b.a*/
+      a.r == b.r && a.g == b.g && a.b == b.b
    }
    /**
     * Match two pixels
