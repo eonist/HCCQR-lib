@@ -1,3 +1,3 @@
 import Foundation
 
-public typealias PixelData = BytePixel //  //  //  //  //
+public typealias PixelData = Pixel //  //  //  //  //
