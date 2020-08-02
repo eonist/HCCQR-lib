@@ -25,26 +25,29 @@ extension BufferUtil {
     * - Fixme: ⚠️️ These methods might be faster: https://github.com/frogcjn/ImageIOPlus/blob/1d401725a3f7cd87b000a085eaca65e2cd0c0446/Sources/CoreVideoPlus/CVPixelBuffer/CVPixelBuffer%2B.swift
     * - Fixme: ⚠️️ consider accelerate framework instead, see: https://developer.apple.com/documentation/accelerate/1498254-vimageconverter_createforcvtocgi
     * - Fixme: ⚠️️ benchmark how fast this method is
+    * - Fixme: ⚠️️ here we can do RBA and avoid alpha
     * - Important: ⚠️️ doing concurrent on the loop has minimal effect, doing it on the call to this method has alot of effect
     * - Parameters:
     *   - buffer: the buffer containing the raw pixel data and size
     *   - crop: Makes processing the raw imagery faster since we don't have to process areas where the QR info is not etc. (provided we know where the QR rect is)
     */
    public static func rgbaRep(buffer: CVImageBuffer, crop bufferRect: BufferRect) throws -> ImageRep { /*, size: CGSize, scale: CGFloat */
+//      Swift.print("rgbaRep")
       CVPixelBufferLockBaseAddress(buffer, CVPixelBufferLockFlags(rawValue: CVOptionFlags(0))) // lock access for cpu reading
-      let bytesPerPixel: Int = CVPixelBufferGetBytesPerRow(buffer) // let bufferSize: (width: Int, height: Int) = (Int(CVPixelBufferGetWidth(imageBuffer)), Int(CVPixelBufferGetHeight(imageBuffer))) //  let size: (width: Int, height: Int) = (Int(size.width * scale), Int(size.height * scale))
+      let bytesPerRow: Int = CVPixelBufferGetBytesPerRow(buffer) // let bufferSize: (width: Int, height: Int) = (Int(CVPixelBufferGetWidth(imageBuffer)), Int(CVPixelBufferGetHeight(imageBuffer))) //  let size: (width: Int, height: Int) = (Int(size.width * scale), Int(size.height * scale))
       guard let baseAddress: UnsafeMutableRawPointer = CVPixelBufferGetBaseAddress(buffer) else { throw NSError(domain: "Unable to get baseAddress", code: 0) }
       // - Fixme: ⚠️️ This is prob a bug, you should only lock once
       // CVPixelBufferLockBaseAddress(imageBuffer, CVPixelBufferLockFlags(rawValue: 0))
-      let capacity: Int = bufferRect.width * bufferRect.height
+      let capacity: Int = bufferRect.size.capacity
       let byteBuffer: UnsafeBufferPointer<UInt8> = .init(start: baseAddress.bindMemory(to: UInt8.self, capacity: capacity), count: capacity)// baseAddress.assumingMemoryBound(to: UInt8.self)// .init()
       let pixels: UnsafeMutableBufferPointer<PixelData> = .allocate(capacity: capacity) // we dealoc this when we have finished working with rgbaRep
+      let bytesPerPixel: Int = 4
       // - Fixme: ⚠️️ could possibly see great speed increase if we align indecies, and do modulo to find width and y and x etc
       (bufferRect.y..<bufferRect.height).forEach { y in
-         let yVal: Int = y * bytesPerPixel // we calc these outside the x loop, to gain performance
+         let yVal: Int = y * bytesPerRow // we calc these outside the x loop, to gain performance
          let yAndWidth: Int = y * bufferRect.width // we calc these outside the x loop, to gain performance
          (bufferRect.x..<bufferRect.width).forEach { x in
-            let index: Int = x * 4 + yVal // We add the crop to the x // (y * bytesPerPixel + x) * 4
+            let index: Int = x * bytesPerPixel + yVal // We add the crop to the x // (y * bytesPerPixel + x) * 4
             // ⚠️️ new, was byteBuffer[index] etc
             let (b, g, r) = (byteBuffer[index], byteBuffer[index + 1], byteBuffer[index + 2]) // let a = byteBuffer[index + 3]
             let pixel: PixelData = .init(r: r, g: g, b: b/*, a: 255*/)

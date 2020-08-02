@@ -50,7 +50,7 @@ extension RGBARep {
       // - Fixme: ⚠️️ try withMemoryRebound instead of the bellow
       var i: Int = 0 // was (0..<capacity).forEach { i in }
       while i < capacity {
-         let rgbaPixel = imageData.advanced(by: i).pointee
+         let rgbaPixel: RGBAPixel = imageData.advanced(by: i).pointee
          pixis[i] = PixelData(r: rgbaPixel.r, g: rgbaPixel.g, b: rgbaPixel.b)
          i = i &+ 1 // &+ is used for little performance gain
       }

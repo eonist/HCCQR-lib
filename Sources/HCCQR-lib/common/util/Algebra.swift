@@ -14,7 +14,7 @@ final class Algebra {
     * print(exponent(base: 2, value: 256)) // 8
     */
    static func exponent(base: CGFloat, value: CGFloat) -> CGFloat {
-      log(value) / log(base) // var i: Int = 1; while pow(base, CGFloat(i)) < value { i += 1 }; return i
+      log(value) / log(base)
    }
 }
 /**
@@ -25,6 +25,6 @@ extension Algebra {
     * Convenient for Int
     */
    static func exponent(base: Int, value: Int) -> Int {
-      Int(exponent(base: CGFloat(base), value: CGFloat(value))) // var i: Int = 1; while pow(base, CGFloat(i)) < value { i += 1 }; return i
+      Int(exponent(base: CGFloat(base), value: CGFloat(value)))
    }
 }

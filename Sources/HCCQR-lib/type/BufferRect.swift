@@ -27,4 +27,10 @@ extension BufferRect {
    public var cgRect: CGRect {
       .init(x: self.x, y: self.y, width: self.width, height: self.height)
    }
+   /**
+    * Size
+    */
+   public var size: Size {
+      .init(width, height)
+   }
 }

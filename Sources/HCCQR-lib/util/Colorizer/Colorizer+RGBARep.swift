@@ -26,7 +26,7 @@ extension Colorizer {
       let pixels: UnsafeMutableBufferPointer<PixelData> = .allocate(capacity: capacity) // Create a new array // pixels.reserveCapacity(size.width * size.height)
       // - Fixme: ⚠️️ using while and linear index could be faster
       var idx: Int = 0
-      while idx < capacity {
+      while idx < capacity { // while is a bit faster than forEach in this case
 //         - Fixme: ⚠️️ you could move the monoReps loop to the outer loop, and do concurrentMap on it, maybe?, that will be dificult, as you need to sync up and do colorize on multiple pixels etc, might not save and cpu time etc, you do have Atomic value tho, could work
          let layerPixels: [Bool] = monoReps.map { $0.pixels[idx] } // We get pixels from multiple monoReps
          if let colorizedPixel: PixelData = try? colorize(pixels: layerPixels, pallete: config.palette) {

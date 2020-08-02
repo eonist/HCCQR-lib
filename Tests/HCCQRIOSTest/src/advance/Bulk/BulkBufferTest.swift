@@ -36,6 +36,5 @@ final class BulkBufferTest {
       Swift.print("BulkBufferTest isValid:  \(isValid ? "✅" : "🚫")")
 //      buffers = []
       return isValid
-//      return true
    }
 }

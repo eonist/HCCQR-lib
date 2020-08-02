@@ -19,8 +19,8 @@ extension ByteImage {
       let bitmapInfo: CGBitmapInfo = .init(rawValue: CGBitmapInfo.byteOrder32Big.rawValue | CGImageAlphaInfo.noneSkipLast.rawValue) // premultipliedLast also works
       let bytesPerPixel = MemoryLayout<BytePixel>.size
       let bytesPerRow = self.width * bytesPerPixel
-      Swift.print("MemoryLayout<BytePixel>.size:  \(MemoryLayout<BytePixel>.size)")
-      Swift.print("bytesPerRow:  \(bytesPerRow)")
+//      Swift.print("MemoryLayout<BytePixel>.size:  \(MemoryLayout<BytePixel>.size)")
+//      Swift.print("bytesPerRow:  \(bytesPerRow)")
       let bitsPerComponent: Int = 8 // (8 bits per each channel)
 //      let bytesPerPixel: Int = 4 // 4 bytes(rgba channels) for each pixel
 //      let bitsPerPixel: Int = bytesPerPixel * bitsPerComponent

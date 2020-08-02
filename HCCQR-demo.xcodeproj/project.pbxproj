@@ -74,6 +74,7 @@
 		F1537F0924B47C5200160FEC /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1537F0824B47C5200160FEC /* Array+Extension.swift */; };
 		F1537F0A24B47C5200160FEC /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1537F0824B47C5200160FEC /* Array+Extension.swift */; };
 		F156AC1124D71AC8007D6D2B /* BytePixelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F156AC1024D71AC8007D6D2B /* BytePixelTest.swift */; };
+		F156AC1324D7449C007D6D2B /* ArrayBenchmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = F156AC1224D7449C007D6D2B /* ArrayBenchmark.swift */; };
 		F1593A9D24D023B50017F9A2 /* ByteImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1593A9C24D023B50017F9A2 /* ByteImage.swift */; };
 		F1593A9E24D023B50017F9A2 /* ByteImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1593A9C24D023B50017F9A2 /* ByteImage.swift */; };
 		F1593AA024D023C30017F9A2 /* BytePixel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1593A9F24D023C30017F9A2 /* BytePixel.swift */; };
@@ -307,6 +308,7 @@
 		F1537F0424B362E300160FEC /* ChannelComboTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelComboTest.swift; sourceTree = "<group>"; };
 		F1537F0824B47C5200160FEC /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
 		F156AC1024D71AC8007D6D2B /* BytePixelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BytePixelTest.swift; sourceTree = "<group>"; };
+		F156AC1224D7449C007D6D2B /* ArrayBenchmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayBenchmark.swift; sourceTree = "<group>"; };
 		F1593A9C24D023B50017F9A2 /* ByteImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ByteImage.swift; sourceTree = "<group>"; };
 		F1593A9F24D023C30017F9A2 /* BytePixel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BytePixel.swift; sourceTree = "<group>"; };
 		F1593AAC24D025F20017F9A2 /* ByteImage+Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ByteImage+Image.swift"; sourceTree = "<group>"; };
@@ -801,6 +803,7 @@
 			isa = PBXGroup;
 			children = (
 				F165C25023A00D35005D30EC /* ScaleTesting.swift */,
+				F156AC1224D7449C007D6D2B /* ArrayBenchmark.swift */,
 				F1537F0424B362E300160FEC /* ChannelComboTest.swift */,
 				F165C25323A01044005D30EC /* QRTesting.swift */,
 				F165C26023A020E2005D30EC /* MemLeakTest.swift */,
@@ -1486,6 +1489,7 @@
 				F1E5DC1A23F9D37700605775 /* NSImage+Ext.swift in Sources */,
 				F1E5710923A3EF3100E090BB /* HCCQRIOSTest.swift in Sources */,
 				F1E5711823A3F2C400E090BB /* QRTesting.swift in Sources */,
+				F156AC1324D7449C007D6D2B /* ArrayBenchmark.swift in Sources */,
 				F1E5711723A3F2C400E090BB /* ScaleTesting.swift in Sources */,
 				F1537F0724B362E300160FEC /* ChannelComboTest.swift in Sources */,
 				F1E5711B23A3F2C400E090BB /* ColorishTest.swift in Sources */,
