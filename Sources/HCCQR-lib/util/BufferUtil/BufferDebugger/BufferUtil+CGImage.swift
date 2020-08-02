@@ -14,6 +14,7 @@ extension BufferUtil {
     * - Fixme: ⚠️️ can probably use different combo of buffer rgba, bgra alpha info 32litte etc. figure out what is fastest n the future etc
     * - Fixme: ⚠️️ we dont need opaque param, thats only for png, cam-output, jpg doesnt have alpha.
     * - Fixme: ⚠️️ rename to buffer
+    * - Fixme: ⚠️️ benchmark this, consider accelerate framework instead see: https://developer.apple.com/documentation/accelerate/1498241-vimageconverter_createforcgtocvi   and https://developer.apple.com/documentation/accelerate/building_a_basic_conversion_workflow
     */
    public static func imageBuffer(cgImage: CGImage, opaque: Bool = true) throws -> CVImageBuffer {
       let frameSize = CGSize(width: cgImage.width, height: cgImage.height)

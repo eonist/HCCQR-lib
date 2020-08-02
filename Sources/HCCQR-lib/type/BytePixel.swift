@@ -3,16 +3,14 @@ import Foundation
 public struct BytePixel: PixelDataKind {
    public var value: UInt32
    /**
-    * - Fixme: ⚠️️ needs more performant code
+    * - Fixme: ⚠️️ needs more performant code maybe?
     */
    public init(r: UInt8, g: UInt8, b: UInt8/*, a: UInt8 = 255*/) {
+      let alpha: UInt32 = .init(255 & 0xFF)
       let red: UInt32 = .init(r & 0xFF)
       let green: UInt32 = .init(g & 0xFF)
       let blue: UInt32 = .init(b & 0xFF)
-      let alpha: UInt32 = .init(255 & 0xFF)
-      let rgb: UInt32 = (red << 24) + (green << 16) + (blue << 8) + alpha
-//      print("\(rgb)")
-      self.value = rgb
+      self.value = alpha << 24 + red << 16 + green << 8 + blue
    }
 }
 /**

@@ -562,8 +562,8 @@
 			isa = PBXGroup;
 			children = (
 				F168526F2213443700C27EAA /* RGBARep.swift */,
-				F119AEDC24D587A300A67534 /* RGBARep+Image.swift */,
 				F119AEDF24D5955100A67534 /* RGBARep+Init.swift */,
+				F119AEDC24D587A300A67534 /* RGBARep+Image.swift */,
 				F119AED824D586FA00A67534 /* CGImageErr.swift */,
 				F1D9687C24CEE1A600B25B73 /* RGBARepresentation */,
 			);
@@ -845,13 +845,13 @@
 		F1C42F6924B1F8BD00DA7F23 /* type */ = {
 			isa = PBXGroup;
 			children = (
-				F1593A9F24D023C30017F9A2 /* BytePixel.swift */,
 				F1AF9D3523E2D7630085DA0C /* BufferRect.swift */,
 				F1E67D4C24A9059C007FC5C0 /* Size.swift */,
 				F149992824C886960027C918 /* Scale.swift */,
 				F1537EF824B331ED00160FEC /* ChannelCombo.swift */,
 				F1690AA024B1F9B8000EC61A /* ColorMap.swift */,
 				F146A55424ADE08100FE136C /* BoolColumn.swift */,
+				F1593A9F24D023C30017F9A2 /* BytePixel.swift */,
 				F16852612213443700C27EAA /* Pixel */,
 				F1ED130D24D54A3B00129DB4 /* PixelData */,
 				F1E5A32A24D468FA00F7AE70 /* PixelDataKind */,
