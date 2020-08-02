@@ -73,6 +73,7 @@
 		F1537F0724B362E300160FEC /* ChannelComboTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1537F0424B362E300160FEC /* ChannelComboTest.swift */; };
 		F1537F0924B47C5200160FEC /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1537F0824B47C5200160FEC /* Array+Extension.swift */; };
 		F1537F0A24B47C5200160FEC /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1537F0824B47C5200160FEC /* Array+Extension.swift */; };
+		F156AC1124D71AC8007D6D2B /* BytePixelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F156AC1024D71AC8007D6D2B /* BytePixelTest.swift */; };
 		F1593A9D24D023B50017F9A2 /* ByteImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1593A9C24D023B50017F9A2 /* ByteImage.swift */; };
 		F1593A9E24D023B50017F9A2 /* ByteImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1593A9C24D023B50017F9A2 /* ByteImage.swift */; };
 		F1593AA024D023C30017F9A2 /* BytePixel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1593A9F24D023C30017F9A2 /* BytePixel.swift */; };
@@ -305,6 +306,7 @@
 		F1537EFC24B353E500160FEC /* GrayReps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrayReps.swift; sourceTree = "<group>"; };
 		F1537F0424B362E300160FEC /* ChannelComboTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelComboTest.swift; sourceTree = "<group>"; };
 		F1537F0824B47C5200160FEC /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
+		F156AC1024D71AC8007D6D2B /* BytePixelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BytePixelTest.swift; sourceTree = "<group>"; };
 		F1593A9C24D023B50017F9A2 /* ByteImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ByteImage.swift; sourceTree = "<group>"; };
 		F1593A9F24D023C30017F9A2 /* BytePixel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BytePixel.swift; sourceTree = "<group>"; };
 		F1593AAC24D025F20017F9A2 /* ByteImage+Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ByteImage+Image.swift"; sourceTree = "<group>"; };
@@ -806,6 +808,7 @@
 				F1E6F6862493B2DC00975607 /* MonoPixelColorization.swift */,
 				F1E5DC0F23F9A1C300605775 /* RGBAImageTest.swift */,
 				F1FE7E0324A1D5360094B1BD /* CIImageTest.swift */,
+				F156AC1024D71AC8007D6D2B /* BytePixelTest.swift */,
 			);
 			path = simple;
 			sourceTree = "<group>";
@@ -1492,6 +1495,7 @@
 				F1FE7E0424A1D5360094B1BD /* CIImageTest.swift in Sources */,
 				F1E5DC1823F9A5B700605775 /* Image+Ext.swift in Sources */,
 				F18E38B624B1167500F33947 /* Pixel+Parsing+Test.swift in Sources */,
+				F156AC1124D71AC8007D6D2B /* BytePixelTest.swift in Sources */,
 				F1488E3824BF94A80067C0F4 /* BulkTest.swift in Sources */,
 				F19FC44624C09D2F0045BDB0 /* PhotoTest.swift in Sources */,
 				F1472010248C0820008A01AD /* Data+Ext.swift in Sources */,

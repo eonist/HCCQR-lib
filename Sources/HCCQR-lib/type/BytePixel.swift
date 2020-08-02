@@ -10,7 +10,8 @@ public struct BytePixel: PixelDataKind {
       let red: UInt32 = .init(r & 0xFF)
       let green: UInt32 = .init(g & 0xFF)
       let blue: UInt32 = .init(b & 0xFF)
-      self.value = (red << 16) + (green << 8) + blue// + (alpha << 24)
+      let rgb: UInt32 = (blue << 16) + (green << 8) + red// + (alpha << 24)
+      self.value = rgb
    }
 }
 /**
@@ -18,13 +19,13 @@ public struct BytePixel: PixelDataKind {
  */
 extension BytePixel {
    /**
-    * red
+    * b
     */
-   public var r: UInt8 {
-      get { UInt8(value & 0xFF) }
+   public var b: UInt8 {
+      get { UInt8((value >> 16) & 0xFF) }
       set {
          let v = max(min(newValue, 255), 0)
-         value = UInt32(v) | (value & 0xFFFFFF00)
+         value = (UInt32(v) << 16) | (value & 0xFF00FFFF)
       }
    }
    /**
@@ -38,13 +39,13 @@ extension BytePixel {
       }
    }
    /**
-    * blue
+    * r
     */
-   public var b: UInt8 {
-      get { UInt8((value >> 16) & 0xFF) }
+   public var r: UInt8 {
+      get { UInt8(value & 0xFF) }
       set {
          let v = max(min(newValue, 255), 0)
-         value = (UInt32(v) << 16) | (value & 0xFF00FFFF)
+         value = UInt32(v) | (value & 0xFFFFFF00)
       }
    }
    /**

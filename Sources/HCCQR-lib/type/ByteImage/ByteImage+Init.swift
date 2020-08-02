@@ -24,7 +24,8 @@ extension ByteImage {
       Swift.print("width:  \(width)")
       let height = Int(cgImage.height)
       Swift.print("height:  \(height)")
-      let bytesPerRow = width * 4
+      let bytesPerPixel = MemoryLayout<RGBAPixel>.size
+      let bytesPerRow = width * bytesPerPixel
       let capacity: Int = width * height
       let imageData = UnsafeMutablePointer<PixelData>.allocate(capacity: capacity)
       let colorSpace = CGColorSpaceCreateDeviceRGB()

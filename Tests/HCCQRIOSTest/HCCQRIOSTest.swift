@@ -6,12 +6,11 @@ final class HCCQRIOSTest: XCTestCase {
       // sleep(20) // give some time to look at debug instruments etc
       simpleTests()
       advanceTests()
+//      XCTAssertTrue(BytePixelTest.test())
 //      XCTAssertTrue(BulkBufferTest.test())
 //      XCTAssertTrue(BulkTest.test()) // ✅ Read and write multiple "syntetic-HCCQR-images"
 //      sleep(15)
 //      XCTAssertTrue(SingleTest.test())
-//      XCTAssertTrue(SingleTest.test())
-      // fix buffertest 🏀
 //      XCTAssertTrue(BufferTest.test()) // ✅ Test the new buffer -> RGBA (syntethic)
       sleep(5) // give some time to look at debug instruments etc
    }
@@ -27,6 +26,7 @@ final class HCCQRIOSTest: XCTestCase {
       XCTAssertTrue(ColorishTest.testWashedOutColor()) // ✅
       XCTAssertTrue(QRTesting.testQRGeneration()) // ✅
       XCTAssertTrue(ColorishTest.testUInt8Aritmitic())
+      XCTAssertTrue(BytePixelTest.test()) // ✅
       // - Fixme: ⚠️️ fix the bellow test somehow
 //      XCTAssertTrue(CIImageTest.testCIImage()) // 🚫
    }

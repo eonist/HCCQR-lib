@@ -57,15 +57,15 @@ extension Extractor {
     */
    /*private*/internal static func extract(rgbaRep: ImageRepKind, asserter: @escaping PixelSimilarity) -> GrayRep {
 //      let output: GrayRep = .grayRep(capacity: rgbaRep.capacity, size: rgbaRep.size) // We create a blank GrayRep, as it's faster than copy probably, The GrayScaleImage to populate pixels into (we only need [UInt8])
-      let pixels: UnsafeMutablePointer<UInt8> = .allocate(capacity: rgbaRep.capacity)
+      let pixels: UnsafeMutableBufferPointer<UInt8> = .allocate(capacity: rgbaRep.capacity)
 //      let time: Double = TimeMeasure.timeElapsed {
          GrayRepModifier.process(size: rgbaRep.size) { (i: Int) in
-            pixels.advanced(by: i).pointee = asserter(rgbaRep.pixels[i]).strength // Apply new pixel to old pixel
+            pixels[i] = asserter(rgbaRep.pixels[i]).strength // Apply new pixel to old pixel
          }
 //      }
 //      Swift.print("extract.process time :  \(time)")
       // - Fixme: ⚠️️ this could be wrong for ByteImage?
-      return .init(pixels: .init(start: pixels, count: rgbaRep.capacity), width: rgbaRep.size.width, height: rgbaRep.size.height)
+      return .init(pixels: .init(pixels), width: rgbaRep.size.width, height: rgbaRep.size.height)
    }
    /**
     * The purpouse of this method is to setup static calls, that compare channel and pixel color

@@ -26,7 +26,8 @@ final class Combiner {
     * - Parameter grayReps: color-channels in grayscale representations (4 for 4-color HCCQR)
     */
    static func combine(grayReps: GrayReps) -> CIImage {
-      // figure out which takes more time combine or ciimage 🏀 (diff macOS and iOS)
+      // figure out which takes more time combine or ciimage 🏀
+         // diff how much time combine takes and cgimage takes for macOS and iOS
       let composition: GrayRep = combine(grayReps: grayReps) // combine multiple grayscaleReps together
       defer { composition.pixels.deallocate() } // We de-init the Img after we have consumed it to avoid mem leak
       return GrayRepParser.ciImage(grayRep: composition)

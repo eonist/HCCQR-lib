@@ -23,9 +23,25 @@ final class PixelModifier {
       let resultPixels: UnsafeMutableBufferPointer<PixelData> = .allocate(capacity: capacity)
       // - Fixme: ⚠️️ do concurrent + stride?
       // - Fixme: ⚠️️ could possibly see great speed increase if we align indecies
-      (0..<scaledSize.height).forEach { (y: Int) in
-         let scaledY = y / scale * size.height
-         let yWidth = y * scaledSize.width
+//      let h = scaledSize.height
+//      let w = scaledSize.width
+//      let cap: Int = w * h
+//      var i: Int = 0
+//      while i < cap {
+//         let y: Int = i % h
+//         let x: Int = (i - y) / w
+////         Swift.print("i:  \(i) x: \(x) y: \(y)")
+//         let pixIndex: Int = (y / scale * size.height) + x / scale
+//         let resIndex: Int = (y * scaledSize.width) + x
+//         // fixme: ⚠️️ maybe we can set whole ranges to pixels etc, or just bake into the colorize method?, is this method inefficient?
+//         resultPixels[resIndex] = pixels[pixIndex]
+//         i = i &+ 1
+//      }
+//
+      
+      (0..<scaledSize.height).forEach { (y: Int) in// this is 4 times as fast as while loop
+         let scaledY = (y / scale * size.height)
+         let yWidth = (y * scaledSize.width)
          (0..<scaledSize.width).forEach { (x: Int) in
             let pixIndex: Int = scaledY + x / scale
             let resIndex: Int = yWidth + x

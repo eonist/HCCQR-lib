@@ -31,7 +31,7 @@ extension RGBARep {
       let size: Size = .init(Int(cgImage.width), Int(cgImage.height))
       Swift.print("size:  \(size)")
       let bytesPerPixel = MemoryLayout<RGBAPixel>.size
-      Swift.print("bytesPerPixel:  \(bytesPerPixel)")
+      Swift.print("RGBAPixel bytesPerPixel:  \(bytesPerPixel)")
       let bytesPerRow: Int = size.width * bytesPerPixel // We multiply per 4 because of the 4 channels, RGBA
       let capacity: Int = size.capacity
       let imageData: UnsafeMutablePointer<RGBAPixel> = .allocate(capacity: capacity)
@@ -44,14 +44,14 @@ extension RGBARep {
       cgContext.draw(cgImage, in: .init(origin: .zero, size: .init(width: cgImage.width, height: cgImage.height))) // draws the cgImage into the context
       // - Fixme: ⚠️️  the bellow is a hack, find better solution, see legacy
       //      let pixels: UnsafePointer<Pixel> = .init(imageData) // we dealoc this when we are finished with RGBARep
-      let pixis: UnsafeMutableBufferPointer<Pixel> =  .allocate(capacity: capacity)
+      let pixis: UnsafeMutableBufferPointer<PixelData> =  .allocate(capacity: capacity)
 //      let monoPixels: UnsafeMutableBufferPointer<Bool> = .allocate(capacity: capacity)
       // ⚠️️ trying while loop for performance gain
       // - Fixme: ⚠️️ try withMemoryRebound instead of the bellow
       var i: Int = 0 // was (0..<capacity).forEach { i in }
       while i < capacity {
          let rgbaPixel = imageData.advanced(by: i).pointee
-         pixis[i] = Pixel(r: rgbaPixel.r, g: rgbaPixel.g, b: rgbaPixel.b)
+         pixis[i] = PixelData(r: rgbaPixel.r, g: rgbaPixel.g, b: rgbaPixel.b)
          i = i &+ 1 // &+ is used for little performance gain
       }
       imageData.deallocate() // We have no more use for imageData

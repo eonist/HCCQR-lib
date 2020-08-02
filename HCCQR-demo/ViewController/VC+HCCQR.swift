@@ -18,7 +18,7 @@ extension ViewController {
       guard let randomData: Data = HCCQRStringData.randomData(setup: setup) else { return }
       //      let coreCount: Int = ProcessInfo().activeProcessorCount
       //      print("coreCount \(coreCount)")
-      guard let img: Image = try? Writer.image(data: randomData, config: setup, parallel: false) else { return }
+      guard let img: Image = try? Writer.image(data: randomData, config: setup, parallel: true) else { return }
       Swift.print("img.size:  \(img.size)")
 //      guard let buffer: CVImageBuffer = try? BufferUtil.imageBuffer(image: img) else { Swift.print("unable to get buffer"); return }
 //      let image = BufferUtil.image(imageBuffer: buffer, scale: setup.scale.screen)
@@ -27,7 +27,7 @@ extension ViewController {
       self.view.addSubview(imgView)
       _ = {
          do {
-            let dataAndQuad: QRReader.DataAndQuad = try Reader.data(image: img, scheme: Self.scheme, parallel: false)
+            let dataAndQuad: QRReader.DataAndQuad = try Reader.data(image: img, scheme: Self.scheme, parallel: true)
             let isValid: Bool = randomData == dataAndQuad.qrData
             Swift.print("data?.count:  \(String(describing: dataAndQuad.qrData.count))")
             Swift.print("isValid:  \(isValid ? "✅" : "🚫")")
