@@ -6,11 +6,11 @@ public struct BytePixel: PixelDataKind {
     * - Fixme: ⚠️️ needs more performant code maybe?
     */
    public init(r: UInt8, g: UInt8, b: UInt8/*, a: UInt8 = 255*/) {
-      let alpha: UInt32 = .init(255 & 0xFF)
+//      let alpha: UInt32 = .init(255 & 0xFF)
       let red: UInt32 = .init(r & 0xFF)
       let green: UInt32 = .init(g & 0xFF)
       let blue: UInt32 = .init(b & 0xFF)
-      self.value = (alpha << 24) + (red << 16) + (green << 8) + blue
+      self.value = (red << 16) + (green << 8) + blue// + (alpha << 24)
    }
 }
 /**
@@ -50,13 +50,13 @@ extension BytePixel {
    /**
     * alpha
     */
-   public var a: UInt8 {
-      get { UInt8((value >> 24) & 0xFF) }
-      set {
-         let v = max(min(newValue, 255), 0)
-         value = (UInt32(v) << 24) | (value & 0x00FFFFFF)
-      }
-   }
+//   public var a: UInt8 {
+//      get { UInt8((value >> 24) & 0xFF) }
+//      set {
+//         let v = max(min(newValue, 255), 0)
+//         value = (UInt32(v) << 24) | (value & 0x00FFFFFF)
+//      }
+//   }
 }
 /**
  * Floating values
@@ -74,8 +74,8 @@ extension BytePixel {
       get { Double(self.b) / 255.0 }
       set { self.b = UInt8(max(min(newValue, 1.0), 0.0) * 255.0) }
    }
-   public var Af: Double {
-      get { Double(self.a) / 255.0 }
-      set { self.a = UInt8(max(min(newValue, 1.0), 0.0) * 255.0) }
-   }
+//   public var Af: Double {
+//      get { Double(self.a) / 255.0 }
+//      set { self.a = UInt8(max(min(newValue, 1.0), 0.0) * 255.0) }
+//   }
 }

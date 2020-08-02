@@ -18,9 +18,9 @@ extension Colorizer {
     */
    static func colorize(pixels: [Bool], pallete: ColorPalette) throws -> PixelData {
       guard let color: PixelData = pallete.first(where: { let result = try? matchColorMap(pixels, $0); return result ?? false })?.color else { throw NSError(domain: "Unable to colorize", code: 0) }
-//      return color
+      return color
       // figure out why the bellow works 🏀
-      return PixelData(r: color.r, g: color.g, b: color.b/*, a: 255*/)
+//      return PixelData(r: color.r, g: color.g, b: color.b/*, a: 255*/)
    }
 }
 /**

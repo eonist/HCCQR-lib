@@ -64,6 +64,7 @@ extension Extractor {
          }
 //      }
 //      Swift.print("extract.process time :  \(time)")
+      // - Fixme: ⚠️️ this could be wrong for ByteImage?
       return .init(pixels: .init(start: pixels, count: rgbaRep.capacity), width: rgbaRep.size.width, height: rgbaRep.size.height)
    }
    /**

@@ -52,12 +52,12 @@ extension RGBARep {
    internal func cgImage(/*rgbaRep: ImageRepKind*/) throws -> CGImage {
       //    try autoreleasepool {}  // ⚠️️ testing to get rid of mem leak ⚠️️
       let deviceColorSpace: CGColorSpace = CGColorSpaceCreateDeviceRGB()
-      let bitmapInfo: CGBitmapInfo = .init(rawValue: CGBitmapInfo.byteOrder32Big.rawValue | CGImageAlphaInfo.noneSkipLast.rawValue) // premultipliedLast also works
+      let bitmapInfo: CGBitmapInfo = .init(rawValue: CGBitmapInfo.byteOrder32Big.rawValue | CGImageAlphaInfo.none.rawValue) // premultipliedLast also works
       //    var bitmapInfo: UInt32 = CGBitmapInfo.byteOrder32Big.rawValue
-      //    bitmapInfo |= CGImageAlphaInfo.premultipliedLast.rawValue & CGBitmapInfo.alphaInfoMask.rawValue
-      let bytesPerRow: Int = self.width * MemoryLayout<Pixel>.size // channels in each row (width)
+//      bitmapInfo |= CGImageAlphaInfo.none.rawValue & CGBitmapInfo.alphaInfoMask.rawValue
+      let bytesPerPixel: Int = MemoryLayout<Pixel>.size // 4 bytes(rgba channels) for each pixel
+      let bytesPerRow: Int = self.width * bytesPerPixel // channels in each row (width)
       let bitsPerComponent: Int = 8 // (8 bits per each channel)
-      let bytesPerPixel: Int = 4 // 4 bytes(rgba channels) for each pixel
       let bitsPerPixel: Int = bytesPerPixel * bitsPerComponent
       let flatPixels = self.flatPixels
       defer { flatPixels.deallocate() } // we have no use for flatPixels after image is returned

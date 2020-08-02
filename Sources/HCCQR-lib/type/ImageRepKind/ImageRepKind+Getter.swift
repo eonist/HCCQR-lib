@@ -26,16 +26,17 @@ extension ImageRepKind {
 //      let data = NSData(bytes: flatPixelArr, length: flatPixelArr.count)
 //      return data.bytes.assumingMemoryBound(to: UInt8.self)
 //      let arr = flatPixelArr
-      let cap = capacity * 4
+      let bytesPerPixel: Int = MemoryLayout<Pixel>.size
+      let cap = capacity * bytesPerPixel
       let pointer = UnsafeMutableBufferPointer<UInt8>.allocate(capacity: cap)
       (0..<(capacity)).forEach { i in
          // - Fixme: ⚠️️ maybe make this PixelData instead
          let p: PixelDataKind = pixels[i]
-         let idx = i * 4
+         let idx = i * bytesPerPixel
          pointer[idx] = p.r
          pointer[idx + 1] = p.g
          pointer[idx + 2] = p.b
-         pointer[idx + 3] = 255
+//         pointer[idx + 3] = 255
       }
       guard let p: UnsafeMutablePointer<UInt8> = pointer.baseAddress else { fatalError("err") }
 //      pointer.initialize(from: arr, count: arr.count)

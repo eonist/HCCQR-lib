@@ -3,6 +3,7 @@ import Foundation
  * Custom ChannelPallete
  * - Note: the first color is the background color
  * - Note: to enable darkmode, use a dark color as the first color
+ * - Fixme: ⚠️️ instead of naming these 4, 8, 16 etc. Access them via index, cs(0), cs(1) etc
  */
 extension ChannelScheme {
    /**
