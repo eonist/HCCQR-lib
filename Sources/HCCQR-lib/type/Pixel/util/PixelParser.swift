@@ -54,7 +54,6 @@ extension PixelParser {
       r = ciColor.red // 1.0
       g = ciColor.green // 0.0
       b = ciColor.blue // 0.0
-//      a = ciColor.alpha // 1.0 or use nsColor.alphaComponent
       #else
       throw RGBAError.osNotSupported
       #endif

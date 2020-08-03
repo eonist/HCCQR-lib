@@ -16,7 +16,7 @@ import TimeMeasure
 final class SingleTest {}
 
 extension SingleTest {
-   static let (pallete, scheme): (ColorPalette, ChannelScheme) = (.cp256(), .cs256) // the mappings for writing / reading
+   static let (pallete, scheme): CPCS = CType.c256.cpcs() // the mappings for writing / reading
    /**
     * Setup for single test
     */

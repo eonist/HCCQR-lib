@@ -17,10 +17,3 @@ extension ChannelScheme {
       return scheme
    }
 }
-/**
- * - Note: We don't seperate the white
- * - Fixme: ⚠️️ account for darkmode
- */
-//   private static func core(pallete: ChannelScheme) -> ChannelScheme {
-//      Array(pallete[0..<(pallete.count - 1)])
-//   }

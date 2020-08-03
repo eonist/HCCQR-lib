@@ -21,18 +21,18 @@ final class UInt8Modifier {
    }
    /**
     * Division
+    * - Fixme: ⚠️️ if above, then return 255, if bellow then return 0 etc?
     */
    static func division(a: UInt8, b: UInt8) -> UInt8 {
       let result: ReportingOverflow = a.dividedReportingOverflow(by: b)
-      // - Fixme: ⚠️️ if above, then return 255, if bellow then return 0 etc?
       return result.overflow ? 0 : result.partialValue
    }
    /**
     * Multiplication
+    * - Fixme: ⚠️️ if above, then return 255, if bellow then return 0 etc?
     */
    static func multiplication(a: UInt8, b: UInt8) -> UInt8 {
       let result: ReportingOverflow = a.multipliedReportingOverflow(by: b)
-      // - Fixme: ⚠️️ if above, then return 255, if bellow then return 0 etc?
       return result.overflow ? 255 : result.partialValue
    }
 }

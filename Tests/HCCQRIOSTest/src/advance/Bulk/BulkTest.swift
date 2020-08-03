@@ -18,7 +18,7 @@ final class BulkTest {}
 
 extension BulkTest {
    static let count: Int = 200
-   static let (pallete, scheme): (ColorPalette, ChannelScheme) = (.cp8(), .cs8) // the mappings for writing / reading
+   static let (pallete, scheme): (ColorPalette, ChannelScheme) = CType.c8.cpcs() // the mappings for writing / reading
    /**
     * - Important: ⚠️️ remember to match the colorPallete and channelPallet
     */
@@ -31,9 +31,11 @@ extension BulkTest {
     * Bulk test
     */
    static func test() -> Bool {
-      var rgbaReps: [RGBARep] = writeMany(setup: bulkSetup)
-      let didSuccessfullyReadMany: Bool = readMany(rgbaReps: rgbaReps, scheme: scheme)
+      var randomData: [Data] = (0..<count).compactMap { _ in HCCQRStringData.randomData(setup: bulkSetup) } // Num of items to load, we create this outside, because we dont want to time the creation of it
+      var rgbaReps: [RGBARep] = writeMany(setup: bulkSetup, randomData: randomData)
+      let didSuccessfullyReadMany: Bool = readMany(rgbaReps: rgbaReps, scheme: scheme, randomData: randomData)
       rgbaReps = []
+      randomData = []
       Swift.print("didSuccessfullyReadMany: \(didSuccessfullyReadMany ? "✅" : "🚫")")
       return didSuccessfullyReadMany
    }
@@ -45,8 +47,7 @@ extension BulkTest {
    /**
     * Bulk write many
     */
-   internal static func writeMany(setup: HCCQRSetup) -> [RGBARep] {
-      var randomData: [Data] = (0..<count).compactMap { _ in HCCQRStringData.randomData(setup: setup) } // Num of items to load, we create this outside, because we dont want to time the creation of it
+   internal static func writeMany(setup: HCCQRSetup, randomData: [Data]) -> [RGBARep] {
       let (payloads, time): ([RGBARep], Double) = TimeMeasure.timeElapsed {
          randomData.batches(spread: 8).concurrentFlatMap { batch in
             batch.compactMap {
@@ -59,7 +60,6 @@ extension BulkTest {
             }
          }
       }
-      randomData = []
       Swift.print("write many time:  \(time)")
       return payloads
    }
@@ -68,7 +68,7 @@ extension BulkTest {
     * - Note: this test is used by the bulk-photo-test as well
     * - Note: putting this loop on concurrent speeds up things 2x
     */
-   internal static func readMany(rgbaReps: [RGBARep], scheme: ChannelScheme) -> Bool {
+   internal static func readMany(rgbaReps: [RGBARep], scheme: ChannelScheme, randomData: [Data]) -> Bool {
       var (payloads, time): ([QRReader.DataAndQuad], Double) = TimeMeasure.timeElapsed {
          rgbaReps.batches(spread: 8).concurrentFlatMap { batch in
             batch.compactMap { rgbaRep in
@@ -83,8 +83,10 @@ extension BulkTest {
       }
       Swift.print("Read many time:  \(time)")
       Swift.print("Payloads.count:  \(payloads.count)")
-      let isValid: Bool = rgbaReps.count == payloads.count
+      let countEquals: Bool = rgbaReps.count == payloads.count
+      let allIsValid: Bool = randomData.isEmpty ? true : !payloads.enumerated().contains { $0.element.qrData != randomData[$0.offset] }
       payloads = []
+      let isValid: Bool = countEquals && allIsValid
       return isValid
    }
 }

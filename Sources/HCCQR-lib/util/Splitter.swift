@@ -37,7 +37,7 @@ extension Splitter {
       let (combinations, combineTime): ([CIImage], Double) = TimeMeasure.timeElapsed {
          channelCombos.concurrentMap(parallel: parallel) { Combiner.combine(grayReps: $0) } // combine the combinations to produce layers of qr-images
       }
-      grayReps.deallocate() // no longer in use
+      grayReps.deallocate() // no longer in use, so we deallocate them
       _ = combineTime
       Log.log("combineTime:  \(combineTime)")
       return combinations

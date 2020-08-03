@@ -1,7 +1,9 @@
 import Foundation
 import AVFoundation
 
-extension BufferUtil {
+typealias BufferType = BufferUtil
+
+extension BufferType {
    /**
     * Returns pixelFormatName
     * ## Examples:

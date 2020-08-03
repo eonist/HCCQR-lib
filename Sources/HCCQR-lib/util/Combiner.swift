@@ -1,5 +1,6 @@
 import Foundation
 import CoreImage
+import TimeMeasure
 /**
  * Combiner (Takes many grayscale channels and converts to one new b&w QRImage)
  * - Description: Creates a grayscale image by combining multiple grayscale images (4 color HCCQR: 2 layers to produce by combining 3 color-channels)
@@ -24,13 +25,17 @@ final class Combiner {
     * - Note: layer 2: b, g -> qrImg2 (⚠️️ I'm not sure this is correct, think R -> Black, White B -> Black, Black, G-> WHite,Black, white -> white,white)
     * - Note: Used in the process to convert HCCQR to Data
     * - Parameter grayReps: color-channels in grayscale representations (4 for 4-color HCCQR)
+    * - Fixme: ⚠️️ This is 10x faster on macOS, figure out why
     */
    static func combine(grayReps: GrayReps) -> CIImage {
-      // figure out which takes more time combine or ciimage 🏀
-         // diff how much time combine takes and cgimage takes for macOS and iOS
       let composition: GrayRep = combine(grayReps: grayReps) // combine multiple grayscaleReps together
       defer { composition.pixels.deallocate() } // We de-init the Img after we have consumed it to avoid mem leak
-      return GrayRepParser.ciImage(grayRep: composition)
+      let (ciImg, time): (CIImage, Double) = TimeMeasure.timeElapsed {
+         GrayRepParser.ciImage(grayRep: composition)
+      }
+      _ = time
+//      Swift.print("combine ciimage time:  \(time)")
+      return ciImg
    }
 }
 /**
@@ -60,9 +65,8 @@ extension Combiner {
       let pixels: UnsafeMutableBufferPointer<UInt8> = GrayRep.pixels(pixel: .black, size: size)// .grayscaleRep(pixel: .black, size: first.size) // because white is 255
       GrayRepModifier.process(size: size) { (i: Int) in // Loop things
          var byte: UInt8 = pixels[i]
-         grayReps.forEach { (grayRep: GrayRep) in // loop over every image in the list, this is inside here because the process method uses concurrent_apply
-            let newByte: UInt8 = grayRep.pixels[i] // - Fixme: ⚠️️ Can be removed because this will basically never happen, because channels can't overlap
-            byte.addition(value: newByte) // ⚠️️ We now add....instead of adding, we substract and then we wouldn't have to invert the image at the end
+         grayReps.forEach { (grayRep: GrayRep) in // loop over every image in the list
+            byte.addition(value: grayRep.pixels[i]) // ⚠️️ We now add....instead of adding, we substract and then we wouldn't have to invert the image at the end
          }
          pixels[i] = byte
       }
@@ -70,7 +74,7 @@ extension Combiner {
    }
 }
 /**
- * atempt to speed things up
+ * attempt to speed things up
  */
 //static func combine2(grayReps: GrayReps) -> GrayRep {
 //   let size: Size = grayReps[0].size // get size from first layer

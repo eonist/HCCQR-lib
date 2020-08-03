@@ -12,9 +12,9 @@ public struct OutputConfig {
     *    - scale: which colors to use in the output HCCQR
     *    - palette: screen and module scale
     */
-   public init(scale: Scale, palette: ColorPalette = .cp4()) {
+   public init(scale: Scale, palette: ColorPalette = CType.c4.cp()) {
       self.scale = scale
       self.palette = palette
    }
-   public static let `default`: OutputConfig = .init(scale: .init(6, 2), palette: .cp4())
+   public static let `default`: OutputConfig = .init(scale: .init(6, 2), palette: CType.c4.cp())
 }

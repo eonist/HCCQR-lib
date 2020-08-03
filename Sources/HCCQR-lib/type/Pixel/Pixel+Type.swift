@@ -8,10 +8,6 @@ extension Pixel {
     */
    typealias Limit = (min: UInt8, max: UInt8)
    /**
-    * - Fixme: ⚠️️ make this struct?
-    */
-//   typealias RGB = (r: UInt8, b: UInt8, g: UInt8) // <- Prefer this
-   /**
     * Stores if is valid and the strength if it's already valid
     * - Fixme: ⚠️️ move to own file, maybe re-make as struct
     * - Note: Strength alone is not enough, there is a reason we have a bool as well

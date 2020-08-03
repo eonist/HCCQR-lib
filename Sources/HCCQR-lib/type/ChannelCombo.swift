@@ -11,8 +11,8 @@ extension ChannelCombos {
     * Returns the the channel combinations for each layer
     * - Description: Basically the different color channels that make up a layer, for 4-color HCCQR that is 2 layers, for 8 colors its 3+ etc
     * - Note: the output ignores all true values, i.e posetivr (aka white etc)
-    * - Note: The output will look something like this for: [.white,.red,.green,.blue]) // [[.blue,.red], [.red, .green]]
-    * - Note: No need to improve performance on this alot, its not expensive to call
+    * - Note: The output will look something like this for: [.white, .red, .green, .blue]) // [[.blue,.red], [.red, .green]]
+    * - Note: No need to improve performance on this alot, it's not expensive to call
     * - Returns: For 4 Colored HCCQR, 2 channelCombo's are returned (8 = 3, 16, 4...etc)
     * - Parameters:
     *   - channels: there will be 4 channels for 4-color HCCQR (4-256)
@@ -40,7 +40,7 @@ extension ChannelCombos {
     * - Fixme: ⚠️️ This could potentially be stored values, since it's the same every time
     * - Fixme: ⚠️️ rename to rowIndices?
     * ## Examples:
-    * rowIdx(col: [[1,1],[0,1],[1,0],[0,0]], 0) // [1,3]
+    * rowIdx(col: [[1,1],[0,1],[1,0],[0,0]], 0) // [1, 3]
     * - Parameters:
     *   - col: column that contains rows
     *   - layerIdx: QRImage layer index

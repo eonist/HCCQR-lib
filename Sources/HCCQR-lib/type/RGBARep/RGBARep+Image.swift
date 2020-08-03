@@ -13,8 +13,8 @@ extension RGBARep {
     *   - scale: the amount to scale the image by (screenScale)
     *   - rgbaImage: rgbaRep to convert to image
     */
-   internal func image(/*rgbaRep: ImageRepKind, */scale: CGFloat) throws -> Image {
-      let cgImg: CGImage = try self.cgImage(/*rgbaRep: */)
+   internal func image(scale: CGFloat) throws -> Image {
+      let cgImg: CGImage = try self.cgImage()
       return ImageUtil.image(cgImage: cgImg, scale: scale) // Embed CGImage in UIImage (very fast, not worth speed testing, basically just adds metadata to cgimg)
    }
    /**
@@ -27,13 +27,13 @@ extension RGBARep {
     * https://www.geekspiff.com/unlinkedCrap/ciImageToBitmap.html
     * ref: https://stackoverflow.com/a/51380146/5389500 (also has pointer while loop)
     */
-   internal func ciImage(/*rgbaRep: ImageRepKind, */useGrayscale: Bool) throws -> CIImage {
-      let format: CIFormat = .RGBA8 //.BGRA8 // .RGBA8// .ARGB8//.ABGR8// // A pixel format constant. See Pixel Formats.
+   internal func ciImage(useGrayscale: Bool) throws -> CIImage {
+      let fromFormat: CIFormat = .RGBA8 //.BGRA8 // .RGBA8// .ARGB8//.ABGR8// // A pixel format constant. See Pixel Formats.
       let colorSpace: CGColorSpace = useGrayscale ? CGColorSpaceCreateDeviceGray() : CGColorSpaceCreateDeviceRGB()//CGColorSpaceCreateDeviceRGB() // The color space that the image is defined in. It must be a Quartz 2D color space (CGColorSpace). Pass nil for images that don’t contain color data (such as elevation maps, normal vector maps, and sampled function tables).
       let bytesPerRow: Int = self.size.width * 4
       let data: Data = .init(buffer: self.pixels)
       return autoreleasepool { // ⚠️️ testing to get rid of mem leak ⚠️️ new, doesnt seem to have much effect
-         CIImage(bitmapData: data, bytesPerRow: bytesPerRow, size: CGSize(width: CGFloat(self.size.width), height: CGFloat(self.size.height)), format: format, colorSpace: colorSpace)
+         CIImage(bitmapData: data, bytesPerRow: bytesPerRow, size: self.size.cgSize, format: fromFormat, colorSpace: colorSpace)
       }
    }
    /**
@@ -49,16 +49,15 @@ extension RGBARep {
     * - Note: use CGImageAlphaInfo.premultipliedFirst if argb
     * - Parameter rgbaRep: The rep to convert into cgImage
     */
-   internal func cgImage(/*rgbaRep: ImageRepKind*/) throws -> CGImage {
+   internal func cgImage() throws -> CGImage {
       //    try autoreleasepool {  // ⚠️️ testing to get rid of mem leak ⚠️️
       let deviceColorSpace: CGColorSpace = CGColorSpaceCreateDeviceRGB()
       let bitmapInfo: CGBitmapInfo = .init(rawValue: CGBitmapInfo.byteOrder32Big.rawValue | CGImageAlphaInfo.none.rawValue) // premultipliedLast also works
-//      bitmapInfo |= CGImageAlphaInfo.none.rawValue & CGBitmapInfo.alphaInfoMask.rawValue
       let bytesPerPixel: Int = MemoryLayout<Pixel>.size // 4 bytes(rgba channels) for each pixel
       let bytesPerRow: Int = self.width * bytesPerPixel // channels in each row (width)
       let bitsPerComponent: Int = 8 // (8 bits per each channel)
       let bitsPerPixel: Int = bytesPerPixel * bitsPerComponent
-      let flatPixels = self.flatPixels
+      let flatPixels: UnsafePointer<UInt8> = self.flatPixels
       defer { flatPixels.deallocate() } // we have no use for flatPixels after image is returned
       guard let cfData = CFDataCreate(nil, flatPixels, self.width * self.height * bytesPerPixel) else { throw CGImageErr.unableToCreateCFData }
       guard let cgDataProvider = CGDataProvider(data: cfData) else { throw CGImageErr.unableToCreateCGDataProvider }

@@ -25,7 +25,7 @@ extension Writer {
    public static func image(data: Data, config: HCCQRSetup, parallel: Bool) throws -> Image {
       let rep: RGBARep = try rgbaRep(data: data, config: config, parallel: parallel)
       defer { rep.deallocate() }
-      return try rep.image(/*rgbaRep: rep, */scale: CGFloat(config.scale.screen))
+      return try rep.image(scale: CGFloat(config.scale.screen))
    }
 }
 /**

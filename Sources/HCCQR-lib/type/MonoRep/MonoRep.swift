@@ -2,10 +2,9 @@ import Foundation
 /**
  * We create HCCQR-images from QR-Image monotone representations
  * - Note: A grid of monotone pixels
- * - Fixme: ⚠️️  store size as Size, skip width and height
+ * - Fixme: ⚠️️  store size as Size, skip width and height?
  */
 struct MonoRep {
-   // - Fixme: ⚠️️ could unsafePointer be faster etc?
    let pixels: UnsafeBufferPointer<Bool>//[Bool]
    let width: Int
    let height: Int

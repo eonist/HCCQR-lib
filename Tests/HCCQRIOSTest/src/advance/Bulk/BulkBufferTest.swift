@@ -7,7 +7,7 @@ import TimeMeasure
 
 final class BulkBufferTest {
    static let count: Int = 200
-   static let (pallete, scheme): (ColorPalette, ChannelScheme) = (.cp8(), .cs8) // the mappings for writing / reading
+   static let (pallete, scheme): CPCS = CType.c8.cpcs() // the mappings for writing / reading
    /**
     * Bulk test for buffer
     * - Note: this test was made in order to figure out a performance bug related to packages, but it can be useful to keep around, more eyes are better to detect bugs, when incrementing the code

@@ -17,17 +17,16 @@ extension Pixel {
     * - Returns: returns Bool and the amount of that color in UInt8
     * - Parameter ishColor: a color (dynamic / impure color) to check against self (self is static / pure colors)
     */
-   func isSimilar(_ ishColor: Pixel, halfThreshold: UInt8 = Pixel.defaultHalfThreshold) -> Similarity {
+   internal func isSimilar(_ ishColor: Pixel, halfThreshold: UInt8 = Pixel.defaultHalfThreshold) -> Similarity {
       let isColorish: Bool = self.isColorish(ishColor, halfThreshold: halfThreshold) // channels r, g, b are within-ish the color
       let strength = isColorish ? PixelParser.similarity(a: ishColor, b: self) : .black // if not colorish, then return no intensity, and thus avoid calculating strength
       return (assert: isColorish, strength: strength)
    }
    /**
     * Asserts if a pixel is sort of a color within a threshold
-    * - Note: used by tests
+    * - Note: ⚠️️ used by tests
     * - Note: self is absolute color
     * - Parameter ishColor: the color to check if it is similar to self (a sort of red color for instance)
-    * - Important: ⚠️️ this is really private, but we have some tests that use it etc
     * ## Examples:
     * let rgbaColor: RGBColor = (255, 0, 0, 255)
     * let pixelData: PixelData = .init(uiColor: .red)
@@ -36,61 +35,11 @@ extension Pixel {
    internal func isColorish(_ ishColor: Pixel, halfThreshold: UInt8 = Pixel.defaultHalfThreshold) -> Bool { // PixelAsserter.Colorish
       PixelAsserter.isColorish(a: self, b: ishColor, halfThreshold: halfThreshold)
    }
-}
-/**
- * RGBColor asserter
- */
-extension Pixel {
-   /**
-    * Measure if color is white (used in the colorize method)
-    * - Note: looks funny, but it's that way to make it fast
-    * - Note: Used by colorize method and inverted method
-    */
-   var isWhite: Bool {
-      Self.isMatching(a: self, b: Pixel.white)
-   }
-   /**
-    * Measure if color is black (used in the colorize method)
-    * - Note: Looks funny, but it's that way to make it fast (basically exits early if something doesn't match)
-    * - Note: Used by colorize method
-    */
-   var isBlack: Bool {
-      Self.isMatching(a: self, b: Pixel.black)
-   }
-   /**
-    * Assert if rgbColor is red
-    */
-   static func isRed(rgbColor: Pixel) -> Bool {
-      isRGBColor(a: rgbColor, b: Pixel.red)
-   }
-   /**
-    * Assert if rgbColor is green
-    */
-   static func isGreen(rgbColor: Pixel) -> Bool {
-      isRGBColor(a: rgbColor, b: Pixel.green)
-   }
-   /**
-    * Assert if rgbColor is blue
-    */
-   static func isBlue(rgbColor: Pixel) -> Bool {
-      isRGBColor(a: rgbColor, b: Pixel.blue)
-   }
-}
-/**
- * Private
- */
-extension Pixel {
    /**
     * Asserts if a pixel is the same as another pixel (does not account for alpha)
     * - Parameters:
     *   - a: first color (usualy dynamic non-pure colors)
     *   - b: second color (usualy static pure colors)
-    */
-   private static func isRGBColor(a: Pixel, b: Pixel) -> Bool {
-      a.r == b.r && a.g == b.g && a.b == b.b
-   }
-   /**
-    * Match two pixels
     * - Important: ⚠️️ This is not private because it is accessed in the testColorizingMonoPixel test
     * - Note: alpha is disregarded because we don't use alpha
     */

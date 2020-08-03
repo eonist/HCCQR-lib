@@ -4,7 +4,7 @@ import QR_lib
  * Read test
  */
 extension ViewController {
-   static let (pallete, scheme): (ColorPalette, ChannelScheme) = (.cp4(), .cs4) // the mappings for writing / reading
+   static let (pallete, scheme): (ColorPalette, ChannelScheme) = (CType.c4.cp(), CType.c4.cs) // the mappings for writing / reading
    /**
     * Visual and Syntetic write / read HCCQR
     */

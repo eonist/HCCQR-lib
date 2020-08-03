@@ -13,6 +13,7 @@ final class BulkPhotoTesting {}
  * - 2. Converts these into RGBAImage's
  * - 3. Converts the RGBAImages into data's
  * - 4. Asserts that all images was read successfully
+ * - Fixme: ⚠️️  add scheme as const
  */
 extension BulkPhotoTesting {
    static let count: Int = 40
@@ -33,7 +34,7 @@ extension BulkPhotoTesting {
          }
       }
       Swift.print("BufferUtil.rgbaRep time:  \(time)")
-      let didSuccessfullyReadMany: Bool = BulkTest.readMany(rgbaReps: rgbaReps, scheme: .scheme(scheme: .cs4, darkMode: true))
+      let didSuccessfullyReadMany: Bool = BulkTest.readMany(rgbaReps: rgbaReps, scheme: .scheme(scheme: CType.c4.cs, darkMode: true), randomData: [])
       Swift.print("Bulk photo test didSuccessfullyReadMany: \(didSuccessfullyReadMany ? "✅" : "🚫")")
       return didSuccessfullyReadMany
    }

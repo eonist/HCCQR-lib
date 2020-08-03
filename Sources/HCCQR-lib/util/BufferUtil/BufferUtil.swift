@@ -25,14 +25,14 @@ extension BufferUtil {
     * - Fixme: ⚠️️ These methods might be faster: https://github.com/frogcjn/ImageIOPlus/blob/1d401725a3f7cd87b000a085eaca65e2cd0c0446/Sources/CoreVideoPlus/CVPixelBuffer/CVPixelBuffer%2B.swift
     * - Fixme: ⚠️️ consider accelerate framework instead, see: https://developer.apple.com/documentation/accelerate/1498254-vimageconverter_createforcvtocgi
     * - Fixme: ⚠️️ benchmark how fast this method is
-    * - Fixme: ⚠️️ here we can do RBA and avoid alpha
+    * - Fixme: ⚠️️ might want to wrap all this in autoreleasepool as well, or is tha tmore for just cgimage?
+    * - Fixme: ⚠️️ could possibly see great speed increase if we align indecies, and do modulo to find width and y and x etc
     * - Important: ⚠️️ doing concurrent on the loop has minimal effect, doing it on the call to this method has alot of effect
     * - Parameters:
     *   - buffer: the buffer containing the raw pixel data and size
     *   - crop: Makes processing the raw imagery faster since we don't have to process areas where the QR info is not etc. (provided we know where the QR rect is)
     */
    public static func rgbaRep(buffer: CVImageBuffer, crop bufferRect: BufferRect) throws -> RGBARep { /*, size: CGSize, scale: CGFloat */
-//      Swift.print("rgbaRep")
       CVPixelBufferLockBaseAddress(buffer, CVPixelBufferLockFlags(rawValue: CVOptionFlags(0))) // lock access for cpu reading
       let bytesPerRow: Int = CVPixelBufferGetBytesPerRow(buffer) // let bufferSize: (width: Int, height: Int) = (Int(CVPixelBufferGetWidth(imageBuffer)), Int(CVPixelBufferGetHeight(imageBuffer))) //  let size: (width: Int, height: Int) = (Int(size.width * scale), Int(size.height * scale))
       guard let baseAddress: UnsafeMutableRawPointer = CVPixelBufferGetBaseAddress(buffer) else { throw NSError(domain: "Unable to get baseAddress", code: 0) }
@@ -41,22 +41,18 @@ extension BufferUtil {
       let capacity: Int = bufferRect.size.capacity
       let byteBuffer: UnsafeBufferPointer<UInt8> = .init(start: baseAddress.bindMemory(to: UInt8.self, capacity: capacity), count: capacity)// baseAddress.assumingMemoryBound(to: UInt8.self)// .init()
       let pixels: UnsafeMutableBufferPointer<Pixel> = .allocate(capacity: capacity) // we dealoc this when we have finished working with rgbaRep
-      let bytesPerPixel: Int = 4
-      // - Fixme: ⚠️️ could possibly see great speed increase if we align indecies, and do modulo to find width and y and x etc
+      let bytesPerPixel: Int = MemoryLayout<RGBAPixel>.size
       (bufferRect.y..<bufferRect.height).forEach { y in
          let yVal: Int = y * bytesPerRow // we calc these outside the x loop, to gain performance
          let yAndWidth: Int = y * bufferRect.width // we calc these outside the x loop, to gain performance
          (bufferRect.x..<bufferRect.width).forEach { x in
             let index: Int = x * bytesPerPixel + yVal // We add the crop to the x // (y * bytesPerPixel + x) * 4
-            // ⚠️️ new, was byteBuffer[index] etc
-            let (b, g, r) = (byteBuffer[index], byteBuffer[index + 1], byteBuffer[index + 2]) // let a = byteBuffer[index + 3]
-            let pixel: Pixel = .init(r: r, g: g, b: b/*, a: 255*/)
+            let pixel: Pixel = .init(r: byteBuffer[index + 2], g: byteBuffer[index + 1], b: byteBuffer[index + 0])
             let i: Int = yAndWidth + x
             pixels[i] = pixel
          }
       }
       defer { CVPixelBufferUnlockBaseAddress(buffer, CVPixelBufferLockFlags(rawValue: CVOptionFlags(0))) } // release access for cpu reading
-      // - Fixme: ⚠️️ might want to wrap all this in autoreleasepool as well, or is tha tmore for just cgimage?
       return .init(pixels: .init(pixels), width: bufferRect.width, height: bufferRect.height)
    }
 }

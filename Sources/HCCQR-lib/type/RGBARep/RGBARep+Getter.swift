@@ -20,26 +20,21 @@ extension RGBARep {
     * unsafePixels, new (⚠️️ might work, might not ⚠️️)
     * - Fixme: ⚠️️ rename to data?
     * - Fixme: ⚠️️ find cleaner way to convert between unsafe types etc
+    * - Fixme: ⚠️️ make this optional
     * - Note: This method is now super fast
     */
    var flatPixels: UnsafePointer<UInt8> {
-//      let data = NSData(bytes: flatPixelArr, length: flatPixelArr.count)
-//      return data.bytes.assumingMemoryBound(to: UInt8.self)
-//      let arr = flatPixelArr
       let bytesPerPixel: Int = MemoryLayout<Pixel>.size
       let cap = capacity * bytesPerPixel
       let pointer = UnsafeMutableBufferPointer<UInt8>.allocate(capacity: cap)
       (0..<(capacity)).forEach { i in
-         // - Fixme: ⚠️️ maybe make this PixelData instead
          let p: Pixel = pixels[i]
          let idx = i * bytesPerPixel
          pointer[idx] = p.r
          pointer[idx + 1] = p.g
          pointer[idx + 2] = p.b
-//         pointer[idx + 3] = 255
       }
       guard let p: UnsafeMutablePointer<UInt8> = pointer.baseAddress else { fatalError("err") }
-//      pointer.initialize(from: arr, count: arr.count)
       return .init(p)
    }
    /**

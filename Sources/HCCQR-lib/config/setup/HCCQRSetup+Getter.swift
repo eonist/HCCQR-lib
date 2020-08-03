@@ -19,6 +19,6 @@ extension HCCQRSetup {
    public var dataCount: Int {
       let numOfLayers: Int = self.map.layerCount
       let qrConfig: QRConfig = .init(self.qr.qrVersion, .byte, self.qr.ecLevel)
-      return HCCQRConfigUtil.dataCount(config: qrConfig, colorDepth: numOfLayers) // 542
+      return HCCQRConfigUtil.dataCount(config: qrConfig, colorDepth: numOfLayers)
    }
 }

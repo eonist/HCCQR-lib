@@ -7,7 +7,7 @@ import QR_lib
 import TimeMeasure
 
 final class BufferTest {
-   static let (pallete, scheme): (ColorPalette, ChannelScheme) = (.cp8(), .cs8) // the mappings for writing / reading
+   static let (pallete, scheme): (ColorPalette, ChannelScheme) = CType.c8.cpcs() // the mappings for writing / reading
    static let setup: HCCQRSetup = {
       let qrSetup: QRSetup = .init(qrVersion: .v4, ecLevel: .l)
       let output: OutputConfig = .init(scale: .init(6, 2), palette: pallete)

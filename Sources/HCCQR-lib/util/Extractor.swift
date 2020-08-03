@@ -22,6 +22,7 @@ extension Extractor {
     * - Note: grayscale is better for QR to read than monotone (possibly)
     * - Fixme: ⚠️️ We could use unmanaged pointer with capacity as well, might be faster
     * - Fixme: ⚠️️ Skip extracting the white channel, as it's not used when we later combine color channels
+    * - Fixme: ⚠️️⚠️️⚠️️ We could make this much more efficient if we disregarded subseequent similarties after one is found, however, this could make ErrorCorrection more dificult, add later
     */
    static func extract(rgbaRep: RGBARep, scheme: ChannelScheme, parallel: Bool) -> GrayReps {
       let similarities: [PixelSimilarity] = Extractor.similarities(scheme: scheme) // for 128 color scheme there are 128 similarity sets
@@ -53,7 +54,7 @@ extension Extractor {
     * - Fixme: ⚠️️ Somehow reuse the output, it might speed things up
     * - Fixme: ⚠️️ make private after you remove deprecated code etc
     */
-   /*private*/internal static func extract(rgbaRep: RGBARep, asserter: @escaping PixelSimilarity) -> GrayRep {
+   internal static func extract(rgbaRep: RGBARep, asserter: @escaping PixelSimilarity) -> GrayRep {
       let pixels: UnsafeMutableBufferPointer<UInt8> = .allocate(capacity: rgbaRep.capacity)
 //      let time: Double = TimeMeasure.timeElapsed {
          GrayRepModifier.process(size: rgbaRep.size) { (i: Int) in

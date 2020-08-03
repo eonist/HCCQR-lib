@@ -8,13 +8,13 @@ extension RGBARep {
     * - Fixme: ⚠️️ instead of trying to convert to cgImage, you can actually use ciImage or cgImage contexts, an image will have either, and both will render to CGCOntext, no need to convert to a new cgImage or CIImage etc, see rgbaRepresentation for more info
     * - Fixme: ⚠️️ Make this a init?
     * - Fixme: ⚠️️ Move to test scope since it's only for testing
+    * - Fixme: ⚠️️ we could try the ByteImage ciImage or cgImage technique
     * - Note: this init is fast. trying other ways to get pixel could have some usefulness, but shouldn't be prioritized 0.016330782sec for v30 image
     * - Note: the CVImageBufferUtil.rgbaRep has similar functionality (Biffer -< RGBARep)
     * - Important: ⚠️️ Used only for testing
     * - Parameter image: An UIImage or NSImage
     */
    internal static func imageRep(image: Image) throws -> RGBARep {
-      // ⚠️️ The bellow line is a temp fix, could hurt performance
       guard let cgImage: CGImage = ImageUtil.cgImage(image: image) else { Swift.print("cg"); throw NSError(domain: "rgbaImage - Unable to get cgImage", code: 0) }
       return try imageRep(cgImage: cgImage)
    }
@@ -26,6 +26,7 @@ extension RGBARep {
    /**
     * CGImage -> RGBAImage
     * - Note: Used by Image -> RGBARep
+    *  - Fixme: ⚠️️ try withMemoryRebound instead of the while loop
     */
    private static func imageRep(cgImage: CGImage) throws -> RGBARep {
       let size: Size = .init(Int(cgImage.width), Int(cgImage.height))
@@ -38,7 +39,6 @@ extension RGBARep {
       guard let cgContext = CGContext(data: imageData, width: size.width, height: size.height, bitsPerComponent: 8, bytesPerRow: bytesPerRow, space: colorSpace, bitmapInfo: bitMapInfo) else { Swift.print("context"); throw NSError(domain: "rgbaImage - Unable to create rgbaImage", code: 0) }
       cgContext.draw(cgImage, in: .init(origin: .zero, size: .init(width: cgImage.width, height: cgImage.height))) // draws the cgImage into the context
       let pixis: UnsafeMutableBufferPointer<Pixel> =  .allocate(capacity: capacity)
-      // - Fixme: ⚠️️ try withMemoryRebound instead of the bellow
       var i: Int = 0 // was (0..<capacity).forEach { i in }
       while i < capacity {
          pixis[i] = imageData.advanced(by: i).pointee.pixel

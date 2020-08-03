@@ -1,7 +1,7 @@
 import Foundation
 import QR_lib
 /**
- * custom qr
+ * Custom qr setup
  */
 public struct QRSetup {
    public let qrVersion: QRVersion

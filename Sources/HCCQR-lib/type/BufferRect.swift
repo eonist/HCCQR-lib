@@ -18,7 +18,7 @@ public struct BufferRect {
    }
 }
 /**
- * - Fixme: ⚠️️ make extensions etc
+ * Getters
  */
 extension BufferRect {
    /**

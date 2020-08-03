@@ -12,7 +12,7 @@ public struct Size {
    }
 }
 /**
- * - Fixme: ⚠️️ make extensions etc
+ * Getters
  */
 extension Size {
    /**
@@ -20,6 +20,9 @@ extension Size {
     */
    internal var cgRect: CGRect {
       .init(x: 0, y: 0, width: self.width, height: self.height)
+   }
+   internal var cgSize: CGSize {
+      .init(width: self.width, height: self.height)
    }
    internal var capacity: Int { self.width * self.height }
 }

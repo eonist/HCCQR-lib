@@ -1,8 +1,6 @@
 import Foundation
 import CoreImage
-/**
- * Private static helper
- */
+
 final class BitmapInfo {
    /**
     * Creates the correct bitmapInfo

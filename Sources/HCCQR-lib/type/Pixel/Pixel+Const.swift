@@ -21,6 +21,7 @@ extension Pixel {
 extension Pixel {
    /**
     * - Note: Percentage of color (0.2 means can be 20% of some color)
+    * - Note: used by the similarities method (not called frequently)
     * ## Examples:
     * getHalfThreshold(0.3) // 26
     */

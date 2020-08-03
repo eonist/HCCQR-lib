@@ -27,6 +27,7 @@ final class ColorPaletteUtil {
       Array(zip(boolCol, pallete))
    }
 }
+// needed to support darkmode again?
 //let map: ChannelPallete = {
 //   let end = [useDarkMode ? Pixel.Colors.black : Pixel.Colors.white] // add the last color to the end
 //   // just switch end and begining

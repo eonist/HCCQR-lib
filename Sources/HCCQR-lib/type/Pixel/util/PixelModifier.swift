@@ -10,7 +10,6 @@ final class PixelModifier {
     * - Note: Assert if scaling is needed before callign this method
     * - Fixme: ⚠️️ Add the concurrent optimization for nested for loops, striding?
     * - Fixme: ⚠️️ Can we "bake" this direcltly into the composition method, to avoid extra loops?
-    *
     * - Parameters:
     *   - pixels: the pixels array
     *   - size: size of the rgba-rep

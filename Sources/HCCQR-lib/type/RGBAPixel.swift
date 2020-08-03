@@ -12,9 +12,15 @@ internal struct RGBAPixel {
  * Getter
  */
 extension RGBAPixel {
+   /**
+    * Assert if rgbaPixel is pure white
+    */
    var isWhite: Bool {
       r == 255 && g == 255 && b == 255
    }
+   /**
+    * Convert to Pixel type
+    */
    var pixel: Pixel {
       .init(r: self.r, g: self.g, b: self.b)
    }
