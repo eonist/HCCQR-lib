@@ -31,7 +31,7 @@ extension RGBARep {
       let pointer = UnsafeMutableBufferPointer<UInt8>.allocate(capacity: cap)
       (0..<(capacity)).forEach { i in
          // - Fixme: ⚠️️ maybe make this PixelData instead
-         let p: PixelDataKind = pixels[i]
+         let p: Pixel = pixels[i]
          let idx = i * bytesPerPixel
          pointer[idx] = p.r
          pointer[idx + 1] = p.g

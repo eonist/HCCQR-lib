@@ -3,7 +3,7 @@ import QuartzCore
 /**
  * Getter
  */
-extension PixelDataKind {
+extension Pixel {
    /**
     * Returns color for pixel
     * - Note: use of UInt8 speccific divide method, didnt make usable results

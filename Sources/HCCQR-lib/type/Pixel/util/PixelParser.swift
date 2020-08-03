@@ -24,7 +24,7 @@ final class PixelParser {
     *   - a: static color (cyan, magenta, red etc)
     *   - b: dynamic color (cyan-ish, meganta-ish, red-ish etc)
     */
-   static func similarity(a: PixelDataKind, b: PixelDataKind) -> UInt8 {
+   static func similarity(a: Pixel, b: Pixel) -> UInt8 {
       let distR: Int = abs(Int(a.r) - Int(b.r))
       let distG: Int = abs(Int(a.g) - Int(b.g))
       let distB: Int = abs(Int(a.b) - Int(b.b))
@@ -45,7 +45,7 @@ extension PixelParser {
     * - Fixme: ⚠️️ You can also probably do (maybe faster?): UIColor.blue.colorComponents // (red: 0.0, green: 0.0, blue: 1.0, alpha: 1.0)
     * - Important: ⚠️️ probably slow, but prob only used in tests
     */
-   static func rgba(uiColor: Color) throws -> PixelDataKind {
+   static func rgba(uiColor: Color) throws -> Pixel {
       var (r, g, b, a): RGBAColor = (0, 0, 0, 0)
       #if os(iOS)
       guard uiColor.getRed(&r, green: &g, blue: &b, alpha: &a) else { throw RGBAError.couldNotExtractRGBAComponents }

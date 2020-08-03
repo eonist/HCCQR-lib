@@ -43,7 +43,7 @@ extension Extractor {
     * - Note: color-pallete's determines their similarity by comparing these r,g,b values
     * - Parameter pixel: the input pixel
     */
-   internal typealias PixelSimilarity = (_ pixel: PixelDataKind) -> Pixel.Similarity
+   internal typealias PixelSimilarity = (_ pixel: Pixel) -> Pixel.Similarity
    /**
     * RGBARep channel 👉 GrayscaleRep
     * 1. Creates a blank grayscale image of a specific size
@@ -75,7 +75,7 @@ extension Extractor {
     */
    internal static func similarities(scheme: ChannelScheme) -> [PixelSimilarity] {
       let halfThreshold: UInt8 = Pixel.getHalfThreshold(1.0 / CGFloat(scheme.count)) // we must use finer threshold if we use more colors (2.5 for 4-color, 0.125 for 8-color)
-      return scheme.map { (channel: PixelDataKind) in { (ishColor: PixelDataKind) in channel.isSimilar(ishColor, halfThreshold: halfThreshold) } }
+      return scheme.map { (channel: Pixel) in { (ishColor: Pixel) in channel.isSimilar(ishColor, halfThreshold: halfThreshold) } }
    }
 }
 ///**

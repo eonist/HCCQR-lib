@@ -26,7 +26,8 @@ extension MonoRep {
       let colorSpace: CGColorSpace = CGColorSpaceCreateDeviceRGB()
       // let size: Size = (width: Int(ciImg.extent.width), height: Int(ciImg.extent.height))
       let capacity: Int = crop.width * crop.height
-      let bytesPerRow: Int = crop.width * MemoryLayout<RGBAPixel>.size // We multiply per 4 because of the 4 channels, RGBA
+      let bytesPerPixel = MemoryLayout<RGBAPixel>.size
+      let bytesPerRow: Int = crop.width * bytesPerPixel// We multiply per 4 because of the 4 channels, RGBA
       let imageData: UnsafeMutablePointer<RGBAPixel> = .allocate(capacity: capacity)
       // - Fixme: ⚠️️ Do we have to create the cgContext? can CIContext be created directly from pixeldata?
       let bitmapInfo = BitmapInfo.bitmapInfo
@@ -47,10 +48,4 @@ extension MonoRep {
       imageData.deallocate() // We have no more use for imageData
       return .init(pixels: .init(monoPixels), width: crop.width, height: crop.height)
    }
-}
-internal struct RGBAPixel: PixelDataKind {
-   internal let r: UInt8
-   internal let g: UInt8
-   internal let b: UInt8
-   internal let a: UInt8
 }
