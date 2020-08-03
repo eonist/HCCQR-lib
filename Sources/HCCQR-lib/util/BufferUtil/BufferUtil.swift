@@ -31,7 +31,7 @@ extension BufferUtil {
     *   - buffer: the buffer containing the raw pixel data and size
     *   - crop: Makes processing the raw imagery faster since we don't have to process areas where the QR info is not etc. (provided we know where the QR rect is)
     */
-   public static func rgbaRep(buffer: CVImageBuffer, crop bufferRect: BufferRect) throws -> ImageRep { /*, size: CGSize, scale: CGFloat */
+   public static func rgbaRep(buffer: CVImageBuffer, crop bufferRect: BufferRect) throws -> RGBARep { /*, size: CGSize, scale: CGFloat */
 //      Swift.print("rgbaRep")
       CVPixelBufferLockBaseAddress(buffer, CVPixelBufferLockFlags(rawValue: CVOptionFlags(0))) // lock access for cpu reading
       let bytesPerRow: Int = CVPixelBufferGetBytesPerRow(buffer) // let bufferSize: (width: Int, height: Int) = (Int(CVPixelBufferGetWidth(imageBuffer)), Int(CVPixelBufferGetHeight(imageBuffer))) //  let size: (width: Int, height: Int) = (Int(size.width * scale), Int(size.height * scale))

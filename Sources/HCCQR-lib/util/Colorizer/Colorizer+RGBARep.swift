@@ -19,7 +19,7 @@ extension Colorizer {
     *   - monoReps: (black / white)-pixel-array
     *   - config: scaling and color rule-set (darkmode ability is possible epending on what color-pallete is used)
     */
-   static func colorize(monoReps: MonoReps, config: OutputConfig) -> ImageRepKind {
+   static func colorize(monoReps: MonoReps, config: OutputConfig) -> RGBARep {
       let size: Size = monoReps[0].size // get size from first rep
       let capacity: Int = size.capacity // get capacity from first item
       // - Fixme: ⚠️️ try non buffer pointer
@@ -37,7 +37,7 @@ extension Colorizer {
       }
       // - Fixme: ⚠️️ move the scale into the above array, benchmark first tho (scaling adds about 10% to colorization process)
       // - Fixme: ⚠️️ to bake this into the above array, you will probably have to start fresh with pen and paper and try to understand the problem better, then try a few different things, then maybe build 4 pix grid that you uscale up, to debug easier etc
-      let (rgbaRep, time): (ImageRepKind, Double) = TimeMeasure.timeElapsed {
+      let (rgbaRep, time): (RGBARep, Double) = TimeMeasure.timeElapsed {
          /*let rgbaRep: RGBARep = */PixelModifier.scale(pixels: pixels, size: size, scale: config.scale)
       }
       _ = time

@@ -22,7 +22,7 @@ extension Splitter {
     *   - rgbaRep: A HCCQR representation
     *   - scheme: The colors used in the HCCQR (4 to 256 colors)
     */
-   internal static func split(rgbaRep: ImageRepKind, scheme: ChannelScheme, parallel: Bool) -> [CIImage] {
+   internal static func split(rgbaRep: RGBARep, scheme: ChannelScheme, parallel: Bool) -> [CIImage] {
       let (grayReps, extractTime): (GrayReps, Double) = TimeMeasure.timeElapsed {
          /*let grayReps: GrayReps = */Extractor.extract(rgbaRep: rgbaRep, scheme: scheme, parallel: parallel)
       }

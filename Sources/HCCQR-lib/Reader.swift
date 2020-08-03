@@ -29,7 +29,7 @@ extension Reader {
     */
    public static func data(imageBuffer: CVImageBuffer, crop: BufferRect, scheme: ChannelScheme = .default, parallel: Bool) throws -> ReadPayload {
 //      let crop = crop ?? CVImageBufferGetEncodedSize(imageBuffer) // CVImageBufferGetDisplaySize, CVImageBufferGetCleanRect
-      let rgbaImg: ImageRep = try BufferUtil.rgbaRep(buffer: imageBuffer, crop: crop)
+      let rgbaImg: RGBARep = try BufferUtil.rgbaRep(buffer: imageBuffer, crop: crop)
       let dataAndImagesAndQuad: QRReader.DataAndQuad = try data(rgbaRep: rgbaImg, scheme: scheme, parallel: parallel)
       let data: Data = dataAndImagesAndQuad.qrData
       let quad: QRReader.Quad = dataAndImagesAndQuad.quad
@@ -44,8 +44,8 @@ extension Reader {
     *   - parallel: for single capture, parallel is fast, for sequence, parallel is slower
     */
    public static func data(image: Image, scheme: ChannelScheme = .default, parallel: Bool) throws -> QRReader.DataAndQuad {
-      let (rgbaRep, time): (ImageRep?, Double) = TimeMeasure.timeElapsed { // adds timeMeasure on this call, see if it taints the read benchamarking, if it does, use Buffer as testbed instead
-         try? ImageRep.imageRep(image: image) as? ImageRep // <- new ⚠️️
+      let (rgbaRep, time): (RGBARep?, Double) = TimeMeasure.timeElapsed { // adds timeMeasure on this call, see if it taints the read benchamarking, if it does, use Buffer as testbed instead
+         try? RGBARep.imageRep(image: image) // <- new ⚠️️
 //         /*let rgbaRep: RGBARep = */try? RGBARepresentation.rgbaRepresentation(image: image) //
       }
       Log.log("Image to rgbaRep time:  \(time)")
@@ -70,7 +70,7 @@ extension Reader {
     *   - scheme: the arrangment of colors
     *   - parallel: for single capture, parallel is fast, but for sequence parallel is slower
     */
-   /*private*/ internal static func data(rgbaRep: ImageRepKind, scheme: ChannelScheme, parallel: Bool) throws -> QRReader.DataAndQuad {
+   /*private*/ internal static func data(rgbaRep: RGBARep, scheme: ChannelScheme, parallel: Bool) throws -> QRReader.DataAndQuad {
       let qrLayers: [CIImage] = Splitter.split(rgbaRep: rgbaRep, scheme: scheme, parallel: parallel)
       let dataAndQuads: [QRReader.DataAndQuad] = qrLayers.concurrentCompactMap(parallel: parallel) { // concurrentCompactMap
          try? QRReader.dataAndQuad(ciImage: $0)

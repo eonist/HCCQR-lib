@@ -3,7 +3,7 @@ import QuartzCore
 /**
  * Getter
  */
-extension ImageRepKind {
+extension RGBARep {
    /**
     * Int size
     */

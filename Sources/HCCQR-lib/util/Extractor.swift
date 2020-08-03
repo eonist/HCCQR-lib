@@ -23,7 +23,7 @@ extension Extractor {
     * - Fixme: ⚠️️ We could use unmanaged pointer with capacity as well, might be faster
     * - Fixme: ⚠️️ Skip extracting the white channel, as it's not used when we later combine color channels
     */
-   static func extract(rgbaRep: ImageRepKind, scheme: ChannelScheme, parallel: Bool) -> GrayReps {
+   static func extract(rgbaRep: RGBARep, scheme: ChannelScheme, parallel: Bool) -> GrayReps {
       // - Fixme: ⚠️️ Benchmark similarties creation
 //      Swift.print("scheme.count:  \(scheme.count)")
       let similarities: [PixelSimilarity] = Extractor.similarities(scheme: scheme) // for 128 color scheme there are 128 similarity sets
@@ -55,7 +55,7 @@ extension Extractor {
     * - Fixme: ⚠️️ Somehow reuse the output, it might speed things up
     * - Fixme: ⚠️️ make private after you remove deprecated code etc
     */
-   /*private*/internal static func extract(rgbaRep: ImageRepKind, asserter: @escaping PixelSimilarity) -> GrayRep {
+   /*private*/internal static func extract(rgbaRep: RGBARep, asserter: @escaping PixelSimilarity) -> GrayRep {
 //      let output: GrayRep = .grayRep(capacity: rgbaRep.capacity, size: rgbaRep.size) // We create a blank GrayRep, as it's faster than copy probably, The GrayScaleImage to populate pixels into (we only need [UInt8])
       let pixels: UnsafeMutableBufferPointer<UInt8> = .allocate(capacity: rgbaRep.capacity)
 //      let time: Double = TimeMeasure.timeElapsed {

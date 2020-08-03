@@ -16,7 +16,7 @@ final class PixelModifier {
     *   - size: size of the rgba-rep
     *   - scale: The amount to scale the pixel by (module, screen)
     */
-   static func scale(pixels: UnsafeMutableBufferPointer<PixelData>, size: Size, scale: Scale) -> ImageRepKind {
+   static func scale(pixels: UnsafeMutableBufferPointer<PixelData>, size: Size, scale: Scale) -> RGBARep {
       let scale: Int = scale.module * scale.screen // multiply screen and module multiplier
       let scaledSize: Size = .init(size.width * scale, size.height * scale)
       let capacity: Int = scaledSize.width * scaledSize.height
@@ -33,6 +33,6 @@ final class PixelModifier {
             resultPixels[resIndex] = pixels[pixIndex]
          }
       }
-      return ImageRep(pixels: .init(resultPixels), width: scaledSize.width, height: scaledSize.height)
+      return RGBARep(pixels: .init(resultPixels), width: scaledSize.width, height: scaledSize.height)
    }
 }

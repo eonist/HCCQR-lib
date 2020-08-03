@@ -3,7 +3,7 @@ import Foundation
  * RGBARep is a struct that stores color pixels
  * - Note: A grid of color pixels
  */
-public struct RGBARep: ImageRepKind {
+public struct RGBARep {
    let pixels: UnsafeBufferPointer<PixelData>
    let width: Int
    let height: Int

@@ -13,7 +13,7 @@ extension RGBARep {
     * - Important: ⚠️️ Used only for testing
     * - Parameter image: An UIImage or NSImage
     */
-   internal static func imageRep(image: Image) throws -> ImageRepKind {
+   internal static func imageRep(image: Image) throws -> RGBARep {
       // ⚠️️ The bellow line is a temp fix, could hurt performance
       guard let cgImage: CGImage = ImageUtil.cgImage(image: image) else { Swift.print("cg"); throw NSError(domain: "rgbaImage - Unable to get cgImage", code: 0) }
       return try imageRep(cgImage: cgImage)
@@ -27,7 +27,7 @@ extension RGBARep {
     * CGImage -> RGBAImage
     * - Note: Used by Image -> RGBARep
     */
-   private static func imageRep(cgImage: CGImage) throws -> ImageRep {
+   private static func imageRep(cgImage: CGImage) throws -> RGBARep {
       let size: Size = .init(Int(cgImage.width), Int(cgImage.height))
       Swift.print("size:  \(size)")
       let bytesPerPixel = MemoryLayout<RGBAPixel>.size
@@ -55,6 +55,6 @@ extension RGBARep {
          i = i &+ 1 // &+ is used for little performance gain
       }
       imageData.deallocate() // We have no more use for imageData
-      return ImageRep(pixels: .init(pixis), width: size.width, height: size.height)
+      return RGBARep(pixels: .init(pixis), width: size.width, height: size.height)
    }
 }
