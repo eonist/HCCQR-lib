@@ -29,29 +29,19 @@ extension RGBARep {
     */
    private static func imageRep(cgImage: CGImage) throws -> RGBARep {
       let size: Size = .init(Int(cgImage.width), Int(cgImage.height))
-//      Swift.print("size:  \(size)")
       let bytesPerPixel = MemoryLayout<RGBAPixel>.size
-//      Swift.print("RGBAPixel bytesPerPixel:  \(bytesPerPixel)")
       let bytesPerRow: Int = size.width * bytesPerPixel // We multiply per 4 because of the 4 channels, RGBA
       let capacity: Int = size.capacity
       let imageData: UnsafeMutablePointer<RGBAPixel> = .allocate(capacity: capacity)
-      //      defer { imageData.deallocate() }
       let colorSpace: CGColorSpace = CGColorSpaceCreateDeviceRGB()
-      //      Swift.print("⚠️️ might have faulty bitmapInfo")
       let bitMapInfo = BitmapInfo.bitmapInfo
-//      let bitMapInfo: CGBitmapInfo = .init(rawValue: CGBitmapInfo.byteOrder32Big.rawValue | CGImageAlphaInfo.none.rawValue) // premultipliedLast also works
       guard let cgContext = CGContext(data: imageData, width: size.width, height: size.height, bitsPerComponent: 8, bytesPerRow: bytesPerRow, space: colorSpace, bitmapInfo: bitMapInfo) else { Swift.print("context"); throw NSError(domain: "rgbaImage - Unable to create rgbaImage", code: 0) }
       cgContext.draw(cgImage, in: .init(origin: .zero, size: .init(width: cgImage.width, height: cgImage.height))) // draws the cgImage into the context
-      // - Fixme: ⚠️️  the bellow is a hack, find better solution, see legacy
-      //      let pixels: UnsafePointer<Pixel> = .init(imageData) // we dealoc this when we are finished with RGBARep
       let pixis: UnsafeMutableBufferPointer<Pixel> =  .allocate(capacity: capacity)
-//      let monoPixels: UnsafeMutableBufferPointer<Bool> = .allocate(capacity: capacity)
-      // ⚠️️ trying while loop for performance gain
       // - Fixme: ⚠️️ try withMemoryRebound instead of the bellow
       var i: Int = 0 // was (0..<capacity).forEach { i in }
       while i < capacity {
-         let rgbaPixel: RGBAPixel = imageData.advanced(by: i).pointee
-         pixis[i] = Pixel(r: rgbaPixel.r, g: rgbaPixel.g, b: rgbaPixel.b)
+         pixis[i] = imageData.advanced(by: i).pointee.pixel
          i = i &+ 1 // &+ is used for little performance gain
       }
       imageData.deallocate() // We have no more use for imageData

@@ -26,11 +26,13 @@ extension Array {
       }
    }
 }
-extension Data {
+extension Array where Element == Data {
    /**
-    * combines data
+    * Combines data
+    * ## Examples:
+    * [Data(),Data()].combined
     */
-   static func combine(data: [Data]) -> Data {
-      data.reduce(Data(), +)
+   var combined: Data {
+      reduce(.init(), +)
    }
 }

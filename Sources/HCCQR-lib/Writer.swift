@@ -46,9 +46,9 @@ extension Writer {
     *   - parallel: for single capture, parallel is fast, for sequence, parallel is slower
     */
    internal static func rgbaRep(data: Data, config: HCCQRSetup, parallel: Bool) throws -> RGBARep {
-      let dataArr: [Data] = HCCQRConfigUtil.data(data: data, config: config) // splits data (for multiple layers 2-8, 4-256 colors respectfully)
+      let dataArr: [Data] = /*autoreleasepool { */ HCCQRConfigUtil.data(data: data, config: config) /* }*/ // splits data (for multiple layers 2-8, 4-256 colors respectfully)
       let (ciImgs, qrTime): ([CIImage], Double) = TimeMeasure.timeElapsed {
-         /*let ciImgs: [CIImage] =*/ dataArr.concurrentCompactMap(parallel: parallel) { (data: Data) in // parraelly create the qr-image-Layers
+         /*let ciImgs: [CIImage] = */dataArr.concurrentCompactMap(parallel: parallel) { (data: Data) in // parraelly create the qr-image-Layers
             try? QRWriter.ciImage(data: data, ecLevel: config.ecLevel) // Create B&W QR-layers (CIImage)
          }
       }

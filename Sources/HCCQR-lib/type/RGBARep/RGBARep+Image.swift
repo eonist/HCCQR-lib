@@ -28,13 +28,13 @@ extension RGBARep {
     * ref: https://stackoverflow.com/a/51380146/5389500 (also has pointer while loop)
     */
    internal func ciImage(/*rgbaRep: ImageRepKind, */useGrayscale: Bool) throws -> CIImage {
-      // return autoreleasepool { }// ⚠️️ testing to get rid of mem leak ⚠️️ new, doesnt seem to have much effect
       let format: CIFormat = .RGBA8 //.BGRA8 // .RGBA8// .ARGB8//.ABGR8// // A pixel format constant. See Pixel Formats.
       let colorSpace: CGColorSpace = useGrayscale ? CGColorSpaceCreateDeviceGray() : CGColorSpaceCreateDeviceRGB()//CGColorSpaceCreateDeviceRGB() // The color space that the image is defined in. It must be a Quartz 2D color space (CGColorSpace). Pass nil for images that don’t contain color data (such as elevation maps, normal vector maps, and sampled function tables).
       let bytesPerRow: Int = self.size.width * 4
       let data: Data = .init(buffer: self.pixels)
-      let ciImg: CIImage = .init(bitmapData: data, bytesPerRow: bytesPerRow, size: CGSize(width: CGFloat(self.size.width), height: CGFloat(self.size.height)), format: format, colorSpace: colorSpace)
-      return ciImg
+      return autoreleasepool { // ⚠️️ testing to get rid of mem leak ⚠️️ new, doesnt seem to have much effect
+         CIImage(bitmapData: data, bytesPerRow: bytesPerRow, size: CGSize(width: CGFloat(self.size.width), height: CGFloat(self.size.height)), format: format, colorSpace: colorSpace)
+      }
    }
    /**
     * rgbaRep 👉 cgImage
@@ -50,10 +50,9 @@ extension RGBARep {
     * - Parameter rgbaRep: The rep to convert into cgImage
     */
    internal func cgImage(/*rgbaRep: ImageRepKind*/) throws -> CGImage {
-      //    try autoreleasepool {}  // ⚠️️ testing to get rid of mem leak ⚠️️
+      //    try autoreleasepool {  // ⚠️️ testing to get rid of mem leak ⚠️️
       let deviceColorSpace: CGColorSpace = CGColorSpaceCreateDeviceRGB()
       let bitmapInfo: CGBitmapInfo = .init(rawValue: CGBitmapInfo.byteOrder32Big.rawValue | CGImageAlphaInfo.none.rawValue) // premultipliedLast also works
-      //    var bitmapInfo: UInt32 = CGBitmapInfo.byteOrder32Big.rawValue
 //      bitmapInfo |= CGImageAlphaInfo.none.rawValue & CGBitmapInfo.alphaInfoMask.rawValue
       let bytesPerPixel: Int = MemoryLayout<Pixel>.size // 4 bytes(rgba channels) for each pixel
       let bytesPerRow: Int = self.width * bytesPerPixel // channels in each row (width)

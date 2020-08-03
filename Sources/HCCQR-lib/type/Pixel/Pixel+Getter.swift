@@ -10,10 +10,10 @@ extension Pixel {
     * - Note: used by a few visual tests etc
     * - Fixme: ⚠️️ maybe move to PixelParser? To keep this class simple 👈
     */
-   var color: Color {
-      let r = CGFloat(self.r) / 255
-      let g = CGFloat(self.g) / 255
-      let b = CGFloat(self.b) / 255
+   internal var color: Color {
+      let r = CGFloat(self.r) / 255.0
+      let g = CGFloat(self.g) / 255.0
+      let b = CGFloat(self.b) / 255.0
 //      let a = CGFloat(255 / 255)
       return .init(red: r, green: g, blue: b, alpha: 1)
    }
@@ -21,5 +21,5 @@ extension Pixel {
     * Returns rgb
     * - Note: Used in the Asserter methods
     */
-   var rgb: Pixel.RGB { (r, g, b) }
+//   var rgb: Pixel.RGB { (r, g, b) }
 }

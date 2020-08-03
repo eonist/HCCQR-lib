@@ -44,13 +44,12 @@ extension Reader {
     *   - parallel: for single capture, parallel is fast, for sequence, parallel is slower
     */
    public static func data(image: Image, scheme: ChannelScheme = .default, parallel: Bool) throws -> QRReader.DataAndQuad {
-      let (rgbaRep, time): (RGBARep?, Double) = TimeMeasure.timeElapsed { // adds timeMeasure on this call, see if it taints the read benchamarking, if it does, use Buffer as testbed instead
-         try? RGBARep.imageRep(image: image) // <- new ⚠️️
+      let (rgbaRep, time): (RGBARep, Double) = try TimeMeasure.timeElapsed { // adds timeMeasure on this call, see if it taints the read benchamarking, if it does, use Buffer as testbed instead
+         try RGBARep.imageRep(image: image) // <- new ⚠️️
 //         /*let rgbaRep: RGBARep = */try? RGBARepresentation.rgbaRepresentation(image: image) //
       }
       Log.log("Image to rgbaRep time:  \(time)")
-      guard let _rgbaRep = rgbaRep else { throw NSError(domain: "err creating rgbaRep", code: 0) }
-      return try data(rgbaRep: _rgbaRep, scheme: scheme, parallel: parallel)
+      return try data(rgbaRep: rgbaRep, scheme: scheme, parallel: parallel)
    }
 }
 /**
@@ -76,7 +75,7 @@ extension Reader {
          try? QRReader.dataAndQuad(ciImage: $0)
       }
       guard dataAndQuads.count == qrLayers.count else { throw NSError(domain: "Unable to read QR Layer", code: 0) }
-      let data: Data = .combine(data: dataAndQuads.map { $0.qrData }) // merge the data together
+      let data: Data = dataAndQuads.map { $0.qrData }.combined // merge the data together
       return (data, dataAndQuads[0].quad)
    }
 }

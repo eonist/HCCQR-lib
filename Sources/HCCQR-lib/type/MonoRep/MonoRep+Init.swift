@@ -24,8 +24,7 @@ extension MonoRep {
    internal static func monoRep(ciImg: CIImage, crop: BufferRect? = nil) throws -> MonoRep {
       let crop: BufferRect = crop ?? .init(0, 0, Int(ciImg.extent.width), Int(ciImg.extent.height))
       let colorSpace: CGColorSpace = CGColorSpaceCreateDeviceRGB()
-      // let size: Size = (width: Int(ciImg.extent.width), height: Int(ciImg.extent.height))
-      let capacity: Int = crop.width * crop.height
+      let capacity: Int = crop.size.capacity
       let bytesPerPixel = MemoryLayout<RGBAPixel>.size
       let bytesPerRow: Int = crop.width * bytesPerPixel// We multiply per 4 because of the 4 channels, RGBA
       let imageData: UnsafeMutablePointer<RGBAPixel> = .allocate(capacity: capacity)
@@ -39,8 +38,7 @@ extension MonoRep {
       let fromExtent: CGRect = crop.cgRect
       context.draw(ciImg, in: ciImg.extent, from: fromExtent)
       let monoPixels: UnsafeMutableBufferPointer<Bool> = .allocate(capacity: capacity)
-      // ⚠️️ trying while loop for performance gain
-      var i: Int = 0 // was (0..<capacity).forEach { i in }
+      var i: Int = 0 // trying while loop for performance gain, was (0..<capacity).forEach { i in }
       while i < capacity {
          monoPixels[i] = imageData.advanced(by: i).pointee.isWhite
          i = i &+ 1 // &+ is used for little performance gain

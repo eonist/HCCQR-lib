@@ -10,7 +10,7 @@ extension Pixel {
    /**
     * - Fixme: ⚠️️ make this struct?
     */
-   typealias RGB = (r: UInt8, b: UInt8, g: UInt8) // <- Prefer this
+//   typealias RGB = (r: UInt8, b: UInt8, g: UInt8) // <- Prefer this
    /**
     * Stores if is valid and the strength if it's already valid
     * - Fixme: ⚠️️ move to own file, maybe re-make as struct

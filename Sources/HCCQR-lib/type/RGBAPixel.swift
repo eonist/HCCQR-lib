@@ -15,4 +15,7 @@ extension RGBAPixel {
    var isWhite: Bool {
       r == 255 && g == 255 && b == 255
    }
+   var pixel: Pixel {
+      .init(r: self.r, g: self.g, b: self.b)
+   }
 }

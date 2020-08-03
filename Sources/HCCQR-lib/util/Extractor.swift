@@ -24,11 +24,9 @@ extension Extractor {
     * - Fixme: ⚠️️ Skip extracting the white channel, as it's not used when we later combine color channels
     */
    static func extract(rgbaRep: RGBARep, scheme: ChannelScheme, parallel: Bool) -> GrayReps {
-      // - Fixme: ⚠️️ Benchmark similarties creation
-//      Swift.print("scheme.count:  \(scheme.count)")
       let similarities: [PixelSimilarity] = Extractor.similarities(scheme: scheme) // for 128 color scheme there are 128 similarity sets
-      return similarities.batches(spread: 8).flatMap { batch in // create similarity asserters, 4 - 256 items depending on hccqr config
-         batch.concurrentMap(parallel: parallel) { asserter in // create similarity asserters, 4 - 256 items depending on hccqr config
+      return similarities.batches(spread: 8).concurrentFlatMap(parallel: parallel) { batch in // create similarity asserters, 4 - 256 items depending on hccqr config
+         batch.map { asserter in // create similarity asserters, 4 - 256 items depending on hccqr config
             extract(rgbaRep: rgbaRep, asserter: asserter) // Finds the red-channel, blue-channel, green-channel
          }
       }
@@ -56,7 +54,6 @@ extension Extractor {
     * - Fixme: ⚠️️ make private after you remove deprecated code etc
     */
    /*private*/internal static func extract(rgbaRep: RGBARep, asserter: @escaping PixelSimilarity) -> GrayRep {
-//      let output: GrayRep = .grayRep(capacity: rgbaRep.capacity, size: rgbaRep.size) // We create a blank GrayRep, as it's faster than copy probably, The GrayScaleImage to populate pixels into (we only need [UInt8])
       let pixels: UnsafeMutableBufferPointer<UInt8> = .allocate(capacity: rgbaRep.capacity)
 //      let time: Double = TimeMeasure.timeElapsed {
          GrayRepModifier.process(size: rgbaRep.size) { (i: Int) in
@@ -64,12 +61,12 @@ extension Extractor {
          }
 //      }
 //      Swift.print("extract.process time :  \(time)")
-      // - Fixme: ⚠️️ this could be wrong for ByteImage?
       return .init(pixels: .init(pixels), width: rgbaRep.size.width, height: rgbaRep.size.height)
    }
    /**
     * The purpouse of this method is to setup static calls, that compare channel and pixel color
     * - Important: ⚠️️ For some reason this method has to be on the same line or else the linter complains
+    * - Note: This method is only called one time, no need to optimize
     * - Fixme: ⚠️️ Avoid regenerating these everytime, store as static let? TBH I don't think anything expensive is regenerated, just normal calls etc, maybe keep as is, bench mark to confirm?
     * - Parameter scheme: rule-set for the splitting process
     */

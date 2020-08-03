@@ -13,7 +13,7 @@ final class ColorishTest {
       let redPixel = Pixel.red // the color it should look like
       let threshold: UInt8 = .init(255 * 0.25) // within this threshold
       let halfThreshold: UInt8 = .init(threshold / 2)
-      let isColorRedish: Bool = PixelAsserter.isColorish(a: redPixel.rgb, b: redishPixel.rgb, halfThreshold: halfThreshold)
+      let isColorRedish: Bool = PixelAsserter.isColorish(a: redPixel, b: redishPixel, halfThreshold: halfThreshold)
       Swift.print("isColorRedish:  \(isColorRedish ? "✅" : "🚫")")
       return isColorRedish
    }

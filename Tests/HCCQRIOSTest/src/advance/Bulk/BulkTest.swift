@@ -31,8 +31,9 @@ extension BulkTest {
     * Bulk test
     */
    static func test() -> Bool {
-      let rgbaReps: [RGBARep] = writeMany(setup: bulkSetup)
+      var rgbaReps: [RGBARep] = writeMany(setup: bulkSetup)
       let didSuccessfullyReadMany: Bool = readMany(rgbaReps: rgbaReps, scheme: scheme)
+      rgbaReps = []
       Swift.print("didSuccessfullyReadMany: \(didSuccessfullyReadMany ? "✅" : "🚫")")
       return didSuccessfullyReadMany
    }
@@ -45,7 +46,7 @@ extension BulkTest {
     * Bulk write many
     */
    internal static func writeMany(setup: HCCQRSetup) -> [RGBARep] {
-      let randomData: [Data] = (0..<count).compactMap { _ in HCCQRStringData.randomData(setup: setup) } // Num of items to load, we create this outside, because we dont want to time the creation of it
+      var randomData: [Data] = (0..<count).compactMap { _ in HCCQRStringData.randomData(setup: setup) } // Num of items to load, we create this outside, because we dont want to time the creation of it
       let (payloads, time): ([RGBARep], Double) = TimeMeasure.timeElapsed {
          randomData.batches(spread: 8).concurrentFlatMap { batch in
             batch.compactMap {
@@ -58,6 +59,7 @@ extension BulkTest {
             }
          }
       }
+      randomData = []
       Swift.print("write many time:  \(time)")
       return payloads
    }
@@ -67,7 +69,7 @@ extension BulkTest {
     * - Note: putting this loop on concurrent speeds up things 2x
     */
    internal static func readMany(rgbaReps: [RGBARep], scheme: ChannelScheme) -> Bool {
-      let (payloads, time): ([QRReader.DataAndQuad], Double) = TimeMeasure.timeElapsed {
+      var (payloads, time): ([QRReader.DataAndQuad], Double) = TimeMeasure.timeElapsed {
          rgbaReps.batches(spread: 8).concurrentFlatMap { batch in
             batch.compactMap { rgbaRep in
                do {
@@ -81,6 +83,8 @@ extension BulkTest {
       }
       Swift.print("Read many time:  \(time)")
       Swift.print("Payloads.count:  \(payloads.count)")
-      return rgbaReps.count == payloads.count
+      let isValid: Bool = rgbaReps.count == payloads.count
+      payloads = []
+      return isValid
    }
 }

@@ -34,7 +34,7 @@ extension Pixel {
     * pixelData.isColorish(rgbaColor) // returns true if the the pixel is within the color
     */
    internal func isColorish(_ ishColor: Pixel, halfThreshold: UInt8 = Pixel.defaultHalfThreshold) -> Bool { // PixelAsserter.Colorish
-      PixelAsserter.isColorish(a: self.rgb, b: ishColor.rgb, halfThreshold: halfThreshold)
+      PixelAsserter.isColorish(a: self, b: ishColor, halfThreshold: halfThreshold)
    }
 }
 /**
