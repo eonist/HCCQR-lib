@@ -29,15 +29,6 @@
         }
       },
       {
-        "package": "ResultSugar",
-        "repositoryURL": "https://github.com/eonist/ResultSugar.git",
-        "state": {
-          "branch": "master",
-          "revision": "73747c87445aa5b45213162ff4a66378fc105cbd",
-          "version": null
-        }
-      },
-      {
         "package": "TimeMeasure",
         "repositoryURL": "https://github.com/eonist/TimeMeasure.git",
         "state": {

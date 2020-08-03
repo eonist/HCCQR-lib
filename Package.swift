@@ -17,7 +17,7 @@ let package = Package(
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         .package(url: "https://eonist:2fa35e4ff44eac34e98f01f2c83a16f00e650e56@github.com/light-stream/QR-lib.git", .branch("master")),
-        .package(url: "https://github.com/eonist/ResultSugar.git", .branch("master")),
+        // .package(url: "https://github.com/eonist/ResultSugar.git", .branch("master")),
         .package(url: "https://github.com/eonist/ResourceHelper.git", .branch("master")),
         .package(url: "https://github.com/passbook/ParallelLoop.git", .branch("master")),
         .package(url: "https://github.com/eonist/TimeMeasure.git", .branch("master"))
@@ -27,12 +27,12 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages which this package depends on.
         .target(
             name: "HCCQR-lib",
-            dependencies: ["QR-lib", "ResultSugar", "ParallelLoop", "TimeMeasure"],
+            dependencies: ["QR-lib"/*, "ResultSugar"*/, "ParallelLoop", "TimeMeasure"],
             swiftSettings: optimize
          ),
         .testTarget(
             name: "HCCQRIOSTest",
-            dependencies: ["HCCQR-lib", "QR-lib", "ResultSugar", "ResourceHelper", "ParallelLoop", "TimeMeasure"],
+            dependencies: ["HCCQR-lib", "QR-lib"/*, "ResultSugar"*/, "ResourceHelper", "ParallelLoop", "TimeMeasure"],
             swiftSettings: optimize
          )
     ]
