@@ -47,7 +47,7 @@ extension PixelDataKind {
     * - Note: Used by colorize method and inverted method
     */
    var isWhite: Bool {
-      Self.isMatching(a: self, b: PixelData.white)
+      Self.isMatching(a: self, b: Pixel.white)
    }
    /**
     * Measure if color is black (used in the colorize method)
@@ -55,25 +55,25 @@ extension PixelDataKind {
     * - Note: Used by colorize method
     */
    var isBlack: Bool {
-      Self.isMatching(a: self, b: PixelData.black)
+      Self.isMatching(a: self, b: Pixel.black)
    }
    /**
     * Assert if rgbColor is red
     */
    static func isRed(rgbColor: PixelDataKind) -> Bool {
-      isRGBColor(a: rgbColor, b: PixelData.red)
+      isRGBColor(a: rgbColor, b: Pixel.red)
    }
    /**
     * Assert if rgbColor is green
     */
    static func isGreen(rgbColor: PixelDataKind) -> Bool {
-      isRGBColor(a: rgbColor, b: PixelData.green)
+      isRGBColor(a: rgbColor, b: Pixel.green)
    }
    /**
     * Assert if rgbColor is blue
     */
    static func isBlue(rgbColor: PixelDataKind) -> Bool {
-      isRGBColor(a: rgbColor, b: PixelData.blue)
+      isRGBColor(a: rgbColor, b: Pixel.blue)
    }
 }
 /**

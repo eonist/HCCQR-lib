@@ -58,7 +58,7 @@ extension PixelParser {
       #else
       throw RGBAError.osNotSupported
       #endif
-      return PixelData(r: UInt8(r * 255.0), g: UInt8(g * 255.0), b: UInt8(b * 255.0)/*, a: UInt8(a * 255.0)*/ )
+      return Pixel(r: UInt8(r * 255.0), g: UInt8(g * 255.0), b: UInt8(b * 255.0)/*, a: UInt8(a * 255.0)*/ )
    }
 }
 /**

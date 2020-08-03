@@ -27,6 +27,6 @@ extension PixelParser {
       let g: UInt8 = .init((argb >> 8) & 0xFF)
       let b: UInt8 = .init(argb & 0xFF)
       //      let a: UInt8 = .init((argb >> 24) & 0xFF)
-      return PixelData(r: r, g: g, b: b/*, a: a*/)
+      return Pixel(r: r, g: g, b: b/*, a: a*/)
    }
 }

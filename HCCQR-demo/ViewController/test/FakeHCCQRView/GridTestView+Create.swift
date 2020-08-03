@@ -11,11 +11,11 @@ extension GridTestView {
    func createColorGrid() {
       let grid: [[UIColor]] = {
          [
-            [PixelData.greenish.color, PixelData.blackish.color, PixelData.whiteish.color, PixelData.blueish.color, PixelData.redish.color],
-            [PixelData.whiteish.color, PixelData.blueish.color, PixelData.blueish.color, PixelData.redish.color, PixelData.greenish.color],
-            [PixelData.blueish.color, PixelData.blackish.color, PixelData.redish.color, PixelData.greenish.color, PixelData.blueish.color],
-            [PixelData.whiteish.color, PixelData.greenish.color, PixelData.greenish.color, PixelData.greenish.color, PixelData.redish.color],
-            [PixelData.redish.color, PixelData.blueish.color, PixelData.greenish.color, PixelData.redish.color, PixelData.greenish.color]
+            [Pixel.greenish.color, Pixel.blackish.color, Pixel.whiteish.color, Pixel.blueish.color, Pixel.redish.color],
+            [Pixel.whiteish.color, Pixel.blueish.color, Pixel.blueish.color, Pixel.redish.color, Pixel.greenish.color],
+            [Pixel.blueish.color, Pixel.blackish.color, Pixel.redish.color, Pixel.greenish.color, Pixel.blueish.color],
+            [Pixel.whiteish.color, Pixel.greenish.color, Pixel.greenish.color, Pixel.greenish.color, Pixel.redish.color],
+            [Pixel.redish.color, Pixel.blueish.color, Pixel.greenish.color, Pixel.redish.color, Pixel.greenish.color]
          ]
       }()
       grid.enumerated().forEach { row in // Place the grid of color rectangles

@@ -4,7 +4,7 @@ import Foundation
  * - Note: A grid of color pixels
  */
 public struct RGBARep {
-   let pixels: UnsafeBufferPointer<PixelData>
+   let pixels: UnsafeBufferPointer<Pixel>
    let width: Int
    let height: Int
    /**
@@ -14,7 +14,7 @@ public struct RGBARep {
     *   - width: width of rep
     *   - height: height of rep
     */
-   init(pixels: UnsafeBufferPointer<PixelData>, width: Int, height: Int) {
+   init(pixels: UnsafeBufferPointer<Pixel>, width: Int, height: Int) {
       self.pixels = pixels
       self.width = width
       self.height = height

@@ -40,7 +40,7 @@ extension BufferUtil {
       // CVPixelBufferLockBaseAddress(imageBuffer, CVPixelBufferLockFlags(rawValue: 0))
       let capacity: Int = bufferRect.size.capacity
       let byteBuffer: UnsafeBufferPointer<UInt8> = .init(start: baseAddress.bindMemory(to: UInt8.self, capacity: capacity), count: capacity)// baseAddress.assumingMemoryBound(to: UInt8.self)// .init()
-      let pixels: UnsafeMutableBufferPointer<PixelData> = .allocate(capacity: capacity) // we dealoc this when we have finished working with rgbaRep
+      let pixels: UnsafeMutableBufferPointer<Pixel> = .allocate(capacity: capacity) // we dealoc this when we have finished working with rgbaRep
       let bytesPerPixel: Int = 4
       // - Fixme: ⚠️️ could possibly see great speed increase if we align indecies, and do modulo to find width and y and x etc
       (bufferRect.y..<bufferRect.height).forEach { y in
@@ -50,7 +50,7 @@ extension BufferUtil {
             let index: Int = x * bytesPerPixel + yVal // We add the crop to the x // (y * bytesPerPixel + x) * 4
             // ⚠️️ new, was byteBuffer[index] etc
             let (b, g, r) = (byteBuffer[index], byteBuffer[index + 1], byteBuffer[index + 2]) // let a = byteBuffer[index + 3]
-            let pixel: PixelData = .init(r: r, g: g, b: b/*, a: 255*/)
+            let pixel: Pixel = .init(r: r, g: g, b: b/*, a: 255*/)
             let i: Int = yAndWidth + x
             pixels[i] = pixel
          }

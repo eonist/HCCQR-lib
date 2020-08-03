@@ -44,14 +44,14 @@ extension RGBARep {
       cgContext.draw(cgImage, in: .init(origin: .zero, size: .init(width: cgImage.width, height: cgImage.height))) // draws the cgImage into the context
       // - Fixme: ⚠️️  the bellow is a hack, find better solution, see legacy
       //      let pixels: UnsafePointer<Pixel> = .init(imageData) // we dealoc this when we are finished with RGBARep
-      let pixis: UnsafeMutableBufferPointer<PixelData> =  .allocate(capacity: capacity)
+      let pixis: UnsafeMutableBufferPointer<Pixel> =  .allocate(capacity: capacity)
 //      let monoPixels: UnsafeMutableBufferPointer<Bool> = .allocate(capacity: capacity)
       // ⚠️️ trying while loop for performance gain
       // - Fixme: ⚠️️ try withMemoryRebound instead of the bellow
       var i: Int = 0 // was (0..<capacity).forEach { i in }
       while i < capacity {
          let rgbaPixel: RGBAPixel = imageData.advanced(by: i).pointee
-         pixis[i] = PixelData(r: rgbaPixel.r, g: rgbaPixel.g, b: rgbaPixel.b)
+         pixis[i] = Pixel(r: rgbaPixel.r, g: rgbaPixel.g, b: rgbaPixel.b)
          i = i &+ 1 // &+ is used for little performance gain
       }
       imageData.deallocate() // We have no more use for imageData

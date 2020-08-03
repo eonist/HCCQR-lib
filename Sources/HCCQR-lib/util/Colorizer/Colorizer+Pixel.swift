@@ -16,8 +16,8 @@ extension Colorizer {
     *   - pixels: layers of pixels (false means black, true means white), we use bool array since its faster than UInt8 array
     *   - palette: the color-map to match against (color-pallete has info for toggeling darkmode etc)
     */
-   static func colorize(pixels: [Bool], pallete: ColorPalette) throws -> PixelData {
-      guard let color: PixelData = pallete.first(where: { let result = try? matchColorMap(pixels, $0); return result ?? false })?.color else { throw NSError(domain: "Unable to colorize", code: 0) }
+   static func colorize(pixels: [Bool], pallete: ColorPalette) throws -> Pixel {
+      guard let color: Pixel = pallete.first(where: { let result = try? matchColorMap(pixels, $0); return result ?? false })?.color else { throw NSError(domain: "Unable to colorize", code: 0) }
       return color
    }
 }
