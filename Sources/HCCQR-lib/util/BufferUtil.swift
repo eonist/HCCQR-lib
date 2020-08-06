@@ -11,6 +11,17 @@ public final class BufferUtil {}
 
 extension BufferUtil {
    /**
+    * Image -> RGBAImage (Not working)
+    * - Note: this method works when testing img -> RGBA img -> img in viewcontroll, to see if everything looks gd etc, or do img.hash = img.hash etc
+    * - Note: this method is for testing only because we derive RGBAImage directly from CVImageBuffer
+    * - Note: RGBARep.rgbaRep(image:) has similar functionality
+    * - Parameter image: Convert image to RGBAImage
+    */
+   public static func rgbaRep(image: Image) throws -> RGBARep {
+      let imgBuffer: CVImageBuffer = try imageBuffer(image: image)
+      return try rgbaRep(buffer: imgBuffer, crop: imgBuffer.rect) // Rect -> We have to provide the area we want to get data from /*, size: image.size, scale: image.scale*/
+   }
+   /**
     * CVImageBuffer -> RGBImage (⭐ works ⭐)
     * 1. CVImageBuffer comes in with areaOfIntrest crop
     * 2. Raw data and size is extracted from imageBuffer
@@ -57,6 +68,58 @@ extension BufferUtil {
    }
 }
 /**
+ * Buffer
+ */
+extension BufferUtil {
+   /**
+    * UIImage -> CVPixelBuffer
+    * - Fixme: ⚠️️ add step doc
+    * - Fixme: ⚠️️ Use Metal: https://developer.apple.com/documentation/coreimage/cicontext/1437609-init
+    * - Note: Ref https://www.hackingwithswift.com/whats-new-in-ios-11 and https://stackoverflow.com/a/44475334/5389500
+    * - Note: Alternative https://gist.github.com/omarojo/b47ad0f0965ba8bf2e825ef571ef804c
+    * - Note: CGImage to Buffer https://github.com/brianadvent/UIImage-to-CVPixelBuffer/blob/master/ImageProcessor.swift
+    * - Note: ref https://stackoverflow.com/questions/3838696/convert-uiimage-to-cvpixelbufferref
+    * - Note: ref https://stackoverflow.com/questions/44462087/how-to-convert-a-uiimage-to-a-cvpixelbuffer
+    * - Parameter image: Convert this image to CVImageBuffer
+    * - Fixme: ⚠️️ rename to buffer?
+    */
+   public static func imageBuffer(image: Image) throws -> CVImageBuffer {
+      guard let cgImage = image.cgImage() else { throw NSError(domain: "unable to get cgimage", code: 0) }
+      return try imageBuffer(cgImage: cgImage)
+   }
+   /**
+    * CGImage -> CVPixelBuffer
+    * - Note: Ref https://github.com/brianadvent/UIImage-to-CVPixelBuffer/blob/master/ImageProcessor.swift
+    * - Important: ⚠️️ This methd exists for testing purpouses, the real code derives the buffer directly
+    * - Fixme: ⚠️️ Make debug tool for cgImage: cgImage.bitsPerPixel, cgImage.bitsPerComponent, cgImage.colorSpace, cgImage.byteOrderInfo, cgImage.bitmapInfo, image.size, image.scale, image.cgImage?.bytesPerRow
+    * - Parameters:
+    *   - cgImage: The cgImage to be converted to CVImageBuffer
+    *   - opaque: opaque, aka no alpha
+    * - Fixme: ⚠️️ can probably use different combo of buffer rgba, bgra alpha info 32litte etc. figure out what is fastest n the future etc
+    * - Fixme: ⚠️️ we dont need opaque param, thats only for png, cam-output, jpg doesnt have alpha.
+    * - Fixme: ⚠️️ rename to buffer
+    * - Fixme: ⚠️️ benchmark this, consider accelerate framework instead see: https://developer.apple.com/documentation/accelerate/1498241-vimageconverter_createforcgtocvi   and https://developer.apple.com/documentation/accelerate/building_a_basic_conversion_workflow
+    */
+   public static func imageBuffer(cgImage: CGImage, opaque: Bool = true) throws -> CVImageBuffer {
+      let frameSize = CGSize(width: cgImage.width, height: cgImage.height)
+      var _buffer: CVPixelBuffer?
+      let pixelFormatType: OSType = kCVPixelFormatType_32BGRA // kCVPixelFormatType_24RGB, kCVPixelFormatType_24BGR
+      let status = CVPixelBufferCreate(kCFAllocatorDefault, Int(frameSize.width), Int(frameSize.height), pixelFormatType, nil, &_buffer)
+      guard let buffer: CVPixelBuffer = _buffer else { throw BufferError.unableToCreateBuffer }
+      if status != kCVReturnSuccess { throw BufferError.statusError }
+      CVPixelBufferLockBaseAddress(buffer, CVPixelBufferLockFlags(rawValue: 0))
+      let data = CVPixelBufferGetBaseAddress(buffer)
+      let rgbColorSpace = CGColorSpaceCreateDeviceRGB()
+      let bitmapInfo = CGBitmapInfo(rawValue: CGBitmapInfo.byteOrder32Little.rawValue | CGImageAlphaInfo.premultipliedFirst.rawValue)
+      guard let context = CGContext(data: data, width: Int(frameSize.width), height: Int(frameSize.height), bitsPerComponent: 8, bytesPerRow: CVPixelBufferGetBytesPerRow(buffer), space: rgbColorSpace, bitmapInfo: bitmapInfo.rawValue) else { throw BufferError.unableToGetContext }
+      let rect: CGRect = .init(x: 0, y: 0, width: cgImage.width, height: cgImage.height)
+      context.draw(cgImage, in: rect)
+      // - Fixme: ⚠️️ Should we unlock buffer here, since we return it etc ?, other repos lock here and still forward buffer
+      CVPixelBufferUnlockBaseAddress(buffer, CVPixelBufferLockFlags(rawValue: 0))
+      return buffer
+   }
+}
+/**
  * Image (debug only)
  */
 extension BufferUtil {
@@ -70,5 +133,19 @@ extension BufferUtil {
    public static func image(imageBuffer: CVImageBuffer, scale: Int) -> Image {
       let ciImage: CIImage = .init(cvImageBuffer: imageBuffer)
       return ImageUtil.image(ciImage: ciImage, scale: CGFloat(scale))
+   }
+}
+
+/**
+ * Error
+ */
+extension BufferUtil {
+   /**
+    * Rename to CIImgBufferError
+    */
+   public enum BufferError: Error {
+      case unableToCreateBuffer
+      case statusError
+      case unableToGetContext
    }
 }
