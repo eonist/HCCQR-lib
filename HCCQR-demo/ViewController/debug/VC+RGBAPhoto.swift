@@ -16,11 +16,11 @@ extension ViewController {
       guard let image = Image(contentsOfFile: path) else { Swift.print("err getting img"); return }
       Swift.print("UIImage.size:  \(image.size)")
 //      guard let rgbaImage: RGBARep = try? CVImageBufferUtil.rgbaRep(image: image) else { Swift.print("err getting rgbImage"); return }
-      guard let rgbaRep: RGBARep = try? RGBARepUtil.rgbaRep(image: image) else { Swift.print("err getting rgbImage"); return }
+      guard let rgbRep: RGBRep = try? RGBARepUtil.rgbRep(image: image) else { Swift.print("err getting rgbImage"); return }
 //      guard let img = try? RGBAImageUtil.image(rgbaImage: rgbaImage, scale: 1) else { Swift.print("err making img"); return }
 //      let imgView: UIImageView = .init(image: img)
 //      self.view.addSubview(imgView)
-      Reader.data(rgbaRep: rgbaRep) { (result: Reader.ReadResult2) in // Split the hccqrImg
+      Reader.data(rgbRep: rgbRep) { (result: Reader.ReadResult2) in // Split the hccqrImg
          self.onReadComplete(result: result) { success in Swift.print("dataAndImages success: \(success ? "✅" : "🚫"  )") }
       }
    }

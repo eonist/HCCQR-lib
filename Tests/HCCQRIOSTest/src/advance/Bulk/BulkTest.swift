@@ -32,7 +32,7 @@ extension BulkTest {
     */
    static func test() -> Bool {
       var randomData: [Data] = (0..<count).compactMap { _ in HCCQRStringData.randomData(setup: bulkSetup) } // Num of items to load, we create this outside, because we dont want to time the creation of it
-      var rgbaReps: [RGBARep] = writeMany(setup: bulkSetup, randomData: randomData)
+      var rgbaReps: [RGBRep] = writeMany(setup: bulkSetup, randomData: randomData)
       let didSuccessfullyReadMany: Bool = readMany(rgbaReps: rgbaReps, scheme: scheme, randomData: randomData)
       rgbaReps = []
       randomData = []
@@ -47,12 +47,12 @@ extension BulkTest {
    /**
     * Bulk write many
     */
-   internal static func writeMany(setup: HCCQRSetup, randomData: [Data]) -> [RGBARep] {
-      let (payloads, time): ([RGBARep], Double) = TimeMeasure.timeElapsed {
+   internal static func writeMany(setup: HCCQRSetup, randomData: [Data]) -> [RGBRep] {
+      let (payloads, time): ([RGBRep], Double) = TimeMeasure.timeElapsed {
          randomData.batches(spread: 8).concurrentFlatMap { batch in
             batch.compactMap {
                do {
-                  return try Writer.rgbaRep(data: $0, config: setup, parallel: false)
+                  return try Writer.rgbRep(data: $0, config: setup, parallel: false)
                } catch {
                   Swift.print("⚠️️ Error: ⚠️️  \(error)")
                   return nil
@@ -68,12 +68,12 @@ extension BulkTest {
     * - Note: this test is used by the bulk-photo-test as well
     * - Note: putting this loop on concurrent speeds up things 2x
     */
-   internal static func readMany(rgbaReps: [RGBARep], scheme: ChannelScheme, randomData: [Data]) -> Bool {
+   internal static func readMany(rgbaReps: [RGBRep], scheme: ChannelScheme, randomData: [Data]) -> Bool {
       var (payloads, time): ([QRReader.DataAndQuad], Double) = TimeMeasure.timeElapsed {
          rgbaReps.batches(spread: 8).concurrentFlatMap { batch in
             batch.compactMap { rgbaRep in
                do {
-                  return try Reader.data(rgbaRep: rgbaRep, scheme: scheme, parallel: false)
+                  return try Reader.data(rgbRep: rgbaRep, scheme: scheme, parallel: false)
                } catch {
                   Swift.print("⚠️️ Error: ⚠️️  \(error)")
                   return nil

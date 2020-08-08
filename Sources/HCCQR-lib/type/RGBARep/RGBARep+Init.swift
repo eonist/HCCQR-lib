@@ -1,7 +1,7 @@
 import Foundation
 import CoreImage
 
-extension RGBARep {
+extension RGBRep {
    /**
     * Converts an Image to an rgbaImage
     * - Abstract: RGBAImage holds the individual pixels of an image in an array (also stores the size of an image)
@@ -14,7 +14,7 @@ extension RGBARep {
     * - Important: ⚠️️ Used only for testing
     * - Parameter image: An UIImage or NSImage
     */
-   internal static func imageRep(image: Image) throws -> RGBARep {
+   internal static func imageRep(image: Image) throws -> RGBRep {
       guard let cgImage: CGImage = ImageUtil.cgImage(image: image) else { Swift.print("cg"); throw NSError(domain: "rgbaImage - Unable to get cgImage", code: 0) }
       return try imageRep(cgImage: cgImage)
    }
@@ -22,13 +22,13 @@ extension RGBARep {
 /**
  * Private
  */
-extension RGBARep {
+extension RGBRep {
    /**
     * CGImage -> RGBAImage
     * - Note: Used by Image -> RGBARep
     *  - Fixme: ⚠️️ try withMemoryRebound instead of the while loop
     */
-   private static func imageRep(cgImage: CGImage) throws -> RGBARep {
+   private static func imageRep(cgImage: CGImage) throws -> RGBRep {
       let size: Size = .init(Int(cgImage.width), Int(cgImage.height))
       let bytesPerPixel = MemoryLayout<RGBAPixel>.size
       let bytesPerRow: Int = size.width * bytesPerPixel // We multiply per 4 because of the 4 channels, RGBA
@@ -45,6 +45,6 @@ extension RGBARep {
          i = i &+ 1 // &+ is used for little performance gain
       }
       imageData.deallocate() // We have no more use for imageData
-      return RGBARep(pixels: .init(pixis), width: size.width, height: size.height)
+      return RGBRep(pixels: .init(pixis), width: size.width, height: size.height)
    }
 }

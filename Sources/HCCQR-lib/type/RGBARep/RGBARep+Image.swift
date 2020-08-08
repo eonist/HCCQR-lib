@@ -3,7 +3,7 @@ import QuartzCore
 import CoreImage
 import TimeMeasure
 
-extension RGBARep {
+extension RGBRep {
    /**
     * Converts rgbaImage to uiimage / nsimage
     * - Note: this method is blazing fat, no need to optimize

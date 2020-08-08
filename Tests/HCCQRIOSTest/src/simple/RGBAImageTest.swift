@@ -17,8 +17,8 @@ extension RGBAImageTest {
     */
    func bufferTest() {
       let image = UIImage.image(size: .init(width: 100, height: 100), color: .red)!
-      guard let rgbaRep: RGBARep = try? BufferUtil.rgbaRep(image: image) else { Swift.print("err rgbImage"); return }
-      guard let img: UIImage = try? rgbaRep.image(/*rgbaRep: rgbaRep, */scale: 1) else { Swift.print("err img"); return }
+      guard let rgbRep: RGBRep = try? BufferUtil.rgbRep(image: image) else { Swift.print("err rgbImage"); return }
+      guard let img: UIImage = try? rgbRep.image(/*rgbaRep: rgbaRep, */scale: 1) else { Swift.print("err img"); return }
       _ = img
 //      let imageView: UIImageView = .init(image: img)
 //      view.addSubview(imageView)

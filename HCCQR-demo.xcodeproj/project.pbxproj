@@ -187,7 +187,7 @@
 		F1E645B723940ACA008D2ABE /* UInt8Asserter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F168527E2213443700C27EAA /* UInt8Asserter.swift */; };
 		F1E645B823940ACA008D2ABE /* UInt8Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F168527F2213443700C27EAA /* UInt8Parser.swift */; };
 		F1E645BA23940ACA008D2ABE /* Color+Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852832213443700C27EAA /* Color+Parser.swift */; };
-		F1E645BC23940B3C008D2ABE /* RGBARep.swift in Sources */ = {isa = PBXBuildFile; fileRef = F168526F2213443700C27EAA /* RGBARep.swift */; };
+		F1E645BC23940B3C008D2ABE /* RGBRep.swift in Sources */ = {isa = PBXBuildFile; fileRef = F168526F2213443700C27EAA /* RGBRep.swift */; };
 		F1E645C023940B3C008D2ABE /* RGBARep+Getter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10296B8222218D1001FA2DF /* RGBARep+Getter.swift */; };
 		F1E645C123940B3C008D2ABE /* RGBARep+DeInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10296BA222218DC001FA2DF /* RGBARep+DeInit.swift */; };
 		F1E645C723940B3C008D2ABE /* Pixel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852622213443700C27EAA /* Pixel.swift */; };
@@ -195,7 +195,7 @@
 		F1E645CC23940B3C008D2ABE /* Pixel+Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852682213443700C27EAA /* Pixel+Type.swift */; };
 		F1E645CD23940B3C008D2ABE /* Pixel+Getter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852692213443700C27EAA /* Pixel+Getter.swift */; };
 		F1E645D223940B3C008D2ABE /* HCCQRStringData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852572213443700C27EAA /* HCCQRStringData.swift */; };
-		F1E645D723940B3D008D2ABE /* RGBARep.swift in Sources */ = {isa = PBXBuildFile; fileRef = F168526F2213443700C27EAA /* RGBARep.swift */; };
+		F1E645D723940B3D008D2ABE /* RGBRep.swift in Sources */ = {isa = PBXBuildFile; fileRef = F168526F2213443700C27EAA /* RGBRep.swift */; };
 		F1E645DB23940B3D008D2ABE /* RGBARep+Getter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10296B8222218D1001FA2DF /* RGBARep+Getter.swift */; };
 		F1E645DC23940B3D008D2ABE /* RGBARep+DeInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10296BA222218DC001FA2DF /* RGBARep+DeInit.swift */; };
 		F1E645E223940B3D008D2ABE /* Pixel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16852622213443700C27EAA /* Pixel.swift */; };
@@ -289,7 +289,7 @@
 		F16852672213443700C27EAA /* Pixel+Assert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Pixel+Assert.swift"; sourceTree = "<group>"; };
 		F16852682213443700C27EAA /* Pixel+Type.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Pixel+Type.swift"; sourceTree = "<group>"; };
 		F16852692213443700C27EAA /* Pixel+Getter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Pixel+Getter.swift"; sourceTree = "<group>"; };
-		F168526F2213443700C27EAA /* RGBARep.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RGBARep.swift; sourceTree = "<group>"; };
+		F168526F2213443700C27EAA /* RGBRep.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RGBRep.swift; sourceTree = "<group>"; };
 		F16852782213443700C27EAA /* UIView+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		F16852792213443700C27EAA /* Image+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Image+Extension.swift"; sourceTree = "<group>"; };
 		F168527B2213443700C27EAA /* Data+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+Extension.swift"; sourceTree = "<group>"; };
@@ -506,7 +506,7 @@
 		F16852592213443700C27EAA /* RGBARep */ = {
 			isa = PBXGroup;
 			children = (
-				F168526F2213443700C27EAA /* RGBARep.swift */,
+				F168526F2213443700C27EAA /* RGBRep.swift */,
 				F10296B8222218D1001FA2DF /* RGBARep+Getter.swift */,
 				F10296BA222218DC001FA2DF /* RGBARep+DeInit.swift */,
 				F119AEDF24D5955100A67534 /* RGBARep+Init.swift */,
@@ -1202,7 +1202,7 @@
 				F181F11723B92D0500145DEA /* GrayRep+Getter.swift in Sources */,
 				F149992D24C88AB30027C918 /* MonoReps.swift in Sources */,
 				F1537F0A24B47C5200160FEC /* Array+Extension.swift in Sources */,
-				F1E645D723940B3D008D2ABE /* RGBARep.swift in Sources */,
+				F1E645D723940B3D008D2ABE /* RGBRep.swift in Sources */,
 				F18A25E223BB7F5F00EF8151 /* BufferUtil.swift in Sources */,
 				F18A25E823BB83E700EF8151 /* NSImage+Extension.swift in Sources */,
 				F1E645B723940ACA008D2ABE /* UInt8Asserter.swift in Sources */,
@@ -1275,7 +1275,7 @@
 				F1E645C723940B3C008D2ABE /* Pixel.swift in Sources */,
 				F1690AAD24B1F9B8000EC61A /* ColorMap.swift in Sources */,
 				F1A2FB1924A9BA4B00596FFE /* HCCQRSetup.swift in Sources */,
-				F1E645BC23940B3C008D2ABE /* RGBARep.swift in Sources */,
+				F1E645BC23940B3C008D2ABE /* RGBRep.swift in Sources */,
 				F181F10A23B9091400145DEA /* GrayRep.swift in Sources */,
 				F1B698E0239E6D410085B3C9 /* HCCQRVersionUtil.swift in Sources */,
 				F1690AB824B20128000EC61A /* HCCQRSetup+Const.swift in Sources */,

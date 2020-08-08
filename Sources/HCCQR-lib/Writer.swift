@@ -23,7 +23,7 @@ extension Writer {
     *   - parallel: for single capture, parallel is fast, for sequence, parallel is slower
     */
    public static func image(data: Data, config: HCCQRSetup, parallel: Bool) throws -> Image {
-      let rep: RGBARep = try rgbaRep(data: data, config: config, parallel: parallel)
+      let rep: RGBRep = try rgbRep(data: data, config: config, parallel: parallel)
       defer { rep.deallocate() }
       return try rep.image(scale: CGFloat(config.scale.screen))
    }
@@ -45,7 +45,7 @@ extension Writer {
     *   - config: config of HCCQR
     *   - parallel: for single capture, parallel is fast, for sequence, parallel is slower
     */
-   internal static func rgbaRep(data: Data, config: HCCQRSetup, parallel: Bool) throws -> RGBARep {
+   internal static func rgbRep(data: Data, config: HCCQRSetup, parallel: Bool) throws -> RGBRep {
       let dataArr: [Data] = /*autoreleasepool { */ HCCQRConfigUtil.data(data: data, config: config) /* }*/ // splits data (for multiple layers 2-8, 4-256 colors respectfully)
       let (ciImgs, qrTime): ([CIImage], Double) = TimeMeasure.timeElapsed {
          /*let ciImgs: [CIImage] = */dataArr.concurrentCompactMap(parallel: parallel) { (data: Data) in // parraelly create the qr-image-Layers
@@ -54,11 +54,11 @@ extension Writer {
       }
       Log.log("qrTime:  \(qrTime)")
       guard dataArr.count == ciImgs.count else { throw NSError(domain: "\(dataArr.count - ciImgs.count) qr imgs did not finish", code: 0) } // if qrImgs was not created correctly etc, we cant do try error inside concurrentMap
-      let (rgbaRep, colorizeTime): (RGBARep, Double) = try TimeMeasure.timeElapsed {
+      let (rgbRep, colorizeTime): (RGBRep, Double) = try TimeMeasure.timeElapsed {
          /*let rgbaRep: RGBARep = */try Colorizer.colorize(qrLayers: ciImgs, config: config.output/*, coreCount: coreCount*/)
       }
       _ = colorizeTime
       Log.log("colorizeTime:  \(colorizeTime)")
-      return rgbaRep
+      return rgbRep
    }
 }

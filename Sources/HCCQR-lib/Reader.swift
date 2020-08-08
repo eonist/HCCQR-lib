@@ -30,11 +30,11 @@ extension Reader {
     */
    public static func data(imageBuffer: CVImageBuffer, crop: BufferRect, scheme: ChannelScheme = .default, parallel: Bool) throws -> ReadPayload {
 //      let crop = crop ?? CVImageBufferGetEncodedSize(imageBuffer) // CVImageBufferGetDisplaySize, CVImageBufferGetCleanRect
-      let rgbaImg: RGBARep = try BufferUtil.rgbaRep(buffer: imageBuffer, crop: crop)
-      let dataAndImagesAndQuad: QRReader.DataAndQuad = try data(rgbaRep: rgbaImg, scheme: scheme, parallel: parallel)
+      let rgbImg: RGBRep = try BufferUtil.rgbRep(buffer: imageBuffer, crop: crop)
+      let dataAndImagesAndQuad: QRReader.DataAndQuad = try data(rgbRep: rgbImg, scheme: scheme, parallel: parallel)
       let data: Data = dataAndImagesAndQuad.qrData
       let quad: QRReader.Quad = dataAndImagesAndQuad.quad
-      return (data: data, quad: quad, imageSize: rgbaImg.cgSize)
+      return (data: data, quad: quad, imageSize: rgbImg.cgSize)
    }
    /**
     * Image -> Data
@@ -45,12 +45,11 @@ extension Reader {
     *   - parallel: for single capture, parallel is fast, for sequence, parallel is slower
     */
    public static func data(image: Image, scheme: ChannelScheme = .default, parallel: Bool) throws -> QRReader.DataAndQuad {
-      let (rgbaRep, time): (RGBARep, Double) = try TimeMeasure.timeElapsed { // adds timeMeasure on this call, see if it taints the read benchamarking, if it does, use Buffer as testbed instead
-         try RGBARep.imageRep(image: image) // <- new ⚠️️
-//         /*let rgbaRep: RGBARep = */try? RGBARepresentation.rgbaRepresentation(image: image) //
+      let (rgbRep, time): (RGBRep, Double) = try TimeMeasure.timeElapsed { // adds timeMeasure on this call, see if it taints the read benchamarking, if it does, use Buffer as testbed instead
+         try RGBRep.imageRep(image: image)
       }
       Log.log("Image to rgbaRep time:  \(time)")
-      return try data(rgbaRep: rgbaRep, scheme: scheme, parallel: parallel)
+      return try data(rgbRep: rgbRep, scheme: scheme, parallel: parallel)
    }
 }
 /**
@@ -66,12 +65,12 @@ extension Reader {
     * - Note: returning qrimage is useful, it is used as a way to debug that the HCCQR ws split correctly
     * - Note: Isn't private because Tests use it
     * - Parameters:
-    *   - rgbaRep: raw pixels and size
+    *   - rgbRep: raw pixels and size
     *   - scheme: the arrangment of colors
     *   - parallel: for single capture, parallel is fast, but for sequence parallel is slower
     */
-   /*private*/ internal static func data(rgbaRep: RGBARep, scheme: ChannelScheme, parallel: Bool) throws -> QRReader.DataAndQuad {
-      let qrLayers: [CIImage] = Splitter.split(rgbaRep: rgbaRep, scheme: scheme, parallel: parallel)
+   /*private*/ internal static func data(rgbRep: RGBRep, scheme: ChannelScheme, parallel: Bool) throws -> QRReader.DataAndQuad {
+      let qrLayers: [CIImage] = Splitter.split(rgbRep: rgbRep, scheme: scheme, parallel: parallel)
       let dataAndQuads: [QRReader.DataAndQuad] = qrLayers.concurrentCompactMap(parallel: parallel) { // concurrentCompactMap
          try? QRReader.dataAndQuad(ciImage: $0)
       }

@@ -24,11 +24,11 @@ extension Extractor {
     * - Fixme: ⚠️️ Skip extracting the white channel, as it's not used when we later combine color channels
     * - Fixme: ⚠️️⚠️️⚠️️ We could make this much more efficient if we disregarded subseequent similarties after one is found, however, this could make ErrorCorrection more dificult, add later
     */
-   static func extract(rgbaRep: RGBARep, scheme: ChannelScheme, parallel: Bool) -> GrayReps {
+   static func extract(rgbRep: RGBRep, scheme: ChannelScheme, parallel: Bool) -> GrayReps {
       let similarities: [PixelSimilarity] = Extractor.similarities(scheme: scheme) // for 128 color scheme there are 128 similarity sets
       return similarities.batches(spread: 8).concurrentFlatMap(parallel: parallel) { batch in // create similarity asserters, 4 - 256 items depending on hccqr config
          batch.map { asserter in // create similarity asserters, 4 - 256 items depending on hccqr config
-            extract(rgbaRep: rgbaRep, asserter: asserter) // Finds the red-channel, blue-channel, green-channel
+            extract(rgbRep: rgbRep, asserter: asserter) // Finds the red-channel, blue-channel, green-channel
          }
       }
    }
@@ -54,15 +54,15 @@ extension Extractor {
     * - Fixme: ⚠️️ Somehow reuse the output, it might speed things up
     * - Fixme: ⚠️️ make private after you remove deprecated code etc
     */
-   internal static func extract(rgbaRep: RGBARep, asserter: @escaping PixelSimilarity) -> GrayRep {
-      let pixels: UnsafeMutableBufferPointer<UInt8> = .allocate(capacity: rgbaRep.capacity)
+   internal static func extract(rgbRep: RGBRep, asserter: @escaping PixelSimilarity) -> GrayRep {
+      let pixels: UnsafeMutableBufferPointer<UInt8> = .allocate(capacity: rgbRep.capacity)
 //      let time: Double = TimeMeasure.timeElapsed {
-         GrayRepModifier.process(size: rgbaRep.size) { (i: Int) in
-            pixels[i] = asserter(rgbaRep.pixels[i]).strength // Apply new pixel to old pixel
+         GrayRepModifier.process(size: rgbRep.size) { (i: Int) in
+            pixels[i] = asserter(rgbRep.pixels[i]).strength // Apply new pixel to old pixel
          }
 //      }
 //      Swift.print("extract.process time :  \(time)")
-      return .init(pixels: .init(pixels), width: rgbaRep.size.width, height: rgbaRep.size.height)
+      return .init(pixels: .init(pixels), width: rgbRep.size.width, height: rgbRep.size.height)
    }
    /**
     * The purpouse of this method is to setup static calls, that compare channel and pixel color

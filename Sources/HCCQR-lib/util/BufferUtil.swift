@@ -6,6 +6,7 @@ import CoreImage
  * - Note: also supports reading generated mock CVBuffere image
  * - Abstract: Converts image, to rgb and SambleBuffer to RGB
  * - Note: Ref context for macOS might need: https://stackoverflow.com/a/43893381/5389500
+ * - Fixme: ⚠️️ rename to BufferHelper?
  */
 public final class BufferUtil {}
 
@@ -17,9 +18,9 @@ extension BufferUtil {
     * - Note: RGBARep.rgbaRep(image:) has similar functionality
     * - Parameter image: Convert image to RGBAImage
     */
-   public static func rgbaRep(image: Image) throws -> RGBARep {
+   public static func rgbRep(image: Image) throws -> RGBRep {
       let imgBuffer: CVImageBuffer = try imageBuffer(image: image)
-      return try rgbaRep(buffer: imgBuffer, crop: imgBuffer.rect) // Rect -> We have to provide the area we want to get data from /*, size: image.size, scale: image.scale*/
+      return try rgbRep(buffer: imgBuffer, crop: imgBuffer.rect) // Rect -> We have to provide the area we want to get data from /*, size: image.size, scale: image.scale*/
    }
    /**
     * CVImageBuffer -> RGBImage (⭐ works ⭐)
@@ -43,7 +44,7 @@ extension BufferUtil {
     *   - buffer: the buffer containing the raw pixel data and size
     *   - crop: Makes processing the raw imagery faster since we don't have to process areas where the QR info is not etc. (provided we know where the QR rect is)
     */
-   public static func rgbaRep(buffer: CVImageBuffer, crop bufferRect: BufferRect) throws -> RGBARep { /*, size: CGSize, scale: CGFloat */
+   public static func rgbRep(buffer: CVImageBuffer, crop bufferRect: BufferRect) throws -> RGBRep { /*, size: CGSize, scale: CGFloat */
       CVPixelBufferLockBaseAddress(buffer, CVPixelBufferLockFlags(rawValue: CVOptionFlags(0))) // lock access for cpu reading
       let bytesPerRow: Int = CVPixelBufferGetBytesPerRow(buffer) // let bufferSize: (width: Int, height: Int) = (Int(CVPixelBufferGetWidth(imageBuffer)), Int(CVPixelBufferGetHeight(imageBuffer))) //  let size: (width: Int, height: Int) = (Int(size.width * scale), Int(size.height * scale))
       guard let baseAddress: UnsafeMutableRawPointer = CVPixelBufferGetBaseAddress(buffer) else { throw NSError(domain: "Unable to get baseAddress", code: 0) }
@@ -80,6 +81,7 @@ extension BufferUtil {
     * - Note: CGImage to Buffer https://github.com/brianadvent/UIImage-to-CVPixelBuffer/blob/master/ImageProcessor.swift
     * - Note: ref https://stackoverflow.com/questions/3838696/convert-uiimage-to-cvpixelbufferref
     * - Note: ref https://stackoverflow.com/questions/44462087/how-to-convert-a-uiimage-to-a-cvpixelbuffer
+    * - Note: this is for debugging, if it wasnt, we could optimize by using a CVPixelPool
     * - Parameter image: Convert this image to CVImageBuffer
     * - Fixme: ⚠️️ rename to buffer?
     */

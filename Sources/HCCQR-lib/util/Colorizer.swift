@@ -22,7 +22,7 @@ extension Colorizer {
     *   - config: scale and pallet
     *   - qrLayers: qr layers as CIImages
     */
-   internal static func colorize(qrLayers: [CIImage], config: OutputConfig) throws -> RGBARep {
+   internal static func colorize(qrLayers: [CIImage], config: OutputConfig) throws -> RGBRep {
       let monoReps: MonoReps = try qrLayers.map { try MonoRep.monoRep(ciImg: $0) }
       defer { monoReps.forEach { $0.pixels.deallocate() } }
       return colorize(monoReps: monoReps, config: config)
@@ -44,7 +44,7 @@ extension Colorizer {
     *   - monoReps: (black / white)-pixel-array
     *   - config: scaling and color rule-set (darkmode ability is possible epending on what color-pallete is used)
     */
-   internal static func colorize(monoReps: MonoReps, config: OutputConfig) -> RGBARep {
+   internal static func colorize(monoReps: MonoReps, config: OutputConfig) -> RGBRep {
       let size: Size = monoReps[0].size // get size from first rep
       let capacity: Int = size.capacity // get capacity from first item
       let pixels: UnsafeMutableBufferPointer<Pixel> = .allocate(capacity: capacity) // Create a new array // pixels.reserveCapacity(size.width * size.height)
@@ -56,13 +56,13 @@ extension Colorizer {
          }
          idx = idx &+ 1
       }
-      let (rgbaRep, time): (RGBARep, Double) = TimeMeasure.timeElapsed {
+      let (rgbRep, time): (RGBRep, Double) = TimeMeasure.timeElapsed {
          /*let rgbaRep: RGBARep = */PixelModifier.scale(pixels: pixels, size: size, scale: config.scale)
       }
       _ = time
       Log.log("scale time:  \(time)")
       pixels.deallocate() // ⚠️️ this deallocates the pixels once they are not needed anymore
-      return rgbaRep
+      return rgbRep
    }
    /**
     * Multiple B&W Pixel -> Color-Pixel

@@ -12,9 +12,9 @@ final class CIImageTest {
       Swift.print("image.scale:  \(image.scale)")
       Swift.print("image.size:  \(image.size)")
       // create RGBAImage
-      guard let rgbaRep = try? RGBARep.imageRep(image: image) else { Swift.print("rbgaImg err"); return false }
+      guard let rgbRep = try? RGBRep.imageRep(image: image) else { Swift.print("rbgaImg err"); return false }
       // create CIIMage
-      guard let ciImage: CIImage = try? rgbaRep.ciImage(useGrayscale: false) else { Swift.print("ciimg err"); return false }
+      guard let ciImage: CIImage = try? rgbRep.ciImage(useGrayscale: false) else { Swift.print("ciimg err"); return false }
       // assert that CIMage match first CIImage
       Swift.print("ciImage.extent.width:  \(ciImage.extent.width)")
       Swift.print("ciImage.extent.height:  \(ciImage.extent.height)")

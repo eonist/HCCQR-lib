@@ -22,13 +22,13 @@ extension Splitter {
     *   - rgbaRep: A HCCQR representation
     *   - scheme: The colors used in the HCCQR (4 to 256 colors)
     */
-   internal static func split(rgbaRep: RGBARep, scheme: ChannelScheme, parallel: Bool) -> [CIImage] {
+   internal static func split(rgbRep: RGBRep, scheme: ChannelScheme, parallel: Bool) -> [CIImage] {
       let (grayReps, extractTime): (GrayReps, Double) = TimeMeasure.timeElapsed {
-         /*let grayReps: GrayReps = */Extractor.extract(rgbaRep: rgbaRep, scheme: scheme, parallel: parallel)
+         /*let grayReps: GrayReps = */Extractor.extract(rgbRep: rgbRep, scheme: scheme, parallel: parallel)
       }
       _ = extractTime
       Log.log("extractTime:  \(extractTime)")
-      rgbaRep.deallocate() // we have no more use for the rgbaRep
+      rgbRep.deallocate() // we have no more use for the rgbaRep
       let (channelCombos, comboTime): (ChannelCombos, Double) = TimeMeasure.timeElapsed {
          /*let channelCombos: ChannelCombos = */.combos(channels: grayReps) // Arrays of grayreps (2 arrays of 2 grayReps for 4color hcqr, 3 arrays of 7 grayreps for 8 color-hccqr etc)
       }

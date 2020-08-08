@@ -4,7 +4,7 @@ import Foundation
  * - Note: A grid of color pixels
  * - Fixme: ⚠️️ rename RGBARep to RGBRep
  */
-public struct RGBARep {
+public struct RGBRep {
    let pixels: UnsafeBufferPointer<Pixel>
    let width: Int
    let height: Int
