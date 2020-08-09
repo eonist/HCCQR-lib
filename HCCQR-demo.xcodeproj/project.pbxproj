@@ -406,6 +406,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F115CD8424E03A82003F24F7 /* uint8 */ = {
+			isa = PBXGroup;
+			children = (
+				F168527E2213443700C27EAA /* UInt8Asserter.swift */,
+				F168527F2213443700C27EAA /* UInt8Parser.swift */,
+				F143EC3523FAB8DE0006743C /* UInt8Modifier.swift */,
+				F1D8A67023E842B000F17A81 /* UInt8+Extension.swift */,
+				F1467653249F5FAC009D392A /* UInt8+Const.swift */,
+				F165C207239F22A7005D30EC /* RangeUInt8.swift */,
+			);
+			path = uint8;
+			sourceTree = "<group>";
+		};
 		F13CD3DB24C0D19B00F45D75 /* debug */ = {
 			isa = PBXGroup;
 			children = (
@@ -533,13 +546,8 @@
 		F168527D2213443700C27EAA /* util */ = {
 			isa = PBXGroup;
 			children = (
+				F115CD8424E03A82003F24F7 /* uint8 */,
 				F18E38AF24B0EC1B00F33947 /* BinarySequencer.swift */,
-				F168527E2213443700C27EAA /* UInt8Asserter.swift */,
-				F168527F2213443700C27EAA /* UInt8Parser.swift */,
-				F143EC3523FAB8DE0006743C /* UInt8Modifier.swift */,
-				F1D8A67023E842B000F17A81 /* UInt8+Extension.swift */,
-				F1467653249F5FAC009D392A /* UInt8+Const.swift */,
-				F165C207239F22A7005D30EC /* RangeUInt8.swift */,
 				F18357D524A9E5A500C2220D /* Algebra.swift */,
 			);
 			path = util;

@@ -51,6 +51,13 @@ extension Reader {
       Log.log("Image to rgbaRep time:  \(time)")
       return try data(rgbRep: rgbRep, scheme: scheme, parallel: parallel)
    }
+   /**
+    * CGImage -> Data
+    */
+   public static func data(cgImage: CGImage, scheme: ChannelScheme = .default, parallel: Bool) throws -> QRReader.DataAndQuad {
+      let rgbRep: RGBRep = try RGBRep.imageRep(cgImage: cgImage)
+      return try data(rgbRep: rgbRep, scheme: scheme, parallel: parallel)
+   }
 }
 /**
  * Support for parallel reading of input

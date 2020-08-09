@@ -28,7 +28,7 @@ extension RGBRep {
     * - Note: Used by Image -> RGBARep
     *  - Fixme: ⚠️️ try withMemoryRebound instead of the while loop
     */
-   private static func imageRep(cgImage: CGImage) throws -> RGBRep {
+   internal static func imageRep(cgImage: CGImage) throws -> RGBRep {
       let size: Size = .init(Int(cgImage.width), Int(cgImage.height))
       let bytesPerPixel = MemoryLayout<RGBAPixel>.size
       let bytesPerRow: Int = size.width * bytesPerPixel // We multiply per 4 because of the 4 channels, RGBA
@@ -39,10 +39,10 @@ extension RGBRep {
       guard let cgContext = CGContext(data: imageData, width: size.width, height: size.height, bitsPerComponent: 8, bytesPerRow: bytesPerRow, space: colorSpace, bitmapInfo: bitMapInfo) else { Swift.print("context"); throw NSError(domain: "rgbaImage - Unable to create rgbaImage", code: 0) }
       cgContext.draw(cgImage, in: .init(origin: .zero, size: .init(width: cgImage.width, height: cgImage.height))) // draws the cgImage into the context
       let pixis: UnsafeMutableBufferPointer<Pixel> =  .allocate(capacity: capacity)
-      var i: Int = 0 // was (0..<capacity).forEach { i in }
-      while i < capacity {
+      var i: Int = 0
+      while i < capacity { // was (0..<capacity).forEach { i in }
          pixis[i] = imageData.advanced(by: i).pointee.pixel
-         i = i &+ 1 // &+ is used for little performance gain
+         i = i &+ 1 // &+ is used to obtain a little performance gain
       }
       imageData.deallocate() // We have no more use for imageData
       return RGBRep(pixels: .init(pixis), width: size.width, height: size.height)
