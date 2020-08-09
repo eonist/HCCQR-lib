@@ -57,9 +57,9 @@ extension Extractor {
    internal static func extract(rgbRep: RGBRep, asserter: @escaping PixelSimilarity) -> GrayRep {
       let pixels: UnsafeMutableBufferPointer<UInt8> = .allocate(capacity: rgbRep.capacity)
 //      let time: Double = TimeMeasure.timeElapsed {
-         GrayRepModifier.process(size: rgbRep.size) { (i: Int) in
-            pixels[i] = asserter(rgbRep.pixels[i]).strength // Apply new pixel to old pixel
-         }
+      GrayRepModifier.process(size: rgbRep.size) { (i: Int) in
+         pixels[i] = asserter(rgbRep.pixels[i]).strength // Apply new pixel to old pixel
+      }
 //      }
 //      Swift.print("extract.process time :  \(time)")
       return .init(pixels: .init(pixels), width: rgbRep.size.width, height: rgbRep.size.height)
@@ -76,20 +76,3 @@ extension Extractor {
       return scheme.map { (channel: Pixel) in { (ishColor: Pixel) in channel.isSimilar(ishColor, halfThreshold: halfThreshold) } }
    }
 }
-///**
-// * - Note: the idea is to loop through rgbaRep once, but output was on different threads so didnt work that well, could try atomic, but prob will be same result
-// */
-//internal static func extract2(rgbaRep: RGBARep, scheme: ChannelScheme, parallel: Bool) -> GrayReps {
-//   let similarities: [PixelSimilarity] = Extractor.similarities(scheme: scheme)
-//   let outputs: GrayReps = (0..<similarities.count).map { _ in // Array.init(repeating: output, count: similarities.count) //      let output: GrayRep = .grayRep(capacity: rgbaRep.capacity, size: rgbaRep.size) // We create a blank GrayRep, as it's faster than copy probably
-//      .grayRep(capacity: rgbaRep.capacity, size: rgbaRep.size) // We create a blank GrayRep, as it's faster than copy probably
-//   }
-//   GrayRepModifier.process(size: rgbaRep.size) { (i: Int) in
-//      let pixel = rgbaRep.pixels[i] // rgbaPixel, the idea is to read from rgba, only once
-//      (0..<similarities.count).forEach { e in
-//         //            let similarity =  // create similarity asserters, 4 - 256 items depending on hccqr config
-//         outputs[e].pixels[i] = similarities[e](pixel).strength
-//      }
-//   }
-//   return outputs
-//}
