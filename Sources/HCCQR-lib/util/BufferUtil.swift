@@ -6,7 +6,7 @@ import CoreImage
  * - Note: also supports reading generated mock CVBuffere image
  * - Abstract: Converts image, to rgb and SambleBuffer to RGB
  * - Note: Ref context for macOS might need: https://stackoverflow.com/a/43893381/5389500
- * - Fixme: ⚠️️ rename to BufferHelper?
+ * - Fixme: ⚠️️ Consider renaming to BufferHelper?
  */
 public final class BufferUtil {}
 
@@ -39,7 +39,7 @@ extension BufferUtil {
     * - Fixme: ⚠️️ benchmark how fast this method is
     * - Fixme: ⚠️️ might want to wrap all this in autoreleasepool as well, or is tha tmore for just cgimage?
     * - Fixme: ⚠️️ could possibly see great speed increase if we align indecies, and do modulo to find width and y and x etc
-    * - Important: ⚠️️ doing concurrent on the loop has minimal effect, doing it on the call to this method has alot of effect
+    * - Important: ⚠️️ doing concurrent on the loop has minimal effect, doing concurrent on multiple of this call to this method has alot of effect
     * - Parameters:
     *   - buffer: the buffer containing the raw pixel data and size
     *   - crop: Makes processing the raw imagery faster since we don't have to process areas where the QR info is not etc. (provided we know where the QR rect is)

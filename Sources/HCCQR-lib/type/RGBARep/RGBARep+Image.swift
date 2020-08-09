@@ -14,7 +14,7 @@ extension RGBRep {
     *   - rgbaImage: rgbaRep to convert to image
     */
    internal func image(scale: CGFloat) throws -> Image {
-      let cgImg: CGImage = try self.cgImage()
+      let cgImg: CGImage = try cgImage()
       return ImageUtil.image(cgImage: cgImg, scale: scale) // Embed CGImage in UIImage (very fast, not worth speed testing, basically just adds metadata to cgimg)
    }
    /**

@@ -11,7 +11,7 @@ public final class Writer {}
 
 extension Writer {
    /**
-    * Data -> RGBAImage -> Image (Parrallel)
+    * Data -> Image (Parrallel)
     * 1. Data comes in with config and scale
     * 2. Converts data to RGBARep
     * 3. Converts RGBARep to Image
@@ -23,9 +23,16 @@ extension Writer {
     *   - parallel: for single capture, parallel is fast, for sequence, parallel is slower
     */
    public static func image(data: Data, config: HCCQRSetup, parallel: Bool) throws -> Image {
+      let cgImg: CGImage = try cgImage(data: data, config: config, parallel: parallel)
+      return ImageUtil.image(cgImage: cgImg, scale: CGFloat(config.scale.screen))
+   }
+   /**
+    * Data -> CGImage
+    */
+   public static func cgImage(data: Data, config: HCCQRSetup, parallel: Bool) throws -> CGImage {
       let rep: RGBRep = try rgbRep(data: data, config: config, parallel: parallel)
       defer { rep.deallocate() }
-      return try rep.image(scale: CGFloat(config.scale.screen))
+      return try rep.cgImage()
    }
 }
 /**
