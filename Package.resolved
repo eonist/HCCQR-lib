@@ -6,7 +6,7 @@
         "repositoryURL": "https://github.com/passbook/ParallelLoop.git",
         "state": {
           "branch": "master",
-          "revision": "3c58106ce0c1a28de812c7ec9501b4690963bd3b",
+          "revision": "9141dd4c582e9c3aa7f30de752b9a587ec12a5e3",
           "version": null
         }
       },
@@ -15,7 +15,7 @@
         "repositoryURL": "https://eonist:2fa35e4ff44eac34e98f01f2c83a16f00e650e56@github.com/light-stream/QR-lib.git",
         "state": {
           "branch": "master",
-          "revision": "ba61446dcee343778aaa9d916324394caeb6e3f4",
+          "revision": "91e9f0228a6859b4983ee13a9bf8cbf4b6dd0ffd",
           "version": null
         }
       },

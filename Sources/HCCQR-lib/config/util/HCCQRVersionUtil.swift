@@ -3,7 +3,7 @@ import QR_lib
 /**
  * - Fixme: ⚠️️ Rename to VersionUtil?
  * - Fixme: ⚠️️ Make a method where you can provide HCCQRSetup get version
- * - Fixme: ⚠️️ Not really used, so might be deprecated unless its needed by external libraries etc?
+ * - Fixme: ⚠️️ Not really used, so might be deprecated unless it's needed by external libraries etc?
  */
 public final class HCCQRVersionUtil {
    /**

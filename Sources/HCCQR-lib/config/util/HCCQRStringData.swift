@@ -13,7 +13,7 @@ public final class HCCQRStringData {
    public static func randomData(setup: HCCQRSetup) -> Data? {
       let qrConfig: QRConfig = .init(setup.qrVersion, .byte, setup.ecLevel)
       let ranStr: String = randomString(config: qrConfig, colorDepth: setup.output.palette.layerCount)
-      return ranStr.data(using: .utf8) // converts the string to data
+      return ranStr.data(using: .utf8) // Converts the string to data
    }
 }
 /**
