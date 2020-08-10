@@ -13,8 +13,8 @@ extension Writer {
    /**
     * Data -> Image (Parrallel)
     * 1. Data comes in with config and scale
-    * 2. Converts data to RGBARep
-    * 3. Converts RGBARep to Image
+    * 2. Converts data to RGBRep
+    * 3. Converts RGBRep to Image
     * - Fixme: ⚠️️ Could setting CIImage or CGIMage directly to a Image in the UI be faster?
     * - Fixme: ⚠️️ create custom error cases
     * - Parameters:
@@ -40,11 +40,11 @@ extension Writer {
  */
 extension Writer {
    /**
-    * Data -> [CIImage's] -> RGBARep
+    * Data -> [CIImage's] -> RGBRep
     * 1. Data comes in with config and scale
     * 2. Splits the data into two
     * 3. Creates multiple CIImage's of these multiple data items
-    * - Abstract: Create two QR images from the data, and combine them into RGBAImage, then convert that to CIImage
+    * - Description: Create two QR images from the data, and combine them into RGBImage, then convert that to CIImage
     * - Important: ⚠️️ Remember to deInit the result once it's consumed
     * - Important: ⚠️️ internal because: SingleWriteReadHCCQRTest and BulkHCCQRTest uses it for tests
     * - Parameters:

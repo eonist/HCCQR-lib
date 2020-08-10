@@ -11,7 +11,7 @@ extension MonoRep {
     * 2. Meta data is extracted from the CIImage
     * 3. Pixels are extracted from the CGContext
     * 4. Pixels are added to MonoRep and returned
-    * - Abstract: Takes a CIImage and converts it to a GrayScale pixel representation
+    * - Description: Takes a CIImage and converts it to a GrayScale pixel representation
     * - Note: Seems to be slightly faster than converting CIImage to CGImage etc
     * - Note: Ref https://www.geekspiff.com/unlinkedCrap/ciImageToBitmap.html
     * - Note: Use ciImg.debugDescription to find more info about cgImage
@@ -26,7 +26,7 @@ extension MonoRep {
       let colorSpace: CGColorSpace = CGColorSpaceCreateDeviceRGB()
       let capacity: Int = crop.size.capacity
       let bytesPerPixel = MemoryLayout<RGBAPixel>.size
-      let bytesPerRow: Int = crop.width * bytesPerPixel// We multiply per 4 because of the 4 channels, RGBA
+      let bytesPerRow: Int = crop.width * bytesPerPixel// We multiply per 4 because of the 4 channels, RGB
       let imageData: UnsafeMutablePointer<RGBAPixel> = .allocate(capacity: capacity)
       // - Fixme: ⚠️️ Do we have to create the cgContext? can CIContext be created directly from pixeldata?
       let bitmapInfo = BitmapInfo.bitmapInfo

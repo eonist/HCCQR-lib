@@ -3,7 +3,7 @@ import CoreImage
 import ParallelLoop
 import TimeMeasure
 /**
- * RGBA-rep 👉 extract R,G,B 👉 combine colors 👉 QRImage's
+ * RGB-rep -> (extract R,G,B + combine colors) -> QRImage's
  * - Note: you can derive the data by analysing each QRImage and combining their data to one data
  */
 public final class Splitter {}
@@ -16,10 +16,10 @@ extension Splitter {
     * 3. Converts to combinations of graychannels CIImage
     * - Note: when added to an UIImage, you need to set scale to 2.0 and orientation to .up
     * - Note: Splits an image into r,g,b channels
-    * - Note: the conversion to rgbaImg here is CPU intensive, but in the camera session we get RGBA data, so this is just for debugging etc
+    * - Note: the conversion to rgbImg here is CPU intensive, but in the camera session we get RGB data, so this is just for debugging etc
     * - Note: extracting is cpu consuming, creating combos is not, combining is a bit cpu consuming
     * - Parameters:
-    *   - rgbaRep: A HCCQR representation
+    *   - rgbRep: A HCCQR representation
     *   - scheme: The colors used in the HCCQR (4 to 256 colors)
     */
    internal static func split(rgbRep: RGBRep, scheme: ChannelScheme, parallel: Bool) -> [CIImage] {
@@ -39,7 +39,8 @@ extension Splitter {
       grayReps.deallocate() // no longer in use, so we deallocate them
       _ = combineTime
       Log.log("combineTime:  \(combineTime)")
-      return combinations.compactMap { $0.inverted }
+      return combinations.compactMap { $0.inverted } // for debugging
+//      return combinations
    }
 }
 

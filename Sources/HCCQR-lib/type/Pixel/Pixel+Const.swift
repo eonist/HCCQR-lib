@@ -5,7 +5,7 @@ extension Pixel {
    /**
     * Used with threshold methods in assert extension
     */
-   static let defaultLimit: (UInt8, UInt8) = (.min, .max) // 0, 255
+//   static let defaultLimit: (UInt8, UInt8) = (.min, .max) // 0, 255
 }
 /**
  * Extra
@@ -13,7 +13,8 @@ extension Pixel {
 extension Pixel {
    /**
     * - Note: Percentage of color (0.2 means can be 20% of some color)
-    * - Note: used by the similarities method (not called frequently)
+    * - Note: Used by the similarities method (not called frequently)
+    * - Note: We use finer threshold if we use more colors (0.5 for 4-color, 0.125 for 8-color)
     * ## Examples:
     * getHalfThreshold(4) // 63
     * - Parameter numOfColors: number of colors in CType

@@ -10,8 +10,8 @@ final class BulkPhotoTesting {}
 /**
  * Initiate test
  * - 1. Reads many images from disk
- * - 2. Converts these into RGBAImage's
- * - 3. Converts the RGBAImages into data's
+ * - 2. Converts these into RGBImage's
+ * - 3. Converts the RGBImages into data's
  * - 4. Asserts that all images was read successfully
  * - Fixme: ⚠️️  add scheme as const
  */
@@ -25,16 +25,16 @@ extension BulkPhotoTesting {
    static func test() -> Bool {
       // Swift.print("writeMany()")
       let path: String = ResourceHelper.projectRootURL(projectRef: #file, fileName: "temp.bundle/old/darkmode/HCCQR2.png").path // HCCQR2.png, HCCQR12.png,HCCQR13.jpg
-      let (rgbaReps, time): ([RGBRep], Double) = TimeMeasure.timeElapsed {
+      let (reps, time): ([RGBRep], Double) = TimeMeasure.timeElapsed {
          Array(0..<count).concurrentCompactMap { _ in
             guard let image = Image(contentsOfFile: path) else { Swift.print("Err creating img at path: \(path)"); return nil }
             // Swift.print("image.size:  \(image.size)")
-            guard let rgbaImage: RGBRep = try? BufferUtil.rgbRep(image: image) else { Swift.print("err getting rgbImage"); return nil }
-            return rgbaImage
+            guard let rep: RGBRep = try? BufferUtil.rgbRep(image: image) else { Swift.print("err getting rgbImage"); return nil }
+            return rep
          }
       }
-      Swift.print("BufferUtil.rgbaRep time:  \(time)")
-      let didSuccessfullyReadMany: Bool = BulkTest.readMany(rgbaReps: rgbaReps, scheme: .scheme(scheme: CType.c4.cs, darkMode: true), randomData: [])
+      Swift.print("BufferUtil.rgbRep time:  \(time)")
+      let didSuccessfullyReadMany: Bool = BulkTest.readMany(reps: reps, scheme: .scheme(scheme: CType.c4.cs, darkMode: true), randomData: [])
       Swift.print("Bulk photo test didSuccessfullyReadMany: \(didSuccessfullyReadMany ? "✅" : "🚫")")
       return didSuccessfullyReadMany
    }

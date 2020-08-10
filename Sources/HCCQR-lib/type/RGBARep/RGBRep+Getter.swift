@@ -38,7 +38,7 @@ extension RGBRep {
       return .init(p)
    }
    /**
-    * There is also: let data: Data = .init(buffer: rgbaRep.pixels)
+    * There is also: let data: Data = .init(buffer: rgbRep.pixels)
     */
 //   var data: Data {
 //      let arr = flatPixelArr

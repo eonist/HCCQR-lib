@@ -5,7 +5,7 @@ final class BinarySequencer {
    typealias Col = [Row]
    /**
     * Creates unique bool sequence at arbitrary length
-    * - Abstract: Create all possible combinations of true and false on at a defined length
+    * - Description: Create all possible combinations of true and false on at a defined length
     * ## Examples
     * let seq = sequence(size: 2) // [[0,1], [1,0], [0,0], [1,1]]
     * sequence(size: 8).count // 256

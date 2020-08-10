@@ -3,14 +3,14 @@ import CoreImage
 
 extension RGBRep {
    /**
-    * Converts an Image to an rgbaImage
-    * - Abstract: RGBAImage holds the individual pixels of an image in an array (also stores the size of an image)
+    * Converts an Image to an rgbImage
+    * - Description: RGBImage holds the individual pixels of an image in an array (also stores the size of an image)
     * - Fixme: ⚠️️ instead of trying to convert to cgImage, you can actually use ciImage or cgImage contexts, an image will have either, and both will render to CGCOntext, no need to convert to a new cgImage or CIImage etc, see rgbaRepresentation for more info
     * - Fixme: ⚠️️ Make this a init?
     * - Fixme: ⚠️️ Move to test scope since it's only for testing
     * - Fixme: ⚠️️ we could try the ByteImage ciImage or cgImage technique
     * - Note: this init is fast. trying other ways to get pixel could have some usefulness, but shouldn't be prioritized 0.016330782sec for v30 image
-    * - Note: the CVImageBufferUtil.rgbaRep has similar functionality (Biffer -< RGBARep)
+    * - Note: the CVImageBufferUtil.rgbRep has similar functionality (Biffer -< RGBARep)
     * - Important: ⚠️️ Used only for testing
     * - Parameter image: An UIImage or NSImage
     */
@@ -24,8 +24,8 @@ extension RGBRep {
  */
 extension RGBRep {
    /**
-    * CGImage -> RGBAImage
-    * - Note: Used by Image -> RGBARep
+    * CGImage -> RGBImage
+    * - Note: Used by Image -> RGBRep
     *  - Fixme: ⚠️️ try withMemoryRebound instead of the while loop
     */
    internal static func imageRep(cgImage: CGImage) throws -> RGBRep {
@@ -36,7 +36,7 @@ extension RGBRep {
       let imageData: UnsafeMutablePointer<RGBAPixel> = .allocate(capacity: capacity)
       let colorSpace: CGColorSpace = CGColorSpaceCreateDeviceRGB()
       let bitMapInfo = BitmapInfo.bitmapInfo
-      guard let cgContext = CGContext(data: imageData, width: size.width, height: size.height, bitsPerComponent: 8, bytesPerRow: bytesPerRow, space: colorSpace, bitmapInfo: bitMapInfo) else { Swift.print("context"); throw NSError(domain: "rgbaImage - Unable to create rgbaImage", code: 0) }
+      guard let cgContext = CGContext(data: imageData, width: size.width, height: size.height, bitsPerComponent: 8, bytesPerRow: bytesPerRow, space: colorSpace, bitmapInfo: bitMapInfo) else { Swift.print("context"); throw NSError(domain: "rgbImage - Unable to create rgbImage", code: 0) }
       cgContext.draw(cgImage, in: .init(origin: .zero, size: .init(width: cgImage.width, height: cgImage.height))) // draws the cgImage into the context
       let pixis: UnsafeMutableBufferPointer<Pixel> =  .allocate(capacity: capacity)
       var i: Int = 0
@@ -46,5 +46,13 @@ extension RGBRep {
       }
       imageData.deallocate() // We have no more use for imageData
       return RGBRep(pixels: .init(pixis), width: size.width, height: size.height)
+   }
+}
+/**
+ * If initiatedCount and deInitiatedCount are equal, then there is no mem leaks
+ */
+extension RGBRep {
+   func deallocate() {
+      pixels.deallocate()
    }
 }

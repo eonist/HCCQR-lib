@@ -12,7 +12,7 @@ public final class Colorizer {}
 extension Colorizer {
    /**
     * Colorize layers to rgbaRep (QRImages -> RGBAImage)
-    * - Abstract: Part of the HCCQR-creation process
+    * - Description: Part of the HCCQR-creation process
     * - Note: We get CIImages because thats what QR produces
     * - Note: Used in the process of converting Data to HCCQR (the QRImages are pure black and white)
     * - Note: while benchmarking this method, it takes about half the time of the entire writing process, where the other half is consumed by the QR creation process
@@ -32,7 +32,7 @@ extension Colorizer {
     * 1. Collect size and capacity
     * 2. Fuse pixels at different layers into one pixel
     * 3. Scale the colorized array, since the colorized array is always just 1px block in size
-    * - Abstract: Converts B&W RGBAImages into one unified color RGBAImage (on the basis of a color-pallete rule-set)
+    * - Description: Converts B&W RGBAImages into one unified color RGBAImage (on the basis of a color-pallete rule-set)
     * - Note: creates an HCCQR from two Qr images
     * - Note: We use MonotoneImage that has single Bit data, bool, it will be faster
     * - Fixme: ⚠️️⚠️️ Could be faster to just mutate the pixels directly in an RGBAImage instead of creating an pixel array like it is now?
@@ -67,7 +67,7 @@ extension Colorizer {
    }
    /**
     * Multiple B&W Pixel -> Color-Pixel
-    * - Abstract: Converts a layers of b&w pixels into one color pixel (on the basis of a color-pallete rule set)
+    * - Description: Converts a layers of b&w pixels into one color pixel (on the basis of a color-pallete rule set)
     * - Note: Since we get pure Black and White colors from apples QR-Creator, we can match against pure constant colors
     * 1. Get pixel-layers and color-pallete
     * 2. Loop through color-pallete colors to find the matching color to the matching pixel combination

@@ -14,10 +14,10 @@ final class BufferTest {
       return .init(qr: qrSetup, output: output)
    }()
    /**
-    * HCCQR -> RGBAImage
+    * HCCQR -> RGBRep
     * 1. Creates random HCCQR-Data
     * 2. Creates HCCQR-Image based on HCCQR-Data
-    * 3. Convert HCCQR-Image to RGBAImage data
+    * 3. Convert HCCQR-Image to RGBRep data
     * 4. Read data from RGBAImage
     * 5. Verify that data is the same as original data
     *  - Note: We just compare the data payload here, since FileHasher is not added as a dep, it could be added, since this is just test code

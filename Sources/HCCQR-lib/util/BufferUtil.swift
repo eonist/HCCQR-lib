@@ -4,7 +4,7 @@ import CoreImage
 /**
  * Reads camera input
  * - Note: also supports reading generated mock CVBuffere image
- * - Abstract: Converts image, to rgb and SambleBuffer to RGB
+ * - Description: Converts image, to rgb and SambleBuffer to RGB
  * - Note: Ref context for macOS might need: https://stackoverflow.com/a/43893381/5389500
  * - Fixme: ⚠️️ Consider renaming to BufferHelper?
  */
@@ -12,11 +12,11 @@ public final class BufferUtil {}
 
 extension BufferUtil {
    /**
-    * Image -> RGBAImage (Not working)
-    * - Note: this method works when testing img -> RGBA img -> img in viewcontroll, to see if everything looks gd etc, or do img.hash = img.hash etc
-    * - Note: this method is for testing only because we derive RGBAImage directly from CVImageBuffer
-    * - Note: RGBARep.rgbaRep(image:) has similar functionality
-    * - Parameter image: Convert image to RGBAImage
+    * Image -> RGBImage (⚠️️ Not working ⚠️️?)
+    * - Note: this method works when testing img -> RGB img -> img in viewcontroll, to see if everything looks gd etc, or do img.hash = img.hash etc
+    * - Note: this method is for testing only because we derive RGBImage directly from CVImageBuffer
+    * - Note: RGBRep.rgbRep(image:) has similar functionality
+    * - Parameter image: Convert image to RGBImage
     */
    public static func rgbRep(image: Image) throws -> RGBRep {
       let imgBuffer: CVImageBuffer = try imageBuffer(image: image)
@@ -27,7 +27,7 @@ extension BufferUtil {
     * 1. CVImageBuffer comes in with areaOfIntrest crop
     * 2. Raw data and size is extracted from imageBuffer
     * 3. Raw data is converted into Array of Pixel's
-    * 4. Pixel's are added to RGBAImage an is then returned
+    * 4. Pixel's are added to RGBImage an is then returned
     * - Note: We dont dealloc the byteBuffer etc because its backed by the cvimagebuff
     * - Note: CVPixelBuffer is a typalias for CVImageBuffer
     * - Note: CVPixelBufferRelease' is unavailable: Core Foundation objects are automatically memory managed
@@ -35,10 +35,10 @@ extension BufferUtil {
     * - Fixme: ⚠️️ Using a pointer to iterate might be faster, see stackoverflow
     * - Fixme: ⚠️️ Add debug tool with: CVPixelBufferGetDataSize(imageBuffer), \(CVPixelBufferGetDataSize(imageBuffer)) type:  \(CVPixelBufferGetPixelFormatType(imageBuffer)), let info = RGBImage.bitmapInfo(buffer: imageBuffer)// if type != kCVPixelFormatType_DepthFloat32 { print("Wrong type \(type)"); throw NSError(domain: "Wrong type", code: 0) }, let type: OSType = CVPixelBufferGetPixelFormatType(imageBuffer) // Swift.print("type:  \(type)")
     * - Fixme: ⚠️️ These methods might be faster: https://github.com/frogcjn/ImageIOPlus/blob/1d401725a3f7cd87b000a085eaca65e2cd0c0446/Sources/CoreVideoPlus/CVPixelBuffer/CVPixelBuffer%2B.swift
-    * - Fixme: ⚠️️ consider accelerate framework instead, see: https://developer.apple.com/documentation/accelerate/1498254-vimageconverter_createforcvtocgi
-    * - Fixme: ⚠️️ benchmark how fast this method is
-    * - Fixme: ⚠️️ might want to wrap all this in autoreleasepool as well, or is tha tmore for just cgimage?
-    * - Fixme: ⚠️️ could possibly see great speed increase if we align indecies, and do modulo to find width and y and x etc
+    * - Fixme: ⚠️️ Consider accelerate framework instead, see: https://developer.apple.com/documentation/accelerate/1498254-vimageconverter_createforcvtocgi
+    * - Fixme: ⚠️️ Benchmark how fast this method is
+    * - Fixme: ⚠️️ Might want to wrap all this in autoreleasepool as well, or is tha tmore for just cgimage?
+    * - Fixme: ⚠️️ Could possibly see great speed increase if we align indecies, and do modulo to find width and y and x etc
     * - Important: ⚠️️ doing concurrent on the loop has minimal effect, doing concurrent on multiple of this call to this method has alot of effect
     * - Parameters:
     *   - buffer: the buffer containing the raw pixel data and size
@@ -52,7 +52,7 @@ extension BufferUtil {
       // CVPixelBufferLockBaseAddress(imageBuffer, CVPixelBufferLockFlags(rawValue: 0))
       let capacity: Int = bufferRect.size.capacity
       let byteBuffer: UnsafeBufferPointer<UInt8> = .init(start: baseAddress.bindMemory(to: UInt8.self, capacity: capacity), count: capacity)// baseAddress.assumingMemoryBound(to: UInt8.self)// .init()
-      let pixels: UnsafeMutableBufferPointer<Pixel> = .allocate(capacity: capacity) // we dealoc this when we have finished working with rgbaRep
+      let pixels: UnsafeMutableBufferPointer<Pixel> = .allocate(capacity: capacity) // we dealoc this when we have finished working with rgbRep
       let bytesPerPixel: Int = MemoryLayout<RGBAPixel>.size
       (bufferRect.y..<bufferRect.height).forEach { y in
          let yVal: Int = y * bytesPerRow // we calc these outside the x loop, to gain performance
@@ -113,9 +113,10 @@ extension BufferUtil {
       CVPixelBufferLockBaseAddress(buffer, CVPixelBufferLockFlags(rawValue: 0))
       let data = CVPixelBufferGetBaseAddress(buffer)
       let rgbColorSpace = CGColorSpaceCreateDeviceRGB()
+      // - Fixme: ⚠️️ check what cgImage.bitmapInfo is in the cgImage and use the correct one
       let bitmapInfo = CGBitmapInfo(rawValue: CGBitmapInfo.byteOrder32Little.rawValue | CGImageAlphaInfo.premultipliedFirst.rawValue)
       guard let context = CGContext(data: data, width: Int(frameSize.width), height: Int(frameSize.height), bitsPerComponent: 8, bytesPerRow: CVPixelBufferGetBytesPerRow(buffer), space: rgbColorSpace, bitmapInfo: bitmapInfo.rawValue) else { throw BufferError.unableToGetContext }
-      let rect: CGRect = .init(x: 0, y: 0, width: cgImage.width, height: cgImage.height)
+      let rect: CGRect = .init(origin: .zero, size: .init(width: cgImage.width, height: cgImage.height))
       context.draw(cgImage, in: rect)
       // - Fixme: ⚠️️ Should we unlock buffer here, since we return it etc ?, other repos lock here and still forward buffer
       CVPixelBufferUnlockBaseAddress(buffer, CVPixelBufferLockFlags(rawValue: 0))
@@ -128,7 +129,7 @@ extension BufferUtil {
 extension BufferUtil {
    /**
     * CVImageBuffer -> UIImage
-    * - Important: ⚠️️ This methd exists for testing/debugging purpouses, the real code derives the buffer directly
+    * - Important: ⚠️️ This methd exists for testing / debugging purpouses, the real code derives the buffer directly
     * - Parameters:
     *   - imageBuffer: Convert buffer to image
     *   - scale: the amount to scale the image by (screenScale)
@@ -138,7 +139,6 @@ extension BufferUtil {
       return ImageUtil.image(ciImage: ciImage, scale: CGFloat(scale))
    }
 }
-
 /**
  * Error
  */

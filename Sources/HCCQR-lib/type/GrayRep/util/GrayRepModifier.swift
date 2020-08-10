@@ -11,7 +11,6 @@ extension GrayRepModifier {
     * - Note: Used in the Combine-process to convert HCCQR to Data
     * - Fixme: ⚠️️ find a better name for this method? apply?
     * - Parameters:
-    *   - input: The RGBAImage to extract data from (color photo etc)
     *   - output: 
     *   - functor: A function which manipulates each pixel
     */

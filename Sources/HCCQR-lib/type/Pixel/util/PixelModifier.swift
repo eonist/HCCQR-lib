@@ -32,6 +32,6 @@ final class PixelModifier {
             resultPixels[resIndex] = pixels[pixIndex]
          }
       }
-      return RGBRep(pixels: .init(resultPixels), width: scaledSize.width, height: scaledSize.height)
+      return .init(pixels: .init(resultPixels), width: scaledSize.width, height: scaledSize.height)
    }
 }

@@ -5,7 +5,7 @@ import TimeMeasure
  * Combiner (Takes many grayscale channels and converts to one new b&w QRImage)
  * - Description: Creates a grayscale image by combining multiple grayscale images (4 color HCCQR: 2 layers to produce by combining 3 color-channels)
  * - Note: the two grayscale images is the luminosity of two colors, orange, purple etc
- * - Abstract: Used in the Reading of HCCQR
+ * - Note: Used in the Reading of HCCQR
  * - Note: the output can then be read by a QRReader
  * - Note: pair b&g = qr1, pair r$b = qr2
  * - Note: blue means black in both layers
@@ -16,7 +16,7 @@ import TimeMeasure
 final class Combiner {
    /**
     * Combine color-channels into 1 QR-image (Combines multiple grayscale representations into one QR-Image)
-    * - Abstract: Here we combine the channels into QR-Images
+    * - Description: Here we combine the channels into QR-Images
     * 1. GrayScaleRep-layers comes in
     * 2. GrayscaleRep-layers are composited together
     * 3. Combine the different ColorChannels in the correct ways to unlock the B&W-QR-Layers
@@ -44,7 +44,7 @@ final class Combiner {
 extension Combiner {
    /**
     * Photo 👉 Split into Channels -> Combine 2 channels into 1 QR-image (Combines many grayscale reps into one)
-    * - Abstract: we overlay two b&w to produce one b&w image (to be used as a QR-Image to be read from)
+    * - Description: we overlay two b&w to produce one b&w image (to be used as a QR-Image to be read from)
     * 1. GrayScale-images comes in
     * 2. First image is used as base
     * 3. Then subsequent images are applied on top of base
@@ -58,7 +58,7 @@ extension Combiner {
     * - Fixme: ⚠️️ Should we get size from calling method?
     * - Fixme: ⚠️️⚠️️⚠️️ when a posetive is found stop, iterating???
     * - Fixme: ⚠️️ The creation of the black representation, can probably be done once and then copied in subsequent calls, it was tried but c-pointer copying and dealoc is compolicated
-    * - Parameter grayReps: An array of GrayscaleRep to be composited together into 1 RGBARep
+    * - Parameter grayReps: An array of GrayRep's to be composited together into 1 RGBRep
     */
    private static func combine(grayReps: GrayReps) -> GrayRep {
       let size: Size = grayReps[0].size // get size from first layer

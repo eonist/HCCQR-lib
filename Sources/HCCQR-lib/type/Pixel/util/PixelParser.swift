@@ -8,17 +8,19 @@ final class PixelParser {
    /**
     * Get strength of a color against another
     * - Note: 100% percentage = 255
-    * - Abstract: we calc how similar a color is to another in percentage 99% a color is 99% cyan, 88% magenta, 22% green etc,
+    * - Description: we calc how similar a color is to another in percentage 99% a color is 99% cyan, 88% magenta, 22% green etc,
     * - Discussion: the problem with this method is that one channel can be totally off and other can be exact same and it still return true, it should fail if one channel is totally off, but since we do the bool assert in conjunction with this method, then it works
     * - Discussion: so the red channel is always dominating, green is weakest etc. Look into this phenomenome, some grayscale conversion algos account for this etc
-    * - Fixme: ⚠️️ figure out how to divide a value that is bigger than UINT8.max etc and then divide it etc
+    * - Fixme: ⚠️️ Figure out how to divide a value that is bigger than UINT8.max etc and then divide it etc
     * - Fixme: ⚠️️ Maybe optimize this methods somehow? research? Converting to Int is not optimal
     * - Fixme: ⚠️️ It might be the case that if we should also limit the combined values of difference. say if R,B combined are more than 50% off, then its not a match. etc. It might be valuable to make advance tests, of how to match colors
-    * - Fixme: ⚠️️ rename to commonality, correlation, parity? 
-    * - Important: ⚠️️⚠️️⚠️️ has to be used in conjunction with the isColorish method, since this only returns the intensity of the output pixel, and is only valid if the isColorish method is within thresholds etc
+    * - Fixme: ⚠️️ Rename to commonality, correlation, parity?
+    * - Fixme: ⚠️️ performance could be increased if we did the dividing in bulk, on gpu etc
+    * - Fixme: ⚠️️ could be faster to do minMax instead of abs?
+    * - Important: ⚠️️⚠️️⚠️️ has to be used in conjunction with the isColorish method, since this only returns the intensity of the output pixel, and should only valid if the isColorish method is within thresholds etc
     * ## Examples:
-    * let red: RGBAColor = (r: 255, g: 0, b: 0, a: 255)
-    * let redish: RGBAColor = (r: 215, g: 20, b: 10, a: 255)
+    * let red: RGBColor = (r: 255, g: 0, b: 0)
+    * let redish: RGBColor = (r: 215, g: 20, b: 10)
     * let test1: UInt8 = similarity(a: redish, b: red) // 231
     * - Parameters:
     *   - a: static color (cyan, magenta, red etc)
@@ -36,7 +38,7 @@ final class PixelParser {
    }
 }
 /**
- * Util for PixelData
+ * Util for Pixel
  */
 extension PixelParser {
    private typealias RGBAColor = (CGFloat, CGFloat, CGFloat, CGFloat)

@@ -9,14 +9,14 @@ public final class Extractor {}
 
 extension Extractor {
    /**
-    * Split an RGBARep 👉 many GrayRep's consisting of singular color channels
-    * 1. RGBARep comes in with a ChannelMap rule-set ()
+    * Split an RGBRep 👉 many GrayRep's consisting of singular color channels
+    * 1. RGBRep comes in with a ChannelMap rule-set ()
     * 2. Create Result-array of empty GrayRep
     * 3. Go through each item in the ChannelPallet array and try to find the the colors defined in the channelMap
     * 4. pass the grayScale-channel-representation of each color to the completion block
     * - Important: ⚠️️ we can only to concurrentMap as long as each output is on its own thread
     * - Parameters:
-    *   - rgbaRep: target to derive channels from (GrayScaleRepresentations representing the channels R,G,B)
+    *   - rgbRep: target to derive channels from (GrayScaleRepresentations representing the channels R,G,B)
     *   - scheme: rule-set for the splitting process
     * - Returns: the luminocity of each Color as a Grayscale representation
     * - Note: grayscale is better for QR to read than monotone (possibly)
@@ -44,12 +44,12 @@ extension Extractor {
     */
    internal typealias PixelSimilarity = (_ pixel: Pixel) -> Pixel.Similarity
    /**
-    * RGBARep channel 👉 GrayscaleRep
+    * RGBRep channel 👉 GrayscaleRep
     * 1. Creates a blank grayscale image of a specific size
     * 2. Asserts if the pixel is sort of a color or not
     * - Parameters:
-    *   - rgbaImg: The RGBAImage to extract data from
-    *   - assert: takes Pixeldata, returns Bool
+    *   - rgbRep: The RGBImage to extract data from
+    *   - assert: takes Pixel, returns Bool
     * - Note to debug, you can trace the asserter(pixel).strength
     * - Fixme: ⚠️️ Somehow reuse the output, it might speed things up
     * - Fixme: ⚠️️ make private after you remove deprecated code etc
@@ -72,8 +72,8 @@ extension Extractor {
     * - Parameter scheme: rule-set for the splitting process
     */
    internal static func similarities(scheme: ChannelScheme) -> [PixelSimilarity] {
-      let halfThreshold: UInt8 = Pixel.getHalfThreshold(scheme.count) // we must use finer threshold if we use more colors (0.5 for 4-color, 0.125 for 8-color)
+      let halfThreshold: UInt8 = Pixel.getHalfThreshold(scheme.count)
 //      Swift.print("halfThreshold:  \(halfThreshold)")
-      return scheme.map { (channel: Pixel) in { (ishColor: Pixel) in channel.isSimilar(ishColor, halfThreshold: halfThreshold) } }
+      return scheme.map { (channel: Pixel) in { (ishColor: Pixel) in channel.similarity(ishColor, halfThreshold: halfThreshold) } }
    }
 }

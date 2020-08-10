@@ -3,7 +3,7 @@ import TimeMeasure
 
 final class ArrayBenchmark {
    /**
-    * Test array speed
+    * Test array speed (not runned by unit-tests)
     */
    static func test() {
       let capacity: Int = 1_000_000_000

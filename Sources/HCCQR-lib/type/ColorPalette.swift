@@ -10,7 +10,7 @@ import QuartzCore
 public typealias ColorPalette = [ColorMap]
 /**
  * Stores the BoolRow that correspond to a color
- * - Abstract: Stores the bool-combination-index for the color
+ * - Description: Stores the bool-combination-index for the color
  * - Fixme: ⚠️️ Consider making this a struct
  * - Parameters:
  *   - idx: The array represents the layers of QRImages (true equals black, false equals white)
@@ -30,7 +30,7 @@ extension ColorPalette {
    /**
     * Combines (black&white) with color
     * - Fixme: ⚠️️ potentially move to ColorPallete extension?
-    * - Abstract: uses zip or similar to weave in the data into the color map
+    * - Description: uses zip or similar to weave in the data into the color map
     * - Note: Having the .zip inside an array extension doesn't work, so we put it in an external util class and method
     * - Parameters:
     *   - boolCol: The boolean pattern that unlocks each color (b&w)

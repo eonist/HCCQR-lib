@@ -18,8 +18,8 @@ extension Reader {
    /**
     * CVImageBuffer -> Data
     * - Note: Adds support for CVImageBuffer (For processing data from camera)
-    * 1. Create RGBA representation of the CVImageBuffer
-    * 2. Split the RGBA into multiple QR-Images
+    * 1. Create RGB representation of the CVImageBuffer
+    * 2. Split the RGB into multiple QR-Images
     * 3. Extract the data from the QR-Images
     * 4. Combine the multiple Data's into one Data
     * 5. Return the data and the meta-data
@@ -51,7 +51,7 @@ extension Reader {
       let (rgbRep, time): (RGBRep, Double) = try TimeMeasure.timeElapsed { // adds timeMeasure on this call, see if it taints the read benchamarking, if it does, use Buffer as testbed instead
          try RGBRep.imageRep(image: image)
       }
-      Log.log("Image to rgbaRep time:  \(time)")
+      Log.log("Image to rgbRep time:  \(time)")
       return try data(rgbRep: rgbRep, scheme: scheme, parallel: parallel)
    }
    /**
@@ -67,11 +67,11 @@ extension Reader {
  */
 extension Reader {
    /**
-    * Reads rgbaRep, outputs Data
+    * Reads rgbRep, outputs Data
     * - Fixme: ⚠️️⚠️️⚠️️ Putting many calls to this method in a concurrent loop is very effective, possibly disable concurrancy within this call might speed up things even more? like a toggle
     * - Fixme: ⚠️️ When the first QRImage Quad is found, the subsequent QR-Rects will be in the same quadrant, clip the subsequent images, maybe if you do the parrallel computing in the sequence / streaming lib
     * - Fixme: ⚠️️ make proper error type
-    * - Abstract: Since we get pixel data from the camera, this will be faster than converting to image first
+    * - Description: Since we get pixel data from the camera, this will be faster than converting to image first
     * - Note: returning qrimage is useful, it is used as a way to debug that the HCCQR ws split correctly
     * - Note: Isn't private because Tests use it
     * - Parameters:
@@ -81,7 +81,7 @@ extension Reader {
     */
    /*private*/ internal static func data(rgbRep: RGBRep, scheme: ChannelScheme, parallel: Bool) throws -> QRReader.DataAndQuad {
       let qrLayers: [CIImage] = Splitter.split(rgbRep: rgbRep, scheme: scheme, parallel: parallel)
-      rgbRep.deallocate() // we have no more use for the rgbaRep
+      rgbRep.deallocate() // we have no more use for the rgbRep
       let dataAndQuads: [QRReader.DataAndQuad] = qrLayers.concurrentCompactMap(parallel: parallel) { // concurrentCompactMap
          try? QRReader.dataAndQuad(ciImage: $0)
       }

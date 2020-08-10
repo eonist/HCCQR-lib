@@ -24,8 +24,8 @@ extension ColorPalleteAsserter {
     * 1. Look for color that doesnt match
     * 2. if a color doesn't match drop out of searching further
     * 3. if all colors checkout, return true
-    * - Abstract: ensure that img only has valid colors, aka no bluring
-    * - Important: ⚠️️ This method is used for testing and debugging mostly
+    * - Description: ensure that img only has valid colors, aka no bluring
+    * - Important: ⚠️️⚠️️⚠️️ This method is used for testing and debugging
     * ## Example:
     * hasOnlyColorPallete(these: [.red, .green, .blue, .white])
     * - Note: this method is just for debugging, so no need to optimize it too much

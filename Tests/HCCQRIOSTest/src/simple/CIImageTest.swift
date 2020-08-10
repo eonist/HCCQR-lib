@@ -4,7 +4,7 @@ import UIKit
 
 final class CIImageTest {
    /**
-    * UIImage -> RGBARep -> CIImage
+    * UIImage -> RGBRep -> CIImage
     * - Fixme: ⚠️️ Move into own class
     */
    static func testCIImage() -> Bool {

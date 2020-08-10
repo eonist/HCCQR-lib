@@ -50,7 +50,7 @@ extension SingleTest {
       return isValid
    }
    private static func write(data: Data) -> Image? {
-      // - Fixme: ⚠️️ get data from rgba?
+      // - Fixme: ⚠️️ get data from rgb?
       let (image, time): (Image?, Double) = TimeMeasure.timeElapsed {
          try? Writer.image(data: data, config: singleSetup, parallel: true)
       }

@@ -1,8 +1,7 @@
 import Foundation
 /**
- * RGBARep is a struct that stores color pixels
+ * RGBRep is a struct that stores color pixels
  * - Note: A grid of color pixels
- * - Fixme: ⚠️️ rename RGBARep to RGBRep
  */
 public struct RGBRep {
    let pixels: UnsafeBufferPointer<Pixel>

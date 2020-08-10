@@ -3,7 +3,7 @@ import UIKit
 //@testable import HCCQR_lib
 /**
  * Creates a (red,green,blue) image (row)
- * - Note: used to debug extracting RGBA channels
+ * - Note: used to debug extracting RGB channels
  * - Fixme: ⚠️️ This needs something to test
  * ## Examples:
  * let splitView = SplitTestView(frame: .init(origin: .zero, size: .init(width: 300, height: 100)))

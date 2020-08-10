@@ -9,8 +9,8 @@ extension ScaleTesting {
    /**
     * Scales a QR image
     * 1. Creates a QR-image
-    * 2. Adds the QR to a RGBAImage
-    * 3. Scales the RGBAImage
+    * 2. Adds the QR to a RGBImage
+    * 3. Scales the RGBImage
     * 4. Asserts that the QR-Image is intact
     * - Fixme: ⚠️️ split this up a bit maybe? Yes, make many methods and use try try try try in the main test method
     * - Fixme: ⚠️️  add ImageView to this repo and add the two lines bellow

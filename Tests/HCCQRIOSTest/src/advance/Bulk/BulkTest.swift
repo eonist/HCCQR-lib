@@ -6,7 +6,7 @@ import TimeMeasure
 @testable import HCCQR_lib
 /**
  * Bulk tests
- * - Abstract: Read and write multiple HCCQR images
+ * - Description: Read and write multiple HCCQR images
  * 1. Writes many HCCQR images
  * 2. Reads many HCCQR images
  * 3. Asserts that all images were written/read successfully
@@ -32,9 +32,9 @@ extension BulkTest {
     */
    static func test() -> Bool {
       var randomData: [Data] = (0..<count).compactMap { _ in HCCQRStringData.randomData(setup: bulkSetup) } // Num of items to load, we create this outside, because we dont want to time the creation of it
-      var rgbaReps: [RGBRep] = writeMany(setup: bulkSetup, randomData: randomData)
-      let didSuccessfullyReadMany: Bool = readMany(rgbaReps: rgbaReps, scheme: cType.cs, randomData: randomData)
-      rgbaReps = []
+      var reps: [RGBRep] = writeMany(setup: bulkSetup, randomData: randomData)
+      let didSuccessfullyReadMany: Bool = readMany(reps: reps, scheme: cType.cs, randomData: randomData)
+      reps = []
       randomData = []
       Swift.print("didSuccessfullyReadMany: \(didSuccessfullyReadMany ? "✅" : "🚫")")
       return didSuccessfullyReadMany
@@ -68,9 +68,9 @@ extension BulkTest {
     * - Note: this test is used by the bulk-photo-test as well
     * - Note: putting this loop on concurrent speeds up things 2x
     */
-   internal static func readMany(rgbaReps: [RGBRep], scheme: ChannelScheme, randomData: [Data]) -> Bool {
+   internal static func readMany(reps: [RGBRep], scheme: ChannelScheme, randomData: [Data]) -> Bool {
       var (payloads, time): ([QRReader.DataAndQuad], Double) = TimeMeasure.timeElapsed {
-         rgbaReps.batches(spread: 8).concurrentFlatMap { batch in
+         reps.batches(spread: 8).concurrentFlatMap { batch in
             batch.compactMap { rgbaRep in
                do {
                   return try Reader.data(rgbRep: rgbaRep, scheme: scheme, parallel: false)
@@ -83,7 +83,7 @@ extension BulkTest {
       }
       Swift.print("Read many time:  \(time)")
       Swift.print("Payloads.count:  \(payloads.count)")
-      let countEquals: Bool = rgbaReps.count == payloads.count
+      let countEquals: Bool = reps.count == payloads.count
       let allIsValid: Bool = randomData.isEmpty ? true : !payloads.enumerated().contains { $0.element.qrData != randomData[$0.offset] }
       payloads = []
       let isValid: Bool = countEquals && allIsValid
