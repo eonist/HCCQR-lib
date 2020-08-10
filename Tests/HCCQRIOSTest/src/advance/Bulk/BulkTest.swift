@@ -18,13 +18,13 @@ final class BulkTest {}
 
 extension BulkTest {
    static let count: Int = 200
-   static let (pallete, scheme): (ColorPalette, ChannelScheme) = CType.c8.cpcs() // the mappings for writing / reading
+   static let cType: CType = .c8 // the mappings for writing / reading
    /**
     * - Important: ⚠️️ remember to match the colorPallete and channelPallet
     */
    private static let bulkSetup: HCCQRSetup = {
       let qrSetup: QRSetup = .init(qrVersion: .v4, ecLevel: .l)
-      let output: OutputConfig = .init(scale: .init(6, 2), palette: pallete)
+      let output: OutputConfig = .init(scale: .init(6, 2), cType: cType)
       return .init(qr: qrSetup, output: output)
    }()
    /**
@@ -33,7 +33,7 @@ extension BulkTest {
    static func test() -> Bool {
       var randomData: [Data] = (0..<count).compactMap { _ in HCCQRStringData.randomData(setup: bulkSetup) } // Num of items to load, we create this outside, because we dont want to time the creation of it
       var rgbaReps: [RGBRep] = writeMany(setup: bulkSetup, randomData: randomData)
-      let didSuccessfullyReadMany: Bool = readMany(rgbaReps: rgbaReps, scheme: scheme, randomData: randomData)
+      let didSuccessfullyReadMany: Bool = readMany(rgbaReps: rgbaReps, scheme: cType.cs, randomData: randomData)
       rgbaReps = []
       randomData = []
       Swift.print("didSuccessfullyReadMany: \(didSuccessfullyReadMany ? "✅" : "🚫")")

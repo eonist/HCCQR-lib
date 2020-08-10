@@ -7,10 +7,10 @@ import QR_lib
 import TimeMeasure
 
 final class BufferTest {
-   static let (pallete, scheme): (ColorPalette, ChannelScheme) = CType.c8.cpcs() // the mappings for writing / reading
+   static let cType: CType = .c8 // the mappings for writing / reading
    static let setup: HCCQRSetup = {
       let qrSetup: QRSetup = .init(qrVersion: .v4, ecLevel: .l)
-      let output: OutputConfig = .init(scale: .init(6, 2), palette: pallete)
+      let output: OutputConfig = .init(scale: .init(6, 2), cType: cType)
       return .init(qr: qrSetup, output: output)
    }()
    /**
@@ -49,7 +49,7 @@ extension BufferTest {
    private static func read(buffer: CVImageBuffer, data: Data) -> Bool {
       do {
          // let size = CVImageBufferGetEncodedSize(buffer) // CVImageBufferGetDisplaySize, CVImageBufferGetCleanRect
-         let payload: Reader.ReadPayload = try Reader.data(imageBuffer: buffer, crop: buffer.rect, scheme: scheme, parallel: true)
+         let payload: Reader.ReadPayload = try Reader.data(imageBuffer: buffer, crop: buffer.rect, scheme: cType.cs, parallel: true)
          // let dataAndQuad: QRReader.DataAndQuad = try Reader.data(rgbaRep: rgbaRep, scheme: .cs8) // Convert RGBAImage to Data
          // Swift.print("dataAndQuad.qrData.count:  \(dataAndQuad.qrData.count)")
           Swift.print("randomData.count:  \(data.count)")

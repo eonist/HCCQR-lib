@@ -39,7 +39,7 @@ internal final class ImageUtil {
     */
    static func cgImage(image: Image) -> CGImage? {
       #if os(iOS)
-      return image.cgImage ?? image.cgImage()
+      return image.cgImage()
       #elseif os(macOS)
       return image.cgImage()
       #else

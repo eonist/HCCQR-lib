@@ -8,6 +8,8 @@ final class HCCQRIOSTest: XCTestCase {
 //      sleep(2)
       simpleTests()
       advanceTests()
+//      XCTAssertTrue(PhotoTest.test())
+//      XCTAssertTrue(SingleTest.test())
 //      XCTAssertTrue(BulkBufferTest.test())
 //      XCTAssertTrue(BulkTest.test()) // ✅ Read and write multiple "syntetic-HCCQR-images"
 //      sleep(2)

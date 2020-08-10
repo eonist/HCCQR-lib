@@ -16,13 +16,13 @@ import TimeMeasure
 final class SingleTest {}
 
 extension SingleTest {
-   static let (pallete, scheme): CPCS = CType.c256.cpcs() // the mappings for writing / reading
+   static let cType: CType = .c4// the mappings for writing / reading
    /**
     * Setup for single test
     */
    private static let singleSetup: HCCQRSetup = {
-      let qrSetup: QRSetup = .init(qrVersion: .v22, ecLevel: .l)
-      let output: OutputConfig = .init(scale: .init(6, 2), palette: pallete)
+      let qrSetup: QRSetup = .init(qrVersion: .v14, ecLevel: .l)
+      let output: OutputConfig = .init(scale: .init(6, 2), cType: cType)
       return .init(qr: qrSetup, output: output)
    }()
    /**
@@ -60,7 +60,7 @@ extension SingleTest {
    private static func read(image: Image, data: Data) -> Bool {
 //      autoreleasepool { // new ⚠️️
       do {
-         let dataAndQuad: QRReader.DataAndQuad = try Reader.data(image: image, scheme: scheme, parallel: true)
+         let dataAndQuad: QRReader.DataAndQuad = try Reader.data(image: image, scheme: cType.cs, parallel: true)
          let isValid: Bool = data == dataAndQuad.qrData
          Swift.print("data?.count:  \(String(describing: dataAndQuad.qrData.count))")
          Swift.print("SingleTest isValid:  \(isValid ? "✅" : "🚫")")

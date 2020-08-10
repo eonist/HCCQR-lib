@@ -81,9 +81,10 @@ extension BufferUtil {
     * - Note: CGImage to Buffer https://github.com/brianadvent/UIImage-to-CVPixelBuffer/blob/master/ImageProcessor.swift
     * - Note: ref https://stackoverflow.com/questions/3838696/convert-uiimage-to-cvpixelbufferref
     * - Note: ref https://stackoverflow.com/questions/44462087/how-to-convert-a-uiimage-to-a-cvpixelbuffer
-    * - Note: this is for debugging, if it wasnt, we could optimize by using a CVPixelPool
+    * - Note: this is for debugging, if it wasn't, we could optimize by using a CVPixelPool
     * - Parameter image: Convert this image to CVImageBuffer
-    * - Fixme: ⚠️️ rename to buffer?
+    * - Fixme: ⚠️️ Rename to buffer?
+    * - Fixme: ⚠️️ Ideally we shouldn't call cgImage(), rather we should pass the context, see gist, but since this method is only used for testing, we can leave it as is
     */
    public static func imageBuffer(image: Image) throws -> CVImageBuffer {
       guard let cgImage = image.cgImage() else { throw NSError(domain: "unable to get cgimage", code: 0) }
@@ -98,7 +99,7 @@ extension BufferUtil {
     *   - cgImage: The cgImage to be converted to CVImageBuffer
     *   - opaque: opaque, aka no alpha
     * - Fixme: ⚠️️ can probably use different combo of buffer rgba, bgra alpha info 32litte etc. figure out what is fastest n the future etc
-    * - Fixme: ⚠️️ we dont need opaque param, thats only for png, cam-output, jpg doesnt have alpha.
+    * - Fixme: ⚠️️ we don't need opaque param, thats only for png, cam-output, jpg doesn't have alpha.
     * - Fixme: ⚠️️ rename to buffer
     * - Fixme: ⚠️️ benchmark this, consider accelerate framework instead see: https://developer.apple.com/documentation/accelerate/1498241-vimageconverter_createforcgtocvi   and https://developer.apple.com/documentation/accelerate/building_a_basic_conversion_workflow
     */

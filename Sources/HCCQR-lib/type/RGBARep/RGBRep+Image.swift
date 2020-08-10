@@ -32,7 +32,7 @@ extension RGBRep {
       let colorSpace: CGColorSpace = useGrayscale ? CGColorSpaceCreateDeviceGray() : CGColorSpaceCreateDeviceRGB()//CGColorSpaceCreateDeviceRGB() // The color space that the image is defined in. It must be a Quartz 2D color space (CGColorSpace). Pass nil for images that don’t contain color data (such as elevation maps, normal vector maps, and sampled function tables).
       let bytesPerRow: Int = self.size.width * 4
       let data: Data = .init(buffer: self.pixels)
-      return autoreleasepool { // ⚠️️ testing to get rid of mem leak ⚠️️ new, doesnt seem to have much effect
+      return autoreleasepool { // ⚠️️ testing to get rid of mem leak ⚠️️ new, doesn't seem to have much effect
          CIImage(bitmapData: data, bytesPerRow: bytesPerRow, size: self.size.cgSize, format: fromFormat, colorSpace: colorSpace)
       }
    }

@@ -3,8 +3,9 @@ import Foundation
 public enum CType: Int { case c4 = 4, c8 = 8, c16 = 16, c32 = 32, c64 = 64, c128 = 128, c256 = 256 }
 public typealias CPCS = (ColorPalette, ChannelScheme)
 /**
- * Color scheme and pallet
- * - Note: we store in an enum to get synergies between pallet and scheme types
+ * Color scheme and palette
+ * - Note: We store in an enum to get synergies between pallet and scheme types
+ * - Note: By having one type that represents scheme and palette, it only needs to be set once etc
  */
 extension CType {
    /**

@@ -6,6 +6,7 @@ import Cocoa
 extension NSImage {
    /**
     * ⚠️️ Temp fix ⚠️️, might not work
+    * - Note: NSImage is backed only by cgImage
     */
    func ciImage() -> CIImage? {
       guard let cgImage: CGImage = self.cgImage() else { Swift.print("QRLib.UIImage.ciImage() - unable to create cgimage"); return nil }

@@ -6,15 +6,23 @@ import QR_lib
  */
 public struct OutputConfig {
    public let scale: Scale
-   public let palette: ColorPalette
+   public let cType: CType
+   public let useDarkMode: Bool
    /**
     * - Parameters:
     *    - scale: which colors to use in the output HCCQR
     *    - palette: screen and module scale
     */
-   public init(scale: Scale, palette: ColorPalette = CType.c4.cp()) {
+   public init(scale: Scale, cType: CType = .c4, useDarkMode: Bool = false) {
       self.scale = scale
-      self.palette = palette
+      self.cType = cType
+      self.useDarkMode = useDarkMode
    }
-   public static let `default`: OutputConfig = .init(scale: .init(6, 2), palette: CType.c4.cp())
+}
+/**
+ * Extension
+ */
+extension OutputConfig {
+   public static let `default`: OutputConfig = .init(scale: .init(6, 2), cType: .c4)
+   public var palette: ColorPalette { cType.cp(useDarkMode: useDarkMode) }
 }

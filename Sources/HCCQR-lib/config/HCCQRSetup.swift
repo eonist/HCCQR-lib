@@ -1,19 +1,22 @@
 import Foundation
 import QR_lib
 import QuartzCore
-
+/**
+ * - Fixme: ⚠️️ Store cType in HCCQRSetup rather than output, and store scale in HCCQRSetup as well?
+ */
 public struct HCCQRSetup {
    public let qr: QRSetup
    public let output: OutputConfig
    /**
     *  QR and Output setup
-    * - Fixme: ⚠️️ rename to HCCQRConfig or keep as is? Or even just Config
-    * - Fixme: ⚠️️ add init that doesnt have named params?
+    * - Fixme: ⚠️️ Rename to HCCQRConfig or keep as is? Or even just Config
+    * - Fixme: ⚠️️ Add init that doesn't have named params?
     * ## Examples:
     * let setup: HCCQRSetup = .init(qr: .init(qrVersion: .v4, ecLevel: .l), output: .init(scale: (6, 2), map: .cp16()))
     * - Parameters:
     *   - qr: qr config
     *   - output: custom colormap and custome scale
+    *   - cType: scheme and palette
     */
    public init(qr: QRSetup, output: OutputConfig) {
       self.qr = qr
@@ -34,6 +37,7 @@ extension HCCQRSetup {
    var map: ColorPalette { output.palette }
    var ecLevel: ECLevel { qr.ecLevel }
    var qrVersion: QRVersion { qr.qrVersion }
+   public var cType: CType { output.cType }
 }
 /**
  * Utility

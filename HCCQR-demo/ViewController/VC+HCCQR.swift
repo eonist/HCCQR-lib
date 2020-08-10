@@ -4,15 +4,14 @@ import QR_lib
  * Read test
  */
 extension ViewController {
-   static let (pallete, scheme): (ColorPalette, ChannelScheme) = (CType.c4.cp(), CType.c4.cs) // the mappings for writing / reading
    /**
     * Visual and Syntetic write / read HCCQR
     */
    func testHCCQR() {
       Swift.print("testHCCQR")
       let setup: HCCQRSetup = {
-         let qrSetup: QRSetup = .init(qrVersion: .v1, ecLevel: .l)
-         let output: OutputConfig = .init(scale: .init(6, 2), palette: Self.pallete)
+         let qrSetup: QRSetup = .init(qrVersion: .v4, ecLevel: .l)
+         let output: OutputConfig = .init(scale: .init(6, 2), cType: .c4)
          return .init(qr: qrSetup, output: output)
       }()
       guard let randomData: Data = HCCQRStringData.randomData(setup: setup) else { return }
@@ -27,7 +26,7 @@ extension ViewController {
       self.view.addSubview(imgView)
       _ = {
          do {
-            let dataAndQuad: QRReader.DataAndQuad = try Reader.data(image: img, scheme: Self.scheme, parallel: true)
+            let dataAndQuad: QRReader.DataAndQuad = try Reader.data(image: img, scheme: setup.cType.cs, parallel: true)
             let isValid: Bool = randomData == dataAndQuad.qrData
             Swift.print("data?.count:  \(String(describing: dataAndQuad.qrData.count))")
             Swift.print("isValid:  \(isValid ? "✅" : "🚫")")

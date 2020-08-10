@@ -56,6 +56,7 @@ extension Colorizer {
          }
          idx = idx &+ 1
       }
+      // - Fixme: ⚠️️ skip scaling if scale is 1
       let (rgbRep, time): (RGBRep, Double) = TimeMeasure.timeElapsed {
          /*let rgbaRep: RGBARep = */PixelModifier.scale(pixels: pixels, size: size, scale: config.scale)
       }
