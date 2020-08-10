@@ -66,8 +66,8 @@ extension Reader {
    /**
     * Reads rgbaRep, outputs Data
     * - Fixme: ⚠️️⚠️️⚠️️ Putting many calls to this method in a concurrent loop is very effective, possibly disable concurrancy within this call might speed up things even more? like a toggle
-    * - Fixme: ⚠️️ the QRReader doesn't like to be processes parralelly, this needs confirmation with concurrent test
     * - Fixme: ⚠️️ When the first QRImage Quad is found, the subsequent QR-Rects will be in the same quadrant, clip the subsequent images, maybe if you do the parrallel computing in the sequence / streaming lib
+    * - Fixme: ⚠️️ make proper error type
     * - Abstract: Since we get pixel data from the camera, this will be faster than converting to image first
     * - Note: returning qrimage is useful, it is used as a way to debug that the HCCQR ws split correctly
     * - Note: Isn't private because Tests use it
@@ -81,7 +81,7 @@ extension Reader {
       let dataAndQuads: [QRReader.DataAndQuad] = qrLayers.concurrentCompactMap(parallel: parallel) { // concurrentCompactMap
          try? QRReader.dataAndQuad(ciImage: $0)
       }
-      guard dataAndQuads.count == qrLayers.count else { throw NSError(domain: "Unable to read QR Layer", code: 0) }
+      guard dataAndQuads.count == qrLayers.count else { throw NSError(domain: "Unable to read QR Layer qrLayers.count: \(qrLayers.count) dataAndQuads.count: \(dataAndQuads.count)", code: 0) }
       let data: Data = dataAndQuads.map { $0.qrData }.combined // merge the data together
       return (data, dataAndQuads[0].quad)
    }

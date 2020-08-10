@@ -7,6 +7,7 @@ extension Pixel {
     * - Note: With threshold more or less (I.e: +25, -25 from a value)
     * - Fixme: ⚠️️ Move the threshold to the caller of the methods using this variable
     * - Fixme: ⚠️️ move threshold const to a different place. Maybe own class?
+    * - Fixme: ⚠️️ rename to tolerance?
     * - Note: it becomes half of threshold 
     */
    static let defaultHalfThreshold: UInt8 = Pixel.getHalfThreshold(1.0 / 4) // 4-colors equal 0.25, 8-color equal 0.125
