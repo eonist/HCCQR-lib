@@ -12,8 +12,7 @@ final class ViewController: UIViewController {
       view = View()
       view.backgroundColor = .white // .systemTeal
 //      testHCCQR() // 👈
-      // 🏀 test ByteImage
-         // use withRebound on RGBAImage probably
+//      createRGBAPhoto() // 🏀
    }
    override var prefersStatusBarHidden: Bool { true }
 }

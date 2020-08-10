@@ -11,6 +11,9 @@ public typealias HCCQRReader = Reader
 public final class Reader {}
 
 extension Reader {
+   /**
+    * - Fixme: ⚠️️ Why are we including the imageSize?
+    */
    public typealias ReadPayload = (data: Data, quad: QRReader.Quad, imageSize: CGSize)
    /**
     * CVImageBuffer -> Data
@@ -78,6 +81,7 @@ extension Reader {
     */
    /*private*/ internal static func data(rgbRep: RGBRep, scheme: ChannelScheme, parallel: Bool) throws -> QRReader.DataAndQuad {
       let qrLayers: [CIImage] = Splitter.split(rgbRep: rgbRep, scheme: scheme, parallel: parallel)
+      rgbRep.deallocate() // we have no more use for the rgbaRep
       let dataAndQuads: [QRReader.DataAndQuad] = qrLayers.concurrentCompactMap(parallel: parallel) { // concurrentCompactMap
          try? QRReader.dataAndQuad(ciImage: $0)
       }

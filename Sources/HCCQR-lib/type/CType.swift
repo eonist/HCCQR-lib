@@ -23,6 +23,7 @@ extension CType {
     * - Note: In case of 128-color mode, the color channel R takes eight values, 0, 36, 73, 109, 146, 182, 219 and 255, and the color channel G and B take four values, 0, 85, 170 and 255, which will totally generate 128 colors.
     * 256 Colors
     * - Note: In case of 256-color-mode, the color channel R and G take eight values, 0, 36, 73, 109, 146, 182, 219 and 255, and the color channel B takes four values, 0, 85, 170 and 255, which will totally generate 256 colors.
+    * - Note to get darkmode support: ChannelScheme.scheme(scheme: cType.cs, darkMode: true)
     */
    public var cs: ChannelScheme {
       switch self {

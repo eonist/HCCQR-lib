@@ -10,7 +10,9 @@ typealias BoolColumn = [BoolRow]
  * - Note: used in colormap as well
  */
 public typealias BoolRow = [Bool]
-
+/**
+ * Extensions
+ */
 extension BoolColumn {
    /**
     * Creates a bool column for num of colors in HCCQR

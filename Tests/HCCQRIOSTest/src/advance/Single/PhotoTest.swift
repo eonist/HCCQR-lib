@@ -4,6 +4,7 @@ import CoreGraphics
 import CoreImage
 @testable import HCCQR_lib
 import ResourceHelper
+import TimeMeasure
 
 final class PhotoTest {}
 /**
@@ -25,15 +26,23 @@ extension PhotoTest {
     * - Fixme: ⚠️️ add hash if the data to compare, requires importing FileHasher etc
     */
    internal static func test() -> Bool {
+      let cType: CType = .c4
       let path: String = ResourceHelper.projectRootURL(projectRef: #file, fileName: "temp.bundle/newHCCQR4.png").path // HCCQR2.png // HCCQR7.png, HCCQR12.png,HCCQR13.jpg
       guard let image = Image(contentsOfFile: path) else { Swift.print("err getting img: \(path)"); return false }
+      guard let cgImg: CGImage = image.cgImage() else { Swift.print("no cgImg"); return false }
+//      guard let rgbaRep: RGBRep = try? BufferUtil.rgbRep(image: image) else { Swift.print("no buffer"); return false }
       Swift.print("UIImage.size:  \(image.size)")
       do {
-         let rgbaRep: RGBRep = try BufferUtil.rgbRep(image: image)// else { Swift.print("err getting rgbImage"); return false }
-         let data: Data = try Reader.data(rgbRep: rgbaRep, scheme: CType.c4.cs, parallel: true).qrData// else { Swift.print("err"); return false }// extract data from the hccqrImg
-         // guard let data: Data = try? Reader.data(image: image, pallete: .pallete(pallete: ._4, darkMode: true)).qrData else { Swift.print("err"); return false }// extract data from the hccqrImg
-         Swift.print("data.count:  \(String(describing: data.count))")
-         Swift.print("PhotoTest isvalid: ✅")
+         // - Fixme: ⚠️️ add TimeMeasure to this test 🏀
+         let time: Double = try TimeMeasure.timeElapsed {
+            // // else { Swift.print("err getting rgbImage"); return false }
+            // let data: Data = try Reader.data(rgbRep: rgbaRep, scheme: cType.cs, parallel: true).qrData// else { Swift.print("err"); return false }// extract data from the hccqrImg
+            // let data: Data = try Reader.data(image: image, scheme: cType.cs, parallel: true).qrData // extract data from the hccqrImg
+            let data: Data = try Reader.data(cgImage: cgImg, scheme: cType.cs, parallel: true).qrData
+            Swift.print("data.count:  \(String(describing: data.count))")
+            Swift.print("PhotoTest isvalid: ✅")
+         }
+         Swift.print("Read time:  \(time)")
          return true
       } catch {
          Swift.print("Phototest.error:  \(error)")

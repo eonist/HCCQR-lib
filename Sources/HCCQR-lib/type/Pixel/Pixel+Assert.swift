@@ -17,7 +17,7 @@ extension Pixel {
     * - Returns: returns Bool and the amount of that color in UInt8
     * - Parameter ishColor: a color (dynamic / impure color) to check against self (self is static / pure colors)
     */
-   internal func isSimilar(_ ishColor: Pixel, halfThreshold: UInt8 = Pixel.defaultHalfThreshold) -> Similarity {
+   internal func isSimilar(_ ishColor: Pixel, halfThreshold: UInt8) -> Similarity {
       let isColorish: Bool = self.isColorish(ishColor, halfThreshold: halfThreshold) // channels r, g, b are within-ish the color
       let strength = isColorish ? PixelParser.similarity(a: ishColor, b: self) : .black // if not colorish, then return no intensity, and thus avoid calculating strength
       return (assert: isColorish, strength: strength)
@@ -32,7 +32,7 @@ extension Pixel {
     * let pixelData: PixelData = .init(uiColor: .red)
     * pixelData.isColorish(rgbaColor) // returns true if the the pixel is within the color
     */
-   internal func isColorish(_ ishColor: Pixel, halfThreshold: UInt8 = Pixel.defaultHalfThreshold) -> Bool { // PixelAsserter.Colorish
+   internal func isColorish(_ ishColor: Pixel, halfThreshold: UInt8) -> Bool { // PixelAsserter.Colorish
       PixelAsserter.isColorish(a: self, b: ishColor, halfThreshold: halfThreshold)
    }
    /**

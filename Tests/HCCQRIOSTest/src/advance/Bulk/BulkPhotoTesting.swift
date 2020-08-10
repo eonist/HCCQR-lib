@@ -24,11 +24,11 @@ extension BulkPhotoTesting {
     */
    static func test() -> Bool {
       // Swift.print("writeMany()")
-      let path: String = ResourceHelper.projectRootURL(projectRef: #file, fileName: "temp.bundle/HCCQR2.png").path //HCCQR2.png, HCCQR12.png,HCCQR13.jpg
+      let path: String = ResourceHelper.projectRootURL(projectRef: #file, fileName: "temp.bundle/old/darkmode/HCCQR2.png").path // HCCQR2.png, HCCQR12.png,HCCQR13.jpg
       let (rgbaReps, time): ([RGBRep], Double) = TimeMeasure.timeElapsed {
          Array(0..<count).concurrentCompactMap { _ in
             guard let image = Image(contentsOfFile: path) else { Swift.print("Err creating img at path: \(path)"); return nil }
-            //         Swift.print("image.size:  \(image.size)")
+            // Swift.print("image.size:  \(image.size)")
             guard let rgbaImage: RGBRep = try? BufferUtil.rgbRep(image: image) else { Swift.print("err getting rgbImage"); return nil }
             return rgbaImage
          }

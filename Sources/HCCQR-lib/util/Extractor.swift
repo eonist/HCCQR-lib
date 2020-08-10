@@ -72,7 +72,8 @@ extension Extractor {
     * - Parameter scheme: rule-set for the splitting process
     */
    internal static func similarities(scheme: ChannelScheme) -> [PixelSimilarity] {
-      let halfThreshold: UInt8 = Pixel.getHalfThreshold(1.0 / CGFloat(scheme.count)) // we must use finer threshold if we use more colors (2.5 for 4-color, 0.125 for 8-color)
+      let halfThreshold: UInt8 = Pixel.getHalfThreshold(scheme.count) // we must use finer threshold if we use more colors (0.5 for 4-color, 0.125 for 8-color)
+//      Swift.print("halfThreshold:  \(halfThreshold)")
       return scheme.map { (channel: Pixel) in { (ishColor: Pixel) in channel.isSimilar(ishColor, halfThreshold: halfThreshold) } }
    }
 }

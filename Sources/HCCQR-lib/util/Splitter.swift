@@ -28,7 +28,6 @@ extension Splitter {
       }
       _ = extractTime
       Log.log("extractTime:  \(extractTime)")
-      rgbRep.deallocate() // we have no more use for the rgbaRep
       let (channelCombos, comboTime): (ChannelCombos, Double) = TimeMeasure.timeElapsed {
          /*let channelCombos: ChannelCombos = */.combos(channels: grayReps) // Arrays of grayreps (2 arrays of 2 grayReps for 4color hcqr, 3 arrays of 7 grayreps for 8 color-hccqr etc)
       }
@@ -40,6 +39,19 @@ extension Splitter {
       grayReps.deallocate() // no longer in use, so we deallocate them
       _ = combineTime
       Log.log("combineTime:  \(combineTime)")
-      return combinations
+      return combinations.compactMap { $0.inverted }
+   }
+}
+
+extension CIImage {
+   /**
+    * Inverts an image (black becomes white etc)
+    * - Fixme: ⚠️️ move this into ImageSugar repo (it's not used in this repo any more)
+    */
+   fileprivate var inverted: CIImage? {
+      guard let filter = CIFilter(name: "CIColorInvert") else { Swift.print("UIImage.invertedImage() - unable to create filter"); return nil }
+      filter.setDefaults()
+      filter.setValue(self, forKey: kCIInputImageKey)
+      return filter.outputImage
    }
 }

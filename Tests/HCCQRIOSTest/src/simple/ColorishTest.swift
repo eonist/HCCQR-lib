@@ -21,9 +21,10 @@ final class ColorishTest {
     * Test the colorish method (Tests absolute colors)
     */
    static func testColorish() -> Bool {
-      let assertRed: Bool = try! Pixel.pixel(color: Color.red).isColorish(Pixel.red)
-      let assertGreen: Bool = try! Pixel.pixel(color: .green).isColorish(Pixel.green)
-      let assertBlue: Bool = try! Pixel.pixel(color: .blue).isColorish(Pixel.blue)
+      let halfThreshold = Pixel.getHalfThreshold(4)
+      let assertRed: Bool = try! Pixel.pixel(color: Color.red).isColorish(Pixel.red, halfThreshold: halfThreshold)
+      let assertGreen: Bool = try! Pixel.pixel(color: .green).isColorish(Pixel.green, halfThreshold: halfThreshold)
+      let assertBlue: Bool = try! Pixel.pixel(color: .blue).isColorish(Pixel.blue, halfThreshold: halfThreshold)
       let isWithin: Bool = assertRed && assertGreen && assertBlue
       Swift.print("isWithin: \(isWithin ? "✅": "🚫")")
       return isWithin
@@ -33,7 +34,7 @@ final class ColorishTest {
     * - Fixme: ⚠️️ make the deviations random range to make test more realistic
     */
    static func testWashedOutColor() -> Bool {
-      Swift.print("PixelData.halfThresholdUInt8:  \(Pixel.defaultHalfThreshold)")
+      Swift.print("PixelData.halfThresholdUInt8:  \(Pixel.getHalfThreshold(4))")
 //      Swift.print("UInt8(255 * 0.81):  \(UInt8(255 * 0.81))")
       let redish: Pixel = .init(r: UInt8(255 * 0.75), g: UInt8(255 * 0.2), b: UInt8(255 * 0.25)/*, a: 255*/)
       Swift.print("redish.r: \(redish.r)")
@@ -45,7 +46,6 @@ final class ColorishTest {
       Swift.print("assertBlueish: \(assertBlueish)")
       let isWithin: Bool = assertRedish && assertGreenish && assertBlueish
       Swift.print("washed out isWithin: \(isWithin ? "✅": "🚫")")
-      Swift.print("PixelData.halfThresholdUInt8:  \(Pixel.defaultHalfThreshold)")
       return isWithin // assertRedish
    }
    /**

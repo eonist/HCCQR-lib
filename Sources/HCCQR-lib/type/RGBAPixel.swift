@@ -1,6 +1,6 @@
 import Foundation
 /**
- * Only used to convert Image to ImageRep
+ * -Note: Only used to convert Image to ImageRep
  */
 internal struct RGBAPixel {
    internal let r: UInt8
