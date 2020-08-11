@@ -16,12 +16,12 @@ import TimeMeasure
 final class SingleTest {}
 
 extension SingleTest {
-   static let cType: CType = .c4// the mappings for writing / reading
+   static let cType: CType = .c64 // the mappings for writing / reading
    /**
     * Setup for single test
     */
    private static let singleSetup: HCCQRSetup = {
-      let qrSetup: QRSetup = .init(qrVersion: .v14, ecLevel: .l)
+      let qrSetup: QRSetup = .init(qrVersion: .v8, ecLevel: .l)
       let output: OutputConfig = .init(scale: .init(6, 2), cType: cType)
       return .init(qr: qrSetup, output: output)
    }()

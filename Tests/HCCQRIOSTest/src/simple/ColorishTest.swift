@@ -1,9 +1,39 @@
 import Foundation
 @testable import HCCQR_lib
+import XCTest
 /**
- * tests color thresholds
+ * Tests color thresholds
  */
 final class ColorishTest {
+   /**
+    * Do many tests
+    */
+   static func test() {
+//      XCTAssertTrue(ColorishTest.testThreshold()) // ✅
+//      XCTAssertTrue(ColorishTest.testColorish()) // ✅
+//      XCTAssertTrue(ColorishTest.testWashedOutColor()) // ✅
+//      XCTAssertTrue(ColorishTest.testUInt8Aritmitic())
+      XCTAssertTrue(testUInt8Threshold())
+      // do threshold tests on UInt8 here
+   }
+}
+extension ColorishTest {
+   /**
+    * Tests if the halfThreshold scheme works
+    */
+   static func testUInt8Threshold() -> Bool {
+      let halfThreshold: UInt8 = PixelParser.getHalfThreshold(4)
+//      Swift.print("halfThreshold:  \(halfThreshold)")
+      let a: Bool = UInt8Asserter.withinTolerance(a: 255, b: 255 - (halfThreshold * 2), halfThreshold: halfThreshold)
+      let b: Bool = !UInt8Asserter.withinTolerance(a: 255, b: 255 - ((halfThreshold + 1) * 2), halfThreshold: halfThreshold)
+      let c: Bool = UInt8Asserter.withinTolerance(a: 0, b: halfThreshold * 2, halfThreshold: halfThreshold)
+      let d: Bool = !UInt8Asserter.withinTolerance(a: 0, b: (halfThreshold + 1) * 2, halfThreshold: halfThreshold)
+      let e: Bool = UInt8Asserter.withinTolerance(a: 255 / 2, b: (255 / 2) - halfThreshold, halfThreshold: halfThreshold)
+      let f: Bool = UInt8Asserter.withinTolerance(a: 255 / 2, b: (255 / 2) + halfThreshold, halfThreshold: halfThreshold)
+      let g: Bool = !UInt8Asserter.withinTolerance(a: 255 / 2, b: (255 / 2) - (halfThreshold + 1), halfThreshold: halfThreshold)
+      let h: Bool = !UInt8Asserter.withinTolerance(a: 255 / 2, b: (255 / 2) + (halfThreshold + 1), halfThreshold: halfThreshold)
+      return a && b && c && d && e && f && g && h
+   }
    /**
     * Color assertion
     */
@@ -13,7 +43,7 @@ final class ColorishTest {
       let redPixel = Pixel.red // the color it should look like
       let threshold: UInt8 = .init(255 * 0.25) // within this threshold
       let halfThreshold: UInt8 = .init(threshold / 2)
-      let isColorRedish: Bool = PixelAsserter.isColorish(a: redPixel, b: redishPixel, halfThreshold: halfThreshold)
+      let isColorRedish: Bool = PixelAsserter.withinTolerance(a: redPixel, b: redishPixel, halfThreshold: halfThreshold)
       Swift.print("isColorRedish:  \(isColorRedish ? "✅" : "🚫")")
       return isColorRedish
    }
@@ -22,9 +52,9 @@ final class ColorishTest {
     */
    static func testColorish() -> Bool {
       let halfThreshold = PixelParser.getHalfThreshold(4)
-      let assertRed: Bool = try! Pixel.pixel(color: Color.red).isColorish(Pixel.red, halfThreshold: halfThreshold)
-      let assertGreen: Bool = try! Pixel.pixel(color: .green).isColorish(Pixel.green, halfThreshold: halfThreshold)
-      let assertBlue: Bool = try! Pixel.pixel(color: .blue).isColorish(Pixel.blue, halfThreshold: halfThreshold)
+      let assertRed: Bool = try! Pixel.pixel(color: Color.red).withinTolerance(Pixel.red, halfThreshold: halfThreshold)
+      let assertGreen: Bool = try! Pixel.pixel(color: .green).withinTolerance(Pixel.green, halfThreshold: halfThreshold)
+      let assertBlue: Bool = try! Pixel.pixel(color: .blue).withinTolerance(Pixel.blue, halfThreshold: halfThreshold)
       let isWithin: Bool = assertRed && assertGreen && assertBlue
       Swift.print("isWithin: \(isWithin ? "✅": "🚫")")
       return isWithin
@@ -35,14 +65,14 @@ final class ColorishTest {
     */
    static func testWashedOutColor() -> Bool {
       Swift.print("Pixel.halfThresholdUInt8:  \(PixelParser.getHalfThreshold(4))")
-//      Swift.print("UInt8(255 * 0.81):  \(UInt8(255 * 0.81))")
+      //      Swift.print("UInt8(255 * 0.81):  \(UInt8(255 * 0.81))")
       let redish: Pixel = .init(r: UInt8(255 * 0.75), g: UInt8(255 * 0.2), b: UInt8(255 * 0.25)/*, a: 255*/)
       Swift.print("redish.r: \(redish.r)")
-      let assertRedish: Bool = try! Pixel.pixel(color: Color.red).isColorish(Pixel.redish, halfThreshold: 40)
+      let assertRedish: Bool = try! Pixel.pixel(color: Color.red).withinTolerance(Pixel.redish, halfThreshold: 40)
       Swift.print("assertRedish: \(assertRedish)")
-      let assertGreenish: Bool = try! Pixel.pixel(color: Color.green).isColorish(Pixel.greenish, halfThreshold: 40)
+      let assertGreenish: Bool = try! Pixel.pixel(color: Color.green).withinTolerance(Pixel.greenish, halfThreshold: 40)
       Swift.print("assertGreenish: \(assertGreenish)")
-      let assertBlueish: Bool = try! Pixel.pixel(color: Color.blue).isColorish(Pixel.blueish, halfThreshold: 40)
+      let assertBlueish: Bool = try! Pixel.pixel(color: Color.blue).withinTolerance(Pixel.blueish, halfThreshold: 40)
       Swift.print("assertBlueish: \(assertBlueish)")
       let isWithin: Bool = assertRedish && assertGreenish && assertBlueish
       Swift.print("washed out isWithin: \(isWithin ? "✅": "🚫")")

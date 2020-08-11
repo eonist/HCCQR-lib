@@ -18,7 +18,8 @@ extension Extractor {
     * - Parameters:
     *   - rgbRep: target to derive channels from (GrayScaleRepresentations representing the channels R,G,B)
     *   - scheme: rule-set for the splitting process
-    * - Returns: the luminocity of each Color as a Grayscale representation
+    *   - parallel: use multiple cores or not
+    * - Returns: the luminocity of each Color as a Grayscale representation (4x for CType.c4 etc)
     * - Note: grayscale is better for QR to read than monotone (possibly)
     * - Fixme: ⚠️️ We could use unmanaged pointer with capacity as well, might be faster
     * - Fixme: ⚠️️ Skip extracting the white channel, as it's not used when we later combine color channels
@@ -52,12 +53,23 @@ extension Extractor {
       let pixels: UnsafeMutableBufferPointer<UInt8> = .allocate(capacity: rgbRep.capacity)
 //      let time: Double = TimeMeasure.timeElapsed {
       GrayRepModifier.process(size: rgbRep.size) { (i: Int) in
-         pixels[i] = asserter(rgbRep.pixels[i]).strength // Apply new pixel to old pixel
+         pixels[i] = asserter(rgbRep.pixels[i]).strength // Apply new pixel to existing pixel
       }
 //      }
 //      Swift.print("extract.process time :  \(time)")
       return .init(pixels: .init(pixels), width: rgbRep.size.width, height: rgbRep.size.height)
    }
+}
+/**
+ * PixelSimilarity
+ */
+extension Extractor {
+   /**
+    * Output pixel similarity
+    * - Note: color-pallete's determines their similarity by comparing these r,g,b values
+    * - Parameter pixel: the input pixel
+    */
+   internal typealias PixelSimilarity = (_ ishColor: Pixel) -> Pixel.Similarity
    /**
     * The purpouse of this method is to setup static calls, that compare channel and pixel color
     * - Important: ⚠️️ For some reason this method has to be on the same line or else the linter complains
@@ -67,17 +79,11 @@ extension Extractor {
     */
    internal static func similarities(scheme: ChannelScheme) -> [PixelSimilarity] {
       let halfThreshold: UInt8 = PixelParser.getHalfThreshold(scheme.count)
-      return scheme.map { (channel: Pixel) in { (ishColor: Pixel) in channel.similarity(ishColor, halfThreshold: halfThreshold) } }
+      return scheme.map { (schemeChannel: Pixel) in
+         let closure: PixelSimilarity = { (ishColor: Pixel) in
+            schemeChannel.similarity(ishColor, halfThreshold: halfThreshold)
+         }
+         return closure
+      }
    }
-}
-/**
- * Type
- */
-extension Extractor {
-   /**
-    * Output pixel similarity
-    * - Note: color-pallete's determines their similarity by comparing these r,g,b values
-    * - Parameter pixel: the input pixel
-    */
-   internal typealias PixelSimilarity = (_ pixel: Pixel) -> Pixel.Similarity
 }

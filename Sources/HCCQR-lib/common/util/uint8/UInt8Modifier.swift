@@ -14,6 +14,7 @@ final class UInt8Modifier {
    }
    /**
     * Addition (simpler to understand than subtraction)
+    * - Fixme: ⚠️️ look into &+ syntax
     */
    static func addition(a: UInt8, b: UInt8) -> UInt8 {
       let result: ReportingOverflow = a.addingReportingOverflow(b)

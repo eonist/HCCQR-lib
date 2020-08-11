@@ -6,8 +6,9 @@ final class HCCQRIOSTest: XCTestCase {
 //      sleep(10) // give some time to look at debug instruments etc
 //      Swift.print("hello")
 //      sleep(2)
-      simpleTests()
-      advanceTests()
+//      simpleTests()
+//      advanceTests()
+      ColorishTest.test()
 //      XCTAssertTrue(PhotoTest.test())
 //      XCTAssertTrue(SingleTest.test())
 //      XCTAssertTrue(BulkBufferTest.test())
@@ -26,11 +27,11 @@ final class HCCQRIOSTest: XCTestCase {
       Swift.print("simpleTests")
       XCTAssertEqual(ScaleTesting.testScalingRGBARep(), 4) // ✅
       XCTAssertTrue(MonoPixelColorization.testColorizingMonoPixel()) // ✅ b&w-pixels (mono) to color-pixels
-      XCTAssertTrue(ColorishTest.testThreshold()) // ✅
+      ColorishTest.test() // ✅
       XCTAssertTrue(ColorishTest.testColorish()) // ✅
       XCTAssertTrue(ColorishTest.testWashedOutColor()) // ✅
-      XCTAssertTrue(QRTesting.testQRGeneration()) // ✅
       XCTAssertTrue(ColorishTest.testUInt8Aritmitic())
+      XCTAssertTrue(QRTesting.testQRGeneration()) // ✅
    }
    /**
     * More elaborate tests

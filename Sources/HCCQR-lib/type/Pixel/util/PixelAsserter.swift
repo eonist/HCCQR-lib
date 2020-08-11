@@ -11,7 +11,7 @@ final class PixelAsserter {
     * - Note: If a UInt8 value is near the bounds, the threshold is actually increased to the distance to the bound
     * - Fixme: ⚠️️ It might be the case that if we should also limit the combined values of difference. say if R,B combined are more than 50% off, then its not a match. etc.
     * - Fixme: ⚠️️ It might be valuable to make advance tests, of how to match colors
-    * - Fixme: ⚠️️⚠️️⚠️️ big performance gain if we reuse the ranges of the scheme-channels
+    * - Fixme: ⚠️️⚠️️⚠️️ big performance gain if we reuse the ranges of the scheme-channels, loop through the RGBRep, with halfThreshold, generate range in array, and pass array
     * ## Examples:
     * let offset: UInt8 = UInt8(255 * 0.2)
     * let redishPixel: Pixel = .init(R: 255 - offset, G: 0 + offset, B: 0 + offset, A: 255)
@@ -24,22 +24,10 @@ final class PixelAsserter {
     *   - b: second color (dynamic color / impure color)
     *   - halfThreshold: with threshold more or less (I.e: +25, -25 from a value)
     */
-   internal static func isColorish(a: Pixel, b: Pixel, halfThreshold: UInt8) -> Bool {
-      var r: Bool { isColorish(a: a.r, b: b.r, halfThreshold: halfThreshold) }
-      var g: Bool { isColorish(a: a.g, b: b.g, halfThreshold: halfThreshold) }
-      var b: Bool { isColorish(a: a.b, b: b.b, halfThreshold: halfThreshold) }
+   internal static func withinTolerance(a: Pixel, b: Pixel, halfThreshold: UInt8) -> Bool {
+      var r: Bool { UInt8Asserter.withinTolerance(a: a.r, b: b.r, halfThreshold: halfThreshold) }
+      var g: Bool { UInt8Asserter.withinTolerance(a: a.g, b: b.g, halfThreshold: halfThreshold) }
+      var b: Bool { UInt8Asserter.withinTolerance(a: a.b, b: b.b, halfThreshold: halfThreshold) }
       return r && g && b
-   }
-}
-/**
- * Private helper methods
- */
-extension PixelAsserter {
-   /**
-    * isColorish
-    */
-   private static func isColorish(a: UInt8, b: UInt8, halfThreshold: UInt8) -> Bool {
-      let range: ClosedRange<UInt8> = UInt8Parser.range(num: a, halfThreshold: halfThreshold)
-      return range.contains(b)
    }
 }

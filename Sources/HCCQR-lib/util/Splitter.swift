@@ -15,7 +15,7 @@ extension Splitter {
     * 2. Araneges these graychannels in special arrangments (defined by predefned HCCQR rule-set depending on num of colors used)
     * 3. Converts to combinations of graychannels CIImage
     * - Note: when added to an UIImage, you need to set scale to 2.0 and orientation to .up
-    * - Note: Splits an image into r,g,b channels
+    * - Note: Splits an image into r, g, b channels
     * - Note: the conversion to rgbImg here is CPU intensive, but in the camera session we get RGB data, so this is just for debugging etc
     * - Note: extracting is cpu consuming, creating combos is not, combining is a bit cpu consuming
     * - Parameters:

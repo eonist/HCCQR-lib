@@ -20,7 +20,7 @@ extension Pixel {
     *   - halfThreshold: the tolerance allowed to be within a color
     */
    internal func similarity(_ ishColor: Pixel, halfThreshold: UInt8) -> Similarity {
-      let isColorish: Bool = self.isColorish(ishColor, halfThreshold: halfThreshold) // channels r, g, b are within-ish the color
+      let isColorish: Bool = self.withinTolerance(ishColor, halfThreshold: halfThreshold) // channels r, g, b are within-ish the color
       let strength = isColorish ? PixelParser.similarity(a: ishColor, b: self) : .black // if not colorish, then return no intensity, and thus avoid calculating strength
       return (assert: isColorish, strength: strength)
    }
@@ -34,10 +34,10 @@ extension Pixel {
     * ## Examples:
     * let rgbColor: RGBColor = (255, 0, 0)
     * let pixel: Pixel = .init(uiColor: .red)
-    * pixel.isColorish(rgbColor) // returns true if the the pixel is within the color
+    * pixel.withinTolerance(rgbColor) // returns true if the the pixel is within the color
     */
-   internal func isColorish(_ ishColor: Pixel, halfThreshold: UInt8) -> Bool { // PixelAsserter.Colorish
-      PixelAsserter.isColorish(a: self, b: ishColor, halfThreshold: halfThreshold)
+   internal func withinTolerance(_ ishColor: Pixel, halfThreshold: UInt8) -> Bool { // PixelAsserter.Colorish
+      PixelAsserter.withinTolerance(a: self, b: ishColor, halfThreshold: halfThreshold)
    }
    /**
     * Asserts if a pixel is the same as another pixel (does not account for alpha)

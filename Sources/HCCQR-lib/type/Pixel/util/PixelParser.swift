@@ -37,11 +37,12 @@ final class PixelParser {
     * - Note: Used by the similarities method (not called frequently)
     * - Note: We use finer threshold if we use more colors (0.5 for 4-color, 0.125 for 8-color)
     * ## Examples:
-    * getHalfThreshold(4) // 63
+    * PixelParser.getHalfThreshold(4) // 63
     * - Parameter numOfColors: number of colors in CType
     */
    internal static func getHalfThreshold(_ numOfColors: Int) -> UInt8 {
-      let halfThreshold: CGFloat = 1.0 / CGFloat(numOfColors) // Rename to defaultHalfThreshold
+      let sensetivity: CGFloat = 0.6 // 1.0 equals 63 (when numOfCol is 4)
+      let halfThreshold: CGFloat = sensetivity / CGFloat(numOfColors) // Rename to defaultHalfThreshold
       return UInt8(255.0 * halfThreshold) // Rename to defaultHalfThreshold
    }
 }
