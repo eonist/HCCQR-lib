@@ -6,11 +6,10 @@ extension Data {
    /**
     * split into chunks
     * - Note: ref https://gist.github.com/ericdke/fa262bdece59ff786fcb
+    * - Parameter size: size of each chunk (the last chunk is whatever is left)
     */
-   func chunk(size: Int) -> [Data] {
-      let arr: [UInt8] = [UInt8](self)
-      let chunkedArr: [[UInt8]] = arr.chunked(into: size)
-      return chunkedArr.map { .init($0) }
+   internal func chunk(size: Int) -> [Data] {
+      [UInt8](self).chunked(into: size).map { .init($0) }
    }
 }
 /**
@@ -19,6 +18,7 @@ extension Data {
 extension Array {
    /**
     * Helper method for chunk
+    * - Parameter size: size of each chunk
     */
    fileprivate func chunked(into size: Int) -> [[Element]] {
       stride(from: 0, to: count, by: size).map {

@@ -64,6 +64,9 @@ extension ImageUtil {
     * Converts ciImage to UIImage
     * - Note: Helper method for QR images
     * - Fixme: ⚠️️ Make this throw?
+    * - Parameters:
+    *   - ciImage: core-image that backs uiimage
+    *   - scale: scale of output uiimage
     */
    private static func uiImage(ciImage: CIImage, scale: CGFloat) -> UIImage {
       .init(ciImage: ciImage, scale: scale, orientation: .up)
@@ -74,6 +77,7 @@ extension ImageUtil {
     * Converts ciImage to NSImage
     * - Note: Helper method for QR images
     * - Fixme: ⚠️️ Make this throw?
+    * - Parameter ciImage: core image that backs the nsImage
     */
    private static func nsImage(ciImage: CIImage) -> NSImage {
       let rep: NSCIImageRep = .init(ciImage: ciImage)

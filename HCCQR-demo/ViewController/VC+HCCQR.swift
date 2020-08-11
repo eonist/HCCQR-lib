@@ -26,7 +26,7 @@ extension ViewController {
       self.view.addSubview(imgView)
       _ = {
          do {
-            let dataAndQuad: QRReader.DataAndQuad = try Reader.data(image: img, scheme: setup.cType.cs, parallel: true)
+            let dataAndQuad: QRReader.DataAndQuad = try HCCQRReader.data(image: img, scheme: setup.cType.cs, parallel: true)
             let isValid: Bool = randomData == dataAndQuad.qrData
             Swift.print("data?.count:  \(String(describing: dataAndQuad.qrData.count))")
             Swift.print("isValid:  \(isValid ? "✅" : "🚫")")

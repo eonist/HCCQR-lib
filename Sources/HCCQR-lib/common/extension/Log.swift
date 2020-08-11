@@ -10,6 +10,7 @@ extension Log {
    public static var isDebug: Bool = false
    /**
     * log
+    * - Parameter str: the print statement
     */
    static func log(_ str: String) {
       #if DEBUG // will always turn of printing in release etc

@@ -4,9 +4,9 @@ import Foundation
 import UIKit
 @testable import HCCQR_lib
 
-final class RGBAImageTest {}
+final class RGBRepTest {}
 
-extension RGBAImageTest {
+extension RGBRepTest {
    /**
     * Buffer test
     * - Fixme: ⚠️️ figure out how to create scale: 1 img easy, maybe the context draw stuff needs retina support, check scaling in hccqr code etc

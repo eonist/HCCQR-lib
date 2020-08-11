@@ -45,7 +45,7 @@ extension ViewController {
       self.view.addSubview(uiImageView)
       // payload
       do {
-         let payload: QRReader.DataAndQuad = try Reader.data(rgbRep: rgbRep, scheme: cType.cs, parallel: true)
+         let payload: QRReader.DataAndQuad = try HCCQRReader.data(rgbRep: rgbRep, scheme: cType.cs, parallel: true)
          Swift.print("payload:  \(String(describing: payload))")
       } catch {
          Swift.print("error:  \(error)")
@@ -62,7 +62,7 @@ extension ViewController {
     * Called when a single hccqr image is read
     * - Fixme: ⚠️️ add hash if the data to compare, requires importing FileHasher etc
     */
-   func onReadComplete(result: Reader.ReadPayload, onComplete: @escaping (Bool) -> Void) {
+   func onReadComplete(result: HCCQRReader.ReadPayload, onComplete: @escaping (Bool) -> Void) {
 //      Swift.print("onReadComplete")
       // if failure: 🚫
 //      switch err {

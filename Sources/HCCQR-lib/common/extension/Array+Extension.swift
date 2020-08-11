@@ -31,6 +31,7 @@ extension Array {
 }
 /**
  * A way to toggle concurrency off
+ * - Fixme: ⚠️️ move to ParallelLoops repo?
  */
 extension Array {
    /**

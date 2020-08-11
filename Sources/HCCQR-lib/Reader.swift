@@ -7,10 +7,11 @@ import TimeMeasure
 /**
  * Reads HCCQR into binary data
  */
-public typealias HCCQRReader = Reader
-public final class Reader {}
+@available(*, deprecated, renamed: "HCCQRReader")
+public typealias Reader = HCCQRReader
+public final class HCCQRReader {}
 
-extension Reader {
+extension HCCQRReader {
    /**
     * - Fixme: ⚠️️ Why are we including the imageSize?
     */
@@ -65,7 +66,7 @@ extension Reader {
 /**
  * Support for parallel reading of input
  */
-extension Reader {
+extension HCCQRReader {
    /**
     * Reads rgbRep, outputs Data
     * - Fixme: ⚠️️⚠️️⚠️️ Putting many calls to this method in a concurrent loop is very effective, possibly disable concurrancy within this call might speed up things even more? like a toggle

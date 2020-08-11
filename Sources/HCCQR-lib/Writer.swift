@@ -28,6 +28,10 @@ extension Writer {
    }
    /**
     * Data -> CGImage
+    * - Parameters:
+    *   - data: data to be converted to HCCQR
+    *   - config: config of HCCQR
+    *   - parallel: for single capture, parallel is fast, for sequence, parallel is slower
     */
    public static func cgImage(data: Data, config: HCCQRConfig, parallel: Bool) throws -> CGImage {
       let rep: RGBRep = try rgbRep(data: data, config: config, parallel: parallel)

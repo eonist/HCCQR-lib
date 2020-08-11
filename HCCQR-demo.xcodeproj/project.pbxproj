@@ -145,7 +145,7 @@
 		F1E5711923A3F2C400E090BB /* MemLeakTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F165C26023A020E2005D30EC /* MemLeakTest.swift */; };
 		F1E5711B23A3F2C400E090BB /* ColorishTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BFEFD223A06899007F4261 /* ColorishTest.swift */; };
 		F1E5DC0223F975AE00605775 /* ColorPalleteAsserter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E5DBFF23F9757D00605775 /* ColorPalleteAsserter.swift */; };
-		F1E5DC1023F9A1C300605775 /* RGBAImageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E5DC0F23F9A1C300605775 /* RGBAImageTest.swift */; };
+		F1E5DC1023F9A1C300605775 /* RGBRepTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E5DC0F23F9A1C300605775 /* RGBRepTest.swift */; };
 		F1E5DC1223F9A2DF00605775 /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E5DC1123F9A2DF00605775 /* UIImage+Ext.swift */; };
 		F1E5DC1523F9A43A00605775 /* CGImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F168527C2213443700C27EAA /* CGImage+Ext.swift */; };
 		F1E5DC1823F9A5B700605775 /* Image+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E5DC1723F9A5B700605775 /* Image+Ext.swift */; };
@@ -324,7 +324,7 @@
 		F1E5710A23A3EF3100E090BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F1E5DBFF23F9757D00605775 /* ColorPalleteAsserter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPalleteAsserter.swift; sourceTree = "<group>"; };
 		F1E5DC0D23F9951600605775 /* Data+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Ext.swift"; sourceTree = "<group>"; };
-		F1E5DC0F23F9A1C300605775 /* RGBAImageTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBAImageTest.swift; sourceTree = "<group>"; };
+		F1E5DC0F23F9A1C300605775 /* RGBRepTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBRepTest.swift; sourceTree = "<group>"; };
 		F1E5DC1123F9A2DF00605775 /* UIImage+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Ext.swift"; sourceTree = "<group>"; };
 		F1E5DC1723F9A5B700605775 /* Image+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Ext.swift"; sourceTree = "<group>"; };
 		F1E5DC1923F9D37700605775 /* NSImage+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSImage+Ext.swift"; sourceTree = "<group>"; };
@@ -406,6 +406,18 @@
 				F1E205AA2495E60A00E3A82E /* VC+RGBAPhoto.swift */,
 			);
 			path = debug;
+			sourceTree = "<group>";
+		};
+		F13E831D24E35A06007BD252 /* experiment */ = {
+			isa = PBXGroup;
+			children = (
+				F1E5DC0F23F9A1C300605775 /* RGBRepTest.swift */,
+				F165C26023A020E2005D30EC /* MemLeakTest.swift */,
+				F1537F0424B362E300160FEC /* ChannelComboTest.swift */,
+				F1FE7E0324A1D5360094B1BD /* CIImageTest.swift */,
+				F156AC1224D7449C007D6D2B /* ArrayBenchmark.swift */,
+			);
+			path = experiment;
 			sourceTree = "<group>";
 		};
 		F143EC2123FA8DE10006743C /* MonoRep */ = {
@@ -666,15 +678,11 @@
 		F1AF9D4A23E387920085DA0C /* simple */ = {
 			isa = PBXGroup;
 			children = (
+				F13E831D24E35A06007BD252 /* experiment */,
 				F165C25023A00D35005D30EC /* ScaleTesting.swift */,
-				F156AC1224D7449C007D6D2B /* ArrayBenchmark.swift */,
-				F1537F0424B362E300160FEC /* ChannelComboTest.swift */,
 				F165C25323A01044005D30EC /* QRTesting.swift */,
-				F165C26023A020E2005D30EC /* MemLeakTest.swift */,
 				F1BFEFD223A06899007F4261 /* ColorishTest.swift */,
 				F1E6F6862493B2DC00975607 /* MonoPixelColorization.swift */,
-				F1E5DC0F23F9A1C300605775 /* RGBAImageTest.swift */,
-				F1FE7E0324A1D5360094B1BD /* CIImageTest.swift */,
 			);
 			path = simple;
 			sourceTree = "<group>";
@@ -1247,7 +1255,7 @@
 				F19FC44824C09F460045BDB0 /* BufferTest.swift in Sources */,
 				F1ADB48D24C0840100C1FDC6 /* BulkPhotoTesting.swift in Sources */,
 				F1E5DC0223F975AE00605775 /* ColorPalleteAsserter.swift in Sources */,
-				F1E5DC1023F9A1C300605775 /* RGBAImageTest.swift in Sources */,
+				F1E5DC1023F9A1C300605775 /* RGBRepTest.swift in Sources */,
 				F1E5711923A3F2C400E090BB /* MemLeakTest.swift in Sources */,
 				F1E67CB124BB533800EB90F6 /* SingleTest.swift in Sources */,
 				F143EC2023F9DC460006743C /* Color+Asserter.swift in Sources */,

@@ -28,9 +28,6 @@ final class HCCQRIOSTest: XCTestCase {
       XCTAssertEqual(ScaleTesting.testScalingRGBARep(), 4) // ✅
       XCTAssertTrue(MonoPixelColorization.testColorizingMonoPixel()) // ✅ b&w-pixels (mono) to color-pixels
       ColorishTest.test() // ✅
-      XCTAssertTrue(ColorishTest.testColorish()) // ✅
-      XCTAssertTrue(ColorishTest.testWashedOutColor()) // ✅
-      XCTAssertTrue(ColorishTest.testUInt8Aritmitic())
       XCTAssertTrue(QRTesting.testQRGeneration()) // ✅
    }
    /**
