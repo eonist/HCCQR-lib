@@ -20,8 +20,10 @@ HCCQR is the natural progression of black and white QR. HCCQR can store up to 8 
 | Repo  | Description | Quality | Tests |
 | ------------- | ------------- | ------ | ---- |
 | [QR-lib](https://github.com/eonist/QR-lib) | Quick response | [![CodeBeat badge](https://codebeat.co/badges/7514c7a6-b59d-45bb-8c7f-90be3d0c7ad7)](https://codebeat.co/projects/github-com-light-stream-qr-lib-master) | ![Tests](https://github.com/light-stream/QR-lib/workflows/Tests/badge.svg) |
-| [ResultSugar](https://github.com/eonist/ResultSugar) | Sugar for result | [![CodeBeat badge](https://codebeat.co/badges/cb649e6d-a601-47c5-b2c4-179158d5f431)](https://codebeat.co/projects/github-com-eonist-resultsugar-master) | ![Builds](https://github.com/eonist/ResultSugar/workflows/Builds/badge.svg) |
 | [ResourceHelper](https://github.com/eonist/ResourceHelper) | Enables resources in SPM | [![codebeat badge](https://codebeat.co/badges/6704b945-11ad-43ad-b290-ebe32edd04f0)](https://codebeat.co/projects/github-com-eonist-resourcehelper-master) | ![Builds](https://github.com/eonist/ResourceHelper/workflows/Builds/badge.svg) |
+| [ParallelLoop](https://github.com/light-stream/ParallelLoop) | Bring parallel and functional operations to swift | NaN | NaN |
+| [TimeMeasure](https://github.com/eonist/TimeMeasure) | Measure time consumed by a closure | NaN | NaN |
+| [BinarySequencer](https://github.com/light-stream/BinarySequencer) | Creates unique bool sequence at arbitrary length | NaN | NaN |
 
 ### Installation:
 - SPM: `github "light-stream/HCCQR-lib.git"` branch: `"master"`
@@ -51,16 +53,18 @@ HCCQR is the natural progression of black and white QR. HCCQR can store up to 8 
 | GrayRep | A grid of grayscale pixels |
 | MonoRep | A grid of monotone pixels |
 | Pixel | Stores RGB values for 1 pixel |
+| RGBAPixel | used to convert Image to RGBRep |
 | BoolColumn | Stores the order of the stacked b&w layers |
 | BoolRow | Stores the bool array for each b&w layer |
 | ChannelScheme | Stores HCCQR color combos (4,8,16..256) (for Reading) |
 | ColorPallete | Stores many ColorMap's which makes up the pallet (for Writing) |
 | ColorMap | Stores the BoolRow that correspond to a color |
+| CType | Stores color scheme and palette |
 
 ##### Config
 | Class | Description |
 | - | - |
-| HCCQRSetup | Stores QRConfig and OutputConfig |
+| HCCQRConfig | Stores QRConfig and OutputConfig |
 | OutputConfig | Stores Scale and ColorMap details |
 | QRSetup | Stores QR density and error correction level |
 
@@ -75,7 +79,7 @@ self.view.addSubview(imgView)
 
 ### Reading HCCQR image
 ```swift
-guard let payload: String = try? HCCQRReader.data(image: img) else { Swift.print("err"); return}
+guard let payload: String = try? HCCQRReader.data(image: img) else { Swift.print("err"); return }
 let isMatching: Bool = data == payload
 Swift.print("isMatching:  \(isMatching ? "Success": "Failure")")
 ```
@@ -84,7 +88,7 @@ Swift.print("isMatching:  \(isMatching ? "Success": "Failure")")
 **Rocks**
 - Implement project FT (Patent-pending)
 - Build own custom QR architecture
-- Port to android
+- Port to JavaScript (chrome-plugin)
 
 **Pebbles**
 - Add Heuristic optimizations (cropping) 👈 working on
