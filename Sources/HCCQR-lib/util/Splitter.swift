@@ -39,20 +39,6 @@ extension Splitter {
       grayReps.deallocate() // no longer in use, so we deallocate them
       _ = combineTime
       Log.log("combineTime:  \(combineTime)")
-//      return combinations.compactMap { $0.inverted } // for debugging
       return combinations
-   }
-}
-
-extension CIImage {
-   /**
-    * Inverts an image (black becomes white etc)
-    * - Fixme: ⚠️️ move this into ImageSugar repo (it's not used in this repo any more)
-    */
-   fileprivate var inverted: CIImage? {
-      guard let filter = CIFilter(name: "CIColorInvert") else { Swift.print("UIImage.invertedImage() - unable to create filter"); return nil }
-      filter.setDefaults()
-      filter.setValue(self, forKey: kCIInputImageKey)
-      return filter.outputImage
    }
 }

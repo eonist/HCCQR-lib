@@ -6,12 +6,12 @@ final class HCCQRIOSTest: XCTestCase {
 //      sleep(10) // give some time to look at debug instruments etc
 //      Swift.print("hello")
 //      sleep(2)
-//      simpleTests()
-//      advanceTests()
+      simpleTests()
+      advanceTests()
 //      XCTAssertTrue(PhotoTest.test())
 //      XCTAssertTrue(SingleTest.test())
 //      XCTAssertTrue(BulkBufferTest.test())
-      XCTAssertTrue(BulkTest.test()) // ✅ Read and write multiple "syntetic-HCCQR-images"
+//      XCTAssertTrue(BulkTest.test()) // ✅ Read and write multiple "syntetic-HCCQR-images"
 //      sleep(2)
 //      XCTAssertTrue(SingleTest.test())
 //      sleep(5)

@@ -62,15 +62,14 @@ extension Combiner {
     */
    private static func combine(grayReps: GrayReps) -> GrayRep {
       let size: Size = grayReps[0].size // get size from first layer
-      let pixels: UnsafeMutableBufferPointer<UInt8> = GrayRep.pixels(pixel: .black, size: size)// .grayscaleRep(pixel: .black, size: first.size) // because white is 255
+      let pixels: UnsafeMutableBufferPointer<UInt8> = GrayRep.pixels(pixel: .white, size: size) // because white is 255
       GrayRepModifier.process(size: size) { (i: Int) in // Loop things
          var byte: UInt8 = pixels[i]
          grayReps.forEach { (grayRep: GrayRep) in // loop over every image in the list
-            byte.addition(value: grayRep.pixels[i]) // ⚠️️ We now add....instead of adding, we substract and then we wouldn't have to invert the image at the end
+            byte.subtraction(value: grayRep.pixels[i]) // ⚠️️ we substract because then we wouldn't have to invert the image at the end
          }
          pixels[i] = byte
       }
-      // revert to substraction?
       return .init(pixels: .init(pixels), width: size.width, height: size.height)
    }
 }

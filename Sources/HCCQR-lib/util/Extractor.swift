@@ -22,12 +22,12 @@ extension Extractor {
     * - Note: grayscale is better for QR to read than monotone (possibly)
     * - Fixme: ⚠️️ We could use unmanaged pointer with capacity as well, might be faster
     * - Fixme: ⚠️️ Skip extracting the white channel, as it's not used when we later combine color channels
-    * - Fixme: ⚠️️⚠️️⚠️️ We could make this much more efficient if we disregarded subseequent similarties after one is found, however, this could make ErrorCorrection more dificult, add later
+    * - Fixme: ⚠️️⚠️️⚠️️ We could make this much more efficient if we disregarded subsequent similarties after one is found, however, this could make ErrorCorrection more dificult, add later
     */
    static func extract(rgbRep: RGBRep, scheme: ChannelScheme, parallel: Bool) -> GrayReps {
       let similarities: [PixelSimilarity] = Extractor.similarities(scheme: scheme) // for 128 color scheme there are 128 similarity sets
       return similarities.batches(spread: 8).concurrentFlatMap(parallel: parallel) { batch in // create similarity asserters, 4 - 256 items depending on hccqr config
-         batch.map { asserter in // create similarity asserters, 4 - 256 items depending on hccqr config
+         batch.map { asserter in // Create similarity asserters, 4 - 256 items depending on hccqr config
             extract(rgbRep: rgbRep, asserter: asserter) // Finds the red-channel, blue-channel, green-channel
          }
       }
