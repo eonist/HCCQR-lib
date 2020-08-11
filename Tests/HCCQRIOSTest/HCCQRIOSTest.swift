@@ -6,9 +6,9 @@ final class HCCQRIOSTest: XCTestCase {
 //      sleep(10) // give some time to look at debug instruments etc
 //      Swift.print("hello")
 //      sleep(2)
-//      simpleTests()
-//      advanceTests()
-      ColorishTest.test()
+      simpleTests()
+      advanceTests()
+//      ColorishTest.test()
 //      XCTAssertTrue(PhotoTest.test())
 //      XCTAssertTrue(SingleTest.test())
 //      XCTAssertTrue(BulkBufferTest.test())

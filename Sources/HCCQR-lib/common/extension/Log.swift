@@ -7,7 +7,7 @@ extension Log {
     * Toggle debug on and off
     * - Note: This can be set from other repos as well
     */
-   public static var isDebug: Bool = true
+   public static var isDebug: Bool = false
    /**
     * log
     */

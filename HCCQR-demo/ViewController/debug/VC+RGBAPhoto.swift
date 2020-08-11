@@ -11,10 +11,10 @@ extension ViewController {
     * RGBAPhoto
     */
    func createRGBAPhoto() {
-      let cType: CType = .c4
+      let cType: CType = .c8
       Swift.print("createRGBAPhoto")
 //      _ = {
-         let path: String = Bundle.main.resourcePath! + "/temp.bundle/newHCCQR2.png" // HCCQR7.png, HCCQR12.png,HCCQR13.jpg
+         let path: String = Bundle.main.resourcePath! + "/temp.bundle/newHCCQR3.png" // HCCQR7.png, HCCQR12.png,HCCQR13.jpg
          guard let image = Image(contentsOfFile: path) else { Swift.print("err getting img"); return }
          Swift.print("UIImage.size:  \(image.size)")
          //      guard let rgbaImage: RGBARep = try? CVImageBufferUtil.rgbaRep(image: image) else { Swift.print("err getting rgbImage"); return }
@@ -34,12 +34,12 @@ extension ViewController {
          _ = rgbRep
       }
       // add rgbImg
-      guard let rgbImg = try? rgbRep.image(scale: 2) else { Swift.print("err making img"); return }
+      guard let rgbImg = try? rgbRep.image(scale: 4) else { Swift.print("err making img"); return }
       let imgView: UIImageView = .init(image: rgbImg)
       self.view.addSubview(imgView)
       // split rgbRep
       let qrImgs: [CIImage] = Splitter.split(rgbRep: rgbRep, scheme: cType.cs, parallel: true)
-      let img: UIImage = .init(ciImage: qrImgs[0], scale: 2, orientation: .up)
+      let img: UIImage = .init(ciImage: qrImgs[0], scale: 4, orientation: .up)
       let uiImageView: UIImageView = .init(image: img)
       uiImageView.frame.origin = .init(x: 0, y: rgbImg.size.height)
       self.view.addSubview(uiImageView)

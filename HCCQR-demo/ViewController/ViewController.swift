@@ -13,7 +13,10 @@ final class ViewController: UIViewController {
       view.backgroundColor = .white // .systemTeal
 //      testHCCQR() // 👈
 //      createRGBAPhoto() // 🏀
-      print(PixelParser.getHalfThreshold(4))
+//      print("halfThreshold 4: \(PixelParser.getHalfThreshold(4))")
+//      print("halfThreshold 8: \(PixelParser.getHalfThreshold(8))")
+//      print("halfThreshold 16: \(PixelParser.getHalfThreshold(16))")
+//      print("halfThreshold 128: \(PixelParser.getHalfThreshold(128))")
    }
    override var prefersStatusBarHidden: Bool { true }
 }

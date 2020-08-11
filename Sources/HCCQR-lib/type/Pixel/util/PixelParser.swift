@@ -4,7 +4,41 @@ import UIKit
 import Cocoa
 #endif
 
-final class PixelParser {
+public final class PixelParser {
+   /**
+    * - Note: HalfThreshold of UInt8(63) equals 25% error tolerance
+    * - Note: HalfThreshold of UInt8(50) equals 20% error tolerance
+    * - Fixme: ⚠️️ Seems like you need aditional threshold for higher capacity hccqr, set accordingly when needed
+    * - 0.2 seems sufficient for 4-color, and 0.3 for 8 color etc
+    */
+   public static var sensitivity: CGFloat = 0.3
+   /**
+    * - Note: Percentage of color (UInt8(51) means can be 20% of some color) (4-color-system)
+    * - Note: Used by the similarities method (not called frequently)
+    * - Note: We use finer threshold if we use more colors (0.5 for 4-color, 0.125 for 8-color)
+    * - Fixme: ⚠️️ figure out a better algorith, this one isn't very precise. Also consider individual thresholds, as some scheme channels are divided by and other 4 etc
+    * ## Examples:
+    * PixelParser.getHalfThreshold(4)
+    * - Parameter numOfColors: number of colors in CType
+    */
+   internal static func getHalfThreshold(_ numOfColors: Int) -> UInt8 {
+      let tessellation: Int = Self.tessellation(numOfColors: numOfColors)
+//      let numOfLayers: Int = BoolColumn.numOfLayers(numOfColors: numOfColors)
+      let halfThreshold: CGFloat = sensitivity / CGFloat(tessellation) // Rename to defaultHalfThreshold
+      return UInt8(255.0 * halfThreshold) // Rename to defaultHalfThreshold
+   }
+   /**
+    * Color tessellation
+    */
+   private static func tessellation(numOfColors: Int) -> Int {
+      switch numOfColors {
+      case 4: return 1
+      case 8: return 2
+      case 16, 32, 64: return 3
+      case 128, 256: return 4
+      default: fatalError("num of colors not supported: \(numOfColors)")
+      }
+   }
    /**
     * Get strength of a color against another
     * - Note: 100% percentage = 255
@@ -31,19 +65,6 @@ final class PixelParser {
       let distG: Int = a.g.difference(b.g)
       let distB: Int = a.b.difference(b.b)
       return UInt8(255 - (distR + distG + distB) / 3)
-   }
-   /**
-    * - Note: Percentage of color (0.2 means can be 20% of some color)
-    * - Note: Used by the similarities method (not called frequently)
-    * - Note: We use finer threshold if we use more colors (0.5 for 4-color, 0.125 for 8-color)
-    * ## Examples:
-    * PixelParser.getHalfThreshold(4) // 63
-    * - Parameter numOfColors: number of colors in CType
-    */
-   internal static func getHalfThreshold(_ numOfColors: Int) -> UInt8 {
-      let sensetivity: CGFloat = 0.6 // 1.0 equals 63 (when numOfCol is 4)
-      let halfThreshold: CGFloat = sensetivity / CGFloat(numOfColors) // Rename to defaultHalfThreshold
-      return UInt8(255.0 * halfThreshold) // Rename to defaultHalfThreshold
    }
 }
 /**

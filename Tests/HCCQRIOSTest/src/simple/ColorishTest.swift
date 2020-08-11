@@ -9,12 +9,11 @@ final class ColorishTest {
     * Do many tests
     */
    static func test() {
-//      XCTAssertTrue(ColorishTest.testThreshold()) // ✅
-//      XCTAssertTrue(ColorishTest.testColorish()) // ✅
-//      XCTAssertTrue(ColorishTest.testWashedOutColor()) // ✅
-//      XCTAssertTrue(ColorishTest.testUInt8Aritmitic())
+      XCTAssertTrue(ColorishTest.testThreshold()) // ✅
+      XCTAssertTrue(ColorishTest.testColorish()) // ✅
+      XCTAssertTrue(ColorishTest.testWashedOutColor()) // ✅
+      XCTAssertTrue(ColorishTest.testUInt8Aritmitic())
       XCTAssertTrue(testUInt8Threshold())
-      // do threshold tests on UInt8 here
    }
 }
 extension ColorishTest {
