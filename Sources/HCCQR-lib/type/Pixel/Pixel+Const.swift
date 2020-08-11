@@ -1,12 +1,5 @@
 import Foundation
 import QuartzCore
-
-extension Pixel {
-   /**
-    * Used with threshold methods in assert extension
-    */
-//   static let defaultLimit: (UInt8, UInt8) = (.min, .max) // 0, 255
-}
 /**
  * Extra
  */

@@ -1,4 +1,5 @@
 import Foundation
+import QuartzCore
 /**
  * We add constants to Pixel to get dot notation, but also differentiate the name, to not overcrowd Pixel type
  */
@@ -35,4 +36,21 @@ extension PixelColor {
    static let cyan: Pixel = .init(r: 0, g: 255, b: 255)
    static let magenta: Pixel = .init(r: 255, g: 0, b: 255)
    static let yellow: Pixel = .init(r: 255, g: 255, b: 0)
+}
+/**
+ * Getter
+ */
+extension PixelColor {
+   /**
+    * Returns color for pixel
+    * - Note: use of UInt8 speccific divide method, didn't make usable results
+    * - Note: used by a few visual tests etc (no need to optimize)
+    * - Fixme: ⚠️️ maybe move to PixelParser? To keep this class simple 👈
+    */
+   internal var color: Color {
+      let r = CGFloat(self.r) / 255.0
+      let g = CGFloat(self.g) / 255.0
+      let b = CGFloat(self.b) / 255.0
+      return .init(red: r, green: g, blue: b, alpha: 1)
+   }
 }

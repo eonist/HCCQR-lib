@@ -6,7 +6,7 @@ extension Pixel {
    /**
     * - Note: Used with threshold methods in assert extension
     */
-   typealias Limit = (min: UInt8, max: UInt8)
+//   typealias Limit = (min: UInt8, max: UInt8)
    /**
     * Stores if is valid and the strength if it's already valid
     * - Fixme: ⚠️️ move to own file, maybe re-make as struct

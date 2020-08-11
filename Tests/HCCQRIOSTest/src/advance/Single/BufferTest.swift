@@ -55,7 +55,7 @@ extension BufferTest {
           Swift.print("randomData.count:  \(data.count)")
           Swift.print("data?.count:  \(String(describing: payload.data.count))")
          let isValid: Bool = data == payload.data
-         print("\(isValid)")
+         print("Buffer payload isValid: \(isValid ? "✅" : "🚫")")
          return isValid
       } catch {
          Swift.print("⚠️️ error:  \(error)")

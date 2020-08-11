@@ -27,14 +27,10 @@ final class PixelParser {
     *   - b: dynamic color (cyan-ish, meganta-ish, red-ish etc)
     */
    static func similarity(a: Pixel, b: Pixel) -> UInt8 {
-      let distR: Int = abs(Int(a.r) - Int(b.r))
-      let distG: Int = abs(Int(a.g) - Int(b.g))
-      let distB: Int = abs(Int(a.b) - Int(b.b))
-      let scalarR: Int = 255 - distR
-      let scalarG: Int = 255 - distG
-      let scalarB: Int = 255 - distB
-      let combinedScalar: Int = (scalarR + scalarG + scalarB) / 3
-      return UInt8(combinedScalar)
+      let distR: Int = a.r.difference(b.r)
+      let distG: Int = a.g.difference(b.g)
+      let distB: Int = a.b.difference(b.b)
+      return UInt8(255 - (distR + distG + distB) / 3)
    }
 }
 /**
