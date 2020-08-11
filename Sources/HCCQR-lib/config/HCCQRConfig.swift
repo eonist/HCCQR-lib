@@ -2,7 +2,7 @@ import Foundation
 import QR_lib
 import QuartzCore
 @available(*, deprecated, renamed: "HCCQRConfig")
-typealias HCCQRSetup = HCCQRConfig
+public typealias HCCQRSetup = HCCQRConfig
 /**
  * - Fixme: ⚠️️ Store cType in HCCQRSetup rather than output, and store scale in HCCQRSetup as well?
  */

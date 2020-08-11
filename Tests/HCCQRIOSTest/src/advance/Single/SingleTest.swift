@@ -11,7 +11,7 @@ import CoreImage
 import TimeMeasure
 /**
  * Test reading and writing
- * - Fixme: ⚠️️ Rename to concurrent optimization test
+ * - Note: this tests concurrent optimization
  */
 final class SingleTest {}
 

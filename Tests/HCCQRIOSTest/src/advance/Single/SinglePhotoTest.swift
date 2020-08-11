@@ -6,7 +6,7 @@ import CoreImage
 import ResourceHelper
 import TimeMeasure
 
-final class PhotoTest {}
+final class SinglePhotoTest {}
 /**
  * Reads data from real photo of HCCQR
  * - Description: Reading real photos
@@ -16,11 +16,10 @@ final class PhotoTest {}
  * 4. Get data from RGBAImage
  * - Fixme: ⚠️️ Add hash if the data to compare, requires importing FileHasher module in the test etc
  * - Fixme: ⚠️️ Add timers to measure time it takes to read HCCQR image etc
- * - Fixme: ⚠️️ rename to SinglePhotoTest?
  * ## Examples:
  * PhotoTest.test()
  */
-extension PhotoTest {
+extension SinglePhotoTest {
    /**
     * Tests HCCQR Image captured with camera
     * - Fixme: ⚠️️ add hash if the data to compare, requires importing FileHasher etc

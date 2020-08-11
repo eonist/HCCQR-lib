@@ -1,7 +1,7 @@
 import Foundation
 import QR_lib
 @available(*, deprecated, renamed: "HCCQRData")
-typealias HCCQRStringData = HCCQRData
+public typealias HCCQRStringData = HCCQRData
 /**
  * This class is for testing with random data
  */

@@ -40,7 +40,7 @@ final class HCCQRIOSTest: XCTestCase {
       Swift.print("advanceTests")
       // single
       XCTAssertTrue(SingleTest.test()) // ✅ "syntethic-HCCQR-images"
-      XCTAssertTrue(PhotoTest.test()) // ✅
+      XCTAssertTrue(SinglePhotoTest.test()) // ✅
       XCTAssertTrue(BufferTest.test()) // ✅ Test the new buffer -> RGBA (syntethic)
       // bulk
       XCTAssertTrue(BulkTest.test()) // ✅ Read and write multiple "syntetic-HCCQR-images"

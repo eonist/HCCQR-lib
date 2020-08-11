@@ -1,7 +1,7 @@
 import Foundation
 import QuartzCore
 @available(*, deprecated, renamed: "BufferSize")
-typealias Size = BufferSize
+public typealias Size = BufferSize
 
 public struct BufferSize {
    public let width: Int
