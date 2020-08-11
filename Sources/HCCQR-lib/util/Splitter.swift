@@ -39,8 +39,8 @@ extension Splitter {
       grayReps.deallocate() // no longer in use, so we deallocate them
       _ = combineTime
       Log.log("combineTime:  \(combineTime)")
-      return combinations.compactMap { $0.inverted } // for debugging
-//      return combinations
+//      return combinations.compactMap { $0.inverted } // for debugging
+      return combinations
    }
 }
 

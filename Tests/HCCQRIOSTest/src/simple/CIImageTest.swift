@@ -5,7 +5,7 @@ import UIKit
 final class CIImageTest {
    /**
     * UIImage -> RGBRep -> CIImage
-    * - Fixme: ⚠️️ Move into own class
+    * - Fixme: ⚠️️ fix the bellow test somehow, maybe?
     */
    static func testCIImage() -> Bool {
       guard let image = UIImage.image(size: .init(width: 100, height: 100), color: .green) else { Swift.print("uiImage err"); return false }
