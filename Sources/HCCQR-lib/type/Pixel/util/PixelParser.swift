@@ -26,11 +26,23 @@ final class PixelParser {
     *   - a: static color (cyan, magenta, red etc)
     *   - b: dynamic color (cyan-ish, meganta-ish, red-ish etc)
     */
-   static func similarity(a: Pixel, b: Pixel) -> UInt8 {
+   internal static func similarity(a: Pixel, b: Pixel) -> UInt8 {
       let distR: Int = a.r.difference(b.r)
       let distG: Int = a.g.difference(b.g)
       let distB: Int = a.b.difference(b.b)
       return UInt8(255 - (distR + distG + distB) / 3)
+   }
+   /**
+    * - Note: Percentage of color (0.2 means can be 20% of some color)
+    * - Note: Used by the similarities method (not called frequently)
+    * - Note: We use finer threshold if we use more colors (0.5 for 4-color, 0.125 for 8-color)
+    * ## Examples:
+    * getHalfThreshold(4) // 63
+    * - Parameter numOfColors: number of colors in CType
+    */
+   internal static func getHalfThreshold(_ numOfColors: Int) -> UInt8 {
+      let halfThreshold: CGFloat = 1.0 / CGFloat(numOfColors) // Rename to defaultHalfThreshold
+      return UInt8(255.0 * halfThreshold) // Rename to defaultHalfThreshold
    }
 }
 /**

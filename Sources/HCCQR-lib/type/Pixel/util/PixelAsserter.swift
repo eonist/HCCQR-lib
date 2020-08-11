@@ -39,7 +39,7 @@ extension PixelAsserter {
     * isColorish
     */
    private static func isColorish(a: UInt8, b: UInt8, halfThreshold: UInt8) -> Bool {
-      let range: RangeUInt8 = UInt8Parser.range(num: a, halfThreshold: halfThreshold)
-      return UInt8Asserter.within(num: b, range: range)
+      let range: ClosedRange<UInt8> = UInt8Parser.range(num: a, halfThreshold: halfThreshold)
+      return range.contains(b)
    }
 }

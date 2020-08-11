@@ -27,6 +27,7 @@ extension Pixel {
    /**
     * Asserts if a pixel is sort of a color within a threshold
     * - Note: self is usually an absolute color
+    * - Fixme: ⚠️️ rename to isWithin?
     * - Parameters:
     *   - ishColor: the color to check if it is similar to self (a sort of red color for instance)
     *   - halfThreshold: the tolerance allowed to be within a color
@@ -49,4 +50,16 @@ extension Pixel {
    internal static func isMatching(a: Pixel, b: Pixel) -> Bool {
       a.r == b.r && a.g == b.g && a.b == b.b
    }
+}
+extension Pixel {
+   /**
+    * Stores if is valid and the strength if it's already valid
+    * - Fixme: ⚠️️ move to own file, maybe re-make as struct
+    * - Note: Strength alone is not enough, there is a reason we have a bool as well
+    * - Note: assert is cheaper than calculating strength again
+    * - Parameters:
+    *   - assert: isSimilar or not
+    *   - strength: 0 - 255 (0-100%)
+    */
+   typealias Similarity = (assert: Bool, strength: UInt8)
 }

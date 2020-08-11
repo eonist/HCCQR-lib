@@ -38,12 +38,6 @@ extension Extractor {
  */
 extension Extractor {
    /**
-    * Output pixel similarity
-    * - Note: color-pallete's determines their similarity by comparing these r,g,b values
-    * - Parameter pixel: the input pixel
-    */
-   internal typealias PixelSimilarity = (_ pixel: Pixel) -> Pixel.Similarity
-   /**
     * RGBRep channel 👉 GrayscaleRep
     * 1. Creates a blank grayscale image of a specific size
     * 2. Asserts if the pixel is sort of a color or not
@@ -72,8 +66,18 @@ extension Extractor {
     * - Parameter scheme: rule-set for the splitting process
     */
    internal static func similarities(scheme: ChannelScheme) -> [PixelSimilarity] {
-      let halfThreshold: UInt8 = Pixel.getHalfThreshold(scheme.count)
-//      Swift.print("halfThreshold:  \(halfThreshold)")
+      let halfThreshold: UInt8 = PixelParser.getHalfThreshold(scheme.count)
       return scheme.map { (channel: Pixel) in { (ishColor: Pixel) in channel.similarity(ishColor, halfThreshold: halfThreshold) } }
    }
+}
+/**
+ * Type
+ */
+extension Extractor {
+   /**
+    * Output pixel similarity
+    * - Note: color-pallete's determines their similarity by comparing these r,g,b values
+    * - Parameter pixel: the input pixel
+    */
+   internal typealias PixelSimilarity = (_ pixel: Pixel) -> Pixel.Similarity
 }

@@ -16,8 +16,8 @@ extension PixelColor {
  * B&W colors
  */
 extension PixelColor {
-   static var black: Pixel { .init(r: .black, g: .black, b: .black) }
-   static var white: Pixel { .init(r: .white, g: .white, b: .white) }
+   static let black: Pixel = .init(r: .black, g: .black, b: .black)
+   static let white: Pixel = .init(r: .white, g: .white, b: .white)
 }
 /**
  * Test colors

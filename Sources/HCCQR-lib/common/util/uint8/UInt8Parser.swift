@@ -18,16 +18,15 @@ final class UInt8Parser {
     *   - min: min int in a range
     *   - max: max int in a range
     */
-   static func range(num: UInt8, halfThreshold: UInt8/*, min: UInt8, max: UInt8*/) -> RangeUInt8 {
-      let (min, max): (UInt8, UInt8) = (.min, .max)
+   static func range(num: UInt8, halfThreshold: UInt8) -> ClosedRange<UInt8> {
       var threshold: UInt8 { halfThreshold + halfThreshold }
       if num <= halfThreshold {
-         return (min, min + threshold)
-      } else if num >= (max - halfThreshold) {
-         return (max - threshold, max)
+         return UInt8.min...(UInt8.min + threshold)
+      } else if num >= (.max - halfThreshold) {
+         return (UInt8.max - threshold)...UInt8.max
       } else {
          let start = num - halfThreshold
-         return (start, start + threshold)
+         return start...(start + threshold)
       }
    }
 }
