@@ -1,15 +1,16 @@
 import Foundation
 import QR_lib
 import QuartzCore
+@available(*, deprecated, renamed: "HCCQRConfig")
+typealias HCCQRSetup = HCCQRConfig
 /**
  * - Fixme: ⚠️️ Store cType in HCCQRSetup rather than output, and store scale in HCCQRSetup as well?
  */
-public struct HCCQRSetup {
+public struct HCCQRConfig {
    public let qr: QRSetup
    public let output: OutputConfig
    /**
     *  QR and Output setup
-    * - Fixme: ⚠️️ Rename to HCCQRConfig or keep as is? Or even just Config
     * - Fixme: ⚠️️ Add init that doesn't have named params?
     * ## Examples:
     * let setup: HCCQRSetup = .init(qr: .init(qrVersion: .v4, ecLevel: .l), output: .init(scale: (6, 2), map: .cp16()))
@@ -26,13 +27,13 @@ public struct HCCQRSetup {
 /**
  * Const
  */
-extension HCCQRSetup {
-   public static let `default`: HCCQRSetup = .init(qr: .default, output: .default)
+extension HCCQRConfig {
+   public static let `default`: HCCQRConfig = .init(qr: .default, output: .default)
 }
 /**
  * Getter (convenience)
  */
-extension HCCQRSetup {
+extension HCCQRConfig {
    var scale: Scale { output.scale }
    var map: ColorPalette { output.palette }
    var ecLevel: ECLevel { qr.ecLevel }
@@ -42,14 +43,14 @@ extension HCCQRSetup {
 /**
  * Utility
  */
-extension HCCQRSetup {
+extension HCCQRConfig {
    /**
     * Returns max dataCount for a HCCQRSetup
     */
    public var dataCount: Int {
       let numOfLayers: Int = self.map.layerCount
       let qrConfig: QRConfig = .init(self.qr.qrVersion, .byte, self.qr.ecLevel)
-      return HCCQRConfigUtil.dataCount(config: qrConfig, colorDepth: numOfLayers)
+      return HCCQRConfigUtil.dataCount(config: qrConfig, numOfLayers: numOfLayers)
    }
    /**
     * Returns length of side of qr square

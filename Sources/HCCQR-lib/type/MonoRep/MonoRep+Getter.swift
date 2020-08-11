@@ -6,7 +6,7 @@ extension MonoRep {
    /**
     * Convenience
     */
-   var size: Size { .init(width, height) }
+   var size: BufferSize { .init(width, height) }
    /**
     * Amount of pixels MonotoneImage can hold
     * - Note: used by Colorizer.colorize

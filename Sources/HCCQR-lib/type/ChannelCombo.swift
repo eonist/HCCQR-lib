@@ -22,7 +22,7 @@ extension ChannelCombos {
       let layerCount: Int = BoolColumn.numOfLayers(numOfColors: channels.count)
       let layerIndicies: [Int] = (0..<layerCount).map { $0 } // [0, 1] for 4-color-HCCQR ⚠️️ this uses compactmap, because lint gives a warning for regular map, and other alternatives doesn't work inside array extension
       let boolColumn: BoolColumn = .sequence(channels.count)
-      let channelCombinations: [[Int]] = layerIndicies.map { rowIdx(col: boolColumn, layerIdx: $0) }
+      let channelCombinations: [[Int]] = layerIndicies.map { rowIndices(col: boolColumn, layerIdx: $0) }
       return channelCombinations.map { (channelCombination: [Int]) in
          channelCombination.map { (channelIndex: Int) in
             channels[channelIndex]
@@ -37,15 +37,14 @@ extension ChannelCombos {
    /**
     * Return index of false in the row in the column
     * - Note: Used when re-combining colors into QRLayers
-    * - Fixme: ⚠️️ This could potentially be stored values, since it's the same every time
-    * - Fixme: ⚠️️ rename to rowIndices?
+    * - Fixme: ⚠️️ This could potentially be stored values, since it's the same every time, but it doesnt take any time to process etc, so not a pri atm
     * ## Examples:
     * rowIdx(col: [[1,1],[0,1],[1,0],[0,0]], 0) // [1, 3]
     * - Parameters:
     *   - col: column that contains rows
     *   - layerIdx: QRImage layer index
     */
-   private static func rowIdx(col: BoolColumn, layerIdx: Int) -> [Int] {
+   private static func rowIndices(col: BoolColumn, layerIdx: Int) -> [Int] {
       col.enumerated().compactMap { !$0.element[layerIdx] ? $0.offset : nil }
    }
 }

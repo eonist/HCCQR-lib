@@ -46,10 +46,9 @@ extension Extractor {
     *   - rgbRep: The RGBImage to extract data from
     *   - assert: takes Pixel, returns Bool
     * - Note to debug, you can trace the asserter(pixel).strength
-    * - Fixme: ⚠️️ Somehow reuse the output, it might speed things up
-    * - Fixme: ⚠️️ make private after you remove deprecated code etc
+    * - Fixme: ⚠️️ Somehow reuse the output, it might speed things up?
     */
-   internal static func extract(rgbRep: RGBRep, asserter: @escaping PixelSimilarity) -> GrayRep {
+   private static func extract(rgbRep: RGBRep, asserter: @escaping PixelSimilarity) -> GrayRep {
       let pixels: UnsafeMutableBufferPointer<UInt8> = .allocate(capacity: rgbRep.capacity)
 //      let time: Double = TimeMeasure.timeElapsed {
       GrayRepModifier.process(size: rgbRep.size) { (i: Int) in
@@ -77,7 +76,7 @@ extension Extractor {
     * - Fixme: ⚠️️ Avoid regenerating these everytime, store as static let? TBH I don't think anything expensive is regenerated, just normal calls etc, maybe keep as is, bench mark to confirm?
     * - Parameter scheme: rule-set for the splitting process
     */
-   internal static func similarities(scheme: ChannelScheme) -> [PixelSimilarity] {
+   private static func similarities(scheme: ChannelScheme) -> [PixelSimilarity] {
       let halfThreshold: UInt8 = PixelParser.getHalfThreshold(scheme.count)
       return scheme.map { (schemeChannel: Pixel) in
          let closure: PixelSimilarity = { (ishColor: Pixel) in

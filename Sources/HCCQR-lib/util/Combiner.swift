@@ -57,11 +57,11 @@ extension Combiner {
     * - Fixme: ⚠️️ Can the compositing be done simpler, more efficient?
     * - Fixme: ⚠️️ Should we get size from calling method?
     * - Fixme: ⚠️️⚠️️⚠️️ when a posetive is found stop, iterating???
-    * - Fixme: ⚠️️ The creation of the black representation, can probably be done once and then copied in subsequent calls, it was tried but c-pointer copying and dealoc is compolicated
+    * - Fixme: ⚠️️ The creation of the single color representation, can probably be done once and then copied in subsequent calls, it was tried but c-pointer copying and dealoc is compolicated
     * - Parameter grayReps: An array of GrayRep's to be composited together into 1 RGBRep
     */
    private static func combine(grayReps: GrayReps) -> GrayRep {
-      let size: Size = grayReps[0].size // get size from first layer
+      let size: BufferSize = grayReps[0].size // get size from first layer
       let pixels: UnsafeMutableBufferPointer<UInt8> = GrayRep.pixels(pixel: .white, size: size) // because white is 255
       GrayRepModifier.process(size: size) { (i: Int) in // Loop things
          var byte: UInt8 = pixels[i]
@@ -73,17 +73,3 @@ extension Combiner {
       return .init(pixels: .init(pixels), width: size.width, height: size.height)
    }
 }
-/**
- * attempt to speed things up
- */
-//static func combine2(grayReps: GrayReps) -> GrayRep {
-//   let size: Size = grayReps[0].size // get size from first layer
-//   let output: GrayRep = .grayRep(pixel: .black, size: size)// .grayscaleRep(pixel: .black, size: first.size) // because white is 255
-//   grayReps.forEach { (grayRep: GrayRep) in // loop over every image in the list, this is inside here because the process method uses concurrent_apply
-//      GrayRepModifier.process(size: output.size) { (i: Int) in // Loop things
-//         let newPixel: UInt8 = grayRep.pixels[i] // - Fixme: ⚠️️ Can be removed because this will basically never happen, because channels can't overlap
-//         output.pixels[i].addition(value: newPixel) // ⚠️️ We now add....instead of adding, we substract and then we wouldn't have to invert the image at the end
-//      }
-//   }
-//   return output
-//}

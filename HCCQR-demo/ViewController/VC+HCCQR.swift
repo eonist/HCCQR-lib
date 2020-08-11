@@ -9,12 +9,12 @@ extension ViewController {
     */
    func testHCCQR() {
       Swift.print("testHCCQR")
-      let setup: HCCQRSetup = {
+      let setup: HCCQRConfig = {
          let qrSetup: QRSetup = .init(qrVersion: .v4, ecLevel: .l)
          let output: OutputConfig = .init(scale: .init(6, 2), cType: .c4)
          return .init(qr: qrSetup, output: output)
       }()
-      guard let randomData: Data = HCCQRStringData.randomData(setup: setup) else { return }
+      guard let randomData: Data = HCCQRData.randomData(setup: setup) else { return }
       //      let coreCount: Int = ProcessInfo().activeProcessorCount
       //      print("coreCount \(coreCount)")
       guard let img: Image = try? Writer.image(data: randomData, config: setup, parallel: true) else { return }

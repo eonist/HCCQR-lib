@@ -6,12 +6,13 @@ final class PixelAsserter {
     * - Description: Basically makes sure each channel is within the threshold defined
     * 1. Creates the r, g, b channel asserts
     * 2. Calls these custom assert methods and check if they all pass
-    * - Note: ⚠️️ There is unit tests for this method: PixelTest.testColorAssertionWithinThresholdForPixel
+    * - Note: There is unit tests for this method: PixelTest.testColorAssertionWithinThresholdForPixel
     * - Note: All channels must be within the halfTheshold
     * - Note: If a UInt8 value is near the bounds, the threshold is actually increased to the distance to the bound
-    * - Fixme: ⚠️️ It might be the case that if we should also limit the combined values of difference. say if R,B combined are more than 50% off, then its not a match. etc.
-    * - Fixme: ⚠️️ It might be valuable to make advance tests, of how to match colors
+    * - Fixme: ⚠️️⚠️️⚠️️ also maybe the combined deviation is within threshold, that should count more than single channel assert, maybe be more forgiving in the assert, and then stricter with combined deviation?
+    * - Fixme: ⚠️️⚠️️⚠️️ An idea could be to have different threshold for different channels, as some schemes has 4 r-channels and 2-b and 2-g etc
     * - Fixme: ⚠️️⚠️️⚠️️ big performance gain if we reuse the ranges of the scheme-channels, loop through the RGBRep, with halfThreshold, generate range in array, and pass array
+    * - Fixme: ⚠️️ rename to isWithin?
     * ## Examples:
     * let offset: UInt8 = UInt8(255 * 0.2)
     * let redishPixel: Pixel = .init(R: 255 - offset, G: 0 + offset, B: 0 + offset, A: 255)

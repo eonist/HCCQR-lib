@@ -20,7 +20,7 @@ extension SingleTest {
    /**
     * Setup for single test
     */
-   private static let singleSetup: HCCQRSetup = {
+   private static let singleSetup: HCCQRConfig = {
       let qrSetup: QRSetup = .init(qrVersion: .v8, ecLevel: .l)
       let output: OutputConfig = .init(scale: .init(6, 2), cType: cType)
       return .init(qr: qrSetup, output: output)
@@ -29,7 +29,7 @@ extension SingleTest {
     * Test single write & read
     */
    internal static func test() -> Bool {
-      guard let randomData: Data = HCCQRStringData.randomData(setup: singleSetup) else { return false }
+      guard let randomData: Data = HCCQRData.randomData(setup: singleSetup) else { return false }
       let (isValid, time) = TimeMeasure.timeElapsed {
          writeAndRead(data: randomData)
       }

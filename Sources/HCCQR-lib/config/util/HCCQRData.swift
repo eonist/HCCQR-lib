@@ -1,16 +1,17 @@
 import Foundation
 import QR_lib
+@available(*, deprecated, renamed: "HCCQRData")
+typealias HCCQRStringData = HCCQRData
 /**
  * This class is for testing with random data
- * - Fixme: ⚠️️ Rename to StringData? or HCCQRData? 
  */
-public final class HCCQRStringData {
+public final class HCCQRData {
    /**
     * Returns Random data based on config and color-depth
     * - Parameter setup: ecLevel, mode, version, scale, map
     * - Returns: data
     */
-   public static func randomData(setup: HCCQRSetup) -> Data? {
+   public static func randomData(setup: HCCQRConfig) -> Data? {
       let qrConfig: QRConfig = .init(setup.qrVersion, .byte, setup.ecLevel)
       let ranStr: String = randomString(config: qrConfig, colorDepth: setup.output.palette.layerCount)
       return ranStr.data(using: .utf8) // Converts the string to data
@@ -19,7 +20,7 @@ public final class HCCQRStringData {
 /**
  * Private static helper
  */
-extension HCCQRStringData {
+extension HCCQRData {
    /**
     * Returns a max random string for QRConfig and colorDepth
     * - Parameters:

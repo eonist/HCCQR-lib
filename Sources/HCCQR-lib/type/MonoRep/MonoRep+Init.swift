@@ -6,7 +6,7 @@ import CoreImage
 extension MonoRep {
    /**
     * Pure B&W-QR-CIImage 👉 MonoRep (grid of bool values)
-    * - Fixme: ⚠️️ rename function to init
+    * - Fixme: ⚠️️⚠️️ rename function to init !
     * 1. CIImage comes in
     * 2. Meta data is extracted from the CIImage
     * 3. Pixels are extracted from the CGContext

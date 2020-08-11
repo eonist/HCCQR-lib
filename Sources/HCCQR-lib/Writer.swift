@@ -22,14 +22,14 @@ extension Writer {
     *   - config: config of HCCQR
     *   - parallel: for single capture, parallel is fast, for sequence, parallel is slower
     */
-   public static func image(data: Data, config: HCCQRSetup, parallel: Bool) throws -> Image {
+   public static func image(data: Data, config: HCCQRConfig, parallel: Bool) throws -> Image {
       let cgImg: CGImage = try cgImage(data: data, config: config, parallel: parallel)
       return ImageUtil.image(cgImage: cgImg, scale: CGFloat(config.scale.screen))
    }
    /**
     * Data -> CGImage
     */
-   public static func cgImage(data: Data, config: HCCQRSetup, parallel: Bool) throws -> CGImage {
+   public static func cgImage(data: Data, config: HCCQRConfig, parallel: Bool) throws -> CGImage {
       let rep: RGBRep = try rgbRep(data: data, config: config, parallel: parallel)
       defer { rep.deallocate() }
       return try rep.cgImage()
@@ -52,7 +52,7 @@ extension Writer {
     *   - config: config of HCCQR
     *   - parallel: for single capture, parallel is fast, for sequence, parallel is slower
     */
-   internal static func rgbRep(data: Data, config: HCCQRSetup, parallel: Bool) throws -> RGBRep {
+   internal static func rgbRep(data: Data, config: HCCQRConfig, parallel: Bool) throws -> RGBRep {
       let dataArr: [Data] = /*autoreleasepool { */ HCCQRConfigUtil.data(data: data, config: config) /* }*/ // splits data (for multiple layers 2-8, 4-256 colors respectfully)
       let (ciImgs, qrTime): ([CIImage], Double) = TimeMeasure.timeElapsed {
          /*let ciImgs: [CIImage] = */dataArr.concurrentCompactMap(parallel: parallel) { (data: Data) in // parraelly create the qr-image-Layers

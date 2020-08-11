@@ -5,13 +5,12 @@ import QuartzCore
  * - Note: The idea is that ColorPallete array can hold 4-colors, 8-colors, 16-colors etc
  * - Note: idx represent false = black, true = white
  * - Note: if you match the array correctly, then the color is used
- * - Fixme: ⚠️️ differentiate ColorPallet and ChannelPallet names
  */
 public typealias ColorPalette = [ColorMap]
 /**
  * Stores the BoolRow that correspond to a color
  * - Description: Stores the bool-combination-index for the color
- * - Fixme: ⚠️️ Consider making this a struct
+ * - Fixme: ⚠️️ Consider making this a struct, maybe not?
  * - Parameters:
  *   - idx: The array represents the layers of QRImages (true equals black, false equals white)
  *   - color: the color at the index
@@ -28,8 +27,7 @@ extension ColorPalette {
       Int(Algebra.exponent(base: 2, value: CGFloat(self.count)))
    }
    /**
-    * Combines (black&white) with color
-    * - Fixme: ⚠️️ potentially move to ColorPallete extension?
+    * Combines (black & white) with color
     * - Description: uses zip or similar to weave in the data into the color map
     * - Note: Having the .zip inside an array extension doesn't work, so we put it in an external util class and method
     * - Parameters:

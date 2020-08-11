@@ -13,8 +13,8 @@ final class QRTesting {
     * - Fixme: ⚠️️ test if total payload matches
     */
    static func testQRGeneration() -> Bool {
-      let setup: HCCQRSetup = .init(qr: .init(qrVersion: .v8, ecLevel: .l), output: .init(scale: .init(6, 2)))
-      guard let hccqrData: Data = HCCQRStringData.randomData(setup: setup) else { return false }
+      let setup: HCCQRConfig = .init(qr: .init(qrVersion: .v8, ecLevel: .l), output: .init(scale: .init(6, 2)))
+      guard let hccqrData: Data = HCCQRData.randomData(setup: setup) else { return false }
       let dataArr: [Data] = HCCQRConfigUtil.data(data: hccqrData, config: setup)
       guard let firstItem: Data = dataArr.first else { Swift.print("err data"); return false }
       guard let qrImage: Image = try? QRWriter.image(data: firstItem, ecLevel: setup.ecLevel, moduleMultiplier: setup.scale.module), let ciImage = qrImage.ciImg() else { Swift.print("unable to create UIImage"); return false }

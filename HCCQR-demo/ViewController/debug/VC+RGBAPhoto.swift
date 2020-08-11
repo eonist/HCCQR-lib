@@ -22,12 +22,12 @@ extension ViewController {
          _ = rgbRep
 //      }
       _ = {
-         let setup: HCCQRSetup = {
+         let setup: HCCQRConfig = {
             let qrSetup: QRSetup = .init(qrVersion: .v4, ecLevel: .l)
             let output: OutputConfig = .init(scale: .init(4, 2), cType: cType)
             return .init(qr: qrSetup, output: output)
          }()
-         guard let randomData: Data = HCCQRStringData.randomData(setup: setup) else { return }
+         guard let randomData: Data = HCCQRData.randomData(setup: setup) else { return }
          //      let coreCount: Int = ProcessInfo().activeProcessorCount
          //      print("coreCount \(coreCount)")
          guard let rgbRep: RGBRep = try? Writer.rgbRep(data: randomData, config: setup, parallel: true) else { return }

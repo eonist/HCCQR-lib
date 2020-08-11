@@ -29,7 +29,7 @@ extension RGBRep {
     *  - Fixme: ⚠️️ try withMemoryRebound instead of the while loop
     */
    internal static func imageRep(cgImage: CGImage) throws -> RGBRep {
-      let size: Size = .init(Int(cgImage.width), Int(cgImage.height))
+      let size: BufferSize = .init(Int(cgImage.width), Int(cgImage.height))
       let bytesPerPixel = MemoryLayout<RGBAPixel>.size
       let bytesPerRow: Int = size.width * bytesPerPixel // We multiply per 4 because of the 4 channels, RGBA
       let capacity: Int = size.capacity

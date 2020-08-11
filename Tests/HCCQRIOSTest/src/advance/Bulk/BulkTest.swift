@@ -22,7 +22,7 @@ extension BulkTest {
    /**
     * - Important: ⚠️️ remember to match the colorPallete and channelPallet
     */
-   private static let bulkSetup: HCCQRSetup = {
+   private static let bulkSetup: HCCQRConfig = {
       let qrSetup: QRSetup = .init(qrVersion: .v4, ecLevel: .l)
       let output: OutputConfig = .init(scale: .init(6, 2), cType: cType)
       return .init(qr: qrSetup, output: output)
@@ -31,7 +31,7 @@ extension BulkTest {
     * Bulk test
     */
    static func test() -> Bool {
-      var randomData: [Data] = (0..<count).compactMap { _ in HCCQRStringData.randomData(setup: bulkSetup) } // Num of items to load, we create this outside, because we dont want to time the creation of it
+      var randomData: [Data] = (0..<count).compactMap { _ in HCCQRData.randomData(setup: bulkSetup) } // Num of items to load, we create this outside, because we dont want to time the creation of it
       var reps: [RGBRep] = writeMany(setup: bulkSetup, randomData: randomData)
       let didSuccessfullyReadMany: Bool = readMany(reps: reps, scheme: cType.cs, randomData: randomData)
       reps = []
@@ -47,7 +47,7 @@ extension BulkTest {
    /**
     * Bulk write many
     */
-   internal static func writeMany(setup: HCCQRSetup, randomData: [Data]) -> [RGBRep] {
+   internal static func writeMany(setup: HCCQRConfig, randomData: [Data]) -> [RGBRep] {
       let (payloads, time): ([RGBRep], Double) = TimeMeasure.timeElapsed {
          randomData.batches(spread: 8).concurrentFlatMap { batch in
             batch.compactMap {

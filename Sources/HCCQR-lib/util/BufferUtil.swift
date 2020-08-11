@@ -74,7 +74,6 @@ extension BufferUtil {
 extension BufferUtil {
    /**
     * UIImage -> CVPixelBuffer
-    * - Fixme: ⚠️️ add step doc
     * - Fixme: ⚠️️ Use Metal: https://developer.apple.com/documentation/coreimage/cicontext/1437609-init
     * - Note: Ref https://www.hackingwithswift.com/whats-new-in-ios-11 and https://stackoverflow.com/a/44475334/5389500
     * - Note: Alternative https://gist.github.com/omarojo/b47ad0f0965ba8bf2e825ef571ef804c

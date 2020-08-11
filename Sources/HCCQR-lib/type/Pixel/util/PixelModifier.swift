@@ -15,9 +15,9 @@ final class PixelModifier {
     *   - size: size of the rgba-rep
     *   - scale: The amount to scale the pixel by (module, screen)
     */
-   static func scale(pixels: UnsafeMutableBufferPointer<Pixel>, size: Size, scale: Scale) -> RGBRep {
+   static func scale(pixels: UnsafeMutableBufferPointer<Pixel>, size: BufferSize, scale: Scale) -> RGBRep {
       let scale: Int = scale.module * scale.screen // multiply screen and module multiplier
-      let scaledSize: Size = .init(size.width * scale, size.height * scale)
+      let scaledSize: BufferSize = .init(size.width * scale, size.height * scale)
       let capacity: Int = scaledSize.width * scaledSize.height
       let resultPixels: UnsafeMutableBufferPointer<Pixel> = .allocate(capacity: capacity)
       // - Fixme: ⚠️️ do concurrent + stride?

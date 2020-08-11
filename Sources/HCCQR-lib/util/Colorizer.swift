@@ -37,15 +37,15 @@ extension Colorizer {
     * - Note: We use MonotoneImage that has single Bit data, bool, it will be faster
     * - Fixme: ⚠️️⚠️️ Could be faster to just mutate the pixels directly in an RGBAImage instead of creating an pixel array like it is now?
     * - Fixme: ⚠️️⚠️️ Do the scaling inside the fuse-loop, figure out how to scale in the unscalled array first 👈, then apply the scaling directly to the colorized pixels, somehow, requires some whiteboard thinking
-    * - Fixme: ⚠️️ you could move the monoReps loop to the outer loop, and do concurrentMap on it, maybe?, that will be dificult, as you need to sync up and do colorize on multiple pixels etc, might not save and cpu time etc, you do have Atomic value tho, could work
-    * - Fixme: ⚠️️ move the scale into the array, benchmark first tho (scaling adds about 10% to colorization process), to bake this into the above array, you will probably have to start fresh with pen and paper and try to understand the problem better, then try a few different things, then maybe build 4 pix grid that you uscale up, to debug easier etc
+    * - Fixme: ⚠️️ You could move the monoReps loop to the outer loop, and do concurrentMap on it, maybe?, that will be dificult, as you need to sync up and do colorize on multiple pixels etc, might not save and cpu time etc, you do have Atomic value tho, could work
+    * - Fixme: ⚠️️ Move the scale into the array, benchmark first tho (scaling adds about 10% to colorization process), to bake this into the above array, you will probably have to start fresh with pen and paper and try to understand the problem better, then try a few different things, then maybe build 4 pix grid that you uscale up, to debug easier etc
     * - Note: Used in the process of converting Data to HCCQR
     * - Parameters:
     *   - monoReps: (black / white)-pixel-array
     *   - config: scaling and color rule-set (darkmode ability is possible epending on what color-pallete is used)
     */
    internal static func colorize(monoReps: MonoReps, config: OutputConfig) -> RGBRep {
-      let size: Size = monoReps[0].size // get size from first rep
+      let size: BufferSize = monoReps[0].size // get size from first rep
       let capacity: Int = size.capacity // get capacity from first item
       let pixels: UnsafeMutableBufferPointer<Pixel> = .allocate(capacity: capacity) // Create a new array // pixels.reserveCapacity(size.width * size.height)
       var idx: Int = 0
@@ -56,7 +56,7 @@ extension Colorizer {
          }
          idx = idx &+ 1
       }
-      // - Fixme: ⚠️️ skip scaling if scale is 1
+      // - Fixme: ⚠️️ skip scaling if scale is 1, remember to deallocate as well
       let (rgbRep, time): (RGBRep, Double) = TimeMeasure.timeElapsed {
          /*let rgbaRep: RGBARep = */PixelModifier.scale(pixels: pixels, size: size, scale: config.scale)
       }
@@ -73,6 +73,7 @@ extension Colorizer {
     * 2. Loop through color-pallete colors to find the matching color to the matching pixel combination
     * 3. Return the matching color-pixel if one is found in the color-pallete array
     *  - Fixme ⚠️️ could we use concurrent_apply here, in the .first loop?
+    *  - Fixme: ⚠️️ clean up the method a bit and add proper error
     * ## Examples:
     * colorize(pixels: [false, true]) -> RedPixel
     * colorize(pixels: [true, true]) -> BluePixel

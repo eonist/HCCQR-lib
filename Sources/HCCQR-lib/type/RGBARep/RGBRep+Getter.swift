@@ -7,7 +7,7 @@ extension RGBRep {
    /**
     * Int size
     */
-   var size: Size { .init(width, height) }
+   var size: BufferSize { .init(width, height) }
    /**
     * CGFloat size
     */

@@ -8,7 +8,7 @@ import TimeMeasure
 
 final class BufferTest {
    static let cType: CType = .c8 // the mappings for writing / reading
-   static let setup: HCCQRSetup = {
+   static let setup: HCCQRConfig = {
       let qrSetup: QRSetup = .init(qrVersion: .v4, ecLevel: .l)
       let output: OutputConfig = .init(scale: .init(6, 2), cType: cType)
       return .init(qr: qrSetup, output: output)
@@ -23,7 +23,7 @@ final class BufferTest {
     *  - Note: We just compare the data payload here, since FileHasher is not added as a dep, it could be added, since this is just test code
     */
    static func test() -> Bool {
-      guard let randomData = HCCQRStringData.randomData(setup: setup) else { Swift.print("unable to create data"); return false }
+      guard let randomData = HCCQRData.randomData(setup: setup) else { Swift.print("unable to create data"); return false }
       guard let buffer: CVImageBuffer = write(data: randomData) else { return false }
       let (isValid, time): (Bool, Double) = TimeMeasure.timeElapsed {
          read(buffer: buffer, data: randomData)

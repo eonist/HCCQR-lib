@@ -9,7 +9,7 @@ public final class PixelParser {
     * - Note: HalfThreshold of UInt8(63) equals 25% error tolerance
     * - Note: HalfThreshold of UInt8(50) equals 20% error tolerance
     * - Fixme: ⚠️️ Seems like you need aditional threshold for higher capacity hccqr, set accordingly when needed
-    * - 0.2 seems sufficient for 4-color, and 0.3 for 8 color etc
+    * - 0.2 seems sufficient for 4-color, and 0.3 for 8 color, 16colors seem to need more than 0.3
     */
    public static var sensitivity: CGFloat = 0.3
    /**
@@ -48,9 +48,9 @@ public final class PixelParser {
     * - Fixme: ⚠️️ Figure out how to divide a value that is bigger than UINT8.max etc and then divide it etc
     * - Fixme: ⚠️️ Maybe optimize this methods somehow? research? Converting to Int is not optimal
     * - Fixme: ⚠️️ It might be the case that if we should also limit the combined values of difference. say if R,B combined are more than 50% off, then its not a match. etc. It might be valuable to make advance tests, of how to match colors
-    * - Fixme: ⚠️️ Rename to commonality, correlation, parity?
-    * - Fixme: ⚠️️ performance could be increased if we did the dividing in bulk, on gpu etc
-    * - Fixme: ⚠️️ could be faster to do minMax instead of abs?
+    * - Fixme: ⚠️️ Rename to commonality, correlation?
+    * - Fixme: ⚠️️ Performance could be increased if we did the dividing in bulk, on gpu etc
+    * - Fixme: ⚠️️ Could be faster to do minMax instead of abs?
     * - Important: ⚠️️⚠️️⚠️️ has to be used in conjunction with the isColorish method, since this only returns the intensity of the output pixel, and should only valid if the isColorish method is within thresholds etc
     * ## Examples:
     * let red: RGBColor = (r: 255, g: 0, b: 0)

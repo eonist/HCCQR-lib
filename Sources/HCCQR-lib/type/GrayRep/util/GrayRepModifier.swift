@@ -14,12 +14,12 @@ extension GrayRepModifier {
     *   - output: 
     *   - functor: A function which manipulates each pixel
     */
-   internal static func process(size: Size, functor: @escaping Functor) {
+   internal static func process(size: BufferSize, functor: @escaping Functor) {
       let capacity: Int = size.capacity
       var i: Int = 0
-      while i < capacity { // this is faster than for-loop
+      while i < capacity { // This is faster than for-loop
          functor(i) // Apply new pixel to old pixel
-         i = i &+ 1
+         i = i &+ 1 // &+ gives us a little performance gain
       }
    }
 }

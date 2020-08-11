@@ -1,9 +1,9 @@
 import Foundation
 import QuartzCore
-/**
- * - Fixme: ⚠️️ rename to BufferSize? maybe not
- */
-public struct Size {
+@available(*, deprecated, renamed: "BufferSize")
+typealias Size = BufferSize
+
+public struct BufferSize {
    public let width: Int
    public let height: Int
    public init(_ width: Int, _ height: Int) {
@@ -14,7 +14,7 @@ public struct Size {
 /**
  * Getters
  */
-extension Size {
+extension BufferSize {
    /**
     * Size to CGRect
     */

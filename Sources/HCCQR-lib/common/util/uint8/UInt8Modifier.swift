@@ -10,7 +10,7 @@ final class UInt8Modifier {
     */
    static func subtraction(a: UInt8, b: UInt8) -> UInt8 {
       let result: ReportingOverflow = a.subtractingReportingOverflow(b) // instead of adding, we substract and then we wouldn't have to invert the image at the end
-      return result.overflow ? 0 : result.partialValue // - Fixme: ⚠️️ Can be removed because this will basically never happen, because channels cant overlap
+      return result.overflow ? .min : result.partialValue // - Fixme: ⚠️️ Can be removed because this will basically never happen, because channels cant overlap
    }
    /**
     * Addition (simpler to understand than subtraction)
@@ -18,7 +18,7 @@ final class UInt8Modifier {
     */
    static func addition(a: UInt8, b: UInt8) -> UInt8 {
       let result: ReportingOverflow = a.addingReportingOverflow(b)
-      return result.overflow ? 255 : result.partialValue
+      return result.overflow ? .max : result.partialValue
    }
    /**
     * Division
@@ -26,7 +26,7 @@ final class UInt8Modifier {
     */
    static func division(a: UInt8, b: UInt8) -> UInt8 {
       let result: ReportingOverflow = a.dividedReportingOverflow(by: b)
-      return result.overflow ? 0 : result.partialValue
+      return result.overflow ? .min : result.partialValue
    }
    /**
     * Multiplication
@@ -34,6 +34,6 @@ final class UInt8Modifier {
     */
    static func multiplication(a: UInt8, b: UInt8) -> UInt8 {
       let result: ReportingOverflow = a.multipliedReportingOverflow(by: b)
-      return result.overflow ? 255 : result.partialValue
+      return result.overflow ? .max : result.partialValue
    }
 }
