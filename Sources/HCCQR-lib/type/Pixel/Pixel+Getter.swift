@@ -16,12 +16,12 @@ extension Pixel {
     * - Important: ⚠️️ For now we just measure for R, G, B
     * - Returns: Returns Bool and the amount of that color in UInt8 (if bool is false, then the strength is disregarded when channels are recombined later)
     * - Parameters:
-    *   - ishColor: a color (dynamic / impure color) to check against self (self is static / pure colors)
+    *   - color: a color (dynamic / impure color) to check against self (self is static / pure colors)
     *   - halfThreshold: the tolerance allowed to be within a color
     */
-   internal func similarity(_ ishColor: Pixel, halfThreshold: UInt8) -> Similarity {
-      let isColorish: Bool = self.withinTolerance(ishColor, halfThreshold: halfThreshold) // channels r, g, b are within-ish the color
-      let strength = isColorish ? PixelParser.similarity(a: ishColor, b: self) : .black // if not colorish, then return no intensity, and thus avoid calculating strength
+   internal func similarity(_ color: Pixel, halfThreshold: UInt8) -> Similarity {
+      let isColorish: Bool = self.isWithin(color, halfThreshold: halfThreshold) // channels r, g, b are within-ish the color
+      let strength = isColorish ? PixelParser.similarity(a: color, b: self) : .black // if not colorish, then return no intensity, and thus avoid calculating strength
       return (assert: isColorish, strength: strength)
    }
    /**
@@ -29,15 +29,15 @@ extension Pixel {
     * - Note: self is usually an absolute color
     * - Fixme: ⚠️️ rename to isWithin?
     * - Parameters:
-    *   - ishColor: the color to check if it is similar to self (a sort of red color for instance)
+    *   - color: the color to check if it is similar to self (a sort of red color for instance)
     *   - halfThreshold: the tolerance allowed to be within a color
     * ## Examples:
     * let rgbColor: RGBColor = (255, 0, 0)
     * let pixel: Pixel = .init(uiColor: .red)
     * pixel.withinTolerance(rgbColor) // returns true if the the pixel is within the color
     */
-   internal func withinTolerance(_ ishColor: Pixel, halfThreshold: UInt8) -> Bool { // PixelAsserter.Colorish
-      PixelAsserter.withinTolerance(a: self, b: ishColor, halfThreshold: halfThreshold)
+   internal func isWithin(_ color: Pixel, halfThreshold: UInt8) -> Bool { // PixelAsserter.Colorish
+      PixelAsserter.isWithin(a: self, b: color, halfThreshold: halfThreshold)
    }
    /**
     * Asserts if a pixel is the same as another pixel (does not account for alpha)

@@ -12,7 +12,7 @@ final class PixelAsserter {
     * - Fixme: ⚠️️⚠️️⚠️️ also maybe the combined deviation is within threshold, that should count more than single channel assert, maybe be more forgiving in the assert, and then stricter with combined deviation?
     * - Fixme: ⚠️️⚠️️⚠️️ An idea could be to have different threshold for different channels, as some schemes has 4 r-channels and 2-b and 2-g etc
     * - Fixme: ⚠️️⚠️️⚠️️ big performance gain if we reuse the ranges of the scheme-channels, loop through the RGBRep, with halfThreshold, generate range in array, and pass array
-    * - Fixme: ⚠️️ rename to isWithin?
+    * - Fixme: ⚠️️ You can also try more likley colors first etc
     * ## Examples:
     * let offset: UInt8 = UInt8(255 * 0.2)
     * let redishPixel: Pixel = .init(R: 255 - offset, G: 0 + offset, B: 0 + offset, A: 255)
@@ -25,7 +25,7 @@ final class PixelAsserter {
     *   - b: second color (dynamic color / impure color)
     *   - halfThreshold: with threshold more or less (I.e: +25, -25 from a value)
     */
-   internal static func withinTolerance(a: Pixel, b: Pixel, halfThreshold: UInt8) -> Bool {
+   internal static func isWithin(a: Pixel, b: Pixel, halfThreshold: UInt8) -> Bool {
       var r: Bool { UInt8Asserter.withinTolerance(a: a.r, b: b.r, halfThreshold: halfThreshold) }
       var g: Bool { UInt8Asserter.withinTolerance(a: a.g, b: b.g, halfThreshold: halfThreshold) }
       var b: Bool { UInt8Asserter.withinTolerance(a: a.b, b: b.b, halfThreshold: halfThreshold) }

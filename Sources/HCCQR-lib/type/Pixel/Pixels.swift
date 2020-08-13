@@ -5,7 +5,7 @@ public typealias Pixels = [Pixel]
 extension Pixels {
    /**
     * Creates multiple evenly spread colors in various ranges
-    * - Note: Examples of ranges include: 4,8,16,32,64,128,256..etc colors
+    * - Note: Examples of ranges include: 4, 8, 16, 32, 64, 128, 256..etc colors
     * - Note: Used by ChannelScheme etc
     * ## Examples:
     * Pixels.dynamicColors(r: 4, g: 2, b: 2) // 16 colors

@@ -22,8 +22,8 @@ extension ChannelScheme {
     */
    static func scheme(scheme: ChannelScheme, darkMode: Bool = false) -> ChannelScheme {
       if darkMode {
-         var scheme = scheme // make copy
-         scheme.swapAt(0, scheme.count - 1) // swap light for dark color
+         var scheme = scheme // Make copy
+         scheme.swapAt(0, scheme.count - 1) // Swap light for dark color
          return scheme
       }
       return scheme

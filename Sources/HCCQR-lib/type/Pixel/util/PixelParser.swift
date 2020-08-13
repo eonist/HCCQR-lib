@@ -17,6 +17,7 @@ public final class PixelParser {
     * - Note: Used by the similarities method (not called frequently)
     * - Note: We use finer threshold if we use more colors (0.5 for 4-color, 0.125 for 8-color)
     * - Fixme: ⚠️️ figure out a better algorith, this one isn't very precise. Also consider individual thresholds, as some scheme channels are divided by and other 4 etc
+    * - Fixme: ⚠️️ doesn't work beyond 16 colors, needs tuning
     * ## Examples:
     * PixelParser.getHalfThreshold(4)
     * - Parameter numOfColors: number of colors in CType

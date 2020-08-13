@@ -1,6 +1,6 @@
 import Foundation
 /**
- * Pixel (stores a color for a pixel in the red,green, blue channels)
+ * Pixel (stores a color for a pixel in the red, green, blue channels)
  */
 public struct Pixel {
    public let r: UInt8
