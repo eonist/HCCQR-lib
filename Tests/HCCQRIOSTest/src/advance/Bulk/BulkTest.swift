@@ -73,7 +73,7 @@ extension BulkTest {
          reps.batches(spread: 8).concurrentFlatMap { batch in
             batch.compactMap { rgbaRep in
                do {
-                  return try Reader.data(rgbRep: rgbaRep, scheme: scheme, parallel: false)
+                  return try HCCQRReader.data(rgbRep: rgbaRep, scheme: scheme, parallel: false)
                } catch {
                   Swift.print("⚠️️ Error: ⚠️️  \(error)")
                   return nil

@@ -60,7 +60,7 @@ extension SingleTest {
    private static func read(image: Image, data: Data) -> Bool {
 //      autoreleasepool { // new ⚠️️
       do {
-         let dataAndQuad: QRReader.DataAndQuad = try Reader.data(image: image, scheme: cType.cs, parallel: true)
+         let dataAndQuad: QRReader.DataAndQuad = try HCCQRReader.data(image: image, scheme: cType.cs, parallel: true)
          let isValid: Bool = data == dataAndQuad.qrData
          Swift.print("data?.count:  \(String(describing: dataAndQuad.qrData.count))")
          Swift.print("SingleTest isValid:  \(isValid ? "✅" : "🚫")")

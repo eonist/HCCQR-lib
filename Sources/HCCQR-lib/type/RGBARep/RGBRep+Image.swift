@@ -2,7 +2,9 @@ import Foundation
 import QuartzCore
 import CoreImage
 import TimeMeasure
-
+/**
+ * RGBRep -> Image
+ */
 extension RGBRep {
    /**
     * Converts rgbImage to uiimage / nsimage
@@ -56,7 +58,7 @@ extension RGBRep {
       let bytesPerRow: Int = self.width * bytesPerPixel // channels in each row (width)
       let bitsPerComponent: Int = 8 // (8 bits per each channel)
       let bitsPerPixel: Int = bytesPerPixel * bitsPerComponent
-      let flatPixels: UnsafePointer<UInt8> = self.flatPixels
+      guard let flatPixels: UnsafePointer<UInt8> = self.flatPixels else { throw CGImageErr.unableToFlattenData }
       defer { flatPixels.deallocate() } // we have no use for flatPixels after image is returned
       guard let cfData = CFDataCreate(nil, flatPixels, self.width * self.height * bytesPerPixel) else { throw CGImageErr.unableToCreateCFData }
       guard let cgDataProvider = CGDataProvider(data: cfData) else { throw CGImageErr.unableToCreateCGDataProvider }

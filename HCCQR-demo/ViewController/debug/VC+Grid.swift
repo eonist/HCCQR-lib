@@ -18,7 +18,7 @@ extension ViewController {
 //      let uiImageView: UIImageView = .init(image: snapShot)
 //      uiImageView.frame.origin = .init(x: 0, y: GridTestView.frame.height)
 //      self.view.addSubview(uiImageView)
-      guard let rgbRep: RGBRep = try? RGBRep.imageRep(image: snapShot) else { fatalError("err") }
+      guard let rgbRep: RGBRep = try? .init(image: snapShot) else { fatalError("err") }
       _ = rgbRep
 //      guard let img: Image = try? RGBARepParser.image(rgbaImage: rgbaRep, scale: 2) else { fatalError("err") }
 //      let uiImageView: UIImageView = .init(image: img)

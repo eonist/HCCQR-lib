@@ -37,7 +37,7 @@ extension SinglePhotoTest {
             // // else { Swift.print("err getting rgbImage"); return false }
             // let data: Data = try Reader.data(rgbRep: rgbaRep, scheme: cType.cs, parallel: true).qrData// else { Swift.print("err"); return false }// extract data from the hccqrImg
             // let data: Data = try Reader.data(image: image, scheme: cType.cs, parallel: true).qrData // extract data from the hccqrImg
-            let data: Data = try Reader.data(cgImage: cgImg, scheme: cType.cs, parallel: true).qrData
+            let data: Data = try HCCQRReader.data(cgImage: cgImg, scheme: cType.cs, parallel: true).qrData
             Swift.print("data.count:  \(String(describing: data.count))")
             Swift.print("PhotoTest isvalid: ✅")
          }

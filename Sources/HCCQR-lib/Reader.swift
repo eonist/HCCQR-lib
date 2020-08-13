@@ -50,7 +50,7 @@ extension HCCQRReader {
     */
    public static func data(image: Image, scheme: ChannelScheme = .default, parallel: Bool) throws -> QRReader.DataAndQuad {
       let (rgbRep, time): (RGBRep, Double) = try TimeMeasure.timeElapsed { // adds timeMeasure on this call, see if it taints the read benchamarking, if it does, use Buffer as testbed instead
-         try RGBRep.imageRep(image: image)
+         try .init(image: image)
       }
       Log.log("Image to rgbRep time:  \(time)")
       return try data(rgbRep: rgbRep, scheme: scheme, parallel: parallel)
@@ -59,7 +59,7 @@ extension HCCQRReader {
     * CGImage -> Data
     */
    public static func data(cgImage: CGImage, scheme: ChannelScheme = .default, parallel: Bool) throws -> QRReader.DataAndQuad {
-      let rgbRep: RGBRep = try RGBRep.imageRep(cgImage: cgImage)
+      let rgbRep: RGBRep = try .init(cgImage: cgImage)
       return try data(rgbRep: rgbRep, scheme: scheme, parallel: parallel)
    }
 }

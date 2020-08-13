@@ -49,7 +49,7 @@ extension BufferTest {
    private static func read(buffer: CVImageBuffer, data: Data) -> Bool {
       do {
          // let size = CVImageBufferGetEncodedSize(buffer) // CVImageBufferGetDisplaySize, CVImageBufferGetCleanRect
-         let payload: Reader.ReadPayload = try Reader.data(imageBuffer: buffer, crop: buffer.rect, scheme: cType.cs, parallel: true)
+         let payload: HCCQRReader.ReadPayload = try HCCQRReader.data(imageBuffer: buffer, crop: buffer.rect, scheme: cType.cs, parallel: true)
          // let dataAndQuad: QRReader.DataAndQuad = try Reader.data(rgbaRep: rgbaRep, scheme: .cs8) // Convert RGBAImage to Data
          // Swift.print("dataAndQuad.qrData.count:  \(dataAndQuad.qrData.count)")
           Swift.print("randomData.count:  \(data.count)")

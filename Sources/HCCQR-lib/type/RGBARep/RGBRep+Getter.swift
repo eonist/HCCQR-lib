@@ -20,10 +20,10 @@ extension RGBRep {
     * unsafePixels, new (⚠️️ might work, might not ⚠️️)
     * - Fixme: ⚠️️ rename to data?
     * - Fixme: ⚠️️ find cleaner way to convert between unsafe types etc
-    * - Fixme: ⚠️️ make this optional
+    * - Fixme: ⚠️️ make this optional?
     * - Note: This method is now super fast
     */
-   var flatPixels: UnsafePointer<UInt8> {
+   var flatPixels: UnsafePointer<UInt8>? {
       let bytesPerPixel: Int = MemoryLayout<Pixel>.size
       let cap = capacity * bytesPerPixel
       let pointer = UnsafeMutableBufferPointer<UInt8>.allocate(capacity: cap)
@@ -34,22 +34,7 @@ extension RGBRep {
          pointer[idx + 1] = p.g
          pointer[idx + 2] = p.b
       }
-      guard let p: UnsafeMutablePointer<UInt8> = pointer.baseAddress else { fatalError("err") }
+      guard let p: UnsafeMutablePointer<UInt8> = pointer.baseAddress else { return nil }
       return .init(p)
    }
-   /**
-    * There is also: let data: Data = .init(buffer: rgbRep.pixels)
-    */
-//   var data: Data {
-//      let arr = flatPixelArr
-//      return .init(bytes: arr, count: arr.count)
-//   }
-//   private var flatPixelArr: [UInt8] {
-//      // - Fixme: ⚠️️ remove 255 in the future
-//      let result: [[UInt8]] = (0..<capacity).map {
-//         let p: Pixel = pixels[$0]
-//         return [p.r, p.g, p.b, 255]
-//      }
-//      return result.flatMap { $0 }
-//   }
 }

@@ -18,7 +18,7 @@ extension ViewController {
          guard let image = Image(contentsOfFile: path) else { Swift.print("err getting img"); return }
          Swift.print("UIImage.size:  \(image.size)")
          //      guard let rgbaImage: RGBARep = try? CVImageBufferUtil.rgbaRep(image: image) else { Swift.print("err getting rgbImage"); return }
-         guard let rgbRep: RGBRep = try? RGBRep.imageRep(image: image) else { Swift.print("err getting rgbImage"); return }
+         guard let rgbRep: RGBRep = try? .init(image: image) else { Swift.print("err getting rgbImage"); return }
          _ = rgbRep
 //      }
       _ = {

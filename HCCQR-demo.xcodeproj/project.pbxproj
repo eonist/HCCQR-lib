@@ -487,8 +487,8 @@
 			isa = PBXGroup;
 			children = (
 				F168526F2213443700C27EAA /* RGBRep.swift */,
-				F10296B8222218D1001FA2DF /* RGBRep+Getter.swift */,
 				F119AEDF24D5955100A67534 /* RGBRep+Init.swift */,
+				F10296B8222218D1001FA2DF /* RGBRep+Getter.swift */,
 				F119AEDC24D587A300A67534 /* RGBRep+Image.swift */,
 				F119AED824D586FA00A67534 /* CGImageErr.swift */,
 			);

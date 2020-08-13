@@ -19,7 +19,7 @@ extension ViewController {
       let colorGridView = SplitTestView()
       view.addSubview(colorGridView)
       guard let snapShot: UIImage = colorGridView.snapShot() else { fatalError("err") }
-      guard let rgbRep: RGBRep = try? RGBRep.imageRep(image: snapShot) else { fatalError("err") }
+      guard let rgbRep: RGBRep = try? .init(image: snapShot) else { fatalError("err") }
       let qrImgs: [CIImage] = Splitter.split(rgbRep: rgbRep, scheme: CType.c4.cs, parallel: true)
       rgbRep.deallocate() // we have no more use for the rgbRep
       let img: UIImage = .init(ciImage: qrImgs[0], scale: 2, orientation: .up)

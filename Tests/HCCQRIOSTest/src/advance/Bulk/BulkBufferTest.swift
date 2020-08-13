@@ -23,10 +23,10 @@ final class BulkBufferTest {
          }
       }
 //      buffers.forEach { CVImageBuffer }
-      var (payloads, time): ([Reader.ReadPayload], Double) = TimeMeasure.timeElapsed {
+      var (payloads, time): ([HCCQRReader.ReadPayload], Double) = TimeMeasure.timeElapsed {
          buffers.batches(spread: 8).concurrentFlatMap { batch in
             batch.compactMap { buffer in
-               try? Reader.data(imageBuffer: buffer, crop: buffer.rect, scheme: cType.cs, parallel: false)
+               try? HCCQRReader.data(imageBuffer: buffer, crop: buffer.rect, scheme: cType.cs, parallel: false)
             }
          }
       }
