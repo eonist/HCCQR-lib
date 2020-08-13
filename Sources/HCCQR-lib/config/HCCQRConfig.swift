@@ -17,7 +17,6 @@ public struct HCCQRConfig {
     * - Parameters:
     *   - qr: qr config
     *   - output: custom colormap and custome scale
-    *   - cType: scheme and palette
     */
    public init(qr: QRSetup, output: OutputConfig) {
       self.qr = qr

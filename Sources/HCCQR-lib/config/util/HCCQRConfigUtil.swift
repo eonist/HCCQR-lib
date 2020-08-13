@@ -8,7 +8,7 @@ public final class HCCQRConfigUtil {
     * HCCQRConfigUtil.dataCount(config: (.v10, .byte, .l), colorDepth: 2) // 542
     * - Parameters:
     *   - config: ecLevel, mode, version
-    *   - colorDepth: 2 color-depths num of layers (equals 4 colors, 3-layers = 8, 4 = 16, 5 = 32, 6 = 64, 7 = 128, 8 = 256 etc)
+    *   - numOfLayers: 2 color-depths num of layers (equals 4 colors, 3-layers = 8, 4 = 16, 5 = 32, 6 = 64, 7 = 128, 8 = 256 etc)
     */
    internal static func dataCount(config: QRConfig, numOfLayers: Int) -> Int {
       config.maxChar * numOfLayers

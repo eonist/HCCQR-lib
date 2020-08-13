@@ -30,6 +30,7 @@ public final class PixelParser {
    }
    /**
     * Color tessellation
+    * - Parameter numOfColors: num of colors in hccqr type
     */
    private static func tessellation(numOfColors: Int) -> Int {
       switch numOfColors {
@@ -77,11 +78,12 @@ extension PixelParser {
     * Color -> (r: UInt8, g: UInt8 ,b: UInt8, a: UInt8)
     * - Fixme: ⚠️️ You can also probably do (maybe faster?): UIColor.blue.colorComponents // (red: 0.0, green: 0.0, blue: 1.0, alpha: 1.0)
     * - Important: ⚠️️ probably slow, but prob only used in tests
+    * - Parameter color: os independent color nscolor or uicolor
     */
-   static func rgba(uiColor: Color) throws -> Pixel {
+   static func rgba(color: Color) throws -> Pixel {
       var (r, g, b, a): RGBAColor = (0, 0, 0, 0)
       #if os(iOS)
-      guard uiColor.getRed(&r, green: &g, blue: &b, alpha: &a) else { throw RGBAError.couldNotExtractRGBAComponents }
+      guard color.getRed(&r, green: &g, blue: &b, alpha: &a) else { throw RGBAError.couldNotExtractRGBAComponents }
       #elseif os(macOS)
       guard let ciColor = CIColor(color: uiColor) else { throw RGBAError.couldNotConvertNSColorToCIColor }
       r = ciColor.red // 1.0

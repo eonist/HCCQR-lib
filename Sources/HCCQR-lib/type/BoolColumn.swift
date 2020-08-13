@@ -27,6 +27,7 @@ extension BoolColumn {
    }
    /**
     * Returns "num of layers" for "num of colors"
+    * - Parameter numOfColors: number of colors in the HCCQR
     */
    static func numOfLayers(numOfColors: Int) -> Int {
       Algebra.exponent(base: 2, value: numOfColors)

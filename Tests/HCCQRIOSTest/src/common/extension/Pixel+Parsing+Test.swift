@@ -9,7 +9,7 @@ extension Pixel {
     * - Note: we can also make this .init, but 🤷 it's only for testing, multiple .init confuses compiler if shit hits the fan and is harder to debug than static function names
     */
    static func pixel(color: Color) throws -> Pixel {
-      let rgba: Pixel = try PixelParser.rgba(uiColor: color)
+      let rgba: Pixel = try PixelParser.rgba(color: color)
       return .init(r: rgba.r, g: rgba.g, b: rgba.b)
    }
 }

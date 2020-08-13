@@ -11,7 +11,8 @@ public struct OutputConfig {
    /**
     * - Parameters:
     *    - scale: which colors to use in the output HCCQR
-    *    - palette: screen and module scale
+    *    - cType: scheme and palette
+    *    - useDarkMode: flip light for dark color
     */
    public init(scale: Scale, cType: CType = .c4, useDarkMode: Bool = false) {
       self.scale = scale

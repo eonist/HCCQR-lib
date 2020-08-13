@@ -8,6 +8,7 @@ extension BufferType {
     * Returns pixelFormatName
     * ## Examples:
     * CVImageBufferUtil.pixelFormatName(pixelBuffer: buffer) // kCVPixelFormatType_2Indexed
+    * - Parameter pixelBuffer: same as CVImageBuffer
     */
    static func pixelFormatName(pixelBuffer: CVPixelBuffer) -> String {
       let p = CVPixelBufferGetPixelFormatType(pixelBuffer)
