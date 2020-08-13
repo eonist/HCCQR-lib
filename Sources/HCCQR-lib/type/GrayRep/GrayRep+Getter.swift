@@ -10,6 +10,9 @@ extension GrayRep {
    var capacity: Int { self.width * self.height }
    /**
     * Get pixel
+    * - Parameters:
+    *   - x: x position of pixel
+    *   - y: y position of pixel
     */
    func getPixel(x: Int, y: Int) -> UInt8 {
       let index: Int = y * width + x
@@ -27,8 +30,8 @@ extension GrayRep {
     *   - size: the size you want to us ein the GrayScaleRep
     */
    static func pixels(pixel: UInt8, size: BufferSize) -> UnsafeMutableBufferPointer<UInt8> {
-      let unSafePixels = UnsafeMutableBufferPointer<UInt8>.allocate(capacity: size.capacity) //      let pixels: [UInt8] = .init(repeating: pixel, count: capacity)
-      unSafePixels.assign(repeating: pixel) // unSafePixels.initialize(repeating: pixel)
+      let unSafePixels = UnsafeMutableBufferPointer<UInt8>.allocate(capacity: size.capacity)
+      unSafePixels.assign(repeating: pixel)
       return unSafePixels
    }
 }

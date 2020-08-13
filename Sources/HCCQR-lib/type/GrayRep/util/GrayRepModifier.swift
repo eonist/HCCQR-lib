@@ -1,6 +1,6 @@
 import Foundation
 
-final class GrayRepModifier {}
+typealias GrayRepModifier = GrayRep
 /**
  * Private helper methods
  */
@@ -10,8 +10,9 @@ extension GrayRepModifier {
     *  Applies pixels with a method (for index)
     * - Note: Used in the Combine-process to convert HCCQR to Data
     * - Fixme: ⚠️️ find a better name for this method? apply?
+    * - Fixme: ⚠️️ rather just pass capacity?
     * - Parameters:
-    *   - output: 
+    *   - size: the size of the GrayRep
     *   - functor: A function which manipulates each pixel
     */
    internal static func process(size: BufferSize, functor: @escaping Functor) {
