@@ -6,7 +6,6 @@ import CoreImage
 extension MonoRep {
    /**
     * Pure B&W-QR-CIImage 👉 MonoRep (grid of bool values)
-    * - Fixme: ⚠️️⚠️️ rename function to init !
     * 1. CIImage comes in
     * 2. Meta data is extracted from the CIImage
     * 3. Pixels are extracted from the CGContext
@@ -21,7 +20,7 @@ extension MonoRep {
     *   - ciImg: The CIImage to convert to monotone representative
     *   - crop: Supports cropping
     */
-   internal static func monoRep(ciImg: CIImage, crop: BufferRect? = nil) throws -> MonoRep {
+   internal init(ciImg: CIImage, crop: BufferRect? = nil) throws {
       let crop: BufferRect = crop ?? .init(0, 0, Int(ciImg.extent.width), Int(ciImg.extent.height))
       let colorSpace: CGColorSpace = CGColorSpaceCreateDeviceRGB()
       let capacity: Int = crop.size.capacity
@@ -43,6 +42,6 @@ extension MonoRep {
          i = i &+ 1 // &+ is used for little performance gain
       }
       imageData.deallocate() // We have no more use for imageData
-      return .init(pixels: .init(monoPixels), width: crop.width, height: crop.height)
+      self.init(pixels: .init(monoPixels), width: crop.width, height: crop.height)
    }
 }

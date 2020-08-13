@@ -40,13 +40,14 @@ extension CType {
     * ColorPallete (standard "r, g, b" 4 color ColorPallete)
     * - Fixme: ⚠️️ Since index is unique we can make this hashable 👌 (it will be faster probably), caseIteratable 👈 ,maybe difficult now that we have to support darkmode
     * - Fixme: ⚠️️ make two static let's one with darkmode and one with out, saves cpu etc
-    * - Parameter useDarkMode: Enables the HCCQR to be inverted and support darkmode
+    * - Parameter useDarkMode: Enables the HCCQR to support darkmode
     */
    public func cp(useDarkMode: Bool = false) -> ColorPalette {
       ColorPalette.combine(boolCol: .sequence(self.rawValue), scheme: self.cs, useDarkMode: useDarkMode)
    }
    /**
     * the mappings for writing / reading
+    * - Parameter useDarkMode: crates pallete and scheme with light or darkmode
     */
    public func cpcs(useDarkMode: Bool = false) -> CPCS {
       (self.cp(useDarkMode: useDarkMode), self.cs)

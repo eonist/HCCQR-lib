@@ -23,7 +23,7 @@ extension Colorizer {
     *   - qrLayers: qr layers as CIImages
     */
    internal static func colorize(qrLayers: [CIImage], config: OutputConfig) throws -> RGBRep {
-      let monoReps: MonoReps = try qrLayers.map { try MonoRep.monoRep(ciImg: $0) }
+      let monoReps: MonoReps = try qrLayers.map { try .init(ciImg: $0) }
       defer { monoReps.forEach { $0.pixels.deallocate() } }
       return colorize(monoReps: monoReps, config: config)
    }

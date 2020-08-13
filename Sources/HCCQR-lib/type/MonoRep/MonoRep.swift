@@ -5,7 +5,7 @@ import Foundation
  * - Fixme: ⚠️️  store size as Size, skip width and height?
  */
 struct MonoRep {
-   let pixels: UnsafeBufferPointer<Bool>//[Bool]
+   let pixels: UnsafeBufferPointer<Bool>
    let width: Int
    let height: Int
    /**
