@@ -52,7 +52,7 @@ extension Image {
    var scale: CGFloat { 1 } // - Fixme: ⚠️️ this should probably be dynamic or based on some internal value no?
    #endif
 }
-extension CIContext {
+//extension CIContext {
    // finish the bellow, coul fix CIcontext leak
 //   func createCGImage_(image:CIImage, fromRect:CGRect) -> CGImage {
 //      let width = Int(fromRect.width)
@@ -70,4 +70,4 @@ extension CIContext {
 ////      }
 //      return CGImageCreate(width, height, 8, 32, width * 4, CGColorSpaceCreateDeviceRGB(), CGBitmapInfo(rawValue: CGImageAlphaInfo.PremultipliedLast.rawValue), dataProvider, nil, false, .RenderingIntentDefault)!
 //   }
-}
+//}

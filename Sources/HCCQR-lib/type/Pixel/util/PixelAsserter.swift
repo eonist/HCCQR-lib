@@ -26,9 +26,9 @@ final class PixelAsserter {
     *   - halfThreshold: with threshold more or less (I.e: +25, -25 from a value)
     */
    internal static func isWithin(a: Pixel, b: Pixel, halfThreshold: UInt8) -> Bool {
-      var r: Bool { UInt8Asserter.withinTolerance(a: a.r, b: b.r, halfThreshold: halfThreshold) }
-      var g: Bool { UInt8Asserter.withinTolerance(a: a.g, b: b.g, halfThreshold: halfThreshold) }
-      var b: Bool { UInt8Asserter.withinTolerance(a: a.b, b: b.b, halfThreshold: halfThreshold) }
+      var r: Bool { UInt8Asserter.isWithin(a: a.r, b: b.r, halfThreshold: halfThreshold) }
+      var g: Bool { UInt8Asserter.isWithin(a: a.g, b: b.g, halfThreshold: halfThreshold) }
+      var b: Bool { UInt8Asserter.isWithin(a: a.b, b: b.b, halfThreshold: halfThreshold) }
       return r && g && b
    }
 }

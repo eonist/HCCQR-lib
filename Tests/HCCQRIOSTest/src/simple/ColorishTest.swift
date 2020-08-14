@@ -23,14 +23,14 @@ extension ColorishTest {
    static func testUInt8Threshold() -> Bool {
       let halfThreshold: UInt8 = PixelParser.getHalfThreshold(4)
 //      Swift.print("halfThreshold:  \(halfThreshold)")
-      let a: Bool = UInt8Asserter.withinTolerance(a: 255, b: 255 - (halfThreshold * 2), halfThreshold: halfThreshold)
-      let b: Bool = !UInt8Asserter.withinTolerance(a: 255, b: 255 - ((halfThreshold + 1) * 2), halfThreshold: halfThreshold)
-      let c: Bool = UInt8Asserter.withinTolerance(a: 0, b: halfThreshold * 2, halfThreshold: halfThreshold)
-      let d: Bool = !UInt8Asserter.withinTolerance(a: 0, b: (halfThreshold + 1) * 2, halfThreshold: halfThreshold)
-      let e: Bool = UInt8Asserter.withinTolerance(a: 255 / 2, b: (255 / 2) - halfThreshold, halfThreshold: halfThreshold)
-      let f: Bool = UInt8Asserter.withinTolerance(a: 255 / 2, b: (255 / 2) + halfThreshold, halfThreshold: halfThreshold)
-      let g: Bool = !UInt8Asserter.withinTolerance(a: 255 / 2, b: (255 / 2) - (halfThreshold + 1), halfThreshold: halfThreshold)
-      let h: Bool = !UInt8Asserter.withinTolerance(a: 255 / 2, b: (255 / 2) + (halfThreshold + 1), halfThreshold: halfThreshold)
+      let a: Bool = UInt8Asserter.isWithin(a: 255, b: 255 - (halfThreshold * 2), halfThreshold: halfThreshold)
+      let b: Bool = !UInt8Asserter.isWithin(a: 255, b: 255 - ((halfThreshold + 1) * 2), halfThreshold: halfThreshold)
+      let c: Bool = UInt8Asserter.isWithin(a: 0, b: halfThreshold * 2, halfThreshold: halfThreshold)
+      let d: Bool = !UInt8Asserter.isWithin(a: 0, b: (halfThreshold + 1) * 2, halfThreshold: halfThreshold)
+      let e: Bool = UInt8Asserter.isWithin(a: 255 / 2, b: (255 / 2) - halfThreshold, halfThreshold: halfThreshold)
+      let f: Bool = UInt8Asserter.isWithin(a: 255 / 2, b: (255 / 2) + halfThreshold, halfThreshold: halfThreshold)
+      let g: Bool = !UInt8Asserter.isWithin(a: 255 / 2, b: (255 / 2) - (halfThreshold + 1), halfThreshold: halfThreshold)
+      let h: Bool = !UInt8Asserter.isWithin(a: 255 / 2, b: (255 / 2) + (halfThreshold + 1), halfThreshold: halfThreshold)
       return a && b && c && d && e && f && g && h
    }
    /**

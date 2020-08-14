@@ -7,12 +7,14 @@ import Foundation
 extension UInt8 {
    /**
     * Convenience method for adding
+    * - Parameter value: value to add
     */
    mutating func addition(value: UInt8) {
       self = UInt8Modifier.addition(a: self, b: value)
    }
    /**
     * Convenience method for subtracting
+    * - Parameter value: value to substract
     */
    mutating func subtraction(value: UInt8) {
       self = UInt8Modifier.subtraction(a: self, b: value)

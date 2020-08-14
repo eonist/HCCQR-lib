@@ -15,6 +15,10 @@ extension NSImage {
    /**
     * ## Examples:
     * let redImage = NSImage.image(color: .red, size: .init(width: 128, height: 128))
+    * - Parameters:
+    *   - size: size of image
+    *   - color: color to fill
+    *   - scale: normal or retina etc
     */
    convenience init(size: CGSize, color: NSColor, scale: CGFloat = 1.0) {
       self.init(size: size)
@@ -23,13 +27,8 @@ extension NSImage {
       unlockFocus()
    }
    /**
-    * Convenience
-    */
-   public static func image(size: CGSize, color: NSColor, scale: CGFloat = 1.0) -> NSImage? {
-      Optional(NSImage(size: size, color: color, scale: scale))
-   }
-   /**
     * - Note: Great to use in hybrid systems, as iOS has the same API
+    * - Parameter ciImage: backing image
     */
    convenience init(ciImage: CIImage) {
       let rep: NSCIImageRep = .init(ciImage: ciImage)

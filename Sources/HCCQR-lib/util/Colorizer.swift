@@ -19,8 +19,8 @@ extension Colorizer {
     * - Note: putting compactMap on concurrentCompactMap doesn't seem to improve already fast speeds
     * - Returns: RGBARep
     * - Parameters:
-    *   - config: scale and pallet
     *   - qrLayers: qr layers as CIImages
+    *   - config: scale and pallet
     */
    internal static func colorize(qrLayers: [CIImage], config: OutputConfig) throws -> RGBRep {
       let monoReps: MonoReps = try qrLayers.map { try .init(ciImg: $0) }
@@ -94,6 +94,9 @@ extension Colorizer {
     * Find colorMapItem that matches
     * - Fixme: ⚠️️ could we use concurrent_apply here, in the .first loop?, probably not
     * - Fixme: ⚠️️ do we need throw?, why not just use optional?
+    * - Parameters:
+    *   - pixels: colors
+    *   - map: color mapping
     */
    private static func matchColorMap(_ pixels: [Bool], _ map: ColorMap) throws -> Bool { // = { (map: ColorMapItem) in
       if map.idx.count != pixels.count { throw ColorizeError.mismatchbetweenNumOfLayersAndColorPallet }
@@ -101,6 +104,10 @@ extension Colorizer {
    }
    /**
     * Find color that matches
+    * - Parameters:
+    *   - map: color map
+    *   - i: index
+    *   - pixel: color
     */
    private static func matchColor(_ map: ColorMap, _ i: Int, _ pixel: Bool) -> Bool { //= { (i: Int, pixel: Bool) in
       let boolRow: Bool = map.idx[i]

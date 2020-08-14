@@ -11,6 +11,9 @@ import Cocoa
 internal final class ImageUtil {
    /**
     * Returns Image for CIImage (Universal for ios and mac)
+    * - Parameters:
+    *   - ciImage: backing image
+    *   - scale: normal or retina
     */
    internal static func image(ciImage: CIImage, scale: CGFloat = 1) -> Image {
       #if os(iOS)
@@ -23,6 +26,9 @@ internal final class ImageUtil {
    }
    /**
     * CGImage -> Image (Universal for iOS and mac)
+    * - Parameters:
+    *   - ciImage: backing image
+    *   - scale: normal or retina
     */
    internal static func image(cgImage: CGImage, scale: CGFloat = 1) -> Image {
       #if os(iOS)
@@ -36,6 +42,7 @@ internal final class ImageUtil {
    /**
     * Image -> CGImage (Universal for iOS and mac)
     * - Fixme: ⚠️️ Maybe add throws?
+    * - Parameter image: image to get backing image from
     */
    static func cgImage(image: Image) -> CGImage? {
       #if os(iOS)
@@ -51,12 +58,15 @@ internal final class ImageUtil {
  * Private helper
  */
 extension ImageUtil {
+    #if os(iOS)
    /**
     * CIImage -> UIImage
     * - Note: Helper method for QR images
     * - Fixme: ⚠️️ Make this throw?
+    * - Parameters:
+    *   - cgImage: backing image
+    *   - scale: normal or retina
     */
-   #if os(iOS)
    private static func uiImage(cgImage: CGImage, scale: CGFloat) -> UIImage {
       .init(cgImage: cgImage, scale: scale, orientation: .up) // .leftMirrored
    }
@@ -89,6 +99,7 @@ extension ImageUtil {
     * CIImage -> NSImage
     * - Note: Helper method for QR images
     * - Fixme: ⚠️️ Make this throw?
+    * - Parameter cgImage: backing image
     */
    private static func nsImage(cgImage: CGImage) -> NSImage {
       .init(cgImage: cgImage, size: .init(width: cgImage.width, height: cgImage.height))

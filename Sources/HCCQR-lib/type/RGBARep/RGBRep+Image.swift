@@ -59,7 +59,7 @@ extension RGBRep {
       let bitsPerComponent: Int = 8 // (8 bits per each channel)
       let bitsPerPixel: Int = bytesPerPixel * bitsPerComponent
       guard let flatPixels: UnsafePointer<UInt8> = self.flatPixels else { throw CGImageErr.unableToFlattenData }
-      defer { flatPixels.deallocate() } // we have no use for flatPixels after image is returned
+//      defer { flatPixels.deallocate() } // we have no use for flatPixels after image is returned
       guard let cfData = CFDataCreate(nil, flatPixels, self.width * self.height * bytesPerPixel) else { throw CGImageErr.unableToCreateCFData }
       guard let cgDataProvider = CGDataProvider(data: cfData) else { throw CGImageErr.unableToCreateCGDataProvider }
       guard let image = CGImage(width: self.width, height: self.height, bitsPerComponent: bitsPerComponent, bitsPerPixel: bitsPerPixel, bytesPerRow: bytesPerRow, space: deviceColorSpace, bitmapInfo: bitmapInfo, provider: cgDataProvider, decode: nil, shouldInterpolate: true, intent: .defaultIntent) else { throw CGImageErr.unableToCreateCGImage }

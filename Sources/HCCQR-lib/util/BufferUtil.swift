@@ -9,7 +9,9 @@ import CoreImage
  * - Fixme: ⚠️️ Consider renaming to BufferHelper?
  */
 public final class BufferUtil {}
-
+/**
+ * RGBRep
+ */
 extension BufferUtil {
    /**
     * Image -> RGBImage (⚠️️ Not working ⚠️️?)

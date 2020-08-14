@@ -85,7 +85,7 @@ extension PixelParser {
       #if os(iOS)
       guard color.getRed(&r, green: &g, blue: &b, alpha: &a) else { throw RGBAError.couldNotExtractRGBAComponents }
       #elseif os(macOS)
-      guard let ciColor = CIColor(color: uiColor) else { throw RGBAError.couldNotConvertNSColorToCIColor }
+      guard let ciColor = CIColor(color: color) else { throw RGBAError.couldNotConvertNSColorToCIColor }
       r = ciColor.red // 1.0
       g = ciColor.green // 0.0
       b = ciColor.blue // 0.0

@@ -23,6 +23,9 @@ final class Algebra {
 extension Algebra {
    /**
     * Convenient for Int
+    * - Parameters:
+    *   - base: 2^3 = 8 (2 is the base)
+    *   - value: 2^3 = 8 (8 is the value or the result if you like)
     */
    static func exponent(base: Int, value: Int) -> Int {
       Int(exponent(base: CGFloat(base), value: CGFloat(value)))

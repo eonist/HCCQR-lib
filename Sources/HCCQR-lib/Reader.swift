@@ -57,6 +57,10 @@ extension HCCQRReader {
    }
    /**
     * CGImage -> Data
+    * - Parameters:
+    *   - cgImage: backing image
+    *   - scheme: scheme used to write thsi hccqr image
+    *   - parallel: concurrency is great for single reads, use non-concurrent option when reading in bulk
     */
    public static func data(cgImage: CGImage, scheme: ChannelScheme = .default, parallel: Bool) throws -> QRReader.DataAndQuad {
       let rgbRep: RGBRep = try .init(cgImage: cgImage)
