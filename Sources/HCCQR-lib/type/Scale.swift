@@ -20,5 +20,5 @@ public struct Scale {
  * Getter
  */
 extension Scale {
-   static let `default`: Scale = .init(6, 2)
+   public static let `default`: Scale = .init(6, 2)
 }
