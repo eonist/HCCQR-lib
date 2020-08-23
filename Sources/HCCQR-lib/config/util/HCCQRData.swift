@@ -8,6 +8,7 @@ public typealias HCCQRStringData = HCCQRData
 public final class HCCQRData {
    /**
     * Returns Random data based on config and color-depth
+    * - Fixme: ⚠️️ rename to colorDepth layerCount
     * - Parameter setup: ecLevel, mode, version, scale, map
     * - Returns: data
     */
@@ -23,13 +24,13 @@ public final class HCCQRData {
 extension HCCQRData {
    /**
     * Returns a max random string for QRConfig and colorDepth
+    * - Fixme: ⚠️️ rename to colorDepth layerCount
     * - Parameters:
     *   - config: (ecLevel, mode, version)
     *   - colorDepth: 2 color-depths equals 4 colors, 4 = 8 etc
     */
    private static func randomString(config: QRConfig, colorDepth: Int) -> String {
-      let maxStringCount: Int = config.maxChar // Get max amount of characters you can fit into a speccific HCCQR config combination
-      let maxStrCount: Int = maxStringCount * colorDepth // We want to multiply with colorDepth for HCCQR
-      return RandomData.randomString(count: maxStrCount, qrMode: config.mode)
+      let dataCount: Int = HCCQRConfigUtil.dataCount(config: config, numOfLayers: colorDepth)
+      return RandomData.randomString(count: dataCount, qrMode: config.mode)
    }
 }

@@ -34,9 +34,9 @@
 		F1467655249F77DA009D392A /* SplitTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14FADE721F75EF100ACE5FF /* SplitTestView.swift */; };
 		F1467657249F77E6009D392A /* GridTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14FADEF21F761FD00ACE5FF /* GridTestView.swift */; };
 		F1467658249F77E6009D392A /* GridTestView+Create.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FDA6232395C0230096EEBD /* GridTestView+Create.swift */; };
-		F1467659249F77EC009D392A /* SimpleHCCQRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162145321FC7138005297DE /* SimpleHCCQRView.swift */; };
-		F146765A249F77F0009D392A /* SimpleHCCQRView+Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FDA6202395BFBD0096EEBD /* SimpleHCCQRView+Data.swift */; };
-		F146765B249F77F3009D392A /* SimpleHCCQRView+Create.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FDA61E2395BF810096EEBD /* SimpleHCCQRView+Create.swift */; };
+		F1467659249F77EC009D392A /* BWGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162145321FC7138005297DE /* BWGridView.swift */; };
+		F146765A249F77F0009D392A /* BWGridView+Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FDA6202395BFBD0096EEBD /* BWGridView+Data.swift */; };
+		F146765B249F77F3009D392A /* BWGridView+Create.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FDA61E2395BF810096EEBD /* BWGridView+Create.swift */; };
 		F146A51B24AB48F300FE136C /* UInt8+Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1467653249F5FAC009D392A /* UInt8+Const.swift */; };
 		F146A52724AB97A900FE136C /* GrayRepModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = F146A52624AB97A900FE136C /* GrayRepModifier.swift */; };
 		F146A52824AB97A900FE136C /* GrayRepModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = F146A52624AB97A900FE136C /* GrayRepModifier.swift */; };
@@ -193,6 +193,9 @@
 		F1FE7E0424A1D5360094B1BD /* CIImageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FE7E0324A1D5360094B1BD /* CIImageTest.swift */; };
 		F1FED18424C9930C00AFDB64 /* TestsMac.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FED18324C9930C00AFDB64 /* TestsMac.swift */; };
 		F1FED18B24C9946900AFDB64 /* SingleTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E67CAE24BB533800EB90F6 /* SingleTest.swift */; };
+		F1FEF13424F1D852001AE760 /* PayloadTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FEF13324F1D852001AE760 /* PayloadTest.swift */; };
+		F1FEF13824F29EC3001AE760 /* StringParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FEF13724F29EC3001AE760 /* StringParser.swift */; };
+		F1FEF13924F29EC3001AE760 /* StringParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FEF13724F29EC3001AE760 /* StringParser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -251,7 +254,7 @@
 		F1537F0824B47C5200160FEC /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
 		F156AC1224D7449C007D6D2B /* ArrayBenchmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayBenchmark.swift; sourceTree = "<group>"; };
 		F15C9F7F23BA747800F9D524 /* Writer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Writer.swift; sourceTree = "<group>"; };
-		F162145321FC7138005297DE /* SimpleHCCQRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleHCCQRView.swift; sourceTree = "<group>"; };
+		F162145321FC7138005297DE /* BWGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BWGridView.swift; sourceTree = "<group>"; };
 		F165717424D82171007A1430 /* RGBAPixel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBAPixel.swift; sourceTree = "<group>"; };
 		F165C249239FF49C005D30EC /* PixelColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixelColor.swift; sourceTree = "<group>"; };
 		F165C25023A00D35005D30EC /* ScaleTesting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaleTesting.swift; sourceTree = "<group>"; };
@@ -333,8 +336,8 @@
 		F1E6F6862493B2DC00975607 /* MonoPixelColorization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonoPixelColorization.swift; sourceTree = "<group>"; };
 		F1F3E04923BA1CA200D367F1 /* Extractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extractor.swift; sourceTree = "<group>"; };
 		F1F4AEDF24E2F9B000728589 /* UInt8Asserter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UInt8Asserter.swift; sourceTree = "<group>"; };
-		F1FDA61E2395BF810096EEBD /* SimpleHCCQRView+Create.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SimpleHCCQRView+Create.swift"; sourceTree = "<group>"; };
-		F1FDA6202395BFBD0096EEBD /* SimpleHCCQRView+Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SimpleHCCQRView+Data.swift"; sourceTree = "<group>"; };
+		F1FDA61E2395BF810096EEBD /* BWGridView+Create.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BWGridView+Create.swift"; sourceTree = "<group>"; };
+		F1FDA6202395BFBD0096EEBD /* BWGridView+Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BWGridView+Data.swift"; sourceTree = "<group>"; };
 		F1FDA6232395C0230096EEBD /* GridTestView+Create.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GridTestView+Create.swift"; sourceTree = "<group>"; };
 		F1FE7DFF24A0A7360094B1BD /* VC+Split.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VC+Split.swift"; sourceTree = "<group>"; };
 		F1FE7E0124A0A9AF0094B1BD /* VC+Grid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VC+Grid.swift"; sourceTree = "<group>"; };
@@ -342,6 +345,8 @@
 		F1FED18124C9930C00AFDB64 /* TestsMac.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestsMac.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1FED18324C9930C00AFDB64 /* TestsMac.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestsMac.swift; sourceTree = "<group>"; };
 		F1FED18524C9930C00AFDB64 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F1FEF13324F1D852001AE760 /* PayloadTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayloadTest.swift; sourceTree = "<group>"; };
+		F1FEF13724F29EC3001AE760 /* StringParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringParser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -523,6 +528,7 @@
 			children = (
 				F168527B2213443700C27EAA /* Data+Extension.swift */,
 				F1537F0824B47C5200160FEC /* Array+Extension.swift */,
+				F1FEF13724F29EC3001AE760 /* StringParser.swift */,
 				F1D9687924CE058A00B25B73 /* CVBufferImage+Extension.swift */,
 				F1AC09BF24D06D2F002D3330 /* Log.swift */,
 				F1FDA6262395C2EB0096EEBD /* image */,
@@ -574,7 +580,7 @@
 			isa = PBXGroup;
 			children = (
 				F17F5B87221A267600383955 /* AppDelegate.swift */,
-				F1B698D5239E64D10085B3C9 /* view */,
+				F1B698D6239E64E70085B3C9 /* View.swift */,
 				F17F5B89221A267B00383955 /* Assets.xcassets */,
 				F17F5B8B221A267B00383955 /* MainMenu.xib */,
 				F17F5B8E221A267B00383955 /* Info.plist */,
@@ -645,15 +651,15 @@
 			path = "HCCQR-demo";
 			sourceTree = "<group>";
 		};
-		F19251BC249EB05700068073 /* test */ = {
+		F19251BC249EB05700068073 /* experiments */ = {
 			isa = PBXGroup;
 			children = (
 				F146A53924AD047100FE136C /* CustomHCCQR */,
 				F1FDA6252395C0450096EEBD /* FakeHCCQRView */,
 				F14FADE621F75EAD00ACE5FF /* SplitTestView */,
-				F1FDA6222395C0090096EEBD /* SimpleHCCQRView */,
+				F1FDA6222395C0090096EEBD /* BWGridView */,
 			);
-			path = test;
+			path = experiments;
 			sourceTree = "<group>";
 		};
 		F19C1C7024A8834100E93F4D /* util */ = {
@@ -687,14 +693,6 @@
 			path = simple;
 			sourceTree = "<group>";
 		};
-		F1B698D5239E64D10085B3C9 /* view */ = {
-			isa = PBXGroup;
-			children = (
-				F1B698D6239E64E70085B3C9 /* View.swift */,
-			);
-			path = view;
-			sourceTree = "<group>";
-		};
 		F1B698DC239E666F0085B3C9 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -702,7 +700,7 @@
 				F1CF2D79249380F8007ACC0E /* VC+HCCQR.swift */,
 				F1CF2D7B24938254007ACC0E /* View.swift */,
 				F13CD3DB24C0D19B00F45D75 /* debug */,
-				F19251BC249EB05700068073 /* test */,
+				F19251BC249EB05700068073 /* experiments */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -824,18 +822,19 @@
 				F19FC44524C09D2E0045BDB0 /* SinglePhotoTest.swift */,
 				F1E67CAE24BB533800EB90F6 /* SingleTest.swift */,
 				F19FC44724C09F460045BDB0 /* BufferTest.swift */,
+				F1FEF13324F1D852001AE760 /* PayloadTest.swift */,
 			);
 			path = Single;
 			sourceTree = "<group>";
 		};
-		F1FDA6222395C0090096EEBD /* SimpleHCCQRView */ = {
+		F1FDA6222395C0090096EEBD /* BWGridView */ = {
 			isa = PBXGroup;
 			children = (
-				F162145321FC7138005297DE /* SimpleHCCQRView.swift */,
-				F1FDA6202395BFBD0096EEBD /* SimpleHCCQRView+Data.swift */,
-				F1FDA61E2395BF810096EEBD /* SimpleHCCQRView+Create.swift */,
+				F162145321FC7138005297DE /* BWGridView.swift */,
+				F1FDA6202395BFBD0096EEBD /* BWGridView+Data.swift */,
+				F1FDA61E2395BF810096EEBD /* BWGridView+Create.swift */,
 			);
-			path = SimpleHCCQRView;
+			path = BWGridView;
 			sourceTree = "<group>";
 		};
 		F1FDA6252395C0450096EEBD /* FakeHCCQRView */ = {
@@ -1125,6 +1124,7 @@
 				F1240F6C23B4E01400ECD116 /* Splitter.swift in Sources */,
 				F143EC2423FA8E2F0006743C /* MonoRep.swift in Sources */,
 				F1E645ED23940B3D008D2ABE /* HCCQRData.swift in Sources */,
+				F1FEF13924F29EC3001AE760 /* StringParser.swift in Sources */,
 				F1E645E223940B3D008D2ABE /* Pixel.swift in Sources */,
 				F181F10B23B9091400145DEA /* GrayRep.swift in Sources */,
 				F150FA2724D890B600D8408C /* CType.swift in Sources */,
@@ -1197,7 +1197,7 @@
 				F1E6459F23940AC9008D2ABE /* Hybrid+iOS.swift in Sources */,
 				F1E645A123940AC9008D2ABE /* ImageUtil.swift in Sources */,
 				F1240F6B23B4E01400ECD116 /* Splitter.swift in Sources */,
-				F146765A249F77F0009D392A /* SimpleHCCQRView+Data.swift in Sources */,
+				F146765A249F77F0009D392A /* BWGridView+Data.swift in Sources */,
 				F143EC2323FA8E2F0006743C /* MonoRep.swift in Sources */,
 				F119AEE924D599C600A67534 /* BitmapInfo.swift in Sources */,
 				F1E645C723940B3C008D2ABE /* Pixel.swift in Sources */,
@@ -1212,12 +1212,13 @@
 				F143EC2C23FA97B60006743C /* MonoRep+Getter.swift in Sources */,
 				F119AED924D586FA00A67534 /* CGImageErr.swift in Sources */,
 				F1AF9D3623E2D7630085DA0C /* BufferRect.swift in Sources */,
+				F1FEF13824F29EC3001AE760 /* StringParser.swift in Sources */,
 				F181F11623B92D0500145DEA /* GrayRep+Getter.swift in Sources */,
 				F18A52DF21790F8A003F8C13 /* AppDelegate.swift in Sources */,
 				F19C1C7224A8837100E93F4D /* GrayRepParser.swift in Sources */,
-				F146765B249F77F3009D392A /* SimpleHCCQRView+Create.swift in Sources */,
+				F146765B249F77F3009D392A /* BWGridView+Create.swift in Sources */,
 				F1D0FCC024B4EFA10065A7CA /* Pixels.swift in Sources */,
-				F1467659249F77EC009D392A /* SimpleHCCQRView.swift in Sources */,
+				F1467659249F77EC009D392A /* BWGridView.swift in Sources */,
 				F18A25E123BB7F5F00EF8151 /* BufferUtil.swift in Sources */,
 				F149992924C886960027C918 /* Scale.swift in Sources */,
 				F18E388324AE09D300F33947 /* CustomChannelScheme.swift in Sources */,
@@ -1263,6 +1264,7 @@
 				F1E5710923A3EF3100E090BB /* HCCQRIOSTest.swift in Sources */,
 				F1E5711823A3F2C400E090BB /* QRTesting.swift in Sources */,
 				F156AC1324D7449C007D6D2B /* ArrayBenchmark.swift in Sources */,
+				F1FEF13424F1D852001AE760 /* PayloadTest.swift in Sources */,
 				F1E5711723A3F2C400E090BB /* ScaleTesting.swift in Sources */,
 				F1537F0724B362E300160FEC /* ChannelComboTest.swift in Sources */,
 				F1E5711B23A3F2C400E090BB /* ColorishTest.swift in Sources */,

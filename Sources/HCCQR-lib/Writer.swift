@@ -5,6 +5,7 @@ import ParallelLoop
 import TimeMeasure
 /**
  * Creates HCCQR-Image from binary Data
+ * - Fixme: ⚠️️ remove support for Writer name
  */
 public typealias HCCQRWriter = Writer
 public final class Writer {}
@@ -17,6 +18,7 @@ extension Writer {
     * 3. Converts RGBRep to Image
     * - Fixme: ⚠️️ Could setting CIImage or CGIMage directly to a Image in the UI be faster?
     * - Fixme: ⚠️️ create custom error cases
+    * - Important: ⚠️️ data must be the full extent of the size of the configuration (this is a limitation with the qr-code, might be fixed in the future)
     * - Parameters:
     *   - data: data to be converted to HCCQR
     *   - config: config of HCCQR
@@ -71,5 +73,29 @@ extension Writer {
       _ = colorizeTime
       Log.log("colorizeTime:  \(colorizeTime)")
       return rgbRep
+   }
+}
+/**
+ * Extra
+ */
+extension Writer {
+   /**
+    * Writes content of any size to a hccqr (data is padded with $ delimiter)
+    * - Note: the reason why we fill up to max content allowed, is because the QR-layers needs to align, you cant have a version 1 and version 4 in the same hccqr etc
+    */
+   public static func image(content: Data, outputConfig: OutputConfig, parallel: Bool) throws -> Image {
+      let numOfLayers: Int = outputConfig.palette.layerCount
+      let version: Int = try HCCQRVersionUtil.version(dataCount: content.count, qrMode: .byte, ecLevel: .l, numOfLayers: numOfLayers)
+//      Swift.print("version:  \(version)")
+      // pad data
+      guard let qrVersion: QRVersion = .qrVer(int: version) else { throw NSError(domain: "Unable to make qrVersion", code: 0) }
+      let qrConfig: QRConfig = .init(qrVersion, .byte, .l)
+      let dataCount: Int = HCCQRConfigUtil.dataCount(config: qrConfig, numOfLayers: numOfLayers)
+      // pad content
+      let paddedData: Data = try content.padData(size: dataCount, delimiter: "$")
+      // use regular write etc
+      let hccqrConfig: HCCQRConfig = .init(qr: .init(qrVersion: qrVersion, ecLevel: .l), output: outputConfig)
+      // write hccqr buffer
+      return try image(data: paddedData, config: hccqrConfig, parallel: parallel)
    }
 }

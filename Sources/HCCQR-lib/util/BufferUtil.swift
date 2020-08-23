@@ -71,7 +71,7 @@ extension BufferUtil {
    }
 }
 /**
- * Buffer
+ * Image -> Buffer
  */
 extension BufferUtil {
    /**

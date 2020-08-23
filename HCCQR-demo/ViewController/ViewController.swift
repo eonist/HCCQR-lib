@@ -11,8 +11,8 @@ final class ViewController: UIViewController {
       super.viewDidLoad()
       view = View()
       view.backgroundColor = .white // .systemTeal
-//      testHCCQR() // 👈
-//      createRGBAPhoto() // 🏀
+      testHCCQR() // 👈
+//      createRGBAPhoto() 
 //      print("halfThreshold 4: \(PixelParser.getHalfThreshold(4))")
 //      print("halfThreshold 8: \(PixelParser.getHalfThreshold(8))")
 //      print("halfThreshold 16: \(PixelParser.getHalfThreshold(16))")

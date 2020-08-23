@@ -3,6 +3,7 @@ import QR_lib
 /**
  * - Fixme: ⚠️️ Make a method where you can provide HCCQRSetup get version
  * - Fixme: ⚠️️ Not really used, so might be deprecated unless it's needed by external libraries etc?
+ * - Fixme: ⚠️️ Rename to HCCQRCapacity ?
  */
 public final class HCCQRVersionUtil {
    /**
@@ -12,11 +13,11 @@ public final class HCCQRVersionUtil {
     * let hccqrVersion = try? HCCQRVersion.version(dataCount: data.count, qrMode: .byte, ecLevel: .l)
     * - Parameters:
     *   - dataCount: binary data size
-    *   - qrMode: byte or ascii etc
+    *   - qrMode: byte or ASCII etc
     *   - ecLevel: error correction level
     *   - numOfLayers: number of color Layers (4 colors = 2 layers etc)
     */
-   static func version(dataCount: Int, qrMode: QRMode = .byte, ecLevel: ECLevel = .l, numOfLayers: Int = 2) throws -> Int {
+   internal static func version(dataCount: Int, qrMode: QRMode = .byte, ecLevel: ECLevel = .l, numOfLayers: Int = 2) throws -> Int {
       let dataCount: Int = dataCount / numOfLayers
       guard let version: Int = Capacity.version(dataCount: dataCount, qrMode: qrMode, ecLevel: ecLevel) else { throw NSError(domain: "Can't find QR version for dataCount: \(dataCount)", code: 0) }
       return version

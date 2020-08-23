@@ -2,6 +2,7 @@ import Foundation
 import QR_lib
 /**
  * Enables custom colormap and custome scale
+ * - Note: to find layerCount use colorPalet.layerCount
  * - Fixme: ⚠️️ maybe find a better name?
  */
 public struct OutputConfig {

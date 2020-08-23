@@ -4,14 +4,14 @@ import UIKit
 /**
  * Create
  */
-extension SimpleHCCQRView {
+extension BWGridView {
    /**
     * Create view 1
     */
    func createView1() -> UIView {
       let view: UIView = .init(frame: self.bounds)
       addSubview(view)
-      SimpleHCCQRView.createBWGrid(view: view, grid: SimpleHCCQRView.grid1)
+      BWGridView.createBWGrid(view: view, grid: BWGridView.grid1)
       return view
    }
    /**
@@ -20,7 +20,7 @@ extension SimpleHCCQRView {
    func createView2() -> UIView {
       let view: UIView = .init(frame: self.bounds)
       addSubview(view)
-      SimpleHCCQRView.createBWGrid(view: view, grid: SimpleHCCQRView.grid2)
+      BWGridView.createBWGrid(view: view, grid: BWGridView.grid2)
       return view
    }
    /**

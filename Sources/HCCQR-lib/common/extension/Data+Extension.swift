@@ -36,3 +36,29 @@ extension Array where Element == Data {
       reduce(.init(), +)
    }
 }
+extension Data {
+   /**
+    * Pad data
+    * - Note: add random ascii data after some delimiter
+    * - Parameters:
+    *   - data: data to pad
+    *   - size: size of resulting data
+    *   - delimiter: delimiter to seperate content
+    */
+   internal func padData(size: Int, delimiter: String) throws -> Data {
+      guard let delimiterData: Data = delimiter.data(using: .utf8) else { throw PadError.unableToCreateDelimiter }
+      let capacityNeeded: Int = size - self.count - 1 // We substract 1 for the delimiter
+      let whitespace: String = StringParser.randomAscii(count: capacityNeeded) // create random jibberish, white space creates strange looking QR
+      guard let whitespaceData: Data = whitespace.data(using: .utf8) else { throw PadError.unableToMakeRandomWhitespaceData }
+      return self + delimiterData + whitespaceData // We make random data instead of single zeros, to avoid making last frames seem very repetitive
+   }
+}
+/**
+ * Error
+ */
+extension Data {
+   internal enum PadError: Error {
+      case unableToCreateDelimiter
+      case unableToMakeRandomWhitespaceData
+   }
+}

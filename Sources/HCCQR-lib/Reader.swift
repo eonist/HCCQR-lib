@@ -25,7 +25,7 @@ extension HCCQRReader {
     * 4. Combine the multiple Data's into one Data
     * 5. Return the data and the meta-data
     * - Fixme: ⚠️️ rename imageBuffer to buffer
-    * - Fixme: ⚠️️ make crop optional?
+    * - Fixme: ⚠️️⚠️️⚠️️ make crop optional?
     * - Parameters:
     *   - imageBuffer: The buffer containing the raw pixel data and size
     *   - crop: Makes processing the raw imagery faster since we don't have to process areas where the QR info is not etc.

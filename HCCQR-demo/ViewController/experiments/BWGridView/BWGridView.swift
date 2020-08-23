@@ -5,8 +5,9 @@ import UIKit
 /**
  * Creates a HCCQR pallet based on 2 layers of black and white grids
  * - Fixme: ⚠️️ This needs something to test
+ * - Fixme: ⚠️️ rename to BWGridViewTest
  */
-final class SimpleHCCQRView: UIView {
+final class BWGridView: UIView {
    lazy var view1: UIView = createView1()
    lazy var view2: UIView = createView2()
    /**

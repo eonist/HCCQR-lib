@@ -4,20 +4,8 @@ import XCTest
 final class HCCQRIOSTest: XCTestCase {
    func testExample() {
 //      sleep(10) // give some time to look at debug instruments etc
-//      Swift.print("hello")
-//      sleep(2)
       simpleTests()
       advanceTests()
-//      ColorishTest.test()
-//      XCTAssertTrue(PhotoTest.test())
-//      XCTAssertTrue(SingleTest.test())
-//      XCTAssertTrue(BulkBufferTest.test())
-//      XCTAssertTrue(BulkTest.test()) // ✅ Read and write multiple "syntetic-HCCQR-images"
-//      sleep(2)
-//      XCTAssertTrue(SingleTest.test())
-//      sleep(5)
-//      XCTAssertTrue(BufferTest.test()) // ✅ Test the new buffer -> RGBA (syntethic)
-//      ArrayBenchmark.test()
       sleep(5) // give some time to look at debug instruments etc
    }
    /**

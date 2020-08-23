@@ -3,22 +3,23 @@ import Foundation
 
 public final class HCCQRConfigUtil {
    /**
-    * Returns dataCount for (QRVersion, QRMode, ECLevel),
+    * Returns dataCount for (QRVersion, QRMode, ECLevel)
+    * - Note: Get max amount of characters you can fit into a speccific HCCQR config combination
     * ## Examples:
-    * HCCQRConfigUtil.dataCount(config: (.v10, .byte, .l), colorDepth: 2) // 542
+    * HCCQRConfigUtil.dataCount(config: .init(.v10, .byte, .l), colorDepth: 2) // 542
     * - Parameters:
     *   - config: ecLevel, mode, version
     *   - numOfLayers: 2 color-depths num of layers (equals 4 colors, 3-layers = 8, 4 = 16, 5 = 32, 6 = 64, 7 = 128, 8 = 256 etc)
     */
    internal static func dataCount(config: QRConfig, numOfLayers: Int) -> Int {
-      config.maxChar * numOfLayers
+      config.maxChar * numOfLayers // We want to multiply with colorDepth for HCCQR
    }
    /**
-    * Returns data in array
+    * Data -> Array of data (splits up the initial data into chunks)
     * - Note: used as a way of getting chunks of data from one big data, in order to populate each layer with a data-set
     * - Parameters:
     *   - data: binary data
-    *   - config: hccqr setup details
+    *   - config: HCCQR setup details
     */
    public static func data(data: Data, config: HCCQRConfig) -> [Data] {
       let length: Int = data.count / config.map.layerCount

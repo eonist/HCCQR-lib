@@ -4,7 +4,7 @@ import UIKit
 /**
  * Data
  */
-extension SimpleHCCQRView {
+extension BWGridView {
    static let grid1: [[UIColor]] = {
       [
          [.white, .black, .black, .white],
