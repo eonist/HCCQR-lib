@@ -193,7 +193,7 @@
 		F1FE7E0424A1D5360094B1BD /* CIImageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FE7E0324A1D5360094B1BD /* CIImageTest.swift */; };
 		F1FED18424C9930C00AFDB64 /* TestsMac.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FED18324C9930C00AFDB64 /* TestsMac.swift */; };
 		F1FED18B24C9946900AFDB64 /* SingleTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E67CAE24BB533800EB90F6 /* SingleTest.swift */; };
-		F1FEF13424F1D852001AE760 /* PayloadTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FEF13324F1D852001AE760 /* PayloadTest.swift */; };
+		F1FEF13424F1D852001AE760 /* CustomPayloadTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FEF13324F1D852001AE760 /* CustomPayloadTest.swift */; };
 		F1FEF13824F29EC3001AE760 /* StringParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FEF13724F29EC3001AE760 /* StringParser.swift */; };
 		F1FEF13924F29EC3001AE760 /* StringParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FEF13724F29EC3001AE760 /* StringParser.swift */; };
 /* End PBXBuildFile section */
@@ -345,7 +345,7 @@
 		F1FED18124C9930C00AFDB64 /* TestsMac.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestsMac.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1FED18324C9930C00AFDB64 /* TestsMac.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestsMac.swift; sourceTree = "<group>"; };
 		F1FED18524C9930C00AFDB64 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F1FEF13324F1D852001AE760 /* PayloadTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayloadTest.swift; sourceTree = "<group>"; };
+		F1FEF13324F1D852001AE760 /* CustomPayloadTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPayloadTest.swift; sourceTree = "<group>"; };
 		F1FEF13724F29EC3001AE760 /* StringParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringParser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -822,7 +822,7 @@
 				F19FC44524C09D2E0045BDB0 /* SinglePhotoTest.swift */,
 				F1E67CAE24BB533800EB90F6 /* SingleTest.swift */,
 				F19FC44724C09F460045BDB0 /* BufferTest.swift */,
-				F1FEF13324F1D852001AE760 /* PayloadTest.swift */,
+				F1FEF13324F1D852001AE760 /* CustomPayloadTest.swift */,
 			);
 			path = Single;
 			sourceTree = "<group>";
@@ -1264,7 +1264,7 @@
 				F1E5710923A3EF3100E090BB /* HCCQRIOSTest.swift in Sources */,
 				F1E5711823A3F2C400E090BB /* QRTesting.swift in Sources */,
 				F156AC1324D7449C007D6D2B /* ArrayBenchmark.swift in Sources */,
-				F1FEF13424F1D852001AE760 /* PayloadTest.swift in Sources */,
+				F1FEF13424F1D852001AE760 /* CustomPayloadTest.swift in Sources */,
 				F1E5711723A3F2C400E090BB /* ScaleTesting.swift in Sources */,
 				F1537F0724B362E300160FEC /* ChannelComboTest.swift in Sources */,
 				F1E5711B23A3F2C400E090BB /* ColorishTest.swift in Sources */,

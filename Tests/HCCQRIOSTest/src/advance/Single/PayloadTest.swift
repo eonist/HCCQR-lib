@@ -1,7 +1,7 @@
 import Foundation
 @testable import HCCQR_lib
 
-final class PayloadTest {
+final class CustomPayloadTest {
    /**
     * test custom content
     */

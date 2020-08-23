@@ -16,3 +16,9 @@ public struct Scale {
       self.screen = screen
    }
 }
+/**
+ * Getter
+ */
+extension Scale {
+   static let `default`: Scale = .init(6, 2)
+}
