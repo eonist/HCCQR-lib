@@ -689,6 +689,7 @@
 				F165C25323A01044005D30EC /* QRTesting.swift */,
 				F1BFEFD223A06899007F4261 /* ColorishTest.swift */,
 				F1E6F6862493B2DC00975607 /* MonoPixelColorization.swift */,
+				F1FEF13324F1D852001AE760 /* CustomPayloadTest.swift */,
 			);
 			path = simple;
 			sourceTree = "<group>";
@@ -822,7 +823,6 @@
 				F19FC44524C09D2E0045BDB0 /* SinglePhotoTest.swift */,
 				F1E67CAE24BB533800EB90F6 /* SingleTest.swift */,
 				F19FC44724C09F460045BDB0 /* BufferTest.swift */,
-				F1FEF13324F1D852001AE760 /* CustomPayloadTest.swift */,
 			);
 			path = Single;
 			sourceTree = "<group>";

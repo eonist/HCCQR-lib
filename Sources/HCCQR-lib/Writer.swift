@@ -82,20 +82,19 @@ extension Writer {
    /**
     * Writes content of any size to a hccqr (data is padded with $ delimiter)
     * - Note: the reason why we fill up to max content allowed, is because the QR-layers needs to align, you cant have a version 1 and version 4 in the same hccqr etc
+    * - Fixme: ⚠️️ Might be able to simplify this method further
+    * - Parameters:
+    *   - content: arbetrary size data
+    *   - outputConfig: scale and CType to use
+    *   - parallel: use parallel processing or not
     */
    public static func image(content: Data, outputConfig: OutputConfig, parallel: Bool) throws -> Image {
       let numOfLayers: Int = outputConfig.palette.layerCount
       let version: Int = try HCCQRVersionUtil.version(dataCount: content.count, qrMode: .byte, ecLevel: .l, numOfLayers: numOfLayers)
-//      Swift.print("version:  \(version)")
-      // pad data
-      guard let qrVersion: QRVersion = .qrVer(int: version) else { throw NSError(domain: "Unable to make qrVersion", code: 0) }
-      let qrConfig: QRConfig = .init(qrVersion, .byte, .l)
+      let qrConfig: QRConfig = try .init(version, .byte, .l)
       let dataCount: Int = HCCQRConfigUtil.dataCount(config: qrConfig, numOfLayers: numOfLayers)
-      // pad content
-      let paddedData: Data = try content.padData(size: dataCount, delimiter: "$")
-      // use regular write etc
-      let hccqrConfig: HCCQRConfig = .init(qr: .init(qrVersion: qrVersion, ecLevel: .l), output: outputConfig)
-      // write hccqr buffer
-      return try image(data: paddedData, config: hccqrConfig, parallel: parallel)
+      let paddedData: Data = try content.padData(size: dataCount, delimiter: "$") // pad data
+      let hccqrConfig: HCCQRConfig = .init(qr: .init(qrVersion: qrConfig.version, ecLevel: qrConfig.ecLevel), output: outputConfig)
+      return try image(data: paddedData, config: hccqrConfig, parallel: parallel) // write hccqr buffer (use regular write etc)
    }
 }

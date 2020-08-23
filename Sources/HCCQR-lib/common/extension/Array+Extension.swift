@@ -29,3 +29,17 @@ extension Array {
       self.compactMap { $0 }
    }
 }
+/**
+ * Parser
+ */
+extension Array where Element: Comparable {
+   /**
+    * Returns the last index that match condition
+    * ## Examples:
+    * [0,55,14,55,22,33,55,76,120].lastIndex(where: { $0 == 55 }) // 6
+    */
+   func lastIndex(where condition: (Element) -> Bool) -> Int? {
+      guard let idx: Int = self.reversed().firstIndex(where: condition) else { return nil }
+      return self.count - 1 - idx
+   }
+}
