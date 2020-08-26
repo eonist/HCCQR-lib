@@ -67,7 +67,7 @@ extension Data {
     * - Fixme: ⚠️️ move to Data + Extension
     * - Parameter delimiter: delimitor to seperate content
     */
-   internal func partialContent(delimiter: String) throws -> Data {
+   public func partialContent(delimiter: String) throws -> Data {
       let idxOfDel: Int = try lastIndexOf(str: delimiter)
       return .init(self[..<idxOfDel]) // the first part has the content, the last part is just whitespace
    }

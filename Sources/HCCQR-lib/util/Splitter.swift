@@ -12,7 +12,7 @@ extension Splitter {
    /**
     * Splits HCCQR rep into b&w qr layers
     * 1. Extracts graychannels for each color in channelPallet
-    * 2. Araneges these graychannels in special arrangments (defined by predefned HCCQR rule-set depending on num of colors used)
+    * 2. Arranges these graychannels in special arrangments (defined by predefned HCCQR rule-set depending on num of colors used)
     * 3. Converts to combinations of graychannels CIImage
     * - Note: when added to an UIImage, you need to set scale to 2.0 and orientation to .up
     * - Note: Splits an image into r, g, b channels
