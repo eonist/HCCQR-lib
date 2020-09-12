@@ -34,3 +34,9 @@ extension BufferRect {
       .init(width, height)
    }
 }
+/**
+ * Convenience method
+ */
+extension CGRect {
+   public var bufferRect: BufferRect { .init(Int(origin.x), Int(origin.y), Int(width), Int(height)) }
+}

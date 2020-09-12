@@ -2,6 +2,10 @@ import XCTest
 @testable import HCCQR_lib
 
 final class HCCQRIOSTest: XCTestCase {
+   /**
+    * - Fixme: ⚠️️ Seems like there is a bug running these tests with iOS simulator, works on phone tho
+    * - Fixme: ⚠️️ Running these tests on ios device, throws ResourceHelper error, etc. Fix in ResourceHelper project
+    */
    func testExample() {
 //      sleep(10) // give some time to look at debug instruments etc
       simpleTests()
