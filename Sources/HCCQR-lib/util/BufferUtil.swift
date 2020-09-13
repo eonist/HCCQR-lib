@@ -56,6 +56,9 @@ extension BufferUtil {
       let byteBuffer: UnsafeBufferPointer<UInt8> = .init(start: baseAddress.bindMemory(to: UInt8.self, capacity: capacity), count: capacity)// baseAddress.assumingMemoryBound(to: UInt8.self)// .init()
       let pixels: UnsafeMutableBufferPointer<Pixel> = .allocate(capacity: capacity) // we dealoc this when we have finished working with rgbRep
       let bytesPerPixel: Int = MemoryLayout<RGBAPixel>.size
+      let bufferSize: BufferSize = buffer.rect.size
+      guard bufferRect.x + bufferRect.width <= bufferSize.width else { fatalError("Crop is out of bound \(bufferRect)") }
+      guard bufferRect.y + bufferRect.height <= bufferSize.height else { fatalError("Crop is out of bound \(bufferRect)") }
       (bufferRect.y..<bufferRect.height).forEach { y in
          let yVal: Int = y * bytesPerRow // we calc these outside the x loop, to gain performance
          let yAndWidth: Int = y * bufferRect.width // we calc these outside the x loop, to gain performance
