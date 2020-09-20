@@ -28,3 +28,17 @@ extension OutputConfig {
    public static let `default`: OutputConfig = .init(scale: .init(6, 2), cType: .c4)
    public var palette: ColorPalette { cType.cp(useDarkMode: useDarkMode) }
 }
+/**
+ * Utility
+ */
+extension OutputConfig {
+   /**
+    * Get HCCQR-Config based on content-length
+    */
+   public func hccqrConfig(contentLength: Int) throws -> HCCQRConfig {
+      let numOfLayers: Int = self.palette.layerCount
+      let version: Int = try HCCQRVersionUtil.version(dataCount: contentLength, qrMode: .byte, ecLevel: .l, numOfLayers: numOfLayers)
+      let qrConfig: QRConfig = try .init(version, .byte, .l)
+      return .init(qr: .init(qrVersion: qrConfig.version, ecLevel: qrConfig.ecLevel), output: self)
+   }
+}
