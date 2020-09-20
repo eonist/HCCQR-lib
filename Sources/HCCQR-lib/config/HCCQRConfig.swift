@@ -55,7 +55,7 @@ extension HCCQRConfig {
     * Returns length of side of qr square
     */
    public var qrSize: CGSize {
-      let version: Int = qrVersion.rawValue
+      let version: Int = qrVersion.rawValue + 1 // we add 1 since raw is from zero etc
       let qrSize: Int = ModuleCounter.qrSize(version: version, moduleMultiplier: scale.module)
       let side: CGFloat = .init(qrSize * scale.screen)
       return .init(width: side, height: side)

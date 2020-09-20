@@ -30,6 +30,7 @@ extension View {
          let output: OutputConfig = .init(scale: .init(6, 2), cType: .c4)
          return .init(qr: qrSetup, output: output)
       }()
+      Swift.print("setup.qrSize:  \(setup.qrSize)")
       guard let randomData: Data = HCCQRData.randomData(setup: setup) else { return }
       //      let coreCount: Int = ProcessInfo().activeProcessorCount
       //      print("coreCount \(coreCount)")
